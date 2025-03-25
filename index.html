@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contenido de las Parashot</title>
+    <link rel="stylesheet" href="./Parashot.css">
+</head>
+<body>
+
+    <header>
+        <h1><span class="torah-icon">📜</span> 54 PARASHOT</h1>
+    </header>
+
+    <div class="container" id="contenedores">
+        <!-- Los contenedores se generarán aquí con JavaScript -->
+    </div>
+
+    <div id="miModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>SHALOM* *ALEJEM</h2>
+            <p>Bienvenidos a este espacio de estudio y reflexión 
+                del Ministerio Judío Mesiánico. 
+                Nos sentimos honrados de tenerte con nosotros 
+                en este viaje de aprendizaje y crecimiento espiritual. 
+                Aquí, nos dedicamos a profundizar en las Escrituras Hebreas, 
+                explorando el Tanaj y el Brit Hadashá bajo la luz de 
+                nuestro Adonai Yeshúa HaMashíaj.</p>
+        </div>
+    </div>
+
+    <script>
+        const nombres = [
+            "Bereshit", "Noaj", "Lej Lejá", "Vayera", "Jayei Sará", "Toldot",
+            "Vayetze", "Vayishlaj", "Vayeshev", "Miketz", "Vayigash", "Vayeji",
+            "Shemot", "Vaerá", "Bo", "Beshalaj", "Yitró", "Mishpatim",
+            "Terumá", "Tetzavé", "Ki Tisá", "Vayakhel", "Pekudei",
+            "Vayikrá", "Tzav", "Sheminí", "Tazría", "Metzorá", "Ajarei Mot",
+            "Kedoshim", "Emor", "Behar", "Bejukotai", "Bamidbar", "Naso",
+            "Behaalotejá", "Shelaj Lejá", "Koraj", "Jukat", "Balak",
+            "Pinjás", "Matot", "Masei", "Devarim", "Vaetjanán", "Ekev",
+            "Reé", "Shoftim", "Ki Tetzé", "Ki Tavó", "Nitzavim", "Vayelej",
+            "Haazinu", "Vezot Haberajá"
+        ];
+
+        const contenedor = document.getElementById("contenedores");
+
+        for (let i = 0; i < 54; i++) {
+            let div = document.createElement("div");
+            div.classList.add("box");
+            div.innerHTML = `
+                <p>${nombres[i]}</p>
+                <a href="parasha${i+1}.html" class="btn">Ir a ${nombres[i]}</a>
+            `;
+            contenedor.appendChild(div);
+        }
+
+         // Obtener el modal y el botón de cierre
+         var modal = document.getElementById("miModal");
+        var closeBtn = document.querySelector(".close");
+
+        // Mostrar el modal automáticamente cuando se carga la página
+        window.onload = function() {
+            modal.style.display = "flex";
+        };
+
+        // Cerrar el modal al hacer clic en la "X"
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        };
+
+        // Cerrar el modal si el usuario hace clic fuera de él
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+
+</body>
+</html>
