@@ -28,17 +28,20 @@ async function descargarPDF() {
         return;
     }
 
+    // Asegurar que el contenido es visible antes de capturarlo
     contenido.style.display = "block";
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // 🔹 Esperar un poco más para que las imágenes y estilos se carguen completamente
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
+    // Verificar si el contenido tiene altura antes de generar el PDF
     if (contenido.getBoundingClientRect().height === 0) {
-        console.error("El contenido aún no es visible.");
+        console.error("❌ El contenido aún no es visible.");
         alert("El contenido aún no ha cargado completamente.");
         return;
     }
 
-    // Detectar el dispositivo para ajustar tamaño y escala
+    // Detectar el dispositivo para ajustar opciones
     const esMovil = window.innerWidth <= 600;
     const esTablet = window.innerWidth > 600 && window.innerWidth <= 900;
 
@@ -46,19 +49,23 @@ async function descargarPDF() {
         margin: [5, 5, 5, 5], 
         filename: "lectura.pdf",
         pagebreak: { mode: ["avoid-all", "css", "legacy"] }, 
-        image: { type: "jpeg", quality: 0.98 },
+        image: { type: "jpeg", quality: 1 }, // 🔹 Mejora la calidad de las imágenes
         html2canvas: { 
-            scale: esMovil ? 2 : esTablet ? 1.5 : 1.3, // Ajusta la calidad según el dispositivo
-            useCORS: true 
+            scale: esMovil ? 3 : esTablet ? 2 : 1.5, // 🔹 Aumenta la escala en móviles
+            useCORS: true,
+            logging: true, // 🔹 Muestra información en la consola
+            allowTaint: true, // 🔹 Permite capturar contenido externo
+            backgroundColor: "#fff" // 🔹 Evita que el fondo salga transparente
         }, 
         jsPDF: { 
             unit: "mm", 
-            format: esMovil ? "a5" : esTablet ? "a4" : "a4", // Móvil usa A5, tablet y PC usan A4
+            format: "a4", 
             orientation: "portrait" 
         }
     };
 
     try {
+        console.log("🔍 Capturando contenido con html2pdf...");
         await html2pdf().set(opciones).from(contenido).save();
         console.log("✅ PDF generado correctamente.");
     } catch (err) {
