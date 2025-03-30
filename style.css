@@ -25,7 +25,10 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    page-break-inside: avoid;
+    page-break-inside: avoid !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 /* Títulos */
@@ -34,6 +37,8 @@ h1 {
     font-weight: bold;
     text-align: center;
     margin-bottom: 10px;
+    page-break-before: auto;
+    page-break-inside: avoid;
 }
 
 h2, h3 {
@@ -43,11 +48,15 @@ h2, h3 {
     margin-top: 15px;
     border-bottom: 2px solid #181717;
     padding-bottom: 5px;
+    page-break-before: auto;
+    page-break-inside: avoid;
 }
 
 /* Texto general */
 p, td, th, .text, .subtitle, .footer {
     font-size: 16px;
+    word-break: keep-all; /* Evita que las palabras se corten en mitad de la línea */
+    hyphens: auto; /* Habilita guiones en caso necesario */
 }
 
 /* Tablas */
@@ -56,6 +65,8 @@ table {
     border-collapse: collapse;
     margin-bottom: 20px;
     background: #fff;
+    page-break-before: auto;
+    page-break-inside: avoid;
 }
 table, th, td {
     border: 1px solid #ddd;
@@ -180,21 +191,6 @@ td {
     background-color: #ac2925;
     transform: translateY(1px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-* {
-    page-break-inside: avoid !important;
-}
-
-/* Fuerza un salto de página antes de ciertos elementos importantes */
-.salto-pagina {
-    page-break-before: always;
-}
-
-/* Asegura que el contenido completo se renderice correctamente */
-#contenido {
-    overflow: visible !important;
-    background-color: white !important; /* Para evitar fondos transparentes */
 }
 
 /* Responsividad */
