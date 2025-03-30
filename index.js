@@ -18,17 +18,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Función para descargar el PDF con contenido paginado
 function descargarPDF() {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-
     const contenido = document.getElementById("contenido");
 
-    html2canvas(contenido, { scale: 1.3 }).then(canvas => {
-        const imgData = canvas.toDataURL("image/png");
-        const imgWidth = 210; // Ancho de A4 en mm
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    const opciones = {
+        margin:       [10, 5, 10, 5], // Márgenes: [arriba, derecha, abajo, izquierda]
+        filename:     'documento.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 1.3, useCORS: true, letterRendering: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
 
-        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-        pdf.save("documento.pdf");
-    });
+    html2pdf().set(opciones).from(contenido).toPdf().get('pdf').then(function (pdf) {
+        var totalPages = pdf.internal.getNumberOfPages();
+
+        for (var i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            pdf.setFontSize(10);
+            pdf.text('Página ' + i + ' de ' + totalPages, 190, 285, { align: 'right' });
+        }
+    }).save();
 }
