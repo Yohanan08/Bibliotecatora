@@ -54,7 +54,7 @@ async function descargarPDF() {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] }, // 🔹 Mejor manejo de saltos de página
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { 
-            scale: 2,  
+            scale: 1.3,  
             useCORS: true, 
             logging: false,
             allowTaint: true,
