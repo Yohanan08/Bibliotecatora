@@ -28,31 +28,37 @@ async function descargarPDF() {
         return;
     }
 
-    // 🔹 Asegurar que el contenido está completamente visible
+    // 🔹 Asegurar que el contenido está completamente visible antes de capturarlo
     contenido.style.display = "block";
 
     // 🔹 Esperar un poco más para garantizar la carga en móviles
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // Verificar que el contenido tiene altura
+    // 🔹 Verificar que el contenido tiene altura antes de capturar el PDF
     if (contenido.getBoundingClientRect().height === 0) {
         console.error("❌ El contenido aún no es visible.");
         alert("El contenido aún no ha cargado completamente.");
         return;
     }
 
+    // 🔹 Ajustar saltos de página con CSS
+    contenido.querySelectorAll('*').forEach(el => {
+        el.style.pageBreakInside = "avoid"; // Evita que los elementos se corten
+        el.style.overflow = "visible"; // Asegura que no haya contenido oculto
+    });
+
     // 🔹 Configuración de html2pdf
     const opciones = {
         margin: 10,
         filename: "lectura.pdf",
-        pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+        pagebreak: { mode: ["avoid-all", "css", "legacy"] }, // 🔹 Mejor manejo de saltos de página
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { 
-            scale: 1.3,  // 🔹 Asegura buena calidad en móviles y escritorio
+            scale: 2,  
             useCORS: true, 
             logging: false,
             allowTaint: true,
-            backgroundColor: "#fff"  // 🔹 Fondo blanco para evitar transparencias
+            backgroundColor: "#fff"
         }, 
         jsPDF: { 
             unit: "mm", 
