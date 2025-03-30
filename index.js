@@ -48,7 +48,7 @@ async function descargarPDF() {
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { 
-            scale: 1.3,  // 🔹 Asegura buena calidad en móviles y escritorio
+            scale: 1.5,  // 🔹 Asegura buena calidad en móviles y escritorio
             useCORS: true, 
             logging: false,
             allowTaint: true,
