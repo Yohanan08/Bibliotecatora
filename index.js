@@ -21,20 +21,26 @@ function descargarPDF() {
     const contenido = document.getElementById("contenido");
 
     const opciones = {
-        margin:       [10, 5, 10, 5], // Márgenes: [arriba, derecha, abajo, izquierda]
+        margin:       10, // Márgenes uniformes
         filename:     'documento.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 1.3, useCORS: true, letterRendering: true },
+        html2canvas:  { scale: 1, useCORS: true, letterRendering: true, scrollX: 0, scrollY: 0 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf().set(opciones).from(contenido).toPdf().get('pdf').then(function (pdf) {
-        var totalPages = pdf.internal.getNumberOfPages();
-
-        for (var i = 1; i <= totalPages; i++) {
-            pdf.setPage(i);
-            pdf.setFontSize(10);
-            pdf.text('Página ' + i + ' de ' + totalPages, 190, 285, { align: 'right' });
-        }
-    }).save();
+    html2pdf()
+        .set(opciones)
+        .from(contenido)
+        .toPdf()
+        .get('pdf')
+        .then(function (pdf) {
+            let totalPages = pdf.internal.getNumberOfPages();
+            
+            for (let i = 1; i <= totalPages; i++) {
+                pdf.setPage(i);
+                pdf.setFontSize(10);
+                pdf.text(`Página ${i} de ${totalPages}`, 190, 285, { align: 'right' });
+            }
+        })
+        .save();
 }
