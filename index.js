@@ -18,41 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Función para descargar el PDF con contenido paginado
 function descargarPDF() {
-    const contenido = document.getElementById("contenido");
-
-    // Asegurar que el contenido es visible antes de capturar
-    contenido.style.visibility = "visible";
-
-    const opciones = {
-        margin: [10, 10, 10, 10], // Márgenes equilibrados
-        filename: 'documento.pdf',
-        image: { type: 'jpeg', quality: 0.9 }, // Mejora la calidad sin aumentar mucho el peso
-        html2canvas: {
-            scale: 1, // No aumentar demasiado la escala
-            useCORS: true,
-            allowTaint: true,
-            scrollX: 0,
-            scrollY: 0,
-            logging: true,
-        },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    // Asegurar que el contenido se renderiza correctamente
-    setTimeout(() => {
-        html2pdf()
-            .set(opciones)
-            .from(contenido)
-            .toPdf()
-            .get('pdf')
-            .then(function (pdf) {
-                let totalPages = pdf.internal.getNumberOfPages();
-                for (let i = 1; i <= totalPages; i++) {
-                    pdf.setPage(i);
-                    pdf.setFontSize(10);
-                    pdf.text(`Página ${i} de ${totalPages}`, 190, 285, { align: 'right' });
-                }
-            })
-            .save();
-    }, 1000); // Espera 1 segundo para asegurar que todo se cargue bien
+    printJS({
+        printable: "contenido",
+        type: "html",
+        header: "Mi PDF Generado",
+        style: `
+            body { font-size: 14px; font-family: Arial, sans-serif; }
+            h1 { font-size: 18px; font-weight: bold; }
+            h2 { font-size: 16px; font-weight: bold; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        `,
+        scanStyles: false // Evita conflictos con CSS externo
+    });
 }
