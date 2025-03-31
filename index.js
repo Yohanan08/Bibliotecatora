@@ -20,27 +20,39 @@ document.addEventListener("DOMContentLoaded", function () {
 function descargarPDF() {
     const contenido = document.getElementById("contenido");
 
+    // Asegurar que el contenido es visible antes de capturar
+    contenido.style.visibility = "visible";
+
     const opciones = {
-        margin:       [5, 5, 5, 5], // Márgenes más pequeños
-        filename:     'documento.pdf',
-        image:        { type: 'jpeg', quality: 0.8 }, // Calidad optimizada para móviles
-        html2canvas:  { scale: 0.8, useCORS: true, letterRendering: true, scrollX: 0, scrollY: 0 },
-        jsPDF:        { unit: 'mm', format: 'a3', orientation: 'portrait', compress: true }
+        margin: [10, 10, 10, 10], // Márgenes equilibrados
+        filename: 'documento.pdf',
+        image: { type: 'jpeg', quality: 0.9 }, // Mejora la calidad sin aumentar mucho el peso
+        html2canvas: {
+            scale: 1, // No aumentar demasiado la escala
+            useCORS: true,
+            allowTaint: true,
+            scrollX: 0,
+            scrollY: 0,
+            logging: true,
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf()
-        .set(opciones)
-        .from(contenido)
-        .toPdf()
-        .get('pdf')
-        .then(function (pdf) {
-            let totalPages = pdf.internal.getNumberOfPages();
-
-            for (let i = 1; i <= totalPages; i++) {
-                pdf.setPage(i);
-                pdf.setFontSize(10);
-                pdf.text(`Página ${i} de ${totalPages}`, 190, 285, { align: 'right' });
-            }
-        })
-        .save();
+    // Asegurar que el contenido se renderiza correctamente
+    setTimeout(() => {
+        html2pdf()
+            .set(opciones)
+            .from(contenido)
+            .toPdf()
+            .get('pdf')
+            .then(function (pdf) {
+                let totalPages = pdf.internal.getNumberOfPages();
+                for (let i = 1; i <= totalPages; i++) {
+                    pdf.setPage(i);
+                    pdf.setFontSize(10);
+                    pdf.text(`Página ${i} de ${totalPages}`, 190, 285, { align: 'right' });
+                }
+            })
+            .save();
+    }, 1000); // Espera 1 segundo para asegurar que todo se cargue bien
 }
