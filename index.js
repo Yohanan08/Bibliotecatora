@@ -21,11 +21,11 @@ function descargarPDF() {
     const contenido = document.getElementById("contenido");
 
     const opciones = {
-        margin:       10, // Márgenes uniformes
+        margin:       [5, 5, 5, 5], // Márgenes más pequeños
         filename:     'documento.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 1, useCORS: true, letterRendering: true, scrollX: 0, scrollY: 0 },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        image:        { type: 'jpeg', quality: 0.8 }, // Calidad optimizada para móviles
+        html2canvas:  { scale: 0.8, useCORS: true, letterRendering: true, scrollX: 0, scrollY: 0 },
+        jsPDF:        { unit: 'mm', format: 'a3', orientation: 'portrait', compress: true }
     };
 
     html2pdf()
@@ -35,7 +35,7 @@ function descargarPDF() {
         .get('pdf')
         .then(function (pdf) {
             let totalPages = pdf.internal.getNumberOfPages();
-            
+
             for (let i = 1; i <= totalPages; i++) {
                 pdf.setPage(i);
                 pdf.setFontSize(10);
