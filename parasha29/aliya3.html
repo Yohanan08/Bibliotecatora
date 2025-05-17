@@ -14,226 +14,245 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
         <style>
-body {
-    font-family: 'Times New Roman', Times, serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 10px;
-    color: #333;
-    background-color: #f8f8f8;
-}
+ body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: clamp(10px, 5vw, 20px);
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        .verse-container {
+            margin-bottom: clamp(20px, 4vw, 30px);
+            background-color: white;
+            padding: clamp(10px, 3vw, 15px);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: clamp(1em, 3vw, 1.2em);
+            margin-bottom: 10px;
+        }
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: clamp(1em, 3vw, 1.1em);
+            margin: 10px 0;
+        }
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+        .translation {
+            margin: 10px 0;
+        }
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: clamp(1.1em, 3.5vw, 1.3em);
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+        .explanation {
+            background-color: white;
+            padding: clamp(15px, 4vw, 20px);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-top: clamp(25px, 6vw, 40px);
+        }
+        .point-letter {
+            font-weight: bold;
+            font-size: clamp(1em, 3vw, 1.1em);
+            margin-right: 8px;
+            color: #000;
+        }
+        .content-container {
+            background-color: white;
+            padding: clamp(15px, 5vw, 25px);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: clamp(20px, 5vw, 30px);
+        }
+        .section-container {
+            margin-bottom: clamp(15px, 5vw, 25px);
+        }
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: clamp(20px, 6vw, 30px);
+            font-size: clamp(1.6em, 5vw, 2em);
+        }
+        h2, h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: clamp(15px, 4vw, 20px);
+            font-size: clamp(1.3em, 4vw, 1.5em);
+        }
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: clamp(25px, 8vw, 40px) 0;
+        }
+        .prophetic-content {
+            background-color: white;
+            padding: clamp(15px, 4vw, 20px);
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-top: clamp(25px, 6vw, 40px);
+        }
+        .prophetic-section {
+            margin-bottom: clamp(15px, 4vw, 20px);
+        }
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: clamp(1em, 3vw, 1.1em);
+        }
+        strong {
+            color: #000;
+        }
+        .scripture {
+            font-style: italic;
+            margin: 10px clamp(10px, 4vw, 20px);
+            padding-left: clamp(10px, 3vw, 15px);
+            border-left: 3px solid #ddd;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: clamp(10px, 3vw, 15px);
+            border-radius: 5px;
+            margin-top: clamp(20px, 6vw, 30px);
+        }
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: clamp(20px, 5vw, 30px);
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+        .prayer-text {
+            font-size: clamp(1em, 3vw, 1.05em);
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: clamp(20px, 6vw, 30px);
+        }
 
-.container {
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    box-sizing: border-box;
-}
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
 
-h1 {
-    color: black;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-size: calc(1.5rem + 0.5vw);
-    word-wrap: break-word;
-}
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
 
-h2 {
-    color: black;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    font-size: calc(1.2rem + 0.3vw);
-    word-wrap: break-word;
-}
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
 
-.hebrew {
-    font-size: clamp(16px, 5vw, 20px);
-    direction: rtl;
-    font-weight: bold;
-    margin-bottom: 10px;
-    word-wrap: break-word;
-}
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
 
-.transliteration {
-    font-style: italic;
-    margin-bottom: 10px;
-    color: #555;
-    word-wrap: break-word;
-}
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
 
-.translation {
-    margin-bottom: 10px;
-    word-wrap: break-word;
-}
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
 
-.literal {
-    margin-bottom: 20px;
-    color: #555;
-    word-wrap: break-word;
-}
-
-.verse-container {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ececec;
-    margin-bottom: 20px;
-}
-
-.verse-number {
-    font-weight: bold;
-    margin-right: 10px;
-    color: black;
-}
-
-#google_translate_element {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 10px 0;
-}
-
-.boton-descargar {
-    display: block;
-    width: min(180px, 90%);
-    margin: 15px auto;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    text-align: center;
-    border-radius: 15px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.boton-descargar:hover {
-    background-color: #0056b3;
-    cursor: pointer;
-}
-
-.prophetic-section {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-left: 3px solid #333;
-}
-
-.prophetic-point {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ececec;
-}
-
-.prophetic-title {
-    color: black;
-    font-weight: bold;
-}
-
-.scripture-quote {
-    font-style: italic;
-    margin: 15px 5%;
-    padding-left: 10px;
-    border-left: 2px solid #999;
-}
-
-.conclusion {
-    font-weight: bold;
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-}
-
-.citation {
-    margin-left: 10px;
-    padding-left: 10px;
-    border-left: 3px solid #ddd;
-    margin-bottom: 1em;
-}
-
-.aliya-button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    display: inline-block;
-    font-size: clamp(14px, 4vw, 16px);
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 10px;
-    font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    transition: all 0.3s;
-    width: auto;
-    max-width: 100%;
-}
-
-.aliya-button:hover {
-    background-color: #45a049;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-    transform: translateY(-2px);
-}
-
-.aliya-button a {
-    text-decoration: none;
-    color: black;
-}
-
-footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: clamp(16px, 4vw, 20px);
-    color: #777;
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
-    width: 100%;
-}
-
-/* Media queries para responsividad */
-@media screen and (max-width: 768px) {
-    body {
-        padding: 5px;
-    }
-    
-    .container {
-        padding: 15px;
-    }
-    
-    .scripture-quote {
-        margin: 10px 0;
-    }
-    
-    .prophetic-section {
-        padding: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    body {
-        padding: 0;
-    }
-    
-    .container {
-        padding: 10px;
-        box-shadow: none;
-    }
-    
-    .citation {
-        margin-left: 5px;
-        padding-left: 5px;
-    }
-    
-    .verse-container {
-        padding-bottom: 15px;
-        margin-bottom: 15px;
-    }
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Media queries para mejorar la responsividad */
+        @media (max-width: 600px) {
+            .content-container {
+                padding: 15px;
+            }
+            
+            .explanation {
+                padding: 15px;
+            }
+            
+            .scripture {
+                margin: 10px 5px;
+                padding-left: 10px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2, h3 {
+                font-size: 1.2em;
+            }
 }
     </style>
     
