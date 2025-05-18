@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 19:1-14</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+<body>
+<div id="google_translate_element"></div>
+<header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+</header>
+
+<main id="contenido">
+
+    <h1>30. Parashá Kedoshim Aliyáh 1: (Levítico 19:1-14) La llamada a ser santos y leyes sobre la justicia social y el respeto a los padres.
+    <p>Haftaráh: Amós 9:7-15 (La santidad de Israel y la promesa de restauración).</p>
+    <p>Brit Hadasháh: 1 Pedro 1:15-16 («Sed santos porque Yo soy santo»).</p></h1>
+
+    <div class="content-container">
+        <h1>Punto 1. Instrucción Detallada del Texto Hebreo Original</h1>
+        <h2>Levítico 19:1-14</h2>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 1</div>
+        <div class="hebrew">וַיְדַבֵּ֥ר יְהוָ֖ה אֶל־מֹשֶׁ֥ה לֵּאמֹֽר׃</div>
+        <div class="transliteration">
+            Va-y'daber – Y habló<br>
+            YHWH – Adonái יהוה<br>
+            el – a<br>
+            Mosheh – Moshé<br>
+            lemor – diciendo
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Y habló Adonái יהוה a Moshé diciendo:</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 2</div>
+        <div class="hebrew">דַּבֵּ֞ר אֶל־כָּל־עֲדַ֤ת בְּנֵֽי־יִשְׂרָאֵל֙ וְאָמַרְתָּ֣ אֲלֵהֶ֔ם קְדֹשִׁ֣ים תִּהְי֔וּ כִּ֛י קָד֥וֹשׁ אֲנִ֖י יְהוָ֥ה אֱלֹהֵיכֶֽם׃</div>
+        <div class="transliteration">
+            Daber – Habla<br>
+            el – a<br>
+            kol – toda<br>
+            adat – la asamblea<br>
+            b'nei Yisra'el – de los hijos de Yisrael<br>
+            ve'amarta – y dirás<br>
+            alehem – a ellos<br>
+            kedoshim – santos<br>
+            tihyu – seréis<br>
+            ki – porque<br>
+            kadosh – santo<br>
+            ani – Yo<br>
+            YHWH – Adonái יהוה<br>
+            Eloheichem – vuestro Elohím
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Habla a toda la congregación de los hijos de Yisrael y diles: Santos seréis porque santo soy Yo, Adonái יהוה vuestro Elohím.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 3</div>
+        <div class="hebrew">אִ֣ישׁ אִמּ֤וֹ וְאָבִיו֙ תִּירָ֔אוּ וְאֶת־שַׁבְּתֹתַ֖י תִּשְׁמֹ֑רוּ אֲנִ֖י יְהוָ֥ה אֱלֹהֵיכֶֽם׃</div>
+        <div class="transliteration">
+            Ish – Hombre<br>
+            immo – a su madre<br>
+            ve'aviv – y a su padre<br>
+            tira'u – temeréis<br>
+            ve'et – y mis<br>
+            shabbatotai – shabatot (mis días de reposo)<br>
+            tishmeru – guardaréis<br>
+            ani – Yo<br>
+            YHWH – Adonái יהוה<br>
+            Eloheichem – vuestro Elohím
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Cada uno temerá a su madre y a su padre y mis shabatot guardaréis; Yo soy Adonái יהוה vuestro Elohím.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 4</div>
+        <div class="hebrew">אַל־תִּפְנוּ֙ אֶל־הָאֱלִילִ֔ם וֵאלֹהֵ֥י מַסֵּכָ֖ה לֹ֣א תַעֲשׂ֑וּ לָכֶ֖ם אֲנִ֥י יְהוָֽה׃</div>
+        <div class="transliteration">
+            Al – No<br>
+            tifnu – os volváis<br>
+            el – a<br>
+            ha'elilim – los ídolos<br>
+            ve'Elohei – y dioses de<br>
+            massekhah – imagen fundida<br>
+            lo – no<br>
+            ta'asu – haréis<br>
+            lachem – para vosotros<br>
+            ani – Yo<br>
+            YHWH – Adonái יהוה
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        No os volváis a los ídolos ni os hagáis dioses fundidos para vosotros; Yo soy Adonái יהוה.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 5</div>
+        <div class="hebrew">וְכִֽי־תִזְבְּח֥וּ זֶ֛בַח שְׁלָמִ֖ים לַֽיהוָ֑ה לִ֥רְצֹֽנְכֶ֖ם תִּזְבָּחֽוּהוּ׃</div>
+        <div class="transliteration">
+            Ve-ki – Y cuando<br>
+            tizb'chu – ofrezcáis sacrificio<br>
+            zevach – de ofrenda<br>
+            shelamim – de paz<br>
+            la-YHWH – a Adonái יהוה<br>
+            lir'tzonchem – de vuestra voluntad<br>
+            tizbachuhu – lo ofreceréis
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Y cuando ofrezcáis sacrificio de paz a Adonái יהוה, lo ofreceréis de vuestra propia voluntad.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 6</div>
+        <div class="hebrew">בְּי֣וֹם זִבְחֲכֶ֔ם יֵאָכֵ֖ל וּמִֽמָּחֳרָ֑ת וְהַנּוֹתָ֖ר עַד־י֥וֹם הַשְּׁלִישִֽׁי בָּאֵ֖שׁ יִשָּׂרֵֽף׃</div>
+        <div class="transliteration">
+            Be-yom – En el día<br>
+            zivchachem – de vuestro sacrificio<br>
+            ye'achel – será comido<br>
+            u-mimmachorat – y el día siguiente<br>
+            ve-hanotar – y lo que reste<br>
+            ad-yom ha-shelishi – hasta el tercer día<br>
+            ba-esh – en el fuego<br>
+            yissaref – será quemado
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Será comido el día que lo sacrificasteis y al siguiente; y lo que reste hasta el tercer día será quemado en el fuego.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 7</div>
+        <div class="hebrew">וְאִם־הֵאָכֹ֥ל יֵאָכֵ֖ל בַּיּ֣וֹם הַשְּׁלִישִ֑י פִּגּ֥וּל ה֖וּא לֹ֥א יֵרָצֶֽה׃</div>
+        <div class="transliteration">
+            Ve-im – Y si<br>
+            he'akhol – comido<br>
+            ye'achel – será comido<br>
+            ba-yom ha-shelishi – el tercer día<br>
+            pigul – es abominación<br>
+            hu – ello<br>
+            lo yeratzeh – no será aceptado
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Y si se come al tercer día, será abominación; no será aceptado.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 8</div>
+        <div class="hebrew">וְאֹכְלָ֣יו עֲוֹנ֣וֹ יִשָּׂ֑א כִּ֣י אֶת־קֹ֤דֶשׁ יְהוָה֙ חִלֵּ֔ל וְנִכְרְתָ֛ה הַנֶּ֥פֶשׁ הַהִ֖וא מֵעַמֶּֽיהָ׃</div>
+        <div class="transliteration">
+            Ve-okhlav – Y quien lo coma<br>
+            avono – su culpa<br>
+            yissa – llevará<br>
+            ki – porque<br>
+            et-kodesh – lo santo<br>
+            YHWH – de Adonái יהוה<br>
+            chillel – profanó<br>
+            ve-nikhretah – y será cortada<br>
+            hanefesh – esa alma<br>
+            ha-hi – esa<br>
+            me'ammeha – de su pueblo
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        El que lo coma cargará con su culpa, porque profanó lo santo de Adonái יהוה; y será cortada esa alma de entre su pueblo.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 9</div>
+        <div class="hebrew">וּבְקֻצְרְכֶ֞ם אֵ֣ת קְצִ֤יר אַרְצְכֶם֙ לֹֽא־תְכַלֶּ֣ה פְאַ֣ת שָׂדְךָ֔ בְּק֖וֹצְרֶךָ֑ וְלֶ֥קֶט קְצִירְךָ֖ לֹ֥א תְלַקֵּֽט׃</div>
+        <div class="transliteration">
+            U-vekutzr'chem – Y cuando cosechéis<br>
+            et-ketzir artz'chem – la cosecha de vuestra tierra<br>
+            lo tekhaleh – no acabarás<br>
+            pe'at sadkha – el rincón de tu campo<br>
+            bekotzrekha – al segar<br>
+            ve-leket ketzirkha – ni las espigas caídas de tu cosecha<br>
+            lo telaket – no recogerás
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Cuando cosechéis la mies de vuestra tierra, no segarás hasta el último rincón de tu campo, ni recogerás las espigas caídas de tu siega.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 10</div>
+        <div class="hebrew">וְכֶ֤רֶם לֹֽא־תְעֽוֹלֵל֙ וּפֶ֣רֶט כַּרְמְךָ֔ לֹ֥א תְלַקֵּ֖ט לֶֽעָנִ֥י וְלַגֵּ֖ר תַּעֲזֹ֑ב אֹתָ֖ם אֲנִ֥י יְהוָֽה׃</div>
+        <div class="transliteration">
+            Ve-kerem – Y tu viña<br>
+            lo te'olel – no rebuscarás<br>
+            u-peret karmekha – ni los racimos caídos de tu viña<br>
+            lo telaket – no recogerás<br>
+            le-ani – al pobre<br>
+            ve-la-ger – y al extranjero<br>
+            ta'azov otam – los dejarás<br>
+            ani – Yo<br>
+            YHWH – Adonái יהוה
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        No rebuscarás tu viña, ni recogerás los racimos caídos de tu viña; los dejarás para el pobre y para el extranjero. Yo soy Adonái יהוה.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 11</div>
+        <div class="hebrew">לֹ֣א תִגְנֹ֔בוּ וְלֹא־תְכַחֲשׁ֖וּ וְלֹ֣א תְשַׁקְּר֑וּ אִ֖ישׁ בַּעֲמִיתֽוֹ׃</div>
+        <div class="transliteration">
+            Lo – No<br>
+            tignovu – robaréis<br>
+            ve-lo tekhachashu – ni negaréis falsamente<br>
+            ve-lo teshakkeru – ni mentiréis<br>
+            ish ba'amito – uno a su prójimo
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        No robaréis, ni negaréis falsamente, ni mentiréis uno a su prójimo.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 12</div>
+        <div class="hebrew">וְלֹֽא־תִשָּׁבְע֤וּ בִשְׁמִי֙ לַשָּׁ֔קֶר וְחִלַּ֖לְתָּ אֶת־שֵׁ֣ם אֱלֹהֶ֑יךָ אֲנִ֖י יְהוָֽה׃</div>
+        <div class="transliteration">
+            Ve-lo tishavu – Y no juraréis<br>
+            bishmi – por mi Nombre<br>
+            la-shaqer – en falso<br>
+            ve-chillalta – y profanarás<br>
+            et-shem – el Nombre<br>
+            Eloheikha – de tu Elohím<br>
+            ani – Yo<br>
+            YHWH – Adonái יהוה
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        Y no juraréis falsamente por mi Nombre, y profanarás el Nombre de tu Elohím. Yo soy Adonái יהוה.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 13</div>
+        <div class="hebrew">לֹא־תַעֲשֹׁ֤ק אֶת־רֵעֲךָ֙ וְלֹ֣א תִגְזֹ֔ל לֹ֤א תָלִין֙ פְּעֻלַ֣ת שָׂכִ֔יר אִתְּךָ֖ עַד־בֹּֽקֶר׃</div>
+        <div class="transliteration">
+            Lo ta'ashoq – No oprimirás<br>
+            et-re'akha – a tu prójimo<br>
+            ve-lo tigzol – ni robarás<br>
+            lo talin – no retendrás<br>
+            pe'ulat sakhir – el salario del jornalero<br>
+            ittekha – contigo<br>
+            ad-boker – hasta la mañana
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        No oprimirás a tu prójimo ni robarás; no retendrás el salario del jornalero contigo hasta la mañana.</div>
+    </div>
+
+    <div class="verse-container">
+        <div class="verse-number">Verso 14</div>
+        <div class="hebrew">לֹֽא־תְקַלֵּ֣ל חֵרֵ֔שׁ וְלִפְנֵ֥י עִוֵּ֖ר לֹ֣א תִתֵּ֑ן מִכְשֹׁ֔ל וְיָרֵ֥אתָ מֵּאֱלֹהֶ֖יךָ אֲנִ֥י יְהוָֽה׃</div>
+        <div class="transliteration">
+            Lo tekalel – No maldecirás<br>
+            cheresh – al sordo<br>
+            u-lifnei iver – y delante del ciego<br>
+            lo titen – no pondrás<br>
+            mikhshol – tropiezo<br>
+            ve-yareta – y temerás<br>
+            me-Eloheikha – de tu Elohím<br>
+            ani – Yo<br>
+            YHWH – Adonái יהוה
+        </div>
+        <div class="literal-translation">Traducción literal:<br>
+        No maldecirás al sordo, ni pondrás tropiezo delante del ciego; sino que temerás a tu Elohím. Yo soy Adonái יהוה.</div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="prophetic-content">
+        <h1>Cumplimiento Profético en el Mashiaj de Levítico 19:1-14</h1>
+        <h3>Profecías Mesiánicas y Reflexión</h3>
+        <h3>Identificación Profética y Cumplimiento Mesiánico en Yeshúa haMashíaj</h3>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">1. "Santos seréis porque santo soy Yo, Adonái יהוה" (Levítico 19:2)</div>
+            <p>Este mandamiento es la piedra angular del llamado a la santidad. El cumplimiento mesiánico se revela en:</p>
+            <div class="scripture"><strong>Yochanán Alef 3:3</strong> "Y todo el que tiene esta esperanza en Él, se purifica a sí mismo, así como Él es puro."</div>
+            <p><strong>Mashíaj como ejemplo de santidad perfecta.</strong> Yeshúa no solo fue sin pecado, sino que es la personificación viva del Kadosh de Yisrael. Su vida ejemplar cumplió la expectativa divina de Kedusháh (santidad).</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">2. "Cada uno temerá a su madre y a su padre" (v.3)</div>
+            <div class="scripture"><strong>Lucas 2:51</strong> – Yeshúa descendió con sus padres y estaba sujeto a ellos.</div>
+            <p>→ Cumplimiento mesiánico en su respeto y obediencia a Miryam y Yosef desde su niñez, mostrando honra a los padres en cumplimiento de la Toráh.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">3. "No haréis para vosotros dioses fundidos" (v.4)</div>
+            <div class="scripture"><strong>Mateo 4:10</strong> – "Adonái יהוה tu Elohím adorarás, y a Él solo servirás."</div>
+            <p>→ Yeshúa citó Toráh en su rechazo de toda idolatría, cumpliendo así con integridad esta mitzváh.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">4. "Y cuando ofrezcáis sacrificio de paz…" (v.5)</div>
+            <p>→ <strong>Yeshúa como el Zevaj Shelamim</strong> (sacrificio de paz). <strong>Efesios 2:14</strong> – "Él es nuestra shalom (paz)". Su entrega en el madero fue el cumplimiento del sacrificio voluntario de paz, trayendo reconciliación entre Elohím y los hombres.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">5. "El que lo coma al tercer día será cortado" (v.8)</div>
+            <p>→ <strong>Tercer Día como señal mesiánica</strong>: <strong>Luqá 24:7</strong> – "Es necesario que el Hijo del Hombre sea entregado… y resucite al tercer día." → El principio de santidad y resurrección se une aquí. Mientras el sacrificio humano perece al tercer día, Mashíaj resucita al tercer día como señal de aceptación perfecta ante Adonái יהוה.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">6. "No acabarás el rincón de tu campo… para el pobre y el extranjero" (v.9-10)</div>
+            <p>→ <strong>Yeshúa vivió y enseñó la compasión hacia el necesitado.</strong> <strong>Luqá 6:38</strong>, <strong>Yochanán 6:11</strong> – multiplicación del pan, cuidado del pobre. → Esto anticipa la generosidad mesiánica hacia los hambrientos de justicia y a los gentiles (ger).</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">7. "No robaréis, no mentiréis, ni engañaréis a vuestro prójimo" (v.11)</div>
+            <p>→ Yeshúa cumplió esto sin tacha: <strong>1 Kefa 2:22</strong> – "El que no cometió pecado, ni engaño fue hallado en su boca."</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">8. "No jurarás en falso por Mi Nombre" (v.12)</div>
+            <p>→ Yeshúa advirtió contra el juramento vano: <strong>Mattityahu 5:34-37</strong> – "Sea vuestro hablar sí, sí; no, no…"</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">9. "No oprimirás ni retendrás el salario…" (v.13)</div>
+            <p>→ <strong>Mashíaj defiende a los oprimidos:</strong> <strong>Yaaqov 5:4</strong> – El clamor de los jornaleros llega al oído de Adonái יהוה de los Ejércitos (aplicado mesiánicamente). Yeshúa enseñó que el obrero es digno de su salario (Luqá 10:7).</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">10. "No maldecirás al sordo, ni pondrás tropiezo delante del ciego…" (v.14)</div>
+            <p>→ Cumplido en <strong>Mashíaj como protector de los débiles y los discapacitados.</strong> <strong>Mattityahu 11:5</strong> – "Los ciegos ven, los cojos andan, los sordos oyen." → Estas obras mesiánicas demuestran que Él invierte las maldiciones humanas y trae redención.</p>
+        </div>
+
+        <div class="conclusion">
+            <h3>Reflexión Mesiánica Profunda</h3>
+            <p>Todos estos mandamientos, resumidos bajo el llamado a la <em>kedusháh</em>, fueron vividos y enseñados por Yeshúa haMashíaj. Él es el ejemplo perfecto de quien teme a Elohím y guarda Su Palabra con pureza. Por su obra en el madero, Él se convierte en el Zevaj Shelamim (sacrificio de paz), y por su resurrección al tercer día, confirma su aceptación como Kedosh Israel.</p>
+            <p>La santidad exigida en Vaikrá 19 no es alcanzable sin Él; en Él somos santificados, purificados y capacitados para cumplir estas mitzvot por el poder del <strong>Ruaj HaKodesh</strong>.</p>
+        </div>
+    </div>
+
+    <h1>Punto 2. Haftaráh: Amós 9:7-15 (La santidad de Israel y la promesa de restauración).</h1>
+        
+        <!-- Amós 9:7 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:7</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">הֲלוֹא כִבְנֵי כֻשִׁיִּים אַתֶּם לִי בְּנֵי יִשְׂרָאֵל נְאֻם־יְהוָה הֲלוֹא אֶת־יִשְׂרָאֵל הֶעֱלֵיתִי מֵאֶרֶץ מִצְרַיִם וּפְלִשְׁתִּיִּים מִכַּפְתּוֹר וַאֲרָם מִקִּיר׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Haló kivné Kushiyim atém lí bené Yisrael neúm Adonái. Haló et-Yisrael he'elétí me'éretz Mitzráyim, uFelishtím mikáftor vaArám mikír.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">¿No son como los hijos de los kushitas para mí, hijos de Israel? —declara Adonái—. ¿No hice subir a Israel de la tierra de Mitzráyim, y a los pelishtím de Kaftor, y a Aram de Kir?</div>
+        </div>
+        
+        <!-- Amós 9:8 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:8</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">הִנֵּה עֵינֵי אֲדֹנָי יְהוִה בַּמַּמְלָכָה הַחַטָּאָה וְהִשְׁמַדְתִּי אֹתָהּ מֵעַל פְּנֵי הָאֲדָמָה אֶפֶס כִּי לֹא הַשְׁמֵיד אַשְׁמִיד אֶת־בֵּית יַעֲקֹב נְאֻם־יְהוָה׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Hiné einéi Adonái YHWH bammamlajáh hajatá'áh, vehishmadetí otáh me'al penéi haadamáh; éfes ki ló hashméd ashmíd et-bét Ya'akóv —neúm YHWH.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">He aquí, los ojos de Adonái YHWH están sobre el reino pecador, y lo destruiré de sobre la faz de la tierra; sin embargo, no destruiré completamente la casa de Ya'akóv —declara YHWH.</div>
+        </div>
+        
+        <!-- Amós 9:9 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:9</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">כִּי הִנֵּה אָנֹכִי מְצַוֶּה וַהֲנִעוֹתִי בְכָל־הַגּוֹיִם אֶת־בֵּית יִשְׂרָאֵל כַּאֲשֶׁר יִנּוֹעַ בַּכְּבָרָה וְלֹא יִפּוֹל צְרוֹר אָרֶץ׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Ki hiné anojí metzavéh vahaniotí bejol-hagoyím et-bét Yisrael ka'asher yinnóa' bakvaráh, veló yipól tzerór áretz.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">Porque he aquí, yo ordeno y sacudiré entre todas las naciones a la casa de Yisrael, como se sacude en un tamiz, y no caerá un grano en la tierra.</div>
+        </div>
+        
+        <!-- Amós 9:10 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:10</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">בַּחֶרֶב יָמוּתוּ כֹּל חַטָּאֵי עַמִּי הָאֹמְרִים לֹא תַגִּישׁ וְתַקְדִּים בַּעֲדֵינוּ הָרָעָה׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Bajérev yamútú kol jatá'éi ammí, haomrím: "Ló taguísh vetakdím ba'adeínu hará'áh."</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">A espada morirán todos los pecadores de mi pueblo, que dicen: "No se acercará ni nos alcanzará el mal."</div>
+        </div>
+        
+        <!-- Amós 9:11 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:11</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">בַּיּוֹם הַהוּא אָקִים אֶת־סֻכַּת דָּוִיד הַנֹּפֶלֶת וְגָדַרְתִּי אֶת־פִּרְצֵיהֶן וַהֲרִסֹתָיו אָקִים וּבְנִיתִיהָ כִּימֵי עוֹלָם׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Bayóm hahu akím et-sukát Dávid hanofélet, vegadartí et-pirtzéihen, vaharisotáv akím, uvenitíhá kimey olám.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">En aquel día levantaré la sukkáh caída de Dávid, cerraré sus brechas, levantaré sus ruinas y la edificaré como en los días antiguos.</div>
+        </div>
+        
+        <!-- Amós 9:12 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:12</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">לְמַעַן יִירְשׁוּ אֶת־שְׁאֵרִית אֱדוֹם וְכָל־הַגּוֹיִם אֲשֶׁר־נִקְרָא שְׁמִי עֲלֵיהֶם נְאֻם־יְהוָה עֹשֶׂה זֹּאת׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Lema'án yirshú et-she'erít Edóm vejol-hagoyím asher-nikrá shemí aleihem —neúm YHWH oséh zot.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">Para que posean el remanente de Edóm y todas las naciones sobre las cuales es invocado mi nombre —declara YHWH que hace esto.</div>
+        </div>
+        
+        <!-- Amós 9:13 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:13</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">הִנֵּה יָמִים בָּאִים נְאֻם־יְהוָה וְנִגַּשׁ חוֹרֵשׁ בַּקֹּצֵר וְדֹרֵךְ עֲנָבִים בְּמוֹשֵׁךְ הַזֶּרַע וְהִטִּיפוּ הֶהָרִים עָסִיס וְכָל־הַגְּבָעוֹת תִּתְמוֹגַגְנָה׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Hinéh yamím ba'ím —neúm YHWH— veniggásh jorésh bakótzer, vedórej anavím bemóshekh hazéra', vehittífú heharím asís, vejol-hagva'ót titmogágnáh.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">He aquí, vienen días —declara YHWH— cuando el arador alcanzará al segador, y el pisador de uvas al que siembra la semilla; y los montes destilarán mosto, y todas las colinas se derretirán.</div>
+        </div>
+        
+        <!-- Amós 9:14 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:14</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">וְשַׁבְתִּי אֶת־שְׁבוּת עַמִּי יִשְׂרָאֵל וּבָנוּ עָרִים נְשַׁמּוֹת וְיָשָׁבוּ וְנָטְעוּ כְרָמִים וְשָׁתוּ אֶת־יֵינָם וְעָשׂוּ גַנּוֹת וְאָכְלוּ אֶת־פְּרִיהֶם׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Veshavtí et-shevút ammí Yisrael, uvanú arím neshámot veyashávú; venat'ú keramím veshátu et-yeinám, ve'ású ganót ve'ojlú et-perihem.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">Y restauraré el cautiverio de mi pueblo Yisrael; edificarán ciudades desoladas y habitarán en ellas; plantarán viñas y beberán su vino; harán huertos y comerán su fruto.</div>
+        </div>
+        
+        <!-- Amós 9:15 -->
+        <div class="verse-container">
+            <div class="verse-number">Amós 9:15</div>
+            <div class="hebrew-title">Texto Hebreo:</div>
+            <div class="hebrew">וּנְטַעְתִּים עַל אַדְמָתָם וְלֹא יִנָּתְשׁוּ עוֹד מֵעַל אַדְמָתָם אֲשֶׁר נָתַתִּי לָהֶם אָמַר יְהוָה אֱלֹהֶיךָ׃</div>
+            <div class="phonetic-title">Fonética:</div>
+            <div class="phonetic">Uneta'tím al admatám, veló yinnatshú od me'al admatám asher natatí lahem —amáR YHWH Elohéja.</div>
+            <div class="translation-title">Traducción Literal:</div>
+            <div class="translation">Y los plantaré sobre su tierra, y nunca más serán arrancados de su tierra que les he dado —dice YHWH tu Elohím.</div>
+        </div>
+
+        <div class="messianic-section">
+            <h2>Profecías Mesiánicas y su Cumplimiento en Yeshúa haMashíaj</h2>
+            
+            <p>La Haftaráh de Amós 9:7-15 es una proclamación tanto de juicio como de restauración, en la cual el mensaje mesiánico brilla especialmente en su parte final. Este pasaje revela el papel central del Mashíaj como <strong>restaurador del Reino davídico</strong>, <strong>Salvador de las naciones</strong>, y <strong>cumplimiento de las promesas eternas hechas a Yisrael</strong>.</p>
+            
+            <h3>A. Figuras y Tipologías Mesiánicas</h3>
+            
+            <div class="messianic-point">
+                <h4>1. Sukkát David Hanofélet – La Sukkáh Caída de David (v.11)</h4>
+                <p>Esta es una de las profecías mesiánicas más explícitas del Tanáj. El término «<span class="hebrew-inline">סֻכַּת דָּוִיד הַנֹּפֶלֶת</span> – sukkát Dávid hanofélet» alude al reino real de David en decadencia. La promesa es que será <strong>levantado, restaurado y edificado como en los días antiguos</strong>.</p>
+                <ul>
+                    <li><strong>Cumplimiento en Yeshúa:</strong> En Hechos 15:16-17, Yaakov (Jacob) cita este pasaje en el contexto de la inclusión de los gentiles, afirmando que el regreso del remanente de los goyím a YHWH por medio de Mashíaj es <strong>el cumplimiento literal</strong> de esta restauración.</li>
+                    <li><strong>Yeshúa haMashíaj, hijo de David</strong>, es quien restaura esta sukkáh, no como un poder político humano, sino como <strong>Rey Eterno</strong> que reina desde los cielos y unifica a judíos y gentiles en un solo pueblo.</li>
+                </ul>
+            </div>
+            
+            <div class="messianic-point">
+                <h4>2. La herencia de Edóm y de todas las naciones (v.12)</h4>
+                <p>La promesa mesiánica de heredar a Edóm (símbolo de los enemigos de Israel) y a todas las naciones indica que el <strong>reinado del Mesías abarcará todos los pueblos</strong>.</p>
+                <ul>
+                    <li>En el texto hebreo: «<span class="hebrew-inline">אֲשֶׁר נִקְרָא שְׁמִי עֲלֵיהֶם</span> – sobre los cuales es invocado mi Nombre». Esto señala que estas naciones ahora serán llamadas por el Nombre del Eterno, es decir, redimidas.</li>
+                    <li><strong>Cumplimiento en Mashíaj:</strong> El Brit Hadasháh enseña que <strong>los gentiles que creen en Yeshúa son injertados en la familia de Yisrael</strong> (Romanos 11:17; Efesios 2:11-13), cumpliendo la universalidad de esta profecía.</li>
+                </ul>
+            </div>
+            
+            <div class="messianic-point">
+                <h4>3. Restauración y bendición sobreabundante (vv.13-15)</h4>
+                <p>La imagen profética de una tierra que produce sin cesar, de montes que destilan mosto y de ciudades reconstruidas, es una visión del <strong>reino mesiánico</strong> en su plenitud.</p>
+                <ul>
+                    <li>Estas promesas se cumplen parcial y espiritualmente ya en la <strong>Kehiláh mesiánica</strong>, donde hay fruto espiritual continuo (Juan 15:5), y plenamente en el <strong>reino venidero</strong>, en la redención final de Yisrael y el retorno definitivo a la tierra.</li>
+                </ul>
+            </div>
+            
+            <h3>B. Reflexión Mesiánica y Aplicación Espiritual</h3>
+            
+            <div class="messianic-application">
+                <ul>
+                    <li><strong>Yeshúa como restaurador del Reino de David</strong> - El pueblo esperaba que Mashíaj restaurara el trono de David (Lucas 1:32-33). Yeshúa lo hace de forma profunda y eterna, estableciendo un reino no perecedero, en justicia y verdad, sobre todas las naciones.</li>
+                    <li><strong>El Reino del Mesías no tiene fronteras</strong> - La restauración de Edom y las naciones bajo el Nombre de YHWH muestra que <strong>la redención mesiánica es inclusiva</strong>, cumpliendo la promesa a Avraham: «En ti serán benditas todas las familias de la tierra» (Bereshit 12:3).</li>
+                    <li><strong>La seguridad de la tierra prometida (v.15)</strong> - El hecho de que «no serán arrancados de su tierra» es una promesa mesiánica aún futura, garantizada en la resurrección y restauración completa de Yisrael bajo el gobierno del Mashíaj.</li>
+                </ul>
+            </div>
+            
+            <h3>C. Cumplimiento Tipológico en el Brit Hadasháh</h3>
+            
+            <div class="messianic-fulfillment">
+                <ol>
+                    <li><strong>Hechos 15:16-17</strong> — Cita directa de Amós 9:11-12, vinculando la restauración davídica con la entrada de los gentiles en el pueblo del pacto.</li>
+                    <li><strong>Lucas 1:32-33</strong> — El ángel declara que Yeshúa heredará el trono de David, cumpliendo la visión de restauración.</li>
+                    <li><strong>Apocalipsis 21:24-26</strong> — Las naciones traen su gloria a la Nueva Yerushaláyim, cumpliendo el dominio mesiánico universal.</li>
+                </ol>
+            </div>
+            
+            <h3>Conclusión</h3>
+            
+            <div class="conclusion">
+                <p>Amós 9:7–15 nos muestra el corazón del mensaje mesiánico: juicio justo, restauración prometida y un reino eterno centrado en Yeshúa haMashíaj. Él <strong>levanta lo caído</strong>, <strong>une lo disperso</strong>, <strong>santifica las naciones</strong> y <strong>planta a su pueblo en su heredad</strong>. Es el cumplimiento vivo de la Sukkáh de David restaurada, el Redentor prometido para Israel y para toda la humanidad.</p>
+            </div>
+        </div>
+
+        <h1>Punto 3. Brit Hadasháh: 1 Pedro 1:15-16 («Sed santos porque Yo soy santo»).</h1>
+        <h2>Arameo Peshitta con Fonética Siríaca Oriental y Traducción Literal</h2>
+    
+        <div class="content-container">
+            <div class="verse-container">
+                <div class="verse-number">1 Kefa 1:15</div>
+                <div class="aramaic">אֲלָא הֱוֹו קַדִּישֵׁי בְּכָל־דָּבַר דִּתְהַלְּכוּן בֵּיהּ, אַיְכְנָא דֵּין דִּקְרֵיכוֹן קַדִּישׁ הוּא׃</div>
+                <div class="transliteration">'Alā hevō qadīshei b'khol davar dithallekhūn bēh, aykhnā dēn diqreikhon qadīsh hū.</div>
+                <div class="translation">"Sino sed santos en toda conducta en la cual andéis, así como Aquel que os llamó es santo."</div>
+            </div>
+    
+            <div class="verse-container">
+                <div class="verse-number">1 Kefa 1:16</div>
+                <div class="aramaic">כְּתוּב הוּא גַּר דִּקַדִּישִׁין תֶּהְוֹון, דִּי קַדִּישׁ אֲנָא׃</div>
+                <div class="transliteration">Ketūv hū gar diqaddīshin tehvūn, di-qaddīsh 'Anā.</div>
+                <div class="translation">"Porque está escrito: Santos seréis, porque santo Yo soy."</div>
+            </div>
+    
+            <div class="explanation">
+                Este pasaje cita directamente Vaikrá/Levítico 19:2, proclamando la continuidad profética entre la Toráh y el Brit Hadasháh. El mandato de vivir en santidad es reafirmado por Kefa, enseñando que así como Adonái יהוה es Kadosh, también nosotros hemos sido llamados a reflejar Su naturaleza a través del Mashíaj Yeshúa.
+            </div>
+        </div>
+    
+        <div class="section-divider"></div>
+    
+        <div class="prophetic-content">
+            <h1>Cumplimiento Profético en el Mashíaj de 1 Kefa 1:15-16</h1>
+            
+            <div class="scripture">
+                «Sino, como Aquel que os llamó es santo, así también vosotros sed santos en toda vuestra manera de vivir, porque escrito está: "Santos seréis, porque santo soy Yo"»
+                <br>(1 Kefa 1:15-16, citando Vaikrá 19:2)
+            </div>
+    
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">1.</span> Identificación del Mandamiento Profético: "Santos seréis..."</div>
+                <p>La declaración <strong>"קְדֹשִׁים תִּהְיוּ כִּי קָדוֹשׁ אֲנִי"</strong> ("Kedoshím tihyú ki Kadosh Ani") no es solo un imperativo moral; es una profecía del carácter que se cumpliría en aquellos redimidos por el Mashíaj. El Brit Hadasháh no sustituye este mandato, sino que lo cumple en una dimensión más profunda, al encarnar la Kedusháh (santidad) perfecta en la Persona de Yeshúa haMashíaj.</p>
+            </div>
+    
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">2.</span> El Mashíaj Yeshúa como la Manifestación de la Santidad Divina</div>
+                <p>Yeshúa haMashíaj es el Kedosh Israel (el Santo de Israel):</p>
+                <p>Él no solamente enseñó sobre la santidad, sino que vivió la Toráh de forma íntegra, cumpliendo sin pecado todos los mandamientos, incluyendo este llamado central a ser santo.</p>
+                
+                <p>Hebreos 7:26 lo describe como:</p>
+                <div class="scripture">«santo, inocente, sin mancha, apartado de los pecadores y exaltado más allá de los cielos».</div>
+    
+                <p>Esto es el cumplimiento pleno de la profecía de Levítico 19:2:</p>
+                <ul>
+                    <li>→ En Mashíaj, el pueblo ve el modelo del Santo viviente.</li>
+                    <li>→ Mashíaj no solo ordena santidad, sino que la otorga mediante Su Vida y el Ruaj HaKodesh.</li>
+                </ul>
+            </div>
+    
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">3.</span> Profecía Viva en el Pueblo Redimido: Kedusháh por el Ruaj HaKodesh</div>
+                <p>1 Kefa 1:15-16 no es una mera cita de la Toráh; es una actualización profética:</p>
+                <ul>
+                    <li>→ El llamado a la santidad se vuelve posible y operante en los que han sido redimidos por la Sangre del Cordero.</li>
+                    <li>→ Esta santidad no es externa (ritual), sino interna y espiritual, producida por el Ruaj HaKodesh (Ezequiel 36:25-27).</li>
+                </ul>
+    
+                <p>Efesios 5:25-27 declara que Mashíaj se entregó a Sí mismo por la Kehiláh:</p>
+                <div class="scripture">«para santificarla… a fin de presentársela a Sí mismo gloriosa, sin mancha ni arruga… sino santa y sin defecto».</div>
+            </div>
+    
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">4.</span> Aplicación Profética: El Pueblo de Mashíaj como el Reino de Kohaním</div>
+                <p>Este versículo alude a Éxodo 19:6: "Y vosotros me seréis un reino de sacerdotes y gente santa".</p>
+                <ul>
+                    <li>→ Kefa, como shaliaj de Mashíaj, declara a los creyentes una nación santa, un pueblo adquirido, un sacerdocio real (1 Kefa 2:9), cumpliendo lo que fue anticipado en el Sinaí.</li>
+                    <li>→ Por tanto, 1 Kefa 1:15-16 es el eco profético de una visión que ahora se realiza plenamente en la Comunidad Mesiánica, transformada por el Ruaj de Mashíaj.</li>
+                </ul>
+            </div>
+    
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">5.</span> El Mashíaj como Kedusháh para Nosotros</div>
+                <p>1 Corintios 1:30: "Y por Él estáis vosotros en el Mashíaj Yeshúa, quien nos ha sido hecho… santificación..."</p>
+                <ul>
+                    <li>→ Aquí, Yeshúa es nuestra Kedusháh, no como un estado alcanzado por esfuerzo humano, sino como una realidad impartida por el Ruaj.</li>
+                </ul>
+            </div>
+    
+            <div class="conclusion">
+                <div class="prophetic-title">Conclusión Profética</div>
+                <p>Levítico 19:2 fue un llamado al pueblo redimido del éxodo.</p>
+                <p>1 Kefa 1:15-16 es su cumplimiento en el nuevo éxodo, el que guía Mashíaj desde el pecado hacia la vida en santidad.</p>
+                <p>Yeshúa haMashíaj es el cumplimiento vivo de la santidad de Elohím, y a través de Él, la profecía de "Kedoshím tihyú" se cumple en nosotros.</p>
+            </div>
+        </div>
+
+        <h1>Punto 4. Contexto Histórico y Cultural de Levítico 19:1-14</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">1.</span> Contexto Temporal y Espacial: En el desierto, cerca del Monte Sinaí</div>
+            <p>Levítico 19 fue revelado en el segundo año del Éxodo de Mitsráyim (Egipto), en el contexto de la preparación del pueblo de Yisrael como nación santa. Se transmite desde el Ohel Moed (la Tienda de Reunión), que simboliza la presencia directa de Adonái יהוה entre Su pueblo.</p>
+            
+            <p>Este capítulo forma parte de la "Toráh de los Kohaním" (Torat HaKohanim), dando directrices a todo Yisrael, no solo a los sacerdotes, acerca de cómo vivir en Kedusháh (santidad). El pueblo había recibido ya los Diez Mandamientos y se preparaba para ser un modelo de luz y justicia para las naciones.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">2.</span> Marco del Mishkán y el Código de Santidad (Lev. 17–26)</div>
+            <p>Levítico 19 se encuentra dentro de lo que los eruditos llaman el "Código de Santidad" (Hebreo: <span class="hebrew">קֹדֶשׁ</span>). Este código no es legalista, sino relacional: muestra cómo debe vivir un pueblo que ha sido redimido y habita con la presencia del Santo en medio suyo.</p>
+            
+            <p>Las instrucciones que aquí se detallan no son aisladas, sino que imitan directamente el carácter de Elohím. El mandamiento:</p>
+            <div class="scripture">"Santos seréis porque santo soy Yo"</div>
+            <p>no es una ética humana, sino una revelación del propósito eterno de Elohím desde la creación (Bereshit 1:26-27: "a Su imagen").</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">3.</span> Geografía y entorno cultural de Canaán y las naciones vecinas</div>
+            <p>Los pueblos vecinos como Egipto, Canaán, Moab y Babilonia practicaban una ética completamente contraria:</p>
+            
+            <ul>
+                <li>Idolatría abierta (v.4)</li>
+                <li>Injusticia social contra pobres y extranjeros (v.9-10)</li>
+                <li>Maltrato a discapacitados (v.14)</li>
+                <li>Juramentos falsos en nombre de dioses paganos (v.12)</li>
+            </ul>
+            
+            <p>En contraste, Adonái יהוה manda a Yisrael a separarse (badal) de estas prácticas, no solo por obediencia, sino por imitación de Su carácter.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">4.</span> Perspectiva Arqueológica y Etnohistórica</div>
+            <p>Las excavaciones en Canaán y Egipto han revelado textos legales como el Código de Hammurabi o prácticas religiosas de sacrificios idolátricos con figuras de fundición. Estos contrastan directamente con las prohibiciones expresas del capítulo:</p>
+            
+            <div class="scripture">"No os hagáis dioses de fundición…" (v.4)</div>
+            <div class="scripture">"No pondrás tropiezo delante del ciego…" (v.14)</div>
+            
+            <p>El énfasis de la Toráh es la dignidad del ser humano creado a imagen de Elohím, y este código moral de Levítico 19 fue profundamente contracultural en su época, muy por encima de los códigos paganos.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">5.</span> Impacto Litúrgico en la Comunidad de Qumrán (Esenios)</div>
+            <p>En los Manuscritos del Mar Muerto, especialmente en el Documento de Damasco (CD) y la Regla de la Comunidad (1QS), se citan principios de Levítico 19 para definir la vida de los miembros de la comunidad:</p>
+            
+            <ul>
+                <li>Vida en santidad</li>
+                <li>Separación del mal</li>
+                <li>Justicia social y amor al prójimo</li>
+            </ul>
+            
+            <p>Estas comunidades entendían Levítico 19 como una señal del remanente fiel de Yisrael que aguardaba la venida del Mashíaj.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">6.</span> Significado de los términos hebreos claves en su contexto</div>
+            <p><strong>קָדוֹשׁ / Kadosh:</strong> no significa solo "moral", sino "apartado", "distinto", "dedicado a propósito sagrado". En el mundo antiguo, este término era reservado a los dioses; en la Toráh, se transfiere al pueblo redimido.</p>
+            
+            <p><strong>עָנִי / Ani</strong> (pobre) y <strong>גֵּר / Ger</strong> (extranjero): grupos marginados en el antiguo Oriente, pero protegidos por la Toráh como imagen del cuidado de Adonái יהוה por los débiles.</p>
+            
+            <p><strong>פֶּעָה / Peáh:</strong> el "rincón del campo", una institución agrícola sagrada para compartir con el necesitado. Esta práctica no existía en ninguna otra cultura de la región.</p>
+        </div>
+
+        <div class="conclusion">
+            <div class="prophetic-title">Conclusión</div>
+            <p>Levítico 19:1-14 se establece como una constitución ética revelada directamente desde la voz del Santo, en oposición a toda corrupción pagana. Estas instrucciones fueron dadas en medio del desierto, en un tiempo de formación nacional, y marcan un estándar celestial para una sociedad basada en la justicia, compasión y santidad relacional.</p>
+            
+            <p>Este trasfondo histórico y cultural no solo realza el valor eterno del texto, sino que confirma su cumplimiento y continuación profética en Yeshúa haMashíaj, quien vivió y enseñó esta santidad en su máxima expresión.</p>
+        </div>
+    </div>
+
+    <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas de Levítico 19:1-14</h1>
+    <h3>(Incluyendo comentarios del tiempo del Segundo Templo)</h3>
+
+    <div class="content-container">
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">A.</span> Comentarios Rabínicos Clásicos</div>
+            
+            <p><strong>Sifra Kedoshím</strong> (Midrash Halájico de Torat Kohanim):</p>
+            <p>Afirma que la frase "Kedoshím Tihyú" no es opcional ni simbólica, sino un mandato central que se aplica a todas las áreas de la vida.</p>
+            <p>R. Elazar ben Azaryah interpreta que "santidad" significa "abstención incluso de lo permitido", lo que en hebreo se denomina <i>perushim</i>.</p>
+            <p>→ Esto implica no solo evitar el pecado, sino limitar el uso legítimo de los placeres del mundo en reverencia a Elohím.</p>
+            
+            <p><strong>Rashi</strong> (siglo XI):</p>
+            <p>Comenta que la expresión "Kedoshím Tihyú" se refiere a la separación de relaciones sexuales ilícitas, conectando Levítico 19 directamente con el capítulo anterior (Lev. 18).</p>
+            <p>→ Para Rashi, la santidad empieza en la pureza moral del cuerpo.</p>
+            
+            <p><strong>Rambán</strong> (Najmánides, siglo XIII):</p>
+            <p>Se opone a la lectura restringida de Rashi y amplía: "La Toráh prohíbe los extremos, pero también demanda un estilo de vida espiritual, moderado, consciente".</p>
+            <p>→ Introduce el concepto de "naval birshut haToráh" (un depravado con permiso de la Toráh), afirmando que incluso si uno no transgrede explícitamente, puede vivir en impureza si no aplica la kedusháh en todas las dimensiones.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">B.</span> Comentario Judío Mesiánico</div>
+            
+            <p><strong>Yeshúa como modelo viviente de Kedusháh:</strong></p>
+            <p>Yeshúa no solo enseñó sobre la santidad (Mattityahu 5–7), sino que la vivió en obediencia completa y amor sacrificial, siendo el cumplimiento profético del llamado de Levítico 19.</p>
+            
+            <div class="scripture">Juan 17:19 – "Y por ellos Me santifico a Mí mismo, para que también ellos sean santificados en verdad."</div>
+            <p>→ Aquí vemos que la santidad no es solo una exigencia, sino una realidad transferida desde el Mashíaj al pueblo redimido.</p>
+            
+            <p><strong>Amor activo al prójimo como expresión de kedusháh:</strong></p>
+            <p>La sección siguiente a estos versículos culmina en el verso 18: "amarás a tu prójimo como a ti mismo".</p>
+            <p>→ Rav Shaúl (Pablo) y Yeshúa resumen la Toráh en este principio (Gal. 5:14, Mat. 22:39), mostrando que la santidad no es una categoría ritual, sino relacional y moral.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">C.</span> Notas de los Primeros Siglos (Comunidad Nazarena)</div>
+            
+            <p><strong>Didajé</strong> (siglo I–II):</p>
+            <p>El documento de enseñanza a los gentiles en la Comunidad Mesiánica cita principios paralelos a Levítico 19, incluyendo la abstención de idolatría, juramentos falsos, y el respeto a los pobres.</p>
+            
+            <p><strong>Epístola de Bernabé</strong> (siglo I–II):</p>
+            <p>Interpreta la kedusháh como una transformación interior por el Ruaj HaKodesh, mostrando que los creyentes son llamados a ser "imitadores del Santo" por medio de Mashíaj.</p>
+            
+            <p><strong>Testimonios del Mar Muerto:</strong></p>
+            <p>La Regla de la Comunidad (1QS) describe una comunidad de Kedoshím apartados, en espera del Mashíaj de Israel. Estos entendían Levítico 19 como parte del fundamento espiritual de los justos redimidos.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">D.</span> Aplicación Práctica y Espiritual</div>
+            
+            <p><strong>Vida apartada pero en medio del mundo:</strong></p>
+            <p>El creyente es llamado a reflejar la kedusháh de Elohím no solo en el culto, sino en el trato con padres, con pobres, en el trabajo, y en la verdad de sus palabras.</p>
+            
+            <p><strong>Kedusháh como fruto del Ruaj:</strong></p>
+            <p>Gálatas 5:22-23 muestra cómo el fruto del Ruaj (amor, paz, benignidad, fidelidad) es la expresión interna de esta santidad.</p>
+            <p>→ No se trata de legalismo, sino de transformación espiritual en Mashíaj.</p>
+            
+            <p><strong>Separación del pecado pero acercamiento al necesitado:</strong></p>
+            <p>Mientras la cultura moderna habla de libertad egoísta, la Toráh mesiánica enseña una vida de santidad con compasión activa.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title"><span class="point-letter">E.</span> Anotaciones Gramaticales, Léxicas y Guematría</div>
+            
+            <p><strong>קדֹשִׁים / Kedoshím</strong> – plural de "kadosh", su raíz Q-D-Sh implica "separación activa con propósito espiritual".</p>
+            
+            <p><strong>תִּהְיוּ / Tihyú</strong> – forma verbal imperativa en plural (futuro del verbo "ser"), lo cual indica no solo estado actual, sino llamado a un proceso continuo.</p>
+            
+            <p><strong>Guematría de קדוש (kadosh):</strong></p>
+            <p>ק (100) + ד (4) + ו (6) + ש (300) = 410</p>
+            <p>→ Equivalente a "בית" (Beit = casa) que vale 412, mostrando que la "santidad" está conectada con el "templo" o "morada" de Elohím entre su pueblo.</p>
+        </div>
+
+        <div class="conclusion">
+            <div class="prophetic-title">Conclusión</div>
+            <p>Levítico 19:1-14 es más que una ley moral; es una declaración profética del carácter del pueblo redimido, cuya santidad refleja la naturaleza misma del Creador.</p>
+            <p>Yeshúa haMashíaj vivió esta santidad perfectamente y ahora la imparte a Su pueblo mediante Su Ruaj, cumpliendo en nosotros lo que fue anunciado desde el desierto del Sinaí.</p>
+        </div>
+    </div>
+
+    <h1>Punto 6. Análisis Profundo de la Aliyáh – Levítico 19:1-14</h1>
+    
+    <div class="content-container">
+        <h2>(Análisis y Comentario Judío y Mesiánico de la Aliyáh, Haftaráh y Brit Hadasháh)</h2>
+        
+        <div class="section-container">
+            <h3>A. Análisis del Texto en la Aliyáh</h3>
+            <p>Levítico 19:1-14 inaugura una sección central del "Código de Santidad" y presenta una <strong>Toráh práctica de vida santa</strong> en relación con Elohím y con el prójimo. El texto se articula en tres dimensiones claves:</p>
+            
+            <ol>
+                <li>
+                    <strong>Dimensión espiritual y relacional con Elohím (v.1–4)</strong>
+                    <ul>
+                        <li>Llamado a la santidad</li>
+                        <li>Guardar los shabatot</li>
+                        <li>Evitar idolatría</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Dimensión sacrificial y ritual (v.5–8)</strong>
+                    <ul>
+                        <li>Regulaciones sobre los sacrificios de paz</li>
+                        <li>Prohibición de consumir la carne después del segundo día</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Dimensión ética y social (v.9–14)</strong>
+                    <ul>
+                        <li>Justicia con pobres y extranjeros</li>
+                        <li>Veracidad en el trato humano</li>
+                        <li>Protección de los débiles y discapacitados</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <p>Cada una de estas dimensiones está entrelazada con la frase clave: <strong>"Yo soy Adonái יהוה"</strong> Esta declaración, repetida 8 veces en los versículos, confirma la autoridad divina como base de la ética revelada.</p>
+            
+            <p>En esencia, la santidad no es autónoma ni conceptual: <strong>es respuesta activa a la identidad del Elohím Santo que mora en medio del pueblo.</strong></p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>B. Conexión con la Haftaráh: Amós 9:7-15 (Parashá Kedoshím)</h3>
+            <p>Amós denuncia que el pueblo de Israel ha violado la justicia y la compasión, aunque guarde el culto externo. La Haftaráh complementa la Aliyáh mostrando que la <strong>santidad sin justicia social es hipocresía.</strong></p>
+            
+            <p class="scripture"><strong>Versículo clave:</strong> "¿No sois vosotros para mí como los hijos de Kush, oh hijos de Israel?" (Amós 9:7) → Elohím no hace acepción de pueblos: la santidad es evidenciada por la equidad, no por el estatus étnico.</p>
+            
+            <p><strong>Conexión Profética:</strong> Amós 9:11-12 profetiza la restauración del tabernáculo caído de David, lo que en <strong>Hechos 15:16-18</strong> se interpreta como la <strong>inclusión de los gentiles temerosos de Elohím</strong>, es decir, <strong>los "gerim" mencionados en Levítico 19:10.</strong></p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>C. Conexión con el Brit Hadasháh: Efesios 4–5, 1 Kefa 1:15-16</h3>
+            <p>El Brit Hadasháh desarrolla la santidad como el llamado mesiánico de todo creyente:</p>
+            
+            <p class="scripture"><strong>Efesios 4:24:</strong> "Vestíos del nuevo hombre, creado según Elohím en justicia y santidad de la verdad."</p>
+            
+            <p class="scripture"><strong>Efesios 5:1-2:</strong> "Sed imitadores de Elohím, como hijos amados; y andad en amor, como también el Mashíaj nos amó y se entregó por nosotros."</p>
+            
+            <p>Aquí, <strong>Shaúl conecta directamente el llamado de Kedoshím con el amor activo y el sacrificio del Mashíaj.</strong> La santidad no es aislamiento, sino entrega y verdad vivida en comunidad.</p>
+            
+            <p><strong>1 Kefa 1:15-16</strong>, como vimos, cita directamente <strong>Levítico 19:2</strong>, presentando el cumplimiento del llamado a ser santos a través del ejemplo de Mashíaj, quien <strong>santifica a Su pueblo para Elohím</strong>.</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>D. Paralelismo con el Monte Sinaí y la Revelación Progresiva</h3>
+            <p>Esta Aliyáh refleja un <strong>progreso en la revelación desde Éxodo 20</strong> (Aseret HaDibrot – los Diez Enunciados). Donde Éxodo establece los principios, <strong>Levítico 19 desarrolla la aplicación de esos principios en la vida diaria.</strong></p>
+            
+            <p>Ejemplo:</p>
+            <ul>
+                <li>No mentir → "No mentiréis unos a otros" (Lev. 19:11)</li>
+                <li>No robar → "No hurtarás"</li>
+                <li>No jurar en vano → "No jurarás en Mi Nombre falsamente" (Lev. 19:12)</li>
+            </ul>
+            
+            <p>Así se confirma la interpretación de que la Toráh es una <strong>unidad progresiva</strong> que culmina en el Mashíaj, quien no vino a abolir, sino a <strong>cumplir</strong> (Mattityahu 5:17).</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>E. Lectura Mesiánica Integral</h3>
+            <p><strong>Yeshúa</strong> vivió y enseñó todos los principios de esta Aliyáh:</p>
+            <ul>
+                <li>Honra a padre y madre (Luqá 2:51)</li>
+                <li>Guardó los shabatot en verdad (Marcos 2:27)</li>
+                <li>Desenmascaró la hipocresía religiosa (Mat. 23)</li>
+                <li>Defendió a los pobres y marginados (Yochanán 8:3-11)</li>
+                <li>No mintió, no juró falsamente (1 Kefa 2:22)</li>
+                <li>Sanó al sordo y al ciego (Marcos 7:32, Juan 9:1)</li>
+            </ul>
+            
+            <p>Él es, por tanto, <strong>la encarnación viva del Kedoshím Tihyú</strong>, el cumplimiento del llamado de Levítico 19 en carne y espíritu.</p>
+        </div>
+    </div>
+
+    <h1>Punto 7. Tema Más Relevante de la Aliyáh – Levítico 19:1-14</h1>
+    
+    <div class="content-container">
+        <h2>Identificación del Tema Central y su Conexión con el Brit Hadasháh</h2>
+        
+        <div class="section-container">
+            <h3>Tema Central: La Santidad como Imitación del Carácter de Elohím</h3>
+            
+            <p>El corazón de esta Aliyáh se encuentra en la declaración profética:</p>
+            
+            <div class="verse-container">
+                <div class="hebrew">קְדֹשִׁים תִּהְיוּ כִּי קָדוֹשׁ אֲנִי יְהוָה אֱלֹהֵיכֶם</div>
+                <div class="transliteration">"Kedoshím tihyú ki kadosh Ani Adonái Eloheichem"</div>
+                <div class="translation">"Santos seréis, porque santo soy Yo, Adonái vuestro Elohím." (Levítico 19:2)</div>
+            </div>
+            
+            <p>Este versículo establece un principio eterno:</p>
+            <ul>
+                <li>→ <strong>La vida del creyente debe reflejar el carácter de su Creador.</strong></li>
+                <li>→ La <em>kedusháh</em> no es una cualidad religiosa abstracta, sino <strong>la imitación activa de la santidad divina en todas las áreas de la vida.</strong></li>
+            </ul>
+            
+            <p>Este llamado afecta:</p>
+            <ul>
+                <li>Las relaciones familiares (v.3)</li>
+                <li>La fidelidad en el culto (v.3-4)</li>
+                <li>La integridad en el servicio (v.5-8)</li>
+                <li>La justicia social y económica (v.9-13)</li>
+                <li>La compasión hacia el vulnerable (v.14)</li>
+            </ul>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>Importancia en el Contexto de la Toráh</h3>
+            
+            <p>Levítico 19 se encuentra en el corazón del Sefer Vaikrá (Levítico), y es la <strong>explicación ética de los Diez Enunciados (Aseret HaDibrot)</strong>. Es el capítulo más citado por Yeshúa y los shlujim (emisarios) en el Brit Hadasháh, precisamente porque articula el llamado <strong>a vivir como un pueblo santo y justo</strong>, que hace visible el Reino de Elohím.</p>
+            
+            <p>La repetición constante de la frase: <strong>"Yo soy Adonái יהוה"</strong> muestra que <strong>cada mandamiento está conectado a la revelación divina</strong> y no a una ética humana.</p>
+            
+            <p>→ La santidad no es un conjunto de normas, sino <strong>una respuesta relacional a la Presencia de Elohím en medio del pueblo</strong>.</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>Relación con las Enseñanzas y Obra de Yeshúa en el Brit Hadasháh</h3>
+            
+            <ol>
+                <li>
+                    <strong>Yeshúa y la Santidad del Padre</strong>
+                    <p class="scripture"><strong>Yochanán 17:19</strong> – "Y por ellos Yo me santifico a Mí mismo, para que también ellos sean santificados en la verdad."</p>
+                    <p>→ El Mashíaj no solo es ejemplo, <strong>es el canal</strong> de santidad para Su pueblo.</p>
+                </li>
+                
+                <li>
+                    <strong>Amor al Prójimo como expresión de Kedusháh</strong>
+                    <p class="scripture"><strong>Mattityahu 22:37-40</strong> – Yeshúa resume la Toráh en dos mandamientos:</p>
+                    <ul>
+                        <li>Amar a Adonái con todo el ser</li>
+                        <li>Amar al prójimo como a uno mismo (citando Lev. 19:18)</li>
+                    </ul>
+                    <p>→ Esta Aliyáh prepara el terreno para ese mandamiento, revelando que <strong>toda justicia comienza en la santidad interior.</strong></p>
+                </li>
+                
+                <li>
+                    <strong>Transformación por el Ruaj HaKodesh</strong>
+                    <p class="scripture"><strong>Efesios 4:24</strong> – "Vestíos del nuevo hombre, creado según Elohím en justicia y santidad de la verdad."</p>
+                    <p>→ La santidad no es el resultado del esfuerzo humano, sino del <strong>nuevo nacimiento en Mashíaj</strong>, quien nos conforma a la imagen del Kadosh.</p>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>Relación con los Moedim de Elohím</h3>
+            
+            <p>La santidad que se demanda en esta Aliyáh <strong>prepara al pueblo para la participación digna en los Moedím (Tiempos señalados)</strong>. Por ejemplo:</p>
+            
+            <ul>
+                <li><strong>Pésaj:</strong> requiere limpieza de levadura (pecado oculto), figurando la necesidad de kedusháh (Éxodo 12:15, 1 Corintios 5:7).</li>
+                <li><strong>Yom Kipur:</strong> día de aflicción y expiación, requiere que el pueblo ya camine en justicia.</li>
+                <li><strong>Shavuot:</strong> entrega de la Toráh y del Ruaj, siendo la Toráh misma una guía hacia la santidad.</li>
+            </ul>
+            
+            <p>→ Esta Aliyáh revela que <strong>los Moedím no son solo fechas, sino oportunidades para vivir y renovar la Kedusháh del pacto</strong>.</p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="conclusion">
+            <h3>Conclusión</h3>
+            
+            <p>El tema más relevante de Levítico 19:1-14 es la <strong>Kedusháh vivida</strong>: <strong>una vida separada del pecado, dedicada a Elohím y marcada por justicia y amor hacia el prójimo.</strong></p>
+            
+            <p>Yeshúa haMashíaj <strong>es el cumplimiento vivo de esa santidad</strong>, y por Su sacrificio y resurrección, <strong>ahora Su pueblo puede caminar en esta Kedusháh</strong>.</p>
+        </div>
+    </div>
+
+    <h1>Punto 8. Descubriendo al Mashíaj en cada Aliyáh – Levítico 19:1-14</h1>
+    
+    <div class="content-container">
+        <h2>Profecías Mesiánicas y Reflexión Profunda</h2>
+        
+        <div class="section-container">
+            <h3>A. Profecías Mesiánicas Identificadas en esta Aliyáh</h3>
+            
+            <p><strong>Levítico 19:2</strong> "<strong>Santos seréis, porque santo soy Yo, Adonái vuestro Elohím.</strong>" → Esta frase se transforma en <strong>profecía mesiánica</strong> cuando es aplicada por los shlujim del Brit Hadasháh como una descripción de la obra del Mashíaj en Su pueblo.</p>
+            
+            <p><strong>1 Kefa 1:15-16</strong> la cita directamente, revelando que esta santidad será <strong>realizada y sostenida</strong> en los redimidos <strong>a través de Yeshúa haMashíaj.</strong></p>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>B. Métodos para descubrir al Mashíaj en esta Aliyáh</h3>
+            
+            <ol>
+                <li>
+                    <div class="prophetic-title">Tipologías</div>
+                    <p><strong>Yeshúa como el Zevaj Shelamím (sacrificio de paz)</strong></p>
+                    <p>Levítico 19:5-8 describe los sacrificios de paz que deben ser consumidos en su tiempo sagrado.</p>
+                    <p>→ Yeshúa es el cumplimiento del shelamím (paz entre Elohím y el hombre).</p>
+                    <p>→ Su cuerpo, como sacrificio voluntario, fue ofrecido en obediencia total (Yochanán 10:17-18).</p>
+                </li>
+                
+                <li>
+                    <div class="prophetic-title">Sombras (Tzelalim)</div>
+                    <p><strong>Recolección de los pobres y extranjeros (vv.9-10)</strong></p>
+                    <p>→ Sombra del <strong>ministerio del Mashíaj hacia los marginados y gentiles</strong>.</p>
+                    <p>→ En <strong>Luqá 4:18</strong>, Yeshúa declara que ha venido a <strong>dar buenas nuevas a los pobres</strong>, cumpliendo esta imagen de compasión social.</p>
+                </li>
+                
+                <li>
+                    <div class="prophetic-title">Figuras Redentoras (Tavnitot)</div>
+                    <p><strong>El sordo y el ciego (v.14)</strong> no son solo condiciones físicas, sino <strong>figuras espirituales del alma caída.</strong></p>
+                    <p>→ <strong>Mashíaj sana al ciego (Yojanán 9) y al sordo (Marcos 7:32-37)</strong>, mostrando su autoridad sobre las tinieblas espirituales y físicas.</p>
+                </li>
+                
+                <li>
+                    <div class="prophetic-title">Eventos Simbólicos</div>
+                    <p><strong>El día tercero (v.6-7):</strong> El sacrificio que no es aceptado después del tercer día representa la muerte y corrupción del cuerpo.</p>
+                    <p>→ <strong>Yeshúa resucita al tercer día</strong>, siendo <strong>el único sacrificio eterno aceptado por Adonái יהוה.</strong></p>
+                </li>
+                
+                <li>
+                    <div class="prophetic-title">Análisis Lingüístico</div>
+                    <p>"<strong>Tihyú / Seréis</strong>" en forma futura sugiere <strong>una transformación venidera</strong>, no una condición actual.</p>
+                    <p>→ Esto señala proféticamente la obra futura del Ruaj HaKodesh a través del Mashíaj, quien <strong>produce esta santidad en nosotros</strong> (Hebreos 10:10).</p>
+                </li>
+                
+                <li>
+                    <div class="prophetic-title">Paralelismos Temáticos</div>
+                    <p><strong>Santidad y verdad:</strong> Yeshúa ora: "Santifícalos en tu verdad; tu palabra es verdad" (Yojanán 17:17).</p>
+                    <p>→ Él es la <strong>manifestación viva de la Palabra (Davar)</strong> y, por tanto, la fuente de santificación.</p>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>C. Cumplimiento en el Brit Hadasháh</h3>
+            
+            <ol>
+                <li>
+                    <div class="prophetic-title">Mashíaj como fuente de Kedusháh (Santidad)</div>
+                    <p class="scripture"><strong>Efesios 5:25-27</strong>: "...para santificarla, habiéndola purificado por el lavamiento del agua por la palabra…"</p>
+                    <p>→ Yeshúa cumple este proceso de purificación que Levítico demanda: el sacrificio, la separación, el respeto por el débil, la verdad.</p>
+                </li>
+                
+                <li>
+                    <div class="prophetic-title">Transformación del creyente a la imagen del Kadosh</div>
+                    <p class="scripture"><strong>2 Corintios 3:18</strong>: "...somos transformados de gloria en gloria en la misma imagen..."</p>
+                    <p>→ El proceso de santificación ya no es solo externo, sino interno, por el Ruaj del Mashíaj.</p>
+                </li>
+                
+                <li>
+                    <div class="prophetic-title">El pueblo como reino de kohaním y gente santa</div>
+                    <p class="scripture"><strong>1 Kefa 2:9</strong> retoma Éxodo 19 y Levítico 19 para declarar: "Vosotros sois linaje escogido, real sacerdocio, nación santa, pueblo adquirido..."</p>
+                    <p>→ La profecía de "Kedoshím Tihyú" se cumple literalmente <strong>en el cuerpo del Mashíaj</strong>: Su comunidad redimida y separada.</p>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="section-container">
+            <h3>D. Reflexión Espiritual Mesiánica</h3>
+            
+            <ul>
+                <li>En Yeshúa haMashíaj, <strong>la santidad deja de ser un ideal inalcanzable</strong> y se convierte en <strong>una realidad viva por la unión con Él.</strong></li>
+                <li>La santidad ya no es una carga, sino <strong>el resultado natural de caminar con el Kadosh de Yisrael.</strong></li>
+                <li>Esta Aliyáh nos llama a <strong>ser testimonios vivos del carácter de Mashíaj en nuestras relaciones humanas</strong>: con padres, trabajadores, pobres, extranjeros, discapacitados.</li>
+                <li>Ser santo como Él <strong>no es una imitación superficial</strong>, sino una transformación interna, una participación en Su naturaleza.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos – Levítico 19:1-14</h1>
+
+        <div class="section-container">
+            <h3>A. Midrashim Relevantes sobre Levítico 19:1-14</h3>
+            
+            <p><strong>1. Sifra Kedoshím 1:1</strong></p>
+            <p>Este Midrash halájico del tiempo del Segundo Templo establece: "Toda vez que se diga 'Daber el kol adat bnei Yisra'el', se refiere a una parasháh de gran importancia que todos deben oír juntos." → Se enfatiza que este capítulo debe ser enseñado <strong>en asamblea completa</strong>, porque contiene la esencia de toda la Toráh práctica: <strong>santidad, justicia, y amor al prójimo.</strong></p>
+            
+            <p><strong>2. Midrash Rabá – Vaikrá Rabá 24:5</strong></p>
+            <p>"El Santo, bendito sea Él, dijo: 'Así como Yo soy Santo, así también vosotros sed santos. Así como Yo soy compasivo, vosotros sed compasivos'." → Aquí se expone el principio de <strong>imitatio Dei</strong>, es decir, imitación de Elohím. Esta idea fue central en la ética judía antigua, y es directamente recogida por Yeshúa en <strong>Lucas 6:36</strong>: "Sed misericordiosos, como vuestro Padre es misericordioso."</p>
+            
+            <p><strong>3. Pirkei Avot 2:1 (Ética de los Padres)</strong></p>
+            <p>"Considera lo que está sobre ti: un Ojo que ve, un Oído que escucha y todos tus hechos están escritos en un libro." → Aplica directamente a las advertencias contra la injusticia y la opresión al sordo y al ciego (v.14). Aunque el ciego no ve y el sordo no oye, <strong>Adonái יהוה sí ve y oye.</strong></p>
+        </div>
+
+        <div class="section-container">
+            <h3>B. Targumim (Traducciones y Paráfrasis Arameas)</h3>
+            
+            <p><strong>Targum Onkelos – Levítico 19:2</strong></p>
+            <p>En el Targum se traduce el mandato: "Santos seréis, porque santo soy Yo" como "Purificad vuestras obras, porque Yo soy puro." → Este énfasis en <em>la pureza ética</em> subraya que el concepto de kedusháh va más allá del ritual. Para los sabios que redactaron este Targum, <strong>la santidad es inseparable de la acción correcta.</strong></p>
+            
+            <p><strong>Targum Pseudo-Jonatán – Lev. 19:14</strong></p>
+            <p>Agrega una nota explicativa: "No maldecirás al sordo ni colocarás tropiezo delante del ciego; esto incluye engañar a tu prójimo que no comprende, como si fuera ciego." → Interpreta la ceguera en sentido espiritual y moral. Esto se alinea con <strong>Yeshúa</strong>, quien se dirigió a los <strong>"ciegos guías de ciegos"</strong> (Mattityahu 15:14), revelando <strong>la profundidad de esta mitzváh.</strong></p>
+        </div>
+
+        <div class="section-container">
+            <h3>C. Textos Apócrifos y Pseudepigráficos</h3>
+            
+            <p><strong>1. Libro de Tobit (cap. 4:15-16):</strong></p>
+            <p>"No hagas a nadie lo que tú odias… Comparte tu pan con los hambrientos… No escondas tu pan a los pobres." → Refleja los principios de <strong>Levítico 19:9-10</strong>, mostrando que estos mandamientos fueron parte del pensamiento ético judío en el exilio.</p>
+            
+            <p><strong>2. Sirácida (Eclesiástico) 3:2-6; 7:30-32:</strong></p>
+            <p>Exalta la honra a los padres (v.3), y el respeto por los trabajadores y los humildes. → Muestra cómo <strong>el mandamiento del versículo 3 ("cada uno temerá a su madre y a su padre")</strong> fue comprendido como base de la vida de sabiduría.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>D. Ecos en los Escritos de Qumrán</h3>
+            
+            <p><strong>Regla de la Comunidad (1QS):</strong></p>
+            <p>El documento exige a los miembros "vivir con perfecta obediencia a todos los mandamientos de Moisés", y cita frases clave de Levítico 19 sobre la integridad en el hablar, el trato con el prójimo y la separación de lo impuro. → <strong>Esta comunidad veía Levítico 19 como el corazón de la identidad del remanente justo de Israel.</strong></p>
+        </div>
+
+        <div class="section-container">
+            <h3>E. Reflexión</h3>
+            
+            <p>Los midrashim y targumim revelan que <strong>la interpretación tradicional de esta Aliyáh siempre ha ido más allá de lo legal</strong>. Desde los tiempos del Segundo Templo hasta los maestros de la Mishnáh, el llamado a la santidad se entendió como:</p>
+            <ul>
+                <li><strong>Reflejo del carácter divino</strong></li>
+                <li><strong>Rechazo de la injusticia social y la indiferencia</strong></li>
+                <li><strong>Defensa de los débiles, sin importar su capacidad o condición</strong></li>
+            </ul>
+            <p>Este entendimiento profético y ético se ve <strong>plenamente cumplido en Yeshúa haMashíaj</strong>, quien citó y vivió estas enseñanzas, mostrando que <strong>el Reino de Elohím es un Reino de kedusháh práctica y compasiva</strong>.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 10. Mandamientos Encontrados o Principios y Valores – Levítico 19:1-14</h1>
+        
+        <p><strong>En esta Aliyáh se encuentran al menos 14 mitzvot (mandamientos) explícitos, y muchos principios morales implícitos. Cada uno refleja el carácter de Elohím y es cumplido y vivido en la enseñanza y vida del Mashíaj Yeshúa.</strong></p>
+        
+        <div class="section-container">
+            <h3>Mandamientos Directos (Mitzvot)</h3>
+            
+            <ol>
+                <li><strong>Ser santos (v.2)</strong> → <em>Mandato general de kedusháh</em>: llamado a reflejar a Adonái. <strong>Yeshúa:</strong> es la imagen del Elohím invisible (Qoloseyah 1:15), quien nos santifica (Heb. 10:10).</li>
+                
+                <li><strong>Temer a padre y madre (v.3)</strong> → Respeto profundo y sumisión. <strong>Yeshúa:</strong> fue sujeto a Miryam y Yosef (Luqá 2:51).</li>
+                
+                <li><strong>Guardar los shabatot (v.3)</strong> → Obediencia a la señal del pacto eterno. <strong>Yeshúa:</strong> restauró su propósito (Marcos 2:27 – "el shabat fue hecho para el hombre").</li>
+                
+                <li><strong>No volverse a ídolos (v.4)</strong> → Rechazo total de lo falso. <strong>Yeshúa:</strong> rechazó toda adoración falsa (Mat. 4:10 – "a Adonái tu Elohím adorarás").</li>
+                
+                <li><strong>No hacerse imágenes fundidas (v.4)</strong> → Prohibición de materializar lo sagrado. <strong>Yeshúa:</strong> reveló al Padre sin imágenes (Yojanán 14:9).</li>
+                
+                <li><strong>Ofrecer el sacrificio de paz correctamente (v.5-6)</strong> → Obediencia en los tiempos de adoración. <strong>Yeshúa:</strong> es el Zevaj Shelamím eterno (Efesios 2:14).</li>
+                
+                <li><strong>No comer carne del sacrificio al tercer día (v.7)</strong> → Disciplina en lo kadosh. <strong>Yeshúa:</strong> resucita el tercer día, no queda corrupción (Luqá 24:46).</li>
+                
+                <li><strong>No profanar las cosas santas (v.8)</strong> → Reverencia por lo apartado. <strong>Yeshúa:</strong> purificó el templo y condenó la profanación (Mat. 21:12-13).</li>
+                
+                <li><strong>Dejar el rincón del campo para el pobre (v.9)</strong> → Generosidad sistemática. <strong>Yeshúa:</strong> se entregó por los pobres y necesitados (Luqá 4:18).</li>
+                
+                <li><strong>No recoger las espigas caídas (v.9)</strong> → Renunciar al exceso por amor al prójimo. <strong>Yeshúa:</strong> enseñó a dar sin esperar (Mat. 6:3).</li>
+                
+                <li><strong>No robar (v.11)</strong> → Respeto por la propiedad ajena. <strong>Yeshúa:</strong> vivió sin robo ni codicia, enseñó contentamiento (Luqá 12:15).</li>
+                
+                <li><strong>No mentir ni engañar (v.11)</strong> → Integridad absoluta. <strong>Yeshúa:</strong> "Yo soy la verdad" (Yojanán 14:6).</li>
+                
+                <li><strong>No jurar falsamente (v.12)</strong> → Sinceridad sin manipulación. <strong>Yeshúa:</strong> prohibió jurar en vano (Mat. 5:34-37).</li>
+                
+                <li><strong>No oprimir ni retener salario (v.13)</strong> → Justicia laboral. <strong>Yeshúa:</strong> enseñó que el obrero es digno de su salario (Luqá 10:7).</li>
+                
+                <li><strong>No maldecir al sordo (v.14)</strong> → Cuidado por el débil. <strong>Yeshúa:</strong> sanó y protegió a los vulnerables (Marcos 7:32-35).</li>
+                
+                <li><strong>No poner tropiezo delante del ciego (v.14)</strong> → Justicia inclusiva. <strong>Yeshúa:</strong> quitó el tropiezo del pecado (1 Pedro 2:8) y dio vista espiritual (Yojanán 9).</li>
+            </ol>
+        </div>
+        
+        <div class="section-container">
+            <h3>Principios Espirituales y Valores Éticos</h3>
+            <ul>
+                <li><strong>Compasión y equidad social</strong></li>
+                <li><strong>Respeto por lo sagrado</strong></li>
+                <li><strong>Integridad y verdad</strong></li>
+                <li><strong>Humildad y temor de Elohím</strong></li>
+                <li><strong>Responsabilidad comunitaria</strong></li>
+                <li><strong>Consagración interior que afecta la vida diaria</strong></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <div class="content-container">
+        <h1>Punto 11. Preguntas de Reflexión con Respuestas en el Mashíaj – Levítico 19:1-14</h1>
+        
+        <ol>
+            <li>
+                <p><strong>¿Qué significa ser santo como Adonái?</strong> → Significa reflejar Su carácter. <strong>Yeshúa</strong> vivió esta santidad y nos hace partícipes de ella (Efesios 1:4). Por Él, somos apartados para una vida de obediencia y compasión.</p>
+            </li>
+            
+            <li>
+                <p><strong>¿Cómo puedo honrar verdaderamente a mis padres?</strong> → No solo obedeciendo, sino cuidando su honra incluso en su vejez. <strong>Yeshúa</strong>, en la cruz, cuidó de su madre (Yojanán 19:26-27), modelando amor filial hasta el fin.</p>
+            </li>
+            
+            <li>
+                <p><strong>¿De qué manera puedo vivir el shabat en Mashíaj?</strong> → Descansando en Su obra completa, pero también celebrando su señal profética de redención. <strong>Mashíaj es nuestro reposo (Hebreos 4:9-10).</strong></p>
+            </li>
+            
+            <li>
+                <p><strong>¿Estoy dejando parte de mi provisión para los necesitados?</strong> → No se trata solo de dar lo que sobra, sino de programar la generosidad. <strong>Mashíaj dio todo por los pobres en espíritu y en cuerpo.</strong> Vivir en Él es compartir como Él compartió.</p>
+            </li>
+            
+            <li>
+                <p><strong>¿Estoy evitando poner tropiezo en el camino del otro?</strong> → Tropiezo puede ser escándalo, mentira, egoísmo, o manipulación. <strong>Mashíaj quitó nuestras piedras de tropiezo (Isaías 8:14 / 1 Pedro 2:6)</strong> y nos llama a vivir de forma que edifiquemos a los demás.</p>
+            </li>
+        </ol>
+    </div>
+
+    <div class="content-container">
+        <h2>Conclusión Espiritual</h2>
+        <p><strong>Levítico 19:1-14</strong> nos revela que la Kedusháh (santidad) no es un sistema de normas, sino una vida consagrada que refleja a Elohím. <strong>Yeshúa haMashíaj</strong>, es la plenitud de esa vida, y en Él, cada uno de estos mandamientos se vuelve una oportunidad para revelar Su gloria, Su carácter y Su justicia.</p>
+    </div>
+
+    <div class="content-container">
+        <h1>Punto 12. Resumen de la Aliyáh – Levítico 19:1-14</h1>
+        
+        <div class="section-container">
+            <h3>Contexto:</h3>
+            <p>Esta Aliyáh inaugura la Parashá Kedoshím (קדושים), que representa uno de los pilares éticos y espirituales más significativos de toda la Toráh. Dada a todo el pueblo de Israel —"kol adat bnei Yisrael"—, su mensaje no es exclusivo de los kohaním ni de los líderes, sino para cada miembro del pueblo redimido.</p>
+        </div>
+        
+        <div class="section-container">
+            <h3>Resumen Temático</h3>
+            <ol>
+                <li>
+                    <p><strong>Llamado a la Kedusháh (Santidad):</strong></p>
+                    <ul>
+                        <li>"Santos seréis, porque santo soy Yo, Adonái vuestro Elohím" (v.2) establece la base teológica de toda la Aliyáh.</li>
+                        <li>Esta santidad implica separación del pecado y dedicación activa al servicio y reflejo del carácter divino.</li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p><strong>Relación con Elohím:</strong></p>
+                    <ul>
+                        <li>Temer a los padres (v.3)</li>
+                        <li>Guardar los Shabatot</li>
+                        <li>Rechazar toda forma de idolatría e imágenes fundidas (v.4)</li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p><strong>Correcto culto y sacrificios:</strong></p>
+                    <ul>
+                        <li>Reglas para ofrecer el sacrificio de paz (shelamím) correctamente (v.5-8), estableciendo límites santos del tiempo y la reverencia al korban.</li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p><strong>Ética social de la compasión y justicia:</strong></p>
+                    <ul>
+                        <li>Dejar parte de las cosechas para el pobre y el extranjero (v.9-10)</li>
+                        <li>Prohibición de robo, engaño, mentira, juramento falso, opresión laboral, y retención de salarios (v.11-13)</li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <p><strong>Cuidado especial hacia los vulnerables:</strong></p>
+                    <ul>
+                        <li>No maldecir al sordo ni poner tropiezo al ciego (v.14)</li>
+                        <li>Se exige una actitud compasiva que no abuse de la debilidad o discapacidad del prójimo.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="section-container">
+            <h3>Aplicación en Mashíaj</h3>
+            <ul>
+                <li><strong>Yeshúa haMashíaj</strong> no solo enseñó esta Toráh con poder, sino que la <strong>vivió de forma encarnada y perfecta</strong>.</li>
+                <li>Cada principio aquí delineado fue cumplido en su carácter, sus obras y su enseñanza:
+                    <ul>
+                        <li>En su respeto por el shabat, en su cuidado por los marginados, en su lucha contra la hipocresía religiosa, en su veracidad, en su amor al prójimo.</li>
+                    </ul>
+                </li>
+                <li>Por medio del <strong>Ruaj HaKodesh</strong>, esta misma vida de kedusháh es impartida a Su comunidad redimida:
+                    <ul>
+                        <li>"Para presentársela a Sí mismo gloriosa, sin mancha ni arruga…" (Efesios 5:27)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="conclusion">
+            <h3>Conclusión</h3>
+            <p>Levítico 19:1-14 resume una cosmovisión completa de justicia, compasión y santidad. No hay separación entre lo espiritual y lo social, entre el templo y el campo, entre el altar y la mesa del jornalero. Todo está bajo la declaración profética: <strong>"Yo soy Adonái יהוה"</strong> Y este nombre se hace carne en <strong>Yeshúa haMashíaj</strong>, quien es el cumplimiento y la plenitud de este llamado.</p>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <div class="content-container">
+        <h1>Punto 13. Tefiláh de la Aliyáh – Levítico 19:1-14</h1>
+        
+        <div class="section-container">
+            <h3>Tefiláh (Oración basada en la enseñanza de la Aliyáh, conectada con Mashíaj y la vida espiritual actual):</h3>
+            
+            <div class="prayer-text">
+                <p>אבינו שבשמים, Adonái יהוה קדוש ישראל, Tú que nos has llamado a ser un pueblo santo como Tú eres Santo, nos presentamos hoy ante Ti con temor reverente y con esperanza viva por la obra de Yeshúa haMashíaj, quien vivió Tu Toráh con perfección y nos mostró el camino de la Kedusháh verdadera.</p>
+                
+                <p>Purifícanos, oh Elohím, no solo en lo exterior, sino en lo profundo del corazón, para que cada pensamiento, palabra y acción refleje Tu imagen en nosotros. Enséñanos a honrar a nuestros padres, a guardar Tu shabat, a rechazar toda idolatría y a servirte solo a Ti, como hizo Tu Ungido fiel.</p>
+                
+                <p>Ruaj HaKodesh, llena nuestro ser para vivir en justicia, para no robar, ni mentir, ni oprimir, ni retener lo que pertenece al otro. Haznos generosos con los pobres, compasivos con los débiles, misericordiosos con los que yacen en silencio, como el sordo o el ciego, que en Tu Reino son preciosos y plenos.</p>
+                
+                <p>Yeshúa haMashíaj, Tú eres nuestro Zevaj Shelamím, nuestro Sacrificio de Paz, ofrecido una vez y para siempre. Resucitaste al tercer día para mostrar que en Ti todo lo santo vive para siempre. Guíanos a vivir cada día como kedoshím, apartados para Ti, no por mérito propio, sino por Tu gracia, por Tu obra, por Tu verdad.</p>
+                
+                <p>Hoy nos rendimos ante Ti, para ser testigos vivos de Tu santidad en este mundo oscuro, para amar como Tú amas, para hablar con verdad, para caminar con integridad. Haznos, Mashíaj, parte de Tu morada santa, templo viviente de Tu presencia.</p>
+                
+                <p>Bendito seas, Adonái יהוה, por darnos Tu Toráh viva, por revelarte en Yeshúa, y por apartarnos para Ti, para siempre.</p>
+            </div>
+            
+            <p class="prayer-conclusion"><strong>בשם ישוע המשיח Yeshúa haMashíaj, Amén veAmén.</strongBeShem></p>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya2.html">Continuar con la Aliyá 2</a></button>
+   
+
+    <script src="../index.js"></script>
+
+    </body>
+   </html>
