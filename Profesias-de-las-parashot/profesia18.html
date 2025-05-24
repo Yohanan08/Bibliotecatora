@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 21:16-22:16</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+<body>
+<div id="google_translate_element"></div>
+<header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+</header>
+
+<div class="content-container">
+        <h1>Profecías Mesiánicas en la Parashá 18 - Mishpatim<br>
+        y su cumplimiento en Yeshúa HaMashíaj</h1>
+        
+        <div class="section-container">
+            <p>La Parashá Mishpatim (<span class="hebrew-term">משפטים</span>, "Leyes") abarca Shemot (Éxodo) 21:1 – 24:18, y se centra en las leyes civiles y éticas que Adonái dio a Israel después de la entrega de la Toráh en el Monte Sinaí. Aunque esta sección contiene numerosas leyes relacionadas con la justicia social, también hay profecías mesiánicas ocultas que se cumplen en la vida y obra de <span class="hebrew-term">יֵשׁוּעַ הַמָּשִׁיחַ</span> (Yeshúa HaMashíaj).</p>
+        </div>
+    </div>
+
+    <div class="prophetic-content">
+        <div class="prophetic-section">
+            <h2>1. Profecía: El Siervo que Sufre Voluntariamente – Shemot (Éxodo) 21:5-6</h2>
+            
+            <div class="scripture">
+                "Pero si el siervo dijere: Yo amo a mi Amo, a mi mujer y a mis hijos, no saldré libre; entonces su amo lo llevará ante los jueces, y le perforará la oreja con una lezna en la puerta, y será su siervo para siempre."
+            </div>
+
+            <div class="prophetic-title">Significado Mesiánico</div>
+            <p>Este pasaje habla de un siervo que tiene la oportunidad de ser libre, pero decide permanecer como siervo por amor a su amo y su familia. Este acto de entrega voluntaria simboliza a Mashíaj como el Siervo Sufriente, quien, a pesar de su derecho a la gloria y la libertad, eligió voluntariamente sufrir y entregarse por amor a su pueblo.</p>
+
+            <div class="prophetic-title">Cumplimiento en Yeshúa HaMashíaj</div>
+            <ul>
+                <li><strong>Filipenses 2:6-7</strong> <span class="arrow">→</span> "El cual, siendo en forma de Elohím, no estimó el ser igual a Elohím como cosa a que aferrarse, sino que se despojó a sí mismo, tomando forma de siervo, hecho semejante a los hombres."</li>
+                <li><strong>Mateo 26:39</strong> <span class="arrow">→</span> "Padre mío, si es posible, pase de mí esta copa; pero no sea como yo quiero, sino como tú."</li>
+                <li><strong>Yeshayahu (Isaías) 50:5-6</strong>
+                    <ul>
+                        <li>[5]Y la instrucción de Adonái <span class="hebrew-term">יהוה</span>, aun Adonái <span class="hebrew-term">יהוה</span>, abre mi oído, y yo no desobedezco ni disputo.</li>
+                        <li>[6]Ofrecí mi espalda a los que me golpearon, mis mejillas a los que me arrancaban la barba; yo no escondí mi rostro del insulto y escupitajo.</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Así como el siervo de Shemot 21 permite que su oreja sea perforada como señal de obediencia y amor, Yeshúa permitió ser herido y traspasado por amor a su pueblo.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+            <h2>2. Profecía: La Sangre del Pacto – Shemot (Éxodo) 24:8</h2>
+            
+            <div class="scripture">
+                "Entonces Moshé tomó la sangre y la roció sobre el pueblo, y dijo: He aquí la sangre del pacto que Adonái ha hecho con vosotros sobre todas estas palabras."
+            </div>
+
+            <div class="prophetic-title">Significado Mesiánico</div>
+            <p>Este pasaje es clave en la teología mesiánica, porque revela que el pacto entre Elohím e Israel se sella con sangre. Esta sangre es un tipo profético de la sangre de Mashíaj, quien traería un pacto nuevo con su propia sangre.</p>
+
+            <div class="prophetic-title">Cumplimiento en Yeshúa HaMashíaj</div>
+            <ul>
+                <li><strong>Mateo 26:28</strong> <span class="arrow">→</span> "Porque esto es mi sangre del Nuevo Pacto, que por muchos es derramada para perdón de pecados."</li>
+                <li><strong>Hebreos 9:13-14</strong> <span class="arrow">→</span> "Porque si la sangre de los toros y de los machos cabríos santifica para la purificación de la carne, ¡cuánto más la sangre de Mashíaj, quien por el Espíritu eterno se ofreció a sí mismo sin mancha a Elohím, limpiará nuestras conciencias de obras muertas para servir al Elohím vivo!"</li>
+            </ul>
+            <p>Así como Moshé roció la sangre sobre el pueblo para sellar el Pacto del Sinaí, Yeshúa roció su propia sangre en el madero para establecer el Pacto nuevo, cumpliendo así esta profecía.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+            <h2>3. Profecía: Elohím envía su Maláj delante de su pueblo – Shemot (Éxodo) 23:20-21</h2>
+            
+            <div class="scripture">
+                "He aquí, yo envío un Maláj (mensajero/ángel) delante de ti para que te guarde en el camino y te lleve al lugar que te he preparado. Guárdate delante de él y oye su voz; no le seas rebelde, porque él no perdonará vuestra rebelión, porque mi Nombre está en él."
+            </div>
+
+            <div class="prophetic-title">Significado Mesiánico</div>
+            <p>El "Maláj" enviado por Elohím tiene el Nombre de Adonái en él, lo que indica que no es un maláj común, sino una manifestación divina. En la tradición judía mesiánica, este Maláj es una referencia a Yeshúa HaMashíaj, quien es la manifestación de Elohím en la tierra.</p>
+
+            <div class="prophetic-title">Cumplimiento en Yeshúa HaMashíaj</div>
+            <ul>
+                <li><strong>Yojanán (Juan) 14:6</strong> <span class="arrow">→</span> "Yo soy el camino, la verdad y la vida; nadie viene al Padre sino por mí."</li>
+                <li><strong>Yojanán (Juan) 17:6</strong> <span class="arrow">→</span> "He manifestado tu Nombre a los hombres que del mundo me diste."</li>
+                <li><strong>Hechos 7:38</strong> <span class="arrow">→</span> "Este es aquel que estuvo en la congregación en el desierto con el Maláj que le hablaba en el monte Sinaí, y con nuestros padres, y que recibió palabras de vida para darnos."</li>
+            </ul>
+            <p>Mashíaj es el Maláj que guía al pueblo de Elohím hacia la tierra prometida del Reino.</p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h2>Conclusión y Reflexión</h2>
+        <p>La Parashá Mishpatim revela aspectos fundamentales del ministerio de Yeshúa HaMashíaj:</p>
+        <ul>
+            <li><strong>✅ Como el Siervo sufriente que se entrega por amor.</strong></li>
+            <li><strong>✅ Como el cordero cuya sangre sella el Nuevo Pacto.</strong></li>
+            <li><strong>✅ Como el Maláj divino que guía a su pueblo hacia la redención.</strong></li>
+        </ul>
+        <p>Así, podemos ver que el Mashíaj no es solo un legislador, sino también el cumplimiento de la Toráh y las promesas divinas.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Respuestas a las Preguntas para Profundizar sobre la Parashá Mishpatim</h2>
+
+        <div class="question">1. ¿Cómo se relaciona el concepto del "Siervo sufriente" con el amor de Mashíaj por su pueblo?</div>
+        <div class="answer">
+            <p>El concepto del "Siervo sufriente" se encuentra en Yeshayahu (Isaías) 53, donde se describe a Mashíaj como alguien que sufre, es despreciado y herido por el pecado de su pueblo. Este sufrimiento no es impuesto por obligación, sino que es voluntario y motivado por amor.</p>
+            
+            <p><strong>✅ Ejemplo en la Parashá:</strong><br>
+            En Shemot 21:5-6, el siervo que podía irse libre decide quedarse por amor a su amo y a su familia. Este acto de entrega refleja a Mashíaj, quien tenía el derecho de no sufrir, pero decidió hacerlo por amor a su pueblo.</p>
+            
+            <p><strong>✅ Cumplimiento en Yeshúa HaMashíaj:</strong></p>
+            <ul>
+                <li><strong>Yeshayahu 53:4-5</strong> <span class="arrow">→</span> "Ciertamente llevó él nuestras enfermedades, y sufrió nuestros dolores... Mas él fue herido por nuestras rebeliones, molido por nuestros pecados."</li>
+                <li><strong>Yojanán (Juan) 10:11</strong> <span class="arrow">→</span> "Yo soy el buen pastor; el buen pastor su vida da por las ovejas."</li>
+            </ul>
+            <p>Mashíaj no vino a ser servido, sino a servir y a dar su vida por amor.</p>
+        </div>
+
+        <div class="question">2. ¿Por qué era necesario que el Pacto se sellara con sangre, y cómo esto se cumple en Yeshúa?</div>
+        <div class="answer">
+            <p>Desde la Toráh, el concepto de expiación y pacto siempre estuvo ligado a la sangre. En Shemot 24:8, Moshé rocía la sangre sobre el pueblo como señal de la alianza con Adonái.</p>
+            
+            <p><strong>✅ Razón teológica:</strong></p>
+            <ul>
+                <li><strong>Vayikrá (Levítico) 17:11</strong> <span class="arrow">→</span> "Porque la vida de la carne en la sangre está, y yo os la he dado para hacer expiación sobre el altar por vuestras almas."</li>
+                <li>La sangre representa la vida misma y, al ser derramada, cubre el pecado y sella el pacto.</li>
+            </ul>
+            
+            <p><strong>✅ Cumplimiento en Yeshúa:</strong></p>
+            <ul>
+                <li><strong>Mateo 26:28</strong> <span class="arrow">→</span> "Porque esto es mi sangre del nuevo pacto, que por muchos es derramada para perdón de pecados."</li>
+                <li><strong>Hebreos 9:22</strong> <span class="arrow">→</span> "Sin derramamiento de sangre no hay perdón de pecados."</li>
+            </ul>
+            <p>Mashíaj selló el Nuevo Pacto con su propia sangre, cumpliendo la tipología de Shemot 24.</p>
+        </div>
+
+        <div class="question">3. ¿Quién es el "Maláj de Adonái" en otras partes del Tanak, y cómo se conecta con Yeshúa?</div>
+        <div class="answer">
+            <p>El Maláj de Adonái (<span class="hebrew-term">מלאך יהוה</span>) no es un simple ángel, sino una manifestación directa de la presencia divina. En muchas ocasiones, este Maláj habla como Elohím mismo y recibe adoración.</p>
+            
+            <p><strong>✅ Ejemplos en el Tanak:</strong></p>
+            <ol>
+                <li><strong>Bereshit (Génesis) 16:7-13</strong> <span class="arrow">→</span> El Maláj de Adonái se le aparece a Hagar, y ella lo llama "Elohím que me ve".</li>
+                <li><strong>Shemot (Éxodo) 3:2-6</strong> <span class="arrow">→</span> El Maláj de Adonái aparece en la zarza ardiente y se identifica como "Yo soy el Elohím de Avraham, Yitzjak y Yaakov".</li>
+                <li><strong>Shoftim (Jueces) 13:3-22</strong> <span class="arrow">→</span> Se le aparece a los padres de Shimshón, y ellos reconocen que han visto a Elohím.</li>
+            </ol>
+            
+            <p><strong>✅ Conexión con Yeshúa:</strong></p>
+            <ul>
+                <li><strong>Yojanán (Juan) 1:1, 14</strong> <span class="arrow">→</span> "En el principio era el Verbo, y el Verbo era con Elohím, y el Verbo era Elohím... y el Verbo se hizo carne."</li>
+                <li><strong>Colosenses 1:15-16</strong> <span class="arrow">→</span> "Él es la imagen del Elohím invisible."</li>
+            </ul>
+            <p>Mashíaj es el Maláj supremo de Adonái, el que guía a su pueblo en la redención.</p>
+        </div>
+
+        <div class="question">4. ¿Cómo podemos aplicar la obediencia y el servicio voluntario de Mashíaj en nuestras vidas?</div>
+        <div class="answer">
+            <p>La obediencia de Mashíaj fue voluntaria y absoluta. Él no buscó su propia voluntad, sino la del Padre.</p>
+            
+            <p><strong>✅ Aplicaciones prácticas:</strong></p>
+            <ol>
+                <li><strong>Amar y servir a los demás con humildad.</strong>
+                    <ul>
+                        <li><strong>Mateo 20:28</strong> <span class="arrow">→</span> "El Hijo del Hombre no vino para ser servido, sino para servir."</li>
+                    </ul>
+                </li>
+                <li><strong>Rendir nuestra vida al propósito de Elohím.</strong>
+                    <ul>
+                        <li><strong>Romanos 12:1</strong> <span class="arrow">→</span> "Presentad vuestros cuerpos en sacrificio vivo, santo y agradable a Elohím."</li>
+                    </ul>
+                </li>
+                <li><strong>Aceptar la voluntad de Elohím, aunque implique sacrificio.</strong>
+                    <ul>
+                        <li><strong>Lucas 22:42</strong> <span class="arrow">→</span> "Padre, si quieres, pasa de mí esta copa; pero no se haga mi voluntad, sino la tuya."</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>El ejemplo de Mashíaj nos enseña que el verdadero liderazgo es el servicio, y la verdadera libertad está en someterse a la voluntad de Adonái.</p>
+        </div>
+
+        <div class="question">5. ¿Qué otros paralelismos proféticos podemos encontrar en la Parashá Mishpatim?</div>
+        <div class="answer">
+            <p>Además de las profecías ya mencionadas, hay otros paralelismos mesiánicos ocultos en esta parashá:</p>
+            
+            <p><strong>✅ Leyes sobre el esclavo hebreo (Éxodo 21:2-6)</strong> <span class="arrow">→</span> <strong>Mashíaj, el Siervo Perfecto.</strong></p>
+            <ul>
+                <li>Mashíaj se convierte en el siervo perfecto que entrega su vida voluntariamente.</li>
+            </ul>
+            
+            <p><strong>✅ Ley de restitución (Éxodo 22:1)</strong> <span class="arrow">→</span> <strong>Mashíaj trae redención.</strong></p>
+            <ul>
+                <li>El ladrón debía pagar el doble o hasta el quíntuple. Mashíaj, con su sacrificio, restituye todo lo que el pecado robó.</li>
+            </ul>
+            
+            <p><strong>✅ El Monte Sinaí cubierto de la gloria de Adonái (Éxodo 24:15-17)</strong> <span class="arrow">→</span> <strong>Mashíaj, la gloria revelada.</strong></p>
+            <ul>
+                <li>En el Monte Sinaí, la gloria de Elohím descendió en fuego. En el Brit Hadasháh, Mashíaj se transfiguró y mostró su gloria celestial (Mateo 17:1-2).</li>
+            </ul>
+            
+            <p>Estos paralelismos muestran que toda la Toráh apunta hacia Mashíaj.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h2>Tefiláh (Oración)</h2>
+        <div class="prayer-text">
+            "Adonái Elohím, te damos gracias por revelar a Yeshúa HaMashíaj en cada palabra de Tu Toráh. Enséñanos a ser siervos fieles como Él, a caminar en obediencia y a reconocer la sangre del pacto que nos redime. Que podamos seguir al Maláj de Tu presencia y llegar a la tierra prometida de Tu Reino. Amén."
+        </div>
+    </div>
+
+<footer>
+    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a></p>
+    </footer>
+
+<button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente profesia.</a></button>
+
+
+<script src="../index.js"></script>
+
+</body>
+</html>

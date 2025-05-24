@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 21:16-22:16</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+<body>
+<div id="google_translate_element"></div>
+<header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+</header>
+
+ <div class="content-container">
+        <h1>Profecías Mesiánicas en la Parasháh Tetsavéh y su Cumplimiento en el Mashíaj</h1>
+        
+        <div class="section-container">
+            <p>La Parasháh Tetsavéh (<span class="hebrew-term">תְּצַוֶּה</span>, "Ordenarás") se encuentra en Shemot (Éxodo) 27:20 - 30:10 y trata sobre el encendido de la menoráh, las vestiduras sacerdotales y la consagración de los kohaním (sacerdotes). En esta sección encontramos varias sombras proféticas que apuntan a Yeshúa HaMashíaj como nuestro Kohén Gadol celestial.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+            <h3>1. El Aceite Puro para la Menoráh – Luz del Mundo</h3>
+            <div class="scripture">
+                <strong>Éxodo 27:20</strong> – "Y tú ordenarás a los hijos de Israel que te traigan aceite puro de oliva machacado para la iluminación, para hacer arder la lámpara continuamente."
+            </div>
+            
+            <div class="prophetic-title">Cumplimiento Mesiánico en Yeshúa HaMashíaj:</div>
+            <ul>
+                <li>La menoráh del Mishkán es un símbolo de la luz divina. El aceite puro representa la unción del Ruaj HaKodesh (Espíritu de Santidad).</li>
+                <li><strong>Juan 8:12</strong> – "Yeshúa les habló otra vez, diciendo: Yo soy la luz del mundo; el que me sigue no andará en tinieblas, sino que tendrá la luz de la vida."</li>
+                <li>Así como el aceite puro mantenía encendida la menoráh, Yeshúa, ungido con el Ruaj HaKodesh, es la Luz del Mundo, iluminando a las naciones.</li>
+            </ul>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>2. Las Vestiduras del Kohén HaGadol – Yeshúa como Sumo Sacerdote</h3>
+            <div class="scripture">
+                <strong>Éxodo 28:2</strong> – "Harás vestiduras sagradas para Aharón, tu hermano, para honra y esplendor."
+            </div>
+            
+            <div class="prophetic-title">Cumplimiento Mesiánico en Yeshúa HaMashíaj:</div>
+            <ul>
+                <li>Yeshúa es nuestro Kohén Gadol celestial, vestido con gloria y esplendor:</li>
+                <li><strong>Hebreos 4:14</strong> – "Teniendo un gran Kohén Gadol que traspasó los cielos, Yeshúa el Hijo de Elohím, retengamos nuestra confesión."</li>
+                <li>Así como Aharón llevaba vestiduras especiales para interceder por Israel, Yeshúa está revestido de gloria celestial y es nuestro intercesor ante Elohím.</li>
+            </ul>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>3. El Pectoral del Juicio y el Urim VeTumim – Yeshúa como la Palabra Viva</h3>
+            <div class="scripture">
+                <strong>Éxodo 28:30</strong> – "Y pondrás en el pectoral del juicio el Urim y el Tumim, para que estén sobre el corazón de Aharón cuando entre delante de Adonái."
+            </div>
+            
+            <div class="prophetic-title">Cumplimiento Mesiánico en Yeshúa HaMashíaj:</div>
+            <ul>
+                <li>El Urim veTumim (luz y perfección) eran usados para recibir dirección divina.</li>
+                <li><strong>Juan 1:1, 14</strong> – "En el principio era la Palabra, y la Palabra era con Elohím, y la Palabra era Elohím... Y la Palabra se hizo carne y habitó entre nosotros."</li>
+                <li>Yeshúa es el verdadero Urim veTumim, la revelación perfecta del Padre, guiando a su pueblo con verdad y luz.</li>
+            </ul>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>4. El Cordero del Sacrificio Diario – Mashíaj como el Korbán Tamid</h3>
+            <div class="scripture">
+                <strong>Éxodo 29:38-39</strong> – "Esto es lo que ofrecerás sobre el altar: dos corderos de un año cada día continuamente. Un cordero ofrecerás por la mañana y el otro cordero lo ofrecerás al atardecer."
+            </div>
+            
+            <div class="prophetic-title">Cumplimiento Mesiánico en Yeshúa HaMashíaj:</div>
+            <ul>
+                <li>El korbán tamid (sacrificio continuo) prefigura el sacrificio de Yeshúa, quien se ofreció una vez y para siempre por nuestros pecados.</li>
+                <li><strong>Hebreos 9:26</strong> – "Ahora, en la consumación de los siglos, se presentó una sola vez para quitar el pecado por el sacrificio de sí mismo."</li>
+                <li>Así como los corderos eran ofrecidos mañana y tarde en el Templo, Yeshúa fue entregado por la mañana y murió en la tarde, cumpliendo el patrón del korban tamid.</li>
+            </ul>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>5. El Altar del Incienso – Yeshúa como nuestro Intercesor</h3>
+            <div class="scripture">
+                <strong>Éxodo 30:1</strong> – "Harás un altar para quemar incienso; de madera de acacia lo harás."
+            </div>
+            
+            <div class="prophetic-title">Cumplimiento Mesiánico en Yeshúa HaMashíaj:</div>
+            <ul>
+                <li>El incienso representa la intercesión y las oraciones del pueblo de Elohím.</li>
+                <li><strong>Hebreos 7:25</strong> – "Por lo cual también puede salvar perpetuamente a los que por medio de Él se acercan a Elohím, viviendo siempre para interceder por ellos."</li>
+                <li>Yeshúa es nuestro intercesor celestial, presentando nuestras oraciones delante del Padre como un incienso fragante.</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-content">
+            <h3>Reflexión y Aplicación Mesiánica</h3>
+            <p>La Parasháh Tetsavéh nos muestra cómo el servicio en el Mishkán apuntaba al Mashíaj en cada detalle:</p>
+            <ul>
+                <li>La menoráh representa a Yeshúa como la Luz del Mundo.</li>
+                <li>El Kohén Gadol prefigura a Yeshúa como nuestro Sumo Sacerdote Celestial.</li>
+                <li>El Urim veTumim revelan a Yeshúa como la Palabra Viva.</li>
+                <li>El korban tamid apunta al sacrificio perfecto de Yeshúa.</li>
+                <li>El altar del incienso simboliza la intercesión eterna de Yeshúa.</li>
+            </ul>
+            <p>Yeshúa es el cumplimiento pleno del sistema sacerdotal y sacrificial, trayendo redención eterna para todo aquel que confía en Él.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-content">
+            <div class="question">🔸 ¿Cómo puedes reflejar la luz de Yeshúa en tu vida diaria?</div>
+            <div class="answer">
+                <ul>
+                    <li>Viviendo con amor, justicia y misericordia en nuestras relaciones.</li>
+                    <li>Siendo testimonio de Su verdad con nuestras acciones y palabras.</li>
+                    <li>Actuando con humildad y servicio hacia los demás, como Él lo hizo.</li>
+                    <li>Iluminando con la sabiduría de la Toráh en un mundo lleno de oscuridad.</li>
+                </ul>
+                <div class="scripture">
+                    <strong>Mateo 5:16</strong> – "Así alumbre vuestra luz delante de los hombres, para que vean vuestras buenas obras y glorifiquen a vuestro Padre que está en los cielos."
+                </div>
+            </div>
+
+            <div class="question">🔸 ¿Cómo impacta tu vida el hecho de que Yeshúa es nuestro Kohén Gadol celestial?</div>
+            <div class="answer">
+                <ul>
+                    <li>Nos da confianza para acercarnos a Elohím sin temor.</li>
+                    <li>Sabemos que tenemos un mediador perfecto que intercede por nosotros.</li>
+                    <li>Nos anima a vivir en santidad, recordando que Él nos representa ante el Padre.</li>
+                </ul>
+                <div class="scripture">
+                    <strong>Hebreos 4:15-16</strong> – "Porque no tenemos un Kohén Gadol que no pueda compadecerse de nuestras debilidades, sino uno que fue tentado en todo según nuestra semejanza, pero sin pecado. Acerquémonos, pues, confiadamente al trono de la gracia."
+                </div>
+            </div>
+
+            <div class="question">🔸 ¿Cómo puedes confiar más en la dirección de la Palabra de Elohím, representada en el Urim veTumim?</div>
+            <div class="answer">
+                <ul>
+                    <li>Dedicando tiempo diario al estudio de la Toráh y del Brit Hadasháh.</li>
+                    <li>Buscando revelación en oración y meditación.</li>
+                    <li>Aplicando la Palabra en decisiones diarias con obediencia y fe.</li>
+                    <li>Escuchando la voz del Ruaj HaKodesh que nos guía con sabiduría.</li>
+                </ul>
+                <div class="scripture">
+                    <strong>Salmo 119:105</strong> – "Lámpara es a mis pies tu palabra, y lumbrera a mi camino."
+                </div>
+            </div>
+
+            <div class="question">🔸 ¿De qué manera el sacrificio de Yeshúa nos enseña sobre el amor de Elohím?</div>
+            <div class="answer">
+                <ul>
+                    <li>Nos muestra que el amor verdadero es sacrificial y no egoísta.</li>
+                    <li>Nos recuerda que Elohím nos amó antes de que lo buscáramos.</li>
+                    <li>Nos enseña que no hay mayor amor que dar la vida por los demás.</li>
+                </ul>
+                <div class="scripture">
+                    <strong>Juan 15:13</strong> – "Nadie tiene mayor amor que este, que uno ponga su vida por sus amigos."
+                </div>
+                <div class="scripture">
+                    <strong>Romanos 5:8</strong> – "Elohím muestra su amor para con nosotros, en que siendo aún pecadores, Mashíaj murió por nosotros."
+                </div>
+            </div>
+
+            <div class="question">🔸 ¿Cómo puedes desarrollar una vida de oración más profunda, sabiendo que Yeshúa intercede por ti?</div>
+            <div class="answer">
+                <ul>
+                    <li>Estableciendo tiempos específicos de tefiláh (oración) cada día.</li>
+                    <li>Orando con sinceridad y no solo con palabras repetidas.</li>
+                    <li>Pidiendo en Su Nombre y con fe en Su intercesión.</li>
+                    <li>Practicando la gratitud y el agradecimiento en cada oración.</li>
+                </ul>
+                <div class="scripture">
+                    <strong>Hebreos 7:25</strong> – "Por lo cual también puede salvar perpetuamente a los que por medio de Él se acercan a Elohím, viviendo siempre para interceder por ellos."
+                </div>
+                <div class="scripture">
+                    <strong>Filipenses 4:6-7</strong> – "Por nada estéis angustiados, sino sean conocidas vuestras peticiones delante de Elohím en toda oración y ruego, con acción de gracias."
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <strong>Conclusión:</strong><br>
+            Cada una de estas preguntas nos lleva a un mayor compromiso con la fe y a una vida más alineada con la voluntad de Elohím. Que podamos aplicar estas verdades con amor y fidelidad en nuestro caminar con Yeshúa.
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-content">
+            <h3>Tefiláh (Oración) Final</h3>
+            <div class="prayer-text">
+                Avinu Malkeinu, nuestro Padre y Rey, te damos gracias por revelar en tu Toráh las sombras proféticas de nuestro Mashíaj Yeshúa. Abre nuestros ojos para comprender la profundidad de tu plan redentor y permítenos vivir a la luz de tu verdad. Gracias porque en Yeshúa encontramos la luz, el sacerdocio perfecto, la dirección divina, el sacrificio eterno y la intercesión constante. Que podamos reflejar su amor y su verdad en todo lo que hacemos.
+            </div>
+            <div class="prayer-conclusion">
+                BeShem Yeshúa HaMashíaj, Amén.
+            </div>
+        </div>
+    </div>
+
+<footer>
+    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a></p>
+    </footer>
+</main>
+
+<button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente profesia.</a></button>
+
+
+<script src="../index.js"></script>
+
+</body>
+</html>

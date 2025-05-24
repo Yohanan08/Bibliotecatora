@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 21:16-22:16</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+<body>
+<div id="google_translate_element"></div>
+<header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+</header>
+
+    <div class="content-container">
+        <h1>Profecías Mesiánicas en la Parashá 19 – תְּרוּמָה (Tĕrumáh) y su Cumplimiento en el Mashíaj</h1>
+        
+        <div class="intro-text">
+            <p>(Shemot 25:1-27:19 | שמות כ"ה:א – כ"ז:י"ט)</p>
+            <p>La Parasháh Tĕrumáh contiene instrucciones dadas por Adonái a Moshé sobre la construcción del Mishkán (<span class="hebrew-term">משכן</span>, Tabernáculo). Cada elemento del Mishkán es una tipología mesiánica que apunta a Yeshúa HaMashíaj.</p>
+            <p>Veamos algunas de las profecías mesiánicas contenidas en esta Parasháh y su cumplimiento en Yeshúa HaMashíaj:</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+            <h3>1. El Mishkán: La Morada de Adonái entre su Pueblo</h3>
+            <div class="scripture">
+                📖 <strong>Shemot (Éxodo) 25:8</strong><br>
+                "Y harán un santuario para Mí, y habitaré en medio de ellos."
+            </div>
+            
+            <div class="fulfilment-section">
+                <div class="prophetic-title">📜 Cumplimiento Mesiánico</div>
+                
+                <p><strong>📖 Yeshúa es el Tabernáculo de Adonái entre los hombres</strong></p>
+                <div class="scripture">
+                    <strong>Yojanán (Juan) 1:14</strong><br>
+                    "Y el Verbo se hizo carne, y habitó (σκηνόω - skenóo, tabernaculizó) entre nosotros, y vimos su gloria, gloria como del unigénito del Padre, lleno de gracia y verdad."
+                </div>
+
+                <p><strong>📖 El cuerpo de Yeshúa es el Mishkán (Templo) destruido y restaurado</strong></p>
+                <div class="scripture">
+                    <strong>Yojanán (Juan) 2:19-21</strong><br>
+                    "Destruid este templo, y en tres días lo levantaré. (...) Pero Él hablaba del templo de su cuerpo."
+                </div>
+
+                <div class="meaning-section">
+                    <strong>📖 Significado Mesiánico:</strong><br>
+                    El Mishkán en la Torah es una sombra profética del Mashíaj, quien sería la morada misma de la presencia divina entre los hombres. Yeshúa es el verdadero Mishkán de Adonái, donde mora la plenitud de la Shejináh.
+                </div>
+            </div>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>2. El Arón HaBrit (Arca del Pacto): El Trono del Mashíaj</h3>
+            <div class="scripture">
+                📖 <strong>Shemot (Éxodo) 25:10-22</strong><br>
+                "Harán un arca de madera de acacia... y pondrás dentro del arca el testimonio que Yo te daré."
+            </div>
+            
+            <div class="fulfilment-section">
+                <div class="prophetic-title">📜 Cumplimiento Mesiánico</div>
+                
+                <p><strong>📖 Yeshúa es el Arca del Pacto, donde habita la plenitud de Adonái</strong></p>
+                <div class="scripture">
+                    <strong>Colosenses 2:9</strong><br>
+                    "Porque en Él habita corporalmente toda la plenitud de la Deidad."
+                </div>
+
+                <p><strong>📖 El Propiciatorio (Kapóret) es figura de la redención por su sangre</strong></p>
+                <div class="scripture">
+                    <strong>Romanos 3:25</strong><br>
+                    "A quien Elohím puso como propiciación (hilastērion) por medio de la fe en su sangre."
+                </div>
+
+                <div class="meaning-section">
+                    <strong>📖 Significado Mesiánico:</strong><br>
+                    El Arca del Pacto contenía la Toráh, el maná y la vara de Aharón que floreció. Todas estas son figuras de Yeshúa:<br>
+                    <span class="checkmark">✔️</span> La Toráh viviente (Yojanán 1:1)<br>
+                    <span class="checkmark">✔️</span> El Pan del Cielo (Yojanán 6:35)<br>
+                    <span class="checkmark">✔️</span> El Sumo Sacerdote eterno (Ivrim/Hebreos 7:24)
+                </div>
+            </div>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>3. La Menoráh: Luz del Mundo</h3>
+            <div class="scripture">
+                📖 <strong>Shemot (Éxodo) 25:31-40</strong><br>
+                "Harás un candelabro (menoráh) de oro puro..."
+            </div>
+            
+            <div class="fulfilment-section">
+                <div class="prophetic-title">📜 Cumplimiento Mesiánico</div>
+                
+                <p><strong>📖 Yeshúa es la Luz del Mundo</strong></p>
+                <div class="scripture">
+                    <strong>Yojanán (Juan) 8:12</strong><br>
+                    "Yo soy la luz del mundo; el que me sigue, no andará en tinieblas, sino que tendrá la luz de la vida."
+                </div>
+
+                <p><strong>📖 La Kehiláh Mesiánica es la Menoráh en el mundo</strong></p>
+                <div class="scripture">
+                    <strong>Mattityahu (Mateo) 5:14-16</strong><br>
+                    "Vosotros sois la luz del mundo... Así alumbre vuestra luz delante de los hombres."
+                </div>
+
+                <div class="meaning-section">
+                    <strong>📖 Significado Mesiánico:</strong><br>
+                    La Menoráh representa la plenitud del Ruaj HaKodesh en Yeshúa (Yesha'yahu 11:2). Así como la Menoráh daba luz al Mishkán, Yeshúa ilumina el mundo con su verdad.
+                </div>
+            </div>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>4. La Mesa de los Panes de la Proposición: Yeshúa, el Pan de Vida</h3>
+            <div class="scripture">
+                📖 <strong>Shemot (Éxodo) 25:23-30</strong><br>
+                "Pondrás sobre la mesa el pan de la proposición continuamente delante de mí."
+            </div>
+            
+            <div class="fulfilment-section">
+                <div class="prophetic-title">📜 Cumplimiento Mesiánico</div>
+                
+                <p><strong>📖 Yeshúa es el Pan de Vida</strong></p>
+                <div class="scripture">
+                    <strong>Yojanán (Juan) 6:35</strong><br>
+                    "Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre."
+                </div>
+
+                <p><strong>📖 La Cena del Mashíaj reemplaza los panes del Templo</strong></p>
+                <div class="scripture">
+                    <strong>Lucas 22:19</strong><br>
+                    "Este es mi cuerpo, que por vosotros es dado; haced esto en memoria de mí."
+                </div>
+
+                <div class="meaning-section">
+                    <strong>📖 Significado Mesiánico:</strong><br>
+                    El pan de la proposición simboliza el alimento espiritual continuo que encontramos en Yeshúa, quien nos sostiene con su enseñanza y su sacrificio.
+                </div>
+            </div>
+        </div>
+
+        <div class="prophetic-section">
+            <h3>5. El Mishbéaj HaZahav (Altar del Incienso): La Intercesión de Yeshúa</h3>
+            <div class="scripture">
+                📖 <strong>Shemot (Éxodo) 30:1-10</strong><br>
+                "Harás un altar para quemar incienso..."
+            </div>
+            
+            <div class="fulfilment-section">
+                <div class="prophetic-title">📜 Cumplimiento Mesiánico</div>
+                
+                <p><strong>📖 Yeshúa es el Intercesor Eterno</strong></p>
+                <div class="scripture">
+                    <strong>Ivrim (Hebreos) 7:25</strong><br>
+                    "Por lo cual puede también salvar perpetuamente a los que por Él se acercan a Elohím, viviendo siempre para interceder por ellos."
+                </div>
+
+                <p><strong>📖 Las oraciones de los santos son incienso ante Adonái</strong></p>
+                <div class="scripture">
+                    <strong>Hitgalut (Apocalipsis) 8:3-4</strong><br>
+                    "El humo del incienso, con las oraciones de los santos, subió delante de Elohím."
+                </div>
+
+                <div class="meaning-section">
+                    <strong>📖 Significado Mesiánico:</strong><br>
+                    El Altar del Incienso representa la intercesión de Yeshúa por su pueblo, como el Kohén Gadol que nos acerca a Adonái.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <h3>Conclusión y Reflexión</h3>
+            <p>La Parasháh Tĕrumáh no solo describe la construcción del Mishkán, sino que nos revela al Mashíaj en cada elemento. Yeshúa HaMashíaj es:</p>
+            <p><span class="checkmark">✔️</span> El Mishkán viviente – Adonái habitando entre nosotros</p>
+            <p><span class="checkmark">✔️</span> El Arón HaBrit – Conteniendo la Toráh y la plenitud de Elohím</p>
+            <p><span class="checkmark">✔️</span> La Menoráh – La Luz del mundo que ilumina nuestro camino</p>
+            <p><span class="checkmark">✔️</span> El Pan del Cielo – Nuestra provisión espiritual eterna</p>
+            <p><span class="checkmark">✔️</span> El Intercesor en el Mishbéaj HaZahav – Quien intercede perpetuamente por nosotros</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-content">
+            <h3>El Punto Principal de la Ofrenda en la Parasháh Tĕrumáh (תְּרוּמָה) y su Significado Mesiánico</h3>
+            
+            <div class="scripture">
+                📖 <strong>Shemot (Éxodo) 25:1-2</strong><br>
+                "Y habló Adonái a Moshé, diciendo: Dile a los hijos de Israel que tomen para mí una ofrenda (<span class="hebrew-term">תְּרוּמָה</span>, Tĕrumáh); de todo varón cuyo corazón lo mueva voluntariamente, tomaréis mi ofrenda."
+            </div>
+
+            <div class="prophetic-section">
+                <h3><span class="numbered-point">1️⃣</span>La Ofrenda Debe Ser Voluntaria y de Corazón</h3>
+                <p>El Eterno no exige una ofrenda impuesta, sino que desea que cada persona dé con un corazón dispuesto. Esto muestra que el propósito de la ofrenda no es solo la construcción del Mishkán, sino también el refinamiento espiritual del dador.</p>
+                
+                <div class="scripture">
+                    📖 <strong>2 Corintios 9:7</strong><br>
+                    "Cada uno dé como propuso en su corazón, no con tristeza ni por obligación, porque Elohím ama al dador alegre."
+                </div>
+
+                <div class="meaning-section">
+                    <strong>📖 Significado Mesiánico:</strong><br>
+                    Mashíaj Yeshúa enseñó que el dar es un acto de amor y obediencia. Su propia vida fue una ofrenda voluntaria por nosotros.
+                </div>
+
+                <div class="scripture">
+                    📖 <strong>Efesios 5:2</strong><br>
+                    "Y andad en amor, como también Mashíaj nos amó y se entregó a sí mismo por nosotros, ofrenda y sacrificio a Elohím en olor fragante."
+                </div>
+            </div>
+
+            <div class="prophetic-section">
+                <h3><span class="numbered-point">2️⃣</span>La Ofrenda de Materiales Preciosos: Tipología de Mashíaj</h3>
+                
+                <div class="scripture">
+                    📖 <strong>Shemot (Éxodo) 25:3-7</strong><br>
+                    "Y esta es la ofrenda (Tĕrumáh) que tomaréis de ellos: oro, plata y cobre..."
+                </div>
+
+                <p>Cada material tiene un significado profético relacionado con el Mashíaj:</p>
+                <p><span class="checkmark">✔️</span> <strong>Oro</strong> – La Divinidad de Mashíaj (Colosenses 2:9)</p>
+                <p><span class="checkmark">✔️</span> <strong>Plata</strong> – La Redención (1 Pedro 1:18-19)</p>
+                <p><span class="checkmark">✔️</span> <strong>Cobre</strong> – El Juicio sobre el pecado (Juan 3:14)</p>
+
+                <div class="meaning-section">
+                    <strong>📖 Cumplimiento Mesiánico:</strong><br>
+                    Mashíaj mismo es el máximo regalo de Adonái para la humanidad. Él es la verdadera Tĕrumáh, la Ofrenda más valiosa dada para la redención del mundo.
+                </div>
+
+                <div class="scripture">
+                    📖 <strong>Juan 3:16</strong><br>
+                    "Porque de tal manera amó Elohím al mundo, que ha dado a su Hijo unigénito..."
+                </div>
+            </div>
+
+            <div class="prophetic-section">
+                <h3><span class="numbered-point">3️⃣</span>El Mashíaj Como Nuestra Tĕrumáh (Ofrenda Suprema)</h3>
+                <p>El concepto de Tĕrumáh se cumple en Mashíaj de varias maneras:</p>
+
+                <p><strong>✅ Mashíaj se ofreció voluntariamente por nosotros</strong></p>
+                <div class="scripture">
+                    📖 <strong>Juan 10:18</strong><br>
+                    "Nadie me la quita, sino que yo de mí mismo la pongo."
+                </div>
+
+                <p><strong>✅ El sacrificio de Mashíaj nos acerca a Adonái</strong></p>
+                <div class="scripture">
+                    📖 <strong>Hebreos 10:10</strong><br>
+                    "En esa voluntad somos santificados mediante la ofrenda del cuerpo de Yeshúa HaMashíaj, hecha una vez para siempre."
+                </div>
+
+                <p><strong>✅ Somos llamados a ser una Tĕrumáh para Adonái</strong></p>
+                <div class="scripture">
+                    📖 <strong>Romanos 12:1</strong><br>
+                    "Presentad vuestros cuerpos en sacrificio vivo, santo, agradable a Elohím, que es vuestro culto racional."
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <h3>📜 Conclusión: ¿Cómo Aplicamos Esto Hoy?</h3>
+            <p>La Tĕrumáh nos enseña que:</p>
+            <p><span class="numbered-point">1⃣</span>Dar a Adonái debe ser voluntario y con amor.</p>
+            <p><span class="numbered-point">2⃣</span>Nuestra vida debe ser una ofrenda para Elohím.</p>
+            <p><span class="numbered-point">3️⃣</span>Mashíaj Yeshúa es la mayor ofrenda dada por el Eterno.</p>
+            <p>Que podamos ofrecer nuestras vidas y todo lo que tenemos para el servicio del Reino de Adonái, así como Mashíaj lo hizo por nosotros.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-content">
+            <h3>📖 Tefiláh (Oración Final)</h3>
+            <div class="prayer-text">
+                "Adonái, te entregamos nuestras vidas como una Tĕrumáh, una ofrenda voluntaria. Así como Yeshúa se dio por nosotros, ayúdanos a vivir en entrega y amor. Que nuestra generosidad refleje tu corazón. Amén."
+            </div>
+            <div class="prayer-text">
+                "Avinu Malkeinu, gracias por revelar en la Torah el misterio de tu Mashíaj. Que podamos ver en Yeshúa la plenitud del Mishkán celestial, y caminar en su luz. Que su intercesión nos acerque cada día más a tu presencia. Amén."
+            </div>
+        </div>
+    </div>
+
+<footer>
+    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a></p>
+    </footer>
+</main>
+
+<button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente profesia.</a></button>
+
+
+<script src="../index.js"></script>
+
+</body>
+</html>
