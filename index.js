@@ -95,6 +95,16 @@ async function descargarPDFMobile(element) {
 async function intentarMetodo1Mobile(element) {
   console.log('Probando Método 1 - html2pdf móvil...');
   
+  // Obtener el ancho real del contenido
+  const anchoReal = Math.max(
+    element.scrollWidth,
+    element.offsetWidth,
+    element.clientWidth,
+    ...Array.from(element.children).map(child => child.scrollWidth || child.offsetWidth)
+  );
+  
+  console.log('Ancho detectado:', anchoReal, 'vs ventana:', window.innerWidth);
+  
   const opciones = {
     margin: [3, 3, 3, 3],
     filename: `documento_mobile_${new Date().getTime()}.pdf`,
@@ -103,21 +113,21 @@ async function intentarMetodo1Mobile(element) {
       quality: 0.7
     },
     html2canvas: {
-      scale: 0.8, // Escala menor para móviles
+      scale: 0.8,
       useCORS: true,
       allowTaint: true,
       logging: true,
       scrollY: 0,
       scrollX: 0,
       backgroundColor: '#ffffff',
-      timeout: 60000, // Timeout más largo
-      // Configuraciones específicas para móviles
+      timeout: 60000,
       foreignObjectRendering: false,
       removeContainer: false,
       async: true,
-      width: Math.min(element.scrollWidth, window.innerWidth),
+      // Usar el ancho real del contenido, no limitarlo al viewport
+      width: anchoReal,
       height: element.scrollHeight,
-      windowWidth: window.innerWidth,
+      windowWidth: Math.max(anchoReal, window.innerWidth),
       windowHeight: window.innerHeight
     },
     jsPDF: {
@@ -136,21 +146,41 @@ async function intentarMetodo1Mobile(element) {
 async function intentarMetodo2Mobile(element) {
   console.log('Probando Método 2 - html2canvas directo...');
   
+  // Obtener las dimensiones reales del contenido
+  const anchoReal = Math.max(
+    element.scrollWidth,
+    element.offsetWidth,
+    element.clientWidth,
+    ...Array.from(element.querySelectorAll('*')).map(el => el.scrollWidth || el.offsetWidth || 0)
+  );
+  
+  const altoReal = Math.max(
+    element.scrollHeight,
+    element.offsetHeight,
+    element.clientHeight
+  );
+  
+  console.log('Dimensiones reales detectadas:', anchoReal, 'x', altoReal);
+  
   // Forzar visibilidad del elemento
   const estiloOriginal = {
     position: element.style.position,
     visibility: element.style.visibility,
     display: element.style.display,
-    opacity: element.style.opacity
+    opacity: element.style.opacity,
+    width: element.style.width,
+    overflow: element.style.overflow
   };
   
   element.style.position = 'static';
   element.style.visibility = 'visible';
   element.style.display = 'block';
   element.style.opacity = '1';
+  element.style.width = 'auto';
+  element.style.overflow = 'visible';
   
   // Esperar que los estilos se apliquen
-  await new Promise(resolve => setTimeout(resolve, 100));
+  await new Promise(resolve => setTimeout(resolve, 200));
   
   const canvas = await html2canvas(element, {
     scale: 0.75,
@@ -162,8 +192,11 @@ async function intentarMetodo2Mobile(element) {
     scrollX: 0,
     timeout: 30000,
     foreignObjectRendering: false,
-    width: Math.min(element.scrollWidth, window.innerWidth),
-    height: element.scrollHeight
+    // Usar las dimensiones reales completas
+    width: anchoReal,
+    height: altoReal,
+    windowWidth: Math.max(anchoReal, window.innerWidth),
+    windowHeight: Math.max(altoReal, window.innerHeight)
   });
 
   console.log('Canvas creado:', canvas.width, 'x', canvas.height);
@@ -212,27 +245,41 @@ async function intentarMetodo2Mobile(element) {
 async function intentarMetodo3Mobile(element) {
   console.log('Probando Método 3 - elemento clonado...');
   
-  // Crear un contenedor temporal visible
+  // Obtener el ancho real del contenido original
+  const anchoOriginal = Math.max(
+    element.scrollWidth,
+    element.offsetWidth,
+    element.clientWidth,
+    ...Array.from(element.querySelectorAll('*')).map(el => el.scrollWidth || el.offsetWidth || 0)
+  );
+  
+  console.log('Ancho original detectado:', anchoOriginal);
+  
+  // Crear un contenedor temporal que respete el ancho completo
   const contenedor = document.createElement('div');
   contenedor.style.cssText = `
     position: absolute;
     top: 0;
     left: 0;
-    width: ${Math.min(window.innerWidth - 20, 800)}px;
+    width: ${Math.max(anchoOriginal, 800)}px;
+    min-width: ${anchoOriginal}px;
     background: white;
     z-index: 10000;
     visibility: visible;
     opacity: 1;
     padding: 10px;
     box-sizing: border-box;
+    overflow: visible;
   `;
   
   // Clonar el contenido
   const elementoClonado = element.cloneNode(true);
   
-  // Aplicar estilos para asegurar visibilidad
+  // Aplicar estilos para asegurar que capture todo el ancho
   elementoClonado.style.cssText = `
-    width: 100%;
+    width: ${anchoOriginal}px;
+    min-width: ${anchoOriginal}px;
+    max-width: none;
     background: white;
     color: black;
     font-family: Arial, sans-serif;
@@ -241,27 +288,56 @@ async function intentarMetodo3Mobile(element) {
     display: block;
     visibility: visible;
     opacity: 1;
+    overflow: visible;
+    white-space: nowrap;
   `;
   
-  // Corregir imágenes y otros elementos
-  const imagenes = elementoClonado.querySelectorAll('img');
-  imagenes.forEach(img => {
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    img.style.display = 'block';
+  // Corregir elementos hijos para que no se corten
+  const todosLosElementos = elementoClonado.querySelectorAll('*');
+  todosLosElementos.forEach(el => {
+    const estilo = el.style;
+    estilo.maxWidth = 'none';
+    estilo.overflow = 'visible';
+    estilo.textOverflow = 'clip';
+    estilo.whiteSpace = 'nowrap';
   });
   
+  // Corregir imágenes
+  const imagenes = elementoClonado.querySelectorAll('img');
+  imagenes.forEach(img => {
+    img.style.maxWidth = 'none';
+    img.style.width = 'auto';
+    img.style.height = 'auto';
+    img.style.display = 'inline-block';
+  });
+  
+  // Corregir tablas para que no se corten
   const tablas = elementoClonado.querySelectorAll('table');
   tablas.forEach(tabla => {
-    tabla.style.width = '100%';
+    tabla.style.width = 'auto';
+    tabla.style.minWidth = '100%';
+    tabla.style.tableLayout = 'auto';
     tabla.style.borderCollapse = 'collapse';
+    
+    // Corregir celdas de la tabla
+    const celdas = tabla.querySelectorAll('td, th');
+    celdas.forEach(celda => {
+      celda.style.whiteSpace = 'nowrap';
+      celda.style.overflow = 'visible';
+    });
   });
   
   contenedor.appendChild(elementoClonado);
   document.body.appendChild(contenedor);
   
-  // Esperar que se renderice
-  await new Promise(resolve => setTimeout(resolve, 500));
+  // Esperar que se renderice completamente
+  await new Promise(resolve => setTimeout(resolve, 800));
+  
+  // Obtener las dimensiones finales del contenedor
+  const anchoFinal = Math.max(contenedor.scrollWidth, contenedor.offsetWidth);
+  const altoFinal = Math.max(contenedor.scrollHeight, contenedor.offsetHeight);
+  
+  console.log('Dimensiones finales del contenedor:', anchoFinal, 'x', altoFinal);
   
   try {
     const canvas = await html2canvas(contenedor, {
@@ -273,8 +349,10 @@ async function intentarMetodo3Mobile(element) {
       scrollY: 0,
       scrollX: 0,
       timeout: 45000,
-      width: contenedor.offsetWidth,
-      height: contenedor.offsetHeight
+      width: anchoFinal,
+      height: altoFinal,
+      windowWidth: Math.max(anchoFinal, window.innerWidth),
+      windowHeight: Math.max(altoFinal, window.innerHeight)
     });
 
     console.log('Canvas método 3:', canvas.width, 'x', canvas.height);
@@ -646,6 +724,18 @@ async function probarCapturaMobile() {
   
   console.log('=== PRUEBA DE CAPTURA MÓVIL ===');
   
+  // Detectar ancho real
+  const anchoReal = Math.max(
+    elemento.scrollWidth,
+    elemento.offsetWidth,
+    elemento.clientWidth,
+    ...Array.from(elemento.querySelectorAll('*')).map(el => el.scrollWidth || el.offsetWidth || 0)
+  );
+  
+  console.log('Ancho real detectado:', anchoReal);
+  console.log('Ancho de ventana:', window.innerWidth);
+  console.log('¿Contenido más ancho que ventana?', anchoReal > window.innerWidth);
+  
   try {
     const canvas = await html2canvas(elemento, {
       scale: 0.5,
@@ -653,24 +743,31 @@ async function probarCapturaMobile() {
       allowTaint: true,
       backgroundColor: '#ffffff',
       logging: true,
-      width: Math.min(elemento.scrollWidth, window.innerWidth),
-      height: elemento.scrollHeight
+      width: anchoReal,
+      height: elemento.scrollHeight,
+      windowWidth: Math.max(anchoReal, window.innerWidth),
+      windowHeight: window.innerHeight
     });
     
     console.log('Canvas de prueba:', canvas.width, 'x', canvas.height);
+    console.log('Proporción canvas vs contenido:', 
+      'Ancho:', (canvas.width / anchoReal * 100).toFixed(1) + '%',
+      'Alto:', (canvas.height / elemento.scrollHeight * 100).toFixed(1) + '%');
     
     if (canvas.width > 0 && canvas.height > 0) {
       console.log('✓ La captura funciona correctamente');
       
-      // Crear una imagen temporal para verificar
+      // Verificar si capturó todo el ancho
+      const proporcionAncho = canvas.width / anchoReal;
+      if (proporcionAncho < 0.8) {
+        console.warn('⚠ Posible problema: solo capturó', (proporcionAncho * 100).toFixed(1) + '% del ancho');
+      } else {
+        console.log('✓ Capturó', (proporcionAncho * 100).toFixed(1) + '% del ancho - BIEN');
+      }
+      
       const imgData = canvas.toDataURL('image/jpeg', 0.8);
       console.log('Tamaño de imagen:', imgData.length, 'bytes');
       
-      if (imgData.length > 1000) {
-        console.log('✓ Imagen generada correctamente');
-      } else {
-        console.warn('⚠ Imagen muy pequeña, posible problema');
-      }
     } else {
       console.error('✗ Canvas vacío');
     }
@@ -682,8 +779,9 @@ async function probarCapturaMobile() {
   console.log('===============================');
 }
 
-// Exponer función de diagnóstico globalmente
+// Exponer funciones de diagnóstico globalmente
 window.diagnosticarProblemas = diagnosticarProblemas;
+window.probarCapturaMobile = probarCapturaMobile;
 
 
 
