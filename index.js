@@ -64,9 +64,9 @@ async function descargarPDF() {
   }
 }
 
-// Versión específicamente optimizada para móviles
+// Versión específicamente optimizada para móviles - CORREGIDA
 async function descargarPDFMobile(element) {
-  console.log('=== INICIANDO PROCESO MÓVIL ===');
+  console.log('=== INICIANDO PROCESO MÓVIL CORREGIDO ===');
   
   // Diagnóstico inicial
   console.log('Elemento original:', element.offsetWidth, 'x', element.offsetHeight);
@@ -76,198 +76,201 @@ async function descargarPDFMobile(element) {
   await new Promise(resolve => setTimeout(resolve, 300));
   
   try {
-    // Método 1: Intentar con html2pdf optimizado para móvil
-    await intentarMetodo1Mobile(element);
+    // Usar método directo mejorado
+    await generarPDFMobileDirecto(element);
   } catch (error) {
-    console.warn('Método 1 falló, intentando método 2:', error.message);
+    console.warn('Método directo falló, intentando alternativo:', error.message);
     try {
-      // Método 2: Usar html2canvas directo + jsPDF
-      await intentarMetodo2Mobile(element);
+      await generarPDFMobileAlternativo(element);
     } catch (error2) {
-      console.warn('Método 2 falló, intentando método 3:', error2.message);
-      // Método 3: Clonar elemento y renderizar
-      await intentarMetodo3Mobile(element);
+      console.error('Todos los métodos fallaron:', error2.message);
+      throw error2;
     }
   }
 }
 
-// Método 1: html2pdf optimizado para móvil
-async function intentarMetodo1Mobile(element) {
-  console.log('Probando Método 1 - html2pdf móvil...');
+// Método principal mejorado para móvil
+async function generarPDFMobileDirecto(element) {
+  console.log('Generando PDF móvil - Método directo mejorado...');
   
-  // Obtener el ancho real del contenido
-  const anchoReal = Math.max(
-    element.scrollWidth,
-    element.offsetWidth,
-    element.clientWidth,
-    ...Array.from(element.children).map(child => child.scrollWidth || child.offsetWidth)
-  );
+  // Preparar el elemento para captura completa
+  const estadoOriginal = prepararElementoParaCaptura(element);
   
-  console.log('Ancho detectado:', anchoReal, 'vs ventana:', window.innerWidth);
-  
-  const opciones = {
-    margin: [3, 3, 3, 3],
-    filename: `documento_mobile_${new Date().getTime()}.pdf`,
-    image: { 
-      type: 'jpeg', 
-      quality: 0.7
-    },
-    html2canvas: {
-      scale: 0.8,
+  try {
+    // Obtener dimensiones reales después de preparar
+    const dimensiones = obtenerDimensionesReales(element);
+    console.log('Dimensiones finales detectadas:', dimensiones);
+    
+    // Configuración optimizada para captura completa
+    const opcionesCanvas = {
+      scale: 0.8, // Reducir escala para mejor rendimiento
       useCORS: true,
       allowTaint: true,
+      backgroundColor: '#ffffff',
       logging: true,
       scrollY: 0,
       scrollX: 0,
-      backgroundColor: '#ffffff',
       timeout: 60000,
       foreignObjectRendering: false,
-      removeContainer: false,
-      async: true,
-      // Usar el ancho real del contenido, no limitarlo al viewport
-      width: anchoReal,
-      height: element.scrollHeight,
-      windowWidth: Math.max(anchoReal, window.innerWidth),
-      windowHeight: window.innerHeight
-    },
-    jsPDF: {
-      unit: 'mm',
-      format: 'a4',
-      orientation: 'portrait',
-      compress: false
-    }
-  };
+      // CLAVE: Usar las dimensiones reales detectadas
+      width: dimensiones.ancho,
+      height: dimensiones.alto,
+      windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+      windowHeight: Math.max(dimensiones.alto, window.innerHeight)
+    };
 
-  await html2pdf().set(opciones).from(element).save();
-  console.log('✓ Método 1 exitoso');
+    const canvas = await html2canvas(element, opcionesCanvas);
+    console.log('Canvas creado:', canvas.width, 'x', canvas.height);
+    
+    if (canvas.width === 0 || canvas.height === 0) {
+      throw new Error('Canvas vacío');
+    }
+
+    // Generar PDF con paginación correcta
+    await crearPDFDesdCanvas(canvas, 'documento_mobile_directo');
+    console.log('✓ PDF móvil generado exitosamente');
+    
+  } finally {
+    // Restaurar estado original
+    restaurarEstadoElemento(element, estadoOriginal);
+  }
 }
 
-// Método 2: html2canvas directo
-async function intentarMetodo2Mobile(element) {
-  console.log('Probando Método 2 - html2canvas directo...');
+// Método alternativo para móvil
+async function generarPDFMobileAlternativo(element) {
+  console.log('Generando PDF móvil - Método alternativo...');
   
-  // Obtener las dimensiones reales del contenido
-  const anchoReal = Math.max(
-    element.scrollWidth,
-    element.offsetWidth,
-    element.clientWidth,
-    ...Array.from(element.querySelectorAll('*')).map(el => el.scrollWidth || el.offsetWidth || 0)
-  );
+  // Crear contenedor temporal optimizado
+  const contenedor = crearContenedorTemporal(element);
   
-  const altoReal = Math.max(
-    element.scrollHeight,
-    element.offsetHeight,
-    element.clientHeight
-  );
-  
-  console.log('Dimensiones reales detectadas:', anchoReal, 'x', altoReal);
-  
-  // Forzar visibilidad del elemento
-  const estiloOriginal = {
+  try {
+    // Esperar renderizado completo
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    const dimensiones = obtenerDimensionesReales(contenedor);
+    console.log('Dimensiones contenedor temporal:', dimensiones);
+    
+    const canvas = await html2canvas(contenedor, {
+      scale: 0.75,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#ffffff',
+      logging: true,
+      scrollY: 0,
+      scrollX: 0,
+      timeout: 30000,
+      width: dimensiones.ancho,
+      height: dimensiones.alto,
+      windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+      windowHeight: Math.max(dimensiones.alto, window.innerHeight)
+    });
+
+    console.log('Canvas alternativo creado:', canvas.width, 'x', canvas.height);
+    
+    if (canvas.width === 0 || canvas.height === 0) {
+      throw new Error('Canvas alternativo vacío');
+    }
+
+    await crearPDFDesdCanvas(canvas, 'documento_mobile_alternativo');
+    console.log('✓ PDF alternativo generado exitosamente');
+    
+  } finally {
+    // Limpiar contenedor temporal
+    if (contenedor.parentNode) {
+      document.body.removeChild(contenedor);
+    }
+  }
+}
+
+// Función para preparar elemento para captura completa
+function prepararElementoParaCaptura(element) {
+  const estadoOriginal = {
     position: element.style.position,
     visibility: element.style.visibility,
     display: element.style.display,
     opacity: element.style.opacity,
     width: element.style.width,
-    overflow: element.style.overflow
+    maxWidth: element.style.maxWidth,
+    overflow: element.style.overflow,
+    whiteSpace: element.style.whiteSpace
   };
   
+  // Aplicar estilos para captura completa
   element.style.position = 'static';
   element.style.visibility = 'visible';
   element.style.display = 'block';
   element.style.opacity = '1';
   element.style.width = 'auto';
+  element.style.maxWidth = 'none';
   element.style.overflow = 'visible';
   
-  // Esperar que los estilos se apliquen
-  await new Promise(resolve => setTimeout(resolve, 200));
-  
-  const canvas = await html2canvas(element, {
-    scale: 0.75,
-    useCORS: true,
-    allowTaint: true,
-    backgroundColor: '#ffffff',
-    logging: true,
-    scrollY: 0,
-    scrollX: 0,
-    timeout: 30000,
-    foreignObjectRendering: false,
-    // Usar las dimensiones reales completas
-    width: anchoReal,
-    height: altoReal,
-    windowWidth: Math.max(anchoReal, window.innerWidth),
-    windowHeight: Math.max(altoReal, window.innerHeight)
+  // Corregir elementos internos
+  const elementosInternos = element.querySelectorAll('*');
+  elementosInternos.forEach(el => {
+    if (el.style.maxWidth) el.style.maxWidth = 'none';
+    if (el.style.overflow === 'hidden') el.style.overflow = 'visible';
   });
-
-  console.log('Canvas creado:', canvas.width, 'x', canvas.height);
   
-  if (canvas.width === 0 || canvas.height === 0) {
-    throw new Error('Canvas vacío en método 2');
-  }
-
-  // Restaurar estilos originales
-  Object.keys(estiloOriginal).forEach(prop => {
-    element.style[prop] = estiloOriginal[prop];
+  // Corregir tablas específicamente
+  const tablas = element.querySelectorAll('table');
+  tablas.forEach(tabla => {
+    tabla.style.width = 'auto';
+    tabla.style.tableLayout = 'auto';
+    tabla.style.borderCollapse = 'collapse';
   });
-
-  const imgData = canvas.toDataURL('image/jpeg', 0.8);
   
-  if (imgData.length < 1000) {
-    throw new Error('Imagen generada muy pequeña');
-  }
-
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  
-  const pageWidth = pdf.internal.pageSize.getWidth() - 6; // Margen
-  const pageHeight = pdf.internal.pageSize.getHeight() - 6;
-  const imgWidth = pageWidth;
-  const imgHeight = (canvas.height * imgWidth) / canvas.width;
-  
-  let heightLeft = imgHeight;
-  let position = 3;
-
-  pdf.addImage(imgData, 'JPEG', 3, position, imgWidth, imgHeight);
-  heightLeft -= pageHeight;
-
-  while (heightLeft > 0) {
-    position = heightLeft - imgHeight + 3;
-    pdf.addPage();
-    pdf.addImage(imgData, 'JPEG', 3, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight;
-  }
-
-  pdf.save(`documento_mobile_m2_${new Date().getTime()}.pdf`);
-  console.log('✓ Método 2 exitoso');
+  return estadoOriginal;
 }
 
-// Método 3: Elemento clonado visible
-async function intentarMetodo3Mobile(element) {
-  console.log('Probando Método 3 - elemento clonado...');
+// Función para restaurar estado original
+function restaurarEstadoElemento(element, estadoOriginal) {
+  Object.keys(estadoOriginal).forEach(prop => {
+    element.style[prop] = estadoOriginal[prop];
+  });
+}
+
+// Función para obtener dimensiones reales
+function obtenerDimensionesReales(element) {
+  // Esperar un frame para que se apliquen los estilos
+  element.offsetHeight; // Forzar reflow
   
-  // Obtener el ancho real del contenido original
-  const anchoOriginal = Math.max(
+  const ancho = Math.max(
     element.scrollWidth,
     element.offsetWidth,
     element.clientWidth,
-    ...Array.from(element.querySelectorAll('*')).map(el => el.scrollWidth || el.offsetWidth || 0)
+    ...Array.from(element.querySelectorAll('*')).map(el => {
+      return Math.max(el.scrollWidth || 0, el.offsetWidth || 0);
+    })
   );
   
-  console.log('Ancho original detectado:', anchoOriginal);
+  const alto = Math.max(
+    element.scrollHeight,
+    element.offsetHeight,
+    element.clientHeight
+  );
   
-  // Crear un contenedor temporal que respete el ancho completo
+  return {
+    ancho: Math.max(ancho, 800), // Mínimo 800px de ancho
+    alto: Math.max(alto, 100)    // Mínimo 100px de alto
+  };
+}
+
+// Función para crear contenedor temporal optimizado
+function crearContenedorTemporal(element) {
+  const dimensiones = obtenerDimensionesReales(element);
+  
   const contenedor = document.createElement('div');
   contenedor.style.cssText = `
     position: absolute;
     top: 0;
     left: 0;
-    width: ${Math.max(anchoOriginal, 800)}px;
-    min-width: ${anchoOriginal}px;
+    width: ${dimensiones.ancho}px;
+    min-width: ${dimensiones.ancho}px;
     background: white;
     z-index: 10000;
     visibility: visible;
     opacity: 1;
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
     overflow: visible;
   `;
@@ -275,10 +278,9 @@ async function intentarMetodo3Mobile(element) {
   // Clonar el contenido
   const elementoClonado = element.cloneNode(true);
   
-  // Aplicar estilos para asegurar que capture todo el ancho
+  // Aplicar estilos para captura completa
   elementoClonado.style.cssText = `
-    width: ${anchoOriginal}px;
-    min-width: ${anchoOriginal}px;
+    width: 100%;
     max-width: none;
     background: white;
     color: black;
@@ -289,154 +291,146 @@ async function intentarMetodo3Mobile(element) {
     visibility: visible;
     opacity: 1;
     overflow: visible;
-    white-space: nowrap;
   `;
   
-  // Corregir elementos hijos para que no se corten
+  // Corregir elementos internos del clon
   const todosLosElementos = elementoClonado.querySelectorAll('*');
   todosLosElementos.forEach(el => {
-    const estilo = el.style;
-    estilo.maxWidth = 'none';
-    estilo.overflow = 'visible';
-    estilo.textOverflow = 'clip';
-    estilo.whiteSpace = 'nowrap';
-  });
-  
-  // Corregir imágenes
-  const imagenes = elementoClonado.querySelectorAll('img');
-  imagenes.forEach(img => {
-    img.style.maxWidth = 'none';
-    img.style.width = 'auto';
-    img.style.height = 'auto';
-    img.style.display = 'inline-block';
-  });
-  
-  // Corregir tablas para que no se corten
-  const tablas = elementoClonado.querySelectorAll('table');
-  tablas.forEach(tabla => {
-    tabla.style.width = 'auto';
-    tabla.style.minWidth = '100%';
-    tabla.style.tableLayout = 'auto';
-    tabla.style.borderCollapse = 'collapse';
-    
-    // Corregir celdas de la tabla
-    const celdas = tabla.querySelectorAll('td, th');
-    celdas.forEach(celda => {
-      celda.style.whiteSpace = 'nowrap';
-      celda.style.overflow = 'visible';
-    });
+    el.style.maxWidth = 'none';
+    el.style.overflow = 'visible';
   });
   
   contenedor.appendChild(elementoClonado);
   document.body.appendChild(contenedor);
   
-  // Esperar que se renderice completamente
-  await new Promise(resolve => setTimeout(resolve, 800));
+  return contenedor;
+}
+
+// Función mejorada para crear PDF desde canvas - SIN DUPLICACIÓN
+async function crearPDFDesdCanvas(canvas, nombreArchivo) {
+  const imgData = canvas.toDataURL('image/jpeg', 0.85);
   
-  // Obtener las dimensiones finales del contenedor
-  const anchoFinal = Math.max(contenedor.scrollWidth, contenedor.offsetWidth);
-  const altoFinal = Math.max(contenedor.scrollHeight, contenedor.offsetHeight);
+  if (imgData.length < 1000) {
+    throw new Error('Imagen generada muy pequeña o vacía');
+  }
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p', 'mm', 'a4');
   
-  console.log('Dimensiones finales del contenedor:', anchoFinal, 'x', altoFinal);
+  // Obtener dimensiones de la página
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
   
-  try {
-    const canvas = await html2canvas(contenedor, {
-      scale: 0.8,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: '#ffffff',
-      logging: true,
-      scrollY: 0,
-      scrollX: 0,
-      timeout: 45000,
-      width: anchoFinal,
-      height: altoFinal,
-      windowWidth: Math.max(anchoFinal, window.innerWidth),
-      windowHeight: Math.max(altoFinal, window.innerHeight)
-    });
-
-    console.log('Canvas método 3:', canvas.width, 'x', canvas.height);
+  // Calcular dimensiones de imagen con márgenes
+  const margin = 10; // 10mm de margen
+  const maxWidth = pageWidth - (margin * 2);
+  const maxHeight = pageHeight - (margin * 2);
+  
+  // Calcular escala manteniendo proporción
+  const scaleX = maxWidth / (canvas.width * 0.264583); // Convertir px a mm
+  const scaleY = maxHeight / (canvas.height * 0.264583);
+  const scale = Math.min(scaleX, scaleY, 1); // No escalar hacia arriba
+  
+  const imgWidth = (canvas.width * 0.264583) * scale;
+  const imgHeight = (canvas.height * 0.264583) * scale;
+  
+  console.log('Dimensiones PDF calculadas:', {
+    pageWidth, pageHeight,
+    imgWidth, imgHeight,
+    scale,
+    canvasSize: `${canvas.width}x${canvas.height}`
+  });
+  
+  // CORRECCIÓN CLAVE: Calcular paginación correctamente
+  let currentY = margin;
+  const pageContentHeight = pageHeight - (margin * 2);
+  
+  if (imgHeight <= pageContentHeight) {
+    // La imagen cabe en una sola página
+    pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, imgHeight);
+  } else {
+    // La imagen necesita múltiples páginas
+    const totalPages = Math.ceil(imgHeight / pageContentHeight);
+    console.log(`Dividiendo en ${totalPages} páginas`);
     
-    if (canvas.width === 0 || canvas.height === 0) {
-      throw new Error('Canvas vacío en método 3');
-    }
-
-    const imgData = canvas.toDataURL('image/jpeg', 0.8);
-    
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    
-    const pageWidth = pdf.internal.pageSize.getWidth() - 6;
-    const pageHeight = pdf.internal.pageSize.getHeight() - 6;
-    const imgWidth = pageWidth;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    
-    let heightLeft = imgHeight;
-    let position = 3;
-
-    pdf.addImage(imgData, 'JPEG', 3, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight;
-
-    while (heightLeft > 0) {
-      position = heightLeft - imgHeight + 3;
-      pdf.addPage();
-      pdf.addImage(imgData, 'JPEG', 3, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-    }
-
-    pdf.save(`documento_mobile_m3_${new Date().getTime()}.pdf`);
-    console.log('✓ Método 3 exitoso');
-    
-  } finally {
-    // Limpiar
-    if (contenedor.parentNode) {
-      document.body.removeChild(contenedor);
+    for (let page = 0; page < totalPages; page++) {
+      if (page > 0) {
+        pdf.addPage();
+      }
+      
+      // Calcular la posición Y para esta página
+      const offsetY = -(page * pageContentHeight);
+      
+      pdf.addImage(
+        imgData, 
+        'JPEG', 
+        margin,           // x
+        margin + offsetY, // y (negativo para mostrar parte inferior)
+        imgWidth,         // width
+        imgHeight         // height (mantener altura original)
+      );
+      
+      console.log(`Página ${page + 1}: offsetY = ${offsetY}`);
     }
   }
+
+  const timestamp = new Date().getTime();
+  pdf.save(`${nombreArchivo}_${timestamp}.pdf`);
+  
+  console.log('PDF guardado exitosamente');
 }
 
 // Versión corregida para escritorio
 async function descargarPDFDesktop(element) {
-  // Esperar un momento para asegurar que todo esté renderizado
-  await new Promise(resolve => setTimeout(resolve, 100));
-
-  const opciones = {
-    margin: [10, 10, 10, 10],
-    filename: `documento_${new Date().getTime()}.pdf`,
-    image: { 
-      type: 'jpeg', 
-      quality: 0.95 
-    },
-    html2canvas: {
-      scale: 1.5,
-      useCORS: true,
-      allowTaint: true,
-      logging: true,
-      backgroundColor: '#ffffff',
-      scrollY: 0,
-      scrollX: 0,
-      width: element.scrollWidth || element.offsetWidth,
-      height: element.scrollHeight || element.offsetHeight,
-      onrendered: function(canvas) {
-        console.log('Canvas desktop renderizado - Ancho:', canvas.width, 'Alto:', canvas.height);
-      }
-    },
-    jsPDF: {
-      unit: 'mm',
-      format: 'a4',
-      orientation: 'portrait'
-    },
-    pagebreak: { 
-      mode: ['css'],
-      avoid: ['tr', 'td', 'img']
-    }
-  };
-
   console.log('Generando PDF para desktop...');
-  console.log('Dimensiones del elemento:', element.offsetWidth, 'x', element.offsetHeight);
   
-  await html2pdf().set(opciones).from(element).save();
-  console.log('PDF desktop generado exitosamente');
+  // Esperar renderizado
+  await new Promise(resolve => setTimeout(resolve, 100));
+  
+  // Preparar elemento
+  const estadoOriginal = prepararElementoParaCaptura(element);
+  
+  try {
+    const dimensiones = obtenerDimensionesReales(element);
+    console.log('Dimensiones desktop:', dimensiones);
+
+    const opciones = {
+      margin: [10, 10, 10, 10],
+      filename: `documento_desktop_${new Date().getTime()}.pdf`,
+      image: { 
+        type: 'jpeg', 
+        quality: 0.95 
+      },
+      html2canvas: {
+        scale: 1.2,
+        useCORS: true,
+        allowTaint: true,
+        logging: true,
+        backgroundColor: '#ffffff',
+        scrollY: 0,
+        scrollX: 0,
+        width: dimensiones.ancho,
+        height: dimensiones.alto,
+        windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+        windowHeight: Math.max(dimensiones.alto, window.innerHeight)
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: { 
+        mode: ['css', 'legacy'],
+        avoid: ['tr', 'td', 'img']
+      }
+    };
+
+    await html2pdf().set(opciones).from(element).save();
+    console.log('PDF desktop generado exitosamente');
+    
+  } finally {
+    restaurarEstadoElemento(element, estadoOriginal);
+  }
 }
 
 // Mostrar/ocultar indicador de carga
@@ -490,7 +484,7 @@ function mostrarIndicadorCarga(mostrar) {
   }
 }
 
-// Método alternativo usando solo html2canvas + jsPDF
+// Método alternativo usando solo html2canvas + jsPDF - CORREGIDO
 async function descargarPDFAlternativo() {
   const element = document.getElementById('contenido');
   if (!element) {
@@ -501,67 +495,38 @@ async function descargarPDFAlternativo() {
   mostrarIndicadorCarga(true);
 
   try {
-    console.log('Usando método alternativo...');
+    console.log('Usando método alternativo corregido...');
     
-    // Asegurar que el elemento esté visible
-    const estiloOriginal = element.style.display;
-    if (window.getComputedStyle(element).display === 'none') {
-      element.style.display = 'block';
-    }
-
-    const canvas = await html2canvas(element, {
-      scale: 1.5,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: '#ffffff',
-      logging: true,
-      scrollY: 0,
-      scrollX: 0,
-      width: element.scrollWidth || element.offsetWidth,
-      height: element.scrollHeight || element.offsetHeight
-    });
-
-    console.log('Canvas creado:', canvas.width, 'x', canvas.height);
-
-    if (canvas.width === 0 || canvas.height === 0) {
-      throw new Error('El canvas está vacío');
-    }
-
-    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    const estadoOriginal = prepararElementoParaCaptura(element);
     
-    // Verificar que imgData no esté vacío
-    if (imgData === 'data:,') {
-      throw new Error('No se pudo generar la imagen del contenido');
+    try {
+      const dimensiones = obtenerDimensionesReales(element);
+      
+      const canvas = await html2canvas(element, {
+        scale: 1.2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+        logging: true,
+        scrollY: 0,
+        scrollX: 0,
+        width: dimensiones.ancho,
+        height: dimensiones.alto,
+        windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+        windowHeight: Math.max(dimensiones.alto, window.innerHeight)
+      });
+
+      console.log('Canvas alternativo creado:', canvas.width, 'x', canvas.height);
+
+      if (canvas.width === 0 || canvas.height === 0) {
+        throw new Error('El canvas está vacío');
+      }
+
+      await crearPDFDesdCanvas(canvas, 'documento_alternativo');
+      
+    } finally {
+      restaurarEstadoElemento(element, estadoOriginal);
     }
-
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
-    const imgWidth = pageWidth - 20; // Margen de 10mm a cada lado
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    
-    let heightLeft = imgHeight;
-    let position = 10;
-
-    // Primera página
-    pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
-    heightLeft -= (pageHeight - 20);
-
-    // Páginas adicionales si es necesario
-    while (heightLeft > 0) {
-      position = heightLeft - imgHeight + 10;
-      pdf.addPage();
-      pdf.addImage(imgData, 'JPEG', 10, position, imgWidth, imgHeight);
-      heightLeft -= (pageHeight - 20);
-    }
-
-    pdf.save(`documento_alternativo_${new Date().getTime()}.pdf`);
-    console.log('PDF alternativo generado exitosamente');
-
-    // Restaurar estilo original
-    element.style.display = estiloOriginal;
 
   } catch (error) {
     console.error('Error con método alternativo:', error);
@@ -652,7 +617,6 @@ function cargarLibrerias() {
       libreriasCargadas++;
       if (libreriasCargadas === libreriasPorCargar.length) {
         console.log('Todas las librerías cargadas, inicializando...');
-        // Esperar un poco para asegurar que todo esté listo
         setTimeout(inicializarBotonesPDF, 100);
       }
     };
@@ -673,7 +637,7 @@ if (document.readyState === 'loading') {
 
 // Función de diagnóstico mejorada
 function diagnosticarProblemas() {
-  console.log('=== DIAGNÓSTICO PDF ===');
+  console.log('=== DIAGNÓSTICO PDF MEJORADO ===');
   console.log('Es móvil:', esMobile());
   console.log('Es navegador integrado:', esNavegadorIntegrado());
   console.log('User Agent:', navigator.userAgent);
@@ -685,9 +649,11 @@ function diagnosticarProblemas() {
   const elemento = document.getElementById('contenido');
   console.log('Elemento contenido existe:', !!elemento);
   if (elemento) {
+    const dimensiones = obtenerDimensionesReales(elemento);
     const rect = elemento.getBoundingClientRect();
     const computedStyle = window.getComputedStyle(elemento);
     
+    console.log('Dimensiones calculadas:', dimensiones);
     console.log('Dimensiones del elemento:', elemento.offsetWidth, 'x', elemento.offsetHeight);
     console.log('Scroll dimensions:', elemento.scrollWidth, 'x', elemento.scrollHeight);
     console.log('BoundingClientRect:', rect.width, 'x', rect.height);
@@ -695,93 +661,28 @@ function diagnosticarProblemas() {
     console.log('Display style:', computedStyle.display);
     console.log('Visibility style:', computedStyle.visibility);
     console.log('Opacity style:', computedStyle.opacity);
-    console.log('Position style:', computedStyle.position);
-    console.log('Z-index style:', computedStyle.zIndex);
-    console.log('Overflow style:', computedStyle.overflow);
     
-    // Verificar si hay contenido de texto
+    // Verificar contenido crítico
     const textoVisible = elemento.innerText || elemento.textContent;
     console.log('Texto encontrado:', textoVisible ? textoVisible.length + ' caracteres' : 'Sin texto');
     
-    // Verificar imágenes
     const imagenes = elemento.querySelectorAll('img');
     console.log('Imágenes encontradas:', imagenes.length);
-    imagenes.forEach((img, i) => {
-      console.log(`Imagen ${i}:`, img.src, img.offsetWidth + 'x' + img.offsetHeight);
-    });
-  }
-  
-  console.log('======================');
-}
-
-// Función para probar captura rápida (solo diagnóstico)
-async function probarCapturaMobile() {
-  const elemento = document.getElementById('contenido');
-  if (!elemento) {
-    console.error('No se encontró el elemento');
-    return;
-  }
-  
-  console.log('=== PRUEBA DE CAPTURA MÓVIL ===');
-  
-  // Detectar ancho real
-  const anchoReal = Math.max(
-    elemento.scrollWidth,
-    elemento.offsetWidth,
-    elemento.clientWidth,
-    ...Array.from(elemento.querySelectorAll('*')).map(el => el.scrollWidth || el.offsetWidth || 0)
-  );
-  
-  console.log('Ancho real detectado:', anchoReal);
-  console.log('Ancho de ventana:', window.innerWidth);
-  console.log('¿Contenido más ancho que ventana?', anchoReal > window.innerWidth);
-  
-  try {
-    const canvas = await html2canvas(elemento, {
-      scale: 0.5,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: '#ffffff',
-      logging: true,
-      width: anchoReal,
-      height: elemento.scrollHeight,
-      windowWidth: Math.max(anchoReal, window.innerWidth),
-      windowHeight: window.innerHeight
-    });
     
-    console.log('Canvas de prueba:', canvas.width, 'x', canvas.height);
-    console.log('Proporción canvas vs contenido:', 
-      'Ancho:', (canvas.width / anchoReal * 100).toFixed(1) + '%',
-      'Alto:', (canvas.height / elemento.scrollHeight * 100).toFixed(1) + '%');
-    
-    if (canvas.width > 0 && canvas.height > 0) {
-      console.log('✓ La captura funciona correctamente');
-      
-      // Verificar si capturó todo el ancho
-      const proporcionAncho = canvas.width / anchoReal;
-      if (proporcionAncho < 0.8) {
-        console.warn('⚠ Posible problema: solo capturó', (proporcionAncho * 100).toFixed(1) + '% del ancho');
-      } else {
-        console.log('✓ Capturó', (proporcionAncho * 100).toFixed(1) + '% del ancho - BIEN');
-      }
-      
-      const imgData = canvas.toDataURL('image/jpeg', 0.8);
-      console.log('Tamaño de imagen:', imgData.length, 'bytes');
-      
-    } else {
-      console.error('✗ Canvas vacío');
+    const tablas = elemento.querySelectorAll('table');
+    console.log('Tablas encontradas:', tablas.length);
+    if (tablas.length > 0) {
+      tablas.forEach((tabla, i) => {
+        console.log(`Tabla ${i}: ${tabla.offsetWidth}x${tabla.offsetHeight}, scrollWidth: ${tabla.scrollWidth}`);
+      });
     }
-    
-  } catch (error) {
-    console.error('✗ Error en captura:', error);
   }
   
-  console.log('===============================');
+  console.log('=====================================');
 }
 
 // Exponer funciones de diagnóstico globalmente
 window.diagnosticarProblemas = diagnosticarProblemas;
-window.probarCapturaMobile = probarCapturaMobile;
 
 
 
