@@ -94,7 +94,7 @@ async function descargarPDFMobile(element) {
       quality: 0.95 // Reducir calidad para mejor compatibilidad
     },
     html2canvas: {
-      scale: 1,
+      scale: 1.3,
       useCORS: true,
       allowTaint: true,
       logging: false,
@@ -140,7 +140,7 @@ async function descargarPDFDesktop(element) {
     filename: `documento_${new Date().getTime()}.pdf`,
     image: { type: 'jpeg', quality: 1.0 },
     html2canvas: {
-      scale: 1.5,
+      scale: 1.3,
       useCORS: true,
       logging: false,
       letterRendering: true,
@@ -266,7 +266,7 @@ async function descargarPDFAlternativo() {
   try {
     // Usar html2canvas directamente y luego jsPDF
     const canvas = await html2canvas(element, {
-      scale: 1,
+      scale: 1.3,
       useCORS: true,
       allowTaint: true,
       backgroundColor: '#ffffff',
