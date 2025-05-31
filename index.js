@@ -86,9 +86,9 @@ async function generarPDFUniversal(element) {
       throw new Error('El elemento no tiene dimensiones válidas después de la preparación.');
     }
 
-    // Configuración optimizada de html2canvas para capturar TODO el contenido
+    // Configuración optimizada de html2canvas para capturar TODO el ancho y contenido
     const opcionesCanvas = {
-      scale: esMobile() ? 1.5 : 2, // Mejor calidad
+      scale: Math.min(window.devicePixelRatio || 1, 2), // Como original
       useCORS: true,
       allowTaint: false,
       backgroundColor: '#ffffff',
@@ -97,14 +97,11 @@ async function generarPDFUniversal(element) {
       scrollY: 0,
       width: dimensiones.ancho,
       height: dimensiones.alto,
-      windowWidth: dimensiones.ancho, // CLAVE: usar el ancho completo del contenido
-      windowHeight: dimensiones.alto, // CLAVE: usar el alto completo del contenido
+      windowWidth: Math.max(window.innerWidth, dimensiones.ancho), // CLAVE: asegurar ancho completo
+      windowHeight: window.innerHeight,
       imageTimeout: 15000,
       removeContainer: false,
       foreignObjectRendering: false,
-      // Capturar todo el contenido, incluso el que está fuera del viewport
-      x: 0,
-      y: 0,
       ignoreElements: (element) => {
         const tagName = element.tagName ? element.tagName.toLowerCase() : '';
         const className = element.className ? element.className.toString() : '';
@@ -114,8 +111,10 @@ async function generarPDFUniversal(element) {
         return tagName === 'script' || 
                tagName === 'style' || 
                tagName === 'noscript' ||
-               allClasses.includes('no-pdf') || // Permitir ocultar elementos específicos
-               (allClasses.includes('hidden') && !allClasses.includes('pdf-visible'));
+               allClasses.includes('hidden') ||
+               allClasses.includes('invisible') ||
+               element.style.display === 'none' ||
+               element.style.visibility === 'hidden';
       }
     };
 
@@ -132,7 +131,7 @@ async function generarPDFUniversal(element) {
       throw new Error('El contenido capturado está vacío o es transparente.');
     }
 
-    await crearPDFDesdeCanvasCompleto(canvas);
+    await crearPDFDesdeCanvas(canvas); // Volver a la función original de múltiples páginas
     console.log('PDF generado exitosamente');
 
   } catch (error) {
@@ -246,7 +245,6 @@ function obtenerDimensionesCompletas(element) {
   // Forzar recálculo del layout
   element.offsetHeight;
   
-  // Esperar un momento para que se recalculen las dimensiones
   const rect = element.getBoundingClientRect();
   const computedStyle = window.getComputedStyle(element);
   
@@ -265,7 +263,7 @@ function obtenerDimensionesCompletas(element) {
     Math.ceil(rect.height)
   ];
 
-  // Verificar también el contenido de los elementos hijos
+  // Verificar también el contenido de los elementos hijos para ancho completo
   const elementosHijos = element.querySelectorAll('*');
   let maxAnchoHijo = 0;
   let maxAltoHijo = 0;
@@ -295,17 +293,13 @@ function obtenerDimensionesCompletas(element) {
   const paddingRight = parseFloat(computedStyle.paddingRight) || 0;
   const paddingTop = parseFloat(computedStyle.paddingTop) || 0;
   const paddingBottom = parseFloat(computedStyle.paddingBottom) || 0;
-  const borderLeft = parseFloat(computedStyle.borderLeftWidth) || 0;
-  const borderRight = parseFloat(computedStyle.borderRightWidth) || 0;
-  const borderTop = parseFloat(computedStyle.borderTopWidth) || 0;
-  const borderBottom = parseFloat(computedStyle.borderBottomWidth) || 0;
 
-  ancho = Math.max(ancho, paddingLeft + paddingRight + borderLeft + borderRight + 100);
-  alto = Math.max(alto, paddingTop + paddingBottom + borderTop + borderBottom + 50);
+  ancho = Math.max(ancho, paddingLeft + paddingRight + 100);
+  alto = Math.max(alto, paddingTop + paddingBottom + 50);
 
-  // Límites razonables (aumentados para capturar más contenido)
-  const maxWidth = esMobile() ? 2000 : 4000;
-  const maxHeight = esMobile() ? 15000 : 25000;
+  // Límites razonables (como el original pero con mejor ancho)
+  const maxWidth = esMobile() ? 1500 : 2500; // Aumentado para capturar más ancho
+  const maxHeight = esMobile() ? 8000 : 15000; // Mantenido como original
 
   ancho = Math.min(ancho, maxWidth);
   alto = Math.min(alto, maxHeight);
@@ -355,9 +349,9 @@ async function esCanvasVacio(canvas) {
   }
 }
 
-// Función MEJORADA para crear PDF manteniendo proporciones y contenido completo
-async function crearPDFDesdeCanvasCompleto(canvas) {
-  console.log('Creando PDF desde canvas completo...');
+// Función mejorada para crear PDF desde canvas (ORIGINAL con mejoras de ancho)
+async function crearPDFDesdeCanvas(canvas) {
+  console.log('Creando PDF desde canvas...');
   
   try {
     const { jsPDF } = window.jspdf;
@@ -365,37 +359,29 @@ async function crearPDFDesdeCanvasCompleto(canvas) {
       throw new Error('jsPDF no está disponible');
     }
 
-    // Calcular orientación óptima basada en las dimensiones del contenido
-    const esHorizontal = canvas.width > canvas.height;
-    const orientation = esHorizontal ? 'l' : 'p'; // landscape o portrait
+    const pdf = new jsPDF('p', 'mm', 'a4');
     
-    const pdf = new jsPDF(orientation, 'mm', 'a4');
-    
-    const pageWidth = orientation === 'l' ? 297 : 210; // A4 dimensions
-    const pageHeight = orientation === 'l' ? 210 : 297;
-    const margin = 5; // Margen reducido para aprovechar más espacio
+    const pageWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const margin = 10;
     
     const maxWidth = pageWidth - (margin * 2);
     const maxHeight = pageHeight - (margin * 2);
 
-    // Calcular escala para que quepa todo el contenido manteniendo proporciones
-    const scaleX = maxWidth / (canvas.width * 0.264583); // Convertir px a mm
-    const scaleY = maxHeight / (canvas.height * 0.264583);
-    const scale = Math.min(scaleX, scaleY, 1); // No agrandar si ya es pequeño
+    // Calcular dimensiones de la imagen en el PDF manteniendo proporción
+    let imgWidth = maxWidth;
+    let imgHeight = (canvas.height * maxWidth) / canvas.width;
 
-    let imgWidth = (canvas.width * 0.264583) * scale;
-    let imgHeight = (canvas.height * 0.264583) * scale;
+    console.log(`Canvas original: ${canvas.width}x${canvas.height}px`);
+    console.log(`Imagen en PDF: ${imgWidth.toFixed(1)}x${imgHeight.toFixed(1)}mm`);
 
-    console.log(`Canvas: ${canvas.width}x${canvas.height}px`);
-    console.log(`PDF: ${pageWidth}x${pageHeight}mm, Imagen: ${imgWidth.toFixed(1)}x${imgHeight.toFixed(1)}mm`);
-
-    // Si el contenido sigue siendo muy alto, dividir en páginas
+    // Si la imagen es muy alta, ajustar y paginar (COMO ORIGINAL)
     if (imgHeight > maxHeight) {
       const totalPages = Math.ceil(imgHeight / maxHeight);
       console.log(`Contenido requiere ${totalPages} páginas`);
 
       for (let page = 0; page < totalPages; page++) {
-        if (page > 0) pdf.addPage(orientation === 'l' ? [297, 210] : [210, 297]);
+        if (page > 0) pdf.addPage();
 
         const sourceY = (canvas.height / totalPages) * page;
         const sourceHeight = canvas.height / totalPages;
@@ -407,37 +393,25 @@ async function crearPDFDesdeCanvasCompleto(canvas) {
         
         const tempCtx = tempCanvas.getContext('2d');
         if (tempCtx) {
-          tempCtx.fillStyle = '#ffffff';
-          tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-          
           tempCtx.drawImage(
             canvas, 
             0, Math.floor(sourceY), canvas.width, Math.floor(sourceHeight),
             0, 0, canvas.width, Math.floor(sourceHeight)
           );
 
-          const pageImageData = tempCanvas.toDataURL('image/jpeg', 0.95);
-          
-          // Centrar la imagen en la página
-          const x = margin + (maxWidth - imgWidth) / 2;
-          const y = margin;
-          
-          pdf.addImage(pageImageData, 'JPEG', x, y, imgWidth, maxHeight);
+          const pageImageData = tempCanvas.toDataURL('image/jpeg', 0.85);
+          pdf.addImage(pageImageData, 'JPEG', margin, margin, maxWidth, maxHeight);
         }
       }
     } else {
-      // Una sola página - centrar el contenido
-      const imageData = canvas.toDataURL('image/jpeg', 0.95);
-      
-      const x = margin + (maxWidth - imgWidth) / 2;
-      const y = margin + (maxHeight - imgHeight) / 2;
-      
-      pdf.addImage(imageData, 'JPEG', x, y, imgWidth, imgHeight);
+      // Una sola página
+      const imageData = canvas.toDataURL('image/jpeg', 0.85);
+      pdf.addImage(imageData, 'JPEG', margin, margin, imgWidth, imgHeight);
     }
 
     // Guardar el PDF
     const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-    pdf.save(`documento_completo_${timestamp}.pdf`);
+    pdf.save(`documento_${timestamp}.pdf`);
     
   } catch (error) {
     console.error('Error creando PDF:', error);
@@ -445,13 +419,11 @@ async function crearPDFDesdeCanvasCompleto(canvas) {
   }
 }
 
-// Función para esperar renderizado (aumentado el tiempo)
+// Función para esperar renderizado (como original)
 function esperarRenderizado() {
   return new Promise(resolve => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setTimeout(resolve, 200); // Más tiempo para asegurar renderizado completo
-      });
+      setTimeout(resolve, 100);
     });
   });
 }
@@ -500,8 +472,8 @@ function mostrarIndicadorCarga(mostrar) {
         <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:10000;color:white;font-family:Arial,sans-serif;backdrop-filter:blur(2px);">
           <div style="text-align:center;background:rgba(255,255,255,0.1);padding:30px;border-radius:10px;">
             <div style="border:4px solid #f3f3f3;border-top:4px solid #00bcd4;border-radius:50%;width:40px;height:40px;animation:spin 1s linear infinite;margin:0 auto 20px;"></div>
-            <p style="margin:0;font-size:16px;">Generando PDF completo...</p>
-            <p style="margin:5px 0 0 0;font-size:12px;opacity:0.8;">Capturando todo el contenido</p>
+            <p style="margin:0;font-size:16px;">Generando PDF...</p>
+            <p style="margin:5px 0 0 0;font-size:12px;opacity:0.8;">Por favor espere</p>
             <style>@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}</style>
           </div>
         </div>`;
