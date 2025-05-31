@@ -105,12 +105,18 @@ async function generarPDFUniversal(element) {
       foreignObjectRendering: false, // Desactivar para mejor compatibilidad
       ignoreElements: (element) => {
         // Ignorar elementos problemáticos
-        const tagName = element.tagName.toLowerCase();
-        const className = element.className || '';
+        const tagName = element.tagName ? element.tagName.toLowerCase() : '';
+        const className = element.className ? element.className.toString() : '';
+        const classList = element.classList ? Array.from(element.classList).join(' ') : '';
+        const allClasses = className + ' ' + classList;
+        
         return tagName === 'script' || 
                tagName === 'style' || 
-               className.includes('hidden') ||
-               element.style.display === 'none';
+               tagName === 'noscript' ||
+               allClasses.includes('hidden') ||
+               allClasses.includes('invisible') ||
+               element.style.display === 'none' ||
+               element.style.visibility === 'hidden';
       }
     };
 
@@ -169,23 +175,30 @@ async function prepararElementoParaCaptura(element) {
   element.style.transform = 'none';
   element.style.zIndex = 'auto';
 
-  // Preparar elementos hijos
+  // Preparar elementos hijos con verificaciones de seguridad
   const elementosHijos = element.querySelectorAll('*');
   const estadosHijos = [];
 
   elementosHijos.forEach((hijo, index) => {
-    const estadoOriginalHijo = {
-      overflow: hijo.style.overflow,
-      maxWidth: hijo.style.maxWidth,
-      maxHeight: hijo.style.maxHeight,
-      whiteSpace: hijo.style.whiteSpace
-    };
-    estadosHijos[index] = estadoOriginalHijo;
+    try {
+      const estadoOriginalHijo = {
+        overflow: hijo.style ? hijo.style.overflow : '',
+        maxWidth: hijo.style ? hijo.style.maxWidth : '',
+        maxHeight: hijo.style ? hijo.style.maxHeight : '',
+        whiteSpace: hijo.style ? hijo.style.whiteSpace : ''
+      };
+      estadosHijos[index] = estadoOriginalHijo;
 
-    // Optimizar elementos hijos
-    if (hijo.style.overflow === 'hidden') hijo.style.overflow = 'visible';
-    if (hijo.style.maxWidth && hijo.style.maxWidth !== 'none') hijo.style.maxWidth = 'none';
-    if (hijo.style.whiteSpace === 'nowrap') hijo.style.whiteSpace = 'normal';
+      // Optimizar elementos hijos solo si tienen la propiedad style
+      if (hijo.style) {
+        if (hijo.style.overflow === 'hidden') hijo.style.overflow = 'visible';
+        if (hijo.style.maxWidth && hijo.style.maxWidth !== 'none') hijo.style.maxWidth = 'none';
+        if (hijo.style.whiteSpace === 'nowrap') hijo.style.whiteSpace = 'normal';
+      }
+    } catch (error) {
+      console.warn('Error procesando elemento hijo:', error);
+      estadosHijos[index] = {};
+    }
   });
 
   // Guardar estados de elementos hijos
@@ -238,93 +251,108 @@ function obtenerDimensionesOptimas(element) {
 
 // Función para verificar si el canvas está vacío
 async function esCanvasVacio(canvas) {
-  const ctx = canvas.getContext('2d');
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const data = imageData.data;
-  
-  let pixelesNoTransparentes = 0;
-  let pixelesDiferentes = 0;
-  let primerPixelR = data[0];
-  let primerPixelG = data[1];
-  let primerPixelB = data[2];
-  
-  for (let i = 0; i < data.length; i += 4) {
-    const alpha = data[i + 3];
+  try {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return true;
     
-    if (alpha > 0) {
-      pixelesNoTransparentes++;
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    
+    let pixelesNoTransparentes = 0;
+    let pixelesDiferentes = 0;
+    let primerPixelR = data[0];
+    let primerPixelG = data[1];
+    let primerPixelB = data[2];
+    
+    for (let i = 0; i < data.length; i += 4) {
+      const alpha = data[i + 3];
       
-      if (data[i] !== primerPixelR || data[i + 1] !== primerPixelG || data[i + 2] !== primerPixelB) {
-        pixelesDiferentes++;
+      if (alpha > 0) {
+        pixelesNoTransparentes++;
+        
+        if (data[i] !== primerPixelR || data[i + 1] !== primerPixelG || data[i + 2] !== primerPixelB) {
+          pixelesDiferentes++;
+        }
+      }
+      
+      // Si encontramos suficiente contenido, no está vacío
+      if (pixelesNoTransparentes > 100 && pixelesDiferentes > 10) {
+        return false;
       }
     }
     
-    // Si encontramos suficiente contenido, no está vacío
-    if (pixelesNoTransparentes > 100 && pixelesDiferentes > 10) {
-      return false;
-    }
+    return pixelesNoTransparentes < 100 || pixelesDiferentes < 10;
+  } catch (error) {
+    console.warn('Error verificando canvas:', error);
+    return false; // Asumir que no está vacío si hay error
   }
-  
-  return pixelesNoTransparentes < 100 || pixelesDiferentes < 10;
 }
 
 // Función mejorada para crear PDF desde canvas
 async function crearPDFDesdeCanvas(canvas) {
   console.log('Creando PDF desde canvas...');
   
-  const { jsPDF } = window.jspdf;
-  if (!jsPDF) {
-    throw new Error('jsPDF no está disponible');
-  }
-
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  
-  const pageWidth = 210; // A4 width in mm
-  const pageHeight = 297; // A4 height in mm
-  const margin = 10;
-  
-  const maxWidth = pageWidth - (margin * 2);
-  const maxHeight = pageHeight - (margin * 2);
-
-  // Calcular dimensiones de la imagen en el PDF
-  let imgWidth = maxWidth;
-  let imgHeight = (canvas.height * maxWidth) / canvas.width;
-
-  // Si la imagen es muy alta, ajustar y paginar
-  if (imgHeight > maxHeight) {
-    const totalPages = Math.ceil(imgHeight / maxHeight);
-    console.log(`Contenido requiere ${totalPages} páginas`);
-
-    for (let page = 0; page < totalPages; page++) {
-      if (page > 0) pdf.addPage();
-
-      const sourceY = (canvas.height / totalPages) * page;
-      const sourceHeight = canvas.height / totalPages;
-      
-      // Crear canvas temporal para esta página
-      const tempCanvas = document.createElement('canvas');
-      tempCanvas.width = canvas.width;
-      tempCanvas.height = sourceHeight;
-      
-      const tempCtx = tempCanvas.getContext('2d');
-      tempCtx.drawImage(
-        canvas, 
-        0, sourceY, canvas.width, sourceHeight,
-        0, 0, canvas.width, sourceHeight
-      );
-
-      const pageImageData = tempCanvas.toDataURL('image/jpeg', 0.85);
-      pdf.addImage(pageImageData, 'JPEG', margin, margin, maxWidth, maxHeight);
+  try {
+    const { jsPDF } = window.jspdf;
+    if (!jsPDF) {
+      throw new Error('jsPDF no está disponible');
     }
-  } else {
-    // Una sola página
-    const imageData = canvas.toDataURL('image/jpeg', 0.85);
-    pdf.addImage(imageData, 'JPEG', margin, margin, imgWidth, imgHeight);
-  }
 
-  // Guardar el PDF
-  const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-  pdf.save(`documento_${timestamp}.pdf`);
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    
+    const pageWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const margin = 10;
+    
+    const maxWidth = pageWidth - (margin * 2);
+    const maxHeight = pageHeight - (margin * 2);
+
+    // Calcular dimensiones de la imagen en el PDF
+    let imgWidth = maxWidth;
+    let imgHeight = (canvas.height * maxWidth) / canvas.width;
+
+    // Si la imagen es muy alta, ajustar y paginar
+    if (imgHeight > maxHeight) {
+      const totalPages = Math.ceil(imgHeight / maxHeight);
+      console.log(`Contenido requiere ${totalPages} páginas`);
+
+      for (let page = 0; page < totalPages; page++) {
+        if (page > 0) pdf.addPage();
+
+        const sourceY = (canvas.height / totalPages) * page;
+        const sourceHeight = canvas.height / totalPages;
+        
+        // Crear canvas temporal para esta página
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = Math.floor(sourceHeight);
+        
+        const tempCtx = tempCanvas.getContext('2d');
+        if (tempCtx) {
+          tempCtx.drawImage(
+            canvas, 
+            0, Math.floor(sourceY), canvas.width, Math.floor(sourceHeight),
+            0, 0, canvas.width, Math.floor(sourceHeight)
+          );
+
+          const pageImageData = tempCanvas.toDataURL('image/jpeg', 0.85);
+          pdf.addImage(pageImageData, 'JPEG', margin, margin, maxWidth, maxHeight);
+        }
+      }
+    } else {
+      // Una sola página
+      const imageData = canvas.toDataURL('image/jpeg', 0.85);
+      pdf.addImage(imageData, 'JPEG', margin, margin, imgWidth, imgHeight);
+    }
+
+    // Guardar el PDF
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+    pdf.save(`documento_${timestamp}.pdf`);
+    
+  } catch (error) {
+    console.error('Error creando PDF:', error);
+    throw new Error('Error al crear el PDF: ' + error.message);
+  }
 }
 
 // Función para esperar renderizado
@@ -340,23 +368,31 @@ function esperarRenderizado() {
 function restaurarEstadoElemento(element, originalStyles) {
   console.log('Restaurando estado original...');
   
-  Object.keys(originalStyles).forEach(prop => {
-    if (prop !== 'elementosHijos') {
-      element.style[prop] = originalStyles[prop] || '';
-    }
-  });
-
-  // Restaurar estados de elementos hijos
-  if (originalStyles.elementosHijos) {
-    const elementosHijos = element.querySelectorAll('*');
-    elementosHijos.forEach((hijo, index) => {
-      const estadoOriginal = originalStyles.elementosHijos[index];
-      if (estadoOriginal) {
-        Object.keys(estadoOriginal).forEach(prop => {
-          hijo.style[prop] = estadoOriginal[prop] || '';
-        });
+  try {
+    Object.keys(originalStyles).forEach(prop => {
+      if (prop !== 'elementosHijos') {
+        element.style[prop] = originalStyles[prop] || '';
       }
     });
+
+    // Restaurar estados de elementos hijos
+    if (originalStyles.elementosHijos) {
+      const elementosHijos = element.querySelectorAll('*');
+      elementosHijos.forEach((hijo, index) => {
+        try {
+          const estadoOriginal = originalStyles.elementosHijos[index];
+          if (estadoOriginal && hijo.style) {
+            Object.keys(estadoOriginal).forEach(prop => {
+              hijo.style[prop] = estadoOriginal[prop] || '';
+            });
+          }
+        } catch (error) {
+          console.warn('Error restaurando elemento hijo:', error);
+        }
+      });
+    }
+  } catch (error) {
+    console.error('Error restaurando estilos:', error);
   }
 }
 
