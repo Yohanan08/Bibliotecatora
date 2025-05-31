@@ -76,77 +76,59 @@ async function descargarPDFMobile(element) {
   await new Promise(resolve => setTimeout(resolve, 300));
   
   try {
-    // Método 1: html2pdf optimizado (PRINCIPAL)
-    await intentarMetodo1MobileCorregido(element);
+    // Usar método directo mejorado
+    await generarPDFMobileDirecto(element);
   } catch (error) {
-    console.warn('Método 1 falló, intentando método 2:', error.message);
+    console.warn('Método directo falló, intentando alternativo:', error.message);
     try {
-      // Método 2: html2pdf con contenedor temporal
-      await intentarMetodo2MobileCorregido(element);
+      await generarPDFMobileAlternativo(element);
     } catch (error2) {
-      console.warn('Método 2 falló, intentando método 3:', error2.message);
-      // Método 3: Solo como último recurso
-      await intentarMetodo3MobileCorregido(element);
+      console.error('Todos los métodos fallaron:', error2.message);
+      throw error2;
     }
   }
 }
 
-// Método 1: html2pdf optimizado para móvil - CORREGIDO
-async function intentarMetodo1MobileCorregido(element) {
-  console.log('Probando Método 1 - html2pdf móvil optimizado...');
+// Método principal mejorado para móvil
+async function generarPDFMobileDirecto(element) {
+  console.log('Generando PDF móvil - Método directo mejorado...');
   
-  // Obtener el ancho real del contenido incluyendo elementos desbordados
-  const anchoReal = obtenerAnchoRealCompleto(element);
-  const altoReal = Math.max(element.scrollHeight, element.offsetHeight);
-  
-  console.log('Dimensiones reales detectadas:', anchoReal, 'x', altoReal);
-  console.log('Ancho de ventana:', window.innerWidth);
-  
-  // Preparar elemento temporalmente
+  // Preparar el elemento para captura completa
   const estadoOriginal = prepararElementoParaCaptura(element);
   
   try {
-    const opciones = {
-      margin: [5, 5, 5, 5], // Márgenes más pequeños
-      filename: `documento_mobile_${new Date().getTime()}.pdf`,
-      image: { 
-        type: 'jpeg', 
-        quality: 0.8
-      },
-      html2canvas: {
-        scale: 0.9, // Escala optimizada
-        useCORS: true,
-        allowTaint: true,
-        logging: true,
-        scrollY: 0,
-        scrollX: 0,
-        backgroundColor: '#ffffff',
-        timeout: 60000,
-        foreignObjectRendering: false,
-        removeContainer: false,
-        async: true,
-        // CLAVE: Configurar dimensiones correctas
-        width: anchoReal,
-        height: altoReal,
-        windowWidth: Math.max(anchoReal, window.innerWidth),
-        windowHeight: Math.max(altoReal, window.innerHeight)
-      },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: anchoReal > altoReal ? 'landscape' : 'portrait', // Auto-orientación
-        compress: true
-      },
-      pagebreak: { 
-        mode: ['avoid-all', 'css'],
-        before: '.page-break-before',
-        after: '.page-break-after',
-        avoid: ['tr', 'td', 'th', 'img', 'svg']
-      }
+    // Obtener dimensiones reales después de preparar
+    const dimensiones = obtenerDimensionesReales(element);
+    console.log('Dimensiones finales detectadas:', dimensiones);
+    
+    // Configuración optimizada para captura completa
+    const opcionesCanvas = {
+      scale: 0.8, // Reducir escala para mejor rendimiento
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#ffffff',
+      logging: true,
+      scrollY: 0,
+      scrollX: 0,
+      timeout: 60000,
+      foreignObjectRendering: false,
+      // CLAVE: Usar las dimensiones reales detectadas
+      width: dimensiones.ancho,
+      height: dimensiones.alto,
+      windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+      windowHeight: Math.max(dimensiones.alto, window.innerHeight)
     };
 
-    await html2pdf().set(opciones).from(element).save();
-    console.log('✓ Método 1 exitoso');
+    const canvas = await html2canvas(element, opcionesCanvas);
+    console.log('Canvas creado:', canvas.width, 'x', canvas.height);
+    
+    if (canvas.width === 0 || canvas.height === 0) {
+      throw new Error('Canvas vacío');
+    }
+
+    // Generar PDF con paginación correcta
+    await crearPDFDesdCanvas(canvas, 'documento_mobile_directo');
+    console.log('✓ PDF móvil generado exitosamente');
     
   } finally {
     // Restaurar estado original
@@ -154,79 +136,22 @@ async function intentarMetodo1MobileCorregido(element) {
   }
 }
 
-// Método 2: html2pdf con contenedor temporal - CORREGIDO
-async function intentarMetodo2MobileCorregido(element) {
-  console.log('Probando Método 2 - html2pdf con contenedor temporal...');
+// Método alternativo para móvil
+async function generarPDFMobileAlternativo(element) {
+  console.log('Generando PDF móvil - Método alternativo...');
   
-  const contenedor = crearContenedorOptimizado(element);
+  // Crear contenedor temporal optimizado
+  const contenedor = crearContenedorTemporal(element);
   
   try {
     // Esperar renderizado completo
     await new Promise(resolve => setTimeout(resolve, 500));
     
-    const anchoContenedor = Math.max(contenedor.scrollWidth, contenedor.offsetWidth);
-    const altoContenedor = Math.max(contenedor.scrollHeight, contenedor.offsetHeight);
+    const dimensiones = obtenerDimensionesReales(contenedor);
+    console.log('Dimensiones contenedor temporal:', dimensiones);
     
-    console.log('Dimensiones contenedor:', anchoContenedor, 'x', altoContenedor);
-    
-    const opciones = {
-      margin: [8, 8, 8, 8],
-      filename: `documento_mobile_m2_${new Date().getTime()}.pdf`,
-      image: { 
-        type: 'jpeg', 
-        quality: 0.85
-      },
-      html2canvas: {
-        scale: 0.8,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        logging: true,
-        scrollY: 0,
-        scrollX: 0,
-        timeout: 45000,
-        width: anchoContenedor,
-        height: altoContenedor,
-        windowWidth: Math.max(anchoContenedor, window.innerWidth),
-        windowHeight: Math.max(altoContenedor, window.innerHeight)
-      },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: 'portrait',
-        compress: true
-      },
-      pagebreak: { 
-        mode: ['css'],
-        avoid: ['tr', 'td', 'img']
-      }
-    };
-
-    await html2pdf().set(opciones).from(contenedor).save();
-    console.log('✓ Método 2 exitoso');
-    
-  } finally {
-    // Limpiar contenedor temporal
-    if (contenedor.parentNode) {
-      document.body.removeChild(contenedor);
-    }
-  }
-}
-
-// Método 3: html2canvas + jsPDF solo como último recurso
-async function intentarMetodo3MobileCorregido(element) {
-  console.log('Probando Método 3 - html2canvas como último recurso...');
-  
-  const estadoOriginal = prepararElementoParaCaptura(element);
-  
-  try {
-    const anchoReal = obtenerAnchoRealCompleto(element);
-    const altoReal = Math.max(element.scrollHeight, element.offsetHeight);
-    
-    console.log('Método 3 - Dimensiones:', anchoReal, 'x', altoReal);
-    
-    const canvas = await html2canvas(element, {
-      scale: 0.8,
+    const canvas = await html2canvas(contenedor, {
+      scale: 0.75,
       useCORS: true,
       allowTaint: true,
       backgroundColor: '#ffffff',
@@ -234,115 +159,27 @@ async function intentarMetodo3MobileCorregido(element) {
       scrollY: 0,
       scrollX: 0,
       timeout: 30000,
-      width: anchoReal,
-      height: altoReal,
-      windowWidth: Math.max(anchoReal, window.innerWidth),
-      windowHeight: Math.max(altoReal, window.innerHeight)
+      width: dimensiones.ancho,
+      height: dimensiones.alto,
+      windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+      windowHeight: Math.max(dimensiones.alto, window.innerHeight)
     });
 
-    console.log('Canvas método 3:', canvas.width, 'x', canvas.height);
+    console.log('Canvas alternativo creado:', canvas.width, 'x', canvas.height);
     
     if (canvas.width === 0 || canvas.height === 0) {
-      throw new Error('Canvas vacío en método 3');
+      throw new Error('Canvas alternativo vacío');
     }
 
-    // Usar jsPDF para crear el PDF respetando el formato original
-    const imgData = canvas.toDataURL('image/jpeg', 0.85);
-    const { jsPDF } = window.jspdf;
-    
-    // Determinar orientación basada en las dimensiones del contenido
-    const orientation = anchoReal > altoReal ? 'landscape' : 'portrait';
-    const pdf = new jsPDF(orientation, 'mm', 'a4');
-    
-    const pageWidth = pdf.internal.pageSize.getWidth() - 10; // 5mm margen cada lado
-    const pageHeight = pdf.internal.pageSize.getHeight() - 10;
-    
-    // Calcular dimensiones manteniendo proporción
-    const imgAspectRatio = canvas.width / canvas.height;
-    const pageAspectRatio = pageWidth / pageHeight;
-    
-    let finalWidth, finalHeight;
-    
-    if (imgAspectRatio > pageAspectRatio) {
-      // La imagen es más ancha que la página
-      finalWidth = pageWidth;
-      finalHeight = pageWidth / imgAspectRatio;
-    } else {
-      // La imagen es más alta que la página
-      finalHeight = pageHeight;
-      finalWidth = pageHeight * imgAspectRatio;
-    }
-    
-    console.log('Dimensiones finales PDF:', finalWidth, 'x', finalHeight);
-    
-    // Si la imagen es muy alta, dividir en páginas
-    if (finalHeight > pageHeight) {
-      const totalPages = Math.ceil(finalHeight / pageHeight);
-      console.log(`Dividiendo en ${totalPages} páginas`);
-      
-      for (let page = 0; page < totalPages; page++) {
-        if (page > 0) pdf.addPage(orientation);
-        
-        const offsetY = -(page * pageHeight);
-        pdf.addImage(imgData, 'JPEG', 5, 5 + offsetY, finalWidth, finalHeight);
-      }
-    } else {
-      // La imagen cabe en una página
-      const x = (pageWidth - finalWidth) / 2 + 5; // Centrar horizontalmente
-      const y = (pageHeight - finalHeight) / 2 + 5; // Centrar verticalmente
-      pdf.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
-    }
-
-    pdf.save(`documento_mobile_m3_${new Date().getTime()}.pdf`);
-    console.log('✓ Método 3 exitoso');
+    await crearPDFDesdCanvas(canvas, 'documento_mobile_alternativo');
+    console.log('✓ PDF alternativo generado exitosamente');
     
   } finally {
-    restaurarEstadoElemento(element, estadoOriginal);
-  }
-}
-
-// Función para obtener el ancho real completo incluyendo elementos desbordados
-function obtenerAnchoRealCompleto(element) {
-  // Obtener ancho del elemento principal
-  const anchoElemento = Math.max(
-    element.scrollWidth,
-    element.offsetWidth,
-    element.clientWidth
-  );
-  
-  // Verificar todos los elementos hijos para encontrar el más ancho
-  const todosLosElementos = element.querySelectorAll('*');
-  let anchoMaximo = anchoElemento;
-  
-  todosLosElementos.forEach(el => {
-    const anchoEl = Math.max(
-      el.scrollWidth || 0,
-      el.offsetWidth || 0,
-      el.clientWidth || 0
-    );
-    
-    // Para tablas, verificar también el ancho de las celdas
-    if (el.tagName === 'TABLE') {
-      const celdas = el.querySelectorAll('td, th');
-      let anchoTabla = 0;
-      const primeraFila = el.querySelector('tr');
-      if (primeraFila) {
-        const celdasPrimeraFila = primeraFila.querySelectorAll('td, th');
-        celdasPrimeraFila.forEach(celda => {
-          anchoTabla += Math.max(celda.scrollWidth || 0, celda.offsetWidth || 0);
-        });
-      }
-      if (anchoTabla > anchoEl) {
-        console.log('Tabla detectada con ancho real:', anchoTabla, 'vs reportado:', anchoEl);
-        anchoMaximo = Math.max(anchoMaximo, anchoTabla);
-      }
+    // Limpiar contenedor temporal
+    if (contenedor.parentNode) {
+      document.body.removeChild(contenedor);
     }
-    
-    anchoMaximo = Math.max(anchoMaximo, anchoEl);
-  });
-  
-  // Asegurar un mínimo razonable
-  return Math.max(anchoMaximo, 800);
+  }
 }
 
 // Función para preparar elemento para captura completa
@@ -367,38 +204,19 @@ function prepararElementoParaCaptura(element) {
   element.style.maxWidth = 'none';
   element.style.overflow = 'visible';
   
-  // Corregir elementos internos que puedan estar cortando el contenido
+  // Corregir elementos internos
   const elementosInternos = element.querySelectorAll('*');
   elementosInternos.forEach(el => {
-    // Quitar restricciones de ancho
-    if (el.style.maxWidth && el.style.maxWidth !== 'none') {
-      el.style.maxWidth = 'none';
-    }
-    // Asegurar que el contenido sea visible
-    if (el.style.overflow === 'hidden') {
-      el.style.overflow = 'visible';
-    }
-    // Para texto cortado
-    if (el.style.textOverflow === 'ellipsis') {
-      el.style.textOverflow = 'clip';
-    }
+    if (el.style.maxWidth) el.style.maxWidth = 'none';
+    if (el.style.overflow === 'hidden') el.style.overflow = 'visible';
   });
   
-  // Manejar tablas específicamente
+  // Corregir tablas específicamente
   const tablas = element.querySelectorAll('table');
   tablas.forEach(tabla => {
     tabla.style.width = 'auto';
     tabla.style.tableLayout = 'auto';
-    tabla.style.borderCollapse = 'separate'; // Mejor para renderizado
-    tabla.style.whiteSpace = 'nowrap'; // Evitar quiebre de líneas en celdas
-    
-    // Ajustar celdas
-    const celdas = tabla.querySelectorAll('td, th');
-    celdas.forEach(celda => {
-      celda.style.whiteSpace = 'nowrap';
-      celda.style.overflow = 'visible';
-      celda.style.maxWidth = 'none';
-    });
+    tabla.style.borderCollapse = 'collapse';
   });
   
   return estadoOriginal;
@@ -407,20 +225,47 @@ function prepararElementoParaCaptura(element) {
 // Función para restaurar estado original
 function restaurarEstadoElemento(element, estadoOriginal) {
   Object.keys(estadoOriginal).forEach(prop => {
-    element.style[prop] = estadoOriginal[prop] || '';
+    element.style[prop] = estadoOriginal[prop];
   });
 }
 
-// Crear contenedor optimizado para captura
-function crearContenedorOptimizado(element) {
-  const anchoReal = obtenerAnchoRealCompleto(element);
+// Función para obtener dimensiones reales
+function obtenerDimensionesReales(element) {
+  // Esperar un frame para que se apliquen los estilos
+  element.offsetHeight; // Forzar reflow
+  
+  const ancho = Math.max(
+    element.scrollWidth,
+    element.offsetWidth,
+    element.clientWidth,
+    ...Array.from(element.querySelectorAll('*')).map(el => {
+      return Math.max(el.scrollWidth || 0, el.offsetWidth || 0);
+    })
+  );
+  
+  const alto = Math.max(
+    element.scrollHeight,
+    element.offsetHeight,
+    element.clientHeight
+  );
+  
+  return {
+    ancho: Math.max(ancho, 800), // Mínimo 800px de ancho
+    alto: Math.max(alto, 100)    // Mínimo 100px de alto
+  };
+}
+
+// Función para crear contenedor temporal optimizado
+function crearContenedorTemporal(element) {
+  const dimensiones = obtenerDimensionesReales(element);
   
   const contenedor = document.createElement('div');
   contenedor.style.cssText = `
     position: absolute;
     top: 0;
     left: 0;
-    width: ${anchoReal}px;
+    width: ${dimensiones.ancho}px;
+    min-width: ${dimensiones.ancho}px;
     background: white;
     z-index: 10000;
     visibility: visible;
@@ -428,20 +273,20 @@ function crearContenedorOptimizado(element) {
     padding: 20px;
     box-sizing: border-box;
     overflow: visible;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
   `;
   
   // Clonar el contenido
   const elementoClonado = element.cloneNode(true);
   
-  // Aplicar estilos al elemento clonado
+  // Aplicar estilos para captura completa
   elementoClonado.style.cssText = `
     width: 100%;
     max-width: none;
     background: white;
     color: black;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
     display: block;
     visibility: visible;
     opacity: 1;
@@ -453,23 +298,86 @@ function crearContenedorOptimizado(element) {
   todosLosElementos.forEach(el => {
     el.style.maxWidth = 'none';
     el.style.overflow = 'visible';
-    if (el.style.textOverflow === 'ellipsis') {
-      el.style.textOverflow = 'clip';
-    }
-  });
-  
-  // Corregir tablas del clon
-  const tablas = elementoClonado.querySelectorAll('table');
-  tablas.forEach(tabla => {
-    tabla.style.width = 'auto';
-    tabla.style.tableLayout = 'auto';
-    tabla.style.whiteSpace = 'nowrap';
   });
   
   contenedor.appendChild(elementoClonado);
   document.body.appendChild(contenedor);
   
   return contenedor;
+}
+
+// Función mejorada para crear PDF desde canvas - SIN DUPLICACIÓN
+async function crearPDFDesdCanvas(canvas, nombreArchivo) {
+  const imgData = canvas.toDataURL('image/jpeg', 0.85);
+  
+  if (imgData.length < 1000) {
+    throw new Error('Imagen generada muy pequeña o vacía');
+  }
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  
+  // Obtener dimensiones de la página
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+  
+  // Calcular dimensiones de imagen con márgenes
+  const margin = 10; // 10mm de margen
+  const maxWidth = pageWidth - (margin * 2);
+  const maxHeight = pageHeight - (margin * 2);
+  
+  // Calcular escala manteniendo proporción
+  const scaleX = maxWidth / (canvas.width * 0.264583); // Convertir px a mm
+  const scaleY = maxHeight / (canvas.height * 0.264583);
+  const scale = Math.min(scaleX, scaleY, 1); // No escalar hacia arriba
+  
+  const imgWidth = (canvas.width * 0.264583) * scale;
+  const imgHeight = (canvas.height * 0.264583) * scale;
+  
+  console.log('Dimensiones PDF calculadas:', {
+    pageWidth, pageHeight,
+    imgWidth, imgHeight,
+    scale,
+    canvasSize: `${canvas.width}x${canvas.height}`
+  });
+  
+  // CORRECCIÓN CLAVE: Calcular paginación correctamente
+  let currentY = margin;
+  const pageContentHeight = pageHeight - (margin * 2);
+  
+  if (imgHeight <= pageContentHeight) {
+    // La imagen cabe en una sola página
+    pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, imgHeight);
+  } else {
+    // La imagen necesita múltiples páginas
+    const totalPages = Math.ceil(imgHeight / pageContentHeight);
+    console.log(`Dividiendo en ${totalPages} páginas`);
+    
+    for (let page = 0; page < totalPages; page++) {
+      if (page > 0) {
+        pdf.addPage();
+      }
+      
+      // Calcular la posición Y para esta página
+      const offsetY = -(page * pageContentHeight);
+      
+      pdf.addImage(
+        imgData, 
+        'JPEG', 
+        margin,           // x
+        margin + offsetY, // y (negativo para mostrar parte inferior)
+        imgWidth,         // width
+        imgHeight         // height (mantener altura original)
+      );
+      
+      console.log(`Página ${page + 1}: offsetY = ${offsetY}`);
+    }
+  }
+
+  const timestamp = new Date().getTime();
+  pdf.save(`${nombreArchivo}_${timestamp}.pdf`);
+  
+  console.log('PDF guardado exitosamente');
 }
 
 // Versión corregida para escritorio
@@ -479,47 +387,50 @@ async function descargarPDFDesktop(element) {
   // Esperar renderizado
   await new Promise(resolve => setTimeout(resolve, 100));
   
-  const anchoReal = obtenerAnchoRealCompleto(element);
-  const altoReal = Math.max(element.scrollHeight, element.offsetHeight);
+  // Preparar elemento
+  const estadoOriginal = prepararElementoParaCaptura(element);
   
-  console.log('Desktop - Dimensiones detectadas:', anchoReal, 'x', altoReal);
-  
-  const opciones = {
-    margin: [10, 10, 10, 10],
-    filename: `documento_desktop_${new Date().getTime()}.pdf`,
-    image: { 
-      type: 'jpeg', 
-      quality: 0.95 
-    },
-    html2canvas: {
-      scale: 1.3,
-      useCORS: true,
-      allowTaint: true,
-      logging: true,
-      backgroundColor: '#ffffff',
-      scrollY: 0,
-      scrollX: 0,
-      width: anchoReal,
-      height: altoReal,
-      windowWidth: Math.max(anchoReal, window.innerWidth),
-      windowHeight: Math.max(altoReal, window.innerHeight)
-    },
-    jsPDF: {
-      unit: 'mm',
-      format: 'a4',
-      orientation: anchoReal > altoReal ? 'landscape' : 'portrait',
-      compress: true
-    },
-    pagebreak: { 
-      mode: ['css'],
-      before: '.page-break-before',
-      after: '.page-break-after',
-      avoid: ['tr', 'td', 'img', 'svg']
-    }
-  };
+  try {
+    const dimensiones = obtenerDimensionesReales(element);
+    console.log('Dimensiones desktop:', dimensiones);
 
-  await html2pdf().set(opciones).from(element).save();
-  console.log('PDF desktop generado exitosamente');
+    const opciones = {
+      margin: [10, 10, 10, 10],
+      filename: `documento_desktop_${new Date().getTime()}.pdf`,
+      image: { 
+        type: 'jpeg', 
+        quality: 0.95 
+      },
+      html2canvas: {
+        scale: 1.2,
+        useCORS: true,
+        allowTaint: true,
+        logging: true,
+        backgroundColor: '#ffffff',
+        scrollY: 0,
+        scrollX: 0,
+        width: dimensiones.ancho,
+        height: dimensiones.alto,
+        windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+        windowHeight: Math.max(dimensiones.alto, window.innerHeight)
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: { 
+        mode: ['css', 'legacy'],
+        avoid: ['tr', 'td', 'img']
+      }
+    };
+
+    await html2pdf().set(opciones).from(element).save();
+    console.log('PDF desktop generado exitosamente');
+    
+  } finally {
+    restaurarEstadoElemento(element, estadoOriginal);
+  }
 }
 
 // Mostrar/ocultar indicador de carga
@@ -573,7 +484,7 @@ function mostrarIndicadorCarga(mostrar) {
   }
 }
 
-// Método alternativo usando solo html2canvas + jsPDF - SOLO COMO RESPALDO
+// Método alternativo usando solo html2canvas + jsPDF - CORREGIDO
 async function descargarPDFAlternativo() {
   const element = document.getElementById('contenido');
   if (!element) {
@@ -584,15 +495,12 @@ async function descargarPDFAlternativo() {
   mostrarIndicadorCarga(true);
 
   try {
-    console.log('Usando método alternativo (html2canvas + jsPDF)...');
+    console.log('Usando método alternativo corregido...');
     
     const estadoOriginal = prepararElementoParaCaptura(element);
     
     try {
-      const anchoReal = obtenerAnchoRealCompleto(element);
-      const altoReal = Math.max(element.scrollHeight, element.offsetHeight);
-      
-      console.log('Alternativo - Dimensiones:', anchoReal, 'x', altoReal);
+      const dimensiones = obtenerDimensionesReales(element);
       
       const canvas = await html2canvas(element, {
         scale: 1.2,
@@ -602,55 +510,19 @@ async function descargarPDFAlternativo() {
         logging: true,
         scrollY: 0,
         scrollX: 0,
-        width: anchoReal,
-        height: altoReal,
-        windowWidth: Math.max(anchoReal, window.innerWidth),
-        windowHeight: Math.max(altoReal, window.innerHeight)
+        width: dimensiones.ancho,
+        height: dimensiones.alto,
+        windowWidth: Math.max(dimensiones.ancho, window.innerWidth),
+        windowHeight: Math.max(dimensiones.alto, window.innerHeight)
       });
 
-      console.log('Canvas alternativo:', canvas.width, 'x', canvas.height);
+      console.log('Canvas alternativo creado:', canvas.width, 'x', canvas.height);
 
       if (canvas.width === 0 || canvas.height === 0) {
         throw new Error('El canvas está vacío');
       }
 
-      const imgData = canvas.toDataURL('image/jpeg', 0.9);
-      const { jsPDF } = window.jspdf;
-      
-      const orientation = anchoReal > altoReal ? 'landscape' : 'portrait';
-      const pdf = new jsPDF(orientation, 'mm', 'a4');
-      
-      const pageWidth = pdf.internal.pageSize.getWidth() - 20;
-      const pageHeight = pdf.internal.pageSize.getHeight() - 20;
-      
-      const imgAspectRatio = canvas.width / canvas.height;
-      const pageAspectRatio = pageWidth / pageHeight;
-      
-      let finalWidth, finalHeight;
-      
-      if (imgAspectRatio > pageAspectRatio) {
-        finalWidth = pageWidth;
-        finalHeight = pageWidth / imgAspectRatio;
-      } else {
-        finalHeight = pageHeight;
-        finalWidth = pageHeight * imgAspectRatio;
-      }
-      
-      if (finalHeight > pageHeight) {
-        const totalPages = Math.ceil(finalHeight / pageHeight);
-        for (let page = 0; page < totalPages; page++) {
-          if (page > 0) pdf.addPage(orientation);
-          const offsetY = -(page * pageHeight);
-          pdf.addImage(imgData, 'JPEG', 10, 10 + offsetY, finalWidth, finalHeight);
-        }
-      } else {
-        const x = (pageWidth - finalWidth) / 2 + 10;
-        const y = (pageHeight - finalHeight) / 2 + 10;
-        pdf.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
-      }
-
-      pdf.save(`documento_alternativo_${new Date().getTime()}.pdf`);
-      console.log('PDF alternativo generado exitosamente');
+      await crearPDFDesdCanvas(canvas, 'documento_alternativo');
       
     } finally {
       restaurarEstadoElemento(element, estadoOriginal);
@@ -763,7 +635,7 @@ if (document.readyState === 'loading') {
   cargarLibrerias();
 }
 
-// Función de diagnóstico mejorada - COMPLETADA
+// Función de diagnóstico mejorada
 function diagnosticarProblemas() {
   console.log('=== DIAGNÓSTICO PDF MEJORADO ===');
   console.log('Es móvil:', esMobile());
@@ -776,19 +648,41 @@ function diagnosticarProblemas() {
   
   const elemento = document.getElementById('contenido');
   console.log('Elemento contenido existe:', !!elemento);
-  
   if (elemento) {
-    const anchoReal = obtenerAnchoRealCompleto(elemento);
+    const dimensiones = obtenerDimensionesReales(elemento);
     const rect = elemento.getBoundingClientRect();
     const computedStyle = window.getComputedStyle(elemento);
     
-    console.log('Ancho real calculado:', anchoReal);
+    console.log('Dimensiones calculadas:', dimensiones);
     console.log('Dimensiones del elemento:', elemento.offsetWidth, 'x', elemento.offsetHeight);
     console.log('Scroll dimensions:', elemento.scrollWidth, 'x', elemento.scrollHeight);
     console.log('BoundingClientRect:', rect.width, 'x', rect.height);
     console.log('Elemento visible:', elemento.offsetWidth > 0 && elemento.offsetHeight > 0);
     console.log('Display style:', computedStyle.display);
     console.log('Visibility style:', computedStyle.visibility);
+    console.log('Opacity style:', computedStyle.opacity);
+    
+    // Verificar contenido crítico
+    const textoVisible = elemento.innerText || elemento.textContent;
+    console.log('Texto encontrado:', textoVisible ? textoVisible.length + ' caracteres' : 'Sin texto');
+    
+    const imagenes = elemento.querySelectorAll('img');
+    console.log('Imágenes encontradas:', imagenes.length);
+    
+    const tablas = elemento.querySelectorAll('table');
+    console.log('Tablas encontradas:', tablas.length);
+    if (tablas.length > 0) {
+      tablas.forEach((tabla, i) => {
+        console.log(`Tabla ${i}: ${tabla.offsetWidth}x${tabla.offsetHeight}, scrollWidth: ${tabla.scrollWidth}`);
+      });
+    }
+  }
+  
+  console.log('=====================================');
+}
+
+// Exponer funciones de diagnóstico globalmente
+window.diagnosticarProblemas = diagnosticarProblemas;
 
 
 
