@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 2:1-34</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+<body>
+<div id="google_translate_element"></div>
+<header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+</header>
+
+<main id="contenido">
+
+    <h1>34. Parashá Bamidbar (במדבר) Aliyáh 3: (Números 2:1-34) Organización del campamento de Israel alrededor del Mishkán.
+    <p>Haftaráh: Oseas 2:14-22 (El llamado de Israel al desierto para ser restaurado).</p>
+    <p>Brit Hadasháh: Apocalipsis 21:3-4 (La morada de Elohím en medio de Su pueblo).</p></h1>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Texto Hebreo, Fonética y Traducción Literal de Números 2:1-34</h1>
+
+        <!-- Números 2:1 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:1</div>
+            <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה וְאֶל־אַהֲרֹן לֵאמֹר</div>
+            <div class="transliteration">Vayedaber YHWH el-Moshé ve'el-Aharón lemor.</div>
+            <div class="literal-translation">Y habló YHWH a Moshé y a Aharón, diciendo:</div>
+        </div>
+
+        <!-- Números 2:2 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:2</div>
+            <div class="hebrew">אִישׁ עַל־דִּגְלוֹ בְּאֹתֹת לְבֵית אֲבֹתָם יַחֲנוּ בְּנֵי יִשְׂרָאֵל מִנֶּגֶד סָבִיב לְאֹהֶל מוֹעֵד יַחֲנוּ</div>
+            <div class="transliteration">Ish al-diglo be'otot leveit avotam yachanu bnei Yisrael mineged saviv le'Ohel Moed yachanu.</div>
+            <div class="literal-translation">Cada uno junto a su bandera, bajo los estandartes de sus casas paternas, acamparán los hijos de Israel; alrededor, enfrente del Tabernáculo de Reunión acamparán.</div>
+        </div>
+
+        <!-- Números 2:3 (ejemplo de tribu) -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:3</div>
+            <div class="hebrew">וְהַחֹנִים קֵדְמָה מִזְרָחָה דֶּגֶל מַחֲנֵה יְהוּדָה לְצִבְאֹתָם וְנָשִׂיא לִבְנֵי יְהוּדָה נַחְשׁוֹן בֶּן־עַמִּינָדָב</div>
+            <div class="transliteration">Vehachonim kedmah mizrachah degel machaneh Yehudah letzivotam, venasi livnei Yehudah Nachshón ben-Aminadav.</div>
+            <div class="literal-translation">Y los que acampan al oriente, hacia el amanecer: la bandera del campamento de Judá, por sus ejércitos; y el jefe de los hijos de Judá, Najshón hijo de Aminadav.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 2:4</div>
+            <div class="hebrew">וְצְבָאוֹ וּפְקֻדָיו אַרְבָּעָה וְשִׁבְעִים אָלֶף וְשֵׁשׁ מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav arba'ah veshiv'im elef veshesh me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: setenta y cuatro mil seiscientos.</div>
+        </div>
+
+        <!-- Números 2:5 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:5</div>
+            <div class="hebrew">וְהַחֹנִים עָלָיו מַטֵּה יִשָּׂשכָר וְנָשִׂיא לִבְנֵי יִשָּׂשכָר נְתַנְאֵל בֶּן־צוּעָר</div>
+            <div class="transliteration">Vehachonim alav mateh Yisajar, venasi livnei Yisajar Netanel ben-Tzuar.</div>
+            <div class="literal-translation">Y acampando junto a él, la tribu de Isacar; y el jefe de los hijos de Isacar, Netanel hijo de Tzuar.</div>
+        </div>
+
+        <!-- Números 2:6 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:6</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו אַרְבָּעָה וַחֲמִשִּׁים אָלֶף וְאַרְבַּע מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav arba'ah vachamishim elef ve'arba me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cincuenta y cuatro mil cuatrocientos.</div>
+        </div>
+
+        <!-- Números 2:7 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:7</div>
+            <div class="hebrew">מַטֵּה זְבוּלוּן וְנָשִׂיא לִבְנֵי זְבוּלוּן אֱלִיאָב בֶּן־חֵלֹן</div>
+            <div class="transliteration">Mateh Zevulún, venasi livnei Zevulún Eliav ben-Chelon.</div>
+            <div class="literal-translation">La tribu de Zabulón; y el jefe de los hijos de Zabulón, Eliav hijo de Chelón.</div>
+        </div>
+
+        <!-- Números 2:8 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:8</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו שִׁבְעָה וַחֲמִשִּׁים אָלֶף וְאַרְבַּע מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav shiv'ah vachamishim elef ve'arba me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cincuenta y siete mil cuatrocientos.</div>
+        </div>
+
+        <!-- Números 2:9 (resumen del campamento de Judá) -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:9</div>
+            <div class="hebrew">כָּל־הַפְּקֻדִים לְמַחֲנֵה יְהוּדָה מְאַת שִׁשָּׁה וְאַרְבָּעִים אֶלֶף וְשֵׁשׁ מֵאוֹת לְצִבְאֹתָם רִאשֹׁנָה יִסָּעוּ</div>
+            <div class="transliteration">Kol hapekudim le-machaneh Yehudah me'at shishah ve-arba'im elef ve-shesh me'ot letzivotam, rishonah yisa'u.</div>
+            <div class="literal-translation">Todos los contados del campamento de Judá: ciento ochenta y seis mil cuatrocientos, por sus ejércitos; ellos marcharán primero.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 2:10</div>
+            <div class="hebrew">דֶּגֶל מַחֲנֵה רְאוּבֵן תֵּימָנָה לְצִבְאֹתָם וְנָשִׂיא לִבְנֵי רְאוּבֵן אֱלִיצוּר בֶּן־שְׁדֵיאוּר</div>
+            <div class="transliteration">Degel machaneh Reuvén teimanah letzivotam, venasi livnei Reuvén Elitzur ben-Shedeur.</div>
+            <div class="literal-translation">La bandera del campamento de Rubén estará al sur, por sus ejércitos; y el jefe de los hijos de Rubén, Elitzur hijo de Shedeur.</div>
+        </div>
+
+        <!-- Números 2:11 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:11</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו אַרְבָּעָה וְאַרְבָּעִים אֶלֶף וְשֵׁשׁ מֵאוֹת וחמישים</div>
+            <div class="transliteration">Utzva'o upekudav arba'ah ve-arba'im elef veshesh me'ot ve-chamishim.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cuarenta y seis mil quinientos.</div>
+        </div>
+
+        <!-- Números 2:12 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:12</div>
+            <div class="hebrew">וְהַחֹנִים עָלָיו מַטֵּה שִׁמְעוֹן וְנָשִׂיא לִבְנֵי שִׁמְעוֹן שְׁלוּמִיאֵל בֶּן־צוּרִישַׁדָּי</div>
+            <div class="transliteration">Vehachonim alav mateh Shimón, venasi livnei Shimón Shelumiel ben-Tzurishadai.</div>
+            <div class="literal-translation">Y acampando junto a él, la tribu de Simeón; y el jefe de los hijos de Simeón, Shelumiel hijo de Tzurishadai.</div>
+        </div>
+
+        <!-- Números 2:13 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:13</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו תִּשְׁנֵים וּחְמֵשֶׁת אֲלָפִים וּשְׁלֹשׁ מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav shenayim u-chameshet alafim u-shlosh me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cincuenta y nueve mil trescientos.</div>
+        </div>
+
+        <!-- Números 2:14 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:14</div>
+            <div class="hebrew">וּמַטֵּה גָּד וְנָשִׂיא לִבְנֵי גָּד אֶלְיָסָף בֶּן־רְעוּאֵל</div>
+            <div class="transliteration">Umateh Gad, venasi livnei Gad Elyasaf ben-Reuel.</div>
+            <div class="literal-translation">Y la tribu de Gad; y el jefe de los hijos de Gad, Elyasaf hijo de Reuel.</div>
+        </div>
+
+        <!-- Números 2:15 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:15</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו חֲמִשָּׁה וְאַרְבָּעִים אֶלֶף וְשֵׁשׁ מֵאוֹת וחמשים</div>
+            <div class="transliteration">Utzva'o upekudav chamishah ve-arba'im elef veshesh me'ot ve-chamishim.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cuarenta y cinco mil seiscientos cincuenta.</div>
+        </div>
+
+        <!-- Números 2:16 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:16</div>
+            <div class="hebrew">כָּל־הַפְּקֻדִים לְמַחֲנֵה רְאוּבֵן מֵאָה וּאֶלֶף וּחְמֵשֶׁת אֲלָפִים וּשְׁבַע מֵאוֹת וַחֲמִשִּׁים לְצִבְאֹתָם וְשֵׁנִית יִסָּעוּ</div>
+            <div class="transliteration">Kol hapekudim le-machaneh Reuvén me'ah u-elef u-chameshet alafim u-sheva me'ot va-chamishim letzivotam, veshnit yisa'u.</div>
+            <div class="literal-translation">Todos los contados del campamento de Rubén: ciento cincuenta y un mil cuatrocientos cincuenta, por sus ejércitos; ellos marcharán en segundo lugar.</div>
+        </div>
+
+        <!-- Números 2:17 (el Mishkán en el centro) -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:17</div>
+            <div class="hebrew">וְנָסַע אֹהֶל מוֹעֵד מַחֲנֵה הַלְוִיִּם בְּתוֹךְ הַמַּחֲנוֹת כַּאֲשֶׁר יַחֲנוּ כֵּן יִסָּעוּ אִישׁ עַל־יָדוֹ לְדִגְלֵיהֶם</div>
+            <div class="transliteration">V'nasa Ohel Moed, machaneh haLevi'im betoch hamachanot, ka'asher yachanu ken yisa'u, ish al-yado ledigleihem.</div>
+            <div class="literal-translation">Y partirá el Tabernáculo de Reunión, el campamento de los levitas en medio de los campamentos; como acampan, así marcharán, cada uno en su lugar, junto a sus banderas.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 2:18</div>
+            <div class="hebrew">דֶּגֶל מַחֲנֵה אֶפְרַיִם לְצִבְאֹתָם יָמָּה וְנָשִׂיא לִבְנֵי אֶפְרַיִם אֱלִישָׁמָע בֶּן־עַמִּיהוּד</div>
+            <div class="transliteration">Degel machaneh Efráyim letzivotam yamah, venasi livnei Efráyim Elishamá ben-Amihud.</div>
+            <div class="literal-translation">La bandera del campamento de Efraín, por sus ejércitos, al occidente; y el jefe de los hijos de Efraín, Elishamá hijo de Amihud.</div>
+        </div>
+
+        <!-- Números 2:19 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:19</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו אַרְבָּעָה וַחֲמִשִּׁים אָלֶף וַחֲמֵשׁ מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav arba'ah vachamishim elef vachamesh me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cuarenta y cinco mil quinientos.</div>
+        </div>
+
+        <!-- Números 2:20 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:20</div>
+            <div class="hebrew">וְעָלָיו מַטֵּה מְנַשֶּׁה וְנָשִׂיא לִבְנֵי מְנַשֶּׁה גַּמְלִיאֵל בֶּן־פְּדָהצוּר</div>
+            <div class="transliteration">Ve'alav mateh Menashé, venasi livnei Menashé Gamliel ben-Pedatzur.</div>
+            <div class="literal-translation">Y junto a él, la tribu de Manasés; y el jefe de los hijos de Manasés, Gamliel hijo de Pedatzur.</div>
+        </div>
+
+        <!-- Números 2:21 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:21</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו שְׁנֵים וּשְׁלֹשִׁים אֶלֶף וּמָאתַיִם</div>
+            <div class="transliteration">Utzva'o upekudav shenayim ushloshim elef umaatayim.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: treinta y dos mil doscientos.</div>
+        </div>
+
+        <!-- Números 2:22 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:22</div>
+            <div class="hebrew">וּמַטֵּה בִּנְיָמִן וְנָשִׂיא לִבְנֵי בִּנְיָמִן אֲבִידָן בֶּן־גִּדְעֹנִי</div>
+            <div class="transliteration">Umateh Binyamín, venasi livnei Binyamín Avidan ben-Gidoni.</div>
+            <div class="literal-translation">Y la tribu de Benjamín; y el jefe de los hijos de Benjamín, Avidán hijo de Gidoni.</div>
+        </div>
+
+        <!-- Números 2:23 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:23</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו חֲמֵשֶׁת אֲלָפִים וּשְׁלֹשׁ מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav chameshet alafim ushlosh me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: treinta y cinco mil cuatrocientos.</div>
+        </div>
+
+        <!-- Números 2:24 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:24</div>
+            <div class="hebrew">כָּל־הַפְּקֻדִים לְמַחֲנֵה אֶפְרַיִם מֵאָה אֶלֶף וּשְׁמֹנָה אֲלָפִים וּמֵאָה לְצִבְאֹתָם וּשְׁלִשִׁים יִסָּעוּ</div>
+            <div class="transliteration">Kol hapekudim le-machaneh Efráyim me'ah elef ushmona alafim ume'ah letzivotam, ushelishim yisa'u.</div>
+            <div class="literal-translation">Todos los contados del campamento de Efraín: ciento ocho mil cien, por sus ejércitos; ellos marcharán en tercer lugar.</div>
+        </div>
+
+        <!-- Números 2:25 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:25</div>
+            <div class="hebrew">דֶּגֶל מַחֲנֵה דָן צָפֹנָה לְצִבְאֹתָם וְנָשִׂיא לִבְנֵי דָן אֲחִיעֶזֶר בֶּן־עַמִּישַׁדָּי</div>
+            <div class="transliteration">Degel machaneh Dan tzafonah letzivotam, venasi livnei Dan Aji'ezer ben-Amishaddai.</div>
+            <div class="literal-translation">La bandera del campamento de Dan, al norte, por sus ejércitos; y el jefe de los hijos de Dan, Aji'ezer hijo de Amishaddai.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 2:26</div>
+            <div class="hebrew">וְעָלָיו מַטֵּה אָשֵׁר וְנָשִׂיא לִבְנֵי אָשֵׁר פַּגְעִיאֵל בֶּן־עָכְרָן</div>
+            <div class="transliteration">Ve'alav mateh Asher, venasi livnei Asher Pagiel ben-Akhran.</div>
+            <div class="literal-translation">Y junto a él, la tribu de Aser; y el jefe de los hijos de Aser, Pagiel hijo de Akrán.</div>
+        </div>
+
+        <!-- Números 2:27 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:27</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו חֲמִשָּׁה וְאַרְבָּעִים אֶלֶף וּשְׁלֹשׁ מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav chamishah ve-arba'im elef ushlosh me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cuarenta y un mil quinientos.</div>
+        </div>
+
+        <!-- Números 2:28 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:28</div>
+            <div class="hebrew">וּמַטֵּה נַפְתָּלִי וְנָשִׂיא לִבְנֵי נַפְתָּלִי אֲחִירַע בֶּן־עֵינָן</div>
+            <div class="transliteration">Umateh Naftalí, venasi livnei Naftalí Ajira ben-Enan.</div>
+            <div class="literal-translation">Y la tribu de Neftalí; y el jefe de los hijos de Neftalí, Ajira hijo de Enán.</div>
+        </div>
+
+        <!-- Números 2:29 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:29</div>
+            <div class="hebrew">וּצְבָאוֹ וּפְקֻדָיו חֲמֵשֶׁת אֲלָפִים וּשְׁלֹשׁ מֵאוֹת</div>
+            <div class="transliteration">Utzva'o upekudav chameshet alafim ushlosh me'ot.</div>
+            <div class="literal-translation">Y su ejército, y sus contados: cincuenta y tres mil cuatrocientos.</div>
+        </div>
+
+        <!-- Números 2:30 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:30</div>
+            <div class="hebrew">כָּל־הַפְּקֻדִים לְמַחֲנֵה דָן מְאַת חֲמִשָּׁה וְחָמֵשֶׁת אֲלָפִים וְשֵׁשׁ מֵאוֹת לְצִבְאֹתָם אַחֲרֹנָה יִסָּעוּ לְדִגְלֵיהֶם</div>
+            <div class="transliteration">Kol hapekudim le-machaneh Dan me'at chamishah ve-chameshet alafim ve-shesh me'ot letzivotam, acharonah yisa'u ledigleihem.</div>
+            <div class="literal-translation">Todos los contados del campamento de Dan: ciento cincuenta y siete mil seiscientos, por sus ejércitos; ellos marcharán al final bajo sus banderas.</div>
+        </div>
+
+        <!-- Números 2:31 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:31</div>
+            <div class="hebrew">אֵלֶּה פְּקוּדֵי יִשְׂרָאֵל לְבֵית אֲבֹתָם כָּל־פְּקוּדֵי הַמַּחֲנוֹת לְצִבְאֹתָם שֵׁשׁ מֵאוֹת אֶלֶף וּשְׁלֹשֶׁת אֲלָפִים וַחֲמֵשׁ מֵאוֹת וַחֲמִשִּׁים</div>
+            <div class="transliteration">Ele pekudei Yisrael leveit avotam, kol pekudei hamachanot letzivotam shesh me'ot elef ushloshet alafim va-chamesh me'ot va-chamishim.</div>
+            <div class="literal-translation">Estos son los contados de los hijos de Israel por casas paternas; todos los contados de los campamentos por sus ejércitos: seiscientos tres mil quinientos cincuenta.</div>
+        </div>
+
+        <!-- Números 2:32 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:32</div>
+            <div class="hebrew">וְהַלְוִיִּם לֹא הָתְפָּקְדוּ בְּתוֹךְ בְּנֵי יִשְׂרָאֵל כַּאֲשֶׁר צִוָּה יְהוָה אֶת־מֹשֶׁה</div>
+            <div class="transliteration">Vehalviyím lo hatpakdu betoch bnei Yisrael ka'asher tzivah YHWH et-Moshé.</div>
+            <div class="literal-translation">Pero los levitas no fueron contados entre los hijos de Israel, como YHWH había ordenado a Moshé.</div>
+        </div>
+
+        <!-- Números 2:33 -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:33</div>
+            <div class="hebrew">וַיַּעֲשׂוּ בְּנֵי יִשְׂרָאֵל כְּכֹל אֲשֶׁר צִוָּה יְהוָה אֶת־מֹשֶׁה כֵּן חָנוּ לְדִגְלֵיהֶם וְכֵן נָסָעוּ אִישׁ לְמִשְׁפְּחֹתָיו עַל־בֵּית אֲבֹתָיו</div>
+            <div class="transliteration">Vaya'asu bnei Yisrael kekol asher tzivah YHWH et-Moshé, ken chanu ledigleihem, vechen nasau ish lemishpejotav al-beit avotav.</div>
+            <div class="literal-translation">E hicieron los hijos de Israel conforme a todo lo que YHWH ordenó a Moshé; así acamparon bajo sus banderas, y así marcharon, cada uno por sus familias, según la casa de sus padres.</div>
+        </div>
+
+        <!-- Números 2:34 (cierre del capítulo) -->
+        <div class="verse-container">
+            <div class="verse-number">Números 2:34</div>
+            <div class="hebrew">וַיַּעֲשׂוּ בְּנֵי יִשְׂרָאֵל כְּכֹל אֲשֶׁר צִוָּה יְהוָה אֶת־מֹשֶׁה כֵּן חָנוּ לְדִגְלֵיהֶם וְכֵן נָסָעוּ אִישׁ לְמִשְׁפְּחֹתָיו עַל־בֵּית אֲבֹתָיו</div>
+            <div class="transliteration">Vaya'asu bnei Yisrael kekol asher tzivah YHWH et-Moshé, ken chanu ledigleihem, vechen nasau ish lemishpejotav al-beit avotav.</div>
+            <div class="literal-translation">E hicieron los hijos de Israel conforme a todo lo que YHWH ordenó a Moshé; así acamparon bajo sus banderas, y así marcharon, cada uno por sus familias, según la casa de sus padres.</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Cumplimiento Profético en el Mashíaj de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. El Mishkán en el Centro: Yeshúa, Presencia Divina entre su Pueblo</div>
+        <div class="prophetic-section">
+            <p>
+                La organización del campamento de Israel alrededor del Mishkán es una sombra profética de la centralidad del Mashíaj Yeshúa en medio de su pueblo. Así como el Tabernáculo estaba en el centro y todas las tribus acampaban y marchaban en torno a él, así también Yeshúa es la presencia de Elohím en medio de la comunidad redimida (Juan 1:14; Apocalipsis 21:3).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. Orden, Unidad y Diversidad en el Reino</div>
+        <div class="prophetic-section">
+            <p>
+                Cada tribu tenía su lugar, bandera y función, mostrando que en el Reino del Mashíaj hay orden, unidad y diversidad de llamados. Nadie es anónimo ni reemplazable: cada creyente tiene un propósito y una posición en el cuerpo del Mesías (1 Corintios 12:18-27; Efesios 4:16).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. Marchar y Acampar según la Voz de Elohím</div>
+        <div class="prophetic-section">
+            <p>
+                Israel acampaba y marchaba conforme a la instrucción divina. En el Mashíaj, el pueblo redimido aprende a moverse y a permanecer según la dirección del Espíritu, siguiendo la voz del Buen Pastor (Juan 10:4; Romanos 8:14).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">IV. El Pueblo como Estandarte de Redención</div>
+        <div class="prophetic-section">
+            <p>
+                Las banderas y estandartes de cada tribu representan la identidad y el testimonio público del pueblo de Elohím. En Yeshúa, somos llamados a levantar la señal de la redención y a ser luz y testimonio entre las naciones (Isaías 11:10,12; Mateo 5:14-16).
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión Profética</h3>
+        <p>
+            Números 2:1-34 revela que la vida del pueblo de Elohím gira en torno a la presencia del Eterno, manifestada plenamente en el Mashíaj Yeshúa. El orden, la unidad y la misión de Israel en el desierto son figura del llamado de la comunidad mesiánica: vivir, marchar y servir con Yeshúa en el centro, cada uno en su lugar, hasta que la gloria de Elohím llene toda la tierra.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 2. Haftaráh: Oseas 2:14-22 (El llamado de Israel al desierto para ser restaurado).</h1>
+
+    <!-- Oseas 2:14 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:14</div>
+        <div class="hebrew">לָכֵן הִנֵּה אָנֹכִי מְפַתֶּיהָ וְהֹלַכְתִּיהָ הַמִּדְבָּר וְדִבַּרְתִּי עַל לִבָּהּ</div>
+        <div class="transliteration">Lajén hiné anojí mefatehá veholajtíha hamidbar vedibartí al libáh.</div>
+        <div class="literal-translation">Por eso, he aquí que yo la atraeré y la llevaré al desierto, y hablaré a su corazón.</div>
+    </div>
+
+    <!-- Oseas 2:15 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:15</div>
+        <div class="hebrew">וְנָתַתִּי לָהּ אֶת כְּרָמֶיהָ מִשָּׁם וְאֶת עֵמֶק עָכוֹר לְפֶתַח תִּקְוָה וְעָנְתָה שָּׁמָּה כִּימֵי נְעוּרֶיהָ וּכְיוֹם עֲלֹתָהּ מֵאֶרֶץ מִצְרָיִם</div>
+        <div class="transliteration">Venatati lah et keraméha misham ve'et émek Ajor lefetaj tikváh, ve'antáh shamáh kiymei ne'urehá ukeyom alotáh me'eretz Mitzrayim.</div>
+        <div class="literal-translation">Y le daré sus viñas desde allí, y el valle de Acor por puerta de esperanza; y allí responderá como en los días de su juventud, como en el día en que subió de la tierra de Egipto.</div>
+    </div>
+
+    <!-- Oseas 2:16 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:16</div>
+        <div class="hebrew">וְהָיָה בַיּוֹם הַהוּא נְאֻם יְהוָה תִּקְרְאִי אִישִׁי וְלֹא תִקְרְאִי לִי עוֹד בַּעְלִי</div>
+        <div class="transliteration">Vehayá bayom hahu neum YHWH, tikre'í ishi velo tikre'í li od ba'ali.</div>
+        <div class="literal-translation">Y será en aquel día, dice YHWH, que me llamarás “mi esposo” y no me llamarás más “mi señor”.</div>
+    </div>
+
+    <!-- Oseas 2:17 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:17</div>
+        <div class="hebrew">וַהֲסִרֹתִי אֶת שְׁמוֹת הַבְּעָלִים מִפִּיהָ וְלֹא יִזָּכְרוּ עוֹד בִּשְׁמָם</div>
+        <div class="transliteration">Vahasirótí et shemot habaalim mipíha velo yizakrú od bishmam.</div>
+        <div class="literal-translation">Y quitaré de su boca los nombres de los baales, y nunca más serán recordados por su nombre.</div>
+    </div>
+
+    <!-- Oseas 2:18 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:18</div>
+        <div class="hebrew">וְכָרַתִּי לָהֶם בְּרִית בַּיּוֹם הַהוּא עִם חַיַּת הַשָּׂדֶה וְעִם עוֹף הַשָּׁמַיִם וְרֶמֶשׂ הָאֲדָמָה וְקֶשֶׁת וְחֶרֶב וּמִלְחָמָה אֶשְׁבּוֹר מִן הָאָרֶץ וְהִשְׁכַּבְתִּים לָבֶטַח</div>
+        <div class="transliteration">Vejaratí lahem brit bayom hahu im hayat hasadé ve'im of hashamayim veremés ha'adamah, vekeshet vejérev umiljamáh eshbor min haaretz vehishkavtim lavetaj.</div>
+        <div class="literal-translation">Y haré para ellos pacto en aquel día con las bestias del campo, con las aves del cielo y los reptiles de la tierra; y quitaré arco, espada y guerra de la tierra, y los haré dormir seguros.</div>
+    </div>
+
+    <!-- Oseas 2:19 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:19</div>
+        <div class="hebrew">וְאֵרַשְׂתִּיךְ לִי לְעוֹלָם וְאֵרַשְׂתִּיךְ לִי בְּצֶדֶק וּבְמִשְׁפָּט וּבְחֶסֶד וּבְרַחֲמִים</div>
+        <div class="transliteration">Ve'erastíj li leolam, ve'erastíj li betzedek uvmishpat uvejesed uverajamim.</div>
+        <div class="literal-translation">Y te desposaré conmigo para siempre; te desposaré conmigo en justicia, en juicio, en misericordia y en compasión.</div>
+    </div>
+
+    <!-- Oseas 2:20 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:20</div>
+        <div class="hebrew">וְאֵרַשְׂתִּיךְ לִי בֶּאֱמוּנָה וְיָדַעַתְּ אֶת יְהוָה</div>
+        <div class="transliteration">Ve'erastíj li be'emunah, veyada'at et YHWH.</div>
+        <div class="literal-translation">Y te desposaré conmigo en fidelidad, y conocerás a YHWH.</div>
+    </div>
+
+    <!-- Oseas 2:21 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:21</div>
+        <div class="hebrew">וְהָיָה בַיּוֹם הַהוּא אֶעֱנֶה נְאֻם יְהוָה אֶעֱנֶה אֶת הַשָּׁמַיִם וְהֵם יַעֲנוּ אֶת הָאָרֶץ</div>
+        <div class="transliteration">Vehayá bayom hahu e'ene neum YHWH, e'ene et hashamayim vehem ya'anu et haaretz.</div>
+        <div class="literal-translation">Y sucederá en aquel día que responderé, dice YHWH, responderé a los cielos, y ellos responderán a la tierra.</div>
+    </div>
+
+    <!-- Oseas 2:22 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:22</div>
+        <div class="hebrew">וְהָאָרֶץ תַּעֲנֶה אֶת הַדָּגָן וְאֶת הַתִּירוֹשׁ וְאֶת הַיִּצְהָר וְהֵם יַעֲנוּ אֶת יִזְרְעֶאל</div>
+        <div class="transliteration">Vehaaretz ta'ane et hadagán ve'et hatirosh ve'et hayitzhar, vehem ya'anu et Yizre'el.</div>
+        <div class="literal-translation">Y la tierra responderá al trigo, al vino y al aceite, y ellos responderán a Jezreel.</div>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Cumplimiento Profético en el Mashíaj de Oseas 2:14-22</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. El Desierto como Lugar de Restauración</div>
+        <div class="prophetic-section">
+            <p>
+                Oseas anuncia que Elohím llevará a Israel al desierto para hablarle al corazón. En el Mashíaj Yeshúa, el desierto representa el proceso de restauración y reconciliación, donde el pueblo es apartado de sus ídolos y vuelve a escuchar la voz de su Redentor (Mateo 4:1; Lucas 15:16-20).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. Puerta de Esperanza y Nueva Juventud</div>
+        <div class="prophetic-section">
+            <p>
+                El “valle de Acor” se convierte en “puerta de esperanza”. En Yeshúa, el lugar de juicio y dificultad se transforma en oportunidad de redención y nueva vida. Así, el pueblo responde como en los días de su juventud, renovando su relación con el Eterno (2 Corintios 5:17; Romanos 5:2-5).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. Relación de Esposo y Esposa: Intimidad Restaurada</div>
+        <div class="prophetic-section">
+            <p>
+                Elohím promete que Israel ya no le llamará “mi señor” sino “mi esposo”. En el Mashíaj, la relación con el Creador es restaurada a una intimidad de amor, fidelidad y compasión, cumpliendo la profecía de una unión eterna y sincera (Efesios 5:25-27; Apocalipsis 19:7).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">IV. Paz, Pacto y Plenitud Mesiánica</div>
+        <div class="prophetic-section">
+            <p>
+                El pacto de paz con toda la creación y la eliminación de la guerra apuntan al Reino mesiánico, donde Yeshúa trae shalom verdadero y seguridad a su pueblo. La restauración de la tierra y la abundancia son señales del cumplimiento final en el Reino (Isaías 11:6-9; Miqueas 4:3-4).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">V. Desposorio Eterno y Conocimiento de YHWH</div>
+        <div class="prophetic-section">
+            <p>
+                El triple “te desposaré conmigo” señala la alianza renovada en justicia, misericordia y fidelidad. En el Mashíaj, el pueblo es hecho partícipe de una relación eterna y conoce verdaderamente a YHWH, cumpliendo la promesa de Jeremías 31:33-34 y Juan 17:3.
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión Profética</h3>
+        <p>
+            Oseas 2:14-22 se cumple en Yeshúa haMashíaj, quien restaura, perdona y desposa a su pueblo con amor eterno. El desierto se convierte en lugar de encuentro, la esperanza renace y la paz mesiánica se establece, preparando a Israel y a las naciones para la plenitud del Reino.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Texto Arameo, Fonética y Traducción Literal de Apocalipsis 21:3-4</h1>
+
+    <!-- Apocalipsis 21:3 -->
+    <div class="verse-container">
+        <div class="verse-number">Apocalipsis 21:3</div>
+        <div class="aramaic">וְשְׁמַעְתְּ קָלָא רַבָּא מִן־כּוּרְסְיָא דְּאָמַר הָא מִשְׁכַּן אֱלָהָא עִם בְּנֵי אֲנָשָׁא וְיִשְׁכֹּן עִמְּהוֹן וְאִנּוּן עַמֵּהּ יִהְיוֹן וְהוּא אֱלָהָא עִמְּהוֹן יִהְוֵה לֵהוֹן לֵאֱלָהּ</div>
+        <div class="transliteration">Veshma't qala raba min-kurseya de'amar: Ha mishkan Elaha im bnei anasha, veyishkon imhon ve'inun ameh yihyun, vehu Elaha imhon yihveh lehon le'Elah.</div>
+        <div class="literal-translation">Y oí una gran voz desde el trono que decía: He aquí el tabernáculo de Dios con los hombres, y Él morará con ellos; y ellos serán su pueblo, y Dios mismo estará con ellos como su Dios.</div>
+    </div>
+
+    <!-- Apocalipsis 21:4 -->
+    <div class="verse-container">
+        <div class="verse-number">Apocalipsis 21:4</div>
+        <div class="aramaic">וּמְחָה כָל־דִּמְעָא מִן־עֵינֵיהוֹן וּמָוְתָא לָא יִהְוֵה עוֹד וְלָא אֶבְלָא וְלָא רוּגְזָא וְלָא כְּאֵבָא לָא יִהְוֵה עוֹד מִטּוּל דִּי עַלְוָתָא קַדְמָיָא עֲבַר</div>
+        <div class="transliteration">Umcha kol-dim'a min-einehon, umaveta la yihveh od, vela evla vela rugza vela ke'eva la yihveh od, mitul di alvata qadmaya avar.</div>
+        <div class="literal-translation">Y enjugará toda lágrima de sus ojos; y la muerte no será más, ni habrá más duelo, ni clamor, ni dolor, porque las primeras cosas pasaron.</div>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Cumplimiento Profético en el Mashíaj de Apocalipsis 21:3-4</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. La Morada de Elohím con los Hombres</div>
+        <div class="prophetic-section">
+            <p>
+                Apocalipsis 21:3 proclama el cumplimiento final de la promesa: la presencia de Elohím habitando en medio de su pueblo. En Yeshúa haMashíaj, Dios se hace carne y mora entre nosotros (Juan 1:14), y en la consumación, su presencia será plena y eterna, sin separación ni distancia.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. Eliminación Total del Dolor y la Muerte</div>
+        <div class="prophetic-section">
+            <p>
+                El Mashíaj trae la restauración completa: toda lágrima será enjugada, la muerte dejará de existir, y no habrá más duelo, clamor ni dolor. Esto señala la victoria definitiva de Yeshúa sobre el pecado y la muerte (1 Corintios 15:54-57; Isaías 25:8).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. El Pueblo Redimido y la Nueva Creación</div>
+        <div class="prophetic-section">
+            <p>
+                El pueblo de Elohím será plenamente suyo, restaurado y transformado en la nueva creación. En el Mashíaj, todas las cosas son hechas nuevas y la comunión con el Creador es perfecta y eterna (2 Corintios 5:17; Apocalipsis 21:5).
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión Profética</h3>
+        <p>
+            Apocalipsis 21:3-4 revela la esperanza suprema en el Mashíaj Yeshúa: la restauración total, la vida sin fin y la presencia de Elohím con su pueblo para siempre. Esta visión es el destino final de la redención, donde el dolor y la muerte ya no existen, y la plenitud del Reino es realidad eterna.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 4. Contexto Histórico y Cultural de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. El Pueblo de Israel en el Desierto</div>
+        <div class="prophetic-section">
+            <p>
+                Números 2:1-34 describe la organización del campamento de Israel durante su travesía por el desierto tras la salida de Egipto. El pueblo, compuesto por doce tribus, acampaba y marchaba bajo la dirección divina, mostrando un orden y estructura únicos entre las naciones de la antigüedad.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. El Mishkán como Centro de la Vida Nacional</div>
+        <div class="prophetic-section">
+            <p>
+                El Tabernáculo (Mishkán) estaba en el centro del campamento, simbolizando la presencia de Elohím en medio de su pueblo. Todas las tribus se organizaban alrededor de este centro sagrado, reflejando la centralidad de la adoración y la obediencia a YHWH en la vida diaria y nacional de Israel.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. Banderas, Identidad y Liderazgo Tribal</div>
+        <div class="prophetic-section">
+            <p>
+                Cada tribu tenía su propia bandera y posición específica, lo que fortalecía la identidad y cohesión interna. Los líderes tribales eran responsables de guiar y representar a sus familias, y el censo aseguraba que cada varón apto para la guerra estuviera registrado, mostrando la preparación militar y la responsabilidad colectiva.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">IV. Los Levitas y el Servicio Sagrado</div>
+        <div class="prophetic-section">
+            <p>
+                Los levitas no fueron contados entre los guerreros, pues su función era servir en el Mishkán y encargarse de su traslado y cuidado. Esto subraya la importancia del servicio espiritual y la separación de funciones dentro del pueblo, estableciendo un modelo de roles y responsabilidades.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">V. Influencias y Contrastes con Otras Culturas</div>
+        <div class="prophetic-section">
+            <p>
+                A diferencia de otras culturas antiguas, donde el rey o el templo estaban en el centro del poder, en Israel era la presencia de Elohím la que ocupaba el lugar central. El orden y la disciplina del campamento reflejaban la santidad y el llamado especial de Israel como pueblo apartado entre las naciones.
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Resumen Histórico y Cultural</h3>
+        <p>
+            Números 2:1-34 revela un pueblo organizado, guiado por la presencia divina y marcado por la identidad tribal y el servicio sagrado. El campamento de Israel en el desierto es un testimonio de la fidelidad de Elohím, la importancia de la obediencia y la preparación para la conquista de la tierra prometida, en contraste con las costumbres y estructuras de los pueblos vecinos.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. El Orden Divino y la Identidad del Pueblo</div>
+        <div class="prophetic-section">
+            <p>
+                El diseño del campamento de Israel no es arbitrario, sino una manifestación del orden divino. Cada tribu tenía su lugar, bandera y función, lo que enseñaba identidad, pertenencia y propósito. Este principio se refleja en la comunidad mesiánica, donde cada creyente es colocado por Elohím en el cuerpo del Mesías con un llamado y función específica (1 Corintios 12:18).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. El Mishkán como Sombra del Mashíaj</div>
+        <div class="prophetic-section">
+            <p>
+                El Mishkán en el centro del campamento prefigura a Yeshúa, quien es la presencia de Elohím en medio de su pueblo (Juan 1:14). Así como Israel giraba en torno al Tabernáculo, la vida de los redimidos gira en torno al Mesías, quien es el mediador y el punto de encuentro entre el cielo y la tierra (Hebreos 8:1-2).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. Unidad en la Diversidad</div>
+        <div class="prophetic-section">
+            <p>
+                Aunque cada tribu tenía su propia bandera y liderazgo, todas marchaban y acampaban en armonía bajo la dirección de YHWH. Esto enseña que la verdadera unidad no es uniformidad, sino la integración de dones y llamados diversos bajo la autoridad del Eterno (Efesios 4:16).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">IV. El Papel de los Levitas y el Servicio Espiritual</div>
+        <div class="prophetic-section">
+            <p>
+                Los levitas, apartados para el servicio del Mishkán, representan a aquellos llamados al ministerio espiritual y a la intercesión. En el Nuevo Pacto, todos los creyentes son llamados a ser “sacerdocio santo” (1 Pedro 2:5), sirviendo a Elohím y a la comunidad con sus dones.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">V. Conexiones Proféticas con el Reino Mesiánico</div>
+        <div class="prophetic-section">
+            <p>
+                El campamento de Israel anticipa el Reino mesiánico, donde Yeshúa reinará en el centro y las naciones serán organizadas en torno a su presencia (Zacarías 14:9, Apocalipsis 21:3). El orden, la santidad y la misión del pueblo en el desierto son figura de la comunidad redimida y del futuro Reino de paz y justicia.
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Reflexión Final</h3>
+        <p>
+            Números 2:1-34 nos desafía a valorar el orden, la identidad y la centralidad de la presencia divina en nuestra vida y comunidad. Nos llama a reconocer nuestro lugar y función en el cuerpo del Mesías, a vivir en unidad y a esperar el cumplimiento profético del Reino, donde Elohím morará para siempre en medio de su pueblo.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 6. Análisis Profundo de la Aliyáh de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. Simbolismo del Campamento: Orden y Propósito</div>
+        <div class="prophetic-section">
+            <p>
+                El campamento de Israel, dispuesto en torno al Mishkán, refleja el principio de que la vida del pueblo debe girar en torno a la presencia divina. El orden de las tribus, sus posiciones y banderas, no solo facilitaban la logística y la defensa, sino que también enseñaban sobre la centralidad de Elohím y el propósito colectivo de Israel.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. La Relación entre Tribu, Familia y Comunidad</div>
+        <div class="prophetic-section">
+            <p>
+                Cada tribu y familia tenía un lugar asignado, lo que fortalecía la identidad y la responsabilidad mutua. El texto subraya la importancia de la pertenencia y el trabajo en equipo, donde cada individuo y grupo aporta al bienestar y la misión del conjunto.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. El Rol de los Levitas y la Prioridad Espiritual</div>
+        <div class="prophetic-section">
+            <p>
+                Los levitas, ubicados alrededor del Mishkán y encargados de su servicio, representan la prioridad de lo espiritual sobre lo militar o lo administrativo. Su función protegía la santidad del Tabernáculo y recordaba al pueblo que la adoración y el servicio a Elohím son el centro de la vida nacional.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">IV. Marchar y Acampar: Disciplina y Obediencia</div>
+        <div class="prophetic-section">
+            <p>
+                El mandato de acampar y marchar según la instrucción divina requería disciplina, obediencia y confianza. El pueblo debía estar listo para moverse cuando la nube se levantaba, mostrando dependencia continua de la guía de YHWH y disposición para avanzar hacia el propósito prometido.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">V. Aplicaciones para la Vida Actual</div>
+        <div class="prophetic-section">
+            <p>
+                Este pasaje invita a reflexionar sobre la centralidad de la presencia de Elohím en la vida personal y comunitaria, la importancia del orden, la identidad y la función de cada miembro, y la necesidad de vivir en obediencia y unidad bajo la dirección del Espíritu. El modelo del campamento enseña que cada creyente tiene un lugar y un llamado en el pueblo de Dios.
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión del Análisis</h3>
+        <p>
+            La aliyáh de Números 2:1-34 es mucho más que una lista de nombres y números: es una lección viva sobre el orden divino, la santidad, la unidad y la misión del pueblo de Elohím. Nos desafía a poner a YHWH en el centro, a valorar nuestro lugar en la comunidad y a avanzar juntos hacia el cumplimiento de Su propósito eterno.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 7. Tema Más Relevante de la Aliyáh de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">El Centro: La Presencia de Elohím en Medio de su Pueblo</div>
+        <div class="prophetic-section">
+            <p>
+                El tema más relevante de esta aliyáh es la centralidad de la presencia de Elohím en la vida y organización de Israel. Todo el campamento gira en torno al Mishkán, enseñando que la vida del pueblo debe estar orientada y fundamentada en la comunión con el Eterno. El orden, la identidad y la misión de cada tribu solo tienen sentido cuando Elohím ocupa el lugar central.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">Aplicación Profética y Actual</div>
+        <div class="prophetic-section">
+            <p>
+                Así como Israel debía acampar y marchar con el Tabernáculo en el centro, la comunidad de creyentes hoy es llamada a poner a Yeshúa haMashíaj en el centro de su vida personal y colectiva. Solo así se experimenta verdadera unidad, propósito y bendición. El modelo del campamento es una invitación a examinar si nuestra vida y comunidad giran realmente en torno a la presencia y voluntad de Elohím.
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Reflexión Final del Tema</h3>
+        <p>
+            Números 2:1-34 nos recuerda que el mayor privilegio y responsabilidad del pueblo de Elohím es vivir con Su presencia en el centro. Cuando esto ocurre, hay orden, identidad, protección y dirección para avanzar hacia el destino profético preparado por el Eterno.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 8. Descubriendo al Mashíaj en la Aliyáh de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. El Mishkán: Sombra del Mesías</div>
+        <div class="prophetic-section">
+            <p>
+                El Mishkán, situado en el centro del campamento, es una figura profética de Yeshúa haMashíaj, quien es la presencia de Elohím entre los hombres. Así como el Tabernáculo era el punto de encuentro entre Elohím e Israel, Yeshúa es el mediador y el lugar donde la humanidad se reconcilia con el Creador (Juan 1:14; Hebreos 9:11).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. Las Banderas y la Identidad en el Mesías</div>
+        <div class="prophetic-section">
+            <p>
+                Cada tribu tenía su bandera y su lugar, pero todas giraban en torno al Mishkán. En el Mesías, cada creyente recibe una nueva identidad y un propósito, pero la unidad y el sentido solo se encuentran cuando Yeshúa es el centro de la vida personal y comunitaria (Efesios 2:19-22).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. El Orden y la Función en el Cuerpo del Mesías</div>
+        <div class="prophetic-section">
+            <p>
+                El orden del campamento enseña que cada miembro tiene un lugar y una función en el pueblo de Elohím. En el Mashíaj, todos somos parte de un solo cuerpo, llamados a servir y a avanzar juntos hacia el propósito eterno (1 Corintios 12:12-27).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">IV. Los Levitas: Imagen del Servicio Sacerdotal de Yeshúa</div>
+        <div class="prophetic-section">
+            <p>
+                Los levitas, encargados del servicio y la protección del Mishkán, prefiguran el ministerio sacerdotal de Yeshúa, quien intercede y ministra en favor de su pueblo (Hebreos 7:24-25). Además, en el Mesías, todos los redimidos son llamados a ser “sacerdocio santo” y a servir en la presencia de Elohím (1 Pedro 2:5).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">V. Marchar con el Mesías en el Centro</div>
+        <div class="prophetic-section">
+            <p>
+                Israel marchaba y acampaba según la dirección divina, con el Mishkán en el centro. Así, la vida del creyente y de la comunidad mesiánica debe estar guiada por la presencia y la voluntad de Yeshúa, avanzando juntos hacia la herencia prometida y la plenitud del Reino.
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión: El Mesías Revelado en el Campamento</h3>
+        <p>
+            Números 2:1-34 revela a Yeshúa haMashíaj como el centro, el mediador y el propósito del pueblo de Elohím. Descubrir al Mesías en esta aliyáh es reconocer que toda la vida, el orden y la misión de Israel —y de la comunidad redimida— encuentran su sentido y plenitud en Él.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. Midrashim: Enseñanzas y Parábolas Rabínicas</div>
+        <div class="prophetic-section">
+            <p>
+                Los midrashim sobre Números 2 destacan el simbolismo de las banderas y el orden del campamento. El <strong>Midrash Bamidbar Rabá</strong> enseña que cada tribu tenía un estandarte con colores y símbolos proféticos, reflejando la bendición de Yaakov a sus hijos (Génesis 49). El orden del campamento es visto como un reflejo del orden celestial, donde los ángeles también están organizados alrededor del Trono Divino.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. Targumim: Traducción y Expansión Aramea</div>
+        <div class="prophetic-section">
+            <p>
+                El <strong>Targum Onkelos</strong> y el <strong>Targum Yonatán</strong> sobre Números 2 añaden detalles sobre la función de los estandartes y la importancia de la obediencia al mandato divino. Los targumim enfatizan que el campamento debía reflejar santidad y separación, y que la presencia de Elohím en el centro era la fuente de protección y bendición.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">III. Textos Fuentes: Manuscritos y Tradiciones Antiguas</div>
+        <div class="prophetic-section">
+            <p>
+                Los <strong>manuscritos del Mar Muerto</strong> (Qumrán) contienen listas y descripciones de campamentos y censos similares, mostrando la importancia de la organización tribal en la identidad de Israel. El <strong>Libro de los Jubileos</strong> también menciona la disposición de las tribus y la centralidad del santuario.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">IV. Apócrifos y Literatura Intertestamentaria</div>
+        <div class="prophetic-section">
+            <p>
+                En textos apócrifos como el <strong>Libro de los Jubileos</strong> y el <strong>Testamento de los Doce Patriarcas</strong>, se resalta la importancia de la unidad y la santidad del pueblo, así como la esperanza mesiánica de un líder que reúna a todas las tribus en torno al santuario de Elohím.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">V. Conexión Profética y Mesiánica</div>
+        <div class="prophetic-section">
+            <p>
+                Los sabios vieron en el orden del campamento una prefiguración del Reino mesiánico, donde todas las naciones se reunirán en torno a la presencia de Elohím. El modelo del campamento de Israel es interpretado como una sombra del futuro orden del Reino, con el Mesías en el centro y la humanidad restaurada en armonía (Isaías 11:10-12; Apocalipsis 21:3).
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión de las Fuentes Tradicionales</h3>
+        <p>
+            Los midrashim, targumim y textos antiguos enriquecen la comprensión de Números 2:1-34, mostrando que el orden, la identidad y la centralidad de la presencia divina son temas fundamentales en la tradición judía y mesiánica. Estas fuentes invitan a ver el campamento de Israel como un modelo profético para la comunidad redimida y el Reino venidero.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 10. Mandamientos Encontrados y Principios Espirituales de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">I. Mandamientos Encontrados en Números 2:1-34</div>
+        <div class="prophetic-section">
+            <ul>
+                <li><strong>Organización del campamento:</strong> Elohím ordena a Israel acampar y marchar según las instrucciones divinas, cada tribu bajo su bandera y alrededor del Mishkán (Números 2:1-2).</li>
+                <li><strong>Roles y posiciones:</strong> Cada tribu y familia debía respetar su lugar asignado, mostrando obediencia y orden en la comunidad (Números 2:17, 34).</li>
+                <li><strong>Separación de los levitas:</strong> Los levitas no fueron contados entre los guerreros, sino apartados para el servicio sagrado (Números 2:33).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">II. Principios Espirituales para la Vida Actual</div>
+        <div class="prophetic-section">
+            <ul>
+                <li><strong>Centralidad de la presencia divina:</strong> La vida del creyente debe girar en torno a la presencia de Elohím, poniendo a Yeshúa en el centro de todo.</li>
+                <li><strong>Orden y obediencia:</strong> El orden divino trae bendición, protección y propósito. La obediencia a la instrucción de Elohím es clave para la unidad y el avance del pueblo.</li>
+                <li><strong>Identidad y función:</strong> Cada persona tiene un lugar y un llamado en la comunidad. Reconocer y valorar nuestro rol fortalece la identidad y la misión colectiva.</li>
+                <li><strong>Servicio y santidad:</strong> El ejemplo de los levitas enseña la importancia del servicio espiritual y la dedicación a lo sagrado en medio de la vida cotidiana.</li>
+                <li><strong>Unidad en la diversidad:</strong> Aunque hay diferentes tribus y funciones, todos forman parte de un solo pueblo bajo la dirección del Eterno.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Reflexión sobre Mandamientos y Principios</h3>
+        <p>
+            Números 2:1-34 nos llama a vivir en orden, obediencia y unidad, reconociendo la centralidad de la presencia de Elohím y nuestro lugar en Su pueblo. Estos mandamientos y principios siguen vigentes para quienes desean caminar en santidad y propósito en la comunidad del Mesías.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 11. Preguntas de Reflexión con Respuestas en el Mashíaj de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">1. ¿Por qué es importante que el Mishkán estuviera en el centro del campamento?</div>
+        <div class="prophetic-section">
+            <p>
+                El Mishkán en el centro enseñaba que la presencia de Elohím debía ser el eje de la vida de Israel. En el Mashíaj Yeshúa, aprendemos que nuestra vida y comunidad solo encuentran sentido y propósito cuando Él ocupa el lugar central (Colosenses 1:18).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">2. ¿Qué nos enseña la organización de las tribus sobre la unidad y la diversidad?</div>
+        <div class="prophetic-section">
+            <p>
+                Cada tribu tenía su bandera y función, pero todas marchaban y acampaban en armonía. En el cuerpo del Mesías, la unidad no elimina la diversidad, sino que la integra bajo la dirección de Yeshúa, quien une a todos en un solo propósito (1 Corintios 12:12-27).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">3. ¿Cuál es el significado espiritual de los levitas y su servicio?</div>
+        <div class="prophetic-section">
+            <p>
+                Los levitas fueron apartados para el servicio sagrado, recordándonos que en el Mashíaj todos somos llamados a servir y a vivir en santidad. Yeshúa es nuestro Sumo Sacerdote y nos invita a participar en el sacerdocio espiritual (1 Pedro 2:5, Hebreos 7:24-25).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">4. ¿Cómo se refleja el orden del campamento en la vida del creyente hoy?</div>
+        <div class="prophetic-section">
+            <p>
+                El orden del campamento enseña la importancia de la obediencia, la disciplina y el respeto por el lugar y función de cada uno. En el Mashíaj, somos llamados a vivir en orden, bajo la guía del Espíritu, y a reconocer nuestro rol en la comunidad (Romanos 12:4-8).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">5. ¿Qué aplicación profética tiene la marcha de Israel para la comunidad mesiánica?</div>
+        <div class="prophetic-section">
+            <p>
+                Así como Israel marchaba siguiendo la dirección divina, la comunidad mesiánica es llamada a avanzar guiada por la presencia de Yeshúa. Esto implica estar atentos a Su voz y dispuestos a movernos conforme a Su voluntad, confiando en Su fidelidad (Juan 10:27; Romanos 8:14).
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Reflexión Final</h3>
+        <p>
+            Números 2:1-34 nos desafía a examinar si Yeshúa es realmente el centro de nuestra vida y comunidad, a valorar la unidad en la diversidad, a servir con santidad y a caminar en obediencia bajo Su guía. Solo así experimentaremos la plenitud y el propósito del Reino en el Mashíaj.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 12. Resumen de la Aliyáh de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">Resumen General</div>
+        <div class="prophetic-section">
+            <p>
+                La aliyáh de Números 2:1-34 presenta la organización del campamento de Israel alrededor del Mishkán, mostrando el orden, la unidad y la centralidad de la presencia de Elohím en la vida del pueblo. Cada tribu tenía su lugar, bandera y función, y los levitas servían en torno al Tabernáculo, recordando la prioridad de lo espiritual.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">Enseñanzas Clave</div>
+        <div class="prophetic-section">
+            <ul>
+                <li><strong>Centralidad de Elohím:</strong> El Mishkán en el centro enseña que la vida y la comunidad deben girar en torno a la presencia divina.</li>
+                <li><strong>Orden y propósito:</strong> Cada tribu y familia tenía un lugar y una función, mostrando la importancia del orden y la identidad en el pueblo de Elohím.</li>
+                <li><strong>Unidad en la diversidad:</strong> Aunque había diferentes tribus y funciones, todos formaban parte de un solo pueblo bajo la dirección del Eterno.</li>
+                <li><strong>Servicio y santidad:</strong> Los levitas representan el llamado al servicio espiritual y a la santidad en medio de la comunidad.</li>
+                <li><strong>Marchar y acampar según la voz divina:</strong> Israel debía moverse y permanecer según la instrucción de YHWH, enseñando obediencia y dependencia de Su guía.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <div class="prophetic-title">Aplicación Profética y Actual</div>
+        <div class="prophetic-section">
+            <p>
+                Esta aliyáh nos desafía a poner a Yeshúa en el centro de nuestra vida y comunidad, a valorar el orden y la identidad espiritual, y a vivir en unidad y obediencia bajo la dirección del Espíritu. El modelo del campamento de Israel es una figura profética del Reino mesiánico, donde la presencia de Elohím será el eje de toda existencia.
+            </p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión del Resumen</h3>
+        <p>
+            Números 2:1-34 nos recuerda que la verdadera bendición, protección y propósito se encuentran cuando Elohím ocupa el lugar central. El orden, la unidad y el servicio en la comunidad son reflejo de la vida del Reino, anticipando el día en que la gloria del Eterno llenará toda la tierra.
+        </p>
+    </div>
+</div>
+
+<div class="section-divider"></div>
+
+<div class="content-container">
+    <h1>Punto 13. Tefiláh (Oración) de la Aliyáh de Números 2:1-34</h1>
+
+    <div class="section-container">
+        <div class="prophetic-title">Oración: Que Elohím Sea el Centro de Nuestra Vida</div>
+        <div class="prophetic-section">
+            <div class="prayer-text">
+                Abba Kadosh, Padre Santo,<br>
+                Gracias por enseñarnos, a través de Tu Palabra, la importancia del orden, la unidad y la centralidad de Tu presencia.<br>
+                Así como Israel acampó y marchó alrededor del Mishkán, ayúdanos a poner a Yeshúa en el centro de nuestra vida y comunidad.<br>
+                Danos un corazón obediente, dispuesto a ocupar nuestro lugar y cumplir nuestro propósito en Tu pueblo.<br>
+                Que vivamos en unidad, sirviendo con humildad y santidad, y que Tu Espíritu nos guíe en cada paso.<br>
+                Haznos estandarte de redención y luz entre las naciones, para que Tu gloria llene toda la tierra.<br>
+                <br>
+                En el nombre de Yeshúa haMashíaj, nuestro Rey y Redentor.<br>
+                Amén.
+            </div>
+        </div>
+    </div>
+
+    <div class="prayer-conclusion">
+        <p>
+            “Y pondré Mi morada en medio de vosotros, y no os aborrecerá Mi alma. Y andaré entre vosotros, y seré vuestro Dios, y vosotros seréis Mi pueblo.” (Levítico 26:11-12)
+        </p>
+    </div>
+</div>
+
+<footer>
+    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a></p>
+    </footer>
+</main>
+
+<button class="aliya-button"><a href="./aliya4.html">Continuar con la Aliyá 4</a></button>
+
+
+<script src="../index.js"></script>
+
+</body>
+</html>

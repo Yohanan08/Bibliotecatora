@@ -9,21 +9,55 @@
 <body>
 
     <div class="navbar">
-        <div class="menu-container">
-          <button class="menu-button" onclick="toggleDropdown()">📖 Menú de Contenidos</button>
-          <div class="dropdown-content" id="dropdown">
-            <a href="./Profesias-de-las-parashot/profesias-de-las-parashot.html">
-              <span class="icon">🕎</span> Profecías mesiánicas de las 54 Parashot
-            </a>
-            <a href="./Estudios-a-la-Luz-del-Mashiaj/EstudiosalaluzdelmashiajYeshua.html">
-              <span class="icon">🕎</span> Estudios a la luz de nuestro Adonai Yeshúa HaMashíaj
-            </a>
-            <a href="fiestas.html">
-              <span class="icon">🕎</span> Fiestas del Eterno, bajo la luz de nuestro Adonai Yeshúa HaMashíaj
-            </a>
-          </div>
+        <button class="hamburger-btn" onclick="toggleSidebar()" id="hamburgerBtn">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </button>
+        <div class="navbar-title">
+            <span>📖</span>
+            Explora más Enseñanzas.
         </div>
-      </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" onclick="closeSidebar()" id="overlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" onclick="closeSidebar()">×</button>
+            <div class="sidebar-title">
+                <span>📖</span>
+                Contenidos
+            </div>
+            <div class="sidebar-subtitle">Estudios y enseñanzas</div>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="menu-section">
+                <a href="./Profesias-de-las-parashot/profesias-de-las-parashot.html" class="menu-item">
+                    <span class="icon">🕎</span>
+                    <span class="menu-text">Profecías mesiánicas de las 54 Parashot</span>
+                </a>
+                
+                <a href="./Estudios-a-la-Luz-del-Mashiaj/EstudiosalaluzdelmashiajYeshua.html" class="menu-item">
+                    <span class="icon">🕎</span>
+                    <span class="menu-text">Estudios a la luz de nuestro Adonai Yeshúa HaMashíaj</span>
+                </a>
+                
+                <a href="fiestas.html" class="menu-item">
+                    <span class="icon">🕎</span>
+                    <span class="menu-text">Fiestas del Eterno, bajo la luz de nuestro Adonai Yeshúa HaMashíaj</span>
+                </a>
+
+                <a href="./salmosdelmashiaj.html" class="menu-item">
+                    <span class="icon">🕎</span>
+                    <span class="menu-text">Salmos del rey David con su cumplimiento en el mashiaj.</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <header>
         <h1><span class="torah-icon">📜</span> 54 PARASHOT</h1>
@@ -94,20 +128,59 @@
             }
         };
 
-        function toggleDropdown() {
-    const dropdown = document.getElementById('dropdown');
-    dropdown.classList.toggle('show');
-  }
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            
+            const isActive = sidebar.classList.contains('active');
+            
+            if (isActive) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        }
 
-  // Cierra el menú si haces clic fuera (móvil)
-  window.onclick = function(event) {
-    if (!event.target.matches('.menu-button')) {
-      const dropdown = document.getElementById('dropdown');
-      if (dropdown.classList.contains('show')) {
-        dropdown.classList.remove('show');
-      }
-    }
-  }
+        function openSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
+            hamburgerBtn.classList.add('active');
+            
+            // Prevenir scroll del body cuando el menú está abierto
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
+            
+            // Restaurar scroll del body
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar menú con tecla Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSidebar();
+            }
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => {
+                closeSidebar();
+            });
+        });
     </script>
 
 </body>

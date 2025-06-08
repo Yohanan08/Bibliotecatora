@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 1:20-54</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>34. Parashá Bamidbar (במדבר) Aliyáh 2: (Números 1:20-54) Detalles del censo de las tribus de Israel y su
+            organización.
+            <p>Haftaráh: Oseas 1:10-2:1 (La promesa de restauración y multiplicación de Israel).</p>
+            <p>Brit Hadasháh: Hebreos 11:12 (La descendencia de Abraham como la arena del mar).</p>
+        </h1>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 1. Texto Hebreo, Fonética y Traducción Literal de Números 1:20-54</h1>
+
+            <!-- Tribu de Rubén -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:20</div>
+                <div class="hebrew">וַיִּהְיוּ בְנֵי רְאוּבֵן בְּכוֹר יִשְׂרָאֵל תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית
+                    אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת לְגֻלְגְּלֹתָם כָּל זָכָר מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא
+                    צָבָא</div>
+                <div class="transliteration">Vayihyú bnei Reuvén, bejor Yisrael, toldotám lemishpejotám leveit avotám,
+                    bemispar shemot legulguelotám, kol zachar miben esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Y fueron los hijos de Rubén, primogénito de Israel, sus generaciones
+                    por familias, por casas paternas, por número de nombres, cabeza por cabeza, todo varón de veinte
+                    años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Simeón -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:22</div>
+                <div class="hebrew">בְּנֵי שִׁמְעוֹן תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם פְּקוּדָיו בְּמִסְפַּר
+                    שֵׁמוֹת לְגֻלְגְּלֹתָם כָּל זָכָר מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Bnei Shimón, toldotám lemishpejotám leveit avotám, pekudáv bemispar shemot
+                    legulguelotám, kol zachar miben esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Los hijos de Simeón, sus generaciones por familias, por casas paternas,
+                    sus contados por número de nombres, cabeza por cabeza, todo varón de veinte años arriba, todo apto
+                    para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Gad -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:24</div>
+                <div class="hebrew">לִבְנֵי גָד תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת מִבֶּן
+                    עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Gad, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Gad, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Judá -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:26</div>
+                <div class="hebrew">לִבְנֵי יְהוּדָה תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת
+                    מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Yehudáh, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Judá, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Isacar -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:28</div>
+                <div class="hebrew">לִבְנֵי יִשָּׂשכָר תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת
+                    מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Yisajar, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Isacar, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Zabulón -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:30</div>
+                <div class="hebrew">לִבְנֵי זְבוּלוּן תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת
+                    מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Zevulún, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Zabulón, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Efraín -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:32</div>
+                <div class="hebrew">לִבְנֵי אֶפְרַיִם תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת
+                    מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Efráyim, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Efraín, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Manasés -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:34</div>
+                <div class="hebrew">לִבְנֵי מְנַשֶּׁה תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת
+                    מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Menashé, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Manasés, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Benjamín -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:36</div>
+                <div class="hebrew">לִבְנֵי בִנְיָמִין תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת
+                    מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Binyamín, toldotám lemishpejotám leveit avotám, bemispar shemot
+                    miben esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Benjamín, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Dan -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:38</div>
+                <div class="hebrew">לִבְנֵי דָן תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת מִבֶּן
+                    עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Dan, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Dan, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Aser -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:40</div>
+                <div class="hebrew">לִבְנֵי אָשֵׁר תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת מִבֶּן
+                    עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Asher, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Aser, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Tribu de Neftalí -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:42</div>
+                <div class="hebrew">לִבְנֵי נַפְתָּלִי תּוֹלְדֹתָם לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם בְּמִסְפַּר שֵׁמוֹת
+                    מִבֶּן עֶשְׂרִים שָׁנָה וָמַעְלָה כֹּל יֹצֵא צָבָא</div>
+                <div class="transliteration">Livnei Naftalí, toldotám lemishpejotám leveit avotám, bemispar shemot miben
+                    esrim shaná va-ma'alah, kol yotzé tzavá.</div>
+                <div class="literal-translation">Para los hijos de Neftalí, sus generaciones por familias, por casas
+                    paternas, por número de nombres, de veinte años arriba, todo apto para la guerra.</div>
+            </div>
+
+            <!-- Nota sobre los levitas -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:47</div>
+                <div class="hebrew">וְהַלְוִיִּם לְמַטֵּה אֲבֹתָם לֹא הָתְפָּקְדוּ בְּתוֹכָם</div>
+                <div class="transliteration">Vehalviyím lematé avotám lo hatpakdú betojám.</div>
+                <div class="literal-translation">Pero los levitas, según la tribu de sus padres, no fueron contados
+                    entre ellos.</div>
+            </div>
+
+            <!-- Conclusión del censo -->
+            <div class="verse-container">
+                <div class="verse-number">Números 1:54</div>
+                <div class="hebrew">וַיַּעֲשׂוּ בְנֵי יִשְׂרָאֵל כְּכֹל אֲשֶׁר צִוָּה יְהוָה אֶת־מֹשֶׁה כֵּן עָשׂוּ
+                </div>
+                <div class="transliteration">Vaya'asu bnei Yisrael kekol asher tzivá YHWH et-Moshé ken asú.</div>
+                <div class="literal-translation">E hicieron los hijos de Israel conforme a todo lo que YHWH ordenó a
+                    Moshé; así hicieron.</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Cumplimiento Profético en el Mashíaj de Números 1:20-54</h1>
+
+        <div class="section-container">
+            <div class="prophetic-title">I. El Censo y la Identidad en el Mashíaj</div>
+            <div class="prophetic-section">
+                <p>
+                    Así como cada varón de Israel fue contado y registrado por nombre, en el Mashíaj Yeshúa cada
+                    redimido es conocido, llamado y sellado personalmente (Juan 10:3; Apocalipsis 3:5). El censo
+                    prefigura el registro celestial de los que pertenecen al Reino, donde nadie es anónimo ni olvidado.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">II. Organización y Liderazgo Mesiánico</div>
+            <div class="prophetic-section">
+                <p>
+                    El liderazgo tribal y la organización del campamento apuntan al orden del Reino bajo el Mashíaj.
+                    Yeshúa establece emisarios, pastores y maestros para edificar y guiar a su pueblo (Efesios 4:11-13).
+                    Cada tribu y familia tenía un lugar y función, así también cada creyente tiene un llamado y
+                    propósito en el cuerpo del Mesías (1 Corintios 12:18).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">III. Exclusión de los Levitas y el Sacerdocio Celestial</div>
+            <div class="prophetic-section">
+                <p>
+                    Los levitas no fueron contados entre los guerreros porque su llamado era servir en el Mishkán. Esto
+                    señala que en el Mashíaj hay diversidad de dones y ministerios: algunos son llamados a la batalla
+                    espiritual, otros al servicio sacerdotal y la adoración (1 Pedro 2:9; Hebreos 8:1-2).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">IV. Obediencia y Consagración en el Mashíaj</div>
+            <div class="prophetic-section">
+                <p>
+                    Israel obedeció “como YHWH ordenó a Moshé, así hicieron” (Números 1:54). El Mashíaj es el modelo
+                    perfecto de obediencia y consagración (Filipenses 2:8). En Él, el pueblo redimido es llamado a
+                    caminar en obediencia, orden y santidad, avanzando juntos hacia la herencia prometida.
+                </p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión Profética</h3>
+            <p>
+                El censo de Números 1:20-54 es más que un registro histórico: es una sombra profética del pueblo
+                redimido, contado, sellado y posicionado en el Mashíaj Yeshúa. Cada creyente tiene un lugar, un nombre y
+                una función en el Reino. Así, la organización, el liderazgo y la consagración de Israel en el desierto
+                apuntan al cumplimiento pleno en la comunidad mesiánica, guiada y protegida por el Capitán de nuestra
+                salvación.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 2. Haftaráh: Oseas 1:10-2:1 (La promesa de restauración y multiplicación de Israel).</h1>
+
+        <!-- Oseas 1:10 -->
+        <div class="verse-container">
+            <div class="verse-number">Oseas 1:10</div>
+            <div class="hebrew">וְהָיָה מִסְפַּר בְּנֵי יִשְׂרָאֵל כְּחוֹל הַיָּם אֲשֶׁר לֹא יִמַּד וְלֹא יִסָּפֵר
+                וְהָיָה בִּמְקוֹם אֲשֶׁר יֵאָמֵר לָהֶם לֹא עַמִּי אַתֶּם יֵאָמֵר לָהֶם בְּנֵי אֵל־חָי</div>
+            <div class="transliteration">Vehayá mispar bnei Yisrael kejol hayam asher lo yimmad velo yissáfer, vehayá
+                bimkom asher ye'amer lahem lo amí atem, ye'amer lahem bnei El-chai.</div>
+            <div class="literal-translation">Y será el número de los hijos de Israel como la arena del mar, que no se
+                puede medir ni contar; y sucederá que en el lugar donde se les decía: “No sois mi pueblo”, se les dirá:
+                “Hijos del Dios viviente”.</div>
+        </div>
+
+        <!-- Oseas 1:11 -->
+        <div class="verse-container">
+            <div class="verse-number">Oseas 1:11</div>
+            <div class="hebrew">וְנִקְבְּצוּ בְּנֵי יְהוּדָה וּבְנֵי יִשְׂרָאֵל יַחְדָּו וְשָׂמוּ לָהֶם רֹאשׁ אֶחָד
+                וְעָלוּ מִן־הָאָרֶץ כִּי גָדוֹל יוֹם יִזְרְעֶאל</div>
+            <div class="transliteration">Veniḳbetzú bnei Yehudá uvenei Yisrael yaḥdáv, vesámu lahem rosh ejad, ve'alu
+                min-ha'aretz, ki gadol yom Yizre'el.</div>
+            <div class="literal-translation">Y se reunirán los hijos de Judá y los hijos de Israel juntos, y nombrarán
+                para sí un solo jefe, y subirán de la tierra, porque grande será el día de Jezreel.</div>
+        </div>
+
+        <!-- Oseas 2:1 (hebreo 1:12) -->
+        <div class="verse-container">
+            <div class="verse-number">Oseas 2:1</div>
+            <div class="hebrew">אִמְרוּ לַאֲחֵיכֶם עַמִּי וּלְאֲחֹתֵיכֶם רֻחָמָה</div>
+            <div class="transliteration">Imrú la'acheichem amí, ule'achoteichem ruchamá.</div>
+            <div class="literal-translation">Decid a vuestros hermanos: “Pueblo mío”, y a vuestras hermanas:
+                “Compadecida”.</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Cumplimiento Profético en el Mashíaj de Oseas 1:10-2:1</h1>
+
+        <div class="section-container">
+            <div class="prophetic-title">I. Restauración y Multiplicación del Pueblo</div>
+            <div class="prophetic-section">
+                <p>
+                    Oseas profetiza que el número de los hijos de Israel será como la arena del mar, imposible de
+                    contar. En el Mashíaj Yeshúa, esta promesa se cumple al abrirse la redención tanto para Israel como
+                    para las naciones, multiplicando el pueblo de Elohím más allá de toda frontera (Romanos 9:25-26).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">II. De “No Mi Pueblo” a “Hijos del Dios Viviente”</div>
+            <div class="prophetic-section">
+                <p>
+                    El mensaje central de Oseas es la transformación de la identidad: aquellos que fueron llamados “no
+                    mi pueblo” serán reconocidos como “hijos del Dios viviente”. En Yeshúa, los que estaban lejos son
+                    acercados y adoptados en la familia del Eterno (Efesios 2:12-13; 1 Juan 3:1).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">III. Unidad bajo un Solo Jefe: El Mashíaj</div>
+            <div class="prophetic-section">
+                <p>
+                    La profecía de que Judá e Israel serán reunidos bajo un solo líder apunta directamente al reinado
+                    mesiánico de Yeshúa, quien une a todo el pueblo redimido en un solo cuerpo y una sola esperanza
+                    (Ezequiel 37:24; Juan 10:16).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">IV. Compasión y Nueva Identidad</div>
+            <div class="prophetic-section">
+                <p>
+                    El llamado a decir “Pueblo mío” y “Compadecida” revela la restauración de la relación y la
+                    misericordia divina. En el Mashíaj, recibimos una nueva identidad y somos hechos coherederos de las
+                    promesas (1 Pedro 2:10; Romanos 11:30-32).
+                </p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión Profética</h3>
+            <p>
+                Oseas 1:10-2:1 encuentra su cumplimiento pleno en Yeshúa haMashíaj: la restauración, la multiplicación,
+                la unidad y la compasión prometidas se hacen realidad en la comunidad redimida. Así, cada creyente es
+                llamado “hijo del Dios viviente” y participa de la esperanza y la herencia eterna en el Reino.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Texto Arameo, Fonética y Traducción Literal de Hebreos 11:12</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">Hebreos 11:12</div>
+            <div class="aramaic">מִטּוּל דֵּן וְאַף מִן דְּחַד דְּאִתְחַשַּׁב לְמֵיתָא אִתְיַהֲבוּ רַבְרְבִין
+                כְּכוֹכְבֵי שְׁמַיָּא וּכְחוֹל דִּי עַל שְׂפַת יַמָּא דְּלֵית מִסְפַּר לֵיהּ</div>
+            <div class="transliteration">Mitul den, v'af min deḥad de'ithḥashav lemeita, ityahavu ravrivin kekochvei
+                shemaya u'kechol di al sefat yamah, d'leit mispar leh.</div>
+            <div class="literal-translation">Por eso también, de uno, y ese ya como muerto, nacieron tantos como las
+                estrellas del cielo en multitud, y como la arena que está a la orilla del mar, innumerable.</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Cumplimiento Profético en el Mashíaj de Hebreos 11:12</h1>
+
+        <div class="section-container">
+            <div class="prophetic-title">I. Fe, Promesa y Multiplicación en el Mashíaj</div>
+            <div class="prophetic-section">
+                <p>
+                    Hebreos 11:12 recuerda la promesa dada a Abraham: de uno solo, y ese ya como muerto, nació una
+                    multitud incontable. En Yeshúa haMashíaj, la descendencia de Abraham se multiplica no solo en lo
+                    físico, sino en lo espiritual, incluyendo a todos los que creen (Gálatas 3:29).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">II. De la Imposibilidad Humana al Milagro Divino</div>
+            <div class="prophetic-section">
+                <p>
+                    La esterilidad y la vejez de Abraham representan la imposibilidad humana. El cumplimiento de la
+                    promesa solo es posible por el poder de Elohím. Así, en el Mashíaj, lo imposible se hace realidad:
+                    la vida surge donde no había esperanza, y la familia de la fe crece más allá de toda expectativa
+                    (Romanos 4:17-21).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">III. Una Familia de Fe para Todas las Naciones</div>
+            <div class="prophetic-section">
+                <p>
+                    La multitud como las estrellas y la arena apunta a la inclusión de las naciones en la promesa. En
+                    Yeshúa, judíos y gentiles son hechos uno, herederos de la bendición de Abraham y parte del pueblo
+                    eterno de Elohím (Efesios 2:14-19).
+                </p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión Profética</h3>
+            <p>
+                Hebreos 11:12 se cumple plenamente en el Mashíaj Yeshúa: la fe de Abraham es modelo y puerta para una
+                descendencia innumerable, nacida no solo de la carne, sino del Espíritu. Así, cada creyente es parte de
+                la familia prometida, llamado a vivir por fe y a heredar la plenitud de la promesa en el Reino.
+            </p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>Punto 4: Contexto Histórico y Cultural de Números 1:20-54</h1>
+
+        <div class="section-container">
+            <h3>I. Situación Histórica</h3>
+            <p>El pasaje de Bamidbar (Números) 1:20-54 se sitúa en el <strong>segundo año después del Éxodo</strong>, en
+                el desierto del Sinaí. La nación de Israel ha recibido la Toráh, ha construido el Mishkán (Tabernáculo)
+                y está a punto de organizarse militar y espiritualmente para comenzar su travesía hacia la Tierra
+                Prometida. Este momento es fundamental en la historia de la redención de Israel, porque representa su
+                <strong>transición de esclavos a pueblo de pacto organizado y consagrado</strong>.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Contexto Cultural y Tribal</h3>
+            <p>Este texto detalla el <strong>censo numérico de cada tribu</strong>, con sus totales y su organización
+                alrededor del Mishkán:</p>
+            <ul>
+                <li>Cada tribu es mencionada, incluyendo su patriarca (por ejemplo, Reuvén, Shim'ón, Yehudá, etc.).</li>
+                <li>Se enlistan hombres mayores de 20 años <strong>aptos para la guerra</strong>.</li>
+                <li>El objetivo es formar un ejército santo, pero también un <strong>campamento consagrado</strong>.
+                </li>
+            </ul>
+            <p>Esta estructura tribal responde a un <strong>modelo semita antiguo</strong>, donde las alianzas,
+                herencias y funciones estaban basadas en clanes patriarcales. Además, en el contexto del desierto, esta
+                división era necesaria para la <strong>logística, defensa, provisión y culto</strong>.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>III. El Mishkán como centro espiritual y geográfico</h3>
+            <p>Todo el campamento gira en torno al <strong>Mishkán</strong>, que no era sólo una tienda de reunión, sino
+                el <strong>trono móvil de Adonái</strong>. Este diseño refleja una cosmovisión donde <strong>la
+                    presencia divina es el eje de la vida nacional</strong>.</p>
+            <p>El diseño del campamento, que será detallado en Números 2, ya comienza a esbozarse aquí, con los
+                <strong>levitas apartados</strong> para el servicio especial y <strong>no incluidos en el censo
+                    militar</strong>.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>IV. Conexión con el Periodo del Segundo Templo</h3>
+            <p>Durante el Segundo Templo, los registros genealógicos y censos de los kohaním y levitas fueron cruciales
+                para mantener la <strong>pureza del sacerdocio y las funciones tribales</strong>. Ezra 2:62 muestra que
+                sin prueba de linaje, uno no podía ejercer el sacerdocio.</p>
+            <ul>
+                <li>El sistema de censos de Bamidbar sirvió como modelo para los <strong>registros posteriores de las
+                        familias sacerdotales y levíticas</strong>.</li>
+                <li>En Qumrán, los textos como <strong>4Q159 Mishpatim</strong> y <strong>4Q334</strong> muestran
+                    preocupación por <strong>órdenes tribales, calendarios sagrados y tareas religiosas</strong>
+                    derivadas de este mismo diseño.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h3>V. Datos Arqueológicos y Literarios Relevantes</h3>
+            <ol>
+                <li><strong>Inscripciones tribales</strong> en sitios como Tel Dan, Meguidó y Lachish muestran nombres
+                    con teofóricos similares a los líderes mencionados en este capítulo.</li>
+                <li><strong>Técnicas de contabilidad</strong> similares (listas tribales, registros militares) aparecen
+                    en textos de Ugarit y Mari, pero en Israel tienen un sentido <strong>teológico y mesiánico</strong>:
+                    cada persona tiene un rol divino.</li>
+            </ol>
+        </div>
+
+        <div class="section-container">
+            <h3>VI. Importancia en la Teología del Tanakh</h3>
+            <p>El censo no era solo civil o militar: era un <strong>acto de consagración</strong>. La exclusión de los
+                levitas en este contexto resalta su rol único, que se ampliará en los capítulos siguientes:</p>
+            <div class="scripture">"Solo no contarás la tribu de Leví" (Números 1:49)</div>
+            <p>La razón es que los levitas están <strong>dedicados al Mishkán y no a la guerra física</strong>,
+                reflejando la división entre <strong>ministerio espiritual y funciones administrativas</strong> dentro
+                del pueblo de Elohím.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 5: Estudio, Comentarios y Conexiones Proféticas de Números 1:20-54</h1>
+        <h3>Con Comentario Rabínico, Judío Mesiánico y Profecías del Segundo Templo</h3>
+
+        <div class="section-container">
+            <h3>I. Comentarios Rabínicos Tradicionales</h3>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Rashí (s. XI)</div>
+                <ul>
+                    <li>Señala que la precisión del censo y el detalle por tribus son una manifestación del <strong>amor
+                            y la elección de Israel por parte de Adonái</strong>.</li>
+                    <li>Resalta que la exclusión de los levitas se debe a su <strong>santificación especial</strong>
+                        para el servicio del Mishkán.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Bamidbar Rabbáh 2:13</div>
+                <ul>
+                    <li>Interpreta que los nombres y cantidades exactas transmiten el mensaje de que <strong>ningún
+                            miembro del pueblo redimido es olvidado</strong>.</li>
+                    <li>Cada tribu representa un <strong>aspecto del carácter del pueblo de Israel</strong>, y todos
+                        deben estar presentes para que la Shejináh repose en medio de ellos.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Seforno</div>
+                <p>Muestra que este censo no solo era para organizar el campamento, sino que <strong>prefiguraba la
+                        entrada ordenada al Reino de Elohím</strong>, siendo una anticipación del ideal mesiánico.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Comentario Judío Mesiánico</h3>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Yeshúa y la restauración de Israel tribu por tribu</div>
+                <div class="scripture"><strong>Mateo 19:28</strong> – "En la regeneración... os sentaréis en doce tronos
+                    para juzgar a las doce tribus de Israel".</div>
+                <p>El Mashíaj no disuelve las tribus, sino que las restaura. Números 1:20-54 es un prototipo del orden
+                    mesiánico donde <strong>cada tribu será representada en el Reino</strong>.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. El rol de los levitas prefigura el ministerio del Mashíaj</div>
+                <p>En Números 1:49-54, los levitas son apartados para el servicio del Mishkán y para custodiar la
+                    santidad. Esto prefigura a <strong>Yeshúa haMashíaj</strong>, quien es:</p>
+                <ul>
+                    <li><strong>Cohen Gadol</strong> según el orden celestial (Hebreos 4:14)</li>
+                    <li><strong>El mediador del Mishkán celestial</strong> (Hebreos 9:11-12)</li>
+                </ul>
+                <p>Así como los levitas rodeaban el Mishkán para proteger la santidad, <strong>Yeshúa protege la Kehiláh
+                        por medio de su intercesión eterna</strong>.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>III. Conexiones Proféticas</h3>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Apocalipsis 7 y el nuevo censo mesiánico</div>
+                <p>El listado de las tribus en Apocalipsis 7:4-8 refleja un eco directo del censo de Números 1:</p>
+                <ul>
+                    <li>Ambas presentan <strong>12 tribus con número específico (12,000)</strong>.</li>
+                    <li>En ambos, hay <strong>orden, llamado individual y propósito colectivo</strong>.</li>
+                    <li>La omisión de la tribu de Dan en Apocalipsis ha sido interpretada como un juicio por idolatría
+                        (Jueces 18), lo cual acentúa la necesidad de <strong>santidad tribal</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Ezequiel 47–48 – Asignación de tierras mesiánicas</div>
+                <p>El profeta Ezequiel describe en los capítulos finales una <strong>redistribución de las tribus en la
+                        era mesiánica</strong>. Este orden profético tiene su base en la estructura tribal de Números 1,
+                    pero purificada y restaurada por la presencia glorificada del Templo mesiánico.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>IV. Aplicaciones Espirituales y Escatológicas</h3>
+            <ul>
+                <li>Cada creyente redimido tiene <strong>una función definida</strong> en el Reino.</li>
+                <li>El orden no es opcional en el servicio a Adonái: es esencial para que <strong>la gloria descienda y
+                        habite</strong>.</li>
+                <li>Yeshúa, como <strong>el Cohen celestial</strong>, cumple el patrón levítico de consagración absoluta
+                    al Mishkán.</li>
+            </ul>
+            <div class="scripture"><strong>1 Corintios 12:18</strong> – "Elohím ha colocado a cada uno en el cuerpo,
+                como quiso".</div>
+        </div>
+
+        <div class="section-container">
+            <h3>V. Notas del Segundo Templo y Qumrán</h3>
+            <ul>
+                <li>En Qumrán, los documentos <strong>4Q159</strong> y <strong>4Q321 Mishmarot</strong> muestran que las
+                    funciones tribales y turnos sacerdotales eran organizadas con base en los censos del desierto.</li>
+                <li>La comunidad del Mar Muerto vivía en un estado de <strong>anticipación mesiánica</strong>,
+                    replicando el modelo de Bamidbar para prepararse para la redención final.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h3>VI. Conclusión Mesiánica</h3>
+            <p>Números 1:20-54 no es solo una lista de cifras. Es una <strong>proclamación del Reino ordenado de
+                    Elohím</strong>, en el cual:</p>
+            <ul>
+                <li>Cada tribu representa una expresión del carácter redimido de Israel.</li>
+                <li>Cada hombre es contado porque es <strong>digno de portar la bandera del Nombre de Elohím</strong>.
+                </li>
+                <li>Cada levita consagrado es una <strong>sombra del Mashíaj que ministra eternamente en el Tabernáculo
+                        celestial</strong>.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 6: Análisis Profundo de la Aliyáh – Números 1:20-54</h1>
+        <h3>Comentario Judío y Mesiánico Detallado sobre la Organización Tribal</h3>
+
+        <div class="section-container">
+            <h3>I. Resumen Estructural de la Aliyáh</h3>
+            <p>Números 1:20-54 ofrece un detalle numérico del censo de las <strong>doce tribus de Israel</strong>,
+                omitiendo intencionalmente a <strong>Leví</strong>, quien es apartado para el servicio del Mishkán. Cada
+                tribu tiene su jefe, número de guerreros aptos (mayores de 20 años), y todos son contados conforme al
+                mandato directo de Adonái.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Significado Espiritual del Censo</h3>
+            <ul>
+                <li>El censo no solo tiene valor estadístico, sino <strong>teológico y escatológico</strong>.</li>
+                <li>Las <strong>tribus representan las columnas del campamento del Reino</strong>, cada una con una
+                    posición, rol y destino profético.</li>
+                <li>El hecho de que se cuenten solo <strong>los varones aptos para la guerra</strong> indica que este
+                    pueblo redimido no es pasivo, sino que está <strong>llamado a conquistar y preservar
+                        santidad</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h3>III. Comentarios Judíos y Exegéticos</h3>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. El Midrash Bamidbar Rabbá 2:1</div>
+                <p>Explica que cada tribu es como una piedra preciosa en el pectoral del Kohén Gadol. Cada nombre y
+                    número reflejan la <strong>belleza y diversidad espiritual</strong> del pueblo santo.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Rashbam y Nahmánides</div>
+                <p>Ven en el número total de 603,550 un reflejo del poder de multiplicación prometido a Abraham. Este
+                    censo cumple:</p>
+                <div class="scripture"><strong>Bereshit 15:5</strong> – "Mira ahora los cielos, y cuenta las
+                    estrellas... así será tu descendencia".</div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>IV. Comentario Mesiánico sobre la Organización Tribal</h3>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Yeshúa como centro y líder de las tribus</div>
+                <p>Cada tribu se organiza alrededor del Mishkán; en el Brit Hadasháh, todas las almas redimidas se
+                    organizan alrededor de:</p>
+                <p><strong>Yeshúa – el Mishkán viviente</strong> (Juan 1:14, Hebreos 8:2).</p>
+                <p>Como el nuevo Moshé y el verdadero Cohen Gadol, Yeshúa también <strong>prepara, organiza y
+                        equipa</strong> a su pueblo para la guerra espiritual.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Cada tribu: un reflejo del Cuerpo Mesiánico</div>
+                <p>Cada tribu representa una <strong>dimensión del carácter del Mashíaj</strong> y de la Kehiláh
+                    redimida:</p>
+                <ul>
+                    <li><strong>Yehudáh</strong> – liderazgo y alabanza (Génesis 49:8-10).</li>
+                    <li><strong>Yisajar</strong> – sabiduría y estudio de la Toráh.</li>
+                    <li><strong>Zevulún</strong> – provisión y expansión territorial.</li>
+                    <li><strong>Reuvén</strong> – primogénito, impetuoso pero con potencial restaurado en Mashíaj.</li>
+                </ul>
+                <p>En la Kehiláh, cada miembro tiene un rol específico (1 Corintios 12:12-27).</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>V. El Rol Singular de los Levitas (v. 47-54)</h3>
+            <p>Los levitas no son incluidos en el censo militar porque:</p>
+            <ul>
+                <li>Su llamado es <strong>celestial, no bélico</strong>.</li>
+                <li>Ellos son <strong>figura del sacerdocio eterno del Mashíaj</strong>, quien ministra no con espada,
+                    sino con intercesión (Hebreos 7:25).</li>
+            </ul>
+            <div class="scripture"><strong>Números 1:53</strong> – "Los levitas acamparán alrededor del Mishkán para que
+                no haya ira sobre la comunidad".</div>
+            <p>Yeshúa actúa como <strong>protección espiritual</strong> del pueblo, como los levitas protegían el
+                Mishkán.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>VI. Patrones Proféticos y Tavnit</h3>
+            <ul>
+                <li>El modelo tribal del desierto es una <strong>tavnit</strong> (patrón) del Reino mesiánico.</li>
+                <li>En Apocalipsis 21:12-14, <strong>las doce puertas de la Nueva Yerushaláyim tienen los nombres de las
+                        doce tribus</strong>, y <strong>los fundamentos</strong> llevan los nombres de los emisarios del
+                    Cordero.</li>
+            </ul>
+            <p>Esto muestra que el Reino se construye sobre la <strong>unión del Israel tribal y el testimonio del
+                    Mashíaj</strong>.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>VII. Comparación Escatológica: Números 1 y Apocalipsis 7</h3>
+            <table class="comparison-table">
+                <tr>
+                    <th>Números 1</th>
+                    <th>Apocalipsis 7</th>
+                </tr>
+                <tr>
+                    <td>Tribu contada por guerreros</td>
+                    <td>Tribu sellada para juicio y victoria</td>
+                </tr>
+                <tr>
+                    <td>Organización del campamento alrededor del Mishkán</td>
+                    <td>Organización del Israel celestial alrededor del Trono</td>
+                </tr>
+                <tr>
+                    <td>Leví excluido del conteo militar</td>
+                    <td>En Apocalipsis, Dan es excluido</td>
+                </tr>
+                <tr>
+                    <td>603,550 hombres</td>
+                    <td>144,000 sellados (12x12x1000 – plenitud espiritual)</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section-container">
+            <h3>VIII. Conclusión Mesiánica</h3>
+            <p>Este censo no es una mera logística; es una <strong>prefiguración profética</strong> del Reino ordenado y
+                santo que Yeshúa haMashíaj lidera.</p>
+            <ul>
+                <li><strong>Cada tribu y número</strong> apunta a una realidad eterna: el Reino no es desordenado.</li>
+                <li><strong>Yeshúa</strong> es el que da a cada alma redimida un lugar, un rol, una herencia.</li>
+                <li>El pueblo de Elohím no es una multitud amorfa, sino un <strong>ejército santo, consagrado, sellado y
+                        ordenado</strong> para la gloria.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <p><strong>Bendito sea el Nombre de Adonái, quien cuenta cada alma redimida y la coloca en su lugar perfecto
+                dentro del Reino eterno.</strong></p>
+    </div>
+
+    <div class="content-container">
+        <h1>Punto 7: Tema Más Relevante de la Aliyáh – Números 1:20-54</h1>
+        <h2>"La Santificación del Campamento como Anticipación del Reino Mesiánico"</h2>
+
+        <div class="section-container">
+            <h3>I. Identificación del Tema Central</h3>
+            <p>El tema más relevante de esta sección es la <strong>santificación ordenada</strong> del pueblo de Israel
+                a través de su organización tribal. Este orden no es administrativo ni civil únicamente: es
+                profundamente espiritual, y apunta a la preparación de un pueblo redimido para vivir en la Presencia de
+                Adonái y avanzar hacia su herencia profética.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Razón de su Importancia en la Toráh</h3>
+            <p><strong>Israel pasa de ser un pueblo liberado a ser un pueblo ordenado</strong></p>
+            <ul>
+                <li>En Éxodo, Israel fue liberado de Mitsráyim.</li>
+                <li>En Números, es preparado para el combate y el avance espiritual.</li>
+            </ul>
+            <p>La santidad exige estructura, y el Reino se construye sobre la base de un pueblo posicionado conforme al
+                plan divino.</p>
+            <p><strong>El número refleja destino, no solo cantidad</strong></p>
+            <p>Cada cifra representa a una persona consagrada, lista para cumplir su función. Este enfoque distingue el
+                censo bíblico de cualquier otro: aquí contar es convocar al propósito eterno.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>III. Relevancia en el Ministerio del Mashíaj</h3>
+            <p><strong>Mashíaj organiza espiritualmente su Kehiláh como Israel fue organizado en el desierto</strong>
+            </p>
+            <p class="scripture">Efesios 4:11-13 – “Él mismo constituyó emisarios, profetas, evangelistas… hasta que
+                todos lleguemos a la unidad…”</p>
+            <p>Así como Israel fue distribuido en divisiones según tribu y función, Yeshúa distribuye dones y llama a
+                cada uno a una posición en su cuerpo.</p>
+            <p><strong>El campamento de Israel anticipa la estructura del Reino bajo el Cordero</strong></p>
+            <p class="scripture">Apocalipsis 21:12-14 – Las doce puertas tienen los nombres de las doce tribus, y los
+                doce fundamentos los nombres de los doce emisarios.</p>
+            <p>Este paralelismo revela que el campamento de Números no es solo historia: es una sombra del Reino
+                escatológico que Yeshúa vino a inaugurar.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>IV. Conexión con los Moedím – Enfoque en Shavuot y Sukkot</h3>
+            <p><strong>Shavuot (Fiesta de las Primicias del Reino)</strong></p>
+            <ul>
+                <li>Esta porción se sitúa cronológicamente cerca del tiempo de Shavuot (Sivan). Es la fiesta donde se
+                    entrega la Toráh y se celebra el nacimiento de la comunidad redimida.</li>
+                <li>Israel es contado justo antes de entrar en su rol nacional.</li>
+                <li>La Kehiláh mesiánica fue sellada por la Ruaj HaKodesh en Shavuot (Hechos 2), organizada para
+                    testificar al Mashíaj.</li>
+            </ul>
+            <p><strong>Sukkot (Orden y cobertura divina)</strong></p>
+            <ul>
+                <li>Cada tribu acampaba alrededor del Mishkán, reflejando la idea de "moradas" o "sukot" santificadas.
+                </li>
+            </ul>
+            <p>En Sukkot, se celebraba que Adonái habitó con ellos en tiendas en el desierto:</p>
+            <p class="scripture">Levítico 23:42-43 – “…para que vuestras generaciones sepan que en cabañas hice habitar
+                a los hijos de Israel”.</p>
+            <p>Mashíaj es nuestra sukkáh permanente (Zacarías 14:16).</p>
+        </div>
+
+        <div class="section-container">
+            <h3>V. Implicaciones para el creyente hoy</h3>
+            <p><strong>Tú estás llamado a una tribu espiritual</strong></p>
+            <ul>
+                <li>No hay creyente anónimo en el Reino.</li>
+                <li>Yeshúa conoce tu nombre, tu lugar, tu función.</li>
+                <li>Eres parte de una estructura viva y santa.</li>
+            </ul>
+            <p><strong>No se puede avanzar sin santidad y orden</strong></p>
+            <ul>
+                <li>Cada vez que Israel fue desordenado, cayó en derrota.</li>
+                <li>El Reino no se edifica con caos, sino con alineación al Mishkán, es decir, a Mashíaj.</li>
+            </ul>
+        </div>
+
+        <div class="conclusion">
+            <h3>VI. Conclusión Mesiánica</h3>
+            <p>El corazón de esta Aliyáh es la reafirmación del Reino de Elohím como un Reino de orden, santidad y
+                propósito. Cada tribu, cada número, cada función, apunta a la realidad eterna que Yeshúa haMashíaj
+                lidera:</p>
+            <p>Un pueblo redimido, ordenado, sellado, y marchando juntos hacia la herencia prometida.</p>
+            <p class="scripture">1 Corintios 14:33 – “Elohím no es Elohím de confusión, sino de shalom… como en todas
+                las Kehilot de los Kedoshim”.</p>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="content-container">
+        <h1>Punto 8: Descubriendo al Mashíaj en la Aliyáh – Números 1:20-54</h1>
+        <h2>Profecías, Tipologías, Tavnitot y Cumplimientos en Yeshúa haMashíaj</h2>
+
+        <div class="section-container">
+            <h3>I. Métodos Mesiánicos Aplicados a esta Aliyáh</h3>
+            <p>Esta sección, aunque centrada en números y organización tribal, está impregnada de figuras proféticas,
+                patrones redentores (<span class="hebrew-term" dir="rtl">תַּבְנִית</span> – tavnít), tipologías y
+                títulos mesiánicos que se cumplen y revelan en Yeshúa haMashíaj. No es un simple registro militar, sino
+                una visión profética del Reino en formación.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Patrones Redentores (Tavnitot) del Campamento</h3>
+            <p><strong>1. Organización alrededor del Mishkán – Figura del Reino Mesiánico</strong></p>
+            <p>El centro del campamento es el Mishkán – <span class="hebrew-term" dir="rtl">משכן</span>, símbolo de la
+                presencia de Elohím.</p>
+            <ul>
+                <li>Cada tribu acampa en una posición específica, girando en torno al Mishkán.</li>
+            </ul>
+            <p class="scripture">Juan 1:14 – “Y el Verbo se hizo carne y tabernaculizó (σκηνόω – mishkén) entre
+                nosotros”.</p>
+            <p>Esto apunta directamente a Yeshúa haMashíaj como el centro divino de un Israel restaurado y unificado.
+            </p>
+
+            <p><strong>2. El Pueblo como Ejército de Luz</strong></p>
+            <p>Todos los varones contados son “aptos para la guerra” (<span class="hebrew-term" dir="rtl">כָּל־יֹצֵא
+                    צָבָא</span>).</p>
+            <p>En el Brit Hadasháh, esto es sombra del ejército espiritual de Mashíaj:</p>
+            <p class="scripture">2 Timoteo 2:3 – “Como buen soldado de Yeshúa haMashíaj…”.</p>
+            <p class="scripture">Efesios 6:11 – “Vestíos de toda la armadura de Elohím…”.</p>
+            <p>Yeshúa es el Capitán de nuestra salvación (Hebreos 2:10), y el Cordero como líder de los 144,000
+                (Apocalipsis 14:1).</p>
+        </div>
+
+        <div class="section-container">
+            <h3>III. Figuras Proféticas en los Nombres de las Tribus y sus Jefes</h3>
+            <p>Cada nombre tribu y líder contiene un mensaje mesiánico oculto:</p>
+            <p><strong>Yehudá:</strong> Najshón – “Serpiente, precursor” <span class="arrow">→</span> Proto-Mashíaj
+                (Mateo 1:4)</p>
+            <p><strong>Reuvén:</strong> Elitzur – “Elohím es Roca” <span class="arrow">→</span> 1 Cor. 10:4 – “La Roca
+                era el Mashíaj”</p>
+            <p><strong>Efráyim:</strong> Elishamá – “El Elohím que escucha” <span class="arrow">→</span> Juan 11:41-42 –
+                Yeshúa ora y es oído</p>
+            <p><strong>Menashé:</strong> Gamliel – “Elohim me ha recompensado” <span class="arrow">→</span> Isaías 53:12
+                – "le daré su parte con los grandes"</p>
+            <p><strong>Leví:</strong> No contado <span class="arrow">→</span> Representa a Mashíaj como sumo sacerdote
+                apartado (Hebreos 7)</p>
+        </div>
+
+        <div class="section-container">
+            <h3>IV. Sombra del Cuerpo Mesiánico</h3>
+            <p>Así como cada tribu tenía su lugar, en el Brit Hadasháh:</p>
+            <p class="scripture">1 Corintios 12:18 – “Elohím colocó a cada miembro en el cuerpo como quiso”.</p>
+            <p>Mashíaj distribuye ministerios, talentos, funciones, igual que este censo distribuye responsabilidades
+                según la voluntad divina. El Israel físico apunta al Israel espiritual del Reino.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>V. Conexiones con Apocalipsis 7 y 14</h3>
+            <p>Los 144,000 (12 × 12,000) de Apocalipsis 7 derivan directamente de esta estructura:</p>
+            <ul>
+                <li>Representan la plenitud del Israel redimido, sellado para la batalla escatológica.</li>
+                <li>Mashíaj está en medio de ellos, como el Cordero y Capitán, así como el Mishkán estaba en medio del
+                    campamento.</li>
+            </ul>
+            <p class="scripture">Apocalipsis 14:4-5 – Describe a estos como “vírgenes”, “seguidores del Cordero
+                dondequiera que va”, y “sin mentira en su boca”.</p>
+            <p>Estas características son espirituales y reflejan la consagración militar-sacerdotal de Números 1.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>VI. Títulos y Funciones del Mashíaj en esta Aliyáh</h3>
+            <ul>
+                <li><strong>Capitán del Ejército (Sar Tzevaot)</strong> → Josué 5:14, Hebreos 2:10</li>
+                <li><strong>Mishkán Viviente</strong> → Juan 1:14, Hebreos 9:11</li>
+                <li><strong>Cohen Gadol sobre el Pueblo</strong> → Hebreos 4–9</li>
+                <li><strong>Sello del Pueblo Redimido</strong> → Apocalipsis 7:2-3</li>
+                <li><strong>Fundamento del Campamento Espiritual</strong> → Efesios 2:20</li>
+            </ul>
+        </div>
+
+        <div class="conclusion">
+            <h3>VII. Conclusión Mesiánica</h3>
+            <p>Números 1:20-54 revela que el pueblo de Elohím es:</p>
+            <ul>
+                <li><strong>Contado individualmente</strong> – porque cada redimido tiene un llamado único.</li>
+                <li><strong>Ordenado según la voluntad divina</strong> – porque no hay caos en el Reino.</li>
+                <li><strong>Organizado alrededor del Mishkán</strong> – que es figura de Mashíaj.</li>
+                <li><strong>Preparado para avanzar</strong> – no para quedarse en el desierto, sino para heredar.</li>
+            </ul>
+            <p>Yeshúa no solo es nuestro Libertador (como en Éxodo), sino también nuestro Capitán, nuestra Roca, nuestro
+                Sumo Sacerdote y nuestra Habitación.</p>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="content-container">
+        <h1>Punto 9: Midrashim, Targumim, Textos Fuentes y Apócrifos – Números 1:20-54</h1>
+
+        <div class="section-container">
+            <h3>I. Midrashim Relevantes</h3>
+            <p><strong>1. Midrash Bamidbar Rabbá 2:13-14</strong></p>
+            <p>Este midrash destaca que el acto de contar no es una práctica mundana, sino una declaración espiritual de
+                valor. Adonái no cuenta cosas sin vida, sino vidas con propósito. Al contar a cada varón de 20 años en
+                adelante, se confirma su dignidad como guerrero santo del Reino.</p>
+            <p class="scripture">“Cada uno de ellos está grabado como una joya en el pectoral del Cohen Gadol, porque
+                ninguno es olvidado delante del Trono”.</p>
+            <p>Este concepto es paralelo a:</p>
+            <p class="scripture">Lucas 10:20 – “Regocijaos de que vuestros nombres están escritos en los cielos”.</p>
+
+            <p><strong>2. Midrash Tanjumá Bamidbar 5</strong></p>
+            <p>El Midrash compara el censo con un pastor que revisa su rebaño una y otra vez, como un signo de cuidado.
+            </p>
+            <p class="scripture">“Así también el Rey Celestial no descuida a ninguno de sus hijos. Cada uno cuenta en el
+                ejército del Rey”.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Targumim</h3>
+            <p>Aunque Números 1:20-54 no contiene comentarios extensos en Targum Onkelos más allá de la traducción
+                literal, el Targum Yerushalmi añade una nota interpretativa al verso 47 sobre los levitas:</p>
+            <p class="scripture">“Y los levitas no fueron contados entre los hijos de Israel porque su porción es la
+                presencia del Shejináh”.</p>
+            <p>Esto conecta directamente con el concepto mesiánico: Mashíaj como Levita espiritual, cuya porción es
+                Adonái mismo.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>III. Textos Fuente: Qumrán y Literatura del Segundo Templo</h3>
+            <p><strong>1. 4Q321-324 – Mishmarot (Turnos de los Levitas)</strong></p>
+            <p>Los textos de Qumrán preservan divisiones sacerdotales basadas en el modelo tribal de Números. Estas
+                listas están organizadas por semanas y reflejan un orden celestial prefigurado en Bamidbar. Esto
+                refuerza que el censo de Números no es un acto histórico aislado, sino parte de una tavnit celestial que
+                comunidades como la de Qumrán trataron de restaurar.</p>
+
+            <p><strong>2. Jubileos 1:27–29</strong></p>
+            <p>El Libro de los Jubileos, texto del Segundo Templo, refleja y amplía la noción del censo con énfasis en
+                la pureza tribal y la función redentora de los levitas:</p>
+            <p class="scripture">“Y ordenó que se establecieran los jefes de tribu, y que los levitas fueran separados
+                para portar el testimonio del pacto…”</p>
+            <p>Este énfasis conecta con Yeshúa como portador del testimonio del Brit Hadasháh.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>IV. Libros Apócrifos y Mesiánicos</h3>
+            <p><strong>1. Testamento de los Doce Patriarcas (Leví 5:2-3)</strong></p>
+            <p>Profetiza que de Leví surgirá un Sacerdote celestial cuya función superará a la de sus padres:</p>
+            <p class="scripture">“Y de él saldrá un sacerdote, verdadero, y su palabra será como fuego…”</p>
+            <p>Este sacerdote apunta a Yeshúa haMashíaj, quien no fue contado entre los guerreros, pero es el que
+                santifica a todos los que son llamados.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>V. Relación con el Brit Hadasháh Mesiánico</h3>
+            <p>El uso de censos celestiales, inscripciones en el libro de la vida, y la organización de los creyentes
+                alrededor del Cordero, en textos como Apocalipsis 7, 14 y 21, proviene directamente de los patrones
+                tribales y sacerdotales delineados en Números 1.</p>
+            <p>Así como Israel fue contado para marchar, la Kehiláh es contada para testificar.</p>
+        </div>
+
+        <div class="conclusion">
+            <h3>VI. Conclusión</h3>
+            <p>El legado textual de Números 1:20-54 es amplio, con ecos en:</p>
+            <ul>
+                <li><strong>Midrashim</strong> que enfatizan valor espiritual de cada alma.</li>
+                <li><strong>Targumim</strong> que explican la función sacerdotal mesiánica.</li>
+                <li><strong>Qumrán y literatura del Segundo Templo</strong> que intentan restaurar el orden tribal y
+                    levítico.</li>
+                <li><strong>Textos apócrifos</strong> que profetizan la venida de un Sacerdote celestial: Yeshúa
+                    haMashíaj.</li>
+            </ul>
+            <p>Este no es un censo muerto, sino el prototipo del Reino viviente que Mashíaj organiza con exactitud
+                celestial.</p>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="content-container">
+        <h1>Punto 10: Mandamientos Encontrados y Principios Espirituales – Números 1:20-54</h1>
+        <h2>Mitzvot, Instrucciones Divinas y su Aplicación Mesiánica</h2>
+
+        <div class="section-container">
+            <h3>I. Mitzvot (Mandamientos) Derivados del Texto</h3>
+            <p>Aunque esta sección no contiene mandamientos directos en forma de imperativos halájicos tradicionales, sí
+                revela instrucciones normativas de Elohím que establecen principios eternos para la vida espiritual y
+                comunitaria de Israel.</p>
+            <p><strong>1. Mandato de contar a los hombres aptos para el servicio militar (Bamidbar 1:2-3)</strong></p>
+            <p class="scripture">"Levanten el censo de toda la congregación..."</p>
+            <p><strong>Aplicación:</strong> Este censo no es meramente físico; representa una declaración espiritual:
+                cada miembro del pueblo tiene una función activa. En el Brit Hadasháh, esto se aplica a la preparación
+                para la batalla espiritual (Efesios 6:10-17).</p>
+
+            <p><strong>2. Instrucción de contar “por casa de padres y tribus” (v. 20-43)</strong></p>
+            <p>Se enfatiza el linaje, la herencia y la identidad tribal.</p>
+            <p><strong>Aplicación:</strong> Refuerza la importancia del legado espiritual y de pertenecer a una familia
+                espiritual ordenada. En Mashíaj, los creyentes se convierten en parte de la Casa de Israel restaurada
+                (Efesios 2:12-19).</p>
+
+            <p><strong>3. Mandato de excluir a los levitas del censo militar (v. 47-49)</strong></p>
+            <p class="scripture">“No contarás a la tribu de Leví…”</p>
+            <p><strong>Aplicación:</strong> El principio es que no todos tienen la misma función en el Reino. Algunos
+                están llamados al servicio sacerdotal y ministerial exclusivo. Esto anticipa el sacerdocio de Yeshúa
+                como Cohen Gadol, separado del combate, pero intercesor supremo.</p>
+
+            <p><strong>4. Instrucción de asignar a los levitas la custodia del Mishkán (v. 50-53)</strong></p>
+            <p class="scripture">“Ellos cuidarán todos sus utensilios…”</p>
+            <p><strong>Aplicación:</strong> Establece el principio de consagración en el servicio. En la Kehiláh, el
+                ministerio no es general, sino específico. Los dones deben usarse en la función designada por el Ruaj
+                HaKódesh (1 Corintios 12:4-11).</p>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Principios y Valores Espirituales Encontrados</h3>
+            <p><strong>1. Orden Divino</strong></p>
+            <p>Elohím no bendice el caos. Cada tribu, cada función, cada persona tiene un lugar.</p>
+            <p><strong>Aplicación mesiánica:</strong> la Kehiláh debe operar con estructura y liderazgo ordenado (Tito
+                1:5).</p>
+            <p><strong>2. Consagración para la guerra</strong></p>
+            <p>Solo los hombres mayores de 20 años eran contados: se requiere madurez espiritual para entrar en la
+                batalla.</p>
+            <p><strong>Aplicación:</strong> no todo creyente está listo para guerra espiritual profunda. El discipulado
+                forma guerreros celestiales.</p>
+            <p><strong>3. Protección del Lugar Santo</strong></p>
+            <p>Los levitas no solo sirven, también protegen el Mishkán del contacto profano. Yeshúa cumple esta función
+                como protector del pueblo (Juan 17:12). La Kehiláh debe guardar su santidad.</p>
+            <p><strong>4. La Identidad Colectiva e Individual</strong></p>
+            <p>Aunque se cuenta por tribus, cada persona tiene valor individual: es un alma única dentro del cuerpo.</p>
+            <p class="scripture">Romanos 12:5 – “Así nosotros, siendo muchos, somos un cuerpo en Mashíaj”.</p>
+        </div>
+
+        <div class="conclusion">
+            <h3>III. Síntesis Mesiánica</h3>
+            <p>Yeshúa no solo salva, organiza. El Reino no se construye con multitudes desorganizadas, sino con un
+                pueblo consagrado y alineado. Cada creyente debe reconocer su llamado, tribu espiritual y rol.</p>
+            <p><strong>Mandamientos Espirituales para Hoy:</strong></p>
+            <ul>
+                <li>Preséntate delante del Capitán para ser contado.</li>
+                <li>Recibe tu posición en el cuerpo del Mashíaj.</li>
+                <li>Guarda el orden y la santidad en tu servicio.</li>
+                <li>No imites el rol de otro, sino cumple tu llamado con fidelidad.</li>
+                <li>Protégete y protege lo sagrado en la Kehiláh.</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="content-container">
+        <h1>Punto 11: Preguntas de Reflexión – Números 1:20-54</h1>
+        <h2>Con Respuestas Basadas en Yeshúa haMashíaj</h2>
+
+        <div>
+            <p class="question">1. ¿Por qué Elohím ordena contar a cada varón por nombre y tribu, y qué revela esto
+                sobre nuestra identidad en Mashíaj?</p>
+            <div class="answer">
+                <p>Porque cada varón tenía una función asignada por el cielo dentro del campamento. No eran cifras, eran
+                    nombres consagrados, listos para la batalla.</p>
+                <p>En Mashíaj, también somos contados y llamados por nombre (Juan 10:3). Esto nos revela que no somos
+                    espectadores, sino partícipes activos del Reino, cada uno con una tarea específica que cumplir en el
+                    cuerpo del Mesías.</p>
+            </div>
+        </div>
+
+        <div>
+            <p class="question">2. ¿Cuál es el propósito espiritual de excluir a los levitas del censo militar, y cómo
+                se refleja esto en la obra de Yeshúa?</p>
+            <div class="answer">
+                <p>Los levitas son excluidos porque su rol no es militar, sino sacerdotal. Están dedicados al Mishkán.
+                </p>
+                <p>Esto prefigura a Yeshúa haMashíaj como Cohen Gadol celestial, quien no combate con armas, sino con
+                    intercesión (Hebreos 7:25).</p>
+                <p>Él es apartado no para destruir, sino para mediar, ministrar y redimir a su pueblo desde el lugar
+                    santísimo celestial.</p>
+            </div>
+        </div>
+
+        <div>
+            <p class="question">3. ¿Qué representa la organización tribal en torno al Mishkán en el contexto del Reino
+                mesiánico?</p>
+            <div class="answer">
+                <p>Es el prototipo del Reino ordenado de Adonái.</p>
+                <p>En el Brit Hadasháh, el centro ya no es el Mishkán físico, sino Yeshúa como el Tabernáculo viviente
+                    (Juan 1:14).</p>
+                <p>Cada tribu y creyente gira en torno a Él, no como figuras independientes, sino como miembros de una
+                    estructura viva y coordinada.</p>
+            </div>
+        </div>
+
+        <div>
+            <p class="question">4. ¿Qué nos enseña este pasaje sobre la necesidad de orden y función dentro del cuerpo
+                del Mashíaj?</p>
+            <div class="answer">
+                <p>Nos enseña que el Reino no se construye en el caos. Cada tribu, cada líder, cada varón tenía una
+                    posición precisa.</p>
+                <p>Así también, en la Kehiláh de Mashíaj:</p>
+                <p class="scripture">1 Corintios 12:18 – “Elohím ha colocado a cada uno en el cuerpo como quiso”.</p>
+                <p>Esto significa que hay un lugar exacto diseñado para ti, y desobedecer tu función afecta al cuerpo
+                    entero. El orden es expresión de la gloria.</p>
+            </div>
+        </div>
+
+        <div>
+            <p class="question">5. ¿Cómo podemos aplicar hoy el principio de “estar listos para la guerra” que aparece
+                en este censo?</p>
+            <div class="answer">
+                <p>Estar “apto para la guerra” (<span class="hebrew-term" dir="rtl">יֹצֵא צָבָא</span>) no es físico,
+                    sino espiritual.</p>
+                <p>Implica madurez, consagración, disciplina y obediencia.</p>
+                <p>En Yeshúa, el creyente es llamado a ser soldado de luz (Efesios 6:10-18).</p>
+                <p>Aplicar este principio hoy es:</p>
+                <ul>
+                    <li>Ser firme en la fe.</li>
+                    <li>Vestirse de la armadura de la verdad.</li>
+                    <li>Responder al llamado a luchar por la santidad en un mundo en guerra espiritual.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión Mesiánica</h3>
+            <p>El censo de Bamidbar no es solo historia. Es una convocatoria profética a tomar tu lugar en el ejército
+                del Reino, con Mashíaj a la cabeza.</p>
+            <p>Cada pregunta es un desafío a examinar: ¿Estoy siendo contado? ¿Estoy consagrado? ¿Estoy alineado? ¿Estoy
+                posicionado? Yeshúa no solo nos llama. Nos asigna, nos equipa y nos envía.</p>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="content-container">
+        <h1>Punto 12: Resumen de la Aliyáh – Números 1:20-54</h1>
+        <h2>Con Aplicación en Mashíaj Yeshúa</h2>
+
+        <div class="section-container">
+            <h3>I. Resumen de los Eventos Clave</h3>
+            <p><strong>Censo de las Doce Tribus de Israel</strong></p>
+            <p>Cada tribu (excepto Leví) es contada por nombre, casa paterna y número de varones mayores de 20 años
+                aptos para salir a la guerra. Se enumeran líderes tribales y el total alcanza 603,550 guerreros.</p>
+            <p><strong>Exclusión de los Levitas</strong></p>
+            <p>La tribu de Leví es excluida del censo militar. Su función especial es custodiar el Mishkán, sus
+                utensilios y el orden de servicio. Están consagrados como guardas de la santidad y mediadores
+                litúrgicos.</p>
+            <p><strong>Instrucción de Posicionamiento</strong></p>
+            <p>Se establecen principios de organización que serán desarrollados en el capítulo 2. Cada tribu debe
+                acampar y moverse bajo instrucción divina y en formación específica.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>II. Aplicación Profética y Espiritual</h3>
+            <p>El censo representa más que una estructura social: es un acto de consagración espiritual. Cada individuo
+                es contado porque su vida tiene propósito, lugar y función en el Reino. El hecho de excluir a los
+                levitas y asignarles al Mishkán muestra que hay divisiones sagradas de roles, y que el orden de Elohím
+                no permite mezcla ni confusión.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>III. Cumplimiento y Aplicación en Yeshúa haMashíaj</h3>
+            <p><strong>Yeshúa es el Mishkán Viviente</strong></p>
+            <p>Así como el campamento gira en torno al Mishkán, la Kehiláh mesiánica gira en torno a Mashíaj.</p>
+            <p class="scripture">Juan 1:14 – “El Verbo se hizo carne y tabernaculizó entre nosotros…”</p>
+            <p><strong>Mashíaj como el Capitán del Ejército Celestial</strong></p>
+            <p>Yeshúa es quien dirige a los redimidos como un ejército ordenado, limpio, consagrado, sellado y
+                posicionado (Apocalipsis 7:4; Hebreos 2:10).</p>
+            <p><strong>Yeshúa como el Cohen Gadol del Tabernáculo Celestial</strong></p>
+            <p>La función levítica es una sombra del sacerdocio mesiánico. En Yeshúa, el servicio sacerdotal es
+                perfecto, eterno e intercesor (Hebreos 4–9).</p>
+        </div>
+
+        <div class="conclusion">
+            <h3>IV. Enseñanza Central</h3>
+            <p>Israel no es solo un pueblo redimido: es un ejército organizado y una familia estructurada, alineada con
+                la voluntad divina, marchando hacia su herencia eterna.</p>
+            <p>En Yeshúa, cada creyente es:</p>
+            <ul>
+                <li><strong>Contado</strong> (Lucas 10:20)</li>
+                <li><strong>Sellado</strong> (Efesios 1:13)</li>
+                <li><strong>Posicionado</strong> (1 Corintios 12:18)</li>
+                <li><strong>Enviado</strong> (Mateo 28:19)</li>
+                <li><strong>Protegido</strong> (Juan 17:12)</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="content-container">
+        <h1>Punto 13: Tefiláh (Oración) de la Aliyáh – Números 1:20-54</h1>
+        <h2>Oración Inspirada en la Santificación del Campamento y el Liderazgo del Mashíaj</h2>
+
+        <div class="prayer-text">
+            <p>Abinu Shebashamáyim, nuestro Padre que estás en los cielos,</p>
+            <p>Tú que contaste a cada tribu de Yisra’él en el desierto, y llamaste a cada uno por su nombre, te damos
+                gracias porque también hoy Tú nos llamas, uno por uno, a ser parte de tu ejército santo.</p>
+            <p>Gracias por mostrarnos, por medio de tu Toráh, que no somos una multitud desorganizada, sino un pueblo
+                redimido, consagrado, posicionado en torno a Tu presencia, centrado en el Mishkán viviente: Yeshúa
+                haMashíaj.</p>
+            <p>Te bendecimos por haber apartado a los levitas, como sombra del Sumo Sacerdote celestial, quien no fue
+                contado entre los guerreros terrenales, pero intercede día y noche por nosotros desde el Lugar Kadosh.
+            </p>
+            <p>Te pedimos, Adonái, que nos hagas dignos de ser contados entre los tuyos: diligentes en nuestra tribu
+                espiritual, fieles en nuestro llamado, maduros para la guerra, revestidos con tu armadura de luz.</p>
+            <p>Que no ocupemos lugar ajeno ni sirvamos en caos, sino que cada uno de nosotros halle su función, su
+                nombre, su rol, su herencia y su propósito en el cuerpo del Mashíaj.</p>
+            <p>Levanta líderes como los de antaño: de linaje limpio, de nombre profético, que guíen con justicia y temor
+                de tu Nombre.</p>
+            <p>Padre, alinéanos en torno a tu voluntad, enséñanos a marchar en orden, a acampar en obediencia, y a
+                proteger lo sagrado como levitas en el espíritu.</p>
+            <p>Yeshúa haMashíaj, Capitán de nuestras almas, guíanos como guiabas a Israel en el desierto, con tu nube
+                por día y tu fuego por noche, hasta heredar plenamente lo que tú nos has prometido.</p>
+        </div>
+
+        <p class="prayer-conclusion">Amén. Ken yehi ratzón. Así sea tu voluntad.</p>
+    </div>
+
+    <footer>
+        <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia
+                Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                https://bibliatorahviviente.github.io/recursos/</a></p>
+    </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya3.html">Continuar con la Aliyá 3</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

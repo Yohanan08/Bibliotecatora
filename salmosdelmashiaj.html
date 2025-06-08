@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salmos del rey David y su cumplimiento en nuestro MARYAH ADONAI YESHÚA HAMASHIAJ.</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+
+        .psalm-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .psalm-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .psalm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .psalm-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .share-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .facebook {
+            background: #1877f2;
+        }
+
+        .twitter {
+            background: #1da1f2;
+        }
+
+        .whatsapp {
+            background: #25d366;
+        }
+
+        .telegram {
+            background: #0088cc;
+        }
+
+        .copy-btn {
+            background: #6c757d;
+        }
+
+        .verse-container {
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .verse-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verse-section {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+
+        .hebrew-section {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .phonetic-section {
+            background: rgba(249, 115, 22, 0.1);
+            border-left: 4px solid #f97316;
+        }
+
+        .translation-section {
+            background: rgba(234, 179, 8, 0.1);
+            border-left: 4px solid #eab308;
+        }
+
+        .messianic-section {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+        }
+
+        .section-label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hebrew-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            direction: rtl;
+            text-align: right;
+            font-family: 'Times New Roman', serif;
+            color: #1e40af;
+        }
+
+        .phonetic-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-style: italic;
+            color: #ea580c;
+        }
+
+        .translation-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #a16207;
+            font-weight: 500;
+        }
+
+        .messianic-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #166534;
+        }
+
+        .no-results {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-top: 50px;
+        }
+
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .control-row {
+                flex-direction: column;
+            }
+
+            .psalm-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .share-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="language-selector">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+            <option value="pt">Português</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1 id="mainTitle">Salmos del rey David y su cumplimiento en nuestro MARYAH ADONAI YESHÚA HAMASHIAJ.</h1>
+            <p id="subtitle">Explora los Salmos en su idioma original con análisis mesiánicos en nuestro ADONAI YESHÚA
+                HAMASHIAJ.</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-row">
+                <div class="control-group">
+                    <label for="psalmSelect" id="searchLabel">Selecciona un Salmo:</label>
+                    <select id="psalmSelect" onchange="filterPsalms()"></select>
+                </div>
+                <div class="control-group">
+                    <label for="categoryFilter" id="categoryLabel">Filtrar por categoría:</label>
+                    <select id="categoryFilter" onchange="filterPsalms()">
+                        <option value="all">Todos</option>
+                        <option value="messianic">Mesiánicos</option>
+                        <option value="praise">Alabanza</option>
+                        <option value="lament">Lamento</option>
+                        <option value="wisdom">Sabiduría</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="psalmsContainer"></div>
+    </div>
+
+    <script>
+        // Base de datos de salmos con formato verso por verso
+        const psalmsData = {
+            1: {
+                category: "wisdom",
+                verses: [
+                    {
+                        number: 1,
+                        hebrew: "אַשְׁרֵי הָאִישׁ אֲשֶׁר לֹא הָלַךְ בַּעֲצַת רְשָׁעִים וּבְדֶרֶךְ חַטָּאִים לֹא עָמָד וּבְמוֹשַׁב לֵצִים לֹא יָשָׁב׃",
+                        phonetic: "Ashrê ha'ísh asher lo haláj ba'atzát resha'ím, uvdérej jatá'ím lo amád, uvmosháv letsím lo yasháv.",
+                        translation: "Bienaventurado el hombre que no anduvo en consejo de malvados, ni en camino de pecadores se detuvo, ni en silla de burladores se sentó.",
+                        messianic: "Este \"hombre\" justo es una sombra directa del **Mashíaj**. Yeshúa haMashíaj **no caminó con los resha'ím (malvados)**, ni participó en el consejo de los jattá'ím (pecadores), sino que **vivió completamente separado para la voluntad de Elohím** (Yojanán 8:29). Los targumím lo aplican al \"Rey Mesías\", y los midrashim mencionan que este verso describe su conducta perfecta."
+                    },
+                    {
+                        number: 2,
+                        hebrew: "כִּי אִם בְּתוֹרַת יְהוָה חֶפְצוֹ וּבְתוֹרָתוֹ יֶהְגֶּה יוֹמָם וָלָיְלָה׃",
+                        phonetic: "Ki im bTorát YHWH cheftzó, uvTorató yehgué yomám va-láiláh.",
+                        translation: "Sino que en la Toráh de YHWH está su deleite, y en su Toráh medita de día y de noche.",
+                        messianic: "Yeshúa **es la Toráh viviente** (Juan 1:1,14). Su deleite estuvo completamente en la Toráh de יהוה, y la enseñó y vivió sin desviarse (Mattityahu 5:17). Este verso revela el alma del Mashíaj: entregado totalmente al Dabar del Eterno."
+                    },
+                    {
+                        number: 3,
+                        hebrew: "וְהָיָה כְּעֵץ שָׁתוּל עַל-פַּלְגֵי מָיִם אֲשֶׁר פִּרְיוֹ יִתֵּן בְּעִתּוֹ וְעָלֵהוּ לֹא-יִבּוֹל וְכֹל אֲשֶׁר-יַעֲשֶׂה יַצְלִיחַ׃",
+                        phonetic: "Vehayá ke'éts shatúl al palgé mayím, asher piryó yitén be'itó, ve'aléhú lo yiból, vekól asher ya'asé yatsliáj.",
+                        translation: "Y será como árbol plantado junto a corrientes de aguas, que da su fruto a su tiempo, y su hoja no cae, y todo lo que hace prosperará.",
+                        messianic: "Yeshúa es comparado al **Árbol de Vida (Etz Jaím)** en Hitgalut 22:2. Dio su **fruto redentor \"a su tiempo\"** (Galatim 4:4), cuando el tiempo del cumplimiento llegó. Su \"hoja no cae\" — Él no vio corrupción (Tehilím 16:10), y todo lo que hizo fue exitoso según la voluntad de יהוה."
+                    },
+                    {
+                        number: 4,
+                        hebrew: "לֹא-כֵן הָרְשָׁעִים כִּי אִם-כַּמֹּץ אֲשֶׁר-תִּדְּפֶנּוּ רוּחַ׃",
+                        phonetic: "Lo khen haresha'ím, ki im kamótz asher tidfenéhu rúaj.",
+                        translation: "No así los malvados, sino que son como tamo que el viento dispersa.",
+                        messianic: "Mashíaj separará el trigo del tamo (Mattityahu 3:12). Los resha'ím serán dispersados, no permanecerán en la presencia del Kadosh de Israel. El juicio del Mashíaj hará evidente la diferencia entre los justos y los malvados."
+                    },
+                    {
+                        number: 5,
+                        hebrew: "עַל-כֵּן לֹא-יָקֻמוּ רְשָׁעִים בַּמִּשְׁפָּט וְחַטָּאִים בַּעֲדַת צַדִּיקִים׃",
+                        phonetic: "Al kén lo yakúmu resha'ím ba-mishpát, vechatta'ím ba'adát tzadikím.",
+                        translation: "Por tanto, no se levantarán los malvados en el juicio, ni los pecadores en la asamblea de los justos.",
+                        messianic: "En el juicio escatológico dirigido por Yeshúa (Hitgalut 20), los malvados no serán justificados. **Solo los tzadikím inscritos en el Sefer HaJaim (Libro de Vida)** participarán en la asamblea redimida."
+                    },
+                    {
+                        number: 6,
+                        hebrew: "כִּי-יוֹדֵעַ יְהוָה דֶּרֶךְ צַדִּיקִים וְדֶרֶךְ רְשָׁעִים תֹּאבֵד׃",
+                        phonetic: "Ki yodéa YHWH dérej tzadikím, vedérej resha'ím tovéd.",
+                        translation: "Porque YHWH conoce el camino de los justos, pero el camino de los malvados perecerá.",
+                        messianic: "Yeshúa es el **Roeh haTov (Buen Pastor)** que **conoce a los suyos** y guía su camino (Yojanán 10:14). Él conoce íntimamente el camino de los tzadikím, y el camino de los resha'ím acabará en perdición (Hitgalut 21:8)."
+                    }
+                ]
+            },
+            2: {
+                category: "messianic",
+                verses: [
+                    {
+                        number: 1,
+                        hebrew: "לָמָּה רָגְשׁוּ גוֹיִם וּלְאֻמִּים יֶהְגּוּ רִיק׃",
+                        phonetic: "Lamá ragshú goyím, uleummím yehgú rik.",
+                        translation: "¿Por qué se amotinan las naciones, y los pueblos piensan cosas vanas?",
+                        messianic: "Citada en Ma'aséh haShlichím (Hechos 4:25-27), este verso se interpreta como la rebelión de las naciones contra Mashíaj. Los líderes del mundo se confabularon contra Yeshúa haMashíaj en su primera venida. Esta hostilidad espiritual y política se repite escatológicamente."
+                    },
+                    {
+                        number: 2,
+                        hebrew: "יִתְיַצְּבוּ מַלְכֵי אֶרֶץ וְרוֹזְנִים נוֹסְדוּ יַחַד עַל־יְהוָה וְעַל־מְשִׁיחוֹ׃",
+                        phonetic: "Yityatzvú maljê éretz, veróznim nosdú yaĥad al YHWH ve‘al meshijjó.",
+                        translation: "Se levantan los reyes de la tierra, y los príncipes conspiran unidos, contra YHWH y contra su Mashíaj.",
+                        messianic: "Se refiere a la oposición del liderazgo humano contra el reinado del Mashíaj. Los poderes políticos y religiosos se levantaron contra Yeshúa como Mashíaj (ver Hechos 4). La mención directa de \"Meshijó\" (Su Ungido) confirma que el Salmo habla claramente del Rey Mashíaj."
+                    },
+                    {
+                        number: 3,
+                        hebrew: "נְנַתְּקָה אֶת־מוֹסְרוֹתֵימוֹ וְנַשְׁלִיכָה מִמֶּנּוּ עֲבֹתֵימוֹ׃",
+                        phonetic: "Nenattékah et-mosroteimo, venashlikhá mimménu avotéimo.",
+                        translation: "¡Rompamos sus cadenas y echemos de nosotros sus cuerdas!",
+                        messianic: "Las naciones rechazan la autoridad del Mashíaj como si fuera esclavitud. Este verso refleja el rechazo del gobierno justo del Mashíaj Yeshúa. Pero su Reino no puede ser quebrado, y su gobierno es eterno (Daniel 7:14)."
+                    },
+                    {
+                        number: 4,
+                        hebrew: "יוֹשֵׁב בַּשָּׁמַיִם יִשְׂחָק אֲדֹנָי יִלְעַג־לָמוֹ׃",
+                        phonetic: "Yoshév bashamáyim yisĥák, Adonái yil‘ág lámó.",
+                        translation: "El que habita en los cielos se reirá, Adonái se burlará de ellos.",
+                        messianic: "El Eterno se burla del intento humano de resistir su Ungido. Mashíaj Yeshúa ha sido exaltado a los cielos (Filipím 2:9), y desde allí ejecutará su juicio."
+                    },
+                    {
+                        number: 5,
+                        hebrew: "אָז יְדַבֵּר אֵלֵימוֹ בְאַפּוֹ וּבַחֲרוֹנוֹ יְבַהֲלֵמוֹ׃",
+                        phonetic: "Az yedabbér eléimo ve’apó, uvajarónó yevahalémo.",
+                        translation: "Entonces les hablará con su ira, y en su furor los aterrará.",
+                        messianic: "Yeshúa vendrá como Juez justo en su segunda venida. Su palabra será espada (Hitgalut 19:15), y ejecutará justicia contra los reinos rebeldes."
+                    },
+                    {
+                        number: 6,
+                        hebrew: "וַאֲנִי נָסַכְתִּי מַלְכִּי עַל־צִיּוֹן הַר־קָדְשִׁי׃",
+                        phonetic: "Va’aní nasákhtí malkí al Tziyón har kadshí.",
+                        translation: "Pero yo he ungido a mi Rey sobre Tzión, mi monte santo.",
+                        messianic: "Mashíaj ha sido ungido como Rey eterno sobre Tzión. Este es un anuncio celestial del Reino mesiánico, confirmado en Hebreos 1:8. El monte Tzión es símbolo de su trono eterno."
+                    }
+                ]
+            },
+            3: {
+                category: "messianic",
+                verses: [
+                    {
+                        number: 1,
+                        hebrew: "יְהוָה מָה־רַבּוּ צָרָי רַבִּים קָמִים עָלָי׃",
+                        phonetic: "YHWH má rabbú tzarái, rabbím kamím alái.",
+                        translation: "¡Adonái, cuán numerosos son mis adversarios! Muchos se levantan contra mí.",
+                        messianic: "Yeshúa fue perseguido desde su nacimiento (Mattityahu 2), y muchos se levantaron contra él. Este verso refleja el rechazo y la oposición de las multitudes, incluyendo autoridades religiosas y políticas."
+                    },
+                    {
+                        number: 2,
+                        hebrew: "רַבִּים אֹמְרִים לְנַפְשִׁי אֵין יְשׁוּעָה לּוֹ בֵאלֹהִים סֶלָה׃",
+                        phonetic: "Rabbím omrím lenafshí, ein yeshuáh ló veElohím — Sélah.",
+                        translation: "Muchos dicen de mi alma: \"No hay salvación para él en Elohím\" — Selah.",
+                        messianic: "En el madero (poste), muchos se burlaban diciendo: \"Confió en Elohím, que lo libre ahora\" (Mattityahu 27:43). Este verso se cumple literalmente en el desprecio del pueblo hacia la redención de Mashíaj."
+                    },
+                    {
+                        number: 3,
+                        hebrew: "וְאַתָּה יְהוָה מָגֵן בַּעֲדִי כְּבוֹדִי וּמֵרִים רֹאשִׁי׃",
+                        phonetic: "Veatáh YHWH maguén ba'adí, kevodí umerím roshí.",
+                        translation: "Pero tú, Adonái, eres escudo alrededor de mí, mi gloria, y quien levanta mi cabeza.",
+                        messianic: "Yeshúa fue exaltado por el Padre (Filipím 2:9). Aunque humillado por los hombres, el Eterno fue su escudo y restauró su gloria al resucitarlo."
+                    },
+                    {
+                        number: 4,
+                        hebrew: "קוֹלִי אֶל־יְהוָה אֶקְרָא וַיַּעֲנֵנִי מֵהַר קָדְשׁוֹ סֶלָה׃",
+                        phonetic: "Kolí el YHWH ekrá, vaya'anéni mehar kodshó — Sélah.",
+                        translation: "Con mi voz clamo a Adonái, y me responde desde su monte santo — Selah.",
+                        messianic: "Yeshúa oró fervientemente antes de su entrega (Lucas 22:44). Aunque pareció no ser escuchado, fue respondido con resurrección y victoria desde Tzión, el monte santo profético."
+                    },
+                    {
+                        number: 5,
+                        hebrew: "אֲנִי שָׁכַבְתִּי וָאִישָׁנָה הֱקִיצוֹתִי כִּי יְהוָה יִסְמְכֵנִי׃",
+                        phonetic: "Aní shajávtí va’ishanáh, hekitzotí ki YHWH yismekhení.",
+                        translation: "Me acosté y dormí; desperté, porque Adonái me sostiene.",
+                        messianic: "Este “dormir” representa la muerte. Yeshúa fue sepultado y resucitado — despertó porque יהוה lo sostuvo (Ma’aséh 2:24). Este verso es uno de los más claros sobre su resurrección profetizada."
+                    },
+                    {
+                        number: 6,
+                        hebrew: "לֹא־אִירָא מֵרִבְבוֹת עָם אֲשֶׁר סָבִיב שָׁתוּ עָלָי׃",
+                        phonetic: "Lo iráh merivvot am, asher savív shátu alái.",
+                        translation: "No temeré a miríadas de pueblo, que alrededor han puesto sitio contra mí.",
+                        messianic: "Mashíaj no temió la oposición, ni siquiera en Getsemaní, cuando miles espiritualmente se levantaron contra él. Él entregó su alma en paz, confiando en el plan eterno."
+                    },
+                    {
+                        number: 7,
+                        hebrew: "קוּמָה יְהוָה הוֹשִׁיעֵנִי אֱלֹהַי כִּי הִכִּיתָ אֵת כָּל־אֹיְבַי לֶחִי שִׁנֵּי רְשָׁעִים שִׁבָּרְתָּ׃",
+                        phonetic: "Kumáh YHWH hoshí'ení, Elohái, ki hikíta et kol oyvaí lejí, shinné resha'ím shibbártá.",
+                        translation: "¡Levántate, Adonái! ¡Sálvame, oh Elohái! Porque heriste a todos mis enemigos en la mejilla, quebraste los dientes de los malvados.",
+                        messianic: "Este clamor profético se cumplió con la resurrección de Yeshúa. El poder del pecado, el Sheol y las potestades fue quebrado (Colosenses 2:15)."
+                    },
+                    {
+                        number: 8,
+                        hebrew: "לַיהוָה הַיְשׁוּעָה עַל־עַמְּךָ בִרְכָתֶךָ סֶלָה׃",
+                        phonetic: "LaYHWH hayeshuáh, al ammekhá birkatékha — Sélah.",
+                        translation: "¡Del Eterno es la salvación! ¡Sobre tu pueblo está tu bendición! — Selah.",
+                        messianic: "LaYHWH haYeshuáh — literalmente: “¡La salvación es de יהוה!” Este verso contiene el nombre profético de Yeshúa (\"salvación de YHWH\"). El Mashíaj trajo la redención eterna a Israel y a los justos de entre las naciones."
+                    }
+                ]
+            },
+            4: {
+                category: "messianic",
+                verses: [
+                    {
+                        number: 1,
+                        hebrew: "לַמְנַצֵּחַ בִּנְגִינוֹת מִזְמוֹר לְדָוִד בְּקָרְאִי עֲנֵנִי אֱלֹהֵי צִדְקִי בַּצָּר הִרְחַבְתָּ לִּי חָנֵּנִי וּשְׁמַע תְּפִלָּתִי׃",
+                        phonetic: "Lamnatze'áḥ binguinót mizmór leDavid, bekor'í anéní, Elohéi tzidkí, batzar hirchavtá lí, janéní ushemá tefilatí.",
+                        translation: "Al director, con instrumentos de cuerda. Mizmor de David. Cuando clamo, respóndeme, oh Elohím de mi justicia. En la angustia me diste amplitud; ten compasión de mí, escucha mi tefiláh.",
+                        messianic: "Yeshúa, en Getsemaní, clamó al Elohím de justicia (Mattityahu 26:39). Este verso anticipa su oración ferviente y el consuelo del Padre en medio de la angustia. Mashíaj es el Tzadík por excelencia, y su tefiláh fue escuchada (Hebreos 5:7)."
+                    },
+                    {
+                        number: 2,
+                        hebrew: "בְּנֵי אִישׁ עַד־מֶה כְבוֹדִי לִכְלִמָּה תֶּאֱהָבוּ רִיק תְּבַקְשׁוּ כָזָב סֶלָה׃",
+                        phonetic: "Benéi ish, ad meh kevodí leklimáh, te'ehávu rik, tevakshú kazáv — Sélah.",
+                        translation: "Hijos de hombre, ¿hasta cuándo convertiréis mi gloria en vergüenza? ¿Amaréis lo vano y buscaréis la mentira? — Selah.",
+                        messianic: "La gloria del Mashíaj fue despreciada por los líderes de Israel (Yeshayahu 53:3). Buscaron la mentira y rechazaron la verdad (Juan 18:38). Este verso denuncia esa actitud hacia el Ungido del Eterno."
+                    },
+                    {
+                        number: 3,
+                        hebrew: "וּדְעוּ כִּי־הִפְלָה יְהוָה חָסִיד לוֹ יְהוָה יִשְׁמַע בְּקָרְאִי אֵלָיו׃",
+                        phonetic: "Ude'ú ki hifláh YHWH jasíd ló, YHWH yishmá bekor'í eláv.",
+                        translation: "Sepan que ha apartado YHWH al piadoso para sí; YHWH oirá cuando a él clame.",
+                        messianic: "Yeshúa es el Jasíd (piadoso) por excelencia, apartado desde la eternidad (Mishlé 8:23, Lucas 9:35). Sus oraciones fueron escuchadas y su resurrección fue prueba de ello (Ma’aséh 2:24)."
+                    },
+                    {
+                        number: 4,
+                        hebrew: "רִגְזוּ וְאַל־תֶּחֱטָאוּ אִמְרוּ בִלְבַבְכֶם עַל־מִשְׁכַּבְכֶם וְדֹמּוּ סֶלָה׃",
+                        phonetic: "Rigzú ve'al techetá'u, imrú bilvavjém al mishkavjém, vedómmu — Sélah.",
+                        translation: "Temblad y no pequéis; meditad en vuestro corazón sobre vuestra cama, y callad — Selah.",
+                        messianic: "Yeshúa llama al arrepentimiento desde el corazón (Mattityahu 5:28). Este verso refleja su enseñanza de introspección y teshuváh auténtica. El mensaje de silencio y reflexión se cumple en sus seguidores."
+                    },
+                    {
+                        number: 5,
+                        hebrew: "זִבְחוּ זִבְחֵי־צֶדֶק וּבִטְחוּ אֶל־יְהוָה׃",
+                        phonetic: "Zivchú zivché-tzédek, uvitchú el YHWH.",
+                        translation: "Ofreced sacrificios de justicia, y confiad en YHWH.",
+                        messianic: "Mashíaj es el sacrificio perfecto de justicia (Ivrit 10:10). Los sacrificios de tzédek ahora son la obediencia y la emunáh en Él (Romanim 12:1)."
+                    },
+                    {
+                        number: 6,
+                        hebrew: "רַבִּים אֹמְרִים מִי יַרְאֵנוּ טוֹב נְשָׂא־עָלֵינוּ אוֹר פָּנֶיךָ יְהוָה׃",
+                        phonetic: "Rabbím omrím: mi yare'énu tov? Nesáh aleinu or panékha YHWH.",
+                        translation: "Muchos dicen: “¿Quién nos mostrará el bien?” ¡Haz resplandecer sobre nosotros la luz de tu rostro, YHWH!",
+                        messianic: "Yeshúa es la Or Panav (Luz del Rostro) de Elohím (Yojanán 8:12). Él es quien revela el bien, y su rostro es la bendición final (2 Corintios 4:6)."
+                    },
+                    {
+                        number: 7,
+                        hebrew: "נָתַתָּה שִׂמְחָה בְלִבִּי מֵעֵת דְּגָנָם וְתִירוֹשָׁם רָבּוּ׃",
+                        phonetic: "Natatá simchá belibí, me'et deganám vetirósham rabbú.",
+                        translation: "Diste alegría en mi corazón más que en el tiempo en que abundaron su grano y su vino.",
+                        messianic: "La simcháh profunda de Yeshúa no depende de lo material, sino de la relación con el Padre (Yojanán 15:11). Sus seguidores experimentan esta alegría espiritual que trasciende lo físico."
+                    },
+                    {
+                        number: 8,
+                        hebrew: "בְּשָׁלוֹם יַחְדָּו אֶשְׁכְּבָה וְאִישָׁן כִּי־אַתָּה יְהוָה לְבָדָד לָבֶטַח תּוֹשִׁיבֵנִי׃",
+                        phonetic: "Beshalóm yaĥdáv eshkeváh ve’ishán, ki atáh YHWH levadád lavetáj toshivéini.",
+                        translation: "En paz me acostaré y asimismo dormiré, porque tú solo, YHWH, me haces habitar confiado.",
+                        messianic: "Mashíaj durmió (murió) en paz y fue puesto en seguridad por el Padre. Este verso anticipa su muerte confiada y su resurrección en seguridad eterna (Tehilím 16:10; Lucas 23:46)."
+                    }
+                ]
+            },
+        };
+
+        for (let i = 2; i <= 150; i++) {
+            if (!psalmsData[i]) {
+                psalmsData[i] = {
+                    category: "",
+                    verses: [
+                        {
+                            number: 1,
+                            hebrew: "",
+                            phonetic: "",
+                            translation: "",
+                            messianic: ""
+                        }
+                    ]
+                };
+            }
+        }
+        function populatePsalmSelect() {
+            const select = document.getElementById('psalmSelect');
+            select.innerHTML = '';
+            for (let i = 1; i <= 150; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Salmo ${i}`;
+                select.appendChild(option);
+            }
+        }
+        // Traducciones de la interfaz
+        const translations = {
+            es: {
+                mainTitle: "Salmos del rey David y su cumplimiento en nuestro MARYAH ADONAI YESHÚA HAMASHIAJ.",
+                subtitle: "Explora los Salmos en su idioma original con análisis mesiánico en nuestro ADONAI YESHÚA HAMASHIAJ.",
+                searchLabel: "Buscar Salmo (número o palabra clave):",
+                categoryLabel: "Filtrar por categoría:",
+                verseTitle: "Verso",
+                hebrewLabel: "Hebreo",
+                phoneticLabel: "Fonética",
+                translationLabel: "Traducción Literal",
+                messianicLabel: "Cumplimiento Mesiánico",
+                categories: {
+                    all: "Todos",
+                    messianic: "Mesiánicos",
+                    praise: "Alabanza",
+                    lament: "Lamento",
+                    wisdom: "Sabiduría"
+                }
+            },
+            en: {
+                mainTitle: "Psalms - Hebrew, Phonetic and Messianic Fulfillment",
+                subtitle: "Explore the Psalms in their original language with messianic analysis",
+                searchLabel: "Search Psalm (number or keyword):",
+                categoryLabel: "Filter by category:",
+                verseTitle: "Verse",
+                hebrewLabel: "Hebrew",
+                phoneticLabel: "Phonetic",
+                translationLabel: "Literal Translation",
+                messianicLabel: "Messianic Fulfillment",
+                categories: {
+                    all: "All",
+                    messianic: "Messianic",
+                    praise: "Praise",
+                    lament: "Lament",
+                    wisdom: "Wisdom"
+                }
+            },
+            he: {
+                mainTitle: "תהלים - עברית, פונטיקה והגשמה משיחית",
+                subtitle: "חקרו את התהלים בשפתם המקורית עם ניתוח משיחי",
+                searchLabel: "חפש תהלים (מספר או מילת מפתח):",
+                categoryLabel: "סנן לפי קטגוריה:",
+                verseTitle: "פסוק",
+                hebrewLabel: "עברית",
+                phoneticLabel: "פונטיקה",
+                translationLabel: "תרגום מילולי",
+                messianicLabel: "הגשמה משיחית",
+                categories: {
+                    all: "הכל",
+                    messianic: "משיחיים",
+                    praise: "הלל",
+                    lament: "קינה",
+                    wisdom: "חכמה"
+                }
+            },
+            pt: {
+                mainTitle: "Salmos - Hebraico, Fonética e Cumprimento Messiânico",
+                subtitle: "Explore os Salmos em sua língua original com análise messiânica",
+                searchLabel: "Buscar Salmo (número ou palavra-chave):",
+                categoryLabel: "Filtrar por categoria:",
+                verseTitle: "Verso",
+                hebrewLabel: "Hebraico",
+                phoneticLabel: "Fonética",
+                translationLabel: "Tradução Literal",
+                messianicLabel: "Cumprimento Messiânico",
+                categories: {
+                    all: "Todos",
+                    messianic: "Messiânicos",
+                    praise: "Louvor",
+                    lament: "Lamento",
+                    wisdom: "Sabedoria"
+                }
+            },
+            fr: {
+                mainTitle: "Psaumes - Hébreu, Phonétique et Accomplissement Messianique",
+                subtitle: "Explorez les Psaumes dans leur langue originale avec analyse messianique",
+                searchLabel: "Rechercher Psaume (numéro ou mot-clé):",
+                categoryLabel: "Filtrer par catégorie:",
+                verseTitle: "Verset",
+                hebrewLabel: "Hébreu",
+                phoneticLabel: "Phonétique",
+                translationLabel: "Traduction Littérale",
+                messianicLabel: "Accomplissement Messianique",
+                categories: {
+                    all: "Tous",
+                    messianic: "Messianiques",
+                    praise: "Louange",
+                    lament: "Lamentation",
+                    wisdom: "Sagesse"
+                }
+            }
+        };
+
+        let currentLanguage = 'es';
+        let filteredPsalms = Object.keys(psalmsData);
+
+        function changeLanguage() {
+            currentLanguage = document.getElementById('languageSelect').value;
+            updateInterface();
+            displayPsalms();
+        }
+
+        function updateInterface() {
+            const t = translations[currentLanguage];
+            document.getElementById('mainTitle').textContent = t.mainTitle;
+            document.getElementById('subtitle').textContent = t.subtitle;
+            document.getElementById('searchLabel').textContent = t.searchLabel;
+            document.getElementById('categoryLabel').textContent = t.categoryLabel;
+
+            // Actualizar opciones del select
+            const categorySelect = document.getElementById('categoryFilter');
+            categorySelect.innerHTML = '';
+            Object.keys(t.categories).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = t.categories[key];
+                categorySelect.appendChild(option);
+            });
+            populatePsalmSelect();
+        }
+
+        function filterPsalms() {
+            const psalmNumber = document.getElementById('psalmSelect').value;
+            const category = document.getElementById('categoryFilter').value;
+            filteredPsalms = [];
+
+            if (psalmNumber && psalmsData[psalmNumber]) {
+                if (category === 'all' || psalmsData[psalmNumber].category === category) {
+                    filteredPsalms = [psalmNumber];
+                }
+            }
+            displayPsalms();
+        }
+
+        function displayPsalms() {
+            const container = document.getElementById('psalmsContainer');
+            const t = translations[currentLanguage];
+
+            if (filteredPsalms.length === 0) {
+                container.innerHTML = '<div class="no-results">No se encontraron salmos que coincidan con los criterios de búsqueda.</div>';
+                return;
+            }
+
+            container.innerHTML = filteredPsalms.map(psalmNumber => {
+                const psalm = psalmsData[psalmNumber];
+                const versesHTML = psalm.verses.map(verse => `
+                    <div class="verse-container">
+                        <div class="verse-title">
+                            📖 <strong>${t.verseTitle} ${verse.number}</strong>
+                        </div>
+                        
+                        <div class="verse-section hebrew-section">
+                            <div class="section-label">🟦 <strong>${t.hebrewLabel}</strong>:</div>
+                            <div class="hebrew-text">${verse.hebrew}</div>
+                        </div>
+                        
+                        <div class="verse-section phonetic-section">
+                            <div class="section-label">🟧 <strong>${t.phoneticLabel}</strong>:</div>
+                            <div class="phonetic-text"><em>${verse.phonetic}</em></div>
+                        </div>
+                        
+                        <div class="verse-section translation-section">
+                            <div class="section-label">🟨 <strong>${t.translationLabel}</strong>:</div>
+                            <div class="translation-text">${verse.translation}</div>
+                        </div>
+                        
+                        <div class="verse-section messianic-section">
+                            <div class="section-label">🟩 <strong>${t.messianicLabel}</strong>:</div>
+                            <div class="messianic-text">${verse.messianic}</div>
+                        </div>
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="psalm-card fade-in">
+                        <div class="psalm-header">
+                            <div class="psalm-number">Salmo ${psalmNumber}</div>
+                            <div class="share-buttons">
+                                <button class="share-btn facebook" onclick="shareToFacebook(${psalmNumber})">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="share-btn twitter" onclick="shareToTwitter(${psalmNumber})">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="share-btn whatsapp" onclick="shareToWhatsApp(${psalmNumber})">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                                <button class="share-btn telegram" onclick="shareToTelegram(${psalmNumber})">
+                                    <i class="fab fa-telegram"></i>
+                                </button>
+                                <button class="share-btn copy-btn" onclick="copyToClipboard(${psalmNumber})">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        ${versesHTML}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function shareToFacebook(psalmNumber) {
+            const psalm = psalmsData[psalmNumber];
+            const text = `Salmo ${psalmNumber} - Estudio completo en hebreo con cumplimiento mesiánico`;
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToTwitter(psalmNumber) {
+            const psalm = psalmsData[psalmNumber];
+            const text = `Salmo ${psalmNumber} - Estudio completo en hebreo con cumplimiento mesiánico\n\n${psalm.verses[0].translation}`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToWhatsApp(psalmNumber) {
+            const psalm = psalmsData[psalmNumber];
+            const firstVerse = psalm.verses[0];
+            const text = `*Salmo ${psalmNumber}*\n\n📖 *Verso 1*\n🟦 *Hebreo*: ${firstVerse.hebrew}\n🟧 *Fonética*: ${firstVerse.phonetic}\n🟨 *Traducción*: ${firstVerse.translation}`;
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareToTelegram(psalmNumber) {
+            const psalm = psalmsData[psalmNumber];
+            const text = `Salmo ${psalmNumber} - Estudio completo en hebreo con cumplimiento mesiánico`;
+            const url = `https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function copyToClipboard(psalmNumber) {
+            const psalm = psalmsData[psalmNumber];
+            let text = `SALMO ${psalmNumber}\n\n`;
+
+            psalm.verses.forEach(verse => {
+                text += `📖 VERSO ${verse.number}\n`;
+                text += `🟦 Hebreo: ${verse.hebrew}\n`;
+                text += `🟧 Fonética: ${verse.phonetic}\n`;
+                text += `🟨 Traducción Literal: ${verse.translation}\n`;
+                text += `🟩 Cumplimiento Mesiánico: ${verse.messianic}\n\n`;
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert('¡Salmo completo copiado al portapapeles!');
+            }).catch(() => {
+                // Fallback para navegadores más antiguos
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('¡Salmo completo copiado al portapapeles!');
+            });
+        }
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function () {
+            populatePsalmSelect(); // <-- Esto llena el select al cargar la página
+            updateInterface();
+            displayPsalms();
+        });
+    </script>
+</body>
+
+</html>

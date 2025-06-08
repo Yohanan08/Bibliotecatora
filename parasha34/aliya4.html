@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 3:1-13</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>34. Parashá Bamidbar (במדבר) Aliyáh 4: (Números 3:1-13) La genealogía de Aharón y Moshé, y la consagración
+            de los levitas.
+            <p>Haftaráh: Jeremías 31:1-20 (El amor eterno de Elohím hacia Israel).</p>
+            <p>Brit Hadasháh: 1 Pedro 2:9 (El pueblo de Elohím como una nación santa y real sacerdocio).</p>
+        </h1>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 1. Números 3:1-13 – Hebreo, Fonética y Traducción Literal</h1>
+
+            <!-- Números 3:1 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:1</div>
+                <div class="hebrew">וְאֵלֶּה תּוֹלְדֹת אַהֲרֹן וּמֹשֶׁה בְּיוֹם דִּבֶּר יְהוָה אֶת־מֹשֶׁה בְּהַר סִינָי
+                </div>
+                <div class="transliteration">Ve'ele toledot Aharón uMoshé beyom diber YHWH et-Moshé behar Sinai.</div>
+                <div class="literal-translation">Y estas son las generaciones de Aarón y de Moisés, el día que YHWH
+                    habló con Moisés en el monte Sinaí.</div>
+            </div>
+
+            <!-- Números 3:2 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:2</div>
+                <div class="hebrew">וְאֵלֶּה שְׁמוֹת בְּנֵי אַהֲרֹן הַבְּכֹר נָדָב וַאֲבִיהוּא אֶלְעָזָר וְאִיתָמָר
+                </div>
+                <div class="transliteration">Ve'ele shemot bnei Aharón: habekhor Nadav va'Avihu, Elazar ve'Itamar.</div>
+                <div class="literal-translation">Y estos son los nombres de los hijos de Aarón: el primogénito Nadav, y
+                    Avihú, Eleazar e Itamar.</div>
+            </div>
+
+            <!-- Números 3:3 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:3</div>
+                <div class="hebrew">אֵלֶּה שְׁמוֹת בְּנֵי אַהֲרֹן הַכֹּהֲנִים הַמְשֻׁחִים אֲשֶׁר מִלֵּא יָדָם לְכַהֵן
+                </div>
+                <div class="transliteration">Ele shemot bnei Aharón hakohanim hameshuchim asher mile yadám le'kohen.
+                </div>
+                <div class="literal-translation">Estos son los nombres de los hijos de Aarón, los sacerdotes ungidos, a
+                    quienes él consagró para ejercer el sacerdocio.</div>
+            </div>
+
+            <!-- Números 3:4 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:4</div>
+                <div class="hebrew">וַיָּמָת נָדָב וַאֲבִיהוּא לִפְנֵי יְהוָה בְּהַקְרִיבָם אֵשׁ זָרָה לִפְנֵי יְהוָה
+                    בְּמִדְבַּר סִינַי וּבָנִים לֹא הָיוּ לָהֶם וַיְכַהֵן אֶלְעָזָר וְאִיתָמָר עַל־פְּנֵי אַהֲרֹן
+                    אֲבִיהֶם</div>
+                <div class="transliteration">Vayamot Nadav va'Avihu lifnei YHWH behakrivam esh zarah lifnei YHWH
+                    bemidbar Sinai, uvanim lo hayu lahem; vayekahen Elazar ve'Itamar al-penei Aharón avihem.</div>
+                <div class="literal-translation">Y Nadav y Avihú murieron delante de YHWH cuando ofrecieron fuego
+                    extraño delante de YHWH en el desierto de Sinaí, y no tuvieron hijos; y Eleazar e Itamar ejercieron
+                    el sacerdocio en presencia de Aarón su padre.</div>
+            </div>
+
+            <!-- Números 3:5 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:5</div>
+                <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה לֵּאמֹר</div>
+                <div class="transliteration">Vayedaber YHWH el-Moshé lemor.</div>
+                <div class="literal-translation">Y habló YHWH a Moisés, diciendo:</div>
+            </div>
+
+            <!-- Números 3:6 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:6</div>
+                <div class="hebrew">הַקְרֵב אֶת־מַטֵּה לֵוִי וְהַעֲמַדְתָּ אֹתוֹ לִפְנֵי אַהֲרֹן הַכֹּהֵן וְשֵׁרְתוּ
+                    אֹתוֹ</div>
+                <div class="transliteration">Hakriv et-mateh Levi veha'amadta oto lifnei Aharón hakohen veshertu oto.
+                </div>
+                <div class="literal-translation">Acerca la tribu de Leví y hazla estar delante de Aarón el sacerdote,
+                    para que le sirvan.</div>
+            </div>
+
+            <!-- Números 3:7 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:7</div>
+                <div class="hebrew">וְשָׁמְרוּ אֶת־מִשְׁמַרְתּוֹ וְאֶת־מִשְׁמֶרֶת כָּל־הָעֵדָה לִפְנֵי אֹהֶל מוֹעֵד
+                    לַעֲבֹד אֶת־עֲבֹדַת הַמִּשְׁכָּן</div>
+                <div class="transliteration">Veshomru et-mishmarto ve'et-mishmeret kol-ha'edah lifnei Ohel Moed la'avod
+                    et-avodat hamishkan.</div>
+                <div class="literal-translation">Y guardarán su cargo y el cargo de toda la congregación delante del
+                    Tabernáculo de Reunión, para servir en el servicio del Tabernáculo.</div>
+            </div>
+
+            <!-- Números 3:8 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:8</div>
+                <div class="hebrew">וְשָׁמְרוּ אֶת כָּל־כְּלֵי אֹהֶל מוֹעֵד וְאֵת מִשְׁמֶרֶת בְּנֵי יִשְׂרָאֵל לַעֲבֹד
+                    אֶת עֲבֹדַת הַמִּשְׁכָּן</div>
+                <div class="transliteration">Veshomru et kol-klei Ohel Moed ve'et mishmeret bnei Yisrael la'avod et
+                    avodat hamishkan.</div>
+                <div class="literal-translation">Y guardarán todos los utensilios del Tabernáculo de Reunión, y el cargo
+                    de los hijos de Israel, para servir en el servicio del Tabernáculo.</div>
+            </div>
+
+            <!-- Números 3:9 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:9</div>
+                <div class="hebrew">וְנָתַתָּה אֶת־הַלְוִיִּם לְאַהֲרֹן וּלְבָנָיו נְתוּנִים נְתוּנִים הֵמָּה לוֹ מֵאֵת
+                    בְּנֵי יִשְׂרָאֵל</div>
+                <div class="transliteration">Venatata et-halevi'im le'Aharón ulevanav, netunim netunim hemá lo me'et
+                    bnei Yisrael.</div>
+                <div class="literal-translation">Y darás los levitas a Aarón y a sus hijos; de entre los hijos de Israel
+                    les son dados, dados enteramente a él.</div>
+            </div>
+
+            <!-- Números 3:10 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:10</div>
+                <div class="hebrew">וְאֶת־אַהֲרֹן וְאֶת־בָּנָיו תַּפְקֵד לְכַהֲנָתָם וְהַזָּר הַקָּרֵב יוּמָת</div>
+                <div class="transliteration">Ve'et-Aharón ve'et-banav tafked le'kehanatam, vehazar hakarev yumat.</div>
+                <div class="literal-translation">Y a Aarón y a sus hijos encargarás su sacerdocio; y el extraño que se
+                    acerque, morirá.</div>
+            </div>
+
+            <!-- Números 3:11 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:11</div>
+                <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה לֵּאמֹר</div>
+                <div class="transliteration">Vayedaber YHWH el-Moshé lemor.</div>
+                <div class="literal-translation">Y habló YHWH a Moisés, diciendo:</div>
+            </div>
+
+            <!-- Números 3:12 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:12</div>
+                <div class="hebrew">וַאֲנִי הִנֵּה לָקַחְתִּי אֶת־הַלְוִיִּם מִתּוֹךְ בְּנֵי יִשְׂרָאֵל תַּחַת
+                    כָּל־בְּכוֹר פֶּטֶר רֶחֶם מִבְּנֵי יִשְׂרָאֵל וְהָיוּ לִי הַלְוִיִּם</div>
+                <div class="transliteration">Va'ani hine lakachti et-halevi'im mitoch bnei Yisrael tachat kol bechor
+                    peter rechem mibnei Yisrael, vehayu li halevi'im.</div>
+                <div class="literal-translation">Y he aquí, yo he tomado a los levitas de entre los hijos de Israel en
+                    lugar de todo primogénito que abre matriz de los hijos de Israel; y los levitas serán míos.</div>
+            </div>
+
+            <!-- Números 3:13 -->
+            <div class="verse-container">
+                <div class="verse-number">Números 3:13</div>
+                <div class="hebrew">כִּי לִי כָּל־בְּכוֹר בְּיוֹם הַכֹּתִי כָּל־בְּכוֹר בְּאֶרֶץ מִצְרַיִם
+                    הִקְדַּשְׁתִּי לִי כָּל־בְּכוֹר בְּיִשְׂרָאֵל מֵאָדָם עַד־בְּהֵמָה לִי יִהְיוּ אֲנִי יְהוָה</div>
+                <div class="transliteration">Ki li kol-bechor, beyom hakoti kol-bechor be'eretz Mitzrayim hikdashti li
+                    kol-bechor be'Yisrael me'adam ad-behemah, li yihyu, ani YHWH.</div>
+                <div class="literal-translation">Porque mío es todo primogénito; el día que herí a todo primogénito en
+                    la tierra de Egipto, santifiqué para mí a todo primogénito en Israel, tanto de hombre como de
+                    animal; míos serán. Yo, YHWH.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Cumplimiento Profético en el Mashíaj de Números 3:1-13</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">I. El Sacerdocio y la Consagración en el Mesías</div>
+                <div class="prophetic-section">
+                    <p>
+                        La consagración de Aarón, sus hijos y los levitas prefigura el sacerdocio perfecto de Yeshúa
+                        haMashíaj. Así como los levitas fueron apartados para servir en el Mishkán, Yeshúa es apartado
+                        como Sumo Sacerdote eterno, mediador entre Elohím y la humanidad (Hebreos 7:24-27).
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">II. Los Levitas: Sombra del Pueblo Redimido</div>
+                <div class="prophetic-section">
+                    <p>
+                        Los levitas fueron entregados a Aarón en lugar de los primogénitos de Israel, señalando que el
+                        servicio a Elohím es por redención. En el Mashíaj, todos los creyentes son hechos “real
+                        sacerdocio” y llamados a servir con santidad (1 Pedro 2:9; Apocalipsis 1:6).
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">III. El Primogénito y la Redención en Yeshúa</div>
+                <div class="prophetic-section">
+                    <p>
+                        Elohím reclama para sí a todo primogénito, recordando la redención de Israel en Egipto. Yeshúa,
+                        como el Primogénito de toda creación y de entre los muertos (Colosenses 1:15,18), cumple y
+                        trasciende este principio, trayendo redención definitiva a su pueblo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Conclusión Profética</h3>
+                <p>
+                    Números 3:1-13 apunta al sacerdocio celestial y la redención en el Mashíaj. En Yeshúa, somos
+                    apartados, redimidos y llamados a servir como sacerdotes delante de Elohím, viviendo en santidad y
+                    cumpliendo nuestro propósito en Su Reino.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 2. Haftaráh: Jeremías 31:1-20 (El amor eterno de Elohím hacia Israel).</h1>
+
+            <!-- Jeremías 31:1 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:1</div>
+                <div class="hebrew">בָּעֵת הַהִיא נְאֻם־יְהוָה אֶהְיֶה לֵאלֹהִים לְכָל־מִשְׁפְּחוֹת יִשְׂרָאֵל וְהֵמָּה
+                    יִהְיוּ־לִי לְעָם</div>
+                <div class="transliteration">Ba'et hahi ne'um YHWH, eheyeh le'Elohim le'khol mishpechot Yisrael, ve'hema
+                    yihyu-li le'am.</div>
+                <div class="literal-translation">En aquel tiempo, dice YHWH, seré el Dios de todas las familias de
+                    Israel, y ellos serán mi pueblo.</div>
+            </div>
+
+            <!-- Jeremías 31:2 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:2</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה מָצָא חֵן בַּמִּדְבָּר עַם שְׂרִידֵי חָרֶב הָלוֹךְ לְהַרְגִּיעוֹ
+                    יִשְׂרָאֵל</div>
+                <div class="transliteration">Ko amar YHWH, matza chen bamidbar am sridei cherev, halokh lehar'gi'o
+                    Yisrael.</div>
+                <div class="literal-translation">Así dice YHWH: Halló gracia en el desierto el pueblo que escapó de la
+                    espada; Israel va en busca de reposo.</div>
+            </div>
+
+            <!-- Jeremías 31:3 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:3</div>
+                <div class="hebrew">מֵרָחוֹק יְהוָה נִרְאָה לִי וְאַהֲבַת עוֹלָם אֲהַבְתִּיךְ עַל־כֵּן מְשַׁכְתִּיךְ
+                    חֶסֶד</div>
+                <div class="transliteration">Merachok YHWH nir'ah li, ve'ahavat olam ahavtich, al ken meshachtich
+                    chesed.</div>
+                <div class="literal-translation">De lejos se me apareció YHWH: Con amor eterno te he amado; por eso te
+                    prolongué mi misericordia.</div>
+            </div>
+
+            <!-- Jeremías 31:4 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:4</div>
+                <div class="hebrew">עוֹד אֶבְנֵךְ וְנִבְנֵית בְּתוּלַת יִשְׂרָאֵל עוֹד תַּעְדִּי תֻפַּיִךְ וְיָצָאת
+                    בִּמְחוֹל מְשַׂחֲקִים</div>
+                <div class="transliteration">Od evnech ve'nivnet betulat Yisrael, od ta'adi tupayich ve'yatzat bimchol
+                    mesachakim.</div>
+                <div class="literal-translation">Aún te edificaré, y serás edificada, virgen de Israel; todavía te
+                    adornarás con tus panderos y saldrás en danzas de los que se alegran.</div>
+            </div>
+
+            <!-- Jeremías 31:5 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:5</div>
+                <div class="hebrew">עוֹד תִּטְעִי כְרָמִים בְּהָרֵי שֹׁמְרוֹן נָטְעוּ נֹטְעִים וְחִלֵּלוּ</div>
+                <div class="transliteration">Od tit'i keramim beharé Shomron, natu not'im ve'chillelu.</div>
+                <div class="literal-translation">Aún plantarás viñas en los montes de Samaria; plantarán los que plantan
+                    y disfrutarán de ellas.</div>
+            </div>
+
+            <!-- Jeremías 31:6 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:6</div>
+                <div class="hebrew">כִּי יֵשׁ יוֹם קָרְאוּ נֹצְרִים בְּהַר אֶפְרָיִם קוּמוּ וְנַעֲלֶה צִיּוֹן אֶל־יְהוָה
+                    אֱלֹהֵינוּ</div>
+                <div class="transliteration">Ki yesh yom kar'u notzrim behar Efrayim: Kumu ve'na'aleh Tziyon el-YHWH
+                    Eloheinu.</div>
+                <div class="literal-translation">Porque habrá día en que clamarán los guardas en el monte de Efraín:
+                    Levantaos, y subamos a Sion, a YHWH nuestro Dios.</div>
+            </div>
+
+            <!-- Jeremías 31:7 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:7</div>
+                <div class="hebrew">כִּי כֹה אָמַר יְהוָה רֹנּוּ לְיַעֲקֹב שִׂמְחָה וְצַהֲלוּ בְּרֹאשׁ הַגּוֹיִם
+                    הַשְׁמִיעוּ הַלְלוּ וְאִמְרוּ הוֹשִׁעָה יְהוָה אֶת־עַמְּךָ אֶת־שְׁאֵרִית יִשְׂרָאֵל</div>
+                <div class="transliteration">Ki ko amar YHWH: Ronu le'Yaakov simchah, vetzahalu berosh hagoyim, hashmi'u
+                    halelu ve'imru hoshi'ah YHWH et-amcha et-she'erit Yisrael.</div>
+                <div class="literal-translation">Porque así dice YHWH: Gritad de alegría por Jacob, regocijaos por la
+                    cabeza de las naciones; proclamad, alabad y decid: ¡Salva, YHWH, a tu pueblo, al remanente de
+                    Israel!</div>
+            </div>
+
+            <!-- Jeremías 31:8 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:8</div>
+                <div class="hebrew">הִנְנִי מֵבִיא אוֹתָם מֵאֶרֶץ צָפוֹן וְקִבַּצְתִּים מִיַּרְכְּתֵי־אָרֶץ בָּם עִוֵּר
+                    וּפִסֵּחַ הָרָה וְיֹלֶדֶת יַחְדָּו קָהָל גָּדוֹל יָשׁוּבוּ הֵנָּה</div>
+                <div class="transliteration">Hineni mevi otam me'eretz tzafon, ve'kibatz'tim miyarketei aretz; bam ivver
+                    u'fiseach, harah veyoledet yachdav; kahal gadol yashuvu henah.</div>
+                <div class="literal-translation">He aquí, yo los traigo de la tierra del norte, y los reuniré de los
+                    confines de la tierra; entre ellos, ciego y cojo, la mujer encinta y la que da a luz, en gran
+                    multitud volverán acá.</div>
+            </div>
+
+            <!-- Jeremías 31:9 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:9</div>
+                <div class="hebrew">בִּבְכִי יָבֹאוּ וּבְתַחֲנוּנִים אוֹבִילֵם אוֹלִיכֵם אֶל־נַחֲלֵי מַיִם בְּדֶרֶךְ
+                    יָשָׁר לֹא יִכָּשְׁלוּ בָּהּ כִּי הָיִיתִי לְיִשְׂרָאֵל לְאָב וְאֶפְרַיִם בְּכוֹרִי הוּא</div>
+                <div class="transliteration">Bivchi yavo'u u'vetachanunim ovilem; olikhem el-nachalei mayim, bederech
+                    yashar lo yikashlu bah; ki hayiti le'Yisrael le'av, ve'Efrayim bechori hu.</div>
+                <div class="literal-translation">Con llanto vendrán, y con súplicas los conduciré; los llevaré a arroyos
+                    de aguas, por camino recto en el que no tropezarán; porque soy a Israel por padre, y Efraín es mi
+                    primogénito.</div>
+            </div>
+
+            <!-- Jeremías 31:10 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:10</div>
+                <div class="hebrew">שִׁמְעוּ דְבַר־יְהוָה גּוֹיִם וְהַגִּידוּ בָּאִיִּים מִמֶּרְחָק וְאִמְרוּ מְזָרֵה
+                    יִשְׂרָאֵל יְקַבְּצֶנּוּ וּשְׁמָרוֹ כְּרֹעֶה עֶדְרוֹ</div>
+                <div class="transliteration">Shim'u devar-YHWH goyim, vehagidu ba'iyim mimmerchak, ve'imru: mezareh
+                    Yisrael yekabtzeno, u'shmaro kero'eh edro.</div>
+                <div class="literal-translation">Oíd palabra de YHWH, oh naciones, y hacedlo saber en las costas
+                    lejanas; decid: El que dispersó a Israel lo reunirá y lo guardará como el pastor a su rebaño.</div>
+            </div>
+
+            <!-- Jeremías 31:11 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:11</div>
+                <div class="hebrew">כִּי־פָדָה יְהוָה אֶת־יַעֲקֹב וּגְאָלֹו מִיַּד חָזָק מִמֶּנּוּ</div>
+                <div class="transliteration">Ki pada YHWH et-Yaakov, u'ge'alo miyad chazak mimenu.</div>
+                <div class="literal-translation">Porque YHWH ha redimido a Jacob, lo ha rescatado de mano más fuerte que
+                    él.</div>
+            </div>
+
+            <!-- Jeremías 31:12 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:12</div>
+                <div class="hebrew">וּבָאוּ וְרִנְּנוּ בִּמְרוֹם צִיּוֹן וְנָהֲרוּ אֶל־טוּב יְהוָה עַל־דָּגָן
+                    וְעַל־תִּירוֹשׁ וְעַל־יִצְהָר וְעַל־בְּנֵי־צֹאן וּבְנֵי בָקָר וְהָיְתָה נַפְשָׁם כְּגַן רָוֶה וְלֹא
+                    יוֹסִפוּ לְדַאֲבָה עוֹד</div>
+                <div class="transliteration">U'va'u ve'rinnenu bimrom Tziyon, ve'naharu el-tuv YHWH, al-dagan
+                    ve'al-tirosh ve'al-yitzhar ve'al-bnei tzon u'vnei bakar; ve'hayta nafsham ke'gan raveh, ve'lo yosifu
+                    leda'avah od.</div>
+                <div class="literal-translation">Vendrán y cantarán en lo alto de Sion, y correrán al bien de YHWH: al
+                    grano, al vino, al aceite, a los rebaños y al ganado; y su alma será como huerto bien regado, y
+                    nunca más tendrán dolor.</div>
+            </div>
+
+            <!-- Jeremías 31:13 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:13</div>
+                <div class="hebrew">אָז תִּשְׂמַח בְּתוּלָה בְמָחוֹל וּבַחוּרִים וּזְקֵנִים יַחְדָּו וְהָפַכְתִּי
+                    אֶבְלָם לְשָׂשׂוֹן וְנִחַמְתִּים וְשִׂמַּחְתִּים מִיגוֹנָם</div>
+                <div class="transliteration">Az tismach betulah bamechol, u'bachurim u'zekenim yachdav; ve'hafachti
+                    evlam le'sason, ve'nichamtem ve'simachtim migonam.</div>
+                <div class="literal-translation">Entonces la virgen se alegrará en la danza, los jóvenes y los viejos
+                    juntamente; cambiaré su duelo en gozo, los consolaré y los alegraré de su dolor.</div>
+            </div>
+
+            <!-- Jeremías 31:14 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:14</div>
+                <div class="hebrew">וְרִוִּיתִי נֶפֶשׁ הַכֹּהֲנִים דָּשֶׁן וְעַמִּי אֶת־טוּבִי יִשְׂבָּעוּ נְאֻם־יְהוָה
+                </div>
+                <div class="transliteration">Ve'riviti nefesh hakohanim dashen, ve'ami et-tuvi yisba'u, ne'um YHWH.
+                </div>
+                <div class="literal-translation">Satisfaré el alma de los sacerdotes con abundancia, y mi pueblo se
+                    saciará de mi bien, dice YHWH.</div>
+            </div>
+
+            <!-- Jeremías 31:15 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:15</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה קוֹל בְּרָמָה נִשְׁמָע נְהִי בְּכִי תַמְרוּרִים רָחֵל מְבַכָּה
+                    עַל־בָּנֶיהָ מֵאֲנָה לְהִנָּחֵם עַל־בָּנֶיהָ כִּי אֵינֶנּוּ</div>
+                <div class="transliteration">Ko amar YHWH: Kol beramah nishma, nehi bechi tamrurim; Rachel mevaka
+                    al-baneha, me'ana lehinachem al-baneha ki einenu.</div>
+                <div class="literal-translation">Así dice YHWH: Voz fue oída en Ramá, llanto y lloro amargo; Raquel
+                    llora por sus hijos, rehúsa ser consolada por sus hijos, porque perecieron.</div>
+            </div>
+
+            <!-- Jeremías 31:16 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:16</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה מִנְּעִי קוֹלֵךְ מִבֶּכִי וְעֵינַיִךְ מִדִּמְעָה כִּי יֵשׁ שָׂכָר
+                    לִפְעֻלָּתֵךְ נְאֻם־יְהוָה וְשָׁבוּ מֵאֶרֶץ אוֹיֵב</div>
+                <div class="transliteration">Ko amar YHWH: Min'i kolech mibechi ve'einaich midim'ah, ki yesh sachar
+                    lif'ulatech, ne'um YHWH, ve'shavu me'eretz oyev.</div>
+                <div class="literal-translation">Así dice YHWH: Reprime del llanto tu voz, y de las lágrimas tus ojos;
+                    porque hay recompensa para tu trabajo, dice YHWH, y volverán de la tierra del enemigo.</div>
+            </div>
+
+            <!-- Jeremías 31:17 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:17</div>
+                <div class="hebrew">וְיֵשׁ־תִּקְוָה לְאַחֲרִיתֵךְ נְאֻם־יְהוָה וְשָׁבוּ בָנִים לִגְבוּלָם</div>
+                <div class="transliteration">Ve'yesh tikvah le'acharitach, ne'um YHWH, ve'shavu banim ligvulam.</div>
+                <div class="literal-translation">Y hay esperanza para tu porvenir, dice YHWH, y los hijos volverán a su
+                    territorio.</div>
+            </div>
+
+            <!-- Jeremías 31:18 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:18</div>
+                <div class="hebrew">שָׁמוֹעַ שָׁמַעְתִּי אֶפְרַיִם מִתְנַדֵּד יִסַּרְתַּנִי וָאִוָּסֵר כְּעֵגֶל לֹא
+                    לֻמָּד הֲשִׁיבֵנִי וְאָשׁוּבָה כִּי־אַתָּה יְהוָה אֱלֹהָי</div>
+                <div class="transliteration">Shamoa shamati Efrayim mitnaded: Yisartani va'ivaser ke'egel lo lummad;
+                    hashiveni ve'ashuvah, ki-atah YHWH Elohai.</div>
+                <div class="literal-translation">Escuchando he oído a Efraín lamentarse: Me castigaste, y fui castigado
+                    como novillo indómito; conviérteme, y seré convertido, porque tú eres YHWH mi Dios.</div>
+            </div>
+
+            <!-- Jeremías 31:19 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:19</div>
+                <div class="hebrew">כִּי אַחֲרֵי שׁוּבִי נִחַמְתִּי וְאַחֲרֵי הִוָּדָעִי סָפַקְתִּי עַל־יָרֵךְ
+                    בֹּשְׁתִּי וְגַם־נִכְלַמְתִּי כִּי נָשָׂאתִי חֶרְפַּת נְעוּרָי</div>
+                <div class="transliteration">Ki acharei shuví nichamti, ve'acharei hivada'i safakti al-yarech; boshti
+                    ve'gam nichlamti, ki nasati cherpat ne'uray.</div>
+                <div class="literal-translation">Porque después que me aparté, me arrepentí; y después que reconocí mi
+                    falta, me golpeé el muslo; me avergoncé y también me confundí, porque llevé el oprobio de mi
+                    juventud.</div>
+            </div>
+
+            <!-- Jeremías 31:20 -->
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:20</div>
+                <div class="hebrew">הֲבֵן יַקִּיר לִי אֶפְרַיִם אִם־יֶלֶד שַׁעֲשׁוּעִים כִּי מִדֵּי דַבְּרִי בוֹ זָכוֹר
+                    אֶזְכְּרֶנּוּ עוֹד עַל־כֵּן הָמוּ מֵעַי לוֹ רַחֵם אֲרַחֲמֶנּוּ נְאֻם־יְהוָה</div>
+                <div class="transliteration">Haben yakir li Efrayim, im-yeled sha'ashu'im? Ki midei dabri bo, zachor
+                    ezkerenu od; al ken hamu me'ai lo, rachem arachamenu, ne'um YHWH.</div>
+                <div class="literal-translation">¿No es Efraín hijo precioso para mí, niño en quien me deleito? Pues
+                    cada vez que hablo de él, lo recuerdo aún más; por eso se conmueven mis entrañas por él, ciertamente
+                    tendré de él misericordia, dice YHWH.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Cumplimiento Profético en el Mashíaj de Jeremías 31:1-20</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">I. El Amor Eterno de Elohím Revelado en el Mesías</div>
+                <div class="prophetic-section">
+                    <p>
+                        Jeremías 31:3 declara el amor eterno de Elohím por Israel, amor que se manifiesta plenamente en
+                        Yeshúa haMashíaj. En el Mesías, la misericordia y la fidelidad de Dios se extienden no solo a
+                        Israel sino a todas las naciones, cumpliendo la promesa de restauración y reconciliación
+                        (Romanos 8:38-39; Juan 3:16).
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">II. Restauración y Nueva Alianza</div>
+                <div class="prophetic-section">
+                    <p>
+                        El regreso de Israel, la alegría y la restauración descritas en estos versículos apuntan a la
+                        Nueva Alianza establecida por Yeshúa (Jeremías 31:31-34; Lucas 22:20). El Mesías es quien reúne
+                        a los dispersos, sana el dolor y transforma el duelo en gozo, cumpliendo la esperanza profética
+                        de un pueblo renovado y perdonado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">III. Efraín y la Misericordia del Padre</div>
+                <div class="prophetic-section">
+                    <p>
+                        Efraín, símbolo de las tribus perdidas y de los que están lejos, es llamado “hijo precioso” y
+                        objeto de compasión especial. En el Mashíaj, el Padre extiende Su misericordia a todos los que
+                        se arrepienten y regresan, cumpliendo la parábola del hijo pródigo (Lucas 15:20-24) y mostrando
+                        el corazón paternal de Elohím.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">IV. Gozo, Consuelo y Plenitud en el Mesías</div>
+                <div class="prophetic-section">
+                    <p>
+                        Las promesas de gozo, consuelo y abundancia (Jeremías 31:12-14) encuentran su cumplimiento en
+                        Yeshúa, quien da vida en abundancia y consuela a los que lloran (Mateo 5:4; Juan 10:10). El
+                        Mesías transforma el lamento en alegría y sacia el alma de Su pueblo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Conclusión Profética</h3>
+                <p>
+                    Jeremías 31:1-20 es una visión de restauración, amor y esperanza que se cumple en Yeshúa haMashíaj.
+                    Él es el mediador de la Nueva Alianza, el restaurador de Israel y el Redentor de todos los que
+                    vuelven a Elohím. En el Mesías, el amor eterno del Padre se hace realidad y la promesa de consuelo y
+                    plenitud es para todo Su pueblo.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 3. Brit Hadasháh: 1 Pedro 2:9 (El pueblo de Elohím como una nación santa y real sacerdocio).</h1>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Pedro 2:9</div>
+                <div class="aramaic">אֲבָל אַתּוּן אִתּוּן שַׁרְבָּא גְּבִיאָה וּכְהֲנוּתָא מַלְכָּא וְעַם קַדִּישָׁא
+                    וְעַם פֻּרְקָנָא דְּתִשְׁבְּחוּן לְמַן עֲבָדָנָא דְּקְרָאכוֹן מִן חֲשׁוֹכָא לְנוּהְרָא דְּתִמְהָא
+                </div>
+                <div class="transliteration">Aval atún itun sharba gevi'a u'kehannuta malka ve'am kadisha ve'am purkana,
+                    detishbechun leman avadana dekra'khon min chashocha lenuhra detimha.</div>
+                <div class="literal-translation">Pero vosotros sois linaje escogido, sacerdocio real, nación santa,
+                    pueblo adquirido, para que anunciéis las virtudes de aquel que os llamó de las tinieblas a su luz
+                    admirable.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h2>Cumplimiento Profético en el Mashíaj de 1 Pedro 2:9</h2>
+
+            <div class="section-container">
+                <div class="prophetic-title">I. Identidad Renovada en el Mesías</div>
+                <div class="prophetic-section">
+                    <p>
+                        1 Pedro 2:9 declara que en Yeshúa haMashíaj, los creyentes son hechos linaje escogido,
+                        sacerdocio real, nación santa y pueblo adquirido. Esta identidad es el cumplimiento de las
+                        promesas dadas a Israel y extendidas a todos los redimidos en el Mesías, quienes ahora son
+                        llamados a vivir en santidad y servicio.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">II. Sacerdocio Real y Testimonio de Luz</div>
+                <div class="prophetic-section">
+                    <p>
+                        Así como Israel fue llamado a ser luz para las naciones, en el Mashíaj cada creyente es
+                        sacerdote y testigo, encargado de proclamar las virtudes de Aquel que nos llamó de las tinieblas
+                        a Su luz admirable. El sacerdocio real implica acceso directo a Elohím y responsabilidad de
+                        interceder y servir (Apocalipsis 1:6).
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">III. Cumplimiento de la Promesa de Santidad</div>
+                <div class="prophetic-section">
+                    <p>
+                        El llamado a ser “nación santa” se cumple en el Mesías, quien santifica a Su pueblo por medio de
+                        Su sacrificio y Espíritu. Ahora, los redimidos viven apartados para Elohím, reflejando Su
+                        carácter y propósito en el mundo (Efesios 1:4; 1 Tesalonicenses 4:7).
+                    </p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Conclusión Profética</h3>
+                <p>
+                    1 Pedro 2:9 revela la plenitud de la identidad y misión del pueblo de Elohím en Yeshúa haMashíaj.
+                    Somos llamados a vivir como sacerdotes, santos y testigos de Su luz, cumpliendo el propósito eterno
+                    de anunciar Su gloria y redención a todas las naciones.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 4. Contexto Histórico y Cultural de Números 3:1-13</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">I. El Pueblo de Israel en el Desierto</div>
+                <div class="prophetic-section">
+                    <p>
+                        Números 3:1-13 se sitúa en el periodo en que Israel acampaba en el desierto tras la salida de
+                        Egipto. El pueblo estaba siendo organizado como una nación santa, con instrucciones precisas
+                        sobre el servicio, la adoración y la vida comunitaria bajo la dirección de Moisés y Aarón.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">II. El Rol de Aarón, sus Hijos y los Levitas</div>
+                <div class="prophetic-section">
+                    <p>
+                        Aarón y sus hijos fueron apartados como sacerdotes para ministrar ante Elohím, mientras que los
+                        levitas fueron consagrados para servir y asistir en el Tabernáculo. Esta separación de funciones
+                        marcaba la importancia de la santidad y el orden en el culto, y aseguraba que el servicio a
+                        Elohím se realizara conforme a Su voluntad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">III. La Consagración y la Redención de los Primogénitos</div>
+                <div class="prophetic-section">
+                    <p>
+                        Tras la liberación de Egipto, Elohím reclamó para sí a todos los primogénitos de Israel, pero en
+                        lugar de ellos tomó a los levitas para el servicio sagrado. Este acto recordaba la redención de
+                        los primogénitos durante la Pascua y subrayaba la idea de que el servicio a Dios es una
+                        respuesta a Su liberación y misericordia.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">IV. Significado Cultural y Espiritual</div>
+                <div class="prophetic-section">
+                    <p>
+                        La estructura tribal, la consagración de los levitas y el sacerdocio de Aarón reflejan la
+                        centralidad de la adoración y la presencia divina en la vida de Israel. El Tabernáculo era el
+                        centro del campamento, y todo el pueblo giraba en torno a la santidad, el servicio y la
+                        obediencia a Elohím, diferenciándose así de las naciones vecinas.
+                    </p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Resumen Histórico y Cultural</h3>
+                <p>
+                    Números 3:1-13 muestra a Israel como un pueblo redimido, organizado y consagrado para el servicio
+                    divino. El énfasis en el sacerdocio, los levitas y la redención de los primogénitos revela la
+                    importancia de la santidad, el orden y la gratitud en la relación con Elohím, estableciendo un
+                    modelo para la vida espiritual y comunitaria.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas de Números 3:1-13</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">I. El Significado del Sacerdocio y los Levitas</div>
+                <div class="prophetic-section">
+                    <p>
+                        El llamado y la consagración de Aarón, sus hijos y los levitas subrayan la importancia de la
+                        santidad y el servicio en la presencia de Elohím. El sacerdocio no era un privilegio humano,
+                        sino un llamado divino para interceder y ministrar en favor del pueblo. Los levitas,
+                        sustituyendo a los primogénitos, representan la redención y la dedicación total al servicio
+                        sagrado.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">II. Comentarios Clásicos y Enseñanza Rabínica</div>
+                <div class="prophetic-section">
+                    <p>
+                        Los sabios destacan que la elección de los levitas fue un acto de misericordia y justicia,
+                        recordando la fidelidad de la tribu de Leví en el episodio del becerro de oro (Éxodo 32:26). El
+                        <strong>Midrash</strong> y <strong>Rashi</strong> explican que la consagración de los levitas es
+                        una señal de que el servicio a Elohím requiere pureza, obediencia y entrega.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">III. Conexiones Proféticas con el Mashíaj</div>
+                <div class="prophetic-section">
+                    <p>
+                        El sacerdocio de Aarón y la función de los levitas apuntan proféticamente a Yeshúa haMashíaj, el
+                        Sumo Sacerdote perfecto (Hebreos 7:24-27). Así como los levitas fueron apartados para el
+                        servicio, en el Mesías todos los creyentes son llamados a ser “real sacerdocio” y a servir con
+                        santidad y dedicación (1 Pedro 2:9).
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">IV. Aplicación Espiritual y Comunitaria</div>
+                <div class="prophetic-section">
+                    <p>
+                        Números 3:1-13 nos desafía a reconocer nuestro llamado al servicio y a la santidad. Cada
+                        creyente tiene un lugar y una función en el cuerpo del Mesías. El modelo del sacerdocio y los
+                        levitas nos enseña sobre la importancia de la obediencia, la consagración y la responsabilidad
+                        espiritual en la comunidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Reflexión Final</h3>
+                <p>
+                    El estudio de Números 3:1-13 revela que el servicio a Elohím es un privilegio y una responsabilidad.
+                    En Yeshúa, somos llamados a vivir como sacerdotes, apartados para Su propósito, sirviendo con
+                    humildad y gratitud, y reflejando Su santidad en nuestra vida diaria y en la comunidad.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 6. Análisis Profundo de la Aliyáh de Números 3:1-13</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">I. La Estructura del Texto y su Mensaje Central</div>
+                <div class="prophetic-section">
+                    <p>
+                        Números 3:1-13 presenta una estructura ordenada que enfatiza la genealogía sacerdotal, la
+                        consagración de los levitas y la sustitución de los primogénitos. El mensaje central es la
+                        importancia de la santidad, el servicio y la redención en la vida del pueblo de Elohím.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">II. El Significado de la Consagración y la Separación</div>
+                <div class="prophetic-section">
+                    <p>
+                        La consagración de Aarón y sus hijos, junto con la separación de los levitas, subraya que el
+                        servicio a Elohím requiere pureza, obediencia y una vida apartada. La santidad no es solo un
+                        estatus, sino una responsabilidad activa de representar a Elohím ante el pueblo y servirle con
+                        integridad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">III. La Redención de los Primogénitos y su Implicación Espiritual</div>
+                <div class="prophetic-section">
+                    <p>
+                        El reemplazo de los primogénitos por los levitas recuerda la redención de Israel en Egipto y
+                        enseña que toda vida y servicio pertenecen a Elohím. Espiritualmente, apunta a la redención en
+                        el Mesías, quien es el Primogénito y el Redentor de todos los que creen.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">IV. El Rol de la Autoridad y la Delegación en la Comunidad</div>
+                <div class="prophetic-section">
+                    <p>
+                        La autoridad de Moisés, Aarón y los levitas muestra la necesidad de liderazgo, delegación y
+                        cooperación en la comunidad de fe. Cada uno tiene un lugar y una función, y el orden divino
+                        garantiza la armonía y la eficacia en el servicio.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">V. Aplicaciones para la Vida Actual</div>
+                <div class="prophetic-section">
+                    <ul>
+                        <li><strong>Identidad y propósito:</strong> Reconocer nuestro llamado a la santidad y al
+                            servicio en el Reino.</li>
+                        <li><strong>Redención y gratitud:</strong> Vivir agradecidos por la redención en el Mesías y
+                            responder con entrega y obediencia.</li>
+                        <li><strong>Unidad y cooperación:</strong> Valorar el rol de cada miembro en la comunidad y
+                            trabajar juntos para cumplir el propósito de Elohím.</li>
+                        <li><strong>Servicio y humildad:</strong> Servir con humildad, reconociendo que todo don y
+                            función provienen del Eterno.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Reflexión del Análisis Profundo</h3>
+                <p>
+                    La aliyáh de Números 3:1-13 nos invita a vivir como un pueblo redimido, consagrado y ordenado,
+                    sirviendo a Elohím con gratitud, humildad y santidad. En el Mesías, cada creyente es llamado a
+                    reflejar la luz, el orden y la redención del Reino en su vida y en la comunidad.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 7. Tema Más Relevante de la Aliyáh de Números 3:1-13</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">El Tema Central: La Consagración y el Servicio Redentor</div>
+                <div class="prophetic-section">
+                    <p>
+                        El tema más relevante de Números 3:1-13 es la consagración de los levitas y el sacerdocio como
+                        símbolo de la redención y el servicio exclusivo a Elohím. La sustitución de los primogénitos por
+                        los levitas resalta que todo lo que somos y tenemos pertenece al Eterno, y que el servicio
+                        espiritual es una respuesta de gratitud por la redención recibida.
+                    </p>
+                    <p>
+                        Este pasaje enseña que la santidad y el orden en la comunidad no son solo requisitos rituales,
+                        sino expresiones de una relación viva con Elohím. El llamado a servir, a ser apartados y a vivir
+                        en obediencia es el fundamento de la identidad del pueblo de Israel y, en el Mesías, de toda la
+                        comunidad redimida.
+                    </p>
+                    <p>
+                        En la actualidad, este tema nos desafía a reconocer que hemos sido apartados y redimidos para
+                        servir con humildad, gratitud y santidad, reflejando el carácter del Sumo Sacerdote, Yeshúa
+                        haMashíaj, en cada área de nuestra vida y comunidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Reflexión sobre el Tema Central</h3>
+                <p>
+                    La aliyáh de Números 3:1-13 nos recuerda que la verdadera identidad y propósito del pueblo de Elohím
+                    se encuentran en la consagración, la redención y el servicio. Vivir como sacerdotes y levitas
+                    espirituales es el llamado de todo creyente en el Reino del Mesías.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 8. Descubriendo al Mashíaj en la Aliyáh de Números 3:1-13</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">El Mesías como Sumo Sacerdote y Redentor</div>
+                <div class="prophetic-section">
+                    <p>
+                        En Números 3:1-13, la figura de Aarón como sumo sacerdote y la consagración de los levitas
+                        anticipan el ministerio de Yeshúa haMashíaj. Así como Aarón intercedía por el pueblo y los
+                        levitas eran apartados para el servicio, Yeshúa es el Sumo Sacerdote perfecto, apartado y
+                        enviado para interceder y redimir a la humanidad (Hebreos 4:14-16).
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">La Redención de los Primogénitos y el Sacrificio del Mesías</div>
+                <div class="prophetic-section">
+                    <p>
+                        La sustitución de los primogénitos por los levitas apunta proféticamente al sacrificio de
+                        Yeshúa, el Primogénito de toda creación (Colosenses 1:15), quien dio Su vida en rescate por
+                        muchos. Él es el cumplimiento de la redención prefigurada en la Toráh, trayendo libertad y
+                        reconciliación definitiva.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">El Pueblo Redimido: Real Sacerdocio en el Mesías</div>
+                <div class="prophetic-section">
+                    <p>
+                        Así como los levitas fueron apartados para servir en el Tabernáculo, en el Mashíaj todos los
+                        creyentes son hechos “real sacerdocio” (1 Pedro 2:9). Somos llamados a servir, interceder y
+                        reflejar la santidad de Elohím, viviendo como pueblo consagrado y redimido por la obra de
+                        Yeshúa.
+                    </p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h3>Reflexión Mesiánica</h3>
+                <p>
+                    Descubrir al Mashíaj en Números 3:1-13 es reconocer que toda la estructura del sacerdocio, la
+                    consagración y la redención apuntan a Yeshúa. Él es el Sumo Sacerdote, el Primogénito y el Redentor,
+                    y en Él somos llamados a vivir en santidad, servicio y gratitud, cumpliendo el propósito eterno de
+                    Elohím para Su pueblo.
+                </p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos de Números 3:1-13</h1>
+
+                <div class="section-container">
+                    <div class="prophetic-title">I. Midrashim: Enseñanzas y Parábolas de los Sabios</div>
+                    <div class="prophetic-section">
+                        <p>
+                            El <strong>Midrash Bamidbar Rabá</strong> comenta que la elección de los levitas fue una
+                            respuesta a su celo por la santidad durante el episodio del becerro de oro (Éxodo 32:26).
+                            Los sabios ven en la consagración de los levitas una lección sobre la importancia de la
+                            pureza y la entrega total al servicio divino.
+                        </p>
+                        <p>
+                            Otro midrash resalta que los levitas eran considerados “el corazón de Israel”, pues su labor
+                            espiritual sostenía a toda la nación. Así, el servicio oculto y constante es tan valioso
+                            como el liderazgo visible.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">II. Targumim: Traducción y Expansión Aramea</div>
+                    <div class="prophetic-section">
+                        <p>
+                            El <strong>Targum Onkelos</strong> y el <strong>Targum Yonatán</strong> amplían el texto
+                            hebreo subrayando la función de los levitas como “servidores sagrados” y guardianes del
+                            Tabernáculo. Los targumim enfatizan que el servicio de los levitas era un acto de obediencia
+                            y protección de la santidad del pueblo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">III. Textos Fuentes y Apócrifos</div>
+                    <div class="prophetic-section">
+                        <p>
+                            En el <strong>Libro de los Jubileos</strong> (cap. 45), se menciona la elección de los
+                            levitas como un acto profético que prefigura el sacerdocio celestial. Los <strong>Rollos del
+                                Mar Muerto</strong> (por ejemplo, el Documento de Damasco) también hacen referencia a la
+                            pureza y la organización de los levitas como modelo para la comunidad de los justos.
+                        </p>
+                        <p>
+                            Algunos textos apócrifos y pseudepigráficos, como el <strong>Testamento de Leví</strong>,
+                            presentan a los levitas como portadores de la promesa mesiánica y guardianes de la
+                            revelación divina, anticipando el ministerio del Mesías como Sumo Sacerdote.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">IV. Aplicación y Reflexión Tradicional</div>
+                    <div class="prophetic-section">
+                        <p>
+                            Las fuentes tradicionales invitan a ver la consagración de los levitas como un llamado a la
+                            santidad, la obediencia y el servicio desinteresado. El modelo levítico inspira a cada
+                            generación a buscar la pureza y la entrega en el servicio a Elohím, anticipando el
+                            sacerdocio perfecto del Mashíaj.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h3>Conclusión de las Fuentes Tradicionales</h3>
+                    <p>
+                        Los midrashim, targumim y textos antiguos enriquecen la comprensión de Números 3:1-13, mostrando
+                        que el servicio, la santidad y la redención son temas fundamentales en la tradición judía y
+                        mesiánica. Estas fuentes invitan a ver el sacerdocio y la consagración como un modelo profético
+                        para la comunidad redimida y el Reino venidero.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 10. Mandamientos Encontrados y Principios Espirituales de Números 3:1-13</h1>
+
+                <div class="section-container">
+                    <div class="prophetic-title">Mandamientos Encontrados en Números 3:1-13</div>
+                    <div class="prophetic-section">
+                        <ul>
+                            <li><strong>Consagrar a Aarón y sus hijos como sacerdotes:</strong> Elohím ordena apartar a
+                                Aarón y sus descendientes para el servicio sacerdotal (Números 3:3-4).</li>
+                            <li><strong>Separar a los levitas para el servicio sagrado:</strong> Los levitas son
+                                apartados de entre los hijos de Israel para servir en el Tabernáculo y asistir a los
+                                sacerdotes (Números 3:6-9).</li>
+                            <li><strong>Encargar a los levitas el cuidado del Tabernáculo:</strong> Los levitas deben
+                                guardar y proteger los utensilios y el servicio del Tabernáculo (Números 3:7-8).</li>
+                            <li><strong>La sustitución de los primogénitos por los levitas:</strong> Elohím toma a los
+                                levitas en lugar de todos los primogénitos de Israel, recordando la redención en Egipto
+                                (Números 3:12-13).</li>
+                            <li><strong>Prohibición al extraño de acercarse al sacerdocio:</strong> Solo los designados
+                                pueden ejercer el sacerdocio; el extraño que se acerque será castigado (Números 3:10).
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">Principios Espirituales para Hoy</div>
+                    <div class="prophetic-section">
+                        <ul>
+                            <li><strong>Santidad y consagración:</strong> El servicio a Elohím requiere una vida
+                                apartada, dedicada y obediente.</li>
+                            <li><strong>Redención y gratitud:</strong> El llamado al servicio es una respuesta a la
+                                redención y la misericordia de Elohím.</li>
+                            <li><strong>Orden y responsabilidad:</strong> Cada miembro del pueblo tiene un rol y una
+                                función específica en la comunidad espiritual.</li>
+                            <li><strong>Obediencia a la autoridad divina:</strong> El respeto por el orden y la
+                                autoridad establecidos por Elohím es fundamental para la vida comunitaria.</li>
+                            <li><strong>Servicio desinteresado:</strong> El modelo de los levitas enseña a servir con
+                                humildad, entrega y fidelidad, sin buscar reconocimiento personal.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h3>Reflexión sobre Mandamientos y Principios</h3>
+                    <p>
+                        Números 3:1-13 nos llama a vivir en santidad, obediencia y gratitud, reconociendo la centralidad
+                        del servicio a Elohím y nuestro lugar en Su pueblo. Estos mandamientos y principios siguen
+                        vigentes para quienes desean caminar en fidelidad y propósito en la comunidad del Mesías.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 11. Preguntas de Reflexión con Respuestas en el Mashíaj de Números 3:1-13</h1>
+
+                <div class="section-container">
+                    <div class="prophetic-title">1. ¿Por qué Elohím eligió a los levitas en lugar de los primogénitos?
+                    </div>
+                    <div class="prophetic-section">
+                        <p>
+                            Elohím eligió a los levitas como sustitutos de los primogénitos para mostrar que el servicio
+                            espiritual es resultado de la redención y la gracia, no de privilegio natural. En el
+                            Mashíaj, aprendemos que todos somos llamados y apartados por gracia para servir en Su Reino
+                            (Efesios 2:8-10).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">2. ¿Qué significa ser consagrado y apartado para Elohím hoy?</div>
+                    <div class="prophetic-section">
+                        <p>
+                            Ser consagrado implica vivir una vida dedicada a Elohím, apartada del pecado y enfocada en
+                            Su propósito. En Yeshúa, somos santificados y llamados a reflejar Su carácter, sirviendo con
+                            humildad y obediencia (1 Pedro 1:15-16).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">3. ¿Cómo se relaciona el sacerdocio levítico con el sacerdocio de
+                        Yeshúa?</div>
+                    <div class="prophetic-section">
+                        <p>
+                            El sacerdocio levítico era una sombra del sacerdocio perfecto de Yeshúa haMashíaj, quien
+                            intercede eternamente por nosotros. En Él, tenemos acceso directo al Padre y somos hechos
+                            “real sacerdocio” para anunciar Sus virtudes (Hebreos 7:23-27; 1 Pedro 2:9).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">4. ¿Qué nos enseña la sustitución de los primogénitos por los levitas
+                        sobre la redención?</div>
+                    <div class="prophetic-section">
+                        <p>
+                            Nos enseña que la redención es un acto de gracia y sustitución: así como los levitas tomaron
+                            el lugar de los primogénitos, Yeshúa tomó nuestro lugar para darnos vida y propósito. Somos
+                            llamados a responder con gratitud y servicio (Romanos 5:8).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="prophetic-title">5. ¿Cómo podemos aplicar el modelo de servicio de los levitas en la
+                        comunidad actual?</div>
+                    <div class="prophetic-section">
+                        <p>
+                            Sirviendo con humildad, fidelidad y entrega, reconociendo que cada función es valiosa ante
+                            Elohím. En el Mashíaj, todos somos parte de un cuerpo y llamados a edificar la comunidad con
+                            nuestros dones y talentos (Romanos 12:4-8).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h3>Reflexión Final</h3>
+                    <p>
+                        Las preguntas de Números 3:1-13 nos invitan a examinar nuestro llamado, identidad y servicio en
+                        el Mashíaj. En Él, la consagración, la redención y el sacerdocio encuentran su plenitud, y somos
+                        animados a vivir en santidad, gratitud y obediencia en la comunidad de fe.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 12. Resumen de la Aliyáh de Números 3:1-13</h1>
+
+                <div class="section-container">
+                    <div class="prophetic-title">Resumen General</div>
+                    <div class="prophetic-section">
+                        <p>
+                            Números 3:1-13 narra la genealogía de Aarón y Moisés, la consagración de los sacerdotes y la
+                            elección de los levitas para el servicio sagrado. Elohím aparta a los levitas en lugar de
+                            los primogénitos de Israel, estableciendo un modelo de redención, consagración y servicio
+                            exclusivo en el Tabernáculo.
+                        </p>
+                        <p>
+                            El texto resalta la importancia de la santidad, el orden y la obediencia en la vida
+                            comunitaria, mostrando que el servicio a Elohím es un privilegio y una responsabilidad. La
+                            sustitución de los primogénitos por los levitas recuerda la redención de Egipto y anticipa
+                            la obra redentora del Mesías.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <h3>Reflexión Final del Resumen</h3>
+                    <p>
+                        La aliyáh de Números 3:1-13 nos enseña que hemos sido redimidos y apartados para servir a Elohím
+                        con gratitud, humildad y santidad. En el Mesías, cada creyente es llamado a vivir como sacerdote
+                        y levita espiritual, cumpliendo el propósito eterno del Reino y reflejando la redención en la
+                        vida diaria y en la comunidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 13. Tefiláh (Oración) de la Aliyáh de Números 3:1-13</h1>
+
+                <div class="section-container">
+                    <div class="prophetic-title">Oración de Consagración y Servicio</div>
+                    <div class="prophetic-section">
+                        <div class="prayer-text">
+                            Abba Kadosh, Elohím de Israel,<br>
+                            Gracias por redimirnos y llamarnos a servirte con santidad y humildad.<br>
+                            Así como apartaste a Aarón, sus hijos y los levitas para tu servicio,<br>
+                            aparta también nuestro corazón para que vivamos consagrados a Ti.<br><br>
+                            Ayúdanos a reconocer nuestro lugar en tu pueblo y a servir con gratitud,<br>
+                            obediencia y entrega, reflejando la luz y el amor de Yeshúa haMashíaj.<br>
+                            Que cada día podamos ser instrumentos de tu voluntad,<br>
+                            sirviendo a la comunidad y edificando tu Reino con fidelidad.<br><br>
+                            Renueva en nosotros el deseo de vivir en santidad,<br>
+                            de valorar la redención y de caminar en unidad con tu pueblo.<br>
+                            Que tu Espíritu nos guíe y fortalezca para cumplir nuestro propósito,<br>
+                            y que todo lo que hagamos sea para tu gloria.<br><br>
+                            En el nombre de Yeshúa, nuestro Sumo Sacerdote y Redentor.<br>
+                            Amén.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="conclusion prayer-conclusion">
+                    <p>
+                        “Que seamos hallados fieles en el servicio, consagrados en la santidad y agradecidos por la
+                        redención, viviendo cada día para la gloria de Elohím.”
+                    </p>
+                </div>
+            </div>
+
+            <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a></p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya5.html">Continuar con la Aliyá 5</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

@@ -16,65 +16,239 @@ body {
 }
 
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color:beige;
-    color: white;
-    z-index: 1000;
-    padding: 15px 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: transparent;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
 
-  .menu-container {
-    position: relative;
-  }
+        /* Botón hamburguesa */
+        .hamburger-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-  .menu-button {
-    background-color: #444;
-    color: white;
-    padding: 10px 16px;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-  }
+        .hamburger-btn:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: scale(1.05);
+        }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 340px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    overflow: hidden;
-    top: 50px;
-    left: 0;
-    z-index: 1001;
-  }
+        /* Líneas del hamburguesa */
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
 
-  .dropdown-content a {
-    color: #333;
-    padding: 12px 18px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.3s;
-  }
+        /* Animación cuando está abierto */
+        .hamburger-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
 
-  .dropdown-content a:hover {
-    background-color: #f5f5f5;
-  }
+        .hamburger-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
 
-  .icon {
-    margin-right: 10px;
-    font-size: 20px;
-  }
+        .hamburger-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Título del navbar */
+        .navbar-title {
+            margin-left: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Overlay de fondo */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Panel lateral */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -350px;
+            width: 350px;
+            height: 100vh;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        /* Header del sidebar */
+        .sidebar-header {
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Botón cerrar */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* Contenido del sidebar */
+        .sidebar-content {
+            padding: 30px 0;
+        }
+
+        .menu-section {
+            margin-bottom: 10px;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            transition: all 0.4s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 0;
+        }
+
+        .menu-item:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-left-color: #667eea;
+            transform: translateX(5px);
+            color: #667eea;
+        }
+
+        .menu-item .icon {
+            font-size: 20px;
+            margin-right: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .icon {
+            transform: scale(1.2);
+        }
+
+        .menu-text {
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            margin-top: 80px;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
 
 header {
     width: 90%;
@@ -223,16 +397,42 @@ h1 {
     }
   }
 
-  /* Estilos para móviles */
-  @media (max-width: 600px) {
-    .dropdown-content {
-      position: static;
-      box-shadow: none;
-      border-radius: 0;
-      width: 100%;
-    }
+ /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .navbar-title {
+                font-size: 16px;
+            }
+            
+            .main-content h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content p {
+                font-size: 1rem;
+            }
+        }
 
-    .dropdown-content.show {
-      display: block;
-    }
-  }
+        /* Animaciones suaves */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar.active .menu-item {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .sidebar.active .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .sidebar.active .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .sidebar.active .menu-item:nth-child(3) { animation-delay: 0.3s; }
