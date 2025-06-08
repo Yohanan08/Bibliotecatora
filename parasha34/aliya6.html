@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 3:40-51</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+<body>
+<div id="google_translate_element"></div>
+<header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+</header>
+
+<main id="contenido">
+
+    <h1>34. Parashá Bamidbar (במדבר) Aliyáh 6: (Números 3:40-51) Redención de los primogénitos de Israel por medio de los levitas.
+    <p>Haftaráh: Jeremías 33:19-22 (La promesa del sacerdocio perpetuo de los levitas).</p>
+    <p>Brit Hadasháh: Colosenses 1:13-14 (Redención a través de la sangre de Yeshúa).</p></h1>
+
+    <div class="content-container">
+    <h1>Punto 1. Números 3:40-51 – Hebreo, Fonética y Traducción Literal</h1>
+
+    <!-- Números 3:40 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:40</div>
+        <div class="hebrew">וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה פְּקֹד כָּל־בְּכוֹר זָכָר לִבְנֵי יִשְׂרָאֵל מִבֶּן־חֹדֶשׁ וָמַעְלָה וְשָׂא אֵת מִסְפַּר שְׁמוֹתָם</div>
+        <div class="transliteration">Vayomer Adonai el-Moshe, pekod kol bechor zachar livnei Yisrael miben-chodesh u-ma'alah, vesa et mispar shemotam.</div>
+        <div class="literal-translation">Y dijo Adonai a Moshé: Cuenta a todo primogénito varón de los hijos de Israel de un mes de edad en adelante, y toma el número de sus nombres.</div>
+    </div>
+
+    <!-- Números 3:41 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:41</div>
+        <div class="hebrew">וְלָקַחְתָּ אֶת־הַלְוִיִּם לִי אֲנִי יְהוָה תַּחַת כָּל־בְּכוֹר בִּבְנֵי יִשְׂרָאֵל וְאֵת בְּהֶמֶת הַלְוִיִּם תַּחַת כָּל־בְּכוֹר בִּבְהֶמֶת בְּנֵי יִשְׂרָאֵל</div>
+        <div class="transliteration">Velakachta et-haLevi'im li ani Adonai tachat kol bechor bivnei Yisrael, ve'et behemet haLevi'im tachat kol bechor b'vehemet bnei Yisrael.</div>
+        <div class="literal-translation">Y tomarás a los levitas para mí, Yo Adonai, en lugar de todos los primogénitos de los hijos de Israel, y el ganado de los levitas en lugar de todo primogénito entre el ganado de los hijos de Israel.</div>
+    </div>
+
+    <!-- Números 3:42 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:42</div>
+        <div class="hebrew">וַיִּפְקֹד מֹשֶׁה כַּאֲשֶׁר צִוָּה יְהוָה אֹתוֹ אֵת כָּל־בְּכוֹר בִּבְנֵי יִשְׂרָאֵל</div>
+        <div class="transliteration">Vayifkod Moshe ka'asher tzivah Adonai oto et kol bechor bivnei Yisrael.</div>
+        <div class="literal-translation">Y Moshé contó, como le mandó Adonai, a todos los primogénitos de los hijos de Israel.</div>
+    </div>
+
+    <!-- Números 3:43 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:43</div>
+        <div class="hebrew">וַיְהִי כָּל־בְּכוֹר זָכָר בְּמִסְפַּר שֵׁמוֹת מִבֶּן־חֹדֶשׁ וָמַעְלָה לִפְקוּדֵיהֶם שְׁנַיִם וְעֶשְׂרִים אֶלֶף שְׁלֹשׁ מֵאוֹת וְשִׁבְעִים וָשָׁיִם</div>
+        <div class="transliteration">Vayehi kol bechor zachar b'mispar shemot miben-chodesh u-ma'alah lifkudeihem shenayim ve'esrim elef shlosh me'ot v'shiv'im va'shayim.</div>
+        <div class="literal-translation">Y todos los primogénitos varones, por el número de los nombres, de un mes de edad en adelante, fueron veintidós mil trescientos setenta y tres.</div>
+    </div>
+
+    <!-- Números 3:44 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:44</div>
+        <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה לֵּאמֹר</div>
+        <div class="transliteration">Vayedaber Adonai el-Moshe lemor.</div>
+        <div class="literal-translation">Y habló Adonai a Moshé, diciendo:</div>
+    </div>
+
+    <!-- Números 3:45 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:45</div>
+        <div class="hebrew">קַח אֶת־הַלְוִיִּם תַּחַת כָּל־בְּכוֹר בִּבְנֵי יִשְׂרָאֵל וְאֵת בְּהֶמֶת הַלְוִיִּם תַּחַת בְּהֶמֶתָם וְהָיוּ לִי הַלְוִיִּם אֲנִי יְהוָה</div>
+        <div class="transliteration">Kach et-haLevi'im tachat kol bechor bivnei Yisrael, ve'et behemet haLevi'im tachat behemetam, vehayu li haLevi'im ani Adonai.</div>
+        <div class="literal-translation">Toma a los levitas en lugar de todos los primogénitos de los hijos de Israel, y el ganado de los levitas en lugar de su ganado; y los levitas serán míos, Yo Adonai.</div>
+    </div>
+
+    <!-- Números 3:46 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:46</div>
+        <div class="hebrew">וְאֵת פְּדוּיֵי הַשְּׁלֹשָׁה וְהַשְּׁבָעִים וְהַמָּאתָיִם הָעֹדְפִים עַל־הַלְוִיִּם מִבְּכוֹרֹת בְּנֵי יִשְׂרָאֵל</div>
+        <div class="transliteration">Ve'et peduyei hasheloshah vehashev'im vehamatayim ha'odfim al-haLevi'im mibechorot bnei Yisrael.</div>
+        <div class="literal-translation">Y a los redimidos, los trescientos setenta y tres que exceden el número de los levitas de los primogénitos de los hijos de Israel,</div>
+    </div>
+
+    <!-- Números 3:47 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:47</div>
+        <div class="hebrew">וְלָקַחְתָּ חֲמֵשֶׁת חֲמֵשֶׁת שְׁקָלִים לַגֻּלְגֹּלֶת בְּשֶׁקֶל הַקֹּדֶשׁ תִּקָּח עֶשְׂרִים גֵּרָה הַשָּׁקֶל</div>
+        <div class="transliteration">Velakachta chameshet chameshet shekalim lagulgolet, beshekel hakodesh tikach, esrim gera hashekel.</div>
+        <div class="literal-translation">Tomarás cinco siclos por cabeza; conforme al siclo del santuario los tomarás, el siclo es de veinte geras.</div>
+    </div>
+
+    <!-- Números 3:48 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:48</div>
+        <div class="hebrew">וְנָתַתָּה הַכֶּסֶף לְאַהֲרֹן וּלְבָנָיו פְּדוּיֵי הָעֹדְפִים בָּהֶם</div>
+        <div class="transliteration">Venatata hakesef leAharon ulevanav, peduyei ha'odfim vahem.</div>
+        <div class="literal-translation">Y darás el dinero a Aharón y a sus hijos, el rescate de los que exceden entre ellos.</div>
+    </div>
+
+    <!-- Números 3:49 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:49</div>
+        <div class="hebrew">וַיִּקַּח מֹשֶׁה אֶת־כֶּסֶף הַפְּדֻיִּם מֵאֵת הָעֹדְפִים עַל־פְּדוּיֵי הַלְוִיִּם</div>
+        <div class="transliteration">Vayikach Moshe et kesef hap'duyim me'et ha'odfim al peduyei haLevi'im.</div>
+        <div class="literal-translation">Y Moshé tomó el dinero del rescate de los que excedían el número de los redimidos por los levitas.</div>
+    </div>
+
+    <!-- Números 3:50 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:50</div>
+        <div class="hebrew">מֵאֵת בְּכוֹר בְּנֵי יִשְׂרָאֵל לָקַח אֶת־הַכֶּסֶף חֲמֵשֶׁת וּשְׁלֹשׁ מֵאוֹת וָשִׁבְעִים וַחֲמִשִּׁים בְּשֶׁקֶל הַקֹּדֶשׁ</div>
+        <div class="transliteration">Me'et bechor bnei Yisrael lakach et hakesef, chameshet ushlosh me'ot vashiv'im vachamishim, beshekel hakodesh.</div>
+        <div class="literal-translation">De los primogénitos de los hijos de Israel tomó el dinero, mil trescientos sesenta y cinco siclos, conforme al siclo del santuario.</div>
+    </div>
+
+    <!-- Números 3:51 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 3:51</div>
+        <div class="hebrew">וַיִּתֵּן מֹשֶׁה אֶת־כֶּסֶף הַפְּדֻיִּם לְאַהֲרֹן וּלְבָנָיו עַל־פִּי יְהוָה כַּאֲשֶׁר צִוָּה יְהוָה אֶת־מֹשֶׁה</div>
+        <div class="transliteration">Vayiten Moshe et kesef hap'duyim leAharon ulevanav al pi Adonai ka'asher tzivah Adonai et Moshe.</div>
+        <div class="literal-translation">Y Moshé dio el dinero del rescate a Aharón y a sus hijos, conforme a la palabra de Adonai, como Adonai había mandado a Moshé.</div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Cumplimiento Profético en el Mashíaj de Números 3:40-51</h1>
+
+    <div class="prophetic-section">
+        <div class="prophetic-title">Redención y Sustitución Profética</div>
+        <ul>
+            <li><strong>Los levitas como sustitutos:</strong> Así como los levitas fueron tomados en lugar de los primogénitos de Israel, Yeshúa es el sustituto perfecto que toma nuestro lugar para redimirnos (Hebreos 9:12).</li>
+            <li><strong>El precio de redención:</strong> El pago por los primogénitos excedentes apunta al precio que Mashíaj pagó con su propia vida para redimir a todos, sin que nadie quede fuera (1 Pedro 1:18-19).</li>
+            <li><strong>La mediación sacerdotal:</strong> Aarón y sus hijos reciben el rescate, prefigurando el sacerdocio eterno de Yeshúa, quien intercede y recibe a los redimidos (Hebreos 7:24-25).</li>
+            <li><strong>La pertenencia exclusiva a Elohím:</strong> Los levitas son declarados propiedad de Adonai; en el Brit Hadasháh, los redimidos son llamados "pueblo adquirido" por Mashíaj (1 Pedro 2:9).</li>
+        </ul>
+    </div>
+
+    <div class="prophetic-section">
+        <div class="prophetic-title">Aplicación para el Creyente</div>
+        <ul>
+            <li>Somos llamados a reconocer que nuestra redención tiene un precio y que pertenecemos a Elohím por medio de Yeshúa.</li>
+            <li>Así como los levitas servían en el santuario, los creyentes son llamados a servir como sacerdocio santo en el Reino del Mesías.</li>
+            <li>La sustitución y redención en Números 3:40-51 nos invita a vivir agradecidos y dedicados al servicio divino, sabiendo que hemos sido rescatados y apartados para un propósito eterno.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 2. Haftaráh: Jeremías 33:19-22 (La promesa del sacerdocio perpetuo de los levitas).</h1>
+
+    <!-- Jeremías 33:19 -->
+    <div class="verse-container">
+        <div class="verse-number">Jeremías 33:19</div>
+        <div class="hebrew">וַיְהִי דְבַר־יְהוָה אֶל־יִרְמְיָהוּ לֵאמֹר</div>
+        <div class="transliteration">Vayehi d'var-Adonai el-Yirmeyahu lemor.</div>
+        <div class="literal-translation">Y vino palabra de Adonai a Jeremías, diciendo:</div>
+    </div>
+
+    <!-- Jeremías 33:20 -->
+    <div class="verse-container">
+        <div class="verse-number">Jeremías 33:20</div>
+        <div class="hebrew">כֹּה אָמַר יְהוָה אִם־תָּפֵרוּ אֶת־בְּרִיתִי אֶת־הַיּוֹם וְאֶת־הַלָּיְלָה לְבִלְתִּי הֱיוֹת יוֹם וָלַיְלָה בְּעִתָּם</div>
+        <div class="transliteration">Ko amar Adonai: Im-taferu et-beriti et-hayom ve'et-halailah, levilti heyot yom va'lailah be'itam.</div>
+        <div class="literal-translation">Así dice Adonai: Si pudierais invalidar mi pacto con el día y mi pacto con la noche, de modo que no haya día y noche a su tiempo,</div>
+    </div>
+
+    <!-- Jeremías 33:21 -->
+    <div class="verse-container">
+        <div class="verse-number">Jeremías 33:21</div>
+        <div class="hebrew">גַּם בְּרִיתִי תֻפַּר אֶת־דָּוִד עַבְדִּי מִהְיוֹת־לוֹ בֵן מֹלֵךְ עַל־כִּסְאוֹ וְאֶת־הַלְוִיִּם הַכֹּהֲנִים מְשָׁרְתָי</div>
+        <div class="transliteration">Gam beriti tupar et-David avdi mihyot-lo ben molech al-kis'o ve'et-haLevi'im haKohanim meshartai.</div>
+        <div class="literal-translation">También mi pacto con David mi siervo podría ser invalidado, para que no tenga hijo que reine sobre su trono, y con los levitas, los sacerdotes, mis ministros.</div>
+    </div>
+
+    <!-- Jeremías 33:22 -->
+    <div class="verse-container">
+        <div class="verse-number">Jeremías 33:22</div>
+        <div class="hebrew">כַּאֲשֶׁר לֹא־יִסָּפֵר צְבָא הַשָּׁמַיִם וְלֹא יִמַּד חוֹל הַיָּם כֵּן אַרְבֶּה אֶת־זֶרַע דָּוִד עַבְדִּי וְאֶת־הַלְוִיִּם מְשָׁרְתָי</div>
+        <div class="transliteration">Ka'asher lo-yissaper tzeva hashamayim velo yimmad chol hayam, ken arbe et-zer'a David avdi ve'et-haLevi'im meshartai.</div>
+        <div class="literal-translation">Como no puede ser contado el ejército de los cielos ni medida la arena del mar, así multiplicaré la descendencia de David mi siervo y los levitas que me sirven.</div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Cumplimiento Profético en el Mashíaj de Jeremías 33:19-22</h1>
+
+    <div class="prophetic-section">
+        <div class="prophetic-title">Fidelidad del Pacto y Sacerdocio Eterno</div>
+        <ul>
+            <li><strong>El pacto inquebrantable:</strong> Así como el ciclo del día y la noche no puede ser roto, tampoco puede ser anulado el pacto de Elohím con David y los levitas. Esto apunta a la fidelidad de Elohím en cumplir sus promesas a Israel y a la Casa de David (Lucas 1:32-33).</li>
+            <li><strong>El sacerdocio perpetuo:</strong> La promesa de un sacerdocio levítico perpetuo se cumple y se eleva en Yeshúa, quien es Sumo Sacerdote para siempre según el orden de Melquisedec (Hebreos 7:24-25).</li>
+            <li><strong>Multiplicación de la descendencia:</strong> Así como la descendencia de David y los levitas sería incontable, así también la redención en el Mesías alcanza a una multitud de toda nación, tribu y lengua (Apocalipsis 7:9).</li>
+            <li><strong>Yeshúa, heredero del trono de David:</strong> El Mesías es el cumplimiento del pacto davídico, reinando eternamente y asegurando la continuidad del Reino y del sacerdocio espiritual (Hechos 2:30-36).</li>
+        </ul>
+    </div>
+
+    <div class="prophetic-section">
+        <div class="prophetic-title">Aplicación para el Creyente</div>
+        <ul>
+            <li>Podemos confiar en la fidelidad de Elohím, sabiendo que sus promesas en el Mesías son firmes y eternas.</li>
+            <li>Somos llamados a vivir como parte de un sacerdocio santo, sirviendo y adorando a Elohím en espíritu y verdad, como herederos de las promesas hechas a David y a los levitas.</li>
+            <li>La multiplicación del pueblo redimido nos invita a compartir el mensaje de redención y a participar activamente en el Reino del Mesías.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 3. Brit Hadasháh: Colosenses 1:13-14 (Redención a través de la sangre de Yeshúa).</h1>
+
+    <!-- Colosenses 1:13 -->
+    <div class="verse-container">
+        <div class="verse-number">Colosenses 1:13</div>
+        <div class="hebrew">אֲשֶׁר הִצִּילָנוּ מִשְּׁלִטוֹן הַחֹשֶׁךְ וְהֶעֱבִירֵנוּ לְמַלְכוּת בֶּן־אַהֲבָתוֹ</div>
+        <div class="transliteration">Asher hitsilanu mishilton hachoshech vehe'evireinu lemalchut ben ahavato.</div>
+        <div class="literal-translation">Él nos libró del dominio de las tinieblas y nos trasladó al reino de su Hijo amado.</div>
+    </div>
+
+    <!-- Colosenses 1:14 -->
+    <div class="verse-container">
+        <div class="verse-number">Colosenses 1:14</div>
+        <div class="hebrew">אֲשֶׁר בּוֹ יֵשׁ־לָנוּ הַפְּדוּת סְלִיחַת הַחֲטָאִים</div>
+        <div class="transliteration">Asher bo yesh-lanu hap'dut selichat hachata'im.</div>
+        <div class="literal-translation">En quien tenemos redención, el perdón de los pecados.</div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Cumplimiento Profético en el Mashíaj de Colosenses 1:13-14</h1>
+
+    <div class="prophetic-section">
+        <div class="prophetic-title">Redención y Liberación en el Mesías</div>
+        <ul>
+            <li><strong>Traslado del dominio de las tinieblas:</strong> Así como Israel fue redimido de la esclavitud, en el Mesías somos liberados del poder de las tinieblas y trasladados al Reino de Yeshúa (Juan 8:36).</li>
+            <li><strong>Redención por la sangre:</strong> El perdón y la redención no se logran por méritos propios, sino por el sacrificio de Yeshúa, quien pagó el precio completo por nuestros pecados (Efesios 1:7).</li>
+            <li><strong>Pertenencia al Reino:</strong> Ahora somos ciudadanos del Reino del Hijo amado, llamados a vivir bajo su autoridad y gracia (Filipenses 3:20).</li>
+        </ul>
+    </div>
+
+    <div class="prophetic-section">
+        <div class="prophetic-title">Aplicación para el Creyente</div>
+        <ul>
+            <li>Reconocer que la verdadera libertad y perdón solo se encuentran en Yeshúa, nuestro Redentor.</li>
+            <li>Vivir agradecidos y comprometidos, sabiendo que hemos sido rescatados y adoptados en la familia del Reino.</li>
+            <li>Compartir el mensaje de redención y esperanza con otros, como testigos de la obra transformadora del Mesías.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 4: Contexto Histórico y Cultural de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span>📜 Marco Histórico</h2>
+        <p><strong>Ubicación temporal y geográfica:</strong></p>
+        <ul>
+            <li>El evento ocurre en el desierto del Sinaí, durante el segundo año después del éxodo de Egipto, mientras Israel acampa alrededor del Mishkán (Tabernáculo).</li>
+            <li>El pueblo está en proceso de organización tribal y sacerdotal bajo la dirección de Moshé y Aharón.</li>
+        </ul>
+        <p><strong>Circunstancia espiritual:</strong></p>
+        <ul>
+            <li>Tras la salida de Egipto y la entrega de la Toráh, Elohím establece el principio de redención y sustitución de los primogénitos por los levitas, como recordatorio de la liberación de los primogénitos en Egipto.</li>
+            <li>El censo y la redención de los primogénitos refuerzan la idea de que todo lo primero pertenece a Elohím y debe ser redimido o consagrado a su servicio.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span>⚖️ Contexto Cultural y Significado</h2>
+        <ul>
+            <li><strong>El valor del rescate:</strong> El pago de cinco siclos por cada primogénito excedente muestra la importancia de la redención y el reconocimiento de la propiedad divina sobre el pueblo.</li>
+            <li><strong>El rol de los levitas:</strong> Los levitas son apartados para el servicio sagrado, sustituyendo a los primogénitos y asegurando la pureza y el orden en el Mishkán.</li>
+            <li><strong>La centralidad del Mishkán:</strong> Todo el sistema gira en torno al Tabernáculo, que es el centro espiritual y social de Israel en el desierto.</li>
+            <li><strong>Identidad y pertenencia:</strong> El acto de redención refuerza la identidad de Israel como pueblo apartado y redimido, llamado a servir a Elohím en santidad.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 5: Estudio, Comentarios y Conexiones Proféticas de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> Estudio y Comentarios</h2>
+        <ul>
+            <li><strong>Redención y sustitución:</strong> El acto de redimir a los primogénitos mediante los levitas subraya el principio de sustitución, donde uno toma el lugar de otro para cumplir el propósito divino. Esto anticipa el concepto mesiánico de redención por medio de un sustituto perfecto.</li>
+            <li><strong>El valor del rescate:</strong> El pago de cinco siclos por cada primogénito excedente muestra que la redención tiene un precio concreto y que nadie queda fuera del alcance de la redención divina.</li>
+            <li><strong>El servicio exclusivo:</strong> Los levitas son apartados para servir en el Mishkán, lo que enfatiza la importancia de la santidad y la dedicación total en el servicio a Elohím.</li>
+            <li><strong>Obediencia a la instrucción divina:</strong> Moshé y Aharón cumplen exactamente lo que Adonai ordena, mostrando el valor de la obediencia precisa en la vida espiritual.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span> Conexiones Proféticas y Mesiánicas</h2>
+        <ul>
+            <li><strong>Yeshúa como el Redentor:</strong> Así como los levitas sustituyen a los primogénitos, Yeshúa toma nuestro lugar como el Redentor perfecto, pagando el precio de nuestra redención con su propia vida (1 Pedro 1:18-19).</li>
+            <li><strong>El sacerdocio renovado:</strong> El servicio de los levitas apunta al sacerdocio renovado en el Mesías, donde todos los creyentes son llamados a ser "real sacerdocio" y "nación santa" (1 Pedro 2:9).</li>
+            <li><strong>La pertenencia al Reino:</strong> El acto de redención y consagración señala que los redimidos pertenecen exclusivamente a Elohím y son llamados a servirle en santidad y gratitud.</li>
+            <li><strong>La universalidad de la redención:</strong> El hecho de que todos los primogénitos sean contados y redimidos anticipa la redención universal ofrecida en el Mesías a toda la humanidad.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">C.</span> Aplicación para Hoy</h2>
+        <ul>
+            <li>Reconocer el valor de la redención y vivir agradecidos por el precio pagado por nuestra libertad espiritual.</li>
+            <li>Responder al llamado de servir a Elohím con dedicación, pureza y obediencia, como parte de su pueblo apartado.</li>
+            <li>Vivir como testigos de la redención, compartiendo el mensaje de esperanza y salvación en Yeshúa con otros.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 6: Análisis Profundo de la Aliyáh de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> Significado Espiritual</h2>
+        <ul>
+            <li><strong>Redención como fundamento:</strong> La redención de los primogénitos por medio de los levitas revela que la relación con Elohím se basa en la redención, no en el mérito personal.</li>
+            <li><strong>El precio de la redención:</strong> El pago concreto por los primogénitos excedentes enseña que la redención es costosa y requiere un sustituto aceptado por Elohím.</li>
+            <li><strong>Consagración total:</strong> Los levitas, al ser apartados, representan la entrega total al servicio divino, un llamado vigente para todo creyente.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span> Implicaciones para la Comunidad</h2>
+        <ul>
+            <li><strong>Unidad y función:</strong> Cada familia levítica tenía un rol específico, mostrando que la comunidad funciona mejor cuando cada uno cumple su propósito en armonía.</li>
+            <li><strong>Responsabilidad colectiva:</strong> La redención de los primogénitos no era solo individual, sino una responsabilidad de toda la nación, reflejando la importancia de la solidaridad espiritual.</li>
+            <li><strong>Memoria y enseñanza:</strong> Este acto recordaba constantemente a Israel su liberación de Egipto y el costo de su libertad, transmitiendo valores de gratitud y obediencia a las futuras generaciones.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">C.</span> Proyección Mesiánica</h2>
+        <ul>
+            <li><strong>Yeshúa como el Redentor definitivo:</strong> El principio de sustitución encuentra su máxima expresión en el Mesías, quien no solo paga el precio, sino que se ofrece a sí mismo como rescate por todos.</li>
+            <li><strong>Acceso al servicio divino:</strong> Así como los levitas fueron apartados para servir, en el Mesías todos los creyentes son llamados a ser ministros y servidores en el Reino.</li>
+            <li><strong>Redención universal:</strong> El acto de redimir a todos los primogénitos apunta a la oferta de salvación para toda la humanidad, sin distinción.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 7: Tema Más Relevante de la Aliyáh de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> El Corazón de la Redención y la Pertenencia</h2>
+        <ul>
+            <li><strong>Redención con precio:</strong> El tema central de esta aliyáh es la redención de los primogénitos de Israel mediante los levitas y el pago de un precio por los excedentes. Esto enseña que la redención ante Elohím siempre implica un costo y un sustituto aceptado.</li>
+            <li><strong>Pertenencia exclusiva a Elohím:</strong> Los levitas, al ser apartados y consagrados, representan la pertenencia total del pueblo redimido a su Creador. Todo lo primero y lo mejor es para Él.</li>
+            <li><strong>Anticipación mesiánica:</strong> Este principio de sustitución y rescate apunta proféticamente a la obra de Yeshúa, quien es el Redentor definitivo y el precio pagado por nuestra libertad espiritual.</li>
+            <li><strong>Llamado a la consagración:</strong> La aliyáh desafía a cada creyente a reconocer el valor de su redención y a responder con una vida de servicio, gratitud y santidad.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 8: Descubriendo a Mashíaj en Cada Aliyáh de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> Yeshúa, el Redentor y Sustituto Perfecto</h2>
+        <ul>
+            <li><strong>El verdadero Primogénito:</strong> Así como los primogénitos de Israel debían ser redimidos, Yeshúa es llamado el "Primogénito de toda creación" (Colosenses 1:15) y el único capaz de redimirnos plenamente.</li>
+            <li><strong>Sustitución profética:</strong> Los levitas tomaron el lugar de los primogénitos; de igual manera, Mashíaj toma nuestro lugar, cargando con nuestro pecado y pagando el precio de nuestra redención (Isaías 53:5).</li>
+            <li><strong>El precio pagado:</strong> El pago por los primogénitos excedentes apunta al precio que Yeshúa pagó con su propia sangre, mostrando que la redención es completa y suficiente para todos (1 Pedro 1:18-19).</li>
+            <li><strong>Pertenencia exclusiva:</strong> Así como los levitas fueron declarados propiedad de Adonai, en el Mesías somos hechos "pueblo adquirido" para anunciar las virtudes de Aquel que nos llamó (1 Pedro 2:9).</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span> Mashíaj en el Servicio y la Consagración</h2>
+        <ul>
+            <li><strong>Servicio sacerdotal:</strong> Yeshúa es nuestro Sumo Sacerdote, intercediendo por nosotros y abriendo el acceso al Lugar Santísimo (Hebreos 4:14-16).</li>
+            <li><strong>Consagración total:</strong> Así como los levitas fueron apartados para el servicio, Mashíaj consagra a su pueblo para servir con santidad y dedicación en el Reino.</li>
+            <li><strong>Redención continua:</strong> La obra de Mashíaj no solo nos redime, sino que nos transforma y nos llama a vivir como redimidos, reflejando su carácter y propósito en cada generación.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 9: Midrashim, Targumim, Textos Fuentes y Apócrifos de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> Midrashim y Targumim</h2>
+        <ul>
+            <li><strong>Midrash Bamidbar Rabá 4:8:</strong> Explica que la elección de los levitas en lugar de los primogénitos fue un acto de misericordia y justicia divina, recordando la fidelidad de los levitas durante el episodio del becerro de oro.</li>
+            <li><strong>Targum Onkelos:</strong> Traduce y comenta que los levitas fueron "dados en don" a Aharón y sus hijos para el servicio del Mishkán, enfatizando la idea de consagración y sustitución.</li>
+            <li><strong>Midrash Tanjuma Bamidbar 12:</strong> Relaciona la redención de los primogénitos con el principio de que todo lo primero pertenece a Elohím, y que la redención es un recordatorio perpetuo de la liberación de Egipto.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span> Textos Fuentes y Apócrifos</h2>
+        <ul>
+            <li><strong>Libro de Jubileos 33:17-20:</strong> Reafirma la consagración de los levitas y la sustitución de los primogénitos, destacando la importancia de la pureza y el servicio sacerdotal.</li>
+            <li><strong>Sirácida (Eclesiástico) 45:6-15:</strong> Exalta el papel de Aarón y su descendencia en el sacerdocio, y menciona la elección de los levitas como un acto de favor divino.</li>
+            <li><strong>Fuentes rabínicas:</strong> Diversos comentarios resaltan que la redención de los primogénitos es una señal de la relación especial entre Israel y Elohím, y una anticipación del sacrificio redentor del Mesías.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">C.</span> Reflexión y Aplicación</h2>
+        <ul>
+            <li>Los textos tradicionales y apócrifos subrayan la importancia de la redención, la consagración y la sustitución como principios eternos en la relación entre Elohím y su pueblo.</li>
+            <li>Estos relatos enriquecen la comprensión del texto bíblico y muestran cómo la tradición judía y mesiánica ve en la redención de los primogénitos una sombra profética de la obra de Mashíaj.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 10. Mandamientos, Principios y Valores de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> Mandamientos Encontrados</h2>
+        <ul>
+            <li><strong>Contar a los primogénitos:</strong> Elohím ordena a Moshé contar a todos los primogénitos varones de Israel desde un mes de edad en adelante (Números 3:40).</li>
+            <li><strong>Separar a los levitas:</strong> Los levitas son apartados para el servicio sagrado en lugar de los primogénitos de Israel (Números 3:41, 45).</li>
+            <li><strong>Redimir a los primogénitos excedentes:</strong> Los primogénitos que exceden el número de los levitas deben ser redimidos mediante el pago de cinco siclos por cabeza (Números 3:46-48).</li>
+            <li><strong>Entrega del rescate:</strong> El dinero de la redención debe ser entregado a Aharón y a sus hijos, los sacerdotes (Números 3:48-51).</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span> Principios y Valores Espirituales</h2>
+        <ul>
+            <li><strong>Santidad y consagración:</strong> El llamado a separar a los levitas y redimir a los primogénitos enseña la importancia de la santidad y la dedicación a Elohím.</li>
+            <li><strong>Redención y sustitución:</strong> El principio de que uno puede tomar el lugar de otro apunta a la redención mesiánica y al valor del sacrificio sustitutorio.</li>
+            <li><strong>Obediencia precisa:</strong> Moshé y el pueblo cumplen exactamente las instrucciones divinas, mostrando el valor de la obediencia detallada.</li>
+            <li><strong>Responsabilidad comunitaria:</strong> La redención de los primogénitos es una responsabilidad de toda la comunidad, no solo de individuos.</li>
+            <li><strong>Justicia y equidad:</strong> El pago por los excedentes muestra que todos son tenidos en cuenta y que la redención es justa y equitativa para todos.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">C.</span> Aplicación para Hoy</h2>
+        <ul>
+            <li>Reconocer que todo lo primero y lo mejor pertenece a Elohím y debe ser consagrado a Él.</li>
+            <li>Valorar la redención recibida y responder con gratitud y servicio.</li>
+            <li>Vivir en obediencia, santidad y responsabilidad dentro de la comunidad de fe.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 11. Preguntas y Respuestas en el Mashíaj Yeshúa de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> Preguntas para Reflexionar</h2>
+        <ul>
+            <li><strong>¿Por qué Elohím eligió a los levitas en lugar de los primogénitos?</strong><br>
+                Porque los levitas demostraron fidelidad tras el pecado del becerro de oro, y así prefiguran a Yeshúa, el fiel y obediente Hijo que sustituye a los infieles (Números 3:12; Hebreos 3:1-6).
+            </li>
+            <li><strong>¿Qué significa la sustitución de los primogénitos por los levitas en el contexto mesiánico?</strong><br>
+                Es una sombra profética: así como los levitas toman el lugar de los primogénitos, Yeshúa toma nuestro lugar como sustituto perfecto, redimiendo a toda la humanidad (1 Pedro 3:18).
+            </li>
+            <li><strong>¿Por qué cada familia levítica tenía una función específica?</strong><br>
+                Para mostrar que en el Cuerpo del Mesías cada miembro tiene un llamado y propósito único, y que la unidad se logra en la diversidad de dones (1 Corintios 12:4-11).
+            </li>
+            <li><strong>¿Qué enseña la redención de los excedentes de primogénitos?</strong><br>
+                Que la redención es completa y justa: nadie queda fuera del plan de Elohím, y todo es cubierto por el sacrificio de Mashíaj (Colosenses 1:20).
+            </li>
+            <li><strong>¿Cómo se conecta la protección del Mishkán con la obra de Yeshúa?</strong><br>
+                Así como los levitas protegían el santuario, Yeshúa protege y purifica a su pueblo, haciendo de cada creyente un santuario viviente (Efesios 2:21-22).
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span> Respuestas en el Mashíaj Yeshúa</h2>
+        <ul>
+            <li><strong>Yeshúa es el Primogénito y el Sumo Sacerdote:</strong> Él cumple ambas funciones, siendo el sustituto y el mediador entre Elohím y la humanidad (Hebreos 4:14-16).</li>
+            <li><strong>La redención es universal:</strong> Así como los levitas redimieron a los primogénitos, Yeshúa redime a todos los que creen en Él, sin distinción (Apocalipsis 5:9-10).</li>
+            <li><strong>El servicio en el Reino es ordenado y diverso:</strong> Cada creyente tiene un rol, y todos son necesarios para el funcionamiento del Cuerpo del Mesías (Romanos 12:4-8).</li>
+            <li><strong>La santidad y la protección del santuario:</strong> Yeshúa nos llama a vivir en santidad y a proteger la pureza de la Kehiláh, como los levitas protegían el Mishkán (1 Pedro 2:5,9).</li>
+            <li><strong>La sustitución y el rescate:</strong> El principio de sustitución en Números 3 se cumple plenamente en la obra redentora de Yeshúa, quien dio su vida en rescate por muchos (Marcos 10:45).</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 12. Resumen de la Aliyá de Números 3:40-51</h1>
+
+    <div class="section-container">
+        <h2><span class="point-letter">A.</span> Resumen General</h2>
+        <ul>
+            <li><strong>Censo y organización levítica:</strong> Elohím ordena a Moshé contar a los primogénitos y a los levitas, asignando a cada grupo su función y mostrando el orden divino en el servicio.</li>
+            <li><strong>Sustitución de los primogénitos:</strong> Los levitas son elegidos en lugar de los primogénitos de Israel para el servicio sagrado, prefigurando el principio de redención por sustitución.</li>
+            <li><strong>Redención de los excedentes:</strong> Los primogénitos que exceden el número de levitas son redimidos mediante un pago, mostrando la justicia y la equidad en el servicio divino.</li>
+            <li><strong>Entrega del rescate:</strong> El dinero de la redención es entregado a Aharón y sus hijos, enfatizando la mediación sacerdotal y la importancia del sacerdocio en Israel.</li>
+            <li><strong>Protección y santidad:</strong> Los levitas rodean el Mishkán y protegen al pueblo del juicio, enfatizando la importancia de la santidad y la mediación sacerdotal.</li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2><span class="point-letter">B.</span> Aplicación Mesiánica</h2>
+        <ul>
+            <li>La estructura y el servicio levítico prefiguran el ministerio de Yeshúa como Sumo Sacerdote, sustituto y redentor perfecto.</li>
+            <li>El principio de sustitución y redención se cumple plenamente en la obra de Mashíaj, quien asume el lugar de los culpables y restaura el acceso al Santuario celestial.</li>
+            <li>El llamado a la santidad, el orden y la función específica en el Reino sigue vigente para cada creyente como parte del Cuerpo del Mesías.</li>
+        </ul>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión</h3>
+        <p>Números 3:40-51 revela el diseño divino de servicio, redención y santidad, anticipando la obra perfecta de Yeshúa y llamando a su pueblo a vivir como un sacerdocio santo, ordenado y redimido.</p>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 13. Tefilá (Oración) de la Aliyá de Números 3:40-51</h1>
+
+    <div class="prophetic-section">
+        <div class="prophetic-title">Tefilá</div>
+        <div class="prayer-text">
+            Avinu Malkeinu, Elohím de Abraham, Isaac y Jacob,<br>
+            Gracias por el diseño perfecto de Tu servicio y por la redención que anticipaste a través de los levitas.<br>
+            Así como ellos fueron apartados para guardar, servir y proteger el Mishkán, aparta también nuestros corazones para servirte con santidad y obediencia.<br>
+            <br>
+            Te pedimos, por los méritos de Yeshúa haMashíaj, nuestro Sumo Sacerdote y Redentor, que nos hagas dignos de ser parte de Tu pueblo santo.<br>
+            Enséñanos a valorar el orden, la responsabilidad y la unidad en Tu Reino.<br>
+            Que podamos vivir como un Mishkán viviente, portadores de Tu presencia y testigos de Tu redención.<br>
+            <br>
+            Purifícanos, protégennos del mal y ayúdanos a cumplir fielmente el llamado que nos has dado.<br>
+            Que la luz de Tu rostro brille sobre nosotros y sobre toda la casa de Israel.<br>
+            <br>
+            En el nombre de Yeshúa, el Mesías, Amén.
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a></p>
+    </footer>
+</main>
+
+<button class="aliya-button"><a href="./aliya7.html">Continuar con la Aliyá 7</a></button>
+
+
+<script src="../index.js"></script>
+
+</body>
+</html>

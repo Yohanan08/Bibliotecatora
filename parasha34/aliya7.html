@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 4:1-20</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+    
+</head>
+<body>
+<div id="google_translate_element"></div>
+<header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+</header>
+
+<main id="contenido">
+
+    <h1>34. Parashá Bamidbar (במדבר) Aliyáh 7: (Números 4:1-20) Tareas específicas de los clanes de los levitas para el transporte del Mishkán.
+    <p>Haftaráh: Oseas 2:16-22 (El compromiso renovado de Israel como el pueblo de Elohím).</p>
+    <p>Brit Hadasháh: 1 Corintios 12:4-11 (Los dones y funciones de cada miembro en el cuerpo del Mesías).</p></h1>
+
+    <div class="content-container">
+    <h1>Punto 1. Números 4:1-20 – Hebreo, Fonética y Traducción Literal</h1>
+
+    <!-- Números 4:1 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:1</div>
+        <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה וְאֶל־אַהֲרֹן לֵּאמֹר</div>
+        <div class="transliteration">Vayedaber Adonai el-Moshe ve'el-Aharon lemor.</div>
+        <div class="literal-translation">Y habló Adonai a Moshé y a Aharón, diciendo:</div>
+    </div>
+
+    <!-- Números 4:2 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:2</div>
+        <div class="hebrew">שָׂא אֶת־רֹאשׁ בְּנֵי קְהָת מִתּוֹךְ בְּנֵי לֵוִי לְמִשְׁפְּחֹתָם לְבֵית אֲבֹתָם</div>
+        <div class="transliteration">Sa et-rosh bnei Kehat mitoch bnei Levi lemishpechotam leveit avotam.</div>
+        <div class="literal-translation">Haz un censo de los hijos de Kehat de entre los hijos de Leví, por sus familias, según las casas de sus padres.</div>
+    </div>
+
+    <!-- Números 4:3 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:3</div>
+        <div class="hebrew">מִבֶּן שְׁלֹשִׁים שָׁנָה וָמַעְלָה וְעַד בֶּן־חֲמִשִּׁים שָׁנָה כָּל־בָּא לַצָּבָא לַעֲשׂוֹת מְלָאכָה בְּאֹהֶל מוֹעֵד</div>
+        <div class="transliteration">Miben sheloshim shanah u-ma'alah ve'ad ben-chamishim shanah, kol ba latzava la'asot melachah be'Ohel Moed.</div>
+        <div class="literal-translation">De treinta años para arriba hasta cincuenta años, todos los que vienen a servir para hacer la obra en la Tienda de Reunión.</div>
+    </div>
+
+    <!-- Números 4:4 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:4</div>
+        <div class="hebrew">זֹאת עֲבֹדַת בְּנֵי קְהָת בְּאֹהֶל מוֹעֵד קֹדֶשׁ הַקֳּדָשִׁים</div>
+        <div class="transliteration">Zot avodat bnei Kehat be'Ohel Moed, kodesh hakodashim.</div>
+        <div class="literal-translation">Esta será la labor de los hijos de Kehat en la Tienda de Reunión: lo más sagrado.</div>
+    </div>
+
+    <!-- Números 4:5 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:5</div>
+        <div class="hebrew">וּבָא אַהֲרֹן וּבָנָיו בִּנְסֹעַ הַמַּחֲנֶה וְהוֹרִדוּ אֶת פָּרֹכֶת הַמָּסָךְ וְכִסּוּ בָהּ אֵת אֲרוֹן הָעֵדוּת</div>
+        <div class="transliteration">Uva Aharon uvanav b'nso'a hamachaneh, vehoridu et parochet hamasakh vechissu bah et aron ha'edut.</div>
+        <div class="literal-translation">Y cuando el campamento haya de partir, vendrán Aharón y sus hijos, y bajarán el velo de la cortina y cubrirán con él el arca del testimonio.</div>
+    </div>
+
+    <!-- Números 4:6 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:6</div>
+        <div class="hebrew">וְנָתְנוּ עָלָיו כְּסוּי עוֹר תַּחַשׁ וּפָרְשׂוּ בֶגֶד כְּלִיל תְּכֵלֶת מִלְמָעְלָה וְשָׂמוּ בַּדָּיו</div>
+        <div class="transliteration">Venatnu alav kesui or tachash ufar'su beged kelil t'chelet milma'alah vesamu badav.</div>
+        <div class="literal-translation">Y pondrán sobre él una cubierta de piel de tejón, y extenderán encima un paño todo de azul, y colocarán sus varas.</div>
+    </div>
+
+    <!-- Números 4:7 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:7</div>
+        <div class="hebrew">וְעַל שֻׁלְחַן הַפָּנִים יִפְרְשׂוּ בֶגֶד תְּכֵלֶת וְנָתְנוּ עָלָיו אֶת הַקַּעֲרוֹת וְאֶת הַכַּפֹּת וְאֵת הַמְּנַקִּיֹּת וְאֵת קְשׁוֹת הַנָּסֶךְ וְהַלֶּחֶם הַתָּמִיד עָלָיו יִהְיֶה</div>
+        <div class="transliteration">Ve'al shulchan hapanim yifrsu beged t'chelet venatnu alav et haka'arot ve'et hakapot ve'et hamenakiyot ve'et keshot hanasech vehalechem hatamid alav yihyeh.</div>
+        <div class="literal-translation">Sobre la mesa de la Presencia extenderán un paño azul, y pondrán sobre ella los platos, cucharas, tazones y jarras para las libaciones; y el pan perpetuo estará sobre ella.</div>
+    </div>
+
+    <!-- Números 4:8 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:8</div>
+        <div class="hebrew">וּפָרְשׂוּ עֲלֵיהֶם בֶּגֶד תֹּלַעַת שָׁנִי וְכִסּוּ אֹתוֹ בְּכְסוּי עוֹר תַּחַשׁ וְשָׂמוּ אֶת בַּדָּיו</div>
+        <div class="transliteration">Ufar'su aleihem beged tolaat shani vechissu oto bekesui or tachash vesamu et badav.</div>
+        <div class="literal-translation">Y extenderán sobre ellos un paño de carmesí, y lo cubrirán con una cubierta de piel de tejón, y colocarán sus varas.</div>
+    </div>
+
+    <!-- Números 4:9 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:9</div>
+        <div class="hebrew">וְלָקְחוּ בֶּגֶד תְּכֵלֶת וְכִסּוּ אֵת מְנֹרַת הַמָּאוֹר וְאֶת נֵרֹתֶיהָ וְאֶת מַלְקָחֶיהָ וְאֶת מַחְתֹּתֶיהָ וְאֵת כָּל־כְּלֵי שַׁמְנָהּ אֲשֶׁר יְשָׁרְתוּ־לָהּ בָּהֶם</div>
+        <div class="transliteration">Velakchu beged t'chelet vechissu et menorat hama'or ve'et neroteha ve'et malkacheha ve'et machtoteha ve'et kol-klei shamnah asher yeshartu-lah bahem.</div>
+        <div class="literal-translation">Y tomarán un paño azul y cubrirán la menorá del alumbrado, sus lámparas, sus tenazas, sus ceniceros y todos sus utensilios con que se sirve.</div>
+    </div>
+
+    <!-- Números 4:10 -->
+    <div class="verse-container">
+        <div class="verse-number">Números 4:10</div>
+        <div class="hebrew">וְנָתְנוּ אֹתָהּ וְאֵת כָּל־כֵּלֶיהָ אֶל־מִכְסֵה עוֹר תַּחַשׁ וְנָתְנוּ עַל־מוֹט</div>
+        <div class="transliteration">Venatnu otah ve'et kol-keleha el-mikhseh or tachash venatnu al-mot.</div>
+        <div class="literal-translation">Y la pondrán con todos sus utensilios en una cubierta de piel de tejón, y la colocarán sobre una barra.</div>
+    </div>
+
+    <div class="verse-container">
+    <div class="verse-number">Números 4:11</div>
+    <div class="hebrew">וְעַל מִזְבַּח הַזָּהָב יִפְרְשׂוּ בֶגֶד תְּכֵלֶת וְכִסּוּ אֹתוֹ בְּכְסוּי עוֹר תַּחַשׁ וְשָׂמוּ אֶת בַּדָּיו</div>
+    <div class="transliteration">Ve'al mizbeach hazahav yifrsu beged t'chelet vechissu oto bekesui or tachash vesamu et badav.</div>
+    <div class="literal-translation">Sobre el altar de oro extenderán un paño azul, lo cubrirán con una cubierta de piel de tejón y colocarán sus varas.</div>
+</div>
+
+<!-- Números 4:12 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:12</div>
+    <div class="hebrew">וְלָקְחוּ אֵת כָּל־כְּלֵי הַשֵּׁרֵת אֲשֶׁר יְשָׁרְתוּ בָם בַּקֹּדֶשׁ וְנָתְנוּ אֶל־בֶּגֶד תְּכֵלֶת וְכִסּוּ אֹתָם כְּסוּי עוֹר תַּחַשׁ וְנָתְנוּ עַל־מוֹט</div>
+    <div class="transliteration">Velakchu et kol-klei hasheret asher yeshartu vam bakodesh venatnu el-beged t'chelet vechissu otam kesui or tachash venatnu al-mot.</div>
+    <div class="literal-translation">Y tomarán todos los utensilios del servicio con que sirven en el santuario, los pondrán en un paño azul, los cubrirán con una cubierta de piel de tejón y los colocarán sobre una barra.</div>
+</div>
+
+<!-- Números 4:13 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:13</div>
+    <div class="hebrew">וְדִשְּׁנוּ אֶת־הַמִּזְבֵּחַ וּפָרְשׂוּ עָלָיו בֶּגֶד אַרְגָּמָן</div>
+    <div class="transliteration">Vedishnu et-hamizbeach ufar'su alav beged argaman.</div>
+    <div class="literal-translation">Y quitarán las cenizas del altar y extenderán sobre él un paño de púrpura.</div>
+</div>
+
+<!-- Números 4:14 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:14</div>
+    <div class="hebrew">וְנָתְנוּ עָלָיו אֵת כָּל־כֵּלָיו אֲשֶׁר יְשָׁרְתוּ עָלָיו בַּמַּחְתֹּת אֶת־הַמִּזְלָגוֹת וְאֶת־הַיָּעִים וְאֵת הַמִּזְרָקוֹת אֵת כָּל־כְּלֵי הַמִּזְבֵּחַ וּפָרְשׂוּ עָלָיו כְּסוּי עוֹר תַּחַשׁ וְשָׂמוּ בַּדָּיו</div>
+    <div class="transliteration">Venatnu alav et kol-kelav asher yeshartu alav bammachtot et-hamizlagot ve'et-haya'im ve'et hamizrakot et kol-klei hamizbeach ufar'su alav kesui or tachash vesamu badav.</div>
+    <div class="literal-translation">Y pondrán sobre él todos sus utensilios con que sirven en él: los braserillos, los garfios, las palas y los tazones, todos los utensilios del altar; y extenderán sobre él una cubierta de piel de tejón y colocarán sus varas.</div>
+</div>
+
+<!-- Números 4:15 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:15</div>
+    <div class="hebrew">וּכְלֹת אַהֲרֹן וּבָנָיו לְכַסּוֹת אֶת־הַקֹּדֶשׁ וְאֵת כָּל־כְּלֵי הַקֹּדֶשׁ בִּנְסֹעַ הַמַּחֲנֶה וְאַחֲרֵי־כֵן יָבֹאוּ בְנֵי קְהָת לָשֵׂאת וְלֹא־יִגְּעוּ אֶל־הַקֹּדֶשׁ וָמֵתוּ אֵלֶּה מַשָּׂא בְּנֵי קְהָת בְּאֹהֶל מוֹעֵד</div>
+    <div class="transliteration">U'kelot Aharon uvanav lechasot et-hakodesh ve'et kol-klei hakodesh b'nso'a hamachaneh ve'acharei-chen yavo'u bnei Kehat lase'et velo-yig'u el-hakodesh vametu eleh massa bnei Kehat be'Ohel Moed.</div>
+    <div class="literal-translation">Y cuando Aharón y sus hijos hayan terminado de cubrir el santuario y todos los utensilios del santuario, al partir el campamento, entonces vendrán los hijos de Kehat para transportarlos; pero no tocarán el santuario, para que no mueran. Estas son las cosas que deben transportar los hijos de Kehat en la Tienda de Reunión.</div>
+</div>
+
+<!-- Números 4:16 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:16</div>
+    <div class="hebrew">וּפְקֻדַּת אֶלְעָזָר בֶּן־אַהֲרֹן הַכֹּהֵן שֶׁמֶן הַמָּאוֹר וּקְטֹרֶת הַסַּמִּים וּמִנְחַת הַתָּמִיד וְשֶׁמֶן הַמִּשְׁחָה פְּקֻדַּת כָּל־הַמִּשְׁכָּן וְכָל־אֲשֶׁר־בּוֹ בַּקֹּדֶשׁ וּבִכְלָיו</div>
+    <div class="transliteration">Uf'kudat Elazar ben-Aharon hakohen shemen hama'or u'ketoret hasamim u'minchat hatamid ve'shemen hamishchah, pekudat kol-hamishkan ve'chol asher-bo bakodesh uvikelav.</div>
+    <div class="literal-translation">Y la responsabilidad de Eleazar, hijo de Aharón el sacerdote, será el aceite para el alumbrado, el incienso aromático, la ofrenda continua y el aceite de la unción, la responsabilidad de todo el tabernáculo y todo lo que hay en él, en el santuario y en sus utensilios.</div>
+</div>
+
+<!-- Números 4:17 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:17</div>
+    <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה וְאֶל־אַהֲרֹן לֵּאמֹר</div>
+    <div class="transliteration">Vayedaber Adonai el-Moshe ve'el-Aharon lemor.</div>
+    <div class="literal-translation">Y habló Adonai a Moshé y a Aharón, diciendo:</div>
+</div>
+
+<!-- Números 4:18 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:18</div>
+    <div class="hebrew">אַל־תַּכְרִיתוּ אֶת־שֵׁבֶט מִשְׁפְּחֹת הַקְּהָתִי מִתּוֹךְ הַלְוִיִּם</div>
+    <div class="transliteration">Al-tachritu et-shevet mishpechot hak'hati mitoch halevi'im.</div>
+    <div class="literal-translation">No destruyáis la tribu de las familias de los kehátitas de entre los levitas.</div>
+</div>
+
+<!-- Números 4:19 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:19</div>
+    <div class="hebrew">וְזֹאת עֲשׂוּ לָהֶם וְחָיוּ וְלֹא יָמֻתוּ בְּגִשְׁתָּם אֶת־קֹדֶשׁ הַקֳּדָשִׁים אַהֲרֹן וּבָנָיו יָבֹאוּ וְשָׂמוּ אֹתָם אִישׁ אֶל־עֲבֹדָתוֹ וְאֶל־מַשָּׂאוֹ</div>
+    <div class="transliteration">Vezot asu lahem vechayu velo yamutu begishtam et-kodesh hakodashim; Aharon uvanav yavo'u vesamu otam ish el-avodato ve'el-massa'o.</div>
+    <div class="literal-translation">Esto haréis con ellos para que vivan y no mueran cuando se acerquen a lo más sagrado: Aharón y sus hijos vendrán y los asignarán, cada uno a su servicio y a su carga.</div>
+</div>
+
+<!-- Números 4:20 -->
+<div class="verse-container">
+    <div class="verse-number">Números 4:20</div>
+    <div class="hebrew">וְלֹא יָבֹאוּ לִרְאוֹת כְּבַלַּע אֶת־הַקֹּדֶשׁ וָמֵתוּ</div>
+    <div class="transliteration">Velo yavo'u lir'ot kevala et-hakodesh vametu.</div>
+    <div class="literal-translation">Pero no entrarán a ver, ni siquiera por un instante, el santuario, para que no mueran.</div>
+</div>
+
+<div class="prophetic-content">
+    <h1 class="prophetic-title">Cumplimiento Profético en el Mashíaj – Números 4:1-20</h1>
+    <div class="prophetic-section">
+        <p>
+            En estos versículos se describe cómo los objetos sagrados del Mishkán debían ser cubiertos cuidadosamente antes de ser transportados, y que sólo los sacerdotes podían verlos y tocarlos. Esto apunta proféticamente al Mashíaj Yeshúa, quien es el verdadero Mediador y Sumo Sacerdote (Hebreos 8:1-6). Así como los levitas no podían acercarse ni mirar lo más santo sin mediación, la humanidad no puede acercarse a la presencia de Elohím sin el Mashíaj, quien nos cubre y nos da acceso al Lugar Santísimo (Hebreos 10:19-22).
+        </p>
+        <p>
+            Además, el cuidado y la santidad exigidos en el transporte de los utensilios reflejan la pureza y reverencia con la que debemos acercarnos a Elohím. El Mashíaj, por medio de su sacrificio, nos purifica y nos permite servir en la presencia divina, cumpliendo así el propósito de estos mandamientos en una dimensión espiritual más elevada.
+        </p>
+        <div class="scripture">
+            “Así que, hermanos, teniendo libertad para entrar en el Lugar Santísimo por la sangre de Yeshúa, por el camino nuevo y vivo que él nos abrió a través del velo, esto es, de su carne...”<br>
+            <span class="highlight">— Hebreos 10:19-20</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 2. Haftaráh: Oseas 2:16-22 (El compromiso renovado de Israel como el pueblo de Elohím).</h1>
+
+    <!-- Oseas 2:16 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:16</div>
+        <div class="hebrew">לָכֵן הִנְנִי מְפַתֶּיהָ וְהֹלַכְתִּיהָ הַמִּדְבָּר וְדִבַּרְתִּי עַל לִבָּהּ</div>
+        <div class="transliteration">Lachen hineni mefateha veholakhtiha hamidbar vedibarti al libah.</div>
+        <div class="literal-translation">Por eso, he aquí que yo la atraeré y la llevaré al desierto, y hablaré a su corazón.</div>
+    </div>
+
+    <!-- Oseas 2:17 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:17</div>
+        <div class="hebrew">וְנָתַתִּי לָהּ אֶת כְּרָמֶיהָ מִשָּׁם וְאֶת עֵמֶק עָכוֹר לְפֶתַח תִּקְוָה וְעָנְתָה שָּׁמָּה כִּימֵי נְעוּרֶיהָ וּכְיוֹם עֲלוֹתָהּ מֵאֶרֶץ מִצְרָיִם</div>
+        <div class="transliteration">Venatati lah et kerameha misham ve'et emek achor lefetach tikvah ve'antah shamah kiymei ne'ureha ucheyom alotah me'eretz Mitzrayim.</div>
+        <div class="literal-translation">Y le daré sus viñas desde allí, y el valle de Acor por puerta de esperanza; y allí cantará como en los días de su juventud, y como en el día en que subió de la tierra de Egipto.</div>
+    </div>
+
+    <!-- Oseas 2:18 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:18</div>
+        <div class="hebrew">וְהָיָה בַּיּוֹם הַהוּא נְאֻם יְהוָה תִּקְרְאִי אִישִׁי וְלֹא תִקְרְאִי לִי עוֹד בַּעְלִי</div>
+        <div class="transliteration">Vehayah bayom hahu ne'um Adonai, tikre'i ishi velo tikre'i li od ba'ali.</div>
+        <div class="literal-translation">Y sucederá en aquel día, dice Adonai, que me llamarás “mi Esposo” y nunca más me llamarás “mi Baal”.</div>
+    </div>
+
+    <!-- Oseas 2:19 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:19</div>
+        <div class="hebrew">וַהֲסִרֹתִי אֶת שְׁמוֹת הַבְּעָלִים מִפִּיהָ וְלֹא יִזָּכְרוּ עוֹד בִּשְׁמָם</div>
+        <div class="transliteration">Vahasiroti et shemot hab'alim mipiyha velo yizakru od bishmam.</div>
+        <div class="literal-translation">Y quitaré de su boca los nombres de los Baales, y nunca más serán recordados por sus nombres.</div>
+    </div>
+
+    <!-- Oseas 2:20 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:20</div>
+        <div class="hebrew">וְכָרַתִּי לָהֶם בְּרִית בַּיּוֹם הַהוּא עִם חַיַּת הַשָּׂדֶה וְעִם עוֹף הַשָּׁמַיִם וּרְמֶשׂ הָאֲדָמָה וְקֶשֶׁת וְחֶרֶב וּמִלְחָמָה אֶשְׁבֹּר מִן הָאָרֶץ וְהִשְׁכַּבְתִּים לָבֶטַח</div>
+        <div class="transliteration">Vecharati lahem brit bayom hahu im chayat hasadeh ve'im of hashamayim uremes ha'adamah vekeshet vecherev umilchamah eshbor min ha'aretz vehishkavtim lavetach.</div>
+        <div class="literal-translation">Y haré para ellos un pacto en aquel día con las bestias del campo, con las aves del cielo y con los reptiles de la tierra; y quitaré de la tierra arco, espada y guerra, y los haré dormir seguros.</div>
+    </div>
+
+    <!-- Oseas 2:21 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:21</div>
+        <div class="hebrew">וְאֵרַשְׂתִּיךְ לִי לְעוֹלָם וְאֵרַשְׂתִּיךְ לִי בְּצֶדֶק וּבְמִשְׁפָּט וּבְחֶסֶד וּבְרַחֲמִים</div>
+        <div class="transliteration">Ve'erastich li le'olam ve'erastich li betzedek uvmishpat uvechesed uverachamim.</div>
+        <div class="literal-translation">Y te desposaré conmigo para siempre; te desposaré conmigo en justicia, en juicio, en misericordia y en compasión.</div>
+    </div>
+
+    <!-- Oseas 2:22 -->
+    <div class="verse-container">
+        <div class="verse-number">Oseas 2:22</div>
+        <div class="hebrew">וְאֵרַשְׂתִּיךְ לִי בֶּאֱמוּנָה וְיָדַעַתְּ אֶת יְהוָה</div>
+        <div class="transliteration">Ve'erastich li be'emunah veyada'at et Adonai.</div>
+        <div class="literal-translation">Y te desposaré conmigo en fidelidad, y conocerás a Adonai.</div>
+    </div>
+</div>
+</div>
+
+<div class="prophetic-content">
+    <h1 class="prophetic-title">Cumplimiento Profético en el Mashíaj – Oseas 2:16-22</h1>
+    <div class="prophetic-section">
+        <p>
+            Oseas 2:16-22 describe el amor restaurador de Elohím hacia Israel, prometiendo un nuevo compromiso eterno, lleno de justicia, misericordia y fidelidad. Proféticamente, esto apunta al Mashíaj Yeshúa, quien es el Esposo celestial que restaura la relación con su pueblo (Efesios 5:25-27).
+        </p>
+        <p>
+            Así como Israel es atraída al desierto para renovar su pacto, el Mashíaj nos llama a una relación íntima y transformadora, donde los ídolos y las falsas alianzas son quitados, y se establece una unión basada en la fidelidad y el conocimiento de Adonai. El pacto renovado en Yeshúa es eterno y nos permite conocer verdaderamente a Elohím.
+        </p>
+        <div class="scripture">
+            “Me desposaré contigo para siempre; te desposaré conmigo en justicia, juicio, misericordia y compasión. Te desposaré conmigo en fidelidad, y conocerás a Adonai.”<br>
+            <span class="highlight">— Oseas 2:21-22</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 3. Brit Hadasháh: 1 Corintios 12:4-11 (Los dones y funciones de cada miembro en el cuerpo del Mesías).</h1>
+
+    <!-- 1 Corintios 12:4 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:4</div>
+        <div class="hebrew">Διαιρέσεις δὲ χαρισμάτων εἰσίν, τὸ δὲ αὐτὸ Πνεῦμα·</div>
+        <div class="transliteration">Diaireseis de charismatōn eisin, to de auto Pneuma.</div>
+        <div class="literal-translation">Ahora bien, hay diversidad de dones, pero el Espíritu es el mismo.</div>
+    </div>
+
+    <!-- 1 Corintios 12:5 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:5</div>
+        <div class="hebrew">καὶ διαιρέσεις διακονιῶν εἰσιν, καὶ ὁ αὐτὸς Κύριος·</div>
+        <div class="transliteration">Kai diaireseis diakoniōn eisin, kai ho autos Kyrios.</div>
+        <div class="literal-translation">Y hay diversidad de ministerios, pero el Señor es el mismo.</div>
+    </div>
+
+    <!-- 1 Corintios 12:6 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:6</div>
+        <div class="hebrew">καὶ διαιρέσεις ἐνεργημάτων εἰσίν, ὁ δὲ αὐτὸς Θεός, ὁ ἐνεργῶν τὰ πάντα ἐν πᾶσιν.</div>
+        <div class="transliteration">Kai diaireseis energēmatōn eisin, ho de autos Theos, ho energōn ta panta en pasin.</div>
+        <div class="literal-translation">Y hay diversidad de operaciones, pero Dios, que hace todas las cosas en todos, es el mismo.</div>
+    </div>
+
+    <!-- 1 Corintios 12:7 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:7</div>
+        <div class="hebrew">ἑκάστῳ δὲ δίδοται ἡ φανέρωσις τοῦ Πνεύματος πρὸς τὸ συμφέρον.</div>
+        <div class="transliteration">Hekastō de didotai hē phanerōsis tou Pneumatos pros to sympheron.</div>
+        <div class="literal-translation">Pero a cada uno le es dada la manifestación del Espíritu para provecho.</div>
+    </div>
+
+    <!-- 1 Corintios 12:8 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:8</div>
+        <div class="hebrew">ᾧ μὲν γὰρ διὰ τοῦ Πνεύματος δίδοται λόγος σοφίας, ἄλλῳ δὲ λόγος γνώσεως κατὰ τὸ αὐτὸ Πνεῦμα·</div>
+        <div class="transliteration">Hō men gar dia tou Pneumatos didotai logos sophias, allō de logos gnōseōs kata to auto Pneuma.</div>
+        <div class="literal-translation">Porque a uno es dada por el Espíritu palabra de sabiduría; a otro, palabra de conocimiento según el mismo Espíritu.</div>
+    </div>
+
+    <!-- 1 Corintios 12:9 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:9</div>
+        <div class="hebrew">ἑτέρῳ πίστις ἐν τῷ αὐτῷ Πνεύματι, ἄλλῳ δὲ χαρίσματα ἰαμάτων ἐν τῷ ἑνὶ Πνεύματι·</div>
+        <div class="transliteration">Heterō pistis en tō autō Pneumati, allō de charismata iamatōn en tō heni Pneumati.</div>
+        <div class="literal-translation">A otro, fe por el mismo Espíritu; y a otro, dones de sanidades por el mismo Espíritu.</div>
+    </div>
+
+    <!-- 1 Corintios 12:10 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:10</div>
+        <div class="hebrew">ἄλλῳ δὲ ἐνεργήματα δυνάμεων, ἄλλῳ δὲ προφητεία, ἄλλῳ δὲ διακρίσεις πνευμάτων, ἑτέρῳ γένη γλωσσῶν, ἄλλῳ δὲ ἑρμηνεία γλωσσῶν·</div>
+        <div class="transliteration">Allō de energēmata dynameōn, allō de prophēteia, allō de diakriseis pneumatōn, heterō genē glōssōn, allō de hermēneia glōssōn.</div>
+        <div class="literal-translation">A otro, el hacer milagros; a otro, profecía; a otro, discernimiento de espíritus; a otro, diversos géneros de lenguas; y a otro, interpretación de lenguas.</div>
+    </div>
+
+    <!-- 1 Corintios 12:11 -->
+    <div class="verse-container">
+        <div class="verse-number">1 Corintios 12:11</div>
+        <div class="hebrew">πάντα δὲ ταῦτα ἐνεργεῖ τὸ ἓν καὶ τὸ αὐτὸ Πνεῦμα, διανέμει δὲ ἰδίᾳ ἑκάστῳ καθὼς βούλεται.</div>
+        <div class="transliteration">Panta de tauta energei to hen kai to auto Pneuma, dianemei de idia hekastō kathōs bouletai.</div>
+        <div class="literal-translation">Pero todas estas cosas las hace uno y el mismo Espíritu, repartiendo a cada uno en particular como él quiere.</div>
+    </div>
+</div>
+
+<div class="prophetic-content">
+    <h2 class="prophetic-title">Cumplimiento Profético en el Mashíaj – 1 Corintios 12:4-11</h2>
+    <div class="prophetic-section">
+        <p>
+            En 1 Corintios 12:4-11, Rav Shaúl (Pablo) enseña que la diversidad de dones espirituales proviene de un mismo Espíritu, y que todos son dados para el bien común del cuerpo del Mesías. Proféticamente, esto se cumple en el Mashíaj Yeshúa, quien, tras su resurrección y ascensión, envía el Espíritu Santo para equipar a cada creyente con dones únicos (Efesios 4:7-13).
+        </p>
+        <p>
+            Así como el Mishkán requería diferentes funciones y utensilios para el servicio, el cuerpo del Mesías necesita la participación de cada miembro, con sus dones y capacidades, para edificación y unidad. En Yeshúa, cada don encuentra su propósito y plenitud, y todos juntos reflejamos la presencia y el poder del Espíritu en la comunidad.
+        </p>
+        <div class="scripture">
+            “Pero todas estas cosas las hace uno y el mismo Espíritu, repartiendo a cada uno en particular como él quiere.”<br>
+            <span class="highlight">— 1 Corintios 12:11</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 4. Contexto Histórico y Cultural de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            El libro de Números describe el periodo en que Israel transitaba por el desierto tras su salida de Egipto, rumbo a la Tierra Prometida. En este contexto, el Mishkán (Tabernáculo) era el centro de la vida espiritual y comunitaria del pueblo. Su transporte y cuidado eran tareas de suma importancia, pues representaba la presencia de Elohím en medio de Israel.
+        </p>
+        <p>
+            Los levitas, y en especial los hijos de Kehat, fueron apartados para transportar los objetos más sagrados del Mishkán. No podían tocar ni ver directamente estos objetos, para preservar la santidad y evitar la muerte. Por eso, los sacerdotes (Aharón y sus hijos) debían cubrir cuidadosamente cada utensilio antes de que los levitas los cargaran.
+        </p>
+        <p>
+            Estas instrucciones reflejan la reverencia y el temor santo que caracterizaban la relación de Israel con Elohím. Además, muestran la organización y el orden en el servicio divino, donde cada familia levítica tenía funciones específicas. El énfasis en la santidad y el respeto por lo sagrado marcó profundamente la identidad y la espiritualidad del pueblo de Israel durante su travesía por el desierto.
+        </p>
+        <div class="scripture">
+            “Y pondrán sobre él una cubierta de piel de tejón, y extenderán encima un paño todo de azul, y colocarán sus varas.”<br>
+            <span class="highlight">— Números 4:6</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            El capítulo 4 de Números resalta la importancia de la santidad, el orden y la obediencia en el servicio a Elohím. Cada detalle sobre cómo cubrir, transportar y manipular los objetos sagrados del Mishkán enseña que la presencia divina no debe tomarse a la ligera. El servicio de los levitas, bajo la supervisión de los sacerdotes, muestra que cada miembro del pueblo tiene un rol específico y valioso en el plan de Elohím.
+        </p>
+        <p>
+            Los sabios han comentado que el cuidado extremo en el manejo de lo sagrado apunta a la necesidad de pureza interior y reverencia en nuestra relación con el Creador. Así como los levitas no podían ver ni tocar lo santo sin mediación, también nosotros necesitamos un mediador perfecto: el Mashíaj Yeshúa, quien nos da acceso al Lugar Santísimo (Hebreos 10:19-22).
+        </p>
+        <p>
+            Proféticamente, el traslado del Mishkán y sus utensilios prefigura el llamado de cada creyente a ser portador de la presencia de Elohím en el mundo. El Espíritu Santo distribuye dones y funciones en el cuerpo del Mesías, para que cada uno sirva según su llamado, en unidad y santidad (1 Corintios 12:4-11).
+        </p>
+        <div class="scripture">
+            “¿No sabéis que sois templo de Elohím, y que el Espíritu de Elohím mora en vosotros?”<br>
+            <span class="highlight">— 1 Corintios 3:16</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 6. Análisis Profundo de la Aliyáh de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            La Aliyáh de Números 4:1-20 revela la estructura y el propósito del servicio levítico en el Mishkán, destacando la importancia de la santidad, la obediencia y la función de cada miembro dentro del pueblo de Israel. El texto enfatiza que el acceso a lo sagrado requiere preparación, mediación y respeto absoluto por las instrucciones divinas.
+        </p>
+        <p>
+            El hecho de que los hijos de Kehat no pudieran ver ni tocar los objetos sagrados sin la cobertura adecuada simboliza la separación entre lo humano y lo divino, y la necesidad de un mediador. Esto anticipa la obra del Mashíaj, quien nos permite acercarnos confiadamente al trono de gracia (Hebreos 4:16).
+        </p>
+        <p>
+            Además, la distribución de tareas entre los levitas enseña sobre la diversidad de dones y funciones en la comunidad de fe. Cada persona tiene un rol específico, y el cumplimiento fiel de ese rol contribuye al bienestar y la santidad de todo el pueblo. El orden y la disciplina en el servicio reflejan el carácter de Elohím y su deseo de habitar en medio de un pueblo santo y organizado.
+        </p>
+        <p>
+            Finalmente, esta aliyáh nos desafía a examinar nuestra actitud hacia el servicio espiritual: ¿Nos acercamos a Elohím con reverencia y humildad? ¿Reconocemos la necesidad de pureza y mediación? ¿Valoramos el rol de cada miembro en la comunidad? El mensaje central es que la presencia divina requiere preparación, respeto y unidad, y que sólo a través del Mashíaj podemos cumplir plenamente nuestro llamado como portadores de Su presencia.
+        </p>
+        <div class="scripture">
+            “Acerquémonos, pues, confiadamente al trono de la gracia, para alcanzar misericordia y hallar gracia para el oportuno socorro.”<br>
+            <span class="highlight">— Hebreos 4:16</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 7. Tema Más Relevante de la Aliyáh de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            El tema más relevante de la Aliyáh de Números 4:1-20 es la santidad y el orden en el servicio a Elohím. El texto enfatiza que la presencia divina requiere preparación, respeto y obediencia estricta a las instrucciones dadas. Cada miembro del pueblo de Israel tenía un rol específico y debía cumplirlo con reverencia, especialmente en lo relacionado con el Mishkán y sus objetos sagrados.
+        </p>
+        <p>
+            Esta porción nos enseña que el acceso a lo sagrado no es casual ni superficial, sino que demanda mediación, pureza y responsabilidad. El cuidado en el manejo de los objetos santos refleja la importancia de acercarnos a Elohím con humildad y temor reverente, reconociendo Su grandeza y nuestra dependencia de Su gracia.
+        </p>
+        <div class="scripture">
+            “Servid a Adonai con temor, y alegraos con temblor.”<br>
+            <span class="highlight">— Salmo 2:11</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 8. Descubriendo a Mashíaj en Cada Aliyáh de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            En Números 4:1-20, Mashíaj se revela en la figura del Mediador y Sumo Sacerdote. Así como sólo Aharón y sus hijos podían cubrir los objetos sagrados y preparar el camino para que los levitas los transportaran, Yeshúa es quien nos da acceso al Lugar Santísimo, cubriéndonos con su justicia y permitiendo que sirvamos a Elohím sin temor.
+        </p>
+        <p>
+            Cada detalle del servicio levítico apunta a la obra redentora del Mashíaj: la necesidad de cobertura, la mediación, la santidad y el orden. Yeshúa cumple y trasciende estos principios, siendo el único que puede acercarnos plenamente a la presencia divina y hacernos partícipes del servicio sagrado.
+        </p>
+        <p>
+            Descubrir a Mashíaj en esta aliyáh nos invita a valorar la gracia que hemos recibido, a servir con humildad y a reconocer que toda función en el cuerpo es valiosa cuando está bajo la dirección del Espíritu y la cobertura del Mesías.
+        </p>
+        <div class="scripture">
+            “Porque hay un solo Elohím, y un solo mediador entre Elohím y los hombres, Yeshúa el Mesías hombre.”<br>
+            <span class="highlight">— 1 Timoteo 2:5</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            La sección de Números 4:1-20 ha sido objeto de numerosos comentarios en la literatura rabínica y textos antiguos. Los <strong>Midrashim</strong> destacan la importancia de la obediencia y la santidad en el servicio levítico, enfatizando que incluso el más mínimo descuido podía tener consecuencias graves. El <strong>Midrash Bamidbar Rabbá</strong> comenta que el orden y la precisión en el transporte del Mishkán reflejan el orden celestial y la armonía en la creación.
+        </p>
+        <p>
+            Los <strong>Targumim</strong> (traducciones arameas) como el <strong>Targum Onkelos</strong> y el <strong>Targum Yonatán</strong> explican y amplían detalles sobre los utensilios y las funciones de los levitas, subrayando la necesidad de mediación sacerdotal para acercarse a lo sagrado. Estos textos recalcan que la santidad del Mishkán no residía sólo en los objetos, sino en la obediencia a la palabra de Elohím.
+        </p>
+        <p>
+            En los <strong>textos apócrifos</strong> y de la literatura del Segundo Templo, como el <em>Libro de los Jubileos</em> y los <em>Manuscritos del Mar Muerto</em>, se menciona la importancia de la pureza ritual y la separación de los levitas para el servicio divino. Estas fuentes muestran cómo la tradición sobre el Mishkán y los levitas influyó en la espiritualidad y la organización de las comunidades judías antiguas.
+        </p>
+        <p>
+            Finalmente, los sabios han visto en estos pasajes una enseñanza sobre la responsabilidad colectiva y la necesidad de liderazgo espiritual. El cumplimiento exacto de las instrucciones divinas es visto como un modelo para la vida comunitaria y el servicio a Elohím en todas las generaciones.
+        </p>
+        <div class="scripture">
+            “Así hicieron los hijos de Israel; conforme a todas las cosas que mandó Adonai a Moshé, así lo hicieron.”<br>
+            <span class="highlight">— Números 4:49</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 10. Mandamientos, Principios y Valores de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            Números 4:1-20 contiene mandamientos específicos para los levitas y sacerdotes sobre el manejo, cobertura y transporte de los objetos sagrados del Mishkán. Estos mandamientos subrayan la importancia de la obediencia exacta a las instrucciones divinas y la necesidad de respetar los límites establecidos por Elohím para preservar la santidad y la vida.
+        </p>
+        <ul>
+            <li><strong>Mandamiento de cubrir los objetos sagrados:</strong> Sólo los sacerdotes podían cubrir los utensilios antes de que los levitas los transportaran, mostrando la necesidad de mediación y preparación para acercarse a lo santo.</li>
+            <li><strong>Prohibición de tocar o ver lo sagrado sin mediación:</strong> Los levitas no debían tocar ni ver los objetos sagrados descubiertos, para evitar la muerte y preservar la santidad.</li>
+            <li><strong>Principio de orden y roles definidos:</strong> Cada familia levítica tenía tareas específicas, enseñando la importancia del orden, la responsabilidad y la cooperación en la comunidad.</li>
+            <li><strong>Valor de la obediencia y el temor reverente:</strong> El cumplimiento fiel de las instrucciones divinas es fundamental para mantener la presencia de Elohím en medio del pueblo.</li>
+            <li><strong>Principio de mediación:</strong> La necesidad de un mediador entre Elohím y el pueblo anticipa la obra del Mashíaj como Sumo Sacerdote y Mediador perfecto.</li>
+        </ul>
+        <p>
+            Estos mandamientos y principios siguen siendo relevantes hoy, recordándonos que el servicio a Elohím requiere reverencia, obediencia, humildad y respeto por el orden divino. Nos invitan a valorar la santidad, a reconocer la importancia de cada función en la comunidad y a acercarnos a Elohím a través del Mashíaj, nuestro Mediador.
+        </p>
+        <div class="scripture">
+            “Así guardaréis el santuario y el altar, para que no venga más ira sobre los hijos de Israel.”<br>
+            <span class="highlight">— Números 18:5</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 11. Preguntas y Respuestas en el Mashíaj Yeshúa de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            Este apartado invita a la reflexión y al diálogo, conectando el texto de Números 4:1-20 con la vida y obra del Mashíaj Yeshúa. A continuación, algunas preguntas clave y sus respuestas a la luz del Mesías:
+        </p>
+        <ul>
+            <li>
+                <strong>¿Por qué era necesario cubrir los objetos sagrados antes de transportarlos?</strong><br>
+                Para enseñar la santidad y el respeto que se debe tener ante la presencia de Elohím. En Yeshúa, aprendemos que sólo a través de Él podemos acercarnos confiadamente al Padre, cubiertos por su justicia (Hebreos 10:19-22).
+            </li>
+            <li>
+                <strong>¿Qué representa la mediación de los sacerdotes en este pasaje?</strong><br>
+                Los sacerdotes prefiguraban al Mashíaj como el Mediador perfecto entre Elohím y la humanidad. Yeshúa es nuestro Sumo Sacerdote, quien intercede y nos da acceso al Lugar Santísimo (Hebreos 4:14-16).
+            </li>
+            <li>
+                <strong>¿Cómo se relaciona la diversidad de tareas de los levitas con la comunidad de creyentes?</strong><br>
+                Así como cada levita tenía un rol específico, en el cuerpo del Mesías cada creyente tiene dones y funciones únicas, todas necesarias para la edificación y unidad del pueblo de Elohím (1 Corintios 12:4-11).
+            </li>
+            <li>
+                <strong>¿Qué enseñanza práctica nos deja este texto para hoy?</strong><br>
+                Nos llama a servir con humildad, reverencia y obediencia, reconociendo la necesidad de pureza y mediación, y valorando el rol de cada miembro en la comunidad bajo la cobertura del Mashíaj.
+            </li>
+        </ul>
+        <div class="scripture">
+            “Así que, hermanos, teniendo libertad para entrar en el Lugar Santísimo por la sangre de Yeshúa... acerquémonos con corazón sincero, en plena certidumbre de fe.”<br>
+            <span class="highlight">— Hebreos 10:19,22</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 12. Resumen de la Aliyáh de Números 4:1-20</h1>
+    <div class="section-container">
+        <p>
+            La Aliyáh de Números 4:1-20 nos presenta las instrucciones detalladas para los levitas, especialmente los hijos de Kehat, sobre cómo debían transportar los objetos sagrados del Mishkán. El texto enfatiza la importancia de la santidad, el orden y la obediencia en el servicio a Elohím, mostrando que el acceso a lo sagrado requiere mediación, preparación y respeto absoluto por las instrucciones divinas.
+        </p>
+        <p>
+            Cada miembro del pueblo tenía un rol específico y debía cumplirlo con reverencia, especialmente en lo relacionado con el Mishkán y sus utensilios. Los sacerdotes debían cubrir cuidadosamente los objetos sagrados antes de que los levitas los transportaran, enseñando la necesidad de mediación y pureza.
+        </p>
+        <p>
+            Proféticamente, esta porción apunta a la obra del Mashíaj Yeshúa como nuestro Mediador y Sumo Sacerdote, quien nos da acceso al Lugar Santísimo y nos permite servir a Elohím con confianza y humildad. El mensaje central es que la presencia divina requiere preparación, respeto y unidad, y que cada función en la comunidad es valiosa bajo la dirección del Espíritu y la cobertura del Mesías.
+        </p>
+        <div class="scripture">
+            “Porque Elohím no es un Elohím de desorden, sino de paz.”<br>
+            <span class="highlight">— 1 Corintios 14:33</span>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 13. Tefilá (Oración) de la Aliyáh de Números 4:1-20</h1>
+    <div class="section-container">
+        <div class="prayer-text">
+            Abba Kadosh, Elohím de Israel,<br>
+            Gracias por tu Palabra y por enseñarnos la importancia de la santidad, el orden y la obediencia en tu servicio.<br>
+            Ayúdanos a acercarnos a Ti con humildad y reverencia, reconociendo que sólo a través del Mashíaj Yeshúa tenemos acceso al Lugar Santísimo.<br>
+            Purifica nuestro corazón y haznos dignos de servirte, valorando el rol que nos has dado en tu pueblo.<br>
+            Que tu Espíritu nos guíe para cumplir fielmente nuestras funciones, en unidad y amor, y que tu presencia nunca se aparte de nosotros.<br>
+            Bendice a Israel y a todos los que buscan tu rostro con sinceridad.<br>
+            En el nombre de Yeshúa, nuestro Sumo Sacerdote y Mediador, amén.
+        </div>
+        <div class="prayer-conclusion">
+            “Crea en mí, oh Elohím, un corazón limpio, y renueva un espíritu recto dentro de mí.”<br>
+            <span class="highlight">— Salmo 51:10</span>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a></p>
+    </footer>
+</main>
+
+<button class="aliya-button"><a href="../index.html">Ir al contenido de las 54 parashot</a></button>
+
+
+<script src="../index.js"></script>
+
+</body>
+</html>
