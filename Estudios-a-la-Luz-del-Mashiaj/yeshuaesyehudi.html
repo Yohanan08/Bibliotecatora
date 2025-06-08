@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeshúa es Judio.</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+  </head>
+
+<body>
+  <!-- Selector de idioma -->
+  <div id="google_translate_element"></div>
+
+  <!-- Contenido para exportar -->
+  <header>
+    <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+  </header>
+
+  <main id="contenido">
+    <section class="seccion-pdf">
+      <h1>YESHÚA ES YEHUDÍ, NO ROMANO NI GRIEGO: ESTUDIO MESIÁNICO PROFUNDO</h1>
+      <section class="section">
+        <h3>1. Identidad Hebrea de Yeshúa haMashíaj</h3>
+        <p>Desde el nacimiento hasta su ascensión, Yeshúa haMashíaj vivió como un judío de la tribu de Yahudáh (Judá),
+          descendiente del linaje de David (David), conforme a múltiples testigos del Tanaj y del Brit Hadasháh.</p>
+        <ul>
+          <li>Mattityahu (Mateo) 1:1: “Libro del Toledot (genealogía) de Yeshúa haMashíaj, hijo de Dawid, hijo de
+            Avraham.”</li>
+          <li>Lucas 2:21-22: Fue circuncidado al octavo día conforme a la Toráh de Moshéh y llevado al templo.</li>
+          <li>Yojanán (Juan) 4:22: Yeshúa declara: “La salvación viene de los Yehudím.”</li>
+          <li>Romanos 9:4-5: Shaúl afirma que Mashíaj procede “según la carne” de los israelitas.</li>
+        </ul>
+
+        <h3>2. Práctica y Obediencia a la Toráh</h3>
+        <p>Yeshúa guardó las mitzvot de la Toráh:</p>
+        <ul>
+          <li>Celebró Pésaj, Sukkot, Shavuot y Yom Kipur (ver Yohanan 7, Lucas 2).</li>
+          <li>Enseñó en las sinagogas y subía a Yerushaláyim en las peregrinaciones, como exige la Toráh (Devarim
+            16:16).</li>
+          <li>Vistió tzitzit (Lucas 8:44).</li>
+          <li>Citaba la Toráh, Neviím y Ketuvim en arameo y hebreo, no en griego.</li>
+        </ul>
+
+        <h3>3. Nombre Original Hebreo: YESHÚA</h3>
+        <p>El nombre Yeshúa (ישוע), es una forma abreviada de Yehoshúa (יהושע), que significa “Yah es salvación”. Nunca
+          se llamó Iesous (griego) ni Jesus (latín/católico).</p>
+        <p>La forma griega Iesous no sólo deshebraiza su identidad, sino que le desconecta de las profecías y del
+          significado mesiánico de su nombre.</p>
+        <ul>
+          <li>Zejaryah 6:11-13: Se habla del Kohén llamado Yehoshúa que edifica el templo del Eterno – tipología directa
+            del Mashíaj.</li>
+        </ul>
+
+        <h3>4. Rechazo del Sistema Greco-Romano</h3>
+        <p>Yeshúa nunca enseñó filosofía griega, ni rituales romanos. Él confrontó la influencia helenista sobre Israel:
+        </p>
+        <ul>
+          <li>Mattityahu 15: Reprende a los fariseos por anteponer tradiciones humanas a la Toráh.</li>
+          <li>Rechazó el legalismo del judaísmo fariseo y la idolatría de Roma.</li>
+          <li>Anunció la restauración del Reino de Israel bajo el trono de Dawid, no un imperio romano.</li>
+        </ul>
+
+        <h3>5. Profecías Mesiánicas Hebreas</h3>
+        <p>El Tanaj anticipa un Mashíaj judío, no romano:</p>
+        <ul>
+          <li>Yeshayahu 11:1-10: del tronco de Yishai.</li>
+          <li>Mikéh 5:2: nacido en Beit-Lejem.</li>
+          <li>Daniel 9:24-27: vendría antes de la destrucción del Segundo Templo (año 70 e.c.).</li>
+        </ul>
+
+        <h3>6. Enseñanza Hebrea del Reino</h3>
+        <p>Mashíaj predicó Teshuváh (arrepentimiento) y la restauración del Reino a Israel (Hechos 1:6).</p>
+        <p>No habló de una “iglesia cristiana” griega, sino de una Kahal kedosháh (asamblea santa) conforme al modelo de
+          Israel.</p>
+
+        <h3>7. Lengua de las Escrituras</h3>
+        <p>El Brit Hadasháh fue originalmente escrito en hebreo/arameo, no griego. La Peshitta aramea y los manuscritos
+          hebreos como el Shem Tov conservan la pureza del mensaje mesiánico judío, mientras que las versiones griegas
+          fueron adaptadas para el mundo gentil, muchas veces descontextualizando a Mashíaj.</p>
+
+        <h3>📜 Conclusión</h3>
+        <p>Yeshúa es 100% judío, del linaje de David, observante de la Toráh, proclamador del Reino de Israel, y
+          redentor del remanente de Yisrael y de las naciones justas que se injertan en el olivo natural.</p>
+        <p>Nunca fue romano, griego, ni fundador de una nueva religión, sino el cumplimiento del Tanaj.</p>
+        <p>Cualquier representación greco-romana (como “Jesús Cristo”) es una distorsión posterior, desconectada de la
+          identidad real del Mashíaj hebreo.</p>
+      </section>
+    </section>
+
+    <section class="seccion-pdf">
+      <h1>📚 Evidencias Textuales en Hebreo y Arameo: Identidad Judía de Yeshúa</h1>
+      <section class="section">
+        <article>
+          <h3>1. 📖 Shem Tov Hebreo de Mattityahu (Mateo)</h3>
+          <p>
+            Este texto hebreo del siglo XIV, conservado por rabinos que lo utilizaron para refutar el cristianismo,
+            tiene gran valor porque preserva frases y estructuras hebraicas auténticas, muchas de ellas ausentes o
+            alteradas en las traducciones griegas.
+          </p>
+          <p><strong>🔍 Ejemplo clave – Mattityahu 5:17:</strong></p>
+          <blockquote>
+            “No penséis que he venido a abolir la Toráh o los Neviím; no he venido para abolir sino para completar.”
+          </blockquote>
+          <p><strong>Shem Tov Hebreo:</strong></p>
+          <blockquote lang="he">
+            אל תחשבו שבאתי לבטל את התורה או את דברי הנביאים, לא באתי לבטל כי אם להשלים.
+          </blockquote>
+          <p>
+            Aquí la palabra clave <strong>"lehashlim" (להשלים)</strong> = “completar, cumplir en totalidad”, no “abolir”
+            como erróneamente se interpreta desde el griego "plēroō".
+          </p>
+        </article>
+
+        <article>
+          <h3>2. 📜 Arameo Peshitta – Lengua Semítica del Brit Hadasháh</h3>
+          <p>
+            El arameo fue el idioma cotidiano en Galil y Yehudáh en el siglo I. Yeshúa, los Talmidím y gran parte de los
+            escritos del Brit Hadasháh fueron originalmente hablados y escritos en arameo.
+          </p>
+          <p><strong>🔍 Ejemplo – Yojanán (Juan) 4:22:</strong></p>
+          <blockquote>
+            “La salvación viene de los Yehudím.”
+          </blockquote>
+          <p><strong>Peshitta Aramea:</strong></p>
+          <blockquote lang="syr">
+            ܚܝܐ ܡܢ ܝܗܘܕܝܐ ܗܝ<br>
+            "Ḥayé men Yehudáyé hi"
+          </blockquote>
+          <p>
+            Esto confirma que Mashíaj se identifica dentro del pueblo Yehudí. En arameo se usa la raíz <strong>ܝܗܘܕ
+              (Yehud)</strong> como etnónimo legítimo, no como una categoría religiosa helenizada.
+          </p>
+        </article>
+
+        <article>
+          <h3>3. 🕎 Targumím Arameos y el Nombre del Eterno</h3>
+          <p>
+            Los Targumím (traducciones arameas del Tanaj) revelan cómo se comprendía la identidad del Mashíaj antes del
+            siglo I. En ellos aparece el término <strong>MarYah (ܡܪܝܐ)</strong>, que es el equivalente arameo exclusivo
+            del nombre sagrado <strong>יהוה</strong>.
+          </p>
+          <p><strong>🔍 Ejemplo – Targum Yonatán sobre Yeshayahu 9:5:</strong></p>
+          <blockquote>
+            “Y su nombre será llamado: Mar Pele, Yoetz, El Gibbor, Avi-Ad, Sar Shalom”
+          </blockquote>
+          <p>
+            El Targum dice:<br>
+            “…y su nombre desde antiguo será llamado por delante del <strong>MarYah</strong>: El Mesías, cuyo nombre ha
+            sido preparado desde antes de la creación…”
+          </p>
+          <p>
+            Esto muestra que el Mesías es identificado con MarYah, o sea, con el mismísimo nombre sagrado de
+            <strong>יהוה</strong>.
+          </p>
+        </article>
+
+        <article>
+          <h3>4. 🧬 Codex Khabouris y Códice Mingana</h3>
+          <p>
+            Estos códices antiguos de la Peshitta preservan las expresiones semíticas originales que revelan:
+          </p>
+          <ul>
+            <li>El uso de títulos hebreos como <strong>"Rabí", "Mashíaj", "Ben Adam"</strong></li>
+            <li>La ausencia de la palabra griega “ekklesia” (iglesia), usando en su lugar <strong>Kehiláh
+                (קְהִלָּה)</strong></li>
+            <li>El nombre del Mashíaj es <strong>Yeshúa (ܝܫܘܥ)</strong>, nunca “Iesous”</li>
+          </ul>
+        </article>
+
+        <article>
+          <h3>5. ✡️ Uso del Tetragrámaton en Hebreo y su Relación con Yeshúa</h3>
+          <p>
+            En Yojanán 8:58, Yeshúa dice:
+          </p>
+          <blockquote>
+            "Antes que Avraham existiera, EJÉ (אֶהְיֶה) Yo Soy."
+          </blockquote>
+          <p>
+            Aquí cita directamente Shemot 3:14 donde <strong>יהוה</strong> se revela a Moshéh como <strong>"Ehyeh Asher
+              Ehyeh"</strong>.
+          </p>
+          <p>
+            Shem Tov y la Peshitta lo preservan como una declaración de identidad divina en la misma esencia de
+            <strong>יהוה</strong>, confirmando la unidad entre Adonái y Yeshúa haMashíaj — <strong>Ejad</strong>.
+          </p>
+        </article>
+
+        <article>
+          <h3>✅ Conclusión Textual</h3>
+          <ul>
+            <li>🔹 Yeshúa es llamado <strong>Yeshúa bar Yosef</strong>, un nombre hebreo y no greco-romano.</li>
+            <li>🔹 Enseñó en hebreo/arameo, interpretando la Toráh como un <strong>Moreh Yehudí</strong> y no como un
+              filósofo helenista.</li>
+            <li>🔹 Su nombre, misión y persona están ligadas al lenguaje y pensamiento hebreo y arameo, no grecorromano.
+            </li>
+            <li>🔹 Las evidencias textuales del <strong>Shem Tov</strong>, la <strong>Peshitta</strong>, los
+              <strong>Targumím</strong> y códices antiguos afirman su identidad como el Mashíaj de Israel, <strong>100%
+                Yehudí</strong>, cumplidor de la Toráh, reflejo de <strong>MarYah</strong>.</li>
+          </ul>
+        </article>
+      </section>
+    </section>
+
+    <footer>
+      <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia
+          Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a>
+      </p>
+    </footer>
+  </main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>

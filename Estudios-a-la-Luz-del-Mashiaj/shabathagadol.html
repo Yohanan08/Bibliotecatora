@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shabat Ha Gadol</title>
+    
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            margin: 0 auto; 
+            max-width: 800px; 
+            padding: 20px; 
+            background-color: #f8f8f8; 
+            color: #333; 
+        } 
+        .verse-container { 
+            margin-bottom: 30px; 
+            background-color: white; 
+            padding: 15px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+        } 
+        .verse-number { 
+            font-weight: bold; 
+            color: #000; 
+            font-size: 1.2em; 
+            margin-bottom: 10px; 
+        } 
+        .hebrew { 
+            font-family: 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.1em; 
+            margin: 10px 0; 
+        } 
+        .transliteration { 
+            font-style: italic; 
+            margin: 10px 0; 
+            color: #555; 
+        } 
+        .translation { 
+            margin: 10px 0; 
+        } 
+        .aramaic { 
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif; 
+            direction: rtl; 
+            font-size: 1.3em; 
+            margin: 15px 0; 
+            line-height: 1.8; 
+        } 
+        .explanation { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .point-letter { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            margin-right: 8px; 
+            color: #000; 
+        } 
+        .content-container { 
+            background-color: white; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-bottom: 30px; 
+        } 
+        .section-container { 
+            margin-bottom: 25px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 30px; 
+        } 
+        h2, h3 { 
+            text-align: center; 
+            color: #000; 
+            margin-bottom: 20px; 
+        } 
+        .section-divider { 
+            border-top: 1px solid #ddd; 
+            margin: 40px 0; 
+        } 
+        .prophetic-content { 
+            background-color: white; 
+            padding: 20px; 
+            border-radius: 5px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            margin-top: 40px; 
+        } 
+        .prophetic-section { 
+            margin-bottom: 20px; 
+        } 
+        .prophetic-title { 
+            font-weight: bold; 
+            color: #000; 
+            margin-bottom: 10px; 
+            font-size: 1.1em; 
+        } 
+        strong { 
+            color: #000; 
+        } 
+        .scripture { 
+            font-style: italic; 
+            margin: 10px 20px; 
+            padding-left: 15px; 
+            border-left: 3px solid #ddd; 
+        } 
+        .highlight { 
+            font-weight: bold; 
+            color: #000; 
+        } 
+        .conclusion { 
+            background-color: #f9f9f9; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        } 
+        ul { 
+            margin-top: 10px; 
+            margin-bottom: 10px; 
+            padding-left: 30px; 
+        } 
+        li { 
+            margin-bottom: 8px; 
+        } 
+        .literal-translation { 
+            margin: 10px 0; 
+            font-style: italic; 
+            color: #444; 
+        } 
+        .prayer-text { 
+            font-size: 1.05em; 
+            line-height: 1.8; 
+            margin: 20px 0; 
+        } 
+        .prayer-conclusion { 
+            font-style: italic; 
+            text-align: center; 
+            margin-top: 30px; 
+        }
+
+            #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <div class="section">
+            <h1>📖 Shabat HaGadol: Su Historia, Conexión con el Segundo Templo y Cumplimiento Profético en el Mashíaj</h1>
+    
+            <h2>1. Introducción a Shabat HaGadol</h2>
+            <p>Shabat HaGadol (שַׁבָּת הַגָּדוֹל, "El Gran Shabat") es el Shabat que precede a la festividad de Pésaj. Se considera un día significativo en la tradición judía por su relación con la redención de Israel en Egipto y su futura liberación mesiánica.</p>
+            
+            <p>La razón por la que se llama "Gadol" (grande) tiene varias explicaciones:</p>
+            <ul>
+                <li><strong>El Milagro en Egipto:</strong> Según los Midrashim, el 10 de Nisán, los israelitas tomaron corderos para el sacrificio de Pésaj, algo que representaba un desafío directo a los egipcios, ya que el cordero era una deidad egipcia. Milagrosamente, los egipcios no atacaron a los israelitas.</li>
+                <li><strong>La Gran Redención:</strong> Se vincula con la redención final y la venida del Mashíaj, quien traerá una liberación eterna.</li>
+                <li><strong>Lectura de la Haftará:</strong> En muchas comunidades se lee Malají 3:4-24, que menciona la llegada de Eliyahú HaNaví antes del "Día Grande y Temible de Adonái".</li>
+            </ul>
+    
+            <h2>2. Conexión con el Segundo Templo</h2>
+    
+            <h3>2.1 El Templo y la Observancia de Pésaj en Shabat HaGadol</h3>
+            <p>Durante la era del Segundo Templo, Shabat HaGadol era un tiempo de preparación intensa para la festividad de Pésaj. Se reunían en el Templo para recibir enseñanza sobre las leyes del sacrificio de pesaj y la pureza ritual. Esto refleja cómo el pueblo de Israel se preparaba espiritualmente para la redención.</p>
+    
+            <h3>2.2 Relación con el Mashíaj y su Cumplimiento en Yeshúa</h3>
+            <p>El sacrificio del cordero de Pésaj en el Templo apunta al sacrificio de Yeshúa HaMashíaj, quien fue el "Cordero de Elohím".</p>
+    
+            <div class="verso">
+                📖 Yojanán (Juan) 1:29  
+                <p>"He aquí el Cordero de Elohím, que quita el pecado del mundo."</p>
+            </div>
+    
+            <p>Al igual que los israelitas tomaron el cordero en el Shabat HaGadol, Yeshúa entró en Yerushaláyim poco antes de Pésaj.</p>
+    
+            <div class="verso">
+                📖 Mateo 21:1-11  
+                <p>"Decid a la hija de Tsión: He aquí, tu Rey viene a ti, manso y sentado sobre un borrico, sobre un pollino hijo de asna."</p>
+            </div>
+        </div>
+
+        <h2>3. Cumplimiento Profético en el Mashíaj</h2>
+
+        <h3>3.1 Profecías de la Toráh</h3>
+        <div class="verso">
+            📖 Shemot (Éxodo) 12:3-6  
+            <p>"Hablad a toda la congregación de Israel, diciendo: El día diez de este mes tómese cada uno un cordero... Y lo guardaréis hasta el día catorce de este mes, y lo inmolará toda la congregación de Israel entre las dos tardes."</p>
+        </div>
+        <p>🔎 <strong>Interpretación Mesiánica:</strong> Así como el cordero de Pésaj fue separado antes del sacrificio, Yeshúa fue "apartado" para su misión redentora. Su entrada a Yerushaláyim y su purificación del Templo coinciden con este tiempo.</p>
+
+        <h3>3.2 Profecías en los Nevi’im (Profetas)</h3>
+        <div class="verso">
+            📖 Malají 3:1-2; 4:5-6  
+            <p>"He aquí, yo envío a mi mensajero, y él preparará el camino delante de mí... Y vendrá de repente a su templo el Adon a quien vosotros buscáis."</p>
+        </div>
+        <p>🔎 <strong>Interpretación Mesiánica:</strong> Yojanán HaMatbil (Juan el Bautista) fue el mensajero que preparó el camino para Yeshúa.</p>
+
+        <div class="verso">
+            📖 Zacarías 9:9  
+            <p>"Alégrate mucho, hija de Tsiyón; da voces de júbilo, hija de Yerushaláyim: He aquí tu Rey vendrá a ti, justo y salvador, humilde, y cabalgando sobre un asno."</p>
+        </div>
+        <p>🔎 <strong>Cumplimiento:</strong> Yeshúa entró a Yerushaláyim en un asno en la semana de Pésaj (Mateo 21:5), confirmando su papel mesiánico.</p>
+
+        <h2>4. Reflexiones Finales</h2>
+        <p>Shabat HaGadol no es solo una preparación para Pésaj, sino también una anticipación de la redención final con la llegada del Mashíaj. El tiempo de Shabat HaGadol es una oportunidad para recordar la redención en Egipto, reconocer su cumplimiento en Yeshúa, y esperar la redención futura.</p>
+
+        <h2>5. Preguntas para Profundizar</h2>
+        <ol>
+            <li><strong>¿Por qué la separación del cordero en Shabat HaGadol es significativa en la redención?</strong><br>
+                La separación del cordero representaba la decisión de Israel de confiar en Elohím sobre las deidades de Egipto. Esto prefigura la entrega de Yeshúa como el Cordero que quita el pecado del mundo (Yojanán 1:29).</li>
+            <li><strong>¿Cómo se conecta la entrada triunfal de Yeshúa con el concepto de Shabat HaGadol?</strong><br>
+                Yeshúa entra a Yerushaláyim en el mismo período en que el cordero de Pésaj era separado, demostrando su papel como el sacrificio perfecto para la redención.</li>
+            <li><strong>¿Qué enseñanzas de Shabat HaGadol podemos aplicar en nuestra preparación espiritual hoy?</strong><br>
+                Nos recuerda la importancia de prepararnos para la redención final, santificarnos y reconocer que la liberación de Egipto es un anticipo de la liberación mesiánica.</li>
+            <li><strong>¿Cómo la Haftará de Malají conecta con la venida de Mashíaj?</strong><br>
+                Malají habla de un mensajero que preparará el camino y de la llegada del "Día Grande y Temible de Adonái", lo que conecta con la primera y segunda venida de Yeshúa.</li>
+            <li><strong>¿Cuál es la relación entre la intercesión sacerdotal en el Segundo Templo y la intercesión de Yeshúa?</strong><br>
+                En el Segundo Templo, el Cohen Gadol intercedía por el pueblo; Yeshúa, como nuestro Sumo Sacerdote celestial (Hebreos 4:14-16), intercede por nosotros en la presencia de Elohím.</li>
+        </ol>
+
+        <div class="titulo">📖 La Haftarah de Shabat HaGadol</div>
+
+    <div class="section">
+        <h2>Profecía sobre la venida de Eliyah</h2>
+        <p>La Haftarah para Shabat HaGadol proviene de Malají (Malaquías) 3:4-24, donde se anuncia la purificación de Israel y la venida del mensajero del Pacto.</p>
+        <p class="versiculo">"He aquí, yo os envío a Eliyah (Elías) el profeta, antes que venga el día de YHWH, grande y terrible." (Malají/Malaquías 3:23 [4:5])</p>
+        <p>Esta profecía conecta con Yojanán HaMatvil (Juan el Inmersor), quien preparó el camino para Yeshúa.</p>
+    </div>
+
+    <div class="section">
+        <h2>🔹 Contexto Histórico de Shabat HaGadol</h2>
+        <p>Este Shabat especial conmemora lo ocurrido el 10 de Nisán, cuando los Benei Yisrael en Mitzráyim tomaron el cordero de Pésaj.</p>
+        <p>Los egipcios veneraban al cordero, por lo que este acto simbolizaba el juicio sobre los ídolos y la redención de Israel.</p>
+        <p>🔹 <b>Paralelismo Mesiánico:</b> Yeshúa entró en Yerushaláyim el 10 de Nisán, siendo examinado antes de su ejecución como el Cordero de Elohím.</p>
+    </div>
+
+    <div class="section">
+        <h2>✡️ Profecía Mesiánica en ZejarYah</h2>
+        <p class="versiculo">"¡Regocíjate mucho, hija de Tsión! He aquí, tu rey viene a ti; justo y salvador es, humilde, y cabalgando sobre un borrico." (ZejarYah 9:9)</p>
+        <p>Yeshúa cumplió esta profecía cuando entró a Yerushaláyim montado en un pollino de asna, pocos días antes de Pésaj.</p>
+    </div>
+
+    <div class="section">
+        <h2>🔥 Conexión entre Shabat HaGadol y Yeshúa</h2>
+        <ul>
+            <li>El cordero de Pésaj fue apartado el 10 de Nisán → Yeshúa entró en Yerushaláyim en esa fecha.</li>
+            <li>Elías debía venir antes del Día de YHWH → Yojanán lo hizo en el espíritu de Eliyah.</li>
+            <li>Los egipcios no pudieron impedir el sacrificio del cordero → Los líderes no pudieron detener a Yeshúa.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📜 El Día 10 de Nisán y el Cordero de Pésaj</h2>
+        <p class="versiculo">"En el décimo día de este mes, tómese cada uno un cordero... Lo guardaréis hasta el día catorce de este mes, y lo inmolará toda la comunidad." (Shemot 12:3-6)</p>
+        <p>El cordero debía ser apartado, inspeccionado y hallado sin defecto, una tipología del Mashíaj Yeshúa.</p>
+    </div>
+
+    <div class="section">
+        <h2>🔎 Cumplimiento Profético: Yeshúa Apartado el 10 de Nisán</h2>
+        <p class="versiculo">"Seis días antes de Pésaj, Yeshúa vino a Bet-Anyáh... Al día siguiente, la multitud, al oír que venía a Yerushaláyim, tomó palmas y salió a recibirle." (Yojanán 12:1, 12-13)</p>
+        <p>Yeshúa fue recibido como Rey Mesiánico, pero luego fue inspeccionado por los líderes religiosos.</p>
+    </div>
+
+    <div class="section">
+        <h2>✡️ Inspección de Yeshúa como el Cordero sin Defecto</h2>
+        <p>Desde el 10 hasta el 14 de Nisán, el cordero debía ser examinado. Así también:</p>
+        <p class="versiculo">"Pilato dijo: No hallo en Él ningún delito." (Yojanán 18:38)</p>
+        <p>Los fariseos, saduceos y escribas intentaron encontrar falla en Yeshúa, pero fue hallado sin pecado.</p>
+    </div>
+
+    <div class="section">
+        <h2>🔥 Aplicación Espiritual</h2>
+        <ul>
+            <li>🔹 <b>El Mashíaj Debe Ser "Tomado" en Nuestras Vidas:</b> Así como cada familia tomaba un cordero, debemos recibir a Yeshúa.</li>
+            <li>🔹 <b>Debemos Inspeccionar Nuestro Propio Corazón:</b> El jametz (levadura) debía ser eliminado antes del sacrificio.</li>
+            <li>🔹 <b>El Sacrificio de Mashíaj Debe Ser Compartido:</b> La comunidad entera participaba en el sacrificio del cordero.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🚀 Conclusión: Yeshúa es Nuestro Cordero de Pésaj</h2>
+        <p>✅ Yeshúa fue apartado el 10 de Nisán como el Cordero de Elohím.</p>
+        <p>✅ Su sangre nos protege del juicio, así como la sangre del cordero protegió a Israel en Egipto.</p>
+        <p>✅ Su sacrificio nos da redención eterna.</p>
+        <p class="versiculo">"Digno es el Cordero que fue inmolado, de recibir el poder, la riqueza, la sabiduría, la fortaleza, la honra y la gloria." (Apocalipsis 5:12)</p>
+        <p>¡Bendito sea Yeshúa, el Cordero de Elohím que quita el pecado del mundo!</p>
+    </div>
+
+    <div class="section">
+        <h2>Tefiláh Final</h2>
+        <p><em>"Abinu Malkeinu, te damos gracias por la redención de Israel en Egipto y por la redención eterna en Yeshúa HaMashíaj. En este Shabat HaGadol, prepáranos para celebrar Pésaj con corazones purificados, recordando que así como redimiste a Israel, pronto enviarás a Mashíaj ben David para la redención final. Que tu Ruaj Hakodesh nos guíe a vivir en santidad y expectativa. B'shem Yeshúa HaMashíaj, Amén."</em></p>
+    </div>
+    </main>
+
+    <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+    
+    <script src="../index.js"></script>
+    
+</body>
+</html>
