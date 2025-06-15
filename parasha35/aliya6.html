@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 6:22-27</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>35. Parashá Naso (נשא) Aliyáh 6: (Números 6:22-27) La bendición sacerdotal de Aharón y sus hijos para
+            Israel.
+            <p>Haftaráh: Ezequiel 34:11-31 (Elohím promete bendición y cuidado para Su pueblo).</p>
+            <p>Brit Hadasháh: Mateo 5:3-12 (Las bienaventuranzas pronunciadas por Yeshúa, que reflejan la bendición de
+                Adonái).</p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Números 6:22–27</h1>
+            <h2>La Bendición Sacerdotal</h2>
+            <p style="text-align: center; font-style: italic;">Con el texto hebreo original, transliteración tiberiana,
+                traducción literal, y cumplimiento profético en Yeshúa haMashíaj, desde la mirada del Ministerio Judío
+                Mesiánico</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 22</div>
+            <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה לֵאמֹר׃</div>
+            <div class="transliteration">Vaydabbér Adonái el-Moshéh le-'emór.</div>
+            <div class="translation">"Y habló יהוה a Moshéh, diciendo:"</div>
+            <div class="prophetic-fulfillment">
+                <strong>Cumplimiento en Mashíaj:</strong> Así como יהוה habló para traer bendición, <strong>Yeshúa es la
+                    Palabra viva hecha carne</strong>, quien habla para traer restablecimiento, vida, y paz (Juan 1:14).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 23</div>
+            <div class="hebrew">דַּבֵּר אֶל־אַהֲרֹן וּבְנָיו לֵאמֹר זֹ֥את תִּהְיֶ֖ה בְּרוּכָתָ֑י אֲשֶׁ֥ר תְּבָרְכ֖וּ
+                אֶת־בְּנֵ֥י יִשְׂרָאֵֽל׃</div>
+            <div class="transliteration">Dabbér el-Aharón ūvənāyw le-'emór: zō'ṯ tihyêʾ bᵉrûḵātī ašer təbāréḵû 'et-bənê
+                Yisra'êl.</div>
+            <div class="translation">"Habla a Aharón y a sus hijos, diciendo: 'Este es el modo de bendiciros: serán
+                bendecidos sobre los hijos de Israel.'"</div>
+            <div class="prophetic-fulfillment">
+                <strong>Cumplimiento en Mashíaj:</strong> Yeshúa, como Sumo Sacerdote según el orden de Melquisedek,
+                distribuye la bendición celestial sobre Su pueblo. Él encarna la autoridad y el favor divino que fluyen
+                en bendición eterna (Hebreos 7:17–21).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 24</div>
+            <div class="hebrew">יְבָרֶכְךָ֥ יְהוָ֖ה וְיִשְׁמְרֶֽךָּ׃</div>
+            <div class="transliteration">Yᵉvāréḵəḵā Adonái wᵉyis̱mərɛḵā.</div>
+            <div class="translation">"Te bendiga יהוה y te guarde."</div>
+            <div class="prophetic-fulfillment">
+                <strong>Cumplimiento en Mashíaj:</strong> Yeshúa es la bendición personificada: "con nosotros está
+                Emanuel" (Mateo 1:23). Él guarda de caída y cuida de cada paso de Su pueblo (Juan 17:15).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 25</div>
+            <div class="hebrew">יָאֵ֨ר יְהוָ֤ה פָּנָיו֙ אֵלֶ֔יךָ וִיחֻנֶּ֖ךָּ׃</div>
+            <div class="transliteration">Yā'ēr Adonái pᵃnām 'ēleḵā wîḥunnᵉḵā.</div>
+            <div class="translation">"Que haga resplandecer יהוה Su rostro sobre ti, y tenga de ti misericordia."</div>
+            <div class="prophetic-fulfillment">
+                <strong>Cumplimiento en Mashíaj:</strong> En Yeshúa vemos el rostro del Padre (Juan 14:9). Su mediación
+                hace resplandecer la gloria divina sobre nosotros con compasión (2 Corintios 3:18).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 26</div>
+            <div class="hebrew">יִשָּׂ֨א יְהוָה֙ פָּנָ֣יו אֵלֶ֔יךָ וְיָשֵׂ֖ם לְךָ־שָׁלֽוֹם׃</div>
+            <div class="transliteration">Yiśā' Adonái pᵃnām 'ēleḵā wᵉyāšêm lᵏā šālôm.</div>
+            <div class="translation">"Que alce יהוה Su rostro hacia ti, y ponga en ti shalom."</div>
+            <div class="prophetic-fulfillment">
+                <strong>Cumplimiento en Mashíaj:</strong> Yeshúa es nuestro Shalom (Efesios 2:14). En su obra somos
+                plenamente aceptados, completos y pacificados con Elohím y entre nosotros.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 27</div>
+            <div class="hebrew">וְשָׂמוּ אֶת־שְׁמִ֖י עַל־בְּנֵיכֶ֑ם וְאֲנִ֥י אֶבָרְכֵ֖ם׃</div>
+            <div class="transliteration">Wᵉsāmû 'et-šᵉmî 'al-bənêḵem wᵉ'ānî 'ᵉvāréḵem.</div>
+            <div class="translation">"Y pondrán Mi Nombre sobre los hijos de ustedes, y Yo los bendeciré."</div>
+            <div class="prophetic-fulfillment">
+                <strong>Cumplimiento en Mashíaj:</strong> Yeshúa pone Su Nombre —autoridad, carácter y pacto— sobre
+                nosotros. En Él somos llamados "hijos de Elohím" (Romanos 8:15–17). Él mismo garantiza nuestra bendición
+                eterna.
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>✅ Reflexión Final</h3>
+            <p>Esta preciosa bendición revela el corazón de la alianza: proteger, mostrar misericordia, establecer paz,
+                y compartir el Nombre. En <strong>Yeshúa haMashíaj</strong>, cada línea se llena de plenitud: Él es la
+                Autoridad que bendice, el Rostro que resplandece, el Shalom encarnado, y la garantía de Elohím sobre Su
+                Pueblo.</p>
+        </div>
+
+        <h1>Punto 2. Haftaráh: Ezequiel 34:11-31 (Elohím promete bendición y cuidado para Su pueblo).</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 11</div>
+            <div class="hebrew">כִּי כֹּה אָמַר אֲדֹנָי יְהוִה הִנְנִי–אֲנִי וְדָרַשְׁתִּי אֶת־צֹאנִי וּבִקַּרְתִּים
+            </div>
+            <div class="transliteration">Ki kōh āmār Adonāy יהוה, hinnî 'ānî vedārash'tî et‑ṣō'ānî uviqqārtīm.</div>
+            <div class="translation">«Porque así ha dicho el Adonāy יהוה: "He aquí Yo mismo buscaré Mis ovejas y las
+                rescataré."»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Yeshùa se revela como el "Buen Pastor" que busca a su
+                rebaño — cada oveja — personalmente (יוחנן 10:11).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 12</div>
+            <div class="hebrew">כְּבַקַּרַת רֹעֶה עֶדְרוֹ בְּיֹום הוֹלְכוֹ בְּתוֹךְ־צֹאנֹו נִפְרָשַׂתִּים</div>
+            <div class="transliteration">Kevakardat rō'eh 'edrō bəyōm hōləkō bᵉtoḥ‑ṣō'ānō nifrāšātîm.</div>
+            <div class="translation">«Como el pastor cuida su rebaño cuando anda entre las ovejas dispersas, así Yo
+                buscaré a Mis ovejas…»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Él camina entre nosotros, se acerca a los perdidos,
+                recupera a los que se han apartado (לוקס 15:4).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 13</div>
+            <div class="hebrew">וְהוֹצֵאתִים מִן־הָעַמִּים וְקִבַּצְתִּים מִן־הָאֲרָצוֹת וְהָבֵאתִים אֶל־אֶרֶץ
+                יִשְׂרָאֵל</div>
+            <div class="transliteration">Vehoṣēṭīm min‑ha'ammîm vekibbāṣtīm min‑ha'āreṣōt vehāvê'tīm el‑'eretz Yisra'ēl.
+            </div>
+            <div class="translation">«Y los sacaré de entre los pueblos, los recogeré de las tierras y los traeré a la
+                tierra de Israel…»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> La inclusión de gentiles en el Reino (עַמִּים) se
+                cumple en la misión de Yeshùa (עַמִּים מְיֻבָּרִים בטוּב ה'); todos son recogidos por Él (רומיים 15:27).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 14</div>
+            <div class="hebrew">וְרֵעֵיתִים בְּהָרֵי יִשְׂרָאֵל וְגַם בַּנְּוָדִים יִרְעֲם נְאֻם אֲדֹנָי יְהוִה</div>
+            <div class="transliteration">Vᵉrē'êm bəharê Yisra'ēl vegam banəvādîm yir'ām, ne'um Adonāy יהוה.</div>
+            <div class="translation">«Y pastorearé en los montes de Israel y también por los valles las apacentaré
+                —declara el Adonāy יהוה.»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Él guía a Su rebaño tanto en los momentos altos como
+                en los valles difíciles; no se aleja jamás (Malaquí 3:7; יוחנן 10:14).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 15</div>
+            <div class="hebrew">אֲנִי אַרְעֶה אֶת־צֹאנִי וְאֶגְמָלֵלָה אֹתָם נְאֻם אֲדֹנָי יְהוִה</div>
+            <div class="transliteration">'Ānî 'ar'ē' et‑ṣō'ānî vᵉ'agˈmālêlāh 'ōtām, ne'um Adonāy יהוה.</div>
+            <div class="translation">«Yo pastorearé Mis ovejas y las haré descansar —declara el Adonāy יהוה.»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Él ofrece descanso profundo al alma que encuentra en
+                Él descanso en medio del caos (מתי 11:28–29).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 16</div>
+            <div class="hebrew">הָאֹבֶדֶת אָבִיאַהּ וְהַפְּגוּעָה אָחֲזָה לָהּ וְהַצְּלָעָה אַחֲזֹתִיהָ וְהַשְּׁלֵמָה
+                אַצְּבָתִיהָ</div>
+            <div class="transliteration">Ha'ovedet āvi'āh vehapᵉgû'ā 'āḥazāh lāh vehatsəlā'āh 'āḥăzōtî hā vᵉhaššĕlēmāh
+                atzbātîāhā.</div>
+            <div class="translation">«La perdida traeré, la desvalida rescataré, la quebrantada vendaré, y la sana
+                fortaleceré…»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Su ministerio incluye restauración integral
+                —espiritual, emocional, físico— como en Isaías 61:1–2 (לוקס 4:18).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 17</div>
+            <div class="hebrew">וְתַצֹּר בֵּין־כבָּר וּבֵין־כֶּבֶשׂ יִשְׁפֻּט בֵּין־שְׁוָא וּבֵין־שֶׁבֶר יִשְׁפֹּט</div>
+            <div class="transliteration">Vᵉtaṣṣōr bēyn‑kabr uvēyn‑kevēš yišpōṯ ve‑bēyn‑šəwā' uvēyn‑šeḇer yišpōṯ.</div>
+            <div class="translation">«Y juzgaré entre oveja y oveja, entre carnero y cabrito decidiré…»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Él es el Juez justo que distingue corazón y
+                motivación —no apariencia externa (Mattay 7:21–23).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 18</div>
+            <div class="hebrew">וְיַשְׂגַּב אֶת־כַּחַדּוֹ וְלֹא־יִשְׁפָּךְ דָּמָם; בִּצְלָעָם יִשְׁפֹּט בְּצִלְעָם</div>
+            <div class="transliteration">Vᵉyisgab et‑kaḥādô velō yishpāk dāmām; bitsəlā'ām yišpōṯ vᵉbitzl'ām.</div>
+            <div class="translation">«Y levantaré al débil sin derramar su sangre; juzgaré por su fuerza.»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Puente entre justicia e misericordia. Él defiende al
+                débil sin violencia, mostrando autoridad compasiva (מתי 18:12–14).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 19</div>
+            <div class="hebrew">וְשִׁמַּרְתִּי אֶת־הַשְּׂמָלָה לָכֶם אַתֶּם בְּחֵי יִשְׂרָאֵל</div>
+            <div class="transliteration">Vᵉšimmārtî et‑haššᵉmālā lāḵem 'atem bᵉḥay Yisra'ēl.</div>
+            <div class="translation">«Y Yo guardaré para vosotros la lana para vuestro abrigo, vosotros estaréis con
+                vida —dice el Adonāy יהוה.»</div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Asegura el sustento y la cobertura del creyente,
+                cuidando cada necesidad mientras vivimos en Su Reino (Philippians 4:19, יוחנן 10:28).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 20</div>
+            <div class="hebrew">וְאַתֶּם כָּבְדֻֽתֵּי־כֹחַ וְרְשָׁעִים שַׂנְּאוּ־יָדִי נְאֻם־אֲדֹנָי יְהוִה</div>
+            <div class="transliteration">Vᵉ'atem kōvədûṯê kōaḥ vᵉrəša'îm sānn'û‑yādî ne'um Adonāy יהוה.</div>
+            <div class="translation">«Y vosotros rebaños fuertes y malvados que habéis tragado al débil con tiranía…»
+            </div>
+            <div class="explanation">
+                <strong>Cumplimiento en Yeshùa haMashìaj:</strong> Advirtió contra liderazgo corrupto (כסילים, ביטוּל);
+                Él rechaza el abuso, acusando a quienes oprimen (Mattay 23:13–36).
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 21</div>
+                <div class="hebrew">וְתַצֹּר בֵּין־כָּבֵד וּבֵין־רָזֵק יִשְׁפֹּט בֵּין־שֶׁבֶֽר וּבֵין־שָׁלֵו יִשְׁפֹּט׃
+                </div>
+                <div class="transliteration">Vetatzōr beyn‑kāvēd ūveyn‑rāzēq yashpōṭ Beyn‑šeḇer ūveyn‑šālēv yashpōṭ.
+                </div>
+                <div class="translation">"Y juzgaré entre el gordo y el flaco; entre el fuerte y el débil decidiré…"
+                </div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Él es el Juez justo que distingue capacitados y vulnerables,
+                    revelando verdaderos motivos del corazón (Matityahu 7:21–23).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 22</div>
+                <div class="hebrew">הוֹצִיאַתִּי אֶת־הַשִּׂמְלָה לָכֶם תּוֹחַי יִשְׂרָאֵל נְאֻם־אֲדֹנָי יְהוִֽה</div>
+                <div class="transliteration">Hōṣī'ātti et‑hašīmlāh lāḵem Tōḥay Yisra'ēl ne'um Adonāy־יהוה.</div>
+                <div class="translation">"Y por consiguiente libraré vuestra vida, ovejas de Israel —declara el Adonāy
+                    יהוה—."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Él libra nuestra vida, incluso cuando la tribulación nos toca;
+                    somos revestidos y guardados en Su gracia.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 23</div>
+                <div class="hebrew">וְהִצַּבְתִּי לָהֶם רֹעֶה אֶחָד עַל־הֵמָּה עַבְדִּי דָוִד רֹעֶה לָהֶם וְהָיָה הוּא
+                    לָהֶם לְרֹעֶֽה׃</div>
+                <div class="transliteration">Vehittazvāti lāhēm rō'eh eḥād al‑hēmāh. 'Aḇdī Dāwīd rō'eh lāhēm wehāyāh hū'
+                    lāhēm lᵉrofēh.</div>
+                <div class="translation">"Y estableceré sobre ellas un pastor, Mi siervo David —pastor para ellos—."
+                </div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Él es el Pastor prometido, el Mesías de la línea davídica. Su
+                    cuidado es personal e inclusivo (Apocalipsis 22:16).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 24</div>
+                <div class="hebrew">וָאֲנִי יְהוִה אֱלֹהֵיהֶם וַעֲבְדִּי דָוִד נָשָׂא לָהֶם לְנָשִׂיא בְּקִרְבָּם
+                    אֲדֹנָי יְהוִה אָמַֽר׃</div>
+                <div class="transliteration">Va'anī יהוה Elohēm wametavdī Dāwīd nāsā' lāhēm lenāsî' bakitram Adonāy יהוה
+                    āmār.</div>
+                <div class="translation">"Y Yo יהוה soy su Elohím; y Mi siervo David será príncipe en medio de ellos
+                    —dice יהוה—."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Él es Aquel que establece paz y gobierno espiritual. Su
+                    presencia está en medio del pueblo, y Él reina en justicia y verdad.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 25</div>
+                <div class="hebrew">וְעָשִׂיתִי לָהֶם בְּרִית שָׁלוֹם וְהִשְׁקַתִּי מִכָּל־חַיָּה מֵאֶרֶץ וְשָׁכְנוּ
+                    בָּטְחָה בַּמִּדְבָּר וּבַיָּעַֽר׃</div>
+                <div class="transliteration">Ve'asīti lāhēm bᵉrît šālôm wehiškattī miqqāl‑ḥayyāh me'āreṣ wešākhnū baṭᵉḵā
+                    bamidbār uvayyaʿar.</div>
+                <div class="translation">"Hare un pacto de paz, silenciaré toda bestia del suelo; y habitarán confiados
+                    en el desierto y en el bosque."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Él es el "Príncipe de Paz" (Isaías 9:6), que trae descanso y
+                    silencia al enemigo. Su Reino refugia en toda circunstancia.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 26</div>
+                <div class="hebrew">וּשָׁכְנוּ בָּטְחָה וְיָדְעוּ כִּי־אָנֹכִי יְהוִה אֱלֹהֵיהֶֽם׃</div>
+                <div class="transliteration">Ušākhnū baṭᵉḵā vᵉyādhū ki‑'ānōkḥī יהוה Elohēm.</div>
+                <div class="translation">"Y habitarán confiados, y sabrán que Yo soy יהוה su Elohím."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> En Su cuidado y mano protectora, el corazón humano reconoce
+                    quién Él es. La fe nace del testimonio de Su salvación y fidelidad (Romanos 8:16).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 27</div>
+                <div class="hebrew">וּנְטַעְתִּי בָּהֶם גַּן יַעַר לַעֲבֹדָה לָאָרֶץ וְלֹא־יוֹעִישׁוּ לְעוֹלָם יְהִי
+                    חַיָּה אֶרֶץ וְכָל־הִשְׁתּוֹלָלָֽה׃</div>
+                <div class="transliteration">Unᵉṭa'tī bāhēm gan yaʿar la'ă'ḇōđāh la'āreṣ vᵉlō‑yo'īšû lᵉ'ōlām 'yhi ḥayyāh
+                    'āreṣ vᵉkōl‑hištōlālāh.</div>
+                <div class="translation">"Plantaré para ellos viña y huerto para producir en la tierra, y nunca más
+                    quedarán desolados; vivirán en la tierra y se reproducirá".</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Su Reino trae fruto, crecimiento espiritual, abundancia y
+                    fertilidad interior. En Él florecemos de manera permanente.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 28</div>
+                <div class="hebrew">וְלֹא־יַהְיוּ עֲצוּמִים לָרוּץ בָּהֶם וְלֹא־תְרָנֶה בָאָרֶץ וְלֹא־יַעַצְבִּירוּ׃
+                </div>
+                <div class="transliteration">Vᵉlō‑yahyū ʿăṣūmîm lārûṣ bāhēm vᵉlō‑taraneh ba'āreṣ vᵉlō‑ya'aṣbīrû.</div>
+                <div class="translation">"No serán oprimidos por fieras, ni destruidos en la tierra, ni serán pisoteados
+                    jamás."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Él asegura la vida y protección. No somos presa del mal, no
+                    somos derrotados; Su autoridad prevalece siempre.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 29</div>
+                <div class="hebrew">וְהִשְׁקַתִּי וְהִגַּדְתִּי לָהֶם פְּרִי אַדְמָתִי וְלֹאּ־יַעַנוּ יוֹתֵר בָּאָרֶץ
+                    וְלֹא־יוּכָלוּ עֲשֹׂות עָרֵבָה בְּיוֹם־עֲרוּרָֽם׃</div>
+                <div class="transliteration">Vᵉhiškattī vᵉhiggadtī lāhēm prī 'ădmātī vᵉlō‑ya'anū yōtēr ba'āreṣ
+                    vᵉlō‑yῡkālū 'ăṣôt 'ărērā bᵉyom‑'ărūrām.</div>
+                <div class="translation">"Y regaré para ellos; haré que surja el fruto de la tierra, y no sufrirán más
+                    hambre ni quedarán afr..."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashíaj:</strong> Él provee cada necesidad del alma y del cuerpo. Su sustento no
+                    falla, Su provisión es abundante y constante.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 30</div>
+                <div class="hebrew">וְיָדְעוּ כִּי־אָנֹכִי יהוה אֱלֹהֵיהֶם בְּתוֹכִי רֻבְצָה יִשְׂרָאֵל בְּרִיכֻשִׁי
+                    לֹא־תִהְיֶה לָבֵֽן׃</div>
+                <div class="transliteration">Vᵉyādhū ki‑'ānōkḥī יהוה Elohēm bᵉtoḵī ruvtzā Yisra'ēl vᵉriḵušī lō‑tihyēh
+                    lāḇēn.</div>
+                <div class="translation">"Y sabrán que Yo soy יהוה su Elohím, cuando Yo habite entre ellos; no se
+                    humillarán más."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashìaj:</strong> Su presencia entre nosotros es eterna; en Él hallamos plena
+                    dignidad, restauración y comunión con Elohím.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 31</div>
+                <div class="hebrew">וְאַתֶּם צֹאנִי צַּאן מַרְעִיתִי אַנְשֵׁי תֵבֵל וַאֲנִי אֱלֹהֵיכֶם נְאֻם־אֲדֹנָי
+                    יהוה׃</div>
+                <div class="transliteration">Vᵉ'atem ṣō'ānī, ṣān mar'îtī 'ănšê ṯēvēl vᵉ'ānōkī Elohēykhem ne'um
+                    Adonāy־יהוה.</div>
+                <div class="translation">"Y vosotros, mis ovejas, ganado de pastura mía —hombres del mundo—, y Yo soy
+                    vuestro Elohím —declara Adonāy יהוה—."</div>
+                <div class="explanation">
+                    <strong>En Yeshùa haMashìaj:</strong> Él nos identifica como parte de Su rebaño, hombres redimidos
+                    por su voz, y afirma Su responsabilidad como nuestro Elohím y Pastor eterno.
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <h2>✅ Reflexión Final</h2>
+                <p>Este pasaje anticipa claramente al Mesías:</p>
+                <ul>
+                    <li>Él buscará y salvará,</li>
+                    <li>Juzgará con justicia entre los necesitados,</li>
+                    <li>Establecerá paz, protección, provisión, y presencia divina.</li>
+                </ul>
+                <p><strong>En Yeshùa haMashìaj se cumple en plenitud:</strong><br>
+                    un solo Pastor, generoso sustentador, vínculo eterno, y garantía de restauración completa.</p>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 3. Brit Hadasháh: Mateo 5:3-12 (Las bienaventuranzas pronunciadas por Yeshúa, que reflejan la
+                    bendición de Adonái).</h1>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:3</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܡܣܟܢܐ ܒܪܘܚ ܕܕܝܠܗܘܢ ܗܝ ܡܠܟܘܬܐ ܕܫܡܝܐ</div>
+                    <div class="transliteration">Ṭūwēhūn le-meskēnā be-rūḥ, d-dīlehūn hī malkūtā d-shmayyā.</div>
+                    <div class="translation">Dichosos los pobres en espíritu, porque de ellos es el Reino de los Cielos.
+                    </div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> Yeshúa mismo se hizo pobre (2 Corintios 8:9) y enseña la
+                        dependencia total del Padre. Él inaugura el Reino para los humildes (Isaías 61:1).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:4</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܐܒܝܠܐ ܕܗܢܘܢ ܢܬܒܝܐܘܢ</div>
+                    <div class="transliteration">Ṭūwēhūn le-'ābīlā, d-henūn netbayyāwun.</div>
+                    <div class="translation">Dichosos los que lloran, porque ellos serán consolados.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> El llanto por el pecado encuentra consuelo en el Mashíaj, quien
+                        cargó el dolor de muchos (Isaías 53:4). Él es el Consolador prometido (Lucas 2:25).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:5</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܡܟܝܟܐ ܕܗܢܘܢ ܢܬܪܬܘܢ ܠܐܪܥܐ</div>
+                    <div class="transliteration">Ṭūwēhūn le-mkīkē, d-henūn neteretūn le-ar'ā.</div>
+                    <div class="translation">Dichosos los mansos, porque ellos heredarán la tierra.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> Yeshúa es "manso y humilde de corazón" (Mateo 11:29). Él hereda
+                        toda la tierra y la comparte con los suyos (Salmo 37:11, Zacarías 9:9).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:6</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܪܗܦܐ ܘܠܨܗܝܐ ܕܟܐܢܘܬܐ ܕܗܢܘܢ ܢܣܒܥܘܢ</div>
+                    <div class="transliteration">Ṭūwēhūn le-raḥpē w-le-ṣehayyē d-kēnūtā, d-henūn nesba'ūn.</div>
+                    <div class="translation">Dichosos los que tienen hambre y sed de justicia, porque ellos serán
+                        saciados.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> El Mashíaj satisface nuestra sed de justicia por medio de su
+                        obediencia perfecta y su sangre derramada (Isaías 55:1, Romanos 5:19).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:7</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܡܚܢܢܐ ܕܥܠܝܗܘܢ ܢܗܘܐ ܪܚܡܐ</div>
+                    <div class="transliteration">Ṭūwēhūn le-mḥanānē, d-'aleyhūn nehūwā raḥmā.</div>
+                    <div class="translation">Dichosos los misericordiosos, porque sobre ellos habrá misericordia.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> Mashíaj mostró la misericordia del Padre (Lucas 6:36). En Él se
+                        cumple Oseas 6:6: "Misericordia quiero, y no sacrificio".
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:8</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܕܟܝܐ ܠܒܐ ܕܗܢܘܢ ܢܚܙܘܢ ܠܐܠܗܐ</div>
+                    <div class="transliteration">Ṭūwēhūn le-dkayyē lebbā, d-henūn neḥzūn le-Alāhā.</div>
+                    <div class="translation">Dichosos los puros de corazón, porque ellos verán a Elohim.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> Yeshúa, el puro sin mancha (1 Pedro 1:19), nos limpia para ver al
+                        Padre a través de Él (Juan 14:9, Salmo 24:3–4).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:9</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܥܒܕܝ ܫܠܡܐ ܕܒܢܘܗܝ ܕܐܠܗܐ ܢܬܩܪܘܢ</div>
+                    <div class="transliteration">Ṭūwēhūn le-'abdē shlamā, d-benūhī d-Alāhā nethqarūn.</div>
+                    <div class="translation">Dichosos los que hacen la paz, porque serán llamados hijos de Elohim.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> El Mesías es nuestro Shalom (Efesios 2:14). Él reconcilia cielo y
+                        tierra y nos hace pacificadores con Su Espíritu (Isaías 9:6).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:10</div>
+                    <div class="aramaic">ܛܘܒܝܗܘܢ ܠܐܝܠܝܢ ܕܐܬܪܕܦܘ ܡܛܠ ܟܐܢܘܬܐ ܕܕܝܠܗܘܢ ܗܝ ܡܠܟܘܬܐ ܕܫܡܝܐ</div>
+                    <div class="transliteration">Ṭūwēhūn le-aylīn de-ethraddafū meṭṭul kēnūtā, d-dīlehūn hī malkūtā
+                        d-shmayyā.</div>
+                    <div class="translation">Dichosos los perseguidos por causa de la justicia, porque de ellos es el
+                        Reino de los Cielos.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> Yeshúa fue el justo perseguido hasta la muerte (Isaías 53:7). En
+                        Él se inaugura el Reino para los que padecen con fe (2 Timoteo 2:12).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:11</div>
+                    <div class="aramaic">ܛܘܒܝܟܘܢ ܡܐ ܕܚܣܕܘܟܘܢ ܠܟܘܢ ܘܪܕܦܘܟܘܢ ܘܐܡܪܘ ܥܠܝܟܘܢ ܟܠ ܡܠܐ ܒܝܫܐ ܡܛܠܝ ܒܟܕܒܘܬܐ</div>
+                    <div class="transliteration">Ṭūwēkhūn mā de-ḥsedūkhūn lekhūn, w-raddfūkhūn, w-amrū 'alaykhūn kul
+                        melā bīshā meṭṭelī be-kedbūtā.</div>
+                    <div class="translation">Dichosos serán cuando los injurien, y los persigan, y digan contra ustedes
+                        toda palabra mala por causa mía, mintiendo.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> Mashíaj profetiza lo que Él mismo vivió (Lucas 23:10). Sus
+                        discípulos participan de su sufrimiento y su gloria (Filipenses 1:29).
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">🕊 Mateo 5:12</div>
+                    <div class="aramaic">ܚܕܘ ܘܪܘܙܘ ܐܓܪܟܘܢ ܓܝܪ ܣܓܝ ܒܫܡܝܐ ܗܟܢܐ ܓܝܪ ܪܕܦܘ ܠܢܒܝܐ ܕܡܢ ܩܕܡܝܟܘܢ</div>
+                    <div class="transliteration">Ḥedw w-rūzū; agrēkhūn gēr saggi be-shmayyā; hakennā gēr raddfū
+                        le-nbiyyē d-men qadmaykhūn.</div>
+                    <div class="translation">Regocíjense y alégrense, porque su recompensa es grande en los cielos; así
+                        también persiguieron a los profetas que fueron antes que ustedes.</div>
+                    <div class="fulfillment">
+                        <strong>Cumplimiento:</strong> Así como los profetas fueron perseguidos, el Mashíaj fue
+                        rechazado y glorificado. Él promete recompensa eterna a los suyos (Hebreos 11:35–40).
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 4. Contexto Histórico y Cultural</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 6:22-27</h2>
+                    <h3>La Bendición Sacerdotal</h3>
+                </div>
+                <div class="explanation">
+                    <p>El pasaje de Números 6:22-27, que contiene la Bendición Sacerdotal, se encuentra en el contexto
+                        del desierto, durante el éxodo de los hijos de Israel desde Egipto. Este período fue crucial
+                        para la formación de la identidad nacional y espiritual de Israel, marcado por la recepción de
+                        la Toráh en el Monte Sinái y el establecimiento del Tabernáculo (Mishkan) como centro de
+                        adoración y comunión con Adonái יהוה.</p>
+                    <div class="point-letter">A</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Tabernáculo (Mishkan)</div>
+                            <p>El Mishkan servía como la morada temporal de la presencia divina en medio del pueblo. Era
+                                un lugar de encuentro, sacrificio y oración. El sacerdocio levítico, y en particular la
+                                familia de Aharón, tenía la responsabilidad de mantener el Mishkan y ofrecer los
+                                sacrificios prescritos.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">B</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Contexto Cultural</div>
+                            <p>En el antiguo Cercano Oriente, las bendiciones eran consideradas poderosas declaraciones
+                                que podían influir en el destino de una persona o una comunidad. La Bendición Sacerdotal
+                                no era simplemente una fórmula verbal, sino una invocación de la gracia y la protección
+                                divinas. La transmisión de esta bendición era un acto de servicio y liderazgo espiritual
+                                por parte de los kohanim (sacerdotes).</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Textos Fuente y Comentarios Profundos</div>
+                            <ul>
+                                <li>
+                                    <strong>Números 6:22-27</strong>
+                                    <p>“Adonái יהוה habló a Moisés, diciendo: Habla a Aharón y a sus hijos, y diles: Así
+                                        bendeciréis a los hijos de Israel. Les diréis: 'Adonái יהוה te bendiga, y te
+                                        guarde; Adonái יהוה haga resplandecer su rostro sobre ti, y tenga de ti
+                                        misericordia; Adonái יהוה alce sobre ti su rostro, y ponga en ti Shalom (paz).’
+                                        Y pondrán mi Nombre sobre los hijos de Israel, y yo los bendeciré”.</p>
+                                </li>
+                                <li>
+                                    <strong>Comentarios Rabínicos</strong>
+                                    <p>Los comentaristas judíos han resaltado la importancia de esta bendición como una
+                                        expresión del amor y cuidado de Adonái יהוה hacia su pueblo. Se considera que
+                                        cada frase de la bendición tiene un significado profundo y ofrece protección y
+                                        favor divinos.</p>
+                                </li>
+                                <li>
+                                    <strong>Conexión con el Brit Hadasháh (Nuevo Pacto)</strong>
+                                    <p>En el Brit Hadasháh, encontramos paralelos con esta bendición en las palabras de
+                                        Yeshúa haMashíaj, quien a menudo bendecía a sus seguidores. Además, la idea de
+                                        que el rostro de Adonái יהוה resplandezca sobre su pueblo se refleja en la
+                                        revelación de Yeshúa como la luz del mundo (Juan 8:12).</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Las Siete Aliyot</div>
+                            <p>Aunque este pasaje en sí mismo no está dividido en siete aliyot, es parte integral de la
+                                parashá de Nasó, que sí lo está. Cada aliyá dentro de Nasó aborda diferentes aspectos de
+                                la ley y la vida comunitaria de Israel. La Bendición Sacerdotal sirve como un clímax
+                                espiritual, ofreciendo una conclusión esperanzadora y un recordatorio de la presencia
+                                continua de Adonái יהוה.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-container">
+                <h1>Punto 5. Estudio, comentarios y conexiones proféticas</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 6:22-27</h2>
+                    <h3>La Bendición Sacerdotal</h3>
+                </div>
+                <div class="explanation">
+                    <p>El pasaje de Números 6:22-27 contiene la Bendición Sacerdotal, una de las bendiciones más
+                        significativas en las Escrituras Hebreas (Tanakh). Esta bendición, pronunciada por los Kohanim
+                        (sacerdotes), invoca la protección, gracia y Shalom de Adonái יהוה sobre los hijos de Israel.
+                    </p>
+                    <div class="point-letter">A</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Comentarios Rabínicos</div>
+                            <p>Los comentaristas judíos a lo largo de la historia han enfatizado la importancia de esta
+                                bendición. Rashi, por ejemplo, destaca que cada frase de la bendición tiene un
+                                significado profundo. "Adonái יהוה te bendiga y te guarde" se interpreta como una
+                                petición para que Adonái יהוה provea bendiciones materiales y espirituales, y proteja al
+                                receptor de todo mal. "Adonái יהוה haga resplandecer su rostro sobre ti" se entiende
+                                como una manifestación de favor y cercanía divina. "Adonái יהוה alce sobre ti su rostro
+                                y ponga en ti Shalom" es una súplica para la paz completa y armonía en todas las áreas
+                                de la vida.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">B</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Conexión con el Segundo Templo</div>
+                            <p>En el período del Segundo Templo, esta bendición se recitaba diariamente al final del
+                                servicio matutino (Shajarit) y vespertino (Minjá). La repetición diaria aseguraba que el
+                                pueblo recordara constantemente la presencia y bendición de Adonái יהוה.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Comentario Judío Mesiánico</div>
+                            <p>Desde una perspectiva judío mesiánica, esta bendición adquiere una dimensión aún más
+                                profunda a través de Yeshúa haMashíaj. Yeshúa, como el Sumo Kohen (Sumo Sacerdote) de
+                                nuestro Nuevo Pacto, cumple la promesa de esta bendición de manera completa. En el Brit
+                                Hadasháh (Nuevo Pacto), encontramos paralelos en las bendiciones que Yeshúa impartía a
+                                sus seguidores. Él es la manifestación del rostro resplandeciente de Adonái יהוה, la
+                                fuente de gracia y misericordia, y el Príncipe de Shalom.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Notas de los Primeros Siglos</div>
+                            <p>Los primeros creyentes en Yeshúa haMashíaj, muchos de los cuales eran judíos, entendieron
+                                esta bendición como una promesa cumplida en la persona de Yeshúa. Los escritos de los
+                                primeros discípulos a menudo aluden a la paz y protección que Yeshúa ofrece a todos los
+                                que creen en Él.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">E</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Aplicación Espiritual</div>
+                            <p>Hoy, esta bendición sigue siendo una fuente de consuelo y esperanza para los creyentes.
+                                Nos recuerda que Adonái יהוה está cerca de nosotros, dispuesto a bendecirnos, guardarnos
+                                y darnos su Shalom. Invocar esta bendición en nuestras vidas y en la vida de los demás
+                                es un acto de fe y una declaración de nuestra dependencia de Adonái יהוה.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">F</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Anotaciones Gramaticales, Léxicas y Guematría</div>
+                            <ul>
+                                <li><strong>יהוה (YHVH)</strong>: El Nombre Sagrado de Adonái יהוה, que representa su
+                                    existencia eterna y su pacto inquebrantable con su pueblo.</li>
+                                <li><strong>Shalom (שָׁלוֹם)</strong>: Más que solo "paz", Shalom implica bienestar,
+                                    integridad, armonía y plenitud.</li>
+                                <li><strong>Guematría</strong>: Algunos estudiosos han explorado la Guematría
+                                    (numerología hebrea) de las palabras en la bendición para encontrar significados
+                                    ocultos y conexiones espirituales.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <p>En resumen, la Bendición Sacerdotal en Números 6:22-27 es mucho más que una simple fórmula
+                            verbal. Es una poderosa declaración de la presencia, protección y Shalom de Adonái יהוה,
+                            cumplida de manera suprema en Yeshúa haMashíaj.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 6. Análisis Profundo de la Aliyáh</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 6:22-27</h2>
+                    <h3>La Bendición Sacerdotal</h3>
+                </div>
+                <div class="explanation">
+                    <p>El pasaje de Números 6:22-27, que contiene la Bendición Sacerdotal, es una parte integral de la
+                        parashá de Nasó. Esta sección se centra en la consagración de los levitas y las leyes
+                        relacionadas con el nazareo. La Bendición Sacerdotal, pronunciada por Aharón y sus hijos, es un
+                        momento culminante que invoca la protección, la gracia y el Shalom de Adonái יהוה sobre los
+                        hijos de Israel.</p>
+                    <div class="point-letter">A</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Análisis Judío</div>
+                            <p>En la tradición judía, esta bendición es recitada en las sinagogas durante los servicios
+                                religiosos. Se considera que cada frase es una petición para la provisión de Adonái יהוה
+                                en diferentes áreas de la vida: bienestar material, protección contra el mal, favor
+                                divino y Shalom completo.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">B</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Análisis Mesiánico</div>
+                            <p>Desde una perspectiva mesiánica, la Bendición Sacerdotal apunta hacia Yeshúa haMashíaj,
+                                quien cumple el rol de Sumo Kohen (Sumo Sacerdote) de un Nuevo Pacto. Yeshúa es la
+                                manifestación del rostro resplandeciente de Adonái יהוה y la fuente última de Shalom. Su
+                                sacrificio y resurrección hacen posible que la gracia y la misericordia de Adonái יהוה
+                                estén disponibles para todos los que creen.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Conexión con el Brit Hadasháh</div>
+                            <p>En el Brit Hadasháh, encontramos paralelos con esta bendición en las palabras de Yeshúa
+                                haMashíaj, quien a menudo bendecía a sus seguidores. Además, la idea de que el rostro de
+                                Adonái יהוה resplandezca sobre su pueblo se refleja en la revelación de Yeshúa como la
+                                luz del mundo (Juan 8:12).</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Aplicación Espiritual</div>
+                            <p>Hoy, esta bendición sigue siendo una fuente de consuelo y esperanza para los creyentes.
+                                Nos recuerda que Adonái יהוה está cerca de nosotros, dispuesto a bendecirnos, guardarnos
+                                y darnos su Shalom. Invocar esta bendición en nuestras vidas y en la vida de los demás
+                                es un acto de fe y una declaración de nuestra dependencia de Adonái יהוה.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">E</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Anotaciones Gramaticales, Léxicas y Guematría</div>
+                            <ul>
+                                <li><strong>יהוה (YHVH)</strong>: El Nombre Sagrado de Adonái יהוה, que representa su
+                                    existencia eterna y su pacto inquebrantable con su pueblo.</li>
+                                <li><strong>Shalom (שָׁלוֹם)</strong>: Más que solo "paz", Shalom implica bienestar,
+                                    integridad, armonía y plenitud.</li>
+                                <li><strong>Guematría</strong>: Algunos estudiosos han explorado la Guematría
+                                    (numerología hebrea) de las palabras en la bendición para encontrar significados
+                                    ocultos y conexiones espirituales.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <p>En resumen, la Bendición Sacerdotal en Números 6:22-27 es mucho más que una simple fórmula
+                            verbal. Es una poderosa declaración de la presencia, protección y Shalom de Adonái יהוה,
+                            cumplida de manera suprema en Yeshúa haMashíaj.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <div class="section-container">
+                    <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+                    <p>El tema más relevante de la Aliyáh en Números 6:22-27 es la <strong>bendición sacerdotal como un
+                            medio de conexión divina y protección para el pueblo de Israel</strong>. Esta bendición no
+                        es simplemente una fórmula ritual, sino una declaración poderosa de la presencia y el favor de
+                        Adonái יהוה.</p>
+
+                    <ul>
+                        <li><strong>Conexión con Yeshúa</strong>: Este tema se relaciona directamente con las enseñanzas
+                            y la obra de Yeshúa en el Brit Hadasháh. Yeshúa, como el Sumo Kohen mesiánico, cumple esta
+                            bendición al ofrecer Shalom y reconciliación con Adonái יהוה a través de su sacrificio. En
+                            el Brit Hadasháh, las bendiciones apostólicas invocan la gracia y la paz de Adonái יהוה a
+                            través de Yeshúa haMashíaj, reflejando la continuidad entre la Toráh y el Brit Hadasháh.
+                        </li>
+
+                        <li><strong>Moedim de Elohím</strong>: La Bendición Sacerdotal también se conecta with los
+                            Moedim de Elohím (fiestas). Por ejemplo, durante Sucot (Fiesta de las Cabañas), se recita
+                            esta bendición, recordando la protección divina durante el peregrinaje por el desierto y
+                            apuntando hacia la futura restauración mesiánica. En Pésaj, la bendición sacerdotal se
+                            relaciona con la liberación y la redención, subrayando a Yeshúa como el Cordero Pascual que
+                            trae Shalom eterno.</li>
+                    </ul>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="section-container">
+                    <h1>Punto 8. Descubriendo a Mashíaj en cada Aliyáh</h1>
+                    <p>En Números 6:22-27, podemos descubrir a Mashíaj a través de diversos métodos:</p>
+
+                    <ul>
+                        <li><strong>Tipos y Sombras (Tzelalim)</strong>: La bendición sacerdotal es una sombra de la
+                            obra de Yeshúa, el Sumo Kohen mesiánico. Así como Aharón y sus hijos bendecían al pueblo,
+                            Yeshúa nos imparte la bendición definitiva de Shalom y reconciliación con Adonái יהוה.</li>
+
+                        <li><strong>Nombres y Títulos Proféticos</strong>: La frase "Adonái יהוה haga resplandecer su
+                            rostro sobre ti" (Números 6:25) se cumple en Yeshúa, quien es la manifestación del rostro de
+                            Adonái יהוה. Su nombre, Yeshúa, significa "Adonái יהוה es salvación", conectándolo
+                            directamente con la bendición de la salvación.</li>
+
+                        <li><strong>Cumplimiento en el Brit Hadasháh</strong>: En 2 Corintios 13:14, encontramos una
+                            bendición similar que invoca la gracia de Yeshúa haMashíaj, el amor de Adonái יהוה y la
+                            comunión del Ruaj Hakodesh (Espíritu Santo), reflejando la plenitud de la Bendición
+                            Sacerdotal en la obra mesiánica.</li>
+
+                        <li><strong>Midrashim Mesiánicos</strong>: Los Midrashim revelan que la luz del rostro de Adonái
+                            יהוה que resplandece sobre nosotros es una alusión a la revelación del Mashíaj, quien trae
+                            luz al mundo.</li>
+                    </ul>
+
+                    <p>La bendición sacerdotal no es solo una fórmula antigua, sino una promesa viva que se cumple en
+                        Yeshúa haMashíaj, quien nos ofrece Shalom y la presencia continua de Adonái יהוה en nuestras
+                        vidas.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="section-container">
+                    <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+
+                    <ul>
+                        <li><strong>Midrashim</strong>: Los Midrashim profundizan en la idea de que la bendición
+                            sacerdotal es un canal para la revelación divina. En el Midrash Tanchuma, se dice que cada
+                            palabra de la bendición corresponde a una petición específica para el bienestar del pueblo,
+                            abarcando Shalom espiritual, físico y material. Esta interpretación conecta la bendición con
+                            la provisión integral de Adonái יהוה para su pueblo.</li>
+
+                        <li><strong>Targumim</strong>: El Targum Onkelos y el Targum Jonathan expanden la bendición,
+                            añadiendo detalles sobre cómo la presencia divina protege a Israel. El Targum Jonathan
+                            enfatiza que la bendición asegura que Adonái יהוה perdonará los pecados del pueblo y
+                            escuchará sus oraciones, consolidando la imagen de un Elohím misericordioso y atento.</li>
+
+                        <li><strong>Textos Apócrifos</strong>: En el Libro de los Jubileos, se describe la importancia
+                            de la bendición sacerdotal en el contexto de las fiestas y sacrificios, reforzando su papel
+                            en la vida comunitaria y espiritual de Israel. Este texto subraya que la bendición es un
+                            mandato divino perpetuo, estableciendo un vínculo constante entre Adonái יהוה y su pueblo.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="section-container">
+                    <h1>Punto 10. Mandamientos Encontrados o principios y valores</h1>
+                    <p>En Números 6:22-27, encontramos principalmente un mandamiento: el deber sacerdotal de bendecir al
+                        pueblo de Israel con una fórmula específica. Este acto no solo era una tradición, sino una
+                        mitzvá (mandamiento) divina que conectaba directamente a Adonái יהוה con su pueblo.</p>
+
+                    <p>Desde una perspectiva del Brit Hadasháh, este mandamiento se transforma en un principio de
+                        servicio y amor. Así como los sacerdotes debían bendecir al pueblo, los creyentes en Yeshúa
+                        haMashíaj están llamados a ser instrumentos de bendición para otros. Este principio se
+                        manifiesta en el amor ágape, la oración intercesora y el servicio desinteresado, reflejando el
+                        carácter del Mashíaj.</p>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 11. Preguntas de Reflexión</h1>
+
+                <div class="section-container">
+                    <div class="question">1. ¿Cómo se compara la bendición sacerdotal en Números 6:22-27 con la
+                        bendición que Yeshúa haMashíaj ofrece a sus seguidores en el Brit Hadasháh?</div>
+                    <div class="answer">En el Tanakh, la bendición sacerdotal era un acto formal y externo, pronunciado
+                        por los sacerdotes sobre el pueblo. En el Brit Hadasháh, Yeshúa haMashíaj encarna la bendición
+                        misma, ofreciendo Shalom interno, redención y vida eterna a través de su sacrificio. Esta
+                        transformación subraya una relación directa e íntima con Adonái <span
+                            class="hebrew-term">יהוה</span>, mediada por el Mashíaj.</div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">2. ¿De qué manera la promesa de Adonái <span class="hebrew-term">יהוה</span>
+                        de poner Su Nombre sobre los hijos de Israel se relaciona con la identidad mesiánica y la misión
+                        de los creyentes hoy?</div>
+                    <div class="answer">La promesa de que Adonái <span class="hebrew-term">יהוה</span> pondría Su Nombre
+                        sobre los hijos de Israel anticipa la revelación completa del Nombre de Adonái <span
+                            class="hebrew-term">יהוה</span> en Yeshúa haMashíaj. En el Brit Hadasháh, los creyentes son
+                        llamados a llevar el Nombre del Mashíaj, reflejando Su carácter y llevando Su mensaje de Shalom
+                        al mundo. Esto implica una responsabilidad de vivir de acuerdo con los principios del Reino y
+                        proclamar la verdad mesiánica.</div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">3. ¿Cómo podemos aplicar los principios de la bendición sacerdotal en nuestras
+                        vidas diarias para ser una fuente de Shalom para los demás?</div>
+                    <div class="answer">Podemos aplicar estos principios siendo instrumentos de Shalom, gracia y
+                        protección en nuestras interacciones diarias. Esto incluye orar por otros, ofrecer palabras de
+                        aliento y apoyo, y actuar con bondad y compasión. Al hacerlo, reflejamos el amor del Mashíaj y
+                        contribuimos a la restauración y Shalom del mundo.</div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">4. ¿Qué implicaciones tiene la conexión entre la bendición sacerdotal y la
+                        provisión de Adonái <span class="hebrew-term">יהוה</span> para entender nuestra dependencia de
+                        Él en todas las áreas de nuestra vida?</div>
+                    <div class="answer">La conexión entre la bendición sacerdotal y la provisión de Adonái <span
+                            class="hebrew-term">יהוה</span> nos recuerda que nuestra Shalom y bienestar dependen
+                        completamente de Su gracia. Reconocer esta dependencia nos lleva a buscar Su guía y provisión en
+                        todas las áreas de nuestra vida, confiando en que Él suplirá todas nuestras necesidades según
+                        Sus riquezas en gloria en Yeshúa haMashíaj.</div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">5. ¿Cómo transforma Yeshúa haMashíaj el concepto de bendición sacerdotal en el
+                        Brit Hadasháh y cómo podemos vivir de acuerdo con esta nueva comprensión?</div>
+                    <div class="answer">Yeshúa haMashíaj transforma el concepto de bendición sacerdotal al convertirse
+                        en el Sumo Sacerdote definitivo, quien ofrece una bendición eterna y completa a través de su
+                        sacrificio redentor. Vivimos de acuerdo con esta nueva comprensión al recibir su Shalom, gracia
+                        y protección, y al convertirnos en canales de Su bendición para los demás, reflejando Su amor y
+                        verdad en nuestras vidas diarias.</div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 12. Resumen de la Aliyáh</h1>
+                <p>Números 6:22-27 nos presenta la mitzvá (mandamiento) para que los kohanim (sacerdotes) pronuncien una
+                    bendición específica sobre el pueblo de Israel. Esta bendición, que invoca el Nombre de Adonái <span
+                        class="hebrew-term">יהוה</span>, pide Su gracia, Shalom y protección para el pueblo. En el
+                    Mashíaj, esta bendición encuentra su cumplimiento pleno, ya que Yeshúa haMashíaj, como Sumo Kohen
+                    (Sumo Sacerdote), ofrece Shalom y redención a todos los que creen en Él, cumpliendo así la promesa
+                    de Adonái <span class="hebrew-term">יהוה</span> de bendecir a Su pueblo. La bendición sacerdotal
+                    apunta hacia la realidad mesiánica, donde Adonái <span class="hebrew-term">יהוה</span> habita en
+                    medio de Su pueblo, ofreciendo Shalom y vida eterna a través de Yeshúa haMashíaj.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 13. Tefiláh de la Aliyáh</h1>
+                <div class="prayer-text">
+                    Adonái <span class="hebrew-term">יהוה</span>, Padre nuestro, te damos todah por Tu gracia y Shalom
+                    que fluyen a través de Yeshúa haMashíaj. Te pedimos que ilumines Tu rostro sobre nosotros y nos
+                    concedas Tu favor. Ayúdanos a ser portadores de Tu Shalom, reflejando Tu amor y bondad en cada
+                    interacción. Que Tu Nombre sea invocado sobre nosotros, transformándonos en verdaderos embajadores
+                    de Tu Reino. Te agradecemos por Tu provisión constante y Te confiamos nuestras vidas, sabiendo que
+                    en Ti encontramos Shalom y plenitud.
+                </div>
+                <div class="prayer-conclusion">
+                    <strong>Amén.</strong>
+                </div>
+            </div>
+
+            <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a></p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya7.html">Continuar con la Aliyá 7</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

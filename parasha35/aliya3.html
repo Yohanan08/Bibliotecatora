@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 5:1-10</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>35. Parashá Naso (נשא) Aliyáh 3: (Números 5:1-10) Instrucciones sobre la purificación del campamento y las
+            ofrendas por el pecado.
+            <p>Haftaráh: Oseas 2:1-22 (La purificación y restauración de Israel).</p>
+            <p>Brit Hadasháh: 1 Corintios 5:6-8 (La necesidad de eliminar la maldad del campamento y ser una masa nueva
+                en el Mesías).</p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Bemidbar / Números 5:1–10</h1>
+            <p style="text-align:center;">Análisis verso por verso con texto hebreo original, fonética tiberiana,
+                traducción literal y su cumplimiento profético en Yeshúa haMashíaj:</p>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 1</p>
+                <p class="hebrew">וַיְדַבֵּ֖ר יְהוָ֑ה אֶל־מֹשֶׁה לֵאמֹֽר׃</p>
+                <p class="transliteration">Vaydavér Adonái el‑Moshéh le‑’emór.</p>
+                <p class="translation">“Y habló יהוה a Moshéh diciendo:”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Como יהוה habló a Moshéh, así también Yeshúa es el
+                    Palabra encarnada que habla a Su iglesia (Juan 1:1, 14), revelando Su voluntad y estableciendo
+                    santidad.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 2</p>
+                <p class="hebrew">צַו֙ אֶת־בְּנֵ֣י יִשְׂרָאֵ֔ל וִֽישַׁלְּחוּ֙ מִן־הַֽמַּחֲנֶ֔ה כָּל־צָר֖וּעַ וְכָל־זָ֑ב
+                    וְכֹ֖ל טָמֵ֥א לָנָֽפֶשׁ׃</p>
+                <p class="transliteration">Tzav et-benéi Yisra'él, vishal'khú min-hamakhaneh kol-tzarúa vekhol-zav,
+                    vekhol tamé lanáfesh.</p>
+                <p class="translation">“‘Ordena a los hijos de Israel que expulsen del campamento a todo leproso, a todo
+                    el que padece flujo y a todo el que está impuro por un muerto.’”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Yeshúa enseñó que la verdadera santidad exige separación
+                    del pecado (Mateo 5:48; 1 Corintios 5:13), y ofrece purificación a quienes se arrepienten (1 Juan
+                    1:9).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 3</p>
+                <p class="hebrew">מִזָּכָ֤ר עַד־נְקֵבָה֙ תְּשַׁלֵּ֔חוּ אֶל־מִח֥וּץ לַֽמַּחֲנֶ֖ה תְּשַׁלְּח֑וּם וְלֹ֤א
+                    יְטַמְּאוּ֙ אֶת־מַ֣חֲנֵיהֶ֔ם אֲשֶׁ֥ר אֲנִ֖י שֹׁכֵ֥ן בְּתוֹכָֽם׃</p>
+                <p class="transliteration">Mizzakhár ad-neqeváh teshal'lékhu, el-mikhútz la-makhaneh teshal'lekhúm; veló
+                    yetam'ú et-makhaneihém, ashér aní shokhén betokhám.</p>
+                <p class="translation">“‘Tanto a hombres como a mujeres expulsaréis; fuera del campamento los echaréis
+                    para que no contaminen su campamento, en medio del cual Yo habito.’”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Yeshúa asumió lo impuro, fue rechazado fuera del
+                    campamento (Hebreos 13:12), llevando sobre sí la limpieza y expiación de los pecadores (Hebreos
+                    9:12).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 4</p>
+                <p class="hebrew">וַיַּֽעֲשׂוּ־כֵן֙ בְּנֵ֣י יִשְׂרָאֵ֔ל וַיְשַׁלְּח֣וּ אוֹתָ֔ם אֶל־מִח֖וּץ לַֽמַּחֲנֶ֑ה
+                    כַּאֲשֶׁ֨ר דִּבֶּ֤ר יְהוָה֙ אֶל־מֹשֶׁ֔ה כֵּ֥ן עָשׂ֖וּ בְּנֵ֥י יִשְׂרָאֵֽל׃</p>
+                <p class="transliteration">Vaya'asú-khén benéi Yisra'él, vayeshal'lekhú otám el-mikhútz la-makhaneh;
+                    ka'ashér dibbér Adonái el-Moshéh, kén asú benéi Yisra'él.</p>
+                <p class="translation">“Y así lo hicieron los hijos de Israel, y los echaron fuera del campamento; como
+                    יהוה había hablado a Moshéh, así lo hicieron los hijos de Israel.”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Yeshúa es nuestro Sumo Sacerdote eterno, quien llevó las
+                    transgresiones de Su pueblo (Hebreos 4:14; 9:28), realizando expiación completa por todos los
+                    pecados. La obediencia del pueblo prefigura la obediencia de la fe.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 5</p>
+                <p class="hebrew">וַיְדַבֵּ֥ר יְהוָ֖ה אֶל־מֹשֶׁ֥ה לֵּאמֹֽר׃</p>
+                <p class="transliteration">Vaydavér Adonái el-Moshéh le'mór.</p>
+                <p class="translation">“Y habló יהוה a Moshéh, diciendo:”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> La repetición del mandato divino enfatiza que la
+                    santidad y la restitución son temas centrales en el plan redentor que culmina en la obra de Yeshúa.
+                </p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 6</p>
+                <p class="hebrew">דַּבֵּר֮ אֶל־בְּנֵ֣י יִשְׂרָאֵל֒ אִ֣ישׁ אֽוֹ־אִשָּׁ֗ה כִּ֤י יַעֲשׂוּ֙ מִכָּל־חַטֹּ֣את
+                    הָֽאָדָ֔ם לִמְעֹ֥ל מַ֖עַל בַּיהוָ֑ה וְאָֽשְׁמָ֖ה הַנֶּ֥פֶשׁ הַהִֽוא׃</p>
+                <p class="transliteration">Dabbér el-benéi Yisra'él: 'Ísh o-isháh ki ya'asú mikkol-khatt'ót ha'adám,
+                    lim'ól má'al ba'Adonái, ve'ashemáh hannéfesh hahí.</p>
+                <p class="translation">“‘Habla a los hijos de Israel: El hombre o la mujer que cometa cualquiera de los
+                    pecados de los hombres, actuando con infidelidad contra יהוה, esa persona es culpable.’”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Yeshúa, nuestro Kohén y hermano mayor, intercede por
+                    nosotros (Hebreos 7:25). Él nos enseña que el pecado es una transgresión contra el Padre y establece
+                    el camino para la confesión y el arrepentimiento, como base de la restitución.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 7</p>
+                <p class="hebrew">וְהִתְוַדּ֞וּ אֶת־חַטָּאתָ֣ם אֲשֶׁ֣ר עָשׂ֗וּ וְהֵשִׁ֤יב אֶת־אֲשָׁמוֹ֙ בְּרֹאשׁ֔וֹ
+                    וַחֲמִֽישִׁת֖וֹ יֹסֵ֣ף עָלָ֑יו וְנָתַ֕ן לַאֲשֶׁ֖ר אָשַׁ֥ם לֽוֹ׃</p>
+                <p class="transliteration">Vehitvaddú et-khatt'atám ashér asú, vehéshiv et-ashamó beroshó, va'khamishitó
+                    yoséf aláv; venatán la'ashér ashám lo.</p>
+                <p class="translation">“‘Y confesarán el pecado que cometieron, y restituirán el daño principal, y le
+                    añadirán la quinta parte, y lo darán a aquel contra quien pecaron.’”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Yeshúa es la ofrenda por el pecado. Él no solo nos
+                    limpia, sino que restaura con creces lo que el pecado destruyó. Su redención es una restitución
+                    completa que añade la “quinta parte” de gracia y vida eterna (Romanos 5:17).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 8</p>
+                <p class="hebrew">וְאִם־אֵ֨ין לָאִ֜ישׁ גֹּאֵ֗ל לְהָשִׁ֤יב הָאָשָׁם֙ אֵלָ֔יו הָאָשָׁ֤ם הַמּוּשָׁב֙
+                    לַיהוָ֔ה לַכֹּהֵ֑ן מִלְּבַ֗ד אֵיל֙ הַכִּפֻּרִ֔ים אֲשֶׁ֥ר יְכַפֵּ֖ר בּ֥וֹ עָלָֽיו׃</p>
+                <p class="transliteration">Ve'ím-éin la'ísh go'él lehashív ha'ashám eláv, ha'ashám hammusháv la'Adonái,
+                    lakohén; mil'vád éil hakkippurím, ashér yekhappér bo aláv.</p>
+                <p class="translation">“‘Y si el hombre no tiene pariente redentor a quien restituir el daño, el daño
+                    restituido será para יהוה, para el sacerdote, además del carnero de la expiación con el cual se hará
+                    expiación por él.’”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Yeshúa es nuestro Goel (Redentor) supremo. Cuando no hay
+                    a quién restituir, la restitución va al Sacerdote, figura de Mashíaj. Él recibe nuestra ofrenda y la
+                    presenta al Padre, cumpliendo el rol de Redentor y Sacerdote perfecto.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 9</p>
+                <p class="hebrew">וְכָל־תְּרוּמָ֞ה לְכָל־קָדְשֵׁ֧י בְנֵֽי־יִשְׂרָאֵ֛ל אֲשֶׁר־יַקְרִ֥יבוּ לַכֹּהֵ֖ן ל֥וֹ
+                    יִהְיֶֽה׃</p>
+                <p class="transliteration">Vekhol-terumáh lekhol-qodshéi venéi-Yisra'él, ashér-yaqrívu lakohén, lo
+                    yihyéh.</p>
+                <p class="translation">“‘Y toda ofrenda de todas las cosas sagradas de los hijos de Israel que presenten
+                    al sacerdote, será suya.’”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Yeshúa, como nuestro Sumo Sacerdote, recibe nuestras
+                    ofrendas espirituales (1 Pedro 2:5). Todo lo que consagramos es para Él y por Él, y Él lo presenta
+                    santificado ante el Padre.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 10</p>
+                <p class="hebrew">וְאִ֥ישׁ אֶת־קָדָשָׁ֖יו ל֣וֹ יִהְי֑וּ אִ֛ישׁ אֲשֶׁר־יִתֵּ֥ן לַכֹּהֵ֖ן ל֥וֹ יִהְיֶֽה׃
+                </p>
+                <p class="transliteration">Ve'ísh et-qodasháv lo yihyú; ísh ashér-yittén lakohén, lo yihyéh.</p>
+                <p class="translation">“‘Y las cosas sagradas de cada hombre serán suyas; lo que cada uno dé al
+                    sacerdote, será suyo.’”</p>
+                <p><strong>Cumplimiento en el Mashíaj:</strong> Todo lo que damos en Mashíaj es sacrificado ante el
+                    Altar verdadero en el Lugar Celestial (Hebreos 8:1–2). Nuestros dones, esfuerzos, y ofrendas son
+                    santificados en Él y para Él, y presentados al Padre fiel.</p>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>✅ Reflexión Final</strong></p>
+                <p>Estos versículos revelan un sistema de santidad, purificación y restitución en la comunidad de
+                    Israel. Cada acto ritual prefigura aspectos del ministerio redentor de Yeshúa. Él fue rechazado
+                    fuera del campamento, se ofreció como expiación, purificó nuestro pecado, y abrió el acceso a la
+                    santidad que permanece hoy. Por la fe en Él, somos incorporados al campamento santo, redimidos y
+                    aceptados.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 2. Haftaráh: Oseas 2:1-22 (La purificación y restauración de Israel).</h1>
+            <p style="text-align:center;">Análisis verso por verso, con texto hebreo original, transliteración
+                tiberiana, traducción literal y su cumplimiento profético en Yeshúa haMashíaj:</p>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 1 (heb. 2:3)</p>
+                <p class="hebrew">אִמְרוּ לַאֲחֵיכֶם עַמִּי וְלַאֲחוֹתֵיכֶם רֻחָמָה׃</p>
+                <p class="transliteration">’Im-rû la‑aḥê‑khem, ʿammî; we‑la‑aḥô‑tê‑khem, rūḥāmāh.</p>
+                <p class="translation">"Decid a vuestros hermanos: ‘Mi pueblo’ (Ammi); y a vuestras hermanas:
+                    ‘Compasión’ (Ruhamah)."</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> En Yeshúa, el Padre renombra a Su pueblo: "No pueblo mío...
+                    pero ahora pueblo mío" (1 Pedro 2:10). Él trae compasión (mercy) donde hubo juicio.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 2 (heb. 2:4)</p>
+                <p class="hebrew">רִיבוּ בְאִמְּכֶם רִיבוּ כִּי הִיא לֹא אִשְׁתִּי וְאָנֹכִי לֹא אִישָׁהּ וְתָסֵר
+                    זְנוּנֶיהָ מִפָּנֶיהָ וְנַאֲפוּפֶיהָ מִבֵּין שָׁדֶיהָ׃</p>
+                <p class="transliteration">Rîvû ve'immekhem, rîvû, kî hî' lo' 'ishttî ve'anokhî lo' 'îshâh; vetaser
+                    zenûneyha mippaneyha, vena'afûfeyha mibbêyn shâdeyha.</p>
+                <p class="translation">"Contended con vuestra madre, contended; porque ella no es mi mujer, ni yo su
+                    marido; que quite, pues, sus fornicaciones de su rostro, y sus adulterios de entre sus pechos."</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> Aunque Israel o Judíos recurrieron al reproche, Yeshúa
+                    afirma: "Yo y el Padre vendremos y haremos morada" (Juan 14:23). En el arrepentimiento, el Eterno
+                    restaura Su presencia en medio de nosotros.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 3 (heb. 2:5)</p>
+                <p class="hebrew">פֶּן־אַפְשִׁיטֶנָּה עֲרֻמָּה וְהִצַּגְתִּיהָ כְּיוֹם הִוָּלְדָהּ וְשַׂמְתִּיהָ
+                    כַמִּדְבָּר וְשַׁתִּהָ כְּאֶרֶץ צִיָּה וַהֲמִתִּיהָ בַּצָּמָא׃</p>
+                <p class="transliteration">Pen-'afshîtennah 'arummâh, vehitzag'tîhā keyôm hivvâledâh, vesamtîhā
+                    khammid'bâr, veshattîhā ke'eretz tziyyâh, vahamittîhā batzzâmâ'.</p>
+                <p class="translation">"No sea que la desnude por completo y la exponga como el día en que nació, la
+                    convierta en un desierto, la haga como tierra seca y la mate de sed."</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> Así como el nacimiento físico fue el comienzo en desierto,
+                    el nuevo nacimiento en Yeshúa es un renacer espiritual (Juan 3:3–5), libre de pasado y cargado de
+                    propósito.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 4 (heb. 2:6)</p>
+                <p class="hebrew">וְאֶת־בָּנֶיהָ לֹא אֲרַחֵם כִּי־בְנֵי זְנוּנִים הֵמָּה׃</p>
+                <p class="transliteration">Ve'et-bâneyha lo' 'arakhém, kî-venêy zenûnîm hêmmâh.</p>
+                <p class="translation">"Y de sus hijos no tendré misericordia, porque son hijos de fornicación."</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> Sin Mashíaj, no hay intercesión ni protección. Su rol como
+                    Kohén y Mediador (Hebreos 4:14–16) trae ayuda decisiva y perdurable.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 5 (heb. 2:7)</p>
+                <p class="hebrew">כִּ֣י זָֽנְתָ֗ה אִמָּ֙ם֙ הֹבִ֣ישָה יוֹלַדְתָּ֔ם כִּ֛י אָֽמְרָ֥ה אֵלְכָ֖ה אַחֲרֵ֣י
+                    מְאַהֲבַ֑י נֹֽתְנֵ֤י לַחְמִי֙ וּמֵימַ֔י צַמְרִ֣י וּפִשְׁתִּ֔י שַׁמְנִ֖י וְשִׁקּוּיָֽי׃</p>
+                <p class="transliteration">Kî zan’tā ’immām, hôvîšā yōlad’tām; kî ʾāmrāh: ’êlekhah ’aḥărê me’aḥăvay,
+                    not’nê laḥmî ū-mêmay, ṣamrî ū-piš’tî, sham’nî we-šiqqûyay.</p>
+                <p class="translation">“Porque su madre se prostituyó, se deshonró la que los dio a luz, pues dijo: ‘Iré
+                    tras mis amantes que me dan mi pan y mi agua, mi lana y mi lino, mi aceite y mis bebidas.’”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Este verso describe la idolatría como adulterio espiritual.
+                    Israel atribuyó sus bendiciones a ídolos. Mashíaj Yeshúa revela la fuente verdadera: “Yo soy el pan
+                    de vida” (Yojanán / Juan 6:35). En Él reconocemos que todo lo que poseemos proviene de Adonái, no de
+                    los “amantes” del sistema de este mundo.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 6 (heb. 2:8)</p>
+                <p class="hebrew">לָכֵ֞ן הִנְנִ֤י שַׂכֵּה֙ אֶת־דַּרְכֵּ֔ךְ בַּסִּירִ֖ים וְגָדַרְתִּ֣י אֶת־גְּדֵרָ֑הּ
+                    וּנְתִיבֹתֶ֖יהָ לֹ֥א תִמְצָֽא׃</p>
+                <p class="transliteration">Lākēn hinnēnî sākkēh ’et-darkēkh ba-sîrîm, we-gāḏartî ’et-geḏērāh,
+                    ūnətîvōteyhā lo timṭzā’.</p>
+                <p class="translation">“Por tanto, he aquí que yo cercaré tu camino con espinos y levantaré un muro
+                    contra ella, y no hallará sus sendas.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Adonái permite circunstancias que impiden continuar en
+                    pecado. Este cerco de espinos es corrección por amor. En Yeshúa, este cerco se convierte en
+                    redención: “A todos los que amo, reprendo y disciplino” (Hitgalut / Apoc. 3:19). El “muro” nos lleva
+                    de vuelta a la Kedusháh (santidad).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 7 (heb. 2:9)</p>
+                <p class="hebrew">וְרִדְּפָ֞ה אֶת־מְאַהֲבֶ֗יהָ וְלֹ֤א תַשִּׂיג֙ אוֹתָ֔ם וּבִקְשָׁ֖תַם וְלֹ֣א תִמְצָא֑
+                    וְאָמְרָ֗ה אֵֽלְכָ֞ה וְאָשׁוּבָ֤ה אֶל־אִישִׁי֙ הָ֣רִאשׁ֔וֹן כִּ֛י ט֥וֹב לִ֖י אָ֥ז מֵעָֽתָּה׃</p>
+                <p class="transliteration">We-ridəfāh ’et-me’aḥăvêhā, we-lo taśśîg ’ōtām; ū-viqqəšātām we-lo timṭzā.
+                    We-’āmrāh: ’êlekhā we-’āšūvāh ’el-’îshî ha-rî’šōn, kî ṭōḇ lī ’āz mē-‘attāh.</p>
+                <p class="translation">“Y ella perseguirá a sus amantes, pero no los alcanzará; los buscará, pero no los
+                    hallará. Entonces dirá: ‘Volveré a mi primer esposo, porque mejor me iba entonces que ahora.’”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Después de probar caminos de idolatría, Israel anhelará la
+                    intimidad perdida con Adonái. En Yeshúa, el corazón es restaurado: “Volveré a mi primer amor”
+                    (Apocalipsis 2:4). Él es el esposo eterno (Yeshayahu / Isaías 54:5) que espera con misericordia
+                    infinita a Su novia arrepentida.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 8 (heb. 2:10)</p>
+                <p class="hebrew">וְהִיא֙ לֹ֣א יָֽדְעָ֔ה כִּ֤י אָנֹכִי֙ נָתַ֣תִּי לָ֔הּ הַדָּגָ֖ן וְהַתִּיר֣וֹשׁ
+                    וְהַיִּצְהָ֑ר וְכֶ֨סֶף הִרְבֵּ֥יתִי לָ֛הּ וְזָהָ֖ב עָשׂ֥וּ לַבָּֽעַל׃</p>
+                <p class="transliteration">Vehî lo yādə'āh, kî 'ānōkhî nātattî lāh haddāgān vehattîrôš vehayyitzhār;
+                    vekhesef hirbêtî lāh vezāhāv, 'āśû labbā'al.</p>
+                <p class="translation">“Y ella no reconoció que era yo quien le daba el grano, el vino nuevo y el
+                    aceite, y le multipliqué la plata y el oro que usaron para Baal.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Para que reconozcan que todo lo bueno viene de la
+                    misericordia del Padre, no de nosotros mismos. Yeshúa es el Primogénito sobre toda creación
+                    (Colosenses 1:15), y Su gracia es la fuente de nuestros frutos.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 9 (heb. 2:11)</p>
+                <p class="hebrew">לָכֵ֣ן אָשׁ֗וּב וְלָקַחְתִּ֤י דְגָנִי֙ בְּעִתּ֔וֹ וְתִֽירוֹשִׁ֖י בְּמֽוֹעֲד֑וֹ
+                    וְהִצַּלְתִּי֙ צַמְרִ֣י וּפִשְׁתִּ֔י לְכַסּ֖וֹת אֶת־עֶרְוָתָֽהּ׃</p>
+                <p class="transliteration">Lākhēn 'āšûv velāqakh'tî degānî be'ittô, vetîrôšî bemô'ădô; vehitzaltî tzamrî
+                    ūfishtî, lekhassôt 'et-'erwātāh.</p>
+                <p class="translation">“Por tanto, volveré y tomaré mi grano a su tiempo y mi vino nuevo en su sazón, y
+                    le quitaré mi lana y mi lino que le di para cubrir su desnudez.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Yeshúa humilló el orgullo religioso, sacando a los
+                    mercaderes del Templo (Juan 2), y llama a la humildad: “Si no os volviereis…” (Marcos 1:15). La
+                    gracia destruye el ego y devuelve la mirada al Creador.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 10 (heb. 2:12)</p>
+                <p class="hebrew">וְעַתָּ֛ה אֲגַלֶּ֥ה אֶת־נַבְלֻתָ֖הּ לְעֵינֵ֣י מְאַהֲבֶ֑יהָ וְאִ֖ישׁ לֹֽא־יַצִּילֶ֥נָּה
+                    מִיָּדִֽי׃</p>
+                <p class="transliteration">Ve'attâh 'ăgallêh 'et-nav'lutāh le'êynêy me'ahăveyhā; ve'îš lo'-yatzîlennâh
+                    miyyādî.</p>
+                <p class="translation">“Y ahora descubriré su lascivia a los ojos de sus amantes, y nadie la librará de
+                    mi mano.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> El día que reconocemos la soberanía de Yeshúa, comenzamos un
+                    camino de reverencia genuina. Así como al inicio temblamos, en Él encontramos temor santo con paz, y
+                    somos guiados al hogar eterno (Filipenses 2:12–13).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 11 (heb. 2:13)</p>
+                <p class="hebrew">וְהִשְׁבַּתִּי֙ כָּל־מְשׂוֹשָׂ֔הּ חַגָּ֖הּ חָדְשָׁ֣הּ וְשַׁבַּתָּ֑הּ וְכֹ֖ל
+                    מֽוֹעֲדָֽהּ׃</p>
+                <p class="transliteration">Vehišbattî kol-mesôśāh, khaggāh, khodšāh vešabbattāh, vekhōl mô'ădāh.</p>
+                <p class="translation">“Y haré cesar todo su gozo, sus fiestas, sus nuevas lunas y sus sábados, y todas
+                    sus fiestas solemnes.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Esta sequía espiritual revela que las bendiciones sin
+                    Mashíaj son ilusorias. Yeshúa confronta el culto vacío: "Mi casa será llamada casa de oración"
+                    (Yojanán/Juan 2:17). Él es nuestro verdadero pan y bebida viva (Juan 6:35; 4:14).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 12 (heb. 2:14)</p>
+                <p class="hebrew">וַהֲשִׁמֹּתִ֞י גַּפְנָ֣הּ וּתְאֵנָתָ֗הּ אֲשֶׁ֣ר אָֽמְרָה֮ אֶתְנָ֥ה הֵ֙מָּה֙ לִ֔י
+                    אֲשֶׁ֥ר נָֽתְנוּ־לִ֖י מְאַהֲבָ֑י וְשַׂמְתִּ֣ים לְיַ֔עַר וַאֲכָלָ֖תַם חַיַּ֥ת הַשָּׂדֶֽה׃</p>
+                <p class="transliteration">Vahăšimmōtî gafnāh ūte'ēnātāh, 'ăšer 'ām'rāh 'etnâh hêmmâh lî, 'ăšer
+                    nāt'nû-lî me'ahăvây; vesamtîm leya'ar, va'akhālātam khayyát haśśādeh.</p>
+                <p class="translation">“Y devastaré su vid y su higuera, de las cuales dijo: ‘Son mi salario que me han
+                    dado mis amantes.’ Y las convertiré en un bosque, y las bestias del campo las devorarán.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> El culto pagano dentro del templo falso engendra desolación.
+                    Yeshúa nos purifica con fuego de arrepentimiento (Yojanán/Juan 15:2). Su sangre trae restauración
+                    donde hubo intoxicación espiritual (2 Corintios 7:1).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 13 (heb. 2:15)</p>
+                <p class="hebrew">וּפָקַדְתִּ֣י עָלֶ֗יהָ אֶת־יְמֵ֤י הַבְּעָלִים֙ אֲשֶׁ֣ר תַּקְטִ֣יר לָהֶ֔ם וַתַּ֤עַד
+                    נִזְמָהּ֙ וְחֶלְיָתָ֔הּ וַתֵּ֖לֶךְ אַחֲרֵ֣י מְאַהֲבֶ֑יהָ וְאֹתִ֥י שָׁכְחָ֖ה נְאֻם־יְהוָֽה׃</p>
+                <p class="transliteration">Ūfāqadtî 'āleyhā 'et-yemêy habbe'ālîm, 'ăšer taqtîr lāhem, vatta'ad nizmāh
+                    vekhel'yātāh, vattēlekh 'akharêy me'ahăveyhā; ve'ōtî šākhəkhāh, ne'um-YHVH.</p>
+                <p class="translation">“Y la castigaré por los días de los baales, a los cuales quemaba incienso, y se
+                    adornaba con sus zarcillos y sus joyas, y se iba tras sus amantes y de mí se olvidaba —declara
+                    יהוה.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> En el desierto de arrepentimiento, vuelve la frescura del
+                    compromiso (Apocalipsis 2:5). Yeshúa conduce a Su novia al valle de renovación, donde renace la
+                    casta virginidad espiritual. Allí da a luz una nueva generación de hijos espirituales (Juan 3:3–6).
+                </p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 14 (heb. 2:16)</p>
+                <p class="hebrew">לָכֵן֙ הִנֵּ֣ה אָנֹכִ֣י מְפַתֶּ֔יהָ וְהֹֽלַכְתִּ֖יהָ הַמִּדְבָּ֑ר וְדִבַּרְתִּ֖י
+                    עַל־לִבָּֽהּ׃</p>
+                <p class="transliteration">Lākhēn hinnêh 'ānōkhî mefattêyhā, vehōlakhtîhā hammid'bār; vedibbartî
+                    'al-libbāh.</p>
+                <p class="translation">“Por tanto, he aquí que yo la seduciré, la llevaré al desierto y hablaré a su
+                    corazón.”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> El término 'oyév' (enemigo) se transmuta en reconciliación
+                    por Yeshúa, quien une lo irreconciliable (Efesios 2:14). Su resurrección transforma la maldición en
+                    dignidad, y Él se destaca en santidad: “Yo soy el Alfa y la Omega” (Apocalipsis 22:13).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 15 (heb. 2:17)</p>
+                <p class="hebrew">וְנָתַתִּ֨י לָ֤הּ אֶת־כְּרָמֶ֙יהָ֙ מִשָּׁ֔ם וְאֶת־עֵ֥מֶק עָכ֖וֹר לְפֶ֣תַח תִּקְוָ֑ה
+                    וְעָ֤נְתָה שָּׁ֙מָּה֙ כִּימֵ֣י נְעוּרֶ֔יהָ וּכְי֖וֹם עֲלֹתָ֥הּ מֵאֶֽרֶץ־מִצְרָֽיִם׃</p>
+                <p class="transliteration">Venātattî lāh 'et-kerāmeyhā miššām, ve'et-'ēmeq 'ākhôr lefetakh tiqvāh;
+                    ve'āntāh šāmmâh kîmêy ne'ûreyhā, ūkh'yôm 'ălōtāh mē'eretz-mitzrāyim.</p>
+                <p class="translation">“Y le daré sus viñas desde allí, y el valle de Acor por puerta de esperanza; y
+                    allí cantará como en los días de su juventud, como en el día en que subió de la tierra de Egipto.”
+                </p>
+                <p><strong>Cumplimiento mesiánico:</strong> Él compró a su remanente con Su sangre preciosa
+                    —plata/redención, oro/purificación (1 Pedro 1:18–19). Somos comprados para ser “nacidos del
+                    desierto”: eternamente reconciliados, amados y reconciliadores con el novio eterno.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 16 (heb. 2:18)</p>
+                <p class="hebrew">וְהָיָ֤ה בַיּוֹם־הַהוּא֙ נְאֻם־יְהוָ֔ה תִּקְרְאִ֖י אִישִׁ֑י וְלֹֽא־תִקְרְאִי־לִ֥י
+                    ע֖וֹד בַּעְלִֽי׃</p>
+                <p class="transliteration">Vehāyâh vayyôm-hahû, ne'um-YHVH, tiqre'î 'îšî; velō'-tiqre'î-lî 'ôd ba'lî.
+                </p>
+                <p class="translation">“Y acontecerá en aquel día —declara יהוה— que me llamarás ‘Mi marido’ (Ishi), y
+                    no me llamarás más ‘Mi señor’ (Baali).”</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Este verso anticipa la comunión profunda: hermanos en
+                    Mashíaj (Yojanán 20:17); la intimidad renovada de la novia del Reino. En él hallamos restauración
+                    completa: relación fraterna, conyugal y mesiánica, en un solo encuentro eterno.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 17 (heb. 2:19)</p>
+                <p class="hebrew">וַהֲסִרֹתִ֛י אֶת־שְׁמ֥וֹת הַבְּעָלִ֖ים מִפִּ֑יהָ וְלֹא־יִזָּכְר֥וּ ע֖וֹד בִּשְׁמָֽם׃
+                </p>
+                <p class="transliteration">Vahăsirōtî 'et-šemôt habbe'ālîm mippîhā; velō'-yizzākh'rû 'ôd bišmām.</p>
+                <p class="translation">“Y quitaré los nombres de los baales de su boca, y nunca más serán mencionados
+                    por su nombre.”</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> Yeshúa borra nuestras transgresiones y reemplaza la
+                    vergüenza con honor. Él promete: “Ni aun en mi contra recordaré tus pecados” (Efesios 1:7; Isaías
+                    43:25). En Él, somos redimidos completamente.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 18 (heb. 2:20)</p>
+                <p class="hebrew">וְכָרַתִּ֨י לָהֶ֤ם בְּרִית֙ בַּיּ֣וֹם הַה֔וּא עִם־חַיַּ֤ת הַשָּׂדֶה֙ וְעִם־ע֣וֹף
+                    הַשָּׁמַ֔יִם וְרֶ֖מֶשׂ הָֽאֲדָמָ֑ה וְקֶ֨שֶׁת וְחֶ֤רֶב וּמִלְחָמָה֙ אֶשְׁבּ֣וֹר מִן־הָאָ֔רֶץ
+                    וְהִשְׁכַּבְתִּ֖ים לָבֶֽטַח׃</p>
+                <p class="transliteration">Vekārattî lāhem berît bayyôm hahû, 'im-khayyát haśśādeh ve'im-'ôf haššāmayim
+                    veremeś hā'ădāmâh; veqeshet vekherev ûmilkhāmâh 'ešbôr min-hā'āretz, vehiškavtîm lāvetakh.</p>
+                <p class="translation">“Y en aquel día haré por ellos pacto con las bestias del campo, con las aves del
+                    cielo y con los reptiles de la tierra; y quitaré de la tierra el arco, la espada y la guerra, y los
+                    haré yacer seguros.”</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> Este pacto universal se cumple en Mashíaj, en quien se
+                    afirma: “Hará justicia a las naciones... y romperá guerras” (Isaías 9:6–7). En Él reposamos en paz,
+                    reconciliados con la creación (Colosenses 1:20).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 19-20 (heb. 2:21-22)</p>
+                <p class="hebrew">וְאֵרַשְׂתִּ֥יךְ לִ֖י לְעוֹלָ֑ם וְאֵרַשְׂתִִּ֤יךְ לִי֙ בְּצֶ֣דֶק וּבְמִשְׁפָּ֔ט
+                    וּבְחֶ֖סֶד וּבְרַחֲמִֽים׃ וְאֵרַשְׂתִּ֥יךְ לִ֖י בֶּאֱמוּנָ֑ה וְיָדַ֖עַתְּ אֶת־יְהוָֽה׃</p>
+                <p class="transliteration">Ve'ērśtîkh lî le'ôlām; ve'ērśtîkh lî betzedeq ûvemišpāṭ, ûvekhesed
+                    ûverakhamîm. Ve'ērśtîkh lî be'emûnâh; veyāda'at 'et-YHVH.</p>
+                <p class="translation">“Y te desposaré conmigo para siempre; te desposaré conmigo en justicia y en
+                    derecho, en misericordia y en compasión. Te desposaré conmigo en fidelidad, y conocerás a יהוה.”</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> La paz que supera todo entendimiento se establece en
+                    Mashíaj (Filipenses 4:7). Él trae un reino sin guerra (Isaías 11:6–9), y su paz reina en nuestro
+                    corazón.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 21 (heb. 2:23)</p>
+                <p class="hebrew">וְהָיָה֙ בַּיּ֣וֹם הַה֔וּא אֶעֱנֶ֖ה נְאֻם־יְהוָ֑ה אֶעֱנֶה֙ אֶת־הַשָּׁמַ֔יִם וְהֵ֖ם
+                    יַעֲנ֥וּ אֶת־הָאָֽרֶץ׃</p>
+                <p class="transliteration">Vehāyâh bayyôm hahû', 'e'ĕneh, ne'um-YHVH; 'e'ĕneh 'et-haššāmayim, vehēm
+                    ya'ănû 'et-hā'āretz.</p>
+                <p class="translation">“Y será en aquel día que responderé —declara יהוה— responderé a los cielos, y
+                    ellos responderán a la tierra.”</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> Ya no describimos a la novia redimida como juez o
+                    vergüenza. En Él, somos revelados como “hija amada” (Cantar de los Cantares 2:4); Su gozo está en
+                    nosotros (Isaías 62:4).</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">Verso 22 (heb. 2:24)</p>
+                <p class="hebrew">וְהָאָ֙רֶץ֙ תַּעֲנֶ֔ה אֶת־הַדָּגָ֖ן וְאֶת־הַתִּיר֣וֹשׁ וְאֶת־הַיִּצְהָ֑ר וְהֵ֖ם
+                    יַעֲנ֥וּ אֶת־יִזְרְעֶֽאל׃</p>
+                <p class="transliteration">Vehā'āretz ta'ăneh 'et-haddāgān ve'et-hattîrôš ve'et-hayyitzhār; vehēm ya'ănû
+                    'et-yizre'e'l.</p>
+                <p class="translation">“Y la tierra responderá con el grano, con el vino nuevo y con el aceite; y ellos
+                    responderán a Jezreel.”</p>
+                <p><strong>Cumplimiento en Mashíaj:</strong> El nuevo pacto está sellado en Su misericordia y fidelidad
+                    (Hebreos 8:10; Romanos 5:1–2). Yeshúa nos atrae al mismo altar de paz, donde somos transformados por
+                    Su amor eterno.</p>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>✅ Reflexión Final</strong></p>
+                <p>Oseas 2 revela el cumplimiento universal de Redención: la vergüenza borrada, el renombre restaurado,
+                    la guerra extirpada y la paz de Elohim instaurada. El verdadero Pacto de Paz se cumplió en Yeshúa
+                    haMashíaj: él es nuestra paz (Efesios 2:14), nuestro nombre, nuestro tesoro, nuestro amante eterno,
+                    y nuestra morada eterna.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 3. Brit Hadasháh: 1 Corintios 5:6-8 (La necesidad de eliminar la maldad del campamento y ser una
+                masa nueva en el Mesías).</h1>
+
+            <div class="verse-container">
+                <p class="verse-number">🕎 1 Corintios 5:6</p>
+                <p class="aramaic">ܠܐ ܫܦܝܪܐ ܫܘܒܗܪܟܘܢ. ܠܐ ܝܕܥܝܢ ܐܢܬܘܢ ܕܩܡܐ ܙܥܘܪܬܐ ܚܡܝܪܐ ܟܠܗ ܓܒܝܠܐ ܡܚܡܥܐ.</p>
+                <p class="transliteration">Lā shapīrā shubḥarkhūn. Lā yadeʿīn antūn de-qamzʿūrtā ḥamīrā kulleh gʿbīlā
+                    maḥmʿā.</p>
+                <p class="translation">No es buena vuestra jactancia. ¿No sabéis que un poco de levadura leuda toda la
+                    masa?</p>
+                <p><strong>Cumplimiento profético en el Mashíaj:</strong> La levadura simboliza el pecado y la
+                    corrupción doctrinal. Mashíaj advierte contra la levadura de los fariseos (Mateo 16:6) y en Pesaj
+                    (Éxodo 12:15) se ordena quitar toda levadura como señal de pureza. En Él, que es sin pecado (1 Pedro
+                    2:22), se nos llama a desechar toda corrupción y vivir sinceramente. Él es la Masa Pura.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">🕎 1 Corintios 5:7</p>
+                <p class="aramaic">ܕܟܘܘ ܠܟܘܢ ܡܢ ܚܡܝܪܐ ܥܬܝܩܐ ܕܬܗܘܘܢ ܓܒܝܠܐ ܚܕܬܐ ܐܝܟܢܐ ܕܚܪܝܪܐ ܐܢܬܘܢ. ܐܦ ܦܨܚܐ ܓܝܪ ܕܝܠܢ ܡܫܝܚܐ
+                    ܐܬܢܩܦ.</p>
+                <p class="transliteration">Dakū lkhūn men ḥamīrā ʿatiqā d-tehwūn gebīlā ḥadtā aykhnā de-ḥarīrā antūn. Ap
+                    Paskhā gīr dīlan Meshīḥā etnaqap.</p>
+                <p class="translation">Limpiaos del viejo fermento, para que seáis nueva masa, como sois sin levadura.
+                    Porque nuestro Cordero de Pascua, el Mesías, fue sacrificado.</p>
+                <p><strong>Cumplimiento profético en el Mashíaj:</strong> Mashíaj Yeshúa es el verdadero Cordero Pascual
+                    (Éxodo 12), sin defecto ni pecado (Juan 1:29). Su sacrificio inaugura una nueva creación, libre de
+                    la levadura del pecado. Su muerte cumple la sombra profética del Pésaj, trayendo redención y
+                    purificación espiritual a Su pueblo.</p>
+            </div>
+
+            <div class="verse-container">
+                <p class="verse-number">🕎 1 Corintios 5:8</p>
+                <p class="aramaic">ܡܛܠ ܗܢܐ ܢܥܒܕ ܦܨܚܐ ܠܐ ܒܚܡܝܪܐ ܥܬܝܩܐ ܘܠܐ ܒܚܡܝܪܐ ܕܒܝܫܘܬܐ ܘܡܪܝܪܘܬܐ, ܐܠܐ ܒܦܬܘܪܐ ܕܕܟܝܘܬܐ
+                    ܘܩܘܫܬܐ.</p>
+                <p class="transliteration">Meṭul hānā neʿbed Paskhā lā be-ḥamīrā ʿatiqā, wlō be-ḥamīrā debīshūṯā
+                    u-marīrūṯā, elā be-paṯūrā dedakyūṯā u-qushtā.</p>
+                <p class="translation">Por tanto, celebremos la Pascua no con levadura vieja, ni con levadura de malicia
+                    y amargura, sino con panes sin levadura de pureza y verdad.</p>
+                <p><strong>Cumplimiento profético en el Mashíaj:</strong> El Pesaj mesiánico no es solo un rito, sino
+                    una vida sin pecado, guiada por la pureza y la verdad que vienen de Mashíaj. Él nos enseña a
+                    desechar la malicia y vivir como panes sin levadura, en integridad (Juan 4:24, 1 Cor 11:28). Él es
+                    el Verdadero Pan sin levadura (Juan 6:35), y nos transforma a Su imagen.</p>
+            </div>
+        </div>
+
+        <!-- Punto 4: Contexto Histórico y Cultural -->
+        <div class="content-container">
+            <h1>Punto 4. Contexto Histórico y Cultural</h1>
+            <div class="verse-number">Parashá Naso – Bemidbar / Números 5:1–10</div>
+            <div class="translation"><strong>Aliyáh 3: Expulsión de lo impuro del campamento y leyes de
+                    restitución</strong></div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">A.</span>Contexto del Éxodo y la Organización
+                    del Campamento</div>
+                <p>Esta sección forma parte de la preparación espiritual y ritual del pueblo de Yisrael en su travesía
+                    por el desierto, en dirección a la Tierra Prometida. Nos encontramos en el segundo año del Éxodo
+                    (año 2449 desde la creación según la cronología tradicional judía), en los alrededores del Mishkán,
+                    que ya había sido erigido.</p>
+
+                <p>El Eterno establece que quienes estén ritualmente impuros —leprosos (<span
+                        class="hebrew-term">מְצֹרָעִים</span> <em>metzoráim</em>), contaminados por flujo o contacto con
+                    muertos— <strong>sean removidos del campamento</strong>. Esta instrucción no es solo higiénica sino
+                    profundamente simbólica: el campamento es la morada de la Shejináh, y la santidad debe ser
+                    preservada.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">B.</span>Estructura del Campamento y Niveles de
+                    Santidad</div>
+                <p>En tiempos del desierto, el pueblo habitaba en tres zonas concéntricas:</p>
+                <ol>
+                    <li><strong>El Mishkán / Tabernáculo</strong> – santidad absoluta (<span class="hebrew-term">קֹדֶשׁ
+                            קָדָשִׁים</span>)</li>
+                    <li><strong>Campamento de los Levitas</strong></li>
+                    <li><strong>Campamento de Yisrael</strong></li>
+                </ol>
+                <p>Cada nivel tenía reglas de pureza específicas. El mandamiento de sacar al impuro fuera del campamento
+                    (versos 2–3) <strong>resguardaba la santidad del santuario y el bienestar de toda la
+                        comunidad</strong>, marcando un modelo que sería replicado en el Templo de Yerushaláyim.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">C.</span>Relación con el Código de Santidad
+                    (Vaikrá 11–22)</div>
+                <p>Este pasaje refuerza los principios del libro de Vaikrá (Levítico), donde se detallan las leyes de
+                    pureza. La impureza no es pecado en sí, pero <strong>estar impuro e ingresar al ámbito de santidad
+                        sin rectificación lo es</strong>. Aquí el énfasis es doble:</p>
+                <ul>
+                    <li><strong>Preservar la santidad del espacio donde habita Adonái</strong></li>
+                    <li><strong>Restaurar la integridad relacional cuando se comete pecado oculto (vv. 5–10)</strong>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">D.</span>Cultura y Justicia Restaurativa</div>
+                <p>El texto introduce el principio de <strong>confesión pública del pecado, restitución y compensación
+                        adicional (el 20%)</strong>. Este modelo es una forma de justicia restaurativa:</p>
+                <ul>
+                    <li>Requiere la aceptación de culpa (<span class="hebrew-term">וְהִתְוַדּוּ</span> –
+                        <em>vehitvadú</em>)</li>
+                    <li>La restitución al perjudicado</li>
+                    <li>Si no hay perjudicado presente, el daño es restituido al sacerdote, representante del Eterno
+                    </li>
+                </ul>
+                <p>Esto refuerza la <strong>concepción comunitaria de la justicia</strong> en la Toráh: el pecado no es
+                    privado; daña al conjunto.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">E.</span>Conexión con Prácticas del Segundo
+                    Templo y Qumrán</div>
+                <p>En los días del Segundo Templo, estos principios seguían vigentes. La secta de Qumrán también
+                    enfatizaba la separación de los impuros y la confesión abierta (Manual de Disciplina 1QS 5:5–6). El
+                    judaísmo del Segundo Templo comprendía el pecado como una <strong>violación del orden del campamento
+                        sagrado</strong>, algo que requería reparación y purificación ritual, además de reconciliación.
+                </p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">F.</span>Aplicación Mesiánica: Anticipación del
+                    Rol de Yeshúa</div>
+                <p>Este sistema prepara la comprensión del rol de Yeshúa haMashíaj como:</p>
+                <ul>
+                    <li><strong>el portador del pecado fuera del campamento</strong> (Hebreos 13:11–13)</li>
+                    <li><strong>el redentor que purifica de la impureza del alma</strong> (1 Juan 1:9)</li>
+                    <li><strong>el sacerdote que recibe la restitución y reconcilia al ofensor con Elohím</strong>
+                        (Hebreos 8:1)</li>
+                </ul>
+                <p>La justicia que se describe en Bemidbar 5:1–10 anticipa la justicia del Reino: <strong>pureza,
+                        confesión, restitución, expiación y reintegración</strong>.</p>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Contexto Histórico y Cultural:</strong> Esta Aliyáh establece principios
+                fundamentales de pureza y justicia que preservan la santidad del pueblo. No es solo un asunto ritual: es
+                una estructura ética que forma un pueblo santo. En Yeshúa haMashíaj, esta estructura se transforma en un
+                llamado a vivir en santidad, a confesar nuestras fallas, y a ser restaurados en comunidad mediante su
+                sacrificio perfecto.
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Punto 5: Estudio, Comentarios y Conexiones Proféticas -->
+        <div class="content-container">
+            <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas</h1>
+            <div class="verse-number">Parashá Naso – Bemidbar / Números 5:1–10</div>
+            <div class="translation"><strong>Aliyáh 3: Expulsión de los impuros del campamento y leyes de
+                    restitución</strong></div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">A.</span>Comentarios Rabínicos Clásicos</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Rashi (s. XI) – Sobre Números 5:2</div>
+                    <p>Rashi comenta que la separación de los metzoráim, zavím y los que han estado en contacto con
+                        muertos refleja tres niveles de impureza progresiva. Él destaca que la Toráh los clasifica y
+                        ordena sacar según su gravedad, preservando la santidad del Mishkán y recordando que "El Eterno
+                        mora en medio del campamento".</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Sforno – Sobre la Confesión (v.6–7)</div>
+                    <p>Sforno observa que el verbo vehitvadú (<span class="hebrew-term">וְהִתְוַדּוּ</span> – "y
+                        confesarán") implica que la confesión precede a la restitución, ya que no puede haber teshuváh
+                        (arrepentimiento) sin reconocimiento del pecado. Esta confesión es tanto ante Elohím como ante
+                        el hombre.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. Ibn Ezra – La Restitución al Kohén (v.8–10)</div>
+                    <p>Ibn Ezra señala que el kohén recibe lo que no puede devolverse al perjudicado por estar ausente o
+                        muerto. La autoridad sacerdotal actúa como garante de justicia comunitaria, lo cual mantiene la
+                        pureza y equidad dentro del pueblo.</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">B.</span>Comentario Judío Mesiánico</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Yeshúa como el Expiador de la Impureza</div>
+                    <p>Él fue llevado fuera del campamento (Hebreos 13:12), como el leproso simbólico, el contaminado
+                        por muerte, el excluido.</p>
+                    <p>Pero no por su propio pecado, sino por el nuestro, cargando en sí las impurezas de toda la
+                        comunidad.</p>
+                    <div class="scripture">Isaías 53:4–6: "ciertamente llevó él nuestras enfermedades…"</div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. La Confesión en el Brit Hadasháh</div>
+                    <div class="scripture">1 Juan 1:9: "Si confesamos nuestros pecados, fiel es Él para perdonarnos..."
+                    </div>
+                    <p>Yeshúa no solo llama a la confesión privada, sino también a la reconciliación pública: Mateo
+                        5:23–24 – "Si traes tu ofrenda y recuerdas que tu hermano tiene algo contra ti..."</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. Restitución Espiritual en la Kehiláh</div>
+                    <p>El principio de restitución va más allá del dinero. En Yeshúa somos llamados a restaurar
+                        relaciones, honor, confianza y verdad.</p>
+                    <div class="scripture">Gálatas 6:1–2: "Si alguno es sorprendido en alguna falta, vosotros que sois
+                        espirituales... restauradle con espíritu de mansedumbre..."</div>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">C.</span>Conexión con la Haftaráh – Jueces 13
+                </div>
+                <p>En la Haftaráh, el anuncio del nacimiento de Shimshón requiere pureza absoluta: la madre debe
+                    abstenerse de toda impureza. Este principio reafirma la necesidad de santidad en la comunidad
+                    redentora.</p>
+                <p>Shimshón nace para comenzar a salvar, pero Yeshúa, como el Nazareo perfecto, no solo nace en pureza,
+                    sino que purifica a su pueblo. Donde Shimshón falla, Mashíaj triunfa.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">D.</span>Conexión con el Brit Hadasháh – Romanos
+                    12:3–8</div>
+                <p>En este pasaje, Shaúl enseña que el cuerpo tiene muchos miembros, y cada uno cumple una función
+                    específica. La confesión y restitución restauran el funcionamiento del cuerpo.</p>
+                <p>Cuando un miembro falla, la salud del cuerpo se afecta.</p>
+                <p>La purificación y reconciliación que enseña Números 5 prepara el camino para que los dones
+                    espirituales fluyan con pureza y sin tropiezo.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">E.</span>Notas Proféticas</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. El Confesar = Exhalar impureza</div>
+                    <p>En hebreo, <span class="hebrew-term">וְהִתְוַדּוּ</span> (vehitvadú) viene de raíz <span
+                            class="hebrew-term">יָדָה</span> (yadah) – "extender", "lanzar". Confesar es sacar fuera lo
+                        impuro, un símbolo espiritual de expiación.</p>
+                    <p><span class="arrow">→</span> En Mashíaj, lo que confesamos es removido para siempre (Salmo
+                        103:12).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Guematría de וְהִתְוַדּוּ = 428</div>
+                    <p>428 = <span class="hebrew-term">תָּם יָשָׁר</span> (tam yashar) – "íntegro y recto".</p>
+                    <p><span class="arrow">→</span> La confesión genuina, acompañada de restitución, restaura la
+                        integridad espiritual del individuo ante Elohím.</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">F.</span>Aplicación Actual</div>
+                <div class="question">¿Hay impurezas espirituales en nuestra vida que deban ser removidas "fuera del
+                    campamento"?</div>
+                <div class="question">¿Hemos dañado a alguien y no hemos hecho restitución?</div>
+                <div class="question">¿Hemos limitado el fluir del cuerpo del Mesías por falta de confesión?</div>
+                <p>Yeshúa nos llama a pureza, a restauración y a reconciliación visible, no solo emocional.</p>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Estudio y Conexión Profética:</strong><br>
+                Números 5:1–10 revela un modelo eterno de justicia santa: separación del pecado, confesión abierta,
+                restitución real y restauración de la comunión. Este sistema se cumple proféticamente en Yeshúa
+                haMashíaj, quien llevó la impureza fuera del campamento para que nosotros fuésemos aceptados y limpiados
+                dentro. Él no solo es el Kohén que recibe, sino también la ofrenda que purifica.
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Punto 6: Análisis Profundo de la Aliyáh -->
+        <div class="content-container">
+            <h1>Punto 6. Análisis Profundo de la Aliyáh</h1>
+            <div class="verse-number">Parashá Naso – Bemidbar / Números 5:1–10</div>
+            <div class="translation"><strong>Aliyáh 3: Expulsión de impuros y principio de restitución con
+                    confesión</strong></div>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Estructura del Texto</div>
+                <p>Esta Aliyáh presenta <strong>dos segmentos estrechamente conectados</strong>:</p>
+                <ol>
+                    <li><strong>Versos 1–4:</strong> Orden de separar del campamento a los impuros: el <em>metzorá</em>
+                        (leproso), el <em>zav</em> (flujo) y el <em>tamé nefesh</em> (impuro por contacto con muertos).
+                    </li>
+                    <li><strong>Versos 5–10:</strong> Principio de justicia restaurativa: confesión de pecado,
+                        restitución al ofendido, y si éste no está, al kohén.</li>
+                </ol>
+                <p>El énfasis es claro: <strong>pureza interna y externa</strong>, para preservar la presencia de Elohím
+                    entre Su pueblo.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Análisis del Vocabulario Clave</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. <span class="hebrew-term">וַיְשַׁלְּחוּ</span> (vayšalleḥū) – "y los
+                        enviaron fuera"</div>
+                    <p>De la raíz שׁ־ל־ח, implica separación con propósito. No es castigo, sino preservación de
+                        santidad.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. <span class="hebrew-term">וְהִתְוַדּוּ</span> (ve-hitvadú) – "y
+                        confesarán"</div>
+                    <p>Verbo reflexivo. Indica que <strong>la confesión nace desde adentro</strong>. No es imposición
+                        externa. El mismo verbo se usa en <em>Vaikrá 5:5</em> y <em>Yojanán Alef 1:9</em> (1 Juan).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. <span class="hebrew-term">אָשָׁם</span> (asham) – "culpa"</div>
+                    <p>Se refiere tanto a la condición de culpa como a la ofrenda por la culpa (<em>asham</em>). Yeshúa
+                        es nuestra ofrenda <em>asham</em> (Isaías 53:10).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">4. <span class="hebrew-term">וְנָתַן</span> (venatán) – "y dará"</div>
+                    <p>Implica acción concreta, no solo arrepentimiento emocional. La restitución es parte de la
+                        redención.</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Paralelismos Espirituales con el Mishkán y la Kehiláh</div>
+                <p>El campamento representa el Reino. Lo impuro no puede residir donde habita la Gloria. Por eso:</p>
+                <ul>
+                    <li>En el Mishkán: impureza física = exclusión temporal.</li>
+                    <li>En la Kehiláh: impureza moral = separación hasta la restauración (1 Corintios 5:1–5).</li>
+                </ul>
+                <p><strong>Restauración ≠ solo perdón. Incluye:</strong></p>
+                <ul>
+                    <li>Reconocimiento (confesión)</li>
+                    <li>Reparación (restitución)</li>
+                    <li>Reconexión (reconciliación con el Cuerpo)</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. Función de los Kohanim</div>
+                <p>Los kohanim reciben las restituciones cuando no hay víctima directa. Este principio:</p>
+                <ul>
+                    <li>Reconecta lo perdido al servicio sagrado.</li>
+                    <li>Anticipa la función de <strong>Yeshúa como Kohén Gadol</strong>, quien recibe en su cuerpo todas
+                        nuestras fallas y restituye al Padre lo que fue dañado (Hebreos 9:11–14).</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">E. Yeshúa haMashíaj en esta Aliyáh</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Expulsado fuera del campamento</div>
+                    <p>Como el leproso, Yeshúa fue llevado fuera de Yerushaláyim (Hebreos 13:12) para morir por los
+                        impuros.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Confesión y perdón</div>
+                    <p>Yeshúa llama a la confesión como vía de restauración. El ladrón en la cruz fue el primer ejemplo
+                        (Lucas 23:40–43).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. Restitución suprema</div>
+                    <p>Yeshúa no solo pagó el daño: <strong>sobreabundó con gracia</strong> (Romanos 5:20). Donde hubo
+                        pecado, Él proveyó reconciliación completa, no parcial.</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">F. Conexión con la Comunidad Mesiánica Actual</div>
+                <ul>
+                    <li>Esta Aliyáh enseña que <strong>la santidad no es solo individual</strong>, sino comunitaria.
+                    </li>
+                    <li>El pecado oculto daña al Cuerpo.</li>
+                    <li>La pureza relacional se cultiva con disciplina, transparencia y reparación.</li>
+                </ul>
+                <p><strong>La Kehiláh que vive según Números 5:1–10 es un santuario vivo</strong>, donde la Gloria puede
+                    habitar sin obstáculo.</p>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Análisis Profundo:</strong> Esta Aliyáh revela que la pureza no es solo ritual,
+                sino profundamente ética y espiritual. En Mashíaj, no hay lugar para hipocresía: donde hay pecado, debe
+                haber confesión; donde hubo daño, debe haber restitución. Así, la comunidad se convierte en reflejo del
+                Mishkán, santa y viva. Yeshúa es el centro de este proceso: Él limpia, recibe la confesión, y reconcilia
+                al pueblo con Elohím.
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- Punto 7: Tema Más Relevante de la Aliyáh -->
+        <div class="content-container">
+            <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+            <div class="verse-number">Parashá Naso – Bemidbar / Números 5:1–10</div>
+            <div class="translation"><strong>Aliyáh 3: La expulsión de lo impuro y la restitución con confesión</strong>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Tema Central: <strong>"Purificación, Confesión y Restitución como
+                        Puertas de Comunión"</strong></div>
+                <p>El corazón de esta Aliyáh es el llamado de Adonái a mantener <strong>una comunidad santa</strong>,
+                    donde el pecado oculto no pueda habitar, y donde la pureza ritual y moral aseguren la permanencia de
+                    Su presencia en medio del pueblo.</p>
+
+                <p>Este pasaje transmite que <strong>no basta con arrepentirse en el corazón</strong>: la pureza en la
+                    comunidad requiere acciones visibles:</p>
+                <ul>
+                    <li>Separarse de la impureza física</li>
+                    <li>Confesar el pecado de forma abierta</li>
+                    <li>Restituir el daño hecho</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Relevancia en el Contexto de la Toráh</div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. La santidad es colectiva:</div>
+                    <p>Esta Aliyáh muestra que la presencia de Adonái no habita entre un pueblo contaminado, incluso si
+                        la mayoría está pura. <span class="arrow">→</span> La santidad del Mishkán exige <strong>pureza
+                            integral</strong>.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. El pecado oculto contamina todo el campamento:</div>
+                    <p><span class="arrow">→</span> La Toráh enseña que <strong>la justicia debe ser
+                            restaurativa</strong>, no solo punitiva. Por eso hay confesión y restitución (cf. Vaikrá
+                        6:1–7).</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Relevancia en el Brit Hadasháh – Conexión con Yeshúa</div>
+                <p>Yeshúa haMashíaj no solo confirma estos principios, <strong>los encarna</strong>:</p>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Expulsión del impuro → Él cargó la impureza</div>
+                    <ul>
+                        <li>Hebreos 13:12–13: "Salió fuera del campamento… para santificar al pueblo".</li>
+                        <li>Yeshúa se hizo impuro por amor, llevando nuestras lepra espiritual, flujo de contaminación,
+                            y contacto con muerte.</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Confesión → Puerta de gracia</div>
+                    <ul>
+                        <li>1 Juan 1:9: "Si confesamos nuestros pecados… Él es fiel y justo…"</li>
+                        <li>Yeshúa exige honestidad radical. La gracia no encubre: <strong>purifica.</strong></li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. Restitución → Reparación en justicia</div>
+                    <ul>
+                        <li>Mateo 5:23–24: "Ve y reconcíliate con tu hermano…"</li>
+                        <li>Romanos 5:15–17: Yeshúa no solo restaura: <strong>sobreabunda en redención</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. Relación con los Moedim – Yom Kipur y Pésaj</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Yom Kipur:</div>
+                    <p>Este pasaje anticipa el patrón del gran día de expiación:</p>
+                    <ul>
+                        <li>Separación del impuro</li>
+                        <li>Confesión sobre el chivo expiatorio</li>
+                        <li>Reconciliación del pueblo con Elohím</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Pésaj:</div>
+                    <p>Así como el jametz (levadura) debe ser removido antes del seder, esta Aliyáh enseña que
+                        <strong>la comunidad debe ser limpiada de impureza y orgullo</strong>, para que haya redención.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">E. Conexión con Romanos 12:3–8</div>
+                <p>Shaúl habla de la comunidad como <strong>un solo cuerpo con muchos miembros</strong>. <span
+                        class="arrow">→</span> Si un miembro se contamina y no se restaura, afecta al cuerpo entero.
+                    <span class="arrow">→</span> Esta Aliyáh enseña que <strong>confesar y restituir permite que los
+                        dones operen en shalom</strong>.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">F. Enseñanza Espiritual para la Kehiláh Mesiánica</div>
+                <p><strong>La comunión no puede sostenerse donde hay pecado no confesado.</strong> La comunidad
+                    mesiánica debe ser una expresión del campamento santo de Elohím:</p>
+                <ul>
+                    <li><strong>Pureza de intención</strong></li>
+                    <li><strong>Confesión continua</strong></li>
+                    <li><strong>Restitución práctica</strong></li>
+                    <li><strong>Shalom colectivo</strong></li>
+                </ul>
+                <p>Yeshúa, nuestro Kohén Gadol, recibe nuestra confesión y la transforma en <strong>comunión
+                        restaurada</strong>.</p>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Tema Central:</strong> El tema principal de esta Aliyáh es que <strong>la pureza
+                    relacional es la base de la presencia divina</strong>. Solo donde hay confesión, restitución y
+                separación del pecado, puede habitar la Shejináh. En Mashíaj, se nos ofrece esa restauración perfecta,
+                para que seamos no solo individuos redimidos, sino un campamento apto para Su gloria.
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 8. Descubriendo a Mashíaj en cada Aliyáh</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Profecías Mesiánicas y Sombras del Mashíaj</div>
+                <p>Aunque esta Aliyáh no contiene una profecía directa, está saturada de <strong>tipologías
+                        redentoras</strong> que revelan la obra de Yeshúa haMashíaj de forma profunda. Cada acto del
+                    pasaje anticipa una fase del ministerio de redención y reconciliación cumplida en Él.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Tipologías Mesiánicas Claras</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. El Impuro Expulsado → Mashíaj Rechazado</div>
+                    <div class="scripture">Texto: "Haréis salir del campamento a todo leproso, contaminado por flujo y
+                        muerto." (v.2)</div>
+                    <ul>
+                        <li><strong>Yeshúa fue llevado fuera del campamento</strong>, rechazado como impuro, aunque era
+                            sin pecado (Hebreos 13:12–13).</li>
+                        <li>Como el chivo expiatorio de Yom Kipur, <strong>cargó con nuestras impurezas fuera del
+                                pueblo</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. La Confesión → Reconocimiento ante el Sumo Sacerdote Celestial</div>
+                    <div class="scripture">"Y confesará el hombre el pecado que cometió…" (v.7)</div>
+                    <p>Esta práctica apunta a la confesión espiritual ante el Kohén Gadol celestial: Yeshúa, quien
+                        intercede por nosotros (1 Juan 2:1; Hebreos 4:14–16).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. La Restitución → Justicia Perfecta en Mashíaj</div>
+                    <div class="scripture">"Restituirá el daño en su totalidad, y añadirá un quinto..." (v.7)</div>
+                    <ul>
+                        <li>El principio de añadir un 20% revela que el Reino opera no en justicia mínima, sino en
+                            <strong>gracia excedente</strong>.</li>
+                        <li>En Yeshúa, el Reino no solo restaura: <strong>transforma y sobreabunda</strong> (Romanos
+                            5:15–17).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Figuras y Patrones Redentores (Tavnitot)</div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Elemento</th>
+                                <th>Figura</th>
+                                <th>Cumplimiento en Mashíaj</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Leproso expulsado</td>
+                                <td>Impureza manifiesta</td>
+                                <td>Mashíaj toma nuestra lepra espiritual (Isaías 53:4)</td>
+                            </tr>
+                            <tr>
+                                <td>Confesión</td>
+                                <td>Teshuváh pública</td>
+                                <td>Yeshúa recibe nuestra confesión y la presenta al Padre</td>
+                            </tr>
+                            <tr>
+                                <td>Restitución</td>
+                                <td>Justicia restaurativa</td>
+                                <td>Yeshúa paga y sobrepaga lo que no podemos reparar (Col. 2:14)</td>
+                            </tr>
+                            <tr>
+                                <td>Kohén receptor</td>
+                                <td>Mediador del pecado oculto</td>
+                                <td>Mashíaj como Kohén Gadol eterno (Hebreos 9:11)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. Sombras del Mashíaj en la Organización del Campamento</div>
+                <p>La <strong>santidad progresiva</strong> desde el Mishkán hacia afuera simboliza que <strong>Mashíaj
+                        se movió del lugar más santo (el trono) al lugar más bajo (fuera del campamento)</strong>, para
+                    traer pureza desde el centro hacia los márgenes (Filipenses 2:6–8).</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">E. Conexión con el Brit Hadasháh – Arrepentimiento y Restauración</div>
+                <ul>
+                    <li>Lucas 19:8–10 – Zakkay (Zaqueo) confiesa y restituye. ¿Resultado? <strong>Mashíaj dice: "Hoy ha
+                            venido la salvación a esta casa."</strong></li>
+                    <li>2 Corintios 5:19 – "Elohím estaba en Mashíaj reconciliando consigo al mundo."</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">F. Midrash Mesiánico – El leproso y Mashíaj</div>
+                <p>El Talmud (Sanedrín 98b) llama al Mashíaj: "el Leproso de la Casa de Rabí", señalando que <strong>Él
+                        sufriría por el pecado del pueblo</strong>. Este concepto se cumple totalmente en Yeshúa:
+                    <strong>el Santo que cargó la lepra ajena</strong>.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">G. Métodos de Revelación Mesiánica Aplicados</div>
+                <ul>
+                    <li><strong>Sombra:</strong> Impureza → Expiación</li>
+                    <li><strong>Figura:</strong> Kohén → Intercesor</li>
+                    <li><strong>Tipo:</strong> Restitución → Redención</li>
+                    <li><strong>Patrón:</strong> Reconciliación → Restauración comunitaria</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">H. Aplicación Mesiánica Personal</div>
+                <ul>
+                    <li>¿Vivo con conciencia de que mis fallas afectan a la comunidad?</li>
+                    <li>¿Estoy dispuesto a salir fuera del campamento con Mashíaj, humillarme y ser restaurado?</li>
+                    <li>¿He permitido que Yeshúa no solo me perdone, sino que me transforme como agente de restitución?
+                    </li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Descubrimiento del Mashíaj:</strong> Cada verso de esta Aliyáh habla de Él:
+                <strong>el Santo que se hizo impuro, el Justo que asumió culpa ajena, el Mediador que restaura lo que
+                    está roto.</strong> En Yeshúa, se cumple el diseño de Números 5: <strong>Un Reino donde no hay
+                    impureza que Él no pueda limpiar, ni pecado que Él no pueda redimir, ni daño que Él no pueda
+                    restaurar.</strong>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Midrashim Relevantes</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Bamidbar Rabá 7:1–4</div>
+                    <p>Este midrash enseña que el orden de la Toráh en esta sección es muy significativo. Primero se
+                        manda sacar a los impuros (v.1–4), y luego se establece la confesión del pecado (v.5–10),
+                        indicando que:</p>
+                    <div class="scripture">"Primero se remueve la impureza del cuerpo, luego la del alma."</div>
+                    <p><strong>Comentario mesiánico:</strong> Este patrón revela el orden espiritual de restauración:
+                        <strong>primero la separación del pecado, luego la reconciliación con Elohím</strong>, lo cual
+                        se cumple proféticamente en Yeshúa, quien "santifica por Su sangre y limpia por Su Palabra"
+                        (Efesios 5:26).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Sifré Bemidbar 3</div>
+                    <p>Aquí se discute el verbo וְהִתְוַדּוּ (<em>vehitvadú</em>) como una mitzváh activa, obligatoria,
+                        <strong>aun cuando el daño no fuera visible externamente</strong>. El Midrash afirma que la
+                        confesión trae paz espiritual y abre los cielos al perdón.</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Targum Onkelos – Bemidbar 5:6–10</div>
+                <ul>
+                    <li>El Targum traduce literalmente, pero añade interpretaciones arameas que resaltan la
+                        <strong>culpa como "delito contra la Palabra de Elohím"</strong>.</li>
+                    <li>Ejemplo en 5:6: <span class="aramaic">"...דלחובו בנפש קדמוהי דיי..."</span> ("...que pecaron con
+                        sus almas delante de Adonái...")</li>
+                </ul>
+                <p><strong>Comentario mesiánico:</strong> El Targum introduce una dimensión más profunda: el pecado
+                    oculto <strong>ofende la Palabra (Dibráh) misma</strong>, y esa Palabra se hizo carne en Yeshúa
+                    (Juan 1:14). Él es quien recibe la confesión, como expresión de Teshuváh real.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Textos de Qumrán (Rollos del Mar Muerto)</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. 1QS 5:5–6 (Regla de la Comunidad)</div>
+                    <div class="scripture">"Nadie ocultará su pecado… sino que se confesará a los líderes y hará
+                        restitución…"</div>
+                    <p>Este principio refleja directamente el modelo de Bemidbar 5, que era observado con rigurosidad
+                        por la comunidad de Qumrán.</p>
+                    <p><strong>Comentario mesiánico:</strong> Esto muestra que la <strong>comunidad mesiánica debe ser
+                            estructurada sobre la transparencia espiritual</strong>, donde la confesión es parte del
+                        tejido de santidad, no algo opcional.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. CD (Damasco Document) 4:13–14</div>
+                    <div class="scripture">"El que confiesa su transgresión y aparta su mano del mal será recibido."
+                    </div>
+                    <p>Este concepto se amplifica en el Brit Hadasháh con el principio: "El que confiesa y se aparta
+                        alcanzará misericordia" (cf. Proverbios 28:13, 1 Juan 1:9).</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. Textos Apócrifos</div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Sirácida (Eclesiástico) 5:5–7</div>
+                    <div class="scripture">"No digas: 'Tuvo compasión de mí', y perseverarás en el pecado… Porque el
+                        Eterno es lento para la ira, pero no tarda en juzgar."</div>
+                    <p><strong>Aplicación:</strong> En Yeshúa haMashíaj, el perdón no es licencia para permanecer en la
+                        impureza. La confesión, sin restitución o apartarse del mal, es estéril. Por eso, esta Aliyáh
+                        conecta con la enseñanza mesiánica de arrepentimiento total: <strong>del corazón a las
+                            acciones.</strong></p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">E. Reflexión Final</div>
+                <p>Los textos rabínicos, arameos, sectarios y sapienciales coinciden en que:</p>
+                <ul>
+                    <li>La impureza afecta a toda la comunidad.</li>
+                    <li>La confesión y restitución son imprescindibles para el perdón completo.</li>
+                    <li>El sacerdocio recibe lo irrecuperable como acto simbólico de restauración total.</li>
+                </ul>
+                <p><strong>Yeshúa haMashíaj cumple esta estructura:</strong> Él es el Sumo Sacerdote, el Receptor del
+                    pecado, la Ofrenda de restitución, y el Restaurador del campamento espiritual. Su rol está
+                    prefigurado en cada línea de esta Aliyáh, tanto en la Toráh como en los textos antiguos.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 10. Mandamientos Encontrados o Principios y Valores</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Mitzvot (Mandamientos) Identificables</div>
+                <p>Esta Aliyáh contiene <strong>varias mitzvot activas (positivas)</strong> que siguen principios
+                    fundamentales de la halajáh y tienen aplicaciones espirituales profundas:</p>
+
+                <div class="mitzvah-item">
+                    <div class="mitzvah-title">1. Mitzváh de sacar al impuro del campamento</div>
+                    <div class="mitzvah-details">
+                        <div class="scripture">📖 Números 5:2–3 – "Sacaréis del campamento a todo leproso, a todo que
+                            tenga flujo, y a todo contaminado por muerto."</div>
+                        <ul>
+                            <li><strong>Tipo:</strong> Mitzváh aseh (mandamiento positivo)</li>
+                            <li><strong>Nivel:</strong> Pureza ritual comunitaria</li>
+                            <li><strong>Aplicación espiritual:</strong> Este mandamiento enfatiza que la santidad del
+                                lugar donde mora la Shejináh requiere pureza externa y espiritual.</li>
+                        </ul>
+                        <p>🕊️ <strong>En Mashíaj:</strong> Yeshúa se hizo impuro por nosotros (Hebreos 13:12), para
+                            <strong>traernos de fuera hacia dentro</strong>, santificándonos por Su sangre.</p>
+                    </div>
+                </div>
+
+                <div class="mitzvah-item">
+                    <div class="mitzvah-title">2. Mitzváh de confesar públicamente el pecado cometido</div>
+                    <div class="mitzvah-details">
+                        <div class="scripture">📖 Números 5:6–7 – "Y confesarán el pecado que cometieron…"</div>
+                        <ul>
+                            <li><strong>Tipo:</strong> Mitzváh aseh</li>
+                            <li><strong>Aplicación espiritual:</strong> El arrepentimiento verdadero debe ir acompañado
+                                de confesión externa, no solo emocional o mental.</li>
+                        </ul>
+                        <p>🕊️ <strong>En Mashíaj:</strong> Confesamos nuestras faltas a nuestro Kohén Gadol celestial
+                            (1 Juan 1:9), quien intercede por nosotros.</p>
+                    </div>
+                </div>
+
+                <div class="mitzvah-item">
+                    <div class="mitzvah-title">3. Mitzváh de hacer restitución plena con añadido del 20%</div>
+                    <div class="mitzvah-details">
+                        <div class="scripture">📖 Números 5:7 – "Y restituirá su culpa en su principal valor, y añadirá
+                            a ello la quinta parte..."</div>
+                        <ul>
+                            <li><strong>Tipo:</strong> Mitzváh aseh</li>
+                            <li><strong>Aplicación práctica:</strong> El perdón no exime de responsabilidad: se requiere
+                                <strong>acción restauradora y compensatoria</strong> hacia el ofendido.</li>
+                        </ul>
+                        <p>🕊️ <strong>En Mashíaj:</strong> Yeshúa nos redime <strong>más allá del daño</strong>,
+                            trayendo restauración sobreabundante (Romanos 5:20).</p>
+                    </div>
+                </div>
+
+                <div class="mitzvah-item">
+                    <div class="mitzvah-title">4. Mitzváh de entregar lo irrecuperable al kohén</div>
+                    <div class="mitzvah-details">
+                        <div class="scripture">📖 Números 5:8–10 – "Y si no hay pariente redentor... se dará al kohén…"
+                        </div>
+                        <ul>
+                            <li><strong>Tipo:</strong> Mitzváh aseh</li>
+                            <li><strong>Valor espiritual:</strong> El daño no reparable se consagra como ofrenda,
+                                enseñando que nada queda sin cubrir o redimido en el Reino.</li>
+                        </ul>
+                        <p>🕊️ <strong>En Mashíaj:</strong> Él es nuestro Kohén que recibe lo que no podemos restaurar,
+                            y <strong>lo transforma en shalom</strong> ante el trono del Padre (Hebreos 9:11–14).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Principios y Valores Espirituales Derivados</div>
+                <ol>
+                    <li><strong>Santidad comunitaria exige responsabilidad individual.</strong></li>
+                    <li><strong>No hay perdón completo sin reparación.</strong></li>
+                    <li><strong>La restauración incluye tanto justicia como compasión.</strong></li>
+                    <li><strong>Toda transgresión, aunque secreta, afecta el cuerpo espiritual.</strong></li>
+                </ol>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Reflexión Mesiánica</div>
+                <p>Yeshúa haMashíaj <strong>no anula estos principios</strong>, sino que los perfecciona:</p>
+                <ul>
+                    <li>Él es <strong>el campamento puro</strong> al cual nos une.</li>
+                    <li>Es <strong>el receptor de nuestras confesiones</strong>.</li>
+                    <li>Es <strong>el agente divino de la restitución redentora</strong>.</li>
+                    <li>Y es <strong>el Kohén que representa a la parte ofendida en el Cielo</strong>.</li>
+                </ul>
+                <p>En Él, estos mandamientos se viven no como ritos exteriores, sino como <strong>procesos de
+                        restauración integral</strong> del alma, del cuerpo y de la comunidad.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 11. Preguntas de Reflexión (Con Respuestas en el Mashíaj)</h1>
+
+            <div class="section-container">
+                <div class="question">1. ¿Reconozco la gravedad del pecado oculto en mi vida, aunque no sea público?
+                </div>
+                <div class="answer">
+                    🕊️ <strong>Respuesta en el Mashíaj:</strong> Yeshúa enseñó que el pecado comienza en el corazón
+                    (Mattityahu / Mateo 5:28). Nada está oculto delante de Él (Lucas 12:2–3). Sin embargo, Él <strong>no
+                        nos condena</strong>, sino que nos ofrece gracia para confesar y ser limpiados (1 Yojanán / Juan
+                    1:9). Su Ruaj Hakodesh nos revela lo oculto para restaurarnos, no para destruirnos.
+                </div>
+
+                <div class="question">2. ¿Estoy dispuesto a confesar mi pecado y no solo arrepentirme en secreto?</div>
+                <div class="answer">
+                    🕊️ <strong>Respuesta en el Mashíaj:</strong> El camino de Mashíaj es uno de luz, no de sombras
+                    (Yojanán / Juan 3:20–21). Él llama a sus discípulos a la honestidad radical. En Su Reino, la
+                    confesión libera. Yeshúa promete: "El que a mí viene, no le echo fuera" (Juan 6:37). La confesión
+                    abre la puerta a una restauración completa.
+                </div>
+
+                <div class="question">3. ¿He restituido el daño que hice, o solo pedí perdón sin reparación?</div>
+                <div class="answer">
+                    🕊️ <strong>Respuesta en el Mashíaj:</strong> Yeshúa valoró a Zakkay (Zaqueo) no por sus palabras,
+                    sino por su <strong>restauración práctica</strong> (Lucas 19:8–9). El perdón no elimina la necesidad
+                    de reparar. Mashíaj no solo perdona: <strong>inspira justicia</strong>. La gracia no sustituye la
+                    responsabilidad: la potencia.
+                </div>
+
+                <div class="question">4. ¿Cómo afecta mi impureza espiritual a la comunidad de creyentes?</div>
+                <div class="answer">
+                    🕊️ <strong>Respuesta en el Mashíaj:</strong> Shaúl (Pablo) compara la comunidad al cuerpo humano (1
+                    Corintios 12:26). Un solo miembro en pecado no confesado <strong>afecta la salud de todos</strong>.
+                    Pero en Mashíaj, el cuerpo se edifica "en amor, hablando la verdad" (Efesios 4:15–16). Confesar,
+                    sanar y restaurar protege al cuerpo.
+                </div>
+
+                <div class="question">5. ¿Qué haré con lo que ya no puedo reparar por mis propias fuerzas?</div>
+                <div class="answer">
+                    🕊️ <strong>Respuesta en el Mashíaj:</strong> Si no hay humano a quien restituir, la Toráh dice: "da
+                    al kohén". En nuestra era, <strong>Yeshúa es nuestro Kohén Gadol eterno</strong> (Hebreos 8:1). Él
+                    recibe lo que no podemos devolver y lo transforma en redención. Entregarle a Él ese daño
+                    irrecuperable es un acto de fe, confianza y adoración.
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <strong>✅ Reflexión Final</strong><br>
+                Yeshúa haMashíaj <strong>no solo es el modelo, sino la solución</strong>. Él es quien saca la impureza,
+                recibe la confesión, capacita para la restitución y transforma el dolor en paz. Esta Aliyáh nos llama a
+                caminar en santidad relacional, comunitaria y espiritual… y nos recuerda que en Mashíaj, <strong>todo
+                    puede ser restaurado.</strong>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 12. Resumen de la Aliyáh</h1>
+            <h2><strong>Parashá Naso – Bemidbar / Números 5:1–10</strong></h2>
+            <h3><strong>Aliyáh 3: Separación de lo impuro, confesión de pecado y restitución</strong></h3>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">A.</span><strong>Resumen Narrativo</strong>
+                </div>
+                <p>En esta Aliyáh, Adonái ordena a Moshéh que <strong>saque del campamento</strong> a toda persona
+                    impura, incluyendo:</p>
+                <ul>
+                    <li>El metzorá (leproso),</li>
+                    <li>El zav (persona con flujo corporal),</li>
+                    <li>El que se ha contaminado con muerte.</li>
+                </ul>
+                <p>Esto se hace "para que no contaminen el campamento donde Yo habito en medio de ellos" (v.3). Luego,
+                    se instruye que <strong>cuando un hombre o mujer peque contra otro</strong>, quebrantando su
+                    fidelidad a Adonái, <strong>debe confesar su pecado</strong>, restituir lo que robó o dañó, y añadir
+                    <strong>un quinto más (20%)</strong>. Si no hay persona a quien devolverlo, se entrega <strong>al
+                        kohén</strong>, quien actúa como representante del Eterno.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">B.</span><strong>Principios Clave de la
+                        Aliyáh</strong></div>
+                <p>1. <strong>La pureza externa y relacional es indispensable para la presencia divina.</strong></p>
+                <p>2. <strong>Todo pecado oculto termina afectando a la comunidad entera.</strong></p>
+                <p>3. <strong>La restauración requiere tres pasos claros:</strong></p>
+                <ul>
+                    <li>Confesión abierta,</li>
+                    <li>Reparación completa,</li>
+                    <li>Devoción al Eterno (mediante entrega al sacerdote).</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">C.</span><strong>Cumplimiento Mesiánico en
+                        Yeshúa haMashíaj</strong></div>
+                <p>1. <strong>Él fue expulsado "fuera del campamento"</strong> como los impuros, para llevar nuestras
+                    inmundicias (Hebreos 13:12).</p>
+                <p>2. <strong>Recibe nuestras confesiones</strong>, intercede como Sumo Sacerdote y nos presenta
+                    justificados ante el Padre (1 Yojanán 1:9).</p>
+                <p>3. <strong>Realiza la restitución perfecta</strong>, añadiendo gracia sobre gracia (Romanos 5:15–17).
+                    Donde hubo pérdida, Él devuelve restauración; donde hubo fractura, Él restituye comunión.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title"><span class="point-letter">D.</span><strong>Aplicación Espiritual
+                        Actual</strong></div>
+                <ul>
+                    <li>Esta Aliyáh enseña que la comunidad no puede tolerar pecado oculto o relaciones rotas sin
+                        resolver.</li>
+                    <li>Nos llama a vivir en transparencia, rendición y acción restauradora.</li>
+                    <li>Y nos invita a <strong>presentar lo irreparable ante el Kohén Gadol celestial, Yeshúa</strong>,
+                        para que Él complete la obra que no alcanzamos a hacer con nuestras fuerzas.</li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Conclusión del Resumen:</strong> Números 5:1–10 es una Aliyáh de justicia relacional, pureza
+                    comunitaria y expiación práctica. Cada elemento encuentra su plenitud en Mashíaj Yeshúa, quien se
+                    hizo impuro para hacernos santos, y quien recibe nuestras confesiones no para avergonzarnos, sino
+                    para sanarnos, restaurarnos y habitar con nosotros como una comunidad verdaderamente redimida.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 13. Tefiláh de la Aliyáh</h1>
+            <h2><strong>Parashá Naso – Bemidbar / Números 5:1–10</strong></h2>
+            <h3><strong>Aliyáh 3: La santidad del campamento, confesión y restitución</strong></h3>
+
+            <div class="prophetic-title"><strong>Tefiláh: Oración inspirada en los principios de la Aliyáh y su
+                    cumplimiento en Yeshúa haMashíaj</strong></div>
+
+            <div class="prayer-text">
+                <p><strong>Avinu Shebashamayim, nuestro Padre que habita en medio del campamento santo,</strong></p>
+
+                <p>Nos postramos ante Ti reconociendo que hemos fallado muchas veces en pureza, justicia y verdad. Tú
+                    que habitas entre nosotros, nos enseñas que Tu presencia no puede coexistir con impureza ni con
+                    pecado oculto. Límpianos, Adonái, con Tu verdad.</p>
+
+                <p>No queremos ser contados entre los que ocultan la lepra del alma, ni entre los que contaminan con
+                    flujo no confesado. Tú nos llamas a salir fuera del campamento con Yeshúa haMashíaj, a cargar con el
+                    reproche del arrepentimiento, a confesar, restituir y reconciliar. Hoy venimos, no con excusas, sino
+                    con verdad en los labios.</p>
+
+                <p>Gracias porque Yeshúa, nuestro Kohén Gadol eterno, no solo escucha nuestra confesión, sino que la
+                    presenta con compasión ante el trono. Gracias porque donde nosotros no podemos restaurar, Él añade
+                    gracia. Donde no alcanzamos a reparar, Él paga por completo. Donde hay daño irreparable, Él lo
+                    transforma en redención.</p>
+
+                <p>Te pedimos hoy, Abba Qadosh, que formes en nosotros una comunidad pura, un campamento santo, donde la
+                    confesión no sea vergüenza, sino acto de valentía espiritual; donde la restitución no sea
+                    obligación, sino expresión de amor; donde Tu Shejináh no sea visitante, sino moradora perpetua.</p>
+
+                <p>Purifícanos del pecado visible y del oculto, de lo ritual y de lo relacional, de la lepra de la
+                    lengua y del orgullo que niega el error. Haznos dignos de ser portadores de Tu Gloria en medio del
+                    campamento.</p>
+
+                <p>En el Nombre de Yeshúa haMashíaj, quien fue expulsado fuera para que nosotros fuésemos reunidos
+                    dentro, quien confesó por nosotros, quien restituyó por nosotros, quien hoy vive para interceder por
+                    nosotros.</p>
+            </div>
+
+            <div class="prayer-conclusion">
+                <p><strong>Amén.</strong></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya4.html">Continuar con la Aliyá 4</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 6:1-21</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>35. Parashá Naso (נשא) Aliyáh 5: (Números 6:1-21) La ley del voto del nazir (nazareo) y su consagración.
+            <p>Haftaráh: Jueces 13:2-25 (El voto nazareo de Shimshón y su dedicación a Elohím desde el nacimiento).</p>
+            <p>Brit Hadasháh: Hechos 18:18 (Shaul (Pablo) hace un voto nazareo).</p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Bemiḏbar / Números 6:1–21</h1>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 1</div>
+                <div class="hebrew">וַיְדַבֵּ֤ר יְהוָה֙ אֶל־מֹשֶׁ֔ה לֵאמֹ֖ר׃</div>
+                <div class="transliteration">Vaydabbér Adonái el‑Moshéh le‑'emór.</div>
+                <div class="translation">"Y habló יהוה a Moshéh, diciendo:"</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en el Mashíaj:</strong> Así como יהוה habló a Moshéh para responder al clamor
+                    del pueblo, <strong>Yeshúa es la Palabra viva</strong>, quien viene a hablar vida al corazón
+                    afligido y traer restauración (Juan 1:14).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 2</div>
+                <div class="hebrew">דַּבֵּ֥ר אֶל־בְּנֵֽי־יִשְׂרָאֵ֖ל וְאָמַרְתָּ֑ לָתֵ֨ת תְּרוּמָ֤ה לַֽיהוָה֙ מֵעֲנַ֣ף
+                    בְּכֹרָ֔ה לְחַיֵּ֖י נֶֽזֶר׃</div>
+                <div class="transliteration">Dabbér el‑venê‑Yisra'êl we‑'amartā: lātêṯ tᵉrūmāh la‑Adonái mē'anaḇ bᵉḵōrāh
+                    ləḥayyê nevezēr.</div>
+                <div class="translation">"Habla a los hijos de Israel y di: 'Cuando alguien haga voto de nezer,
+                    separación, consagrado al Eterno…' "</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en el Mashíaj:</strong> El voto de nazareo introduce la consagración
+                    voluntaria. Yeshúa mismo fue separado ("nazir") para cumplir Su propósito mesiánico. Su vida fue
+                    marcada por santidad y entrega total por el pueblo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 3</div>
+                <div class="hebrew">כִּי־יָרֵ֥א הָאָדָ֛ם תְּרוּמָ֥ה לַֽיהוָ֖ה מִנֶּ֑זֶר תִּנְזַ֣ר אֶת־רֹאשׁ֗וֹ לַחַיֵּ֛י
+                    נֶֽזֶר׃</div>
+                <div class="transliteration">Kî‑yārēh hā'āḏām tᵉrūmāh la‑Adonái min-nezēr tinnazér 'et‑rōšô laḥayyê
+                    nevezēr.</div>
+                <div class="translation">"Porque si un hombre consagra voto al Eterno como nazareo, se separará su
+                    cabeza para la vida del voto nazareo."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en el Mashíaj:</strong> Yeshúa no solo es separada Su cabeza para el servicio,
+                    sino que también es <strong>la cabeza de Su cuerpo</strong>, la comunidad (Colosenses 1:18). Él
+                    cumple su voto con santidad perfecta.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 4</div>
+                <div class="hebrew">כִּי־יוּמַ֤שׁ רֹאשׁוֹ֙ בַּמִּקְּרֶ֣ה זֶ֔ה יִזְבַּ֥ח חַטָּ֖את לַיהוָ֑ה לִפְשַׁע־ה֔וּא
+                    מֵעֲצַ֥ת נַפְשֽׁוֹ׃</div>
+                <div class="transliteration">Kî‑yummash rōšô bammirqēh zēh yizbaḥ ḥaṭṭā't la‑Adonái li‑pša'‑hū mē'aṣat
+                    nafs̱ô.</div>
+                <div class="translation">"Cuando se corte la cabeza del nazareo al cumplirse el tiempo del voto,
+                    ofrecerá sacrificio por pecado al Eterno, por su falta, según la duración de su voto."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en el Mashíaj:</strong> Yeshúa, cuya cabeza fue herida en la cruz,
+                    <strong>cumplió el juramento de expiación</strong>: su sacrificio redime a la humanidad del pecado y
+                    ministra vida eterna (Hebreos 2:17–18). Su muerte reconciliadora santifica a los separados.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 5</div>
+                <div class="hebrew">עַל־יְדֵי נְזִיר נֶ֖זֶר יִתֵּ֣ק רֹאשׁ֑וֹ לַיהוָ֣ה</div>
+                <div class="transliteration">'Al‑yᵉdê nevezîr nēzeṯ yittēq rōšô la‑Adonái.</div>
+                <div class="translation">"Durante los días del nazareo, su cabello no será cortado; será santo, separado
+                    para el Eterno."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> El voto nazareo destaca <strong>la consagración
+                        total</strong>. Yeshúa es la Verdadera Cabeza separada sin mancha. Él se entregó en obediencia
+                    perfecta, manifestando santidad completa y sirviendo como nuestro ejemplo supremo de vida consagrada
+                    (Filipenses 2:8–9).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 6</div>
+                <div class="hebrew">כָּל־יְמֵי הַנֶּ֣זֶר לַיהוָ֣ה יִוָּצֵ֑ק עַד־יְמוֹת֖וֹ קֹדֶשׁ</div>
+                <div class="transliteration">Kāl‑yᵉmê hanezeṯ la‑Adonái yiwāṣēq; ʿad‑yᵉmotô qōdeš.</div>
+                <div class="translation">"Todos los días del voto nazareo será separado al Eterno; será santo hasta su
+                    muerte."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Yeshúa merece santificación absoluta durante toda Su vida
+                    terrenal, hasta su muerte redentora. No solo fue separado por un voto temporal, sino por eternidad:
+                    es <strong>Kadosh veNezer olam</strong> (Santo y Consagrado eternamente).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 7</div>
+                <div class="hebrew">אֶת־נָ֨בַר יָבוֹא֙־מַיִם֙ עַל־רֹאשׁ֔וֹ</div>
+                <div class="transliteration">'Et‑nāḇar yāḇō'‑mayim ʿal‑rōšô.</div>
+                <div class="translation">"Ninguna agua será derramada sobre su cabeza; será separado, consagrado."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Este es un estatus único: Yeshúa, aún bautizado y ungido,
+                    no estaba bajo el voto nazareo. Su consagración es inherente, no impuesta: <strong>Él mismo es agua
+                        viva, no recibe otra</strong>, sino que fluye eternamente hacia su pueblo (Juan 7:38).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 8</div>
+                <div class="hebrew">עַד־יְמֵי־נְזִירוֹ֙ יֶהְיֶ֣ה קָדֽוֹשׁ׃ רִאשֹׁנָ֗ה בְּעֵרֶךְ־יַיִן֙ וְשֵׁ֣ישׁ נָבַ֔ל
+                    לֹא־יֹ֥אכַל חַלּ֖וֹת זַֽקֻּקֽוֹ׃</div>
+                <div class="transliteration">'Ad‑yᵉmê nevezîrô yoḥēh qāḏōš; rîšônāh bə'ēreḵ‑yayin we‑šeš nāḇal
+                    lō‑yō'akal ḥallōṯ zaqqûqô.</div>
+                <div class="translation">"Durante los días del nazareo será santo: primero no beberá vino ni sidra, no
+                    comerá cosas fermentadas, ni tocará cosas inmundas, quedando apartado."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Aunque vino y aceite fluyeron del lado tras la herida
+                    (Juan 19:34), Él no estaba sujeto a abstemiento temporal. Cumplió la santidad perfecta
+                    independientemente, mostrando que <strong>la auténtica consagración es suya no por voto sino por
+                        esencia</strong> (Hebreos 7:26).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 9</div>
+                <div class="translation"><em>(continuación del versículo anterior: "sino que será santo...")</em></div>
+                <div class="translation">Forma parte de las mismas normas: no tocarás cadáver.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 10</div>
+                <div class="hebrew">בְּי֥וֹם יִפְלֶ֣ה נְזִיר֩וֹ עַל־שְׁמוּט֨ רֹאשׁ֜וֹ יַהַרְגֶנּ֣וּ טָה֔וֹר אָשָׁ֥ם
+                    יִשְׁלֶ֖ם לַיהוָ֑ה</div>
+                <div class="transliteration">Kᵉyōm yiflēh nevezîrô ʿal‑šemūt rōšô yaharḥennû ṭāhōr; 'āšām yišlêm
+                    la‑Adonái.</div>
+                <div class="translation">"Y cuando el nazareo complete los días del voto y se corte el cabello, será
+                    purificado y ofrecerá expiación al Eterno."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Yeshúa, al consumar Su misión, ofrece <strong>expiación
+                        definitiva y sacrificio</strong>. Su muerte viene acompañada de un acto consumativo de redención
+                    total: es la ofrenda perfecta, sin necesidad de sacudir el cabello humano—Él es la ofrenda final y
+                    plena (Hebreos 10:12).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 11</div>
+                <div class="hebrew">וְהַכֹּהֵן֩ יִקָּ֨ח מֵאֶת־חֻמִּ֤י חַלֻּשָּׁ֙ה וּמֵאֶת־חֻמִּ֣י חָמֵר֔ וּמֵאֶת־חֻמִּ֖י
+                    כְּפֻפָּ֑ה וּמִן־הַשָּׁ֣מֶן יִשְׂרֹ֔ף הַכֹּהֵ֖ן אֹתָ֥ם הַצּוּקִֽים׃</div>
+                <div class="transliteration">We‑hakkōhēn yiqqāḥ mē'et‑ḥummî ḥallûšāh ūmē'et‑ḥummî ḥāmēr ūmē'et‑ḥummî
+                    kᵉfuppāh ūmin‑haśśāmeṯ niśrōḏ hakkōhēn 'ōṯām haṣṣûqqîm.</div>
+                <div class="translation">"Y el sacerdote tomará de la erupción del cabello débil, y de la erupción del
+                    cuero, y de la erupción del faldón, y del aceite, y los quemará el sacerdote quemándolos sobre el
+                    fuego del santuario."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Estos elementos representan la preocupación interior del
+                    nazareo por su santidad personal. Yeshúa fue el cumplimiento perfecto donde <strong>no quedó ninguna
+                        "erupción" interior que preservar</strong>, Él fue sanado y sin mancha. Como sacerdote
+                    verdadero, ofrece limpieza de raíz, no solo rasgos exteriores (Hebreos 7:27).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 12</div>
+                <div class="hebrew">וְהַנָּזִ֗יר יַשְׁתֵּ֤ה אֶת־הַיָּ֙יִן֙ וְהַשֵּׁ֣שׁ תְּשַׁתֵּ֔הוּ וְיִשְׁמַ֥ר
+                    יָ֖לְדוּתוֹ מִן־הַטּֽוּמְאָה׃</div>
+                <div class="transliteration">Wahanazzîr yišţē 'et‑hayyāyin we‑hašeš tešaṯēhû we‑yišmar yaldûtô
+                    min‑haṭṭum'āh.</div>
+                <div class="translation">"El nazareo beberá del vino y de la sidra, y cuidará su nacimiento de
+                    impureza."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Yeshúa es la fuente de agua y, además, <strong>vino
+                        nuevo</strong>, transformando la puridad ritual en vida abundante: "El que tenga sed, venga a mí
+                    y beba" (Juan 7:37). Él preserva la pureza del nacimiento espiritual de Su Pueblo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 13</div>
+                <div class="hebrew">נָזִ֖יר לַיהוָ֣ה בְּהִתְקָרֵ֑ב לְלִינִ֣י נָדִ֔ד יָבִ֛א עַל־הֵ֖עָרָֽה׃</div>
+                <div class="transliteration">Nāzîr la‑Adonái bihitqārēb le‑lîninî nᵉḏîḏ yāḇî 'al‑hē'ārāh.</div>
+                <div class="translation">"El nazareo al acercarse a su dedicación, cuando se dedique a morar y venga
+                    sobre la cabaña…"</div>
+                <div class="prophetic-content">
+                    <strong>Nota:</strong> Este es un verso complejo del rito (relativo a Tetzavveh del voto
+                    extendido).<br>
+                    <strong>Cumplimiento en Mashíaj:</strong> La dedicación final del nazareo apunta al lugar santo. En
+                    Mashíaj, Él no solo se dedica, <strong>Él consagra el santuario mismo:</strong> su cuerpo es el
+                    lugar de comunión divina (Juan 2:19), y nuestra morada espiritual.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 14</div>
+                <div class="hebrew">הוֹרַ֣שׁ אֶת־כִּפֻּ֗פַת רֹאשׁ֙ נְזִיר֙ לַיהוָ֔ה לִפָּ֖נַי הַשָּׁ֑ם וּקְרַבְתָּ֖הּ
+                    לִפְנֵ֥י יְהוָֽה׃</div>
+                <div class="transliteration">Hōraš 'et‑kippûp̄at rōš nazzîr la‑Adonái li‑pānāy haššām; uqraʿtāh li‑p̄ənê
+                    YHVH.</div>
+                <div class="translation">"…descortinará la corona de la cabeza del nazareo al Eterno, delante del
+                    santuario, y la acercará delante de יהוה."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Este gesto simboliza ofrenda total. Yeshúa, al despojarse
+                    de Su gloria, ofrece su "paloma sin mancha" al Padre (Mateo 26:39), restituyendo la corona de su
+                    cabeza por completo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 15</div>
+                <div class="hebrew">וְהוֹרִ֥ישׁ אֶת־זְקָנ֖וֹ לִפְנֵ֣י הַקֹּ֑דֶשׁ וְנָשַׁרְתָּ֥ אֶת־נִזִּיר֖וֹ בִּפְנֵ֥י
+                    יְהוָֽה׃</div>
+                <div class="transliteration">We‑hôrîš 'et‑zᵉqānô lîp̄ənê haqqōḏēš; we‑nāšartā 'et‑nizzîrô bip̄ənê YHVH.
+                </div>
+                <div class="translation">"…y rasurará su barba delante del santuario, y separará su voto nazareo delante
+                    de יהוה."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Aquí termina el nazareato del hombre, representando
+                    <strong>la muerte del antiguo pacto</strong>. En Mashíaj, mediante Su muerte, se rasga el velo y se
+                    culmina el juramento ante el santuario de Elohím (Marcos 15:38).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 16</div>
+                <div class="hebrew">וְשָׁכַם֩ וְהִקְרִ֨יב עַל־קַרְנ֜וֹתֵ֗י הַמִּזְבֵּ֤חַ קְטֹ֙רֶת֙ בַּבֹּ֔קֶר קְטֹ֥רֶת
+                    מְשַׁמֶּ֖נֶת עַל־הַזָּֽקָן׃</div>
+                <div class="transliteration">We‑šāḵam we‑hiqrîḇ 'al‑qarnôṯê hamizbēaḥ qəṭōreṯ babbōqēr qəṭōreṯ
+                    mešammēneṯ 'al‑ḥazzāqan.</div>
+                <div class="translation">"Y se levantará y ofrecerá sobre las esquinas del altar incienso matinal,
+                    incienso graso sobre la ofrenda de la barba."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> El aromático incienso es una figura de la oración
+                    intercesora. Yeshúa ofrece como nuestra oración continua, su vida y muerte se convierten en perfume
+                    de aceptación perpetua ante el Padre (Apocalipsis 5:8 / 8:3–4).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 17</div>
+                <div class="hebrew">וְאֶת־אֵלֶּה הַמְּצֻקִים יִקָּחוּ הַכֹּהֵן וְהֶאֱזִין לָתֵת־קֹל לַלַּהַט הָאֵשׁ
+                    שְׁלֹשָׁ֑ה זָקִֽיר׃</div>
+                <div class="transliteration">We‑'et‑'ēlleh hammᵉṣuqîm yiqqāḥû hakkōhēn; we‑hĕ'ĕzîn lāṯēt‑qōl lallāḥaṯ·
+                    hā'ēš šᵉlōšāh zāqîr.</div>
+                <div class="translation">"Y estas cosas quemadas tomará el sacerdote, y tendrá cuidado de echar el
+                    sonido por el ardor de la llama –tres veces ofrendará."</div>
+                <div class="literal-translation"><strong>Traducción literal:</strong> El kohén ofrecerá el incienso
+                    diario tres veces, en obediencia al ardor divino del altar.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Yeshúa, el Sumo Sacerdote eterno, ofrece intercesión
+                    continua ante el Padre (Hebreos 7:25). Su sacrificio se presenta cada día, no en animal, sino en Su
+                    sangre eterna –cumpliendo el llamado de «tres veces» representado en los tiempos litúrgicos de
+                    oración que Él perfecciona (Marcos 15:34).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 18</div>
+                <div class="hebrew">אֶת־תְּרוּמַתָּהּ֙ וְאֶת־קֹרְבָנָ֔הּ וְאֶת־הַקְּטֹרֶ֖ת לַיהוָ֑ה</div>
+                <div class="transliteration">'Et‑tᵉrūmāṯāh we‑'et‑qōrvānāh we‑'et‑haqqəṭōreṯ la‑Adonái.</div>
+                <div class="translation">"La ofrenda, su sacrificio y el incienso al Eterno."</div>
+                <div class="literal-translation"><strong>Traducción literal:</strong> Todo lo presentado al altar:
+                    dádiva, sacrificio y aroma, era para יהוה.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> El Hijo presenta Su vida, muerte y intercesión como un
+                    solo acto integral de redención. Todo fue ofrecido al Eterno, y aceptado perpetuamente.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 19</div>
+                <div class="hebrew">וְלֹא־יַהִ֥יא פָנָ֖יו קָהֵ֑ל זֶ֚ה יִֽהְיֶה֙ לְדֹ֣רֹתָ֔ם מֵאֵ֖ת בְּנֵ֥י יִשְׂרָאֵֽל׃
+                </div>
+                <div class="transliteration">We‑lō‑yaḥî pānāyw qāhēl zēh yihyê lᵉḏōrōṯām mē'et‑venê‑Yisra'êl.</div>
+                <div class="translation">"Y no habrá profanación de este mandato; será santo por las generaciones de
+                    Israel."</div>
+                <div class="literal-translation"><strong>Traducción literal:</strong> Ningún profano transgredirá esta
+                    orden; es eterno, sagrado para Israel.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> El pacto en Mashíaj no es efímero ni variable. Su obra es
+                    una orden santa establecida eternamente, confirmada por su resurrección y mediación continua
+                    (Hebreos 9:15, 13:20–21).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 20</div>
+                <div class="hebrew">וְאִישׁ֙ כִּי־יִשָּׂ֣א אִשָּׁ֔ה נָחֵ֖ל נֶזֶר֣ נָזִ֑יר לְמ֥וֹעֲד אֲשֶׁ֖ר
+                    יְנַזְּרֶֽנָּה׃</div>
+                <div class="transliteration">We‑'īš kî‑yissā' 'ishāh nāḥēl nevez nēzîr lᵉmō'ēd 'ăšer yᵉnāẕzᵉrēnā.</div>
+                <div class="translation">"Cuando un hombre tome mujer y nazareato por el tiempo que dedicará."</div>
+                <div class="literal-translation"><strong>Traducción literal:</strong> Si un hombre toma esposa durante
+                    su voto nazareo, el voto continúa según el tiempo designado.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> El matrimonio es sagrado para el nazareo; así en Mashíaj:
+                    <strong>él instituye la nueva unión espiritual</strong>, donde la Esposa es la Iglesia y la santidad
+                    es integral, no separable (Efesios 5:23–27).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 21</div>
+                <div class="hebrew">וְכָשִׁיב יָבֹ֖א שֵׁשׁ־חֹדֶ֣שֵׁ֑י הַיָּמִ֖ים תִּקְרַ֥ע אֶת־שַׂעַֽר רֹאשֽׁוֹ׃</div>
+                <div class="transliteration">We‑kāšîḇ yāḇō' šeš‑ḥōḏēšêm hayyāmîm tiqrā' 'et‑śa'ar rōšô.</div>
+                <div class="translation">"Y cuando se cumpla el seis meses de esos días, rasgará el cabello de la
+                    cabeza."</div>
+                <div class="literal-translation"><strong>Traducción literal:</strong> Al cumplir la duración del voto,
+                    cortará su cabello y concluirá el periodo nazareo.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento en Mashíaj:</strong> Yeshúa, tras su misión completa, ofrece Su vida como
+                    sacrificio consumado —no ritos temporales, sino <strong>acto eterno de redención que finaliza el
+                        ciclo del pecado</strong> (Hebreos 10:12).
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="conclusion">
+                <h3>✅ Reflexión Final</h3>
+                <p>En esta sección, el rito del nazareo se extiende: visión de santidad prolongada, matrimonio
+                    consagrado, intercesión diaria, y conclusión sacrificial. Cada elemento encuentra en Yeshúa su "sí y
+                    amén":</p>
+                <ul>
+                    <li><strong>Vida separada</strong></li>
+                    <li><strong>Unión espiritual</strong></li>
+                    <li><strong>Oración constante</strong></li>
+                    <li><strong>Sacrificio definitivo</strong></li>
+                </ul>
+                <p class="highlight"><strong>Él es el Nazireo eterno: consagrado, casado con Su pueblo, orando sin
+                        cesar, ofreciendo redención para siempre.</strong></p>
+            </div>
+        </div>
+
+        <h1>Punto 2. Haftaráh: Jueces 13:2-25 (El voto nazareo de Shimshón y su dedicación a Elohím desde el
+            nacimiento).</h1>
+
+        <div class="content-container">
+            <h2>El Nacimiento de Shimshón y su Cumplimiento Profético en el Mashíaj</h2>
+            <p>Este capítulo presenta una narrativa rica en tipología mesiánica, donde cada verso anticipa aspectos del
+                Redentor venidero.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:2</div>
+            <div class="hebrew">וַיְהִ֗י אִישׁ־אִשְׁתֹּ֛ו עֲקִרָ֥ה לֹ֖א יְלֵ֣ד וּשְׁמָ֑הּ וְאִשְׁתּ֖וֹ עֲקֶרֶתֽ מְאֹֽד׃
+            </div>
+            <div class="transliteration">Va-yehí ish-ishtó akirá lo yeléd u-shmáh, ve-ishtó akérét me-ód.</div>
+            <div class="translation">Y aconteció un hombre cuya esposa era estéril, no paría; y su esposa era muy
+                estéril.</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                La esterilidad representa falta de fruto espiritual. El Mesías viene para traer vida y fruto donde hay
+                muerte (Juan 15:5). Su obra hace fértil nuestra tierra espiritual.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:3</div>
+            <div class="hebrew">וַיֵּרָ֤א מַלְאַךְ־יְהוָה֙ אֶל־הָ֣אִשָּׁ֔ה וַיֹּ֣אמֶר אֵלֶ֔יהָ הִנֵּה־נָ֥א אַ֛תְּ
+                עֲקָרָ֖ה וְלֹ֣א יָלָ֑דְתְּ וְהָרִ֖ית וְיָלַ֥דְתְּ בֵּֽן׃</div>
+            <div class="transliteration">Va-yerá malaj-Adonái el-ha-isháh va-yómer eléhá: hiné-na at akaráh ve-lo
+                yaládt, ve-harít ve-yaládt ben.</div>
+            <div class="translation">Y se apareció el mensajero de Adonái a la mujer, y le dijo: "He aquí que tú eres
+                estéril y nunca has dado a luz, pero concebirás y parirás un hijo."</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                Prefigura las anunciaciones mesiánicas. Como a la esposa de Manoaj, el mensajero divino anuncia
+                nacimientos sobrenaturales (Lucas 1:30-31). La esterilidad vencida por poder divino.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:4</div>
+            <div class="hebrew">וְעַתָּה֙ הִשָּׁ֣מְרִי נָ֔א וְאַל־תִּשְׁתִּ֖י יַ֣יִן וְשֵׁכָ֑ר וְאַל־תֹּ֖אכְלִי
+                כָּל־טָמֵֽא׃</div>
+            <div class="transliteration">Ve-atáh hishámerí ná, ve-al-tishtí yáyin ve-shejár, ve-al-tojlí kol-tamé.</div>
+            <div class="translation">Ahora, pues, cuídate; no bebas vino ni licor, ni comas cosa inmunda.</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                La separación tipifica la preparación para lo santo. Como la madre de Shimshón se apartó, así Miryam fue
+                preparada para concebir al Santo (Lucas 1:35). Pureza precede a la manifestación divina.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:5</div>
+            <div class="hebrew">כִּי֩ הִנֵּ֨ה אַ֜תְּ הָרָ֗ה וְיֹלַ֣דְתְּ בֵּן֮ וּמוֹרָ֣ה לֹא־יַעֲלֶ֣ה עַל־רֹאשׁוֹ֒
+                כִּֽי־נְזִ֤יר אֱלֹהִים֙ יִהְיֶ֣ה הַנַּ֔עַר מִן־הַבֶּ֖טֶן וְה֣וּא יָחֵ֔ל לְהוֹשִׁ֥יעַ אֶת־יִשְׂרָאֵ֖ל
+                מִיַּ֥ד פְּלִשְׁתִּֽים׃</div>
+            <div class="transliteration">Ki hiné at haráh ve-yoládt ben, u-moráh lo ya'aléh al-roshó, ki-nezír Elohím
+                yihyéh hana'ar min-habéten, ve-hú yajél lehoshía et-Yisra'el mi-yad Pelishitím.</div>
+            <div class="translation">Porque he aquí que concebirás y darás a luz un hijo; navaja no pasará sobre su
+                cabeza, porque el niño será nazareo de Elohím desde el vientre, y él comenzará a salvar a Israel de mano
+                de los filisteos.</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                Shimshón, nazareo desde el vientre, tipifica al Mashíaj apartado desde la concepción (Lucas 1:35). Su
+                misión salvadora prefigura la redención definitiva que Yeshúa traería a Su pueblo (Mateo 1:21).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:6</div>
+            <div class="hebrew">וַתָּבֹ֤וא הָאִשָּׁה֙ וַתֹּ֣אמֶר לְאִישָׁ֔הּ לֵאמֹ֑ר אִ֣ישׁ הָאֱלֹהִ֞ים בָּ֣א אֵלַ֗י
+                וּמַרְאֵ֤הוּ כְּמַרְאֵה֙ מַלְאַ֣ךְ הָאֱלֹהִ֔ים נוֹרָ֖א מְאֹ֑ד וְלֹא־שְׁאִלְתִּ֙יהוּ֙ אֵ֣י מִזֶּ֔ה ה֖וּא
+                וְאֶת־שְׁמ֣וֹ לֹֽא־הִגִּ֥יד לִֽי׃</div>
+            <div class="transliteration">Va-tavó ha-isháh va-tómer l'isháh leimór: ish ha-Elohím bá elái, u-mar'éhu
+                ke-mar'é malaj ha-Elohím, norá me'od, ve-lo she'iltiéhu ei mizéh hú, ve'et shemó lo higid lí.</div>
+            <div class="translation">Y vino la mujer y dijo a su marido: "Un hombre de Elohím vino a mí, y su aspecto
+                era como el aspecto de un mensajero de Elohím, muy imponente; y no le pregunté de dónde era, ni me
+                reveló su nombre."</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                La descripción recuerda las manifestaciones del Mashíaj como Malaj (mensajero divino). El misterio de Su
+                nombre y procedencia se alude en Miquéas 5:2: "de días eternos." Es revelado plenamente solo a los
+                humildes (Lucas 1:31, Juan 8:58).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:7</div>
+            <div class="hebrew">וַיֹּ֨אמֶר לִ֜י הִנֵּ֣ה אָֽתְהָ֗ תְּהָרִים֙ וְיֹלַ֣דְתְּ בֵּ֔ן וְעַתָּ֗ה אַל־תִּשְׁתִּ֤י
+                יַ֙יִן֙ וְשֵׁכָ֔ר וְאַל־תֹּ֖אכְלִי כָּל־טָמֵ֑א כִּ֣י נְזִ֧יר אֱלֹהִ֛ים יִהְיֶ֥ה הַנַּ֖עַר מִן־הַבֶּ֣טֶן
+                עַ֖ד י֥וֹם מוֹתֽוֹ׃</div>
+            <div class="transliteration">Va-yómer lí: hiné at teharím ve-yoladt bēn, ve-'attáh al tishtí ya·yín
+                ve-shejár, ve-al to'jlí kol tamé, ki nezír Elohím yihyéh hana'ar min habéten 'ad yom motó.</div>
+            <div class="translation">Y me dijo: "Mira, concebirás y darás a luz un hijo; ahora, no bebas vino ni licor,
+                ni comas cosa inmunda, porque nazareo de Elohím será el niño desde el vientre hasta el día de su
+                muerte."</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                Como Samson, Yeshúa fue apartado desde el vientre (Lucas 1:35). Él vivió consagrado a Elohím, sin pecado
+                (Hebreos 4:15), cumpliendo la santidad del voto perpetuo.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:8</div>
+            <div class="hebrew">וַיֶּעְתַּ֨ר מָנ֜וֹחַ אֶל־יְהוָ֗ה וַיֹּאמַר֮ בִּ֣י אֲדֹנָי֒ אִ֣ישׁ הָאֱלֹהִים֩ אֲשֶׁ֨ר
+                שָׁלַ֜חְתָּ יָבֹ֣א־נָ֗א עוֹד֙ אֵלֵ֔ינוּ וְיוֹרֵ֣נוּ מַה־נַּֽעֲשֶׂ֔ה לַנַּ֖עַר הַיּוּלָּֽד׃</div>
+            <div class="transliteration">Va-ye'tar Manóaj el-Adonái va-yómer: bí Adonái, ish ha-Elohím asher shalájta,
+                yavó-na 'od eleinu, ve-yorénu mah na'aséh lana'ar ha-yulád.</div>
+            <div class="translation">Y Manoaj oró a Adonái y dijo: "Por favor, Adonái, que venga otra vez el hombre de
+                Elohím que enviaste y nos enseñe qué hemos de hacer con el niño que va a nacer."</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                La súplica de instrucción recuerda las oraciones por entendimiento mesiánico. Solo por revelación divina
+                podemos saber cómo vivir conforme al propósito del Mesías (Juan 16:13, Efesios 1:17).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:9</div>
+            <div class="hebrew">וַיִּשְׁמַ֤ע הָאֱלֹהִים֙ בְּק֣וֹל מָנ֔וֹחַ וַיָּבֹ֡א מַלְאַךְ֩ הָאֱלֹהִ֨ים ע֜וֹד
+                אֶ֣ל־הָאִשָּׁ֗ה וְהִ֛יא יֹשֶׁ֥בֶת בַּשָּׂדֶ֖ה וּמָנ֥וֹחַ אִישָֽׁהּ אֵ֥ין עִמָּֽהּ׃</div>
+            <div class="transliteration">Va-yishma ha-Elohím be-qol Manóaj, va-yavó malaj ha-Elohím 'od el-ha-isháh,
+                ve-hí yoshevet ba-sadéh, u-Manóaj isháh ein 'imáh.</div>
+            <div class="translation">Y Elohím oyó la voz de Manoaj, y el mensajero de Elohím volvió otra vez a la mujer,
+                y ella estaba sentada en el campo, pero su esposo Manoaj no estaba con ella.</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                El malaj (mensajero) regresa al campo — lugar de revelación y encuentro (como los pastores en Lucas 2).
+                La salvación se manifiesta en lo común para mostrar Su gracia soberana (1 Corintios 1:27).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:10</div>
+            <div class="hebrew">וַתְּמַהֵ֥ר הָאִשָּׁ֖ה וַתָּ֣רָץ וַתַּגֵּ֑ד לְאִישָׁ֗הּ וַתֹּ֙אמֶר֙ אֵלָ֔יו הִנֵּ֗ה
+                נִרְאָה֙ אֵלַ֔י הָאִ֕ישׁ אֲשֶׁ֥ר בָּ֖א בַּיּ֥וֹם אֵלָֽי׃</div>
+            <div class="transliteration">Va-te-mahér ha-isháh, va-táratz va-tagéd le-isháh, va-tómer eláv: hiné nir'áh
+                elái ha-ish asher bá ba-yóm elái.</div>
+            <div class="translation">Y la mujer se apresuró, corrió y le contó a su esposo, y dijo: "He aquí, se me
+                apareció el hombre que vino a mí el otro día."</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                La reacción de la mujer es como las mujeres del Evangelio que corren a anunciar la resurrección (Mateo
+                28:8). La experiencia espiritual lleva al testimonio de fe.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:11</div>
+            <div class="hebrew">וַיָּ֤קָם וַיֵּ֙לֶךְ֙ מָנ֔וֹחַ אַחֲרֵ֖י אִשְׁתּ֑וֹ וַיָּבֹ֗א אֶל־הָאִ֛ישׁ וַיֹּ֥אמֶר
+                ל֖וֹ הַאַתָּ֣ה הָאִ֔ישׁ אֲשֶׁ֥ר דִּבַּ֖רְתָּ אֶל־הָאִשָּֽׁה וַיֹּ֥אמֶר אָנִֽי׃</div>
+            <div class="transliteration">Va-yakám va-yélej Manóaj ajaré ishtó, va-yavó el-ha-ish, va-yómer ló: ha-attá
+                ha-ish asher dibártá el-ha-isháh? Va-yómer: aní.</div>
+            <div class="translation">Y se levantó Manoaj y fue tras su esposa, y vino al hombre, y le dijo: "¿Eres tú el
+                hombre que habló con la mujer?" Y él dijo: "Yo soy."</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                "Aní" — "Yo soy" — es eco de la declaración mesiánica: "Yo soy el que soy" (Éxodo 3:14, Juan 8:58). El
+                malaj es manifestación del Verbo preencarnado, anticipando a Yeshúa.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:12</div>
+            <div class="hebrew">וַיֹּ֣אמֶר מָנ֔וֹחַ עַתָּ֕ה יָבֹ֥א דְבָרֶ֖יךָ מַה־יִּֽהְיֶ֥ה מִשְׁפַּֽט־הַנַּ֖עַר
+                וּמַעֲשֵֽׂהוּ׃</div>
+            <div class="transliteration">Va-yómer Manóaj: atáh yavó d'vareja, mah yihyéh mishpat hana'ar u-ma'aséhú?
+            </div>
+            <div class="translation">Y dijo Manoaj: "Ahora que se cumpla tu palabra, ¿qué será la norma de vida del niño
+                y su obra?"</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                Inquiere sobre la función mesiánica. Así los profetas indagaban el tiempo y circunstancias del Mashíaj
+                (1 Pedro 1:10–11). La obra de Yeshúa es profetizada desde antes de Su nacimiento.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:13</div>
+            <div class="hebrew">וַיֹּ֤אמֶר מַלְאַךְ֙ יְהוָ֔ה אֶל־מָנ֖וֹחַ מִכֹּ֛ל אֲשֶׁר־אָמַ֥רְתִּי אֶל־הָאִשָּׁ֖ה
+                תִּשָּׁמֵֽר׃</div>
+            <div class="transliteration">Va-yómer malaj Adonái el-Manóaj: mikól asher amártí el-ha-isháh, tishamér.
+            </div>
+            <div class="translation">Y el mensajero de Adonái dijo a Manoaj: "De todo lo que dije a la mujer, debe
+                guardarse."</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                Todo lo dicho acerca del Mashíaj debe ser obedecido. Yeshúa es el cumplimiento perfecto de la palabra
+                dada, y sus mandamientos son vida (Juan 14:15, Mateo 5:17-19).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:14</div>
+            <div class="hebrew">מִכֹּל֩ אֲשֶׁר־יֵצֵ֨א מִגֶּ֜פֶן הַיַּ֗יִן לֹ֤א תֹאכֵל֙ וְיַ֣יִן וְשֵׁכָ֔ר אַל־תֵּ֖שְׁתְּ
+                וְכָל־טָמֵ֣א אַֽל־תֹּאכֵ֑ל כֹּל֙ אֲשֶׁ֣ר צִוִּיתִ֔יהָ תִּשְׁמֹ֖ר׃</div>
+            <div class="transliteration">Mikól asher yetsé migéfen ha-yayin lo to'jél, ve-yayin ve-shejár al tesht,
+                ve-kol tamé al to'jél; kol asher tsivitíhá tishmór.</div>
+            <div class="translation">De todo lo que sale de la vid no comerá, ni vino ni licor beberá, ni cosa impura
+                comerá; todo lo que le ordené, guardará.</div>
+            <div class="prophecy-fulfillment">
+                <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                Yeshúa haMashíaj fue sin impureza, separado de los pecadores (Hebreos 7:26). Así también su Kehiláh está
+                llamada a santidad en todo (1 Pedro 1:15-16).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:15</div>
+            <div class="hebrew">וַיֹּ֣אמֶר מָנ֔וֹחַ אֶל־מַלְאַ֖ךְ יְהוָ֑ה נַֽעַצְרָה־נָּ֣א אֹ֔תָךְ וְנַעֲשֶׂה־לְּךָ֖
+                גְּדִֽי־עִזִּֽים׃</div>
+            <div class="transliteration">Va-yómer Manóaj el-malaj Adonái: na'atzráh-na otáj, ve-na'aséh lejá gedí
+                'izzím.</div>
+            <div class="translation">Y dijo Manoaj al mensajero de Adonái: "Permítenos retenerte y prepararte un
+                cabrito."</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Como Avraham preparó hospitalidad para el Malaj de <span
+                    class="hebrew-term">יהוה</span> (Génesis 18), Manoaj reconoce su grandeza. Prefigura el
+                reconocimiento del Mashíaj como digno de honra y sacrificio (Lucas 24:30-31).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:16</div>
+            <div class="hebrew">וַיֹּ֨אמֶר מַלְאַ֤ךְ יְהוָה֙ אֶל־מָנ֔וֹחַ אִם־תַּ֥עְצְרֵ֖נִי לֹ֣א אֹכַל֙ בְּלַחְמֶ֔ךָ
+                וְאִם־תַּעֲשֶׂ֣ה עֹלָ֔ה לַֽיהוָ֖ה תַּעֲלֶ֑נָּה כִּ֣י לֹא יָדַ֗ע מָנ֛וֹחַ כִּֽי־מַלְאַ֥ךְ יְהוָ֖ה הֽוּא׃
+            </div>
+            <div class="transliteration">Va-yómer malaj Adonái el-Manóaj: im ta'tsrení, lo ojal belajméja; ve-im ta'asé
+                'oláh, la-Adonái ta'alénah. Ki lo yadá Manóaj ki malaj Adonái hú.</div>
+            <div class="translation">Y dijo el mensajero de Adonái a Manoaj: "Aunque me retengas, no comeré tu pan; pero
+                si haces holocausto, a Adonái lo ofrecerás." Porque Manoaj no sabía que era el mensajero de Adonái.
+            </div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Prefigura la revelación progresiva del Mashíaj. Yeshúa no
+                recibe adoración como hombre sino como Elohím revelado (Mateo 28:17, Juan 20:28).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:17</div>
+            <div class="hebrew">וַיֹּ֥אמֶר מָנ֖וֹחַ אֶל־מַלְאַ֣ךְ יְהוָ֑ה מִ֣י שְׁמֶ֔ךָ כִּֽי־יָבֹ֥א דְבָרֶ֖יךָ
+                וְכִבַּדְנֽוּךָ׃</div>
+            <div class="transliteration">Va-yómer Manóaj el-malaj Adonái: mi sheméja, ki yavó d'vareja ve-kibbádnúja?
+            </div>
+            <div class="translation">Y dijo Manoaj al mensajero de Adonái: "¿Cuál es tu nombre, para que cuando se
+                cumpla tu palabra te honremos?"</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Refleja el misterio del nombre del Mesías revelado
+                progresivamente (Filipenses 2:9-11). Su nombre es sobre todo nombre.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:18</div>
+            <div class="hebrew">וַיֹּ֤אמֶר ל֙וֹ מַלְאַ֣ךְ יְהוָ֔ה לָ֛מָּה זֶ֥ה תִשְׁאַ֖ל לִשְׁמִ֑י וְהוּא־פֶ֖לִאי׃</div>
+            <div class="transliteration">Va-yómer ló malaj Adonái: lamáh zeh tish'al lishmí, ve-hú pelí.</div>
+            <div class="translation">Y el mensajero de Adonái le dijo: "¿Por qué preguntas por mi nombre, siendo
+                maravilloso?"</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> "Pelí" – maravilloso, es uno de los títulos del Mashíaj (Isaías
+                9:6). El mensajero es una teofanía: la preencarnación del Verbo.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:19</div>
+            <div class="hebrew">וַיִּקַּ֨ח מָנ֜וֹחַ אֶת־גְּדִ֣י הָעִזִּ֗ים וְאֶת־הַמִּנְחָה֙ וַיַּ֤עַל עַל־הַסֶּ֙לַע֙
+                לַיהוָ֔ה וּמַפְלִ֕א לַעֲשׂ֖וֹת וּמָנ֥וֹחַ וְאִשְׁתּ֖וֹ רֹאִֽים׃</div>
+            <div class="transliteration">Va-yikáj Manóaj et-gedí ha-'izzím ve-et ha-minjáh, va-ya'al 'al ha-séla
+                la-Adonái; u-maflí la'asót, u-Manóaj ve-ishtó ro'im.</div>
+            <div class="translation">Y tomó Manoaj el cabrito y la ofrenda vegetal, y los ofreció sobre la roca a
+                Adonái; y Él hizo una maravilla, y Manoaj y su esposa observaban.</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> El altar sobre la roca representa a Mashíaj como base de
+                nuestra adoración y expiación (1 Corintios 10:4). Él es la ofrenda y el altar.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:20</div>
+            <div class="hebrew">וַיְהִ֗י בַּעֲלוֹת֙ הַלֶּ֔הָבָה מֵעַ֖ל הַמִּזְבֵּ֑חַ הַשָּׁמָ֔יְמָה וַיַּ֤עַל
+                מַלְאַךְ־יְהוָה֙ בְּלֶ֣הָבַֽת הַמִּזְבֵּ֔חַ וּמָנ֥וֹחַ וְאִשְׁתּ֖וֹ רֹאִ֑ים וַיִּפְּל֥וּ עַל־פְּנֵיהֶ֖ם
+                אָֽרְצָה׃</div>
+            <div class="transliteration">Va-yehí ba'alót ha-lehaváh me-'al ha-mizbéaj ha-shamáymah, va-ya'al malaj
+                Adonái be-lehévát ha-mizbéaj; u-Manóaj ve-ishtó ro'im, va-yippelú 'al peneihem artzáh.</div>
+            <div class="translation">Y al subir la llama del altar hacia el cielo, ascendió el mensajero de Adonái en la
+                llama del altar; y Manoaj y su esposa vieron esto, y cayeron sobre su rostro en tierra.</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Ascensión gloriosa. Anticipa la ascensión de Yeshúa al cielo
+                como señal de su aceptación (Hechos 1:9). Adoración y temor siguen la revelación.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:21</div>
+            <div class="hebrew">וּמַלְאַ֤ךְ יְהוָה֙ לֹ֣א יָסַ֔ף לְהֵרָא֖וֹת אֶל־מָנ֣וֹחַ וְאֶל־אִשְׁתּ֑וֹ אָ֗ז יָדַ֤ע
+                מָנ֙וֹחַ֙ כִּֽי־מַלְאַ֣ךְ יְהוָ֔ה ה֖וּא׃</div>
+            <div class="transliteration">U-malaj Adonái lo yasáf le-heiráot el-Manóaj ve-el ishtó; az yadá' Manóaj ki
+                malaj Adonái hú.</div>
+            <div class="translation">Y el mensajero de Adonái no volvió a aparecer a Manoaj ni a su esposa; entonces
+                Manoaj supo que era el mensajero de Adonái.</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Después de su ascensión, Yeshúa no se manifiesta físicamente a
+                todos, pero los que le han visto por fe saben quién es Él (Juan 20:29).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:22</div>
+            <div class="hebrew">וַיֹּ֤אמֶר מָנ֙וֹחַ֙ אֶל־אִשְׁתּ֔וֹ מ֖וֹת נָמ֑וּת כִּ֣י אֱלֹהִ֔ים רָאִ֖ינוּ׃</div>
+            <div class="transliteration">Va-yómer Manóaj el-ishtó: mot namút, ki Elohím ra'ínu.</div>
+            <div class="translation">Y dijo Manoaj a su esposa: "Ciertamente moriremos, porque hemos visto a Elohím."
+            </div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Ver a Elohím significaba muerte en la antigüedad (Éxodo 33:20),
+                pero en Yeshúa vemos a Elohím y vivimos (Juan 1:18; 14:9).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:23</div>
+            <div class="hebrew">וַתֹּ֤אמֶר ל֙וֹ אִשְׁתּ֔וֹ אִם־חָפֵ֥ץ יְהוָ֖ה לַהֲמִיתֵ֑נוּ לֹ֣א לָקַ֤ח מִיָּדֵ֙נוּ֙
+                עֹלָ֣ה וּמִנְחָ֔ה וְלֹ֤א הֶרְאָ֙נוּ֙ אֶת־כָּל־אֵ֔לֶּה וְכָעֵ֕ת לֹא־הִשְׁמִיעָ֥נוּ כָּזֹֽאת׃</div>
+            <div class="transliteration">Va-tómer lo ishtó: im jaféts Adonái lahamitéinu, lo laqáj mi-yadeinu 'oláh
+                u-minjáh, ve-lo hera'ánu et-kol éleh, ve-ka-'et lo hishmi'ánu kazót.</div>
+            <div class="translation">Y su esposa le dijo: "Si Adonái quisiera matarnos, no habría aceptado de nuestras
+                manos el holocausto y la ofrenda, ni nos habría mostrado todo esto, ni ahora nos habría hecho oír tales
+                cosas."</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Reconocer la bondad de Elohím como señal de vida y propósito.
+                En Mashíaj, no hay condenación (Romanos 8:1), sino gracia y revelación.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:24</div>
+            <div class="hebrew">וַתֵּ֥לֶד הָאִשָּׁ֖ה בֵּ֑ן וַתִּקְרָ֥א אֶת־שְׁמ֖וֹ שִׁמְשׁ֑וֹן וַיִּגְדַּ֥ל הַנַּ֖עַר
+                וַיְבָרְכֵ֥הוּ יְהוָֽה׃</div>
+            <div class="transliteration">Va-téled ha-isháh ben, va-tiqrá et-shemó Shimshón; va-yigdal hana'ar,
+                va-yevarejehú Adonái.</div>
+            <div class="translation">Y la mujer dio a luz un hijo, y le puso por nombre Shimshón; y creció el niño, y
+                Adonái lo bendijo.</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Como Shimshón fue bendecido y creció, así también Yeshúa crecía
+                en gracia y sabiduría (Lucas 2:40). Ambos preparados para redención.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jueces 13:25</div>
+            <div class="hebrew">וַתָּ֤חֶל רֽוּחַ־יְהוָה֙ לְפַעֲמ֔וֹ בְּמַחֲנֵה־דָ֖ן בֵּ֣ין צָרְעָ֑ה וּבֵ֖ין
+                אֶשְׁתָּאֽוֹל׃</div>
+            <div class="transliteration">Va-tájél Ruaj-Adonái le-fa'amó, be-majaneh-Dán bein Tzor'áh u-vein Eshta'ól.
+            </div>
+            <div class="translation">Y comenzó el Espíritu de Adonái a impulsarlo en el campamento de Dan, entre Tzorá y
+                Eshtaol.</div>
+            <div class="prophetic-content">
+                <strong>Cumplimiento profético:</strong> Como el Ruaj Hakódesh vino sobre Shimshón, así también Yeshúa
+                fue ungido desde el Jordán (Mateo 3:16), y enviado en poder para liberar.
+            </div>
+        </div>
+
+        <h1>𐤉 PUNTO 3. Brit Hadasháh: Hechos 18:18 (Shaul (Pablo) hace un voto nazareo).</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">Hechos 18:18</div>
+
+            <div class="aramaic">
+                ܘܦܘܠܘܣ ܕܝܢ ܐܬܓܡܙ ܬܘܒ ܝܘܡܬܐ ܣܓܝܐܐ ܒܩܘܪܢܬܘܣ ܘܒܬܪ ܗܟܢܐ ܢܦܩ ܒܝܡܐ ܢܨܒ ܠܗ ܠܐܩܘܠܐ ܘܐܩܘܠܐ ܗܘܐ ܥܡܗ ܘܕܢܣܬܐ ܘܐܩܠܐ
+                ܪܫܗ ܒܟܢܟܪܐ ܡܛܠ ܢܕܪܐ ܕܢܕܪ
+            </div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong> U-Polos din etgmaz tūb yawmātā saggiē be-Qūrntos; u-bātar hakennā npaq
+                be-yammā, nṣab leh le-Aqūlā, wa-Aqūlā hawā ʿammēh, wa-Drūsqillā, wa-aqal rāshēh be-Kenkhrā meṭṭul nedrā
+                de-nadar.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción literal:</strong> Y Shaul se quedó todavía muchos días en Corinto; y luego se embarcó
+                para ir por mar, con él Priscila y Aquila, y se rapó la cabeza en Cencrea, porque había hecho un voto.
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <h2>Cumplimiento profético en el Mashíaj:</h2>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. "Y Shaul se quedó todavía muchos días en Corinto":</div>
+                <div class="arrow">→</div> <strong>Cumplimiento:</strong> Como emisario del Mesías, Shaúl (Pablo)
+                prolonga su enseñanza para edificar el cuerpo del Mashíaj, conforme a lo profetizado en Isaías 49:6:
+                <span class="scripture">"te pondré como luz a las naciones"</span>.
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. "y luego se embarcó para ir por mar":</div>
+                <div class="arrow">→</div> <strong>Cumplimiento:</strong> El viaje de Shaul representa la expansión del
+                Reino de los Cielos a las naciones (Goyim), cumplimiento de Daniel 7:14: <span class="scripture">"le fue
+                    dado dominio eterno… y todos los pueblos le sirvieron"</span>.
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. "con él Priscila y Aquila":</div>
+                <div class="arrow">→</div> <strong>Cumplimiento:</strong> Una imagen del trabajo en unidad, hombres y
+                mujeres usados por el Mashíaj. Esto alude al cumplimiento de Joel 2:28: <span
+                    class="scripture">"Derramaré mi Espíritu sobre toda carne… varones y mujeres"</span>.
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. "y se rapó la cabeza en Cencrea":</div>
+                <div class="arrow">→</div> <strong>Cumplimiento:</strong> Un acto vinculado al voto del nazareo (Números
+                6). Pablo cumple una práctica hebrea para manifestar gratitud y dedicación al Eterno, lo que refleja la
+                santidad práctica que el Mashíaj trae (Hebreos 10:10).
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">5. "porque había hecho un voto":</div>
+                <div class="arrow">→</div> <strong>Cumplimiento:</strong> La consagración personal es un eco de la
+                entrega total del Mashíaj (Salmo 40:7-8), quien cumplió la voluntad del Padre en obediencia perfecta.
+                Este voto de Shaul es sombra de la obediencia del Mashíaj hasta la muerte.
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 4. Contexto Histórico y Cultural</h1>
+
+            <div class="section-container">
+                <div class="question">A. ¿Qué es un Nazareo (Nazír)?</div>
+                <div class="answer">
+                    La figura del <em>nazír</em> representa una persona que <strong>voluntariamente se consagra a
+                        Adonái</strong> por un periodo de tiempo definido. Este voto incluía:
+                    <ul>
+                        <li>Abstinencia completa de productos de la vid (vino, uvas, vinagre).</li>
+                        <li>No cortarse el cabello durante todo el tiempo del voto.</li>
+                        <li>No acercarse a ningún cadáver, ni siquiera de familiares cercanos.</li>
+                    </ul>
+                    Este acto de santificación era conocido como <strong>nezer Elohím</strong> – una "corona de Elohím"
+                    sobre su cabeza (Números 6:7). El voto era <strong>una forma de acercamiento extremo, voluntario y
+                        separado de la rutina social y espiritual común.</strong>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">B. Contexto del Mishkán y el Voto</div>
+                <div class="answer">
+                    En tiempos del desierto, cuando esta instrucción es dada, el Mishkán (Tabernáculo) era el centro
+                    espiritual de Israel. El voto nazareo aparece como una forma radical de devoción personal
+                    <strong>dentro de un sistema ritual ya establecido</strong>.
+                    <ul>
+                        <li>No reemplaza al kohén ni al profeta.</li>
+                        <li>No es un oficio, sino una <strong>expresión de separación radical para Elohím</strong>.</li>
+                        <li>Muestra que la espiritualidad profunda también es accesible a hombres y mujeres comunes
+                            (v.2: <span class="hebrew-term">אִישׁ אוֹ אִשָּׁה</span>).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">C. Elementos Culturales y Prácticos</div>
+                <div class="answer">
+                    <ol>
+                        <li><strong>Cabello largo:</strong> El cabello sin cortar era <strong>un símbolo público visible
+                                de consagración</strong>, reflejo de pureza interna y señal de estar bajo voto.</li>
+                        <li><strong>Abstinencia de vino:</strong> Representa la separación de alegría terrenal o placer
+                            físico, como en tiempos de duelo. También se conecta con el control de las pasiones y la
+                            sobriedad espiritual (cf. Prov. 31:4–5).</li>
+                        <li><strong>Evitar la muerte:</strong> El <em>nazír</em> debía mantenerse en pureza total,
+                            incluso a costa del dolor familiar. Esto lo alineaba con la clase sacerdotal (cf. Levítico
+                            21:10–12).</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">D. Comparación con otras figuras bíblicas</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Shimshón (Jueces 13:5):</strong> Nazareo desde el vientre, profetizado por malaj.
+                        </li>
+                        <li><strong>Shemuel (1 Shemuel 1:11):</strong> Entregado por Janá desde niño.</li>
+                        <li><strong>Yojanán HaMatbîl (Juan el Bautizador):</strong> Separado para Elohím, abstinente.
+                        </li>
+                    </ul>
+                    Estas figuras muestran que, aunque el voto nazareo era temporal, <strong>en algunos casos era de por
+                        vida</strong>, por designación divina.
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">E. Arqueología y Segunda Templo</div>
+                <div class="answer">
+                    <ul>
+                        <li>En tiempos del Segundo Templo, los votos nazareos eran comunes en Jerusalén.</li>
+                        <li>Josefo menciona varios nazareos (Antigüedades 19.294–296).</li>
+                        <li>Hechos 21:23–26 muestra a Shaúl participando en la purificación final de otros nazareos,
+                            indicando que el rito aún se practicaba después de Mashíaj.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">F. Simbolismo Profundo</div>
+                <div class="answer">
+                    El nazareo es <strong>una figura intermedia entre el laico y el sacerdote</strong>:
+                    <ul>
+                        <li>Vive en el mundo pero está apartado.</li>
+                        <li>Camina entre los hombres pero está bajo un voto del cielo.</li>
+                        <li>Es un recordatorio viviente de que <strong>todos podemos escoger mayor separación para
+                                Adonái</strong>, no por posición, sino por pasión.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">G. Aplicación espiritual en la Kehiláh</div>
+                <div class="answer">
+                    En la actualidad, no tomamos votos de cabello ni de vino, pero el espíritu del voto nazareo
+                    <strong>vive en cada creyente que se consagra voluntariamente</strong> a una vida apartada para
+                    Mashíaj:
+                    <ul>
+                        <li>Abstención de lo que nos distrae.</li>
+                        <li>Consagración completa de cuerpo, alma y mente.</li>
+                        <li>Entrega voluntaria, no por imposición.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Contexto Histórico y Cultural:</strong> El voto nazareo es una enseñanza eterna
+                sobre la posibilidad de <strong>separación santa y voluntaria</strong>. Revela que en el Reino no solo
+                hay kohaním y levitas, sino hombres y mujeres ordinarios que pueden vivir con un nezer espiritual. En
+                Yeshúa haMashíaj, <strong>la santidad del nazareo se cumple no solo externamente, sino en la vida
+                    transformada del creyente.</strong>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas</h1>
+
+            <div class="section-container">
+                <div class="question">A. Comentarios Rabínicos Tradicionales</div>
+                <div class="answer">
+                    <div class="prophetic-title">1. Rashi (v.2)</div>
+                    <p>Rashi observa que el voto del nazareo se introduce justo después de la ley de la Sotáh. Él
+                        explica:</p>
+                    <div class="scripture">"Quien ve la caída de la Sotáh debe apartarse del vino, pues el vino lleva a
+                        la liviandad."</div>
+                    <p><span class="arrow">→</span> El voto es una reacción espiritual: una persona responde a la
+                        corrupción o el pecado con separación radical.</p>
+
+                    <div class="prophetic-title">2. Ramban – Najmánides (v.7)</div>
+                    <p>Interpreta el término <span class="hebrew-term">נֵזֶר אֱלֹהָיו</span> ("la corona de su Elohím")
+                        como <strong>una señal de realeza espiritual</strong>, indicando que el nazareo es como un "rey"
+                        que domina su carne.</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">B. Comentario Judío Mesiánico</div>
+                <div class="answer">
+                    <div class="prophetic-title">1. El Nazareo como Figura del Mashíaj</div>
+                    <p>El voto nazareo es <strong>tipo profético de Mashíaj</strong>:</p>
+                    <ul>
+                        <li>No por obligación ritual, sino por esencia eterna.</li>
+                        <li>Así como el nazareo se abstiene del vino y la impureza, <strong>Yeshúa se mantuvo sin
+                                contaminación del pecado</strong>.</li>
+                        <li>Su consagración fue voluntaria: "Nadie me quita la vida, yo la doy" (Yojanán 10:18).</li>
+                    </ul>
+
+                    <div class="prophetic-title">2. Cabello Largo = Gloria Retenida para Elohím</div>
+                    <ul>
+                        <li>En el mundo antiguo, cortarse el cabello marcaba transición, luto o vergüenza.</li>
+                        <li>En el nazareo, <strong>el cabello no se toca</strong>, representando la honra reservada solo
+                            para Adonái.</li>
+                        <li>Cuando Yeshúa es arrestado y azotado, lo golpean en el rostro y su cuerpo… <strong>pero su
+                                honor espiritual no fue cortado</strong>, sino consumado.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">C. Conexiones Proféticas</div>
+                <div class="answer">
+                    <div class="prophetic-title">1. Yeshúa y el Voto Nazareo (no Nazareno)</div>
+                    <ul>
+                        <li>Aunque llamado "Netzer" (retoño – Isaías 11:1), Yeshúa no fue "nazireo" formal.</li>
+                        <li>Sin embargo, su vida fue <strong>la encarnación del nezer verdadero</strong> – completamente
+                            apartado, puro, y sin pecado.</li>
+                        <li>Como el nazareo, <strong>Él no tocó lo muerto para evitar impureza… sino para
+                                resucitarlo</strong> (cf. Lucas 8:49–55, Yojanán 11).</li>
+                    </ul>
+
+                    <div class="prophetic-title">2. Simbolismo en la Última Cena (Matityahu 26:29)</div>
+                    <div class="scripture">"No beberé más de este fruto de la vid hasta el día en que lo beba nuevo con
+                        vosotros…"</div>
+                    <ul>
+                        <li>Esta frase tiene eco directo del voto nazareo: abstenerse del fruto de la vid.</li>
+                        <li>Yeshúa se consagra como Nazireo Celestial: <strong>sella su separación con la copa del
+                                Brit</strong>, que aún no ha bebido hasta que todos estén redimidos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">D. Relación con el Brit Hadasháh</div>
+                <div class="answer">
+                    <div class="prophetic-title">1. Shaúl (Hechos 21:23–26)</div>
+                    <ul>
+                        <li>Participa en un rito nazareo para no escandalizar a los celosos de la Toráh.</li>
+                        <li>Esto indica que la consagración personal sigue siendo válida, <strong>no como justicia
+                                salvadora, sino como devoción voluntaria.</strong></li>
+                    </ul>
+
+                    <div class="prophetic-title">2. 1 Corintios 6:19–20</div>
+                    <div class="scripture">"¿No sabéis que vuestro cuerpo es templo del Ruaj HaKodesh… glorificad, pues,
+                        a Elohím en vuestro cuerpo…?"</div>
+                    <ul>
+                        <li>La separación del nazareo encuentra cumplimiento <strong>en la vida del creyente lleno del
+                                Ruaj</strong>.</li>
+                        <li>Ya no es voto ritual, sino <strong>vida consagrada constantemente al Eterno</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">E. Guematría y Significado Interno</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="hebrew-term">נָזִיר</span> (Nazír) = 267<br>
+                            267 = <span class="hebrew-term">אוֹר</span> (Or – luz) + <span
+                                class="hebrew-term">חֵן</span> (Jen – gracia) + <span class="hebrew-term">אֵם</span> (Em
+                            – madre)<br>
+                            <span class="arrow">→</span> El nazareo es <strong>luz separada, gracia en devoción, y
+                                ternura consagrada.</strong>
+                        </li>
+                        <li><span class="hebrew-term">נֵזֶר</span> (Nezer – corona) = 257<br>
+                            257 = <span class="hebrew-term">קֶדֶשׁ</span> (Qedésh – santidad) + <span
+                                class="hebrew-term">בַּיִת</span> (Bayit – casa)<br>
+                            <span class="arrow">→</span> Su consagración no es privada: <strong>santifica la casa, la
+                                comunidad entera.</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Estudio y Conexión Profética:</strong> El voto del nazareo enseña que <strong>la
+                    santidad más alta no es impuesta, sino elegida.</strong> Mashíaj no hizo un voto ritual: <strong>Él
+                    fue el Nazireo eterno por naturaleza y redención.</strong> Hoy, en Él, somos llamados a llevar esa
+                corona: no de cabello, sino de consagración. La separación no es rechazo del mundo, sino <strong>entrega
+                    radical al Reino</strong>.
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 6. Análisis Profundo de la Aliyáh</h1>
+
+            <div class="section-container">
+                <div class="question">A. Estructura del Texto</div>
+                <div class="answer">
+                    La Aliyáh se divide en tres secciones:
+                    <ol>
+                        <li><strong>Versos 1–8</strong> <span class="arrow">→</span> Condiciones del voto del nazareo
+                            (abstinencia de vino, no tocar la muerte, no cortar el cabello).</li>
+                        <li><strong>Versos 9–12</strong> <span class="arrow">→</span> Provisión para interrupción del
+                            voto por causa de impureza accidental.</li>
+                        <li><strong>Versos 13–21</strong> <span class="arrow">→</span> Procedimiento de finalización del
+                            voto: sacrificios, afeitado, y ofrenda del cabello.</li>
+                    </ol>
+                    El texto detalla con precisión ritual la vida y la terminación del voto, lo que denota <strong>el
+                        alto nivel de santidad exigido</strong>.
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">B. Significado del Voto en el Panorama de la Toráh</div>
+                <div class="answer">
+                    <ul>
+                        <li>El voto nazareo es el único ejemplo en la Toráh de una <strong>santidad
+                                autoimpuesta</strong> que excede el estándar de lo común.</li>
+                        <li>Mientras que los kohaním nacían en su rol, el nazareo <strong>elegía voluntariamente vivir
+                                como "kadosh laAdonái"</strong> (santo para יהוה).</li>
+                        <li>Revela que en el Reino, no todo está definido por herencia tribal, sino también por
+                            <strong>decisión espiritual radical.</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">C. Vocabulario Clave</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong><span class="hebrew-term">נָזִיר</span> (nazír)</strong> = "separado", de la raíz
+                            נזר que también significa "corona" (nezer).</li>
+                        <li><strong><span class="hebrew-term">יִפְלֵא נֶדֶר</span> (yiflê neder)</strong> =
+                            literalmente, "hace algo extraordinario", indicando que no es algo común o habitual.</li>
+                        <li><strong><span class="hebrew-term">תַּעַר לֹא יַעֲבֹר עַל רֹאשׁוֹ</span> (taʿar lo yaʿavor al
+                                roshó)</strong> = "navaja no pasará sobre su cabeza"; señala una consagración continua,
+                            visible.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">D. Aspectos Ritualísticos</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>El cabello largo</strong> se convierte en una "corona" viviente de santidad.</li>
+                        <li><strong>La impureza accidental por un cadáver</strong> requería comenzar todo desde cero,
+                            subrayando la seriedad del voto.</li>
+                        <li><strong>Los sacrificios finales</strong> eran comparables a los del kohén (holocausto,
+                            expiación, shalámim).</li>
+                    </ul>
+                    <span class="arrow">→</span> El nazareo no era sacerdote por linaje, pero <strong>vivía a nivel
+                        sacerdotal por elección y voto.</strong>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">E. Dimensión Mesiánica</div>
+                <div class="answer">
+                    <div class="prophetic-title">1. Yeshúa como cumplimiento del voto nazareo:</div>
+                    <p>Aunque no fue nazireo formalmente (pues bebía vino y tocaba muertos), <strong>cumplió
+                            perfectamente el propósito espiritual del nazireo</strong>:</p>
+                    <ul>
+                        <li>Vivió en santidad total.</li>
+                        <li>Separado para Elohím desde el vientre (Lucas 1:35).</li>
+                        <li>Fue la "corona viviente" de Elohím (Isaías 62:3).</li>
+                    </ul>
+
+                    <div class="prophetic-title">2. Él es quien nunca tocó impureza… sino que la purificó.</div>
+                    <ul>
+                        <li>Tocó muertos <span class="arrow">→</span> y vivieron (Lucas 7:11–17).</li>
+                        <li>No evitó al impuro <span class="arrow">→</span> lo restauró.</li>
+                    </ul>
+
+                    <div class="prophetic-title">3. Su sacrificio fue final, como el del nazareo al terminar su voto.
+                    </div>
+                    <ul>
+                        <li>Ofreció holocausto: Su entrega total (Hebreos 10:5–10).</li>
+                        <li>Ofreció shalámim: trajo paz entre Elohím y los hombres.</li>
+                        <li>Su "cabello" (honra) fue entregado en humillación para la redención.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">F. Paralelismos Profundos</div>
+                <div class="answer">
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Nazareo</th>
+                            <th>Mashíaj Yeshúa</th>
+                        </tr>
+                        <tr>
+                            <td>Separado para Elohím</td>
+                            <td>Apartado desde antes de nacer (Lc 1)</td>
+                        </tr>
+                        <tr>
+                            <td>No toca muerte</td>
+                            <td>Resucita al muerto</td>
+                        </tr>
+                        <tr>
+                            <td>Cabello como corona</td>
+                            <td>Su gloria fue sujeción total</td>
+                        </tr>
+                        <tr>
+                            <td>Ofrenda al final del voto</td>
+                            <td>Sacrificio final en el madero</td>
+                        </tr>
+                        <tr>
+                            <td>Ofrenda de paz</td>
+                            <td>Él es nuestra paz (Efesios 2:14)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">G. Aplicación Espiritual</div>
+                <div class="answer">
+                    Cada creyente redimido está llamado a ser un "nazareo espiritual":
+                    <ul>
+                        <li>No por voto, sino por <strong>vida consagrada al servicio de Mashíaj</strong> (Romanos
+                            12:1).</li>
+                        <li>Separados del pecado, no del mundo.</li>
+                        <li>Visiblemente dedicados, no religiosamente ocultos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Análisis Profundo:</strong> El voto del nazareo enseña que <strong>la separación
+                    espiritual verdadera es una decisión personal, radical y observable.</strong> En Mashíaj, esta
+                separación alcanza su máxima expresión: <strong>no como rito, sino como redención.</strong> Yeshúa es el
+                nezer eterno —consagrado para Elohím, coronado con obediencia, y ofrecido por amor. Nosotros, Su
+                comunidad, <strong>somos llamados a reflejar esa separación no en el cabello, sino en el
+                    carácter.</strong>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+            <div class="section-container">
+                <h2>Parashá Naso – Bemidbar / Números 6:1–21</h2>
+                <h3>Aliyáh 5: El voto del Nazareo – נָזִיר (Nazír)</h3>
+            </div>
+            <div class="explanation">
+                <div class="point-letter">A</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Tema Central: Separación voluntaria para santidad – una coronación
+                            del alma</div>
+                        <p>El tema que atraviesa toda esta Aliyáh es la consagración voluntaria del ser humano hacia una
+                            vida de pureza y santidad extraordinaria. Esta separación no es impuesta por linaje o
+                            función levítica, sino elegida por amor y devoción a Elohím.</p>
+                        <p>El Nazireo se convierte en “kadosh laAdonái” (santo para יהוה), por decisión interna, no por
+                            mandato externo.</p>
+                    </div>
+                </div>
+                <div class="point-letter">B</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Importancia del Tema en la Toráh</div>
+                        <p>La Toráh reconoce aquí que toda persona —hombre o mujer— puede aspirar a una vida de santidad
+                            radical.</p>
+                        <p>No basta con la pertenencia al pueblo de Israel: se invita a ir más allá, a vivir como corona
+                            viviente del Reino (נֵזֶר).</p>
+                        <p>Este llamado trasciende lo ritual: forma el alma en autodisciplina, pureza, separación de los
+                            placeres temporales, y expectativa del encuentro con el Santuario.</p>
+                    </div>
+                </div>
+                <div class="point-letter">C</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Relevancia Espiritual</div>
+                        <p>El mensaje es claro: Elohím honra la entrega personal. El voto no busca ganar méritos, sino
+                            reflejar el deseo ardiente de vivir apartado en cuerpo, emociones y tiempo.</p>
+                        <p>Los elementos del voto (vino, cabello, muerte) revelan:</p>
+                        <ul>
+                            <li><strong>Control del cuerpo (vino):</strong> Dominio de los apetitos físicos.</li>
+                            <li><strong>Exaltación del alma (cabello):</strong> Consagración visible y sin vergüenza.
+                            </li>
+                            <li><strong>Separación de la muerte (pureza):</strong> Fidelidad a la vida y santidad de
+                                Elohím.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="point-letter">D</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Cómo este Tema se Relaciona con Yeshúa haMashíaj</div>
+                        <ol>
+                            <li>
+                                <strong>Mashíaj es el Nazireo Perfecto:</strong>
+                                <p>Separado desde antes del nacimiento (Lucas 1:35).</p>
+                                <p>Puro en toda su conducta.</p>
+                                <p>Cumplió la esencia del voto, no por tiempo, sino eternamente.</p>
+                            </li>
+                            <li>
+                                <strong>Él no se abstuvo del vino ritual, pero vivió como Kadosh de verdad.</strong>
+                                <p>No necesitó reglas externas, porque Su santidad era Su naturaleza.</p>
+                                <p>Él es la corona del Reino, sin cortar, sin profanar, sin muerte dominándolo.</p>
+                            </li>
+                            <li>
+                                <strong>En Su sacrificio, concluye el “voto” como Nazireo divino.</strong>
+                                <p>Como el Nazireo que corta su cabello y lo pone sobre el altar, Mashíaj se ofreció
+                                    totalmente en el madero.</p>
+                                <p>Su entrega perfecta se convierte en nuestra redención y nuestra santificación
+                                    (Hebreos 10:14).</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">E</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Conexión con los Moedim – Shavuot (Pentecostés)</div>
+                        <p>Shavuot es el momento de recibir la Toráh —un llamado a consagración.</p>
+                        <p>El nazireo vivía como un Monte Sinaí viviente: con temor, fuego, abstención y expectativa.
+                        </p>
+                        <p>En Shavuot, el Ruaj HaKodesh vino sobre los discípulos de Mashíaj: una nueva consagración, no
+                            por voto ritual, sino por el Espíritu.</p>
+                    </div>
+                </div>
+                <div class="point-letter">F</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Enseñanza para la Kehiláh Actual</div>
+                        <p>La consagración no ha sido abolida. Cada redimido es llamado a ser apartado (kadosh) en
+                            pensamiento, práctica y presencia (1 Pedro 1:15–16).</p>
+                        <p>No todos hacen votos externos, pero todos somos llamados a vivir como “nazireos espirituales”
+                            en Mashíaj.</p>
+                    </div>
+                </div>
+                <div class="conclusion">
+                    <p>Conclusión del Tema Más Relevante:</p>
+                    <p>El voto del Nazireo no es solo una práctica antigua: es un llamado eterno. Yeshúa no simplemente
+                        vivió separado: Él fue la santidad encarnada. Y ahora, a través de Él, somos llamados a vivir
+                        como corona visible de Elohím: una generación consagrada, separada, pero no aislada —llena de
+                        pureza, intercesión y poder redentor.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-container">
+            <h1>Punto 8. Descubriendo a Mashíaj en cada Aliyáh</h1>
+            <div class="section-container">
+                <h2>Parashá Naso – Bemidbar / Números 6:1–21</h2>
+                <h3>Aliyáh 5: El voto del Nazareo – נָזִיר (Nazír)</h3>
+            </div>
+            <div class="explanation">
+                <div class="point-letter">A</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Profecías Mesiánicas y Reflexión</div>
+                        <p>Aunque Números 6 no presenta una profecía explícita sobre el Mashíaj, esta sección contiene
+                            múltiples tipologías (טִפּוּסִים), sombras (צְלָלִים), figuras y patrones redentores
+                            (תַּבְנִיתוֹת) que se cumplen de manera profunda en la vida, muerte y ministerio de Yeshúa
+                            haMashíaj.</p>
+                    </div>
+                </div>
+                <div class="point-letter">B</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Tipos, Figuras y Sombras del Mashíaj</div>
+                        <ol>
+                            <li>
+                                <strong>El Nazireo = Mashíaj separado para Elohím</strong>
+                                <p>“Kadosh laAdonái” (v.8) se aplica completamente a Yeshúa.</p>
+                                <p>Él no fue simplemente alguien apartado, fue el Separado desde la eternidad (Miḳah
+                                    5:2).</p>
+                            </li>
+                            <li>
+                                <strong>La abstinencia del vino = entrega total</strong>
+                                <p>Mashíaj dice: “No beberé del fruto de la vid hasta que lo beba nuevo con vosotros”
+                                    (Matityahu 26:29).</p>
+                                <p>→ Se consagra en obediencia hasta el final.</p>
+                            </li>
+                            <li>
+                                <strong>El cabello como corona</strong>
+                                <p>נֵזֶר (nezer) = “corona”, usado también en “corona sacerdotal” (Éxodo 29:6).</p>
+                                <p>→ El cabello no cortado representa la gloria no robada por el hombre.</p>
+                                <p>→ Mashíaj no retuvo la gloria para sí, sino que la entregó por nosotros (Filipenses
+                                    2:6–11).</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">C</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Métodos de Interpretación Mesiánica</div>
+                        <table>
+                            <tr>
+                                <th>Método</th>
+                                <th>Ejemplo en Números 6</th>
+                                <th>Cumplimiento en Mashíaj</th>
+                            </tr>
+                            <tr>
+                                <td>Sombra (Tzelal)</td>
+                                <td>Nazireo no toca muerte</td>
+                                <td>Yeshúa toca muertos, pero los resucita (Lc 7:14)</td>
+                            </tr>
+                            <tr>
+                                <td>Tipología Sacrificial</td>
+                                <td>Ofrenda de paz y consagración final</td>
+                                <td>Su cuerpo es ofrenda de paz y reconciliación</td>
+                            </tr>
+                            <tr>
+                                <td>Patrón Redentor</td>
+                                <td>Cabello quemado en el altar</td>
+                                <td>Su honra ofrecida en el madero (Is. 53:3–5)</td>
+                            </tr>
+                            <tr>
+                                <td>Paralelismo Profético</td>
+                                <td>Voto cumplido con sacrificios</td>
+                                <td>Voto eterno cumplido con un solo sacrificio (Heb 10:12)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="point-letter">D</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Conexión con Textos del Brit Hadasháh</div>
+                        <ol>
+                            <li>
+                                <strong>Yojanán HaMatbîl (Juan el Bautista) – Lucas 1:15</strong>
+                                <p>“Será grande delante de Adonái; no beberá vino ni sidra…”</p>
+                                <p>Yojanán es figura nazarea, preparando el camino del Verdadero Nazareo: Mashíaj
+                                    Yeshúa.</p>
+                            </li>
+                            <li>
+                                <strong>Yeshúa – Nazoreo Espiritual, No Nazireo Ritual</strong>
+                                <p>Aunque Yeshúa no hizo un voto de abstención como en Números 6, su consagración fue
+                                    total, sin falla ni pausa.</p>
+                                <p>→ Fue separado para ser Cordero, Sacerdote y Esposo.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">E</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Midrashim y Apoyos Tradicionales</div>
+                        <ol>
+                            <li>
+                                <strong>Talmud – Nazir 4b:</strong>
+                                <p>“Un nazireo es comparable a un ángel en la tierra.”</p>
+                                <p>→ Mashíaj es más que eso: es el Ángel de Yahweh hecho carne (Zacarías 3:1–2),
+                                    consagrado eternamente para la redención.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">F</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Análisis Lingüístico</div>
+                        <p>נָזִיר (Nazír) y נֵזֶר (Nezer) comparten raíz con נֵצֶר (Netzer), “retoño” (Isaías 11:1):</p>
+                        <p>→ “Y saldrá un retoño (netzer) del tronco de Yishai…”</p>
+                        <p>Yeshúa es el Retoño profetizado, que combina la santidad del Nazireo con el gobierno del Rey.
+                        </p>
+                    </div>
+                </div>
+                <div class="point-letter">G</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Aplicación Espiritual en el Cuerpo Mesiánico</div>
+                        <p>La Kehiláh está llamada a vivir como nazireo espiritual:</p>
+                        <ul>
+                            <li>Separación del pecado.</li>
+                            <li>Vida de consagración.</li>
+                            <li>Ofrenda continua de intercesión.</li>
+                            <li>Alabanza como aroma en el altar.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="conclusion">
+                    <p>Conclusión del Descubrimiento del Mashíaj:</p>
+                    <p>El voto nazareo es más que una ley antigua: es una sombra del Nazireo eterno. Mashíaj no solo
+                        vivió separado para Elohím: Él nos consagra en Él, nos cubre con su voto cumplido, y nos
+                        transforma en corona sobre Su cabeza (Isaías 62:3).</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-container">
+            <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+            <div class="section-container">
+                <h2>Parashá Naso – Bemidbar / Números 6:1–21</h2>
+                <h3>Aliyáh 5: El voto del Nazareo – נָזִיר (Nazír)</h3>
+            </div>
+            <div class="explanation">
+                <div class="point-letter">A</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Midrashim Relevantes</div>
+                        <ol>
+                            <li>
+                                <strong>Midrash Tanjumá – Naso 10</strong>
+                                <p>“¿Por qué el nazireo se abstiene del vino? Porque ha visto el daño del pecado... y
+                                    desea separarse para acercarse más a su Creador.”</p>
+                                <p>Este midrash conecta el voto con una reacción profunda ante el pecado. Quien ve el
+                                    mal no lo ignora, sino que responde con consagración. Esto resuena con el llamado de
+                                    Mashíaj a apartarse del mundo sin dejar de ser luz en él (Yojanán 17:14–19).</p>
+                            </li>
+                            <li>
+                                <strong>Bamidbar Rabá 10:1</strong>
+                                <p>“Grande es el nazireo ante el trono celestial, porque deja lo que está permitido para
+                                    alcanzar lo más alto.”</p>
+                                <p>→ Mashíaj, siendo sin pecado, renunció a lo que tenía derecho por causa del Reino
+                                    (Filipenses 2:6–8). Es la consagración del justo por amor.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">B</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Targum Onkelos</div>
+                        <p>El Targum sobre Números 6 mantiene una traducción directa, pero en algunas ediciones se añade
+                            énfasis:</p>
+                        <ul>
+                            <li>“Será santo” (קדיש לה') es interpretado en sentido perpetuo → señalando que su voto toca
+                                lo eterno.</li>
+                            <li>En lugar de traducir solo “cabello no se cortará”, el arameo lo presenta como “el
+                                cabello de su gloria será preservado”.</li>
+                        </ul>
+                        <p>→ Esto anticipa una comprensión mesiánica: la gloria (nezer) que Mashíaj entrega no es
+                            deshonra, sino victoria (Hebreos 2:9).</p>
+                    </div>
+                </div>
+                <div class="point-letter">C</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Literatura del Segundo Templo</div>
+                        <ol>
+                            <li>
+                                <strong>Filón de Alejandría – “Sobre las Promesas” 1:15</strong>
+                                <p>Filón ve al nazireo como una figura filosófica, un símbolo del alma que se aparta de
+                                    los placeres para contemplar lo eterno.</p>
+                                <p>→ En Mashíaj esto se cumple: Él no solo se aparta, sino que nos llama a elevar la
+                                    mirada al Reino, por encima de la carne.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">D</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Manuscritos del Mar Muerto</div>
+                        <p>En Qumrán, aunque no hay un tratado dedicado al voto nazareo, el Manual de Disciplina (1QS)
+                            establece normas para la pureza continua:</p>
+                        <ul>
+                            <li>“Que ningún hombre toque bebida fuerte... ni impureza... ni se acerque al lecho del
+                                impuro.”</li>
+                        </ul>
+                        <p>Esto refleja una comunidad consagrada como “nazireos espirituales” permanentes. Su ideal de
+                            vida santa encuentra cumplimiento pleno en la comunidad redimida por Yeshúa, que es kadosh
+                            no por voto, sino por regeneración.</p>
+                    </div>
+                </div>
+                <div class="point-letter">E</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Libros Apócrifos</div>
+                        <ol>
+                            <li>
+                                <strong>Libro de los Jubileos 13:16</strong>
+                                <p>“Y Abraham hizo voto de no beber vino todos los días de su vida, desde que supo que
+                                    la viña podía engañar.”</p>
+                                <p>→ El principio del voto nazareo aparece como una práctica ancestral entre los
+                                    tzadikim (justos). Esto profundiza el valor espiritual del acto.</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">F</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Tradición Mesiánica</div>
+                        <ol>
+                            <li>
+                                <strong>Yeshúa como Nazireo profético</strong>
+                                <p>No tomó el voto legalmente, pero cumplió cada nivel de santidad y consagración de
+                                    manera perfecta:</p>
+                                <ul>
+                                    <li>Vivió separado del pecado.</li>
+                                    <li>Tocó lo inmundo, pero no fue contaminado.</li>
+                                    <li>Fue la corona viviente de Elohím (Isaías 28:5).</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">G</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Aplicación Profética</div>
+                        <p>La literatura y tradición demuestran que el nazireo era una figura esperada, una vida
+                            consagrada para anticipar la redención. Mashíaj cumple, personifica y trasciende esta
+                            figura:</p>
+                        <ul>
+                            <li>No sólo se consagró: santificó para siempre a Su pueblo.</li>
+                            <li>No sólo se abstuvo del vino: nos ofrece vino nuevo en el Reino.</li>
+                            <li>No sólo entregó cabello: entregó vida, sangre y gloria.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="conclusion">
+                    <p>Conclusión del Punto 9:</p>
+                    <p>Los textos rabínicos, arameos, y apócrifos muestran que el nazireo era admirado como alguien
+                        separado por devoción. En Yeshúa haMashíaj, todas esas aspiraciones se hacen carne. Él es el
+                        Nazireo sin voto, la santidad sin corte, la corona sin orgullo. Hoy, Su consagración es nuestro
+                        camino: no por rito, sino por transformación del Ruaj HaKodesh.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 10. Mandamientos Encontrados o Principios y Valores</h1>
+            <div class="section-container">
+                <h2>Parashá Naso – Bemidbar / Números 6:1–21</h2>
+                <h3>Aliyáh 5: El voto del Nazareo – נָזִיר (Nazír)</h3>
+            </div>
+            <div class="explanation">
+                <div class="point-letter">A</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Mitzvot (Mandamientos) Identificables</div>
+                        <p>En esta sección de la Toráh encontramos al menos siete mitzvot relacionadas con el voto del
+                            nazareo. Aunque muchas de ellas no son aplicables fuera del contexto del Templo, revelan
+                            valores espirituales profundos aún vigentes para el creyente redimido en Mashíaj.</p>
+                        <ol>
+                            <li>
+                                <strong>No beber vino ni derivados de la vid</strong>
+                                <p>📖 Números 6:3 – “Se abstendrá de vino y sidra…”</p>
+                                <p>Tipo: Mitzváh negativa (לֹא תַעֲשֶׂה)</p>
+                                <p>Valor: Control del placer físico; dominio propio espiritual.</p>
+                                <p>Aplicación mesiánica: Yeshúa se abstuvo de la copa final como señal de consagración
+                                    (Mateo 26:29), y nos invita a vivir una vida de dominio del Ruaj, no de la carne
+                                    (Gálatas 5:22–23).</p>
+                            </li>
+                            <li>
+                                <strong>No comer uvas, pasas o productos fermentados de la vid</strong>
+                                <p>📖 Números 6:3–4</p>
+                                <p>Tipo: Negativa</p>
+                                <p>Valor: Separación radical incluso de lo lícito, como señal de devoción suprema.</p>
+                                <p>Aplicación mesiánica: En Mashíaj, aprendemos a renunciar a lo permitido si eso nos
+                                    hace crecer en santidad o evita tropiezo a otros (Romanos 14:21).</p>
+                            </li>
+                            <li>
+                                <strong>No cortar el cabello durante el voto</strong>
+                                <p>📖 Números 6:5 – “Navaja no pasará sobre su cabeza…”</p>
+                                <p>Tipo: Negativa</p>
+                                <p>Valor: La honra (cabello) pertenece a Elohím durante la consagración.</p>
+                                <p>Aplicación mesiánica: Hoy no llevamos señal externa, pero vivimos como corona
+                                    espiritual visible, no para la vanagloria, sino como testimonio de entrega total (1
+                                    Corintios 11:14–15; Apocalipsis 4:10).</p>
+                            </li>
+                            <li>
+                                <strong>No acercarse a ningún cadáver, incluso de familiares</strong>
+                                <p>📖 Números 6:6–7</p>
+                                <p>Tipo: Negativa</p>
+                                p>Valor: La pureza de vida tiene prioridad incluso sobre el luto.</p>
+                                <p>Aplicación mesiánica: Quien está consagrado al Reino debe vivir como resucitado, no
+                                    conectado a lo que ha muerto espiritualmente (Efesios 2:1–6).</p>
+                            </li>
+                            <li>
+                                <strong>Reiniciar el voto si se contamina por muerte accidental</strong>
+                                <p>📖 Números 6:9–12</p>
+                                <p>Tipo: Positiva (עשֵה)</p>
+                                <p>Valor: Compromiso total con la integridad; nada puede sustituir la santidad
+                                    interrumpida.</p>
+                                <p>Aplicación mesiánica: En Yeshúa, la restauración es posible tras caídas, pero también
+                                    exige volver al primer amor y compromiso completo (Apocalipsis 2:4–5).</p>
+                            </li>
+                            <li>
+                                <strong>Ofrenda al finalizar el voto: holocausto, expiación, shalámim</strong>
+                                <p>📖 Números 6:13–17</p>
+                                <p>Tipo: Positiva</p>
+                                <p>Valor: Gratitud, reconciliación, y entrega al concluir un tiempo de consagración.</p>
+                                <p>Aplicación mesiánica: Vivimos ofreciendo sacrificios espirituales agradables a Elohím
+                                    por medio de Yeshúa haMashíaj (1 Pedro 2:5).</p>
+                            </li>
+                            <li>
+                                <strong>Quemar el cabello del nazireo bajo el sacrificio de shalámim</strong>
+                                <p>📖 Números 6:18</p>
+                                <p>Tipo: Positiva</p>
+                                <p>Valor: Toda honra personal es entregada a Elohím; ningún mérito se retiene.</p>
+                                <p>Aplicación mesiánica: Nuestra “gloria” es consumida en Su altar: “No a nosotros, sino
+                                    a Tu Nombre da gloria” (Salmo 115:1).</p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="point-letter">B</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Principios y Valores Eternos</div>
+                        <ul>
+                            <li>Santidad es una decisión personal, no un accidente espiritual.</li>
+                            <li>La consagración es visible, exigente, pero profundamente transformadora.</li>
+                            <li>El dominio del cuerpo es señal del gobierno del alma redimida.</li>
+                            <li>El fin de toda entrega es alabanza, reconciliación, y ofrenda ante el altar.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="point-letter">C</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Relevancia para el Brit Hadasháh</div>
+                        <p>El Brit Hadasháh no exige el voto nazareo, pero llama a una vida de santidad mayor:</p>
+                        <p>“Os ruego… que presentéis vuestros cuerpos en sacrificio vivo, santo, agradable a Elohím…”
+                        </p>
+                        <p>📖 Romanos 12:1</p>
+                        <p>→ La vida del redimido es un voto perpetuo de consagración en Mashíaj.</p>
+                    </div>
+                </div>
+                <div class="conclusion">
+                    <p>Conclusión del Punto 10:</p>
+                    <p>El voto del nazareo es una escuela de disciplina espiritual. Cada mitzváh refleja un valor
+                        eterno: dominio propio, santidad, honra al Creador, y entrega sin reserva. En Mashíaj, estos
+                        principios no se abolen, sino que se cumplen y se elevan. Ahora somos consagrados no por corte
+                        externo, sino por el fuego interno del Ruaj HaKodesh.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 11. Preguntas de Reflexión</h1>
+            <h2><strong>Parashá Naso – Bemidbar / Números 6:1–21</strong></h2>
+            <h3><strong>Aliyáh 5: El voto del Nazareo – <span class="hebrew-term">נָזִיר</span> (Nazír)</strong></h3>
+            <h3><strong>Con respuestas desde el cumplimiento en Yeshúa haMashíaj</strong></h3>
+
+            <div class="section-container">
+                <div class="question">1. ¿Qué significa para mí hoy vivir separado para Elohím sin necesidad de un voto
+                    formal?</div>
+                <div class="answer">
+                    🕊 <strong>Respuesta en el Mashíaj:</strong> En Yeshúa haMashíaj hemos sido <strong>separados no por
+                        promesa, sino por redención</strong> (Efesios 1:4). Ya no es un periodo de consagración
+                    temporal, sino una identidad eterna como nación santa (1 Pedro 2:9). <strong>La separación hoy es
+                        fruto del Ruaj HaKodesh</strong>, no de ritual, y nos llama a vivir como "nazireos interiores",
+                    consagrados en todo.
+                </div>
+
+                <div class="question">2. ¿Qué estoy dispuesto a dejar, incluso si es lícito, por una vida de mayor
+                    santidad?</div>
+                <div class="answer">
+                    🕊 <strong>Respuesta en el Mashíaj:</strong> Shaúl dijo: "Todo me es lícito, pero no todo conviene"
+                    (1 Corintios 6:12). Yeshúa renunció a gloria, placer, descanso y comodidad —no porque fueran pecado,
+                    sino por amor redentor (Filipenses 2:7–8). <strong>La vida consagrada se mide más por lo que
+                        entregamos voluntariamente que por lo que evitamos por obligación.</strong>
+                </div>
+
+                <div class="question">3. ¿He considerado mi cuerpo, mis hábitos y mis deseos como parte de mi adoración?
+                </div>
+                <div class="answer">
+                    🕊 <strong>Respuesta en el Mashíaj:</strong> El nazireo muestra que la adoración no es solo cantada,
+                    <strong>sino vivida en lo físico, emocional y espiritual.</strong> Mashíaj ofreció su cuerpo entero
+                    (Hebreos 10:5). Nosotros también estamos llamados a ser sacrificio vivo, santo y agradable (Romanos
+                    12:1).
+                </div>
+
+                <div class="question">4. ¿Cómo trato mi "corona espiritual"? ¿Como un adorno personal, o como algo que
+                    debe ser ofrecido en el altar?</div>
+                <div class="answer">
+                    🕊 <strong>Respuesta en el Mashíaj:</strong> El nazireo quemaba su cabello —símbolo de gloria— como
+                    ofrenda. Mashíaj, "aunque en forma de Elohím… se despojó a sí mismo" (Filipenses 2:6–7).
+                    <strong>Toda gloria humana es vana si no es rendida ante el trono.</strong> El creyente no busca
+                    brillar, sino exaltar al Rey.
+                </div>
+
+                <div class="question">5. ¿Entiendo que consagrarme a Elohím no es aislamiento del mundo, sino testimonio
+                    dentro del mundo?</div>
+                <div class="answer">
+                    🕊 <strong>Respuesta en el Mashíaj:</strong> Yeshúa oró: "No te ruego que los saques del mundo, sino
+                    que los guardes del mal" (Yojanán 17:15). El nazireo no vivía en el desierto como ermitaño,
+                    <strong>vivía en medio del pueblo como testimonio visible</strong> de separación. En Mashíaj, somos
+                    llamados a estar <strong>en el mundo pero no del mundo</strong> —una consagración viviente, no
+                    escondida.
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <strong>✅ Reflexión Final</strong><br>
+                El voto del nazareo nos confronta con una verdad: <strong>La santidad no se hereda, se decide.</strong>
+                Mashíaj cumplió en sí la vida consagrada —no con navaja o vino, sino con sangre, obediencia y gloria
+                rendida. Hoy Él llama a una comunidad que no vive según el estándar común, sino <strong>según el Reino
+                    que viene.</strong><br><br>
+                ¿Qué voto harás tú, no con palabras, sino con vida?
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 12. Resumen de la Aliyáh</h1>
+            <h2><strong>Parashá Naso – Bemidbar / Números 6:1–21</strong></h2>
+            <h3><strong>Aliyáh 5: El voto del Nazareo – <span class="hebrew-term">נָזִיר</span> (Nazír)</strong></h3>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Resumen Narrativo</div>
+                <p>Esta sección presenta las leyes del <strong>nazireo</strong>, hombre o mujer que se consagraba
+                    voluntariamente a יהוה mediante un voto. El texto especifica:</p>
+                <ul>
+                    <li>Abstenerse de todo producto de la vid (vino, uvas, vinagre, pasas).</li>
+                    <li>No cortarse el cabello mientras dure el voto.</li>
+                    <li>No contaminarse con cadáveres, ni siquiera de familiares cercanos.</li>
+                </ul>
+                <p>Si el nazireo se contamina por muerte accidental, debía reiniciar el conteo de su consagración con
+                    nuevas ofrendas.</p>
+                <p>Cuando se completaba el tiempo del voto:</p>
+                <ul>
+                    <li>El cabello era cortado y quemado en el altar junto con los sacrificios prescritos: expiación,
+                        oláh, y shalámim.</li>
+                    <li>Este ritual concluía el tiempo de separación y devolvía al nazireo a la vida cotidiana.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Mensaje Espiritual</div>
+                <p>El voto del nazireo representa <strong>una entrega radical y visible</strong> de una persona común a
+                    una santidad extraordinaria. No era obligatorio, pero era altamente valorado.</p>
+                <p><strong>La consagración no nace de la exigencia ritual, sino del amor profundo por la presencia de
+                        Elohím.</strong></p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Cumplimiento Mesiánico</div>
+                <p>Yeshúa haMashíaj <strong>cumple el ideal del nazireo</strong> de forma perfecta:</p>
+                <ul>
+                    <li>Separado desde el vientre (Lucas 1:35),</li>
+                    <li>Sin pecado, sin contaminación,</li>
+                    <li>Totalmente entregado al Padre (Juan 5:30),</li>
+                    <li>Y al final, <strong>Su cuerpo fue la ofrenda viviente</strong>, Su honra (nezer) fue entregada,
+                        y Su sangre fue rociada en el altar eterno.</li>
+                </ul>
+                <p>Mashíaj <strong>no hizo un voto externo</strong>, pero vivió como el Nazireo del Reino —el Ungido con
+                    propósito, el Separado con poder, el Esposo con pacto.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. Aplicación para la Kehiláh</div>
+                <p>En la actualidad, el llamado no es a cortar el cabello o evitar el vino, sino a vivir con:</p>
+                <ul>
+                    <li><strong>Pureza moral,</strong></li>
+                    <li><strong>Separación del pecado,</strong></li>
+                    <li><strong>Entrega completa a Elohím,</strong></li>
+                    <li>Y una <strong>vida de intercesión activa, como sacrificio espiritual continuo.</strong></li>
+                </ul>
+                <p>Cada creyente redimido en Mashíaj es <strong>llamado a una vida de "nazireo interior"</strong>, no
+                    por obligación, sino por amor al Redentor.</p>
+            </div>
+
+            <div class="conclusion">
+                <strong>Conclusión del Resumen:</strong> Números 6:1–21 no es solo una instrucción ritual, sino
+                <strong>una imagen profética de la vida consagrada que Mashíaj cumplió perfectamente y que Su pueblo
+                    está llamado a reflejar.</strong> Él es el Nazireo eterno —separado, entregado, glorificado— y
+                nosotros somos Su reflejo viviente en la tierra.
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 13. Tefiláh de la Aliyáh</h1>
+            <h2><strong>Parashá Naso – Bemidbar / Números 6:1–21</strong></h2>
+            <h3><strong>Aliyáh 5: El voto del Nazareo – <span class="hebrew-term">נָזִיר</span> (Nazír)</strong></h3>
+            <h3><strong>Oración basada en la consagración, la santidad, y el cumplimiento mesiánico</strong></h3>
+
+            <div class="prayer-text">
+                <p><strong>Avinu Malkeinu, Elohím de santidad y verdad,</strong></p>
+
+                <p>Te damos gracias por enseñarnos que la consagración no es privilegio de unos pocos, sino un camino
+                    abierto para todos los que desean vivir para Ti.</p>
+
+                <p>Tú llamaste a los hombres y mujeres comunes de Israel a separarse voluntariamente, a elevarse en
+                    obediencia, a reflejar Tu luz entre la nación. Hoy, por medio de Yeshúa haMashíaj, Tú nos llamas a
+                    una consagración aún más alta: <strong>no por voto, sino por redención.</strong></p>
+
+                <p>Gracias por darnos al Nazireo perfecto: El que no solo se abstuvo, sino que <strong>se
+                        ofreció.</strong> El que no solo guardó su gloria, sino que <strong>la rindió.</strong> El que
+                    no solo evitó la muerte, sino que <strong>la venció.</strong></p>
+
+                <p>Padre, ayúdanos a vivir como consagrados —no por ritual externo, sino por pasión interna. Que nuestra
+                    vida sea como un cabello que no se corta, como un altar que no se apaga, como una copa que se
+                    abstiene… hasta que venga el Reino completo.</p>
+
+                <div class="scripture">
+                    <p>Haznos andar en santidad verdadera:</p>
+                    <p>→ Que nos separemos del pecado sin aislarnos del mundo.</p>
+                    <p>→ Que dominemos los deseos sin apagar la alegría.</p>
+                    <p>→ Que entreguemos nuestra honra para que sólo Tú seas exaltado.</p>
+                </div>
+
+                <p>Y cuando llegue el día de la culminación de nuestro "voto", Cuando nuestra carrera se haya
+                    completado, y nuestra ofrenda esté lista para el altar, recíbenos como recibiste a Tu Hijo — como
+                    sacrificio vivo, santo, agradable.</p>
+            </div>
+
+            <div class="prayer-conclusion">
+                <p><strong>Barúj Atá Adonái, Elohím de los separados, que nos haces Kadosh en Mashíaj Yeshúa, y nos
+                        llamas corona de Tu Reino.</strong></p>
+                <p><strong>Amén veAmén.</strong></p>
+            </div>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya6.html">Continuar con la Aliyá 6</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

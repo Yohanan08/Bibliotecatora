@@ -1,0 +1,2643 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 7:1-89</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>35. Parashá Naso (נשא) Aliyáh 7: (Números 7:1-89) Las ofrendas de los príncipes de las tribus para la
+            dedicación del Mishkán (Tabernáculo)..
+            <p>Haftaráh: Jueces 13:2-25 (Shimshón, dedicado a Elohím desde el nacimiento, similar a la dedicación del
+                Mishkán).</p>
+            <p>Brit Hadasháh: Hebreos 13:15-16 (Ofrecer sacrificios espirituales, agradables a Elohím).</p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Números 7:1-15 – Texto Hebreo, Fonética, Traducción Literal y Cumplimiento en el Mashíaj</h1>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 1</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיְהִי בְּיוֹם כַּלּוֹת מֹשֶׁה לְהָקִים אֶת־הַמִּשְׁכָּן וַיִּמְשַׁח אֹתוֹ
+                    וַיְקַדֵּשׁ אֹתוֹ וְאֶת־כָּל־כֵּלָיו וְאֶת־הַמִּזְבֵּחַ וְאֶת־כָּל־כֵּלָיו וַיִּמְשַׁח אֹתָם
+                    וַיְקַדֵּשׁ אֹתָם׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yehí be-yom kalot Moshéh le-haqím et-haMishkán va-yimsháj otó
+                    va-yeqaddésh otó ve-et kol-keláv ve-et haMizbéaj ve-et kol-keláv va-yimsháj otám va-yeqaddésh otám.
+                </div>
+            </div>
+
+            <div class="section-container">
+                <strong>Traducción Palabra por Palabra:</strong>
+                <div class="word-by-word">
+                    <strong>וַיְהִי</strong> Va-yehí – Y fue<br>
+                    <strong>בְּיוֹם</strong> be-yom – en el día<br>
+                    <strong>כַּלּוֹת</strong> kalot – de terminar/completar<br>
+                    <strong>מֹשֶׁה</strong> Moshéh – Moshé<br>
+                    <strong>לְהָקִים</strong> le-haqím – para levantar<br>
+                    <strong>אֶת־הַמִּשְׁכָּן</strong> et-haMishkán – el Tabernáculo<br>
+                    <strong>וַיִּמְשַׁח</strong> va-yimsháj – y lo ungió<br>
+                    <strong>אֹתוֹ</strong> otó – a él<br>
+                    <strong>וַיְקַדֵּשׁ</strong> va-yeqaddésh – y lo santificó<br>
+                    <strong>אֹתוֹ</strong> otó – a él<br>
+                    <strong>וְאֶת־כָּל־כֵּלָיו</strong> ve-et kol-keláv – y todos sus utensilios<br>
+                    <strong>וְאֶת־הַמִּזְבֵּחַ</strong> ve-et haMizbéaj – y el altar<br>
+                    <strong>וְאֶת־כָּל־כֵּלָיו</strong> ve-et kol-keláv – y todos sus utensilios<br>
+                    <strong>וַיִּמְשַׁח</strong> va-yimsháj – y los ungió<br>
+                    <strong>אֹתָם</strong> otám – a ellos<br>
+                    <strong>וַיְקַדֵּשׁ</strong> va-yeqaddésh – y los santificó<br>
+                    <strong>אֹתָם</strong> otám – a ellos
+                </div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y fue en el día que Moshé terminó de levantar el Mishkán, que lo ungió y lo santificó, y todos sus
+                utensilios, y el altar y todos sus utensilios; y los ungió y los santificó."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Yeshúa haMashíaj es el verdadero Mishkán (Tabernáculo) de Elohím entre los hombres (Juan 1:14,
+                Apocalipsis 21:3). Así como el Mishkán fue levantado, ungido y santificado, Yeshúa fue ungido por el
+                Ruaj HaKodesh (Lucas 4:18) y santificado por el Padre (Juan 10:36), siendo el lugar donde Elohím mora
+                plenamente (Colosenses 2:9).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 2</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיַּקְרִיבוּ נְשִׂיאֵי יִשְׂרָאֵל רָאשֵׁי בֵּית אֲבֹתָם הֵם נְשִׂיאֵי הַמַּטּוֹת
+                    הֵם הָעֹמְדִים עַל־הַפְּקֻדִים׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yaqrívu nesi'éi Yisrael, roshei veit avotám, hem nesi'éi ha-matót, hem
+                    ha-omedím al ha-pequdím.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y ofrecieron los príncipes de Yisrael, jefes de la casa de sus padres, ellos eran los jefes de las
+                tribus, ellos eran los que estaban sobre el censo."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Yeshúa, como Príncipe de Paz (Yesha'yahu 9:6) y Cabeza de Israel, representa a cada tribu y a toda la
+                casa de Yisrael en su intercesión eterna como Kohen Gadol (Hebreos 7:25), mostrando que Él mismo es el
+                que ofrece y se ofrece por todos.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 3</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיָּבִיאוּ אֶת־קָרְבָּנָם לִפְנֵי יְהוָה שֵׁשׁ־עֶגְלֹת צָב וּשְׁנֵים עָשָׂר בָּקָר
+                    עֶגְלָה עַל־שְׁנֵי הַנְּשִׂאִים וְשׁוֹר לָאֶחָד וַיַּקְרִיבוּ אֹתָם לִפְנֵי הַמִּשְׁכָּן׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yaví'u et-qorbánám lifnéi Adonái, shésh-eglót tzav u-shneím asar bakár,
+                    egláh al-shnéi ha-nesi'ím ve-shor la'ejád; va-yaqrívu otám lifnéi haMishkán.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y trajeron su ofrenda delante de Adonái: seis carretas cubiertas y doce bueyes; una carreta por cada
+                dos príncipes, y un buey por cada uno, y los ofrecieron delante del Mishkán."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Estas ofrendas prefiguran el servicio unido de todas las tribus. Yeshúa, como sacrificio perfecto,
+                unifica a todas las tribus y naciones (Juan 17:21), siendo Él mismo quien carga con la carga (como las
+                carretas) de su pueblo (Isaías 53:4-5).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 4</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה לֵאמֹר׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yomér Adonái el-Moshéh lemor.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y dijo Adonái a Moshé, diciendo:"
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Yeshúa es el verdadero Moshé, el profeta anunciado que hablaría en Nombre de Adonái (Deuteronomio
+                18:18). Así como Moshé recibe la instrucción divina, Yeshúa declara que no habla por sí mismo, sino lo
+                que oye del Padre (Juan 12:49).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 5</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">קַח מֵאִתָּם וְהָיוּ לַעֲבֹד אֵת עֲבֹדַת אֹהֶל מוֹעֵד וְנָתַתָּה אֹתָם
+                    אֶל־הַלְוִיִּם אִישׁ כְּפִי עֲבֹדָתוֹ׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Qaj me-itám ve-hayu la'avód et avodat Ohel Mo'ed; ve-natátá otám el
+                    haLeviím, ish kefí avodató.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Toma de ellos, y serán para hacer el servicio del Ohel Mo'ed; y los darás a los Levíim, cada hombre
+                según su servicio."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Así como los utensilios y animales eran designados para el servicio del Tabernáculo, Yeshúa comisiona a
+                sus seguidores para servir conforme a sus dones (Efesios 4:11-13). Él es quien reparte el ministerio
+                según el llamado de cada uno.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 6</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיִּקַּח מֹשֶׁה אֶת־הָעֲגָלוֹת וְאֶת־הַבָּקָר וַיִּתֵּן אוֹתָם אֶל־הַלְוִיִּם׃
+                </div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yiqqáj Moshéh et-ha'agalót ve-et ha-bakár, va-yittén otám el haLeviím.
+                </div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y tomó Moshé las carretas y los bueyes, y los dio a los Levíim."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                La acción de entregar recursos para el ministerio simboliza cómo Yeshúa equipa a su Kehiláh con todo lo
+                necesario para el servicio del Reino (1 Corintios 12:4-7). Él es quien delega, capacita y envía.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 7</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">אֵת שְׁתֵּי הָעֲגָלֹת וְאֵת אַרְבָּעַת הַבָּקָר נָתַן לִבְנֵי גֵרְשׁוֹן כְּפִי
+                    עֲבֹדָתָם׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Et shtei ha'agalót ve-et arba'at ha-bakár natán li-vnei Gershón kefí
+                    avodatám.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Las dos carretas y los cuatro bueyes dio a los hijos de Gershón, conforme a su servicio."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Cada uno recibe conforme a su función, tal como Yeshúa distribuye dones diversos a su cuerpo (Romanos
+                12:6). La función del linaje de Gershón nos recuerda la diversidad del servicio en unidad, que se cumple
+                plenamente en el Mashíaj.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 8</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וְאֵת אַרְבַּע הָעֲגָלוֹת וְאֶת־שְׁמֹנַת הַבָּקָר נָתַן לִבְנֵי מְרָרִי כְּפִי
+                    עֲבֹדָתָם בְּיַד אִיתָמָר בֶּן־אַהֲרֹן הַכֹּהֵן׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Ve-et arba ha'agalót ve-et shmonat ha-bakár natán li-vnei Merarí kefí
+                    avodatám, beyad Itamar ben Aharón haKohén.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y las cuatro carretas y los ocho bueyes dio a los hijos de Merarí, conforme a su servicio, por mano de
+                Itamar hijo de Aharón el sacerdote."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Itamar representa al sacerdocio supervisando la distribución del servicio. En Yeshúa, quien es el gran
+                Sumo Sacerdote según el orden de Malki-Tzedek (Hebreos 5:10), cada miembro es equipado conforme a su
+                tarea. Él mismo organiza el cuerpo como Cabeza viviente (Colosenses 1:18).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 9</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וּלְבְנֵי קְהָת לֹא נָתָן כִּי עֲבֹדַת הַקֹּדֶשׁ עֲלֵיהֶם בַּכָּתֵף יִשָּׂאוּ׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Ul-vnei Kehat lo natán, ki avodat ha-qódesh aleihem, ba-katéf yissá'u.
+                </div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Pero a los hijos de Kehat no dio, porque el servicio del santuario era sobre ellos, debían llevarlo
+                sobre el hombro."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El linaje de Kehat llevaba los objetos más sagrados, como el Arca. Esto simboliza el llamado más alto:
+                cargar la presencia de Elohím. En Yeshúa, quien llevó sobre sí mismo nuestras iniquidades (Isaías 53:4),
+                se cumple el tipo del portador del Arca. Él mismo es el Arca viviente, y su obra redentora fue llevada
+                sobre sus "hombros" (Isaías 9:6).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 10</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיַּקְרִיבוּ הַנְּשִׂאִים אֵת חֲנֻכַּת הַמִּזְבֵּחַ בְּיוֹם הִמָּשַׁח אֹתוֹ
+                    וַיַּקְרִיבוּ הַנְּשִׂאִים אֶת־קָרְבָּנָם לִפְנֵי הַמִּזְבֵּחַ׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yaqrívu ha-nesi'ím et janukát ha-Mizbéaj be-yom himasháj otó; va-yaqrívu
+                    ha-nesi'ím et qorbánam lifnéi ha-Mizbéaj.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y ofrecieron los príncipes la dedicación del altar en el día que fue ungido; y ofrecieron los príncipes
+                su ofrenda delante del altar."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El altar es dedicado el mismo día que es ungido, y esto profetiza la dedicación de Yeshúa como
+                sacrificio perfecto. En su inmersión (Mateo 3:16-17), fue ungido y públicamente manifestado como el
+                Cordero que sería entregado. Su cuerpo es también el verdadero altar (Hebreos 13:10), consagrado para
+                siempre.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 11</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה נָשִׂיא אֶחָד לַיּוֹם נָשִׂיא אֶחָד לַיּוֹם יַקְרִיבוּ
+                    אֶת־קָרְבָּנָם לַחֲנֻכַּת הַמִּזְבֵּחַ׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yomér Adonái el-Moshéh: nasi ejad la-yom, nasi ejad la-yom, yaqrívu et
+                    qorbánam le-janukát ha-Mizbéaj.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y dijo Adonái a Moshé: un príncipe por día, un príncipe por día ofrecerán su ofrenda para la dedicación
+                del altar."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Cada día un príncipe traía su ofrenda, prefigurando la unidad en la diversidad del servicio del Reino.
+                En el Reino de Yeshúa, cada uno de nosotros —como reyes y sacerdotes (Apocalipsis 1:6)— ofrece su vida
+                diariamente como sacrificio vivo (Romanos 12:1), continuando la dedicación del altar con nuestras
+                propias vidas.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 12</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וַיְהִי הַמַּקְרִיב בַּיּוֹם הָרִאשׁוֹן אֶת־קָרְבָּנוֹ נַחְשׁוֹן בֶּן־עַמִּינָדָב
+                    לְמַטֵּה יְהוּדָה׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Va-yehí ha-maqrív ba-yom ha-rishón et-qorbano Najshón ben Aminadav le-maté
+                    Yehudá.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y fue el que ofreció en el primer día su ofrenda Najshón hijo de Aminadav, de la tribu de Yehudá."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Najshón, de la tribu de Yehudá, es el primero en presentar ofrenda. Esto señala que la realeza y el
+                sacrificio mesiánico vienen por Yehudá. Yeshúa, el León de la tribu de Yehudá (Apocalipsis 5:5), es el
+                primero en todo, el Primogénito entre muchos hermanos (Romanos 8:29), y su entrega inaugura el servicio
+                eterno.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 13</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וְקָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד
+                    כֶּסֶף שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃
+                </div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Ve-qorbano: ka'arat késef ajat, sheloshím u-me'áh mishqaláh; mizráq ejad
+                    késef, shiv'im shéqel, be-sheqel ha-qódesh; shenehem mele'ím sólet beluláh ba-shémen le-minjáh.
+                </div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y su ofrenda: un plato de plata de ciento treinta siclos su peso, un tazón de plata de setenta siclos
+                según el siclo del santuario, ambos llenos de flor de harina mezclada con aceite como ofrenda vegetal."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                La ofrenda de plata y flor de harina simboliza pureza, redención y alimento espiritual. Yeshúa es el Pan
+                de Vida (Juan 6:35), ofrecido sin defecto (1 Pedro 1:19), y su sangre es el precio de nuestra redención
+                (Mateo 26:28). Cada medida y peso apunta a la perfección de su obra.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 14</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Kaf ajat asará zaháv, mele'á ketóret.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Una cuchara de diez (siclos) de oro, llena de incienso."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El incienso representa las oraciones de los qadoshím (Apocalipsis 5:8), y Yeshúa es nuestro intercesor
+                perfecto (Hebreos 7:25). El número diez indica completitud. Su intercesión es plena y constante,
+                ascendiendo como olor grato ante el trono de Elohím.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 15</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.</div>
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Un toro, un carnero, un cordero de un año como ofrenda de ascensión."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Cada animal representa aspectos del sacrificio perfecto:<br><br>
+                <strong>El toro</strong> (fuerza),<br>
+                <strong>el carnero</strong> (liderazgo),<br>
+                <strong>y el cordero</strong> (inocencia).<br><br>
+                Yeshúa los encarna todos: es el Cordero sin mancha (Juan 1:29), el Siervo-Rey que sube voluntariamente
+                como 'oláh (ofrenda de ascensión) hasta el madero, consumando la redención.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 16</div>
+            <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+            <div class="transliteration">Ve-se'ír izzím ejad le-jattát.</div>
+            <div class="translation">"Y un macho cabrío como ofrenda de pecado."</div>
+            <div class="explanation">El se’ír le-jattát (macho cabrío por el pecado) apunta directamente a Yeshúa, quien
+                se ofreció a sí mismo como ofrenda expiatoria (Hebreos 9:26). En Yom Kipur, uno de los dos machos
+                cabríos era enviado al desierto con los pecados del pueblo —Yeshúa cumple ambas funciones: portador del
+                pecado y ofrenda que purifica (Isaías 53:6,10).</div>
+        </div>
+        Copy
+        <div class="verse-container">
+            <div class="verse-number">Verso 17</div>
+            <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵיל חֲדִיּם עַתּוּדִים שְׁנָיִם כְּבָשִׂים
+                בְּנֵי־שָׁנָה שִׁבְעָה זֶה קָרְבַּן נַחְשׁוֹן בֶּן־עַמִּינָדָב׃</div>
+            <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim, eil jadím, attudím shenáyim, kevásim bnei
+                shaná shiv’áh; zé qorbán Najshón ben Aminadav.</div>
+            <div class="translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos, cinco
+                corderos de un año; esta fue la ofrenda de Najshón hijo de Aminadav."</div>
+            <div class="explanation">Los shlamím (sacrificios de paz) prefiguran la reconciliación. Yeshúa haMashíaj es
+                nuestra shalóm (paz), quien derribó el muro de separación y nos reconcilió con el Padre (Efesios
+                2:14-16). El número siete (corderos) indica plenitud —en Él se consuma toda paz perfecta.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 18</div>
+            <div class="hebrew">בַּיּוֹם הַשֵּׁנִי הִקְרִיב נְתַנְאֵל בֶּן־צוּעָר נָשִׂיא יִשָּׂשכָר׃</div>
+            <div class="transliteration">Ba-yom ha-shení hikrív Netanél ben Tzuar, nasi Yissájar.</div>
+            <div class="translation">"En el segundo día ofreció Netanél hijo de Tzuar, príncipe de Yisajar."</div>
+            <div class="explanation">Netanél (נתנאל) significa "El que Elohím dio", lo cual es una sombra del regalo del
+                Mashíaj al mundo (Juan 3:16). Así como Netanél trajo su ofrenda, Yeshúa es la ofrenda perfecta dada por
+                el Padre a través del linaje y propósito divino.</div>
+        </div>
+
+        div class="verse-container">
+        <div class="verse-number">Verso 19</div>
+
+        <div class="section-container">
+            <strong>Texto Hebreo:</strong>
+            <div class="hebrew">הִקְרִיב אֶת־קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק
+                אֶחָד כֶּסֶף שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן
+                לְמִנְחָה׃</div>
+        </div>
+
+        <div class="section-container">
+            <strong>Fonética:</strong>
+            <div class="transliteration">Hikrív et-qorbano: ka'arat késef aját, sheloshím u-me'áh mishqaláh; mizráq ejad
+                késef, shiv'ím shéqel, be-sheqel ha-qódesh; shenehem mele'ím sólet beluláh ba-shémen le-minjáh.</div>
+        </div>
+
+        <div class="section-container">
+            <strong>Traducción Literal:</strong>
+            <div class="literal-translation">"Ofreció su ofrenda: un plato de plata de ciento treinta siclos su peso, un
+                tazón de plata de setenta siclos según el siclo del santuario, ambos llenos de flor de harina mezclada
+                con aceite como ofrenda vegetal."</div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+            <div>Repetición del patrón de pureza, redención y provisión. La <span class="hebrew-term">מִנְחָה</span>
+                (oblación) sin sangre simboliza la vida sin pecado del Mashíaj ofrecida desde el principio. Así como
+                estos elementos son "santos al Eterno", Yeshúa mismo fue santificado (Juan 10:36) y ofrecido como pan
+                para vida eterna (Juan 6:51).</div>
+        </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 20</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Kaf aját asará zaháv, mele'á ketóret.</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Traducción Literal:</strong>
+                <div class="literal-translation">"Una cuchara de oro de diez (siclos), llena de incienso."</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                <div>El incienso representa las oraciones puras y agradables. Yeshúa no solo ora por nosotros (Juan 17),
+                    sino que es el aroma grato perpetuo delante del trono de Elohím. Como Cohen Gadol, intercede
+                    continuamente (Hebreos 7:25) en favor de los suyos.</div>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 21</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Traducción Literal:</strong>
+                <div class="literal-translation">"Un toro, un carnero, un cordero de un año como ofrenda de ascensión."
+                </div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                <div>La <span class="hebrew-term">עֹלָה</span> (ascensión) representa la total entrega. En Yeshúa, esta
+                    entrega es absoluta. Él sube al madero, asciende al cielo, y ofrece su vida entera como aroma
+                    agradable (Efesios 5:2).</div>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 22</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Ve-se'ír izzím ejad le-jattát.</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Traducción Literal:</strong>
+                <div class="literal-translation">"Y un macho cabrío por ofrenda de pecado."</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                <div>Reiteración del papel mesiánico de Yeshúa como el portador del pecado. Cada repetición en estos
+                    versos confirma que no hay redención sin el derramamiento de sangre (Hebreos 9:22) —y que sólo el
+                    Cordero de Elohím puede quitar el pecado del mundo (Juan 1:29).</div>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 23</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה
+                    כְּבָשִׂים בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן נְתַנְאֵל בֶּן־צוּעָר׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim, eilím jamisháh, attudím jamisháh,
+                    kevásim bnei shaná jamisháh; zé qorbán Netanél ben Tzuar.</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Traducción Literal:</strong>
+                <div class="literal-translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos
+                    cabríos, cinco corderos de un año; esta fue la ofrenda de Netanél hijo de Tzuar."</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                <div>Las repeticiones numéricas (5, 5, 5) indican plenitud de gracia. El sacrificio de paz se realiza
+                    por medio de Yeshúa, en quien se reconcilian todas las cosas (Colosenses 1:20). El número cinco
+                    (<span class="hebrew-term">חמשׁ</span>) en hebreo también apunta a favor y redención, temas
+                    profundos en su sacrificio.</div>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 24</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">בַּיּוֹם הַשְּׁלִישִׁי נָשִׂיא לִבְנֵי זְבוּלֻן אֱלִיאָב בֶּן־חֵלֹן׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Ba-yom ha-shelishí, nasi livnei Zevulún, Eliav ben Jelón.</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Traducción Literal:</strong>
+                <div class="literal-translation">"En el tercer día, príncipe para los hijos de Zevulún, Eliav hijo de
+                    Jelón."</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                <div>El tercer día es una alusión directa a la resurrección. Así como Eliav (mi Elohím es Padre)
+                    presenta su ofrenda en el tercer día, así Yeshúa resucita gloriosamente como primicias (1 Corintios
+                    15:20), trayendo redención y esperanza.</div>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 25</div>
+
+            <div class="section-container">
+                <strong>Texto Hebreo:</strong>
+                <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד כֶּסֶף
+                    שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃</div>
+            </div>
+
+            <div class="section-container">
+                <strong>Fonética:</strong>
+                <div class="transliteration">Qorbano: ka'arat késef aját, sheloshím u-me'áh mishqaláh; mizráq ejad
+                    késef, shiv'ím shéqel, be-sheqel ha-qódesh; shenehem mele'ím sólet beluláh ba-shémen le-minjáh.
+                </div>
+            </div>
+
+            <div class="section-container">
+                <strong>Traducción Literal:</strong>
+                <div class="literal-translation">"Su ofrenda: un plato de plata de ciento treinta siclos de peso, un
+                    tazón de plata de setenta siclos según el siclo del santuario, ambos llenos de flor de harina
+                    mezclada con aceite como ofrenda vegetal."</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                <div>Una repetición del patrón de plenitud y entrega. La <span class="hebrew-term">מִנְחָה</span>
+                    prefigura la encarnación del Mashíaj, la Palabra hecha carne, ofrecida como el pan del cielo (Juan
+                    6:33). Esta tercera repetición en el tercer día subraya que su vida sin pecado fue presentada para
+                    nuestra reconciliación.</div>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 26</div>
+
+            <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Kaf aját asará zaháv mele'á ketóret.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Una cuchara de oro de diez siclos, llena de incienso."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                El incienso representa la intercesión. En Yeshúa, quien es nuestro Intercesor ante el trono (Hebreos
+                7:25), el incienso simboliza su constante intercesión como aroma grato. El número diez también alude a
+                plenitud de autoridad (Apocalipsis 5:8; 8:3-4).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 27</div>
+
+            <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Un toro, un carnero, un cordero de un año, como ofrenda de ascensión."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Yeshúa cumplió completamente la oláh (ofrenda de ascensión) entregando su vida por completo. La
+                combinación toro, carnero y cordero apunta a fuerza, obediencia y pureza —todo ello en el carácter del
+                Mashíaj (Juan 10:17-18).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 28</div>
+
+            <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Ve-se'ír izzím ejad le-jattát.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y un macho cabrío por ofrenda de pecado."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Yeshúa es representado aquí como el siervo sufriente que porta los pecados del pueblo (Isaías 53:6). Así
+                como el macho cabrío lleva la culpa fuera del campamento, el Mashíaj sufrió fuera del campamento para
+                redimirnos (Hebreos 13:12).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 29</div>
+
+            <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה כְּבָשִׂים
+                בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן אֱלִיאָב בֶּן־חֵלֹן׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Ul-zeváj ha-shelamím: bakár shenáyim, eilím jamisháh, attudím jamisháh, kevásim bnei shaná jamisháh; zé
+                qorbán Eliav ben Jelón.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos, cinco corderos de un año;
+                esta fue la ofrenda de Eliav hijo de Jelón."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Los shlamím representan comunión y reconciliación. En Yeshúa, tenemos paz con el Padre (Romanos 5:1). El
+                número cinco <span class="hebrew-term">חמשׁ</span> vinculado a gracia, se reitera en corderos, carneros
+                y machos cabríos, confirmando que su sacrificio nos ha dado shalom completo (Isaías 53:5).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 30</div>
+
+            <div class="hebrew">בַּיּוֹם הָרְבִיעִי נָשִׂיא לִבְנֵי רְאוּבֵן אֱלִיצוּר בֶּן־שְׁדֵיאוּר׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Ba-yom ha-revi'í, nasi livnei Reuvén, Elitzur ben Shedeiur.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "En el cuarto día, príncipe para los hijos de Reuvén, Elitzur hijo de Shedeiur."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Reuvén, primogénito de Yaakov, simboliza herencia y autoridad. Yeshúa es también llamado el Primogénito
+                (Proverbios 8:22, Colosenses 1:15), quien en el día cuarto (número de creación/luz) manifiesta su
+                realeza como Or HaOlam —la Luz del mundo (Juan 8:12).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 31</div>
+
+            <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד כֶּסֶף
+                שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Qorbano: ka'arat késef aját, sheloshím u-me'áh mishqaláh; mizráq ejad késef, shiv'ím shéqel, be-sheqel
+                ha-qódesh; shenehem mele'ím sólet beluláh ba-shémen le-minjáh.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Su ofrenda: un plato de plata de ciento treinta siclos de peso, un tazón de plata de setenta siclos
+                según el siclo del santuario, ambos llenos de flor de harina mezclada con aceite como ofrenda vegetal."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Reafirma el patrón de santidad y entrega en la figura de Yeshúa como ofrenda aceptable (2 Corintios
+                2:15). El aceite mezclado con harina muestra la unción divina sobre su humanidad pura.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 32</div>
+
+            <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Kaf aját asará zaháv, mele'á ketóret.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Una cuchara de oro de diez siclos, llena de incienso."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Repetición que fortalece la imagen de la oración continua del Mashíaj. Como el incienso sube sin cesar,
+                así su intercesión por su pueblo no se interrumpe (Romanos 8:34).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 33</div>
+
+            <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Un toro, un carnero, un cordero de un año como ofrenda de ascensión."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Otra repetición con propósito: el sacrificio voluntario y perfecto de Yeshúa, quien sube como olor grato
+                ante Elohím. En esta progresión (33 = Guematría de "Gal" ג"ל - redención), se revela la victoria de su
+                obra en los cielos (Efesios 4:8-10).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 34</div>
+
+            <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Ve-se'ír izzím ejad le-jattát.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y un macho cabrío por ofrenda de pecado."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                Subraya nuevamente su papel como portador del pecado (1 Pedro 2:24). Cada mención enfatiza el aspecto
+                expiatorio de su sacrificio único y suficiente (Hebreos 10:14).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 35</div>
+
+            <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה כְּבָשִׂים
+                בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן אֱלִיצוּר בֶּן־שְׁדֵיאוּר׃</div>
+
+            <div class="transliteration">
+                <strong>Fonética:</strong><br>
+                Ul-zeváj ha-shelamím: bakár shenáyim, eilím jamisháh, attudím jamisháh, kevásim bnei shaná jamisháh; zé
+                qorbán Elitzur ben Shedeiur.
+            </div>
+
+            <div class="literal-translation">
+                <strong>Traducción Literal:</strong><br>
+                "Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos, cinco corderos de un año;
+                esta fue la ofrenda de Elitzur hijo de Shedeiur."
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento en el Mashíaj:</div>
+                La triple figura del número cinco (gracia) en los shlamím resalta el alcance total de la paz ofrecida
+                por Yeshúa. El nombre "Elitzur" (mi Elohím es Roca) conecta con el Mesías, la Roca espiritual que nos
+                acompaña (1 Corintios 10:4).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 36</div>
+            <div class="hebrew">בַּיּוֹם הַחֲמִישִׁי נָשִׂיא לִבְנֵי שִׁמְעוֹן שְׁלֻמִיאֵל בֶּן־צוּרִישַׁדָּי׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Ba-yom ha-jamishí, nasi livnei Shimón, Shelumiél ben
+                Tzurishaday.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "En el quinto día, príncipe para los
+                hijos de Shimón, Shelumiél hijo de Tzurishaday."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El nombre "Shelumiél" puede significar "mi paz es de El", y "Tzurishaday" (mi roca es Shaday). Esto
+                apunta directamente a Yeshúa como fuente de paz (Efesios 2:14) y como Roca de Salvación (1 Corintios
+                10:4). El quinto día, con su símbolo de gracia, anuncia la reconciliación que viene por Él.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 37</div>
+            <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד כֶּסֶף
+                שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Qorbano: ka'arat késef aját, sheloshím u-me'áh
+                mishqaláh; mizráq ejad késef, shiv'ím shéqel, be-sheqel ha-qódesh; shenehem mele'ím sólet beluláh
+                ba-shémen le-minjáh.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Su ofrenda: un plato de plata de
+                ciento treinta siclos de peso, un tazón de plata de setenta siclos según el siclo del santuario, ambos
+                llenos de flor de harina mezclada con aceite como ofrenda vegetal."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Reflejo continuo de la pureza y entrega de Yeshúa. La flor de harina (sin defecto), el aceite (unción
+                del Ruaj), y el peso exacto (justicia perfecta), revelan que en Yeshúa todo es completo y exacto
+                conforme a la voluntad de Elohím.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 38</div>
+            <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Kaf aját asará zaháv, mele'á ketóret.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Una cuchara de oro de diez siclos,
+                llena de incienso."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El incienso sigue representando la intercesión. Así como el oro representa deidad, y el número diez
+                habla de plenitud, esta imagen profetiza la oración perfecta del Mashíaj en santidad completa delante
+                del trono celestial.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 39</div>
+            <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Par ejad ben-bakár, ayl ejad, kévesh ejad
+                ben-shenató le-oláh.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Un toro, un carnero, un cordero de un
+                año como ofrenda de ascensión."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Yeshúa, como oláh (ascensión), se ofrece voluntariamente y sin defecto. Esta triple ofrenda subraya su
+                obediencia, fuerza y mansedumbre. Él subió no solo al madero, sino también a los cielos como ofrenda
+                viva (Hebreos 9:12).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 40</div>
+            <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Ve-se'ír izzím ejad le-jattát.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Y un macho cabrío por ofrenda de
+                pecado."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Una vez más vemos la figura de Yeshúa como expiación por el pecado. Cada repetición en la Toráh
+                fortalece la imagen del Mesías como el portador de nuestro pecado (1 Juan 3:5).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 41</div>
+            <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה כְּבָשִׂים
+                בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן שְׁלֻמִיאֵל בֶּן־צוּרִישַׁדָּי׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Ul-zeváj ha-shelamím: bakár shenáyim, eilím
+                jamisháh, attudím jamisháh, kevásim bnei shaná jamisháh; zé qorbán Shelumiél ben Tzurishaday.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Y por sacrificio de paz: dos bueyes,
+                cinco carneros, cinco machos cabríos, cinco corderos de un año; esta fue la ofrenda de Shelumiél hijo de
+                Tzurishaday."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Otra declaración profética de comunión perfecta. Yeshúa es la paz entre Elohím y el hombre. La
+                repetición de cinco refuerza la gracia, y el nombre Shelumiél ("mi paz es de El") se cumple literalmente
+                en el sacrificio del Mesías.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 42</div>
+            <div class="hebrew">בַּיּוֹם הַשִּׁשִּׁי נָשִׂיא לִבְנֵי גָד אֶלְיָסָף בֶּן־דְּעוּאֵל׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Ba-yom ha-shishí, nasi livnei Gad, Elyasaf ben
+                Deu'el.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "En el sexto día, príncipe para los
+                hijos de Gad, Elyasaf hijo de Deu'el."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El sexto día, cuando fue creado el hombre, y cuando fue crucificado el Hijo del Hombre (Yohanan 19:14),
+                anuncia la redención de la humanidad. Elyasaf ("El ha añadido") representa la multiplicación del fruto
+                del sacrificio de Mashíaj.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 43</div>
+            <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד כֶּסֶף
+                שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Qorbano: ka'arat késef aját, sheloshím u-me'áh
+                mishqaláh; mizráq ejad késef, shiv'ím shéqel, be-sheqel ha-qódesh; shenehem mele'ím sólet beluláh
+                ba-shémen le-minjáh.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Su ofrenda: un plato de plata de
+                ciento treinta siclos de peso, un tazón de plata de setenta siclos según el siclo del santuario, ambos
+                llenos de flor de harina mezclada con aceite como ofrenda vegetal."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Confirmación de la presentación mesiánica de Yeshúa como ofrenda voluntaria, sin defecto, en completa
+                unción del Ruaj HaQódesh (Lucas 4:18).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 44</div>
+            <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Kaf aját asará zaháv, mele'á ketóret.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Una cuchara de oro de diez siclos,
+                llena de incienso."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Reitera el papel del Mashíaj como Mediador eterno y el incienso como símbolo de sus ruegos continuos a
+                favor de los qadoshím (Juan 17:9; Apocalipsis 8:3-4).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 45</div>
+            <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+            <div class="transliteration"><strong>Fonética:</strong> Par ejad ben-bakár, ayl ejad, kévesh ejad
+                ben-shenató le-oláh.</div>
+            <div class="literal-translation"><strong>Traducción Literal:</strong> "Un toro, un carnero, un cordero de un
+                año como ofrenda de ascensión."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Una vez más, el Mashíaj Yeshúa se representa en los tres animales: fuerza (toro), obediencia (carnero),
+                e inocencia (cordero). La oláh es su sacrificio voluntario, sin defecto, que asciende y es aceptado por
+                Elohím.
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 46</div>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+                <div class="transliteration">Ve-se’ír izzím ejad le-jattát.</div>
+                <div class="translation">"Y un macho cabrío por ofrenda de pecado."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    Una vez más se presenta la figura del portador del pecado. El se’ír es sombra del Mesías, quien fue
+                    hecho jattát (pecado) por nosotros para que en Él fuésemos justicia de Elohím (2 Corintios 5:21). La
+                    repetición no es redundante sino profética: subraya que la expiación es continua, eficaz y central.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 47</div>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים...</div>
+                <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim...</div>
+                <div class="translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos,
+                    cinco corderos de un año; esta fue la ofrenda de Elyasaf hijo de Deu’el."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    El nombre Elyasaf (mi Elohím ha añadido) y el triple número cinco (gracia) apuntan al favor
+                    multiplicado por medio del sacrificio de Yeshúa. Él trajo paz entre Elohím y el hombre, reconcilió a
+                    los que estaban lejos y cerca (Efesios 2:17).
+                </div>
+            </div>
+
+            <!-- Repite esta estructura para los versos 48 al 55 -->
+
+            <!-- Verso 48 -->
+            <div class="verse-container">
+                <div class="verse-number">Verso 48</div>
+                <div class="hebrew">בַּיּוֹם הַשְּׁבִיעִי...</div>
+                <div class="transliteration">Ba-yom ha-shevi’í, nasi livnei Efráyim...</div>
+                <div class="translation">"En el séptimo día, príncipe para los hijos de Efráyim, Elishamá hijo de
+                    Amihúd."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    El séptimo día indica perfección y descanso (Shabat). Yeshúa es también Elishamá —"mi Elohím
+                    escucha". Él es el cumplimiento del Shabat eterno (Hebreos 4:9-10).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 49</div>
+                <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף...</div>
+                <div class="transliteration">Qorbano: ka’arat késef aját...</div>
+                <div class="translation">"Su ofrenda: un plato de plata de ciento treinta siclos..."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    Cada minjáh refleja el carácter del Mesías —sin levadura, con aceite, preparado para alimentar a los
+                    qadoshím. En Yeshúa no hay defecto.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 50</div>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+                <div class="transliteration">Kaf aját asará zaháv, mele’á ketóret.</div>
+                <div class="translation">"Una cuchara de oro de diez siclos, llena de incienso."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                        <div>De nuevo, el incienso revela la oración perfecta de Yeshúa —el único justo que siempre
+                            vivió intercediendo (Isaías 53:12). El incienso era continuo, como su sacerdocio eterno
+                            (Hebreos 7:24).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 51</div>
+                <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+                <div class="transliteration">Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.</div>
+                <div class="translation">"Un toro, un carnero, un cordero de un año como ofrenda de ascensión."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                        <div>Como en las veces anteriores, esta <span class="hebrew-term">oláh</span> simboliza la
+                            entrega total y ascendente del Mesías. Su vida sin pecado, su obediencia hasta la muerte, y
+                            su ascensión gloriosa, son figuras del sacrificio perfecto aceptado por el Eterno.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 52</div>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+                <div class="transliteration">Ve-se’ír izzím ejad le-jattát.</div>
+                <div class="translation">"Y un macho cabrío por ofrenda de pecado."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                        <div>Yeshúa fue hecho pecado por nosotros (2 Corintios 5:21). El cabrío expiatorio refleja Su
+                            obra de cargar y quitar el pecado del mundo (Juan 1:29). Cada repetición de este tipo
+                            muestra que el Mesías cumple exhaustivamente cada aspecto de la redención.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 53</div>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה
+                    כְּבָשִׂים בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן אֱלִישָׁמַע בֶּן־עַמִּיהוּד׃</div>
+                <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim, eilím jamisháh, attudím jamisháh,
+                    kevásim bnei shaná jamisháh; zé qorbán Elishamá ben Amihúd.</div>
+                <div class="translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos,
+                    cinco corderos de un año; esta fue la ofrenda de Elishamá hijo de Amihúd."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                        <div>Sacrificio de paz, plenitud del número cinco (gracia), y el nombre Elishamá ("mi Elohím ha
+                            escuchado") reafirman el cumplimiento en el Mashíaj como Príncipe de Shalom, intercesor oído
+                            por el Padre (Juan 11:42).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 54</div>
+                <div class="hebrew">בַּיּוֹם הַשְּׁמִינִי נָשִׂיא לִבְנֵי מְנַשֶּׁה גַּמְלִיאֵל בֶּן־פְּדָהצוּר׃</div>
+                <div class="transliteration">Ba-yom ha-sheminí, nasi livnei Menashé, Gamliel ben Pedatzur.</div>
+                <div class="translation">"En el octavo día, príncipe para los hijos de Menashé, Gamliel hijo de
+                    Pedatzur."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                        <div>El octavo día representa nuevos comienzos, resurrección y eternidad. Gamliel ("El es mi
+                            recompensa") y Pedatzur ("Redentor/Roca que libra") revelan el carácter mesiánico del que
+                            fue resucitado en el primer día de la nueva creación (Lucas 24:1), trayendo vida nueva a las
+                            naciones.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 55</div>
+                <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד כֶּסֶף
+                    שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃</div>
+                <div class="transliteration">Qorbano: ka’arat késef aját, sheloshím u-me’áh mishqaláh; mizráq ejad
+                    késef, shiv’ím shéqel, be-sheqel ha-qódesh; shenehem mele’ím sólet beluláh ba-shémen le-minjáh.
+                </div>
+                <div class="translation">"Su ofrenda: un plato de plata de ciento treinta siclos de peso, un tazón de
+                    plata de setenta siclos según el siclo del santuario, ambos llenos de flor de harina mezclada con
+                    aceite como ofrenda vegetal."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                        <div>Yeshúa, pan sin levadura, flor de harina sin defecto, y aceite del Ruaj HaQódesh. En su
+                            presentación ante el trono del Padre se cumple todo patrón de santidad, peso y medida divina
+                            (Levítico 2:1-2, Mateo 3:16-17).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 56</div>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+                <div class="transliteration">Kaf aját asará zaháv mele’á ketóret.</div>
+                <div class="translation">"Una cuchara de oro de diez siclos, llena de incienso."</div>
+                <div class="prophetic-content">Reiteración del incienso como símbolo profético de la intercesión
+                    continua del Mashíaj. Cada día, cada tribu, cada príncipe presenta incienso, pero en el Mashíaj esto
+                    se perfecciona eternamente. Sus oraciones (Juan 17) suben como aroma grato ante el trono de MarYah
+                    (Apocalipsis 8:3-4).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 57</div>
+                <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+                <div class="transliteration">Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.</div>
+                <div class="translation">"Un toro, un carnero, un cordero de un año como ofrenda de ascensión."</div>
+                <div class="prophetic-content">La triple figura sacrificial prefigura el carácter completo del Mesías:
+                    fortaleza (par), obediencia (ayl), inocencia (kévesh). La oláh simboliza su muerte voluntaria y
+                    ascensión gloriosa como el sacrificio aceptado (Hebreos 10:12).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 58</div>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+                <div class="transliteration">Ve-se’ír izzím ejad le-jattát.</div>
+                <div class="translation">"Y un macho cabrío por ofrenda de pecado."</div>
+                <div class="prophetic-content">Yeshúa haMashíaj es esta ofrenda, sin ser él pecador (1 Pedro 2:22), fue
+                    tratado como tal para justificar a muchos (Isaías 53:11). El se’ír es figura del precio que Él pagó
+                    al cargar nuestros pecados.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 59</div>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה
+                    כְּבָשִׂים בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן גַּמְלִיאֵל בֶּן־פְּדָהצוּר׃</div>
+                <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim, eilím jamisháh, attudím jamisháh,
+                    kevásim bnei shaná jamisháh; zé qorbán Gamliel ben Pedatzur.</div>
+                <div class="translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos,
+                    cinco corderos de un año; esta fue la ofrenda de Gamliel hijo de Pedatzur."</div>
+                <div class="prophetic-content">Gamliel ("mi Elohím es recompensa") y Pedatzur ("Roca redentora") son
+                    nombres que encarnan la obra del Mashíaj. El sacrificio de shalom en múltiplos de cinco reafirma que
+                    la gracia produce comunión entre el Eterno y su pueblo (Efesios 2:14).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 60</div>
+                <div class="hebrew">בַּיּוֹם הַתְּשִׁיעִי נָשִׂיא לִבְנֵי בִנְיָמִן אֲבִידָן בֶּן־גִּדְעֹנִי׃</div>
+                <div class="transliteration">Ba-yom ha-teshi’í, nasi livnei Binyamín, Avidán ben Gid’oní.</div>
+                <div class="translation">"En el noveno día, príncipe para los hijos de Binyamín, Avidán hijo de
+                    Gid’oní."</div>
+                <div class="prophetic-content">Binyamín, “hijo de la diestra”, alude al Mesías exaltado a la diestra del
+                    Padre (Salmo 110:1). Avidán (mi padre es juez) resuena con Yeshúa como Hijo del Hombre que el Padre
+                    ha designado para juzgar (Juan 5:22, Hechos 17:31).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 61</div>
+                <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד כֶּסֶף
+                    שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃</div>
+                <div class="transliteration">Qorbano: ka’arat késef aját, sheloshím u-me’áh mishqaláh; mizráq ejad
+                    késef, shiv’ím shéqel, be-sheqel ha-qódesh; shenehem mele’ím sólet beluláh ba-shémen le-minjáh.
+                </div>
+                <div class="translation">"Su ofrenda: un plato de plata de ciento treinta siclos de peso, un tazón de
+                    plata de setenta siclos según el siclo del santuario, ambos llenos de flor de harina mezclada con
+                    aceite como ofrenda vegetal."</div>
+                <div class="prophetic-content">Minjáh constante que prefigura la perfección del carácter mesiánico. En
+                    Él se une la humanidad pura (harina) y la divinidad activa (aceite), haciendo de su entrega un acto
+                    de justicia completa (Mateo 3:15).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 62</div>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+                <div class="transliteration">Kaf aját asará zaháv, mele’á ketóret.</div>
+                <div class="translation">"Una cuchara de oro de diez siclos, llena de incienso."</div>
+                <div class="prophetic-content">El oro (deidad), la medida exacta (justicia), y el incienso (intercesión)
+                    confluyen en el Mashíaj, quien ora conforme a la voluntad del Padre y es oído siempre (Juan 11:42,
+                    Hebreos 5:7).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 63</div>
+                <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+                <div class="transliteration">Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.</div>
+                <div class="translation">"Un toro, un carnero, un cordero de un año como ofrenda de ascensión."</div>
+                <div class="prophetic-content">La oláh continúa siendo la sombra profética del sacrificio voluntario de
+                    Yeshúa. Él es el cordero sin mancha que sube a Elohím y nos lleva consigo a través de su
+                    resurrección y ascensión (Efesios 2:6).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 64</div>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+                <div class="transliteration">Ve-se’ír izzím ejad le-jattát.</div>
+                <div class="translation">"Y un macho cabrío por ofrenda de pecado."</div>
+                <div class="prophetic-content">Una vez más, el lenguaje sacrificial del Tanaj nos guía a la centralidad
+                    del sacrificio expiatorio del Mesías. Solo Él puede llevar la transgresión y quitarla (1 Juan 3:5,
+                    Isaías 53:6).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 65</div>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה
+                    כְּבָשִׂים בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן אֲבִידָן בֶּן־גִּדְעֹנִי׃</div>
+                <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim, eilím jamisháh, attudím jamisháh,
+                    kevásim bnei shaná jamisháh; zé qorbán Avidán ben Gid’oní.</div>
+                <div class="translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos,
+                    cinco corderos de un año; esta fue la ofrenda de Avidán hijo de Gid’oní."</div>
+                <div class="prophetic-content">El nombre Avidán ("mi Padre es juez") muestra la verdad de que el juicio
+                    recayó sobre el Justo por los injustos (1 Pedro 3:18). El sacrificio de shalom es consumado en el
+                    Mashíaj quien, al ofrecerse, trajo restauración total entre Elohím y el hombre (Colosenses 1:20).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 66</div>
+                <div class="hebrew">בַּיּוֹם הָעֲשִׂירִי נָשִׂיא לִבְנֵי דָן אֲחִיעֶזֶר בֶּן־עַמִּישַׁדָּי׃</div>
+                <div class="transliteration">Ba-yom ha-asirí, nasi livnei Dan, Ajiézer ben Amishaday.</div>
+                <div class="translation">"En el décimo día, príncipe para los hijos de Dan, Ajiézer hijo de Amishaday."
+                </div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> El
+                    nombre Ajiézer ("mi hermano es ayuda") y Amishaday ("mi pueblo es el Todopoderoso") reflejan la
+                    unidad entre Elohím y su pueblo por medio del Ayudador enviado: Yeshúa (Hebreos 2:11).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 67</div>
+                <div class="hebrew">קָרְבָּנוֹ... לְמִנְחָה׃</div>
+                <div class="transliteration">Qorbano: ka’arat késef aját... beluláh ba-shémen le-minjáh.</div>
+                <div class="translation">"Su ofrenda... ambos llenos de flor de harina mezclada con aceite como ofrenda
+                    vegetal."</div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> La
+                    minjáh representa a Yeshúa, el pan del cielo, sin pecado y lleno del Espíritu (Yojanán 6:33, Lucas
+                    4:1).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 68</div>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+                <div class="transliteration">Kaf aját asará zaháv, mele’á ketóret.</div>
+                <div class="translation">"Una cuchara de oro de diez siclos, llena de incienso."</div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> Yeshúa,
+                    como Cohen Gadol, intercede continuamente; su oración es incienso ante el trono (Revelación 8:3-4).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 69</div>
+                <div class="hebrew">פַּר אֶחָד... לְעֹלָה׃</div>
+                <div class="transliteration">Par ejad ben-bakár... le-oláh.</div>
+                <div class="translation">"Un toro, un carnero, un cordero de un año como ofrenda de ascensión."</div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> Yeshúa
+                    fue la ofrenda de ascensión, entregándose por completo hasta subir a los cielos (Efesios 5:2).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 70</div>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+                <div class="transliteration">Ve-se’ír izzím ejad le-jattát.</div>
+                <div class="translation">"Y un macho cabrío por ofrenda de pecado."</div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> Yeshúa
+                    fue hecho pecado por nosotros para justificarnos (2 Corintios 5:21).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 71</div>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים... אֲחִיעֶזֶר בֶּן־עַמִּישַׁדָּי׃</div>
+                <div class="transliteration">Ul-zeváj ha-shelamím... Ajiézer ben Amishaday.</div>
+                <div class="translation">"Y por sacrificio de paz... esta fue la ofrenda de Ajiézer hijo de Amishaday."
+                </div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> El
+                    sacrificio de paz representa la reconciliación con Elohím por medio del Mashíaj (Colosenses 1:20).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 72</div>
+                <div class="hebrew">בַּיּוֹם הָאַחַד עָשָׂר... פַּגְעִיאֵל בֶּן־עָכְרָן׃</div>
+                <div class="transliteration">Ba-yom ha-ajad ásar yom, nasi livnei Asher, Pag’iel ben Ajnrán.</div>
+                <div class="translation">"En el undécimo día, príncipe para los hijos de Asher, Pag’iel hijo de Ajran."
+                </div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> Pag’iel
+                    significa intervención de El. Yeshúa es la mayor intervención divina a favor de su pueblo (Romanos
+                    5:6-8).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 73</div>
+                <div class="hebrew">קָרְבָּנוֹ... לְמִנְחָה׃</div>
+                <div class="transliteration">Qorbano: ka’arat késef aját... beluláh ba-shémen le-minjáh.</div>
+                <div class="translation">"Su ofrenda... ambos llenos de flor de harina mezclada con aceite como ofrenda
+                    vegetal."</div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> El pan
+                    sin levadura apunta a Yeshúa como ofrenda pura y celestial (Yojanán 6:51).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 74</div>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+                <div class="transliteration">Kaf aját asará zaháv, mele’á ketóret.</div>
+                <div class="translation">"Una cuchara de oro de diez siclos, llena de incienso."</div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> Yeshúa
+                    intercede por nosotros como incienso diario y eterno (Hebreos 7:25).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 75</div>
+                <div class="hebrew">פַּר אֶחָד... לְעֹלָה׃</div>
+                <div class="transliteration">Par ejad ben-bakár... le-oláh.</div>
+                <div class="translation">"Un toro, un carnero, un cordero de un año como ofrenda de ascensión."</div>
+                <div class="prophetic-content"><span class="prophetic-title">Cumplimiento en el Mashíaj:</span> Yeshúa
+                    ofreció su vida como oláh perfecta y ascendió al trono con gloria (Hebreos 1:3).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 76</div>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+                <div class="transliteration">Ve-se’ír izzím ejad le-jattát.</div>
+                <div class="translation">"Y un macho cabrío por ofrenda de pecado."</div>
+                <div class="prophetic-content">
+                    Última repetición del se’ír como jattát. En Yeshúa se cierra toda ofrenda por el pecado: “una vez y
+                    para siempre” (Hebreos 10:10). Su sacrificio no necesita repetición, pues es eterno, perfecto y
+                    completo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 77</div>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים...</div>
+                <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim...</div>
+                <div class="translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos..."
+                </div>
+                <div class="prophetic-content">
+                    Culmina el ciclo de shlamím (paz), confirmando que en el Mashíaj todo se reconcilia (2 Corintios
+                    5:18-19). Él es nuestra paz, nuestra ofrenda y nuestro mediador (Efesios 2:14-16).
+                </div>
+            </div>
+
+            <!-- Repite esta estructura para los versos 78 al 84 -->
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 78</div>
+                <div class="hebrew">בַּיּוֹם הַשְּׁנֵים עָשָׂר...</div>
+                <div class="transliteration">Ba-yom ha-shenáyim ásar yom...</div>
+                <div class="translation">"En el duodécimo día, príncipe para los hijos de Naftalí..."</div>
+                <div class="prophetic-content">
+                    Naftalí es símbolo de libertad y belleza... Él fue enviado por Elohím a un mundo injusto para traer
+                    justicia (Isaías 42:1-4).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 79</div>
+                <div class="hebrew">קָרְבָּנוֹ קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ מִזְרָק אֶחָד כֶּסֶף
+                    שִׁבְעִים שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ שְׁנֵיהֶם מְלֵאִים סֹלֶת בְּלוּלָה בַשֶּׁמֶן לְמִנְחָה׃</div>
+                <div class="transliteration">Qorbano: ka’arat késef aját, sheloshím u-me’áh mishqaláh; mizráq ejad
+                    késef, shiv’ím shéqel, be-sheqel ha-qódesh; shenehem mele’ím sólet beluláh ba-shémen le-minjáh.
+                </div>
+                <div class="translation">"Su ofrenda: un plato de plata de ciento treinta siclos de peso, un tazón de
+                    plata de setenta siclos según el siclo del santuario, ambos llenos de flor de harina mezclada con
+                    aceite como ofrenda vegetal."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    <div>Última minjáh presentada, representando que en Mashíaj se agota toda necesidad de ofrenda por
+                        justicia. Él es el pan de vida sin defecto, entregado y ungido para nuestro alimento espiritual
+                        eterno (Juan 6:33).</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 80</div>
+                <div class="hebrew">כַּף אַחַת עֲשָׂרָה זָהָב מְלֵאָה קְטֹרֶת׃</div>
+                <div class="transliteration">Kaf aját asará zaháv, mele’á ketóret.</div>
+                <div class="translation">"Una cuchara de oro de diez siclos, llena de incienso."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    <div>Cierre del ciclo del incienso: las oraciones del Mesías —y ahora también de su pueblo redimido—
+                        son aceptadas en Él (Apocalipsis 5:8). Él abrió el camino del Lugar Kadosh para todos (Hebreos
+                        10:19-20).</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 81</div>
+                <div class="hebrew">פַּר אֶחָד בֶּן־בָּקָר אַיִל אֶחָד כֶּבֶשׂ אֶחָד בֶּן־שְׁנָתוֹ לְעֹלָה׃</div>
+                <div class="transliteration">Par ejad ben-bakár, ayl ejad, kévesh ejad ben-shenató le-oláh.</div>
+                <div class="translation">"Un toro, un carnero, un cordero de un año como ofrenda de ascensión."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    <div>Final de la serie de olot: Yeshúa haMashíaj, como olah perfecta, se entrega y asciende,
+                        intercediendo por nosotros perpetuamente como Rey entronado (Hebreos 1:3; Efesios 1:20).</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 82</div>
+                <div class="hebrew">וְשְׂעִיר עִזִּים אֶחָד לְחַטָּאת׃</div>
+                <div class="transliteration">Ve-se’ír izzím ejad le-jattát.</div>
+                <div class="translation">"Y un macho cabrío por ofrenda de pecado."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    <div>El último jattát simboliza que el pecado fue completamente cubierto por la ofrenda única del
+                        Mesías (Hebreos 9:26-28). Él fue “el último sacrificio” eficaz y suficiente.</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 83</div>
+                <div class="hebrew">וּלְזֶבַח הַשְּׁלָמִים בָּקָר שְׁנַיִם אֵילִם חֲמִשָּׁה עַתּוּדִים חֲמִשָּׁה
+                    כְּבָשִׂים בְּנֵי שָׁנָה חֲמִשָּׁה זֶה קָרְבַּן אֲחִירַע בֶּן־עֵינָן׃</div>
+                <div class="transliteration">Ul-zeváj ha-shelamím: bakár shenáyim, eilím jamisháh, attudím jamisháh,
+                    kevásim bnei shaná jamisháh; zé qorbán Ajirá ben Einán.</div>
+                <div class="translation">"Y por sacrificio de paz: dos bueyes, cinco carneros, cinco machos cabríos,
+                    cinco corderos de un año; esta fue la ofrenda de Ajirá hijo de Einán."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    <div>Final del shlamím: se consuma la paz mesiánica eterna (Colosenses 1:20). El nombre Ajirá ("mi
+                        hermano es malvado") apunta a la realidad que el Mesías dio su vida aun por los que lo
+                        entregaron (Lucas 23:34).</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 84</div>
+                <div class="hebrew">זֹאת חֲנֻכַּת הַמִּזְבֵּחַ בְּיוֹם הִמָּשַׁח אֹתוֹ מֵאֵת נְשִׂיאֵי יִשְׂרָאֵל
+                    קְעָרוֹת כֶּסֶף שְׁתֵּים עֶשְׂרֵה מִזְרְקֵי־כֶסֶף שְׁנֵים עָשָׂר כַּפּוֹת זָהָב שְׁתֵּים עֶשְׂרֵה׃
+                </div>
+                <div class="transliteration">Zot janukát ha-Mizbéaj be-yom himasháj otó, me-et nesi’éi Yisrael: ke’arot
+                    kesef shtéim esréh, mizraqei-kesef shenáyim ásar, kapot zaháv shtéim esréh.</div>
+                <div class="translation">"Esta fue la dedicación del altar en el día que fue ungido, de parte de los
+                    príncipes de Yisrael: doce platos de plata, doce tazones de plata, doce cucharas de oro."</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    <div>Todo el altar fue santificado con estas ofrendas. El Mashíaj es el altar viviente y eterno
+                        (Hebreos 13:10), y estas doce ofrendas prefiguran la entrega plena de las doce tribus unificadas
+                        en Él (Apocalipsis 21:12,14).</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 85</div>
+                <div class="hebrew">קַעֲרַת כֶּסֶף אַחַת שְׁלֹשִׁים וּמֵאָה מִשְׁקָלָהּ וּמִזְרָק אֶחָד כֶּסֶף שִׁבְעִים
+                    שֶׁקֶל בְּשֶׁקֶל הַקֹּדֶשׁ כָּל הַכֵּלִים לַעֹלָה שְׁנֵים עָשָׂר קַעֲרוֹת מִזְרָקִים שְׁנֵים עָשָׂר
+                    כַּפּוֹת שְׁנֵים עָשָׂר זָהָב׃</div>
+                <div class="transliteration">Ka'arat kesef aját sheloshím u-me’áh mishqaláh, u-mizráq ejad kesef shiv’ím
+                    shéqel, be-sheqel ha-qódesh; kol ha-kelim la-oláh: shenáym asár ka’arot, mizraqím shenáym asár,
+                    kapót shenáym asár zaháv.</div>
+                <div class="translation">Un plato de plata de ciento treinta siclos y un tazón de plata de setenta
+                    siclos, según el siclo del santuario; todos los utensilios para la ofrenda de ascensión: doce
+                    platos, doce tazones, doce cucharas de oro.</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    Estos utensilios fueron pesados con medidas exactas, prefigurando la justicia y perfección del
+                    sacrificio del Mesías. El uso del número doce refleja a las doce tribus —un pueblo unido por la obra
+                    de Yeshúa, quien también estableció a doce emisarios como fundamento (Apocalipsis 21:14). En Él,
+                    todo servicio se convierte en adoración aceptable.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 86</div>
+                <div class="hebrew">שְׁלֹשִׁים וּמֵאָה הַקַּעֲרָה הָאַחַת כֶּסֶף וְשִׁבְעִים הַמִּזְרָק הָאֶחָד
+                    כָּל־הַכֶּסֶף הַכֵּלִים אַלְפַּיִם וְאַרְבָּעַ מֵאוֹת בְּשֶׁקֶל הַקֹּדֶשׁ׃</div>
+                <div class="transliteration">Sheloshím u-me’áh ha-ka’arah ha-aját kesef, ve-shiv’ím ha-mizráq ha-ejád;
+                    kol ha-kesef ha-kelim: alpayím ve-arba’ mé’ot be-sheqel ha-qódesh.</div>
+                <div class="translation">Trescientos la cada plato de plata, setenta cada tazón, toda la plata de los
+                    utensilios: dos mil cuatrocientos siclos en siclo del santuario.</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    La suma total simboliza la plenitud de la redención. Cada medida tenía un propósito y un lugar
+                    específico. Yeshúa cumplió cada medida espiritual, moral y legal exigida por la Toráh (Mateo 5:17).
+                    Su sacrificio fue perfecto en cantidad, calidad y destino.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 87</div>
+                <div class="hebrew">כַּפּוֹת זָהָב שְׁתֵּים עֶשְׂרֵה מְלֵאֹת קְטֹרֶת עֲשָׂרָה עֲשָׂרָה הַכַּף בְּשֶׁקֶל
+                    הַקֹּדֶשׁ זָהָב יִהְיֶה לְכָל־הַכַּפּוֹת עֶשְׂרִים וּמֵאָה׃</div>
+                <div class="transliteration">Kapot zaháv shtéim esréh, mele’ot ketóret, asará asará ha-kaf, be-sheqel
+                    ha-qódesh; zaháv yihyéh le-kol ha-kapot: esrím u-me’áh.</div>
+                <div class="translation">Doce cucharas de oro llenas de incienso, diez siclos por cuchara, según el
+                    siclo del santuario; el oro de todas las cucharas fue doscientos siclos.</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    El incienso representa la intercesión constante del Mesías. Doce cucharas: una por cada tribu. Cada
+                    tribu tiene su parte en el incienso celestial gracias a la mediación del Mashíaj (Hebreos 7:25). Su
+                    oración y súplica cubren a todo el pueblo de Israel y a los injertados (Romanos 11:17).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 88</div>
+                <div class="hebrew">כָּל־הַבָּקָר לְעֹלָה שְׁנֵים עָשָׂר פָּרִים אֵילִם שְׁנֵים עָשָׂר כְּבָשִׂים בְּנֵי
+                    שָׁנָה שְׁנֵים עָשָׂר וּמִנְחָתָם וּשְׂעִירֵי עִזִּים שְׁנֵים עָשָׂר לְחַטָּאת׃</div>
+                <div class="transliteration">Kol ha-bakár le-oláh: shenáym asár parím, eilím shenáym asár, kevásim bnei
+                    shaná shenáym asár, u-minjatám; u-se’irei izzím shenáym asár le-jattát.</div>
+                <div class="translation">Todo el ganado para la ascensión: doce novillos, doce carneros, doce corderos
+                    de un año, con su ofrenda vegetal; y doce machos cabríos por ofrenda de pecado.</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    Aquí se presenta la consumación tipológica del sacrificio mesiánico. Doce olot (entrega total), doce
+                    jattat (expiación) por las doce tribus, cada uno representado en el sacrificio de Yeshúa. Él es
+                    tanto olah como jattat, completo en justicia, completo en redención (Hebreos 10:12).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 89</div>
+                <div class="hebrew">וּבְבֹא מֹשֶׁה אֶל־אֹהֶל מוֹעֵד לְדַבֵּר אִתּוֹ וַיִּשְׁמַע אֶת־הַקּוֹל מִדַּבֵּר
+                    אֵלָיו מֵעַל הַכַּפֹּרֶת אֲשֶׁר עַל־אֲרוֹן הָעֵדֻת מִבֵּין שְׁנֵי הַכְּרֻבִים וַיְדַבֵּר אֵלָיו׃
+                </div>
+                <div class="transliteration">U-vevo Moshéh el Ohel Mo’ed le-daber itó, va-yishmá et-haqól midaber eláv
+                    me-ál ha-kappóret asher al Arón ha-edút, mi-ben shenei ha-keruvím; va-yedaber eláv.</div>
+                <div class="translation">Y cuando Moshé entraba al Ohel Mo’ed para hablar con Él, escuchaba la voz que
+                    le hablaba desde encima del propiciatorio que está sobre el Arca del Testimonio, entre los dos
+                    querubines, y le hablaba.</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                    Este es uno de los versos más proféticos de toda la sección. Yeshúa es el Kappóret (propiciatorio
+                    viviente). En Él se escucha la voz de Elohím (Juan 10:27). La voz no viene desde lejos, sino desde
+                    el Lugar Santísimo —ahora accesible a través del sacrificio del Mashíaj (Hebreos 10:19-20). Como
+                    Moshé escuchaba desde el propiciatorio, nosotros hoy escuchamos la voz del Padre por medio del Hijo.
+                </div>
+            </div>
+
+            <h1>Punto 2. Haftaráh: Jueces 13:2-25 (Shimshón, dedicado a Elohím desde el nacimiento, similar a la
+                dedicación del Mishkán).</h1>
+
+            <div class="content-container">
+                <h2>El Nacimiento de Shimshón y su Cumplimiento Profético en el Mashíaj</h2>
+                <p>Este capítulo presenta una narrativa rica en tipología mesiánica, donde cada verso anticipa aspectos
+                    del
+                    Redentor venidero.</p>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:2</div>
+                <div class="hebrew">וַיְהִ֗י אִישׁ־אִשְׁתֹּ֛ו עֲקִרָ֥ה לֹ֖א יְלֵ֣ד וּשְׁמָ֑הּ וְאִשְׁתּ֖וֹ עֲקֶרֶתֽ
+                    מְאֹֽד׃
+                </div>
+                <div class="transliteration">Va-yehí ish-ishtó akirá lo yeléd u-shmáh, ve-ishtó akérét me-ód.</div>
+                <div class="translation">Y aconteció un hombre cuya esposa era estéril, no paría; y su esposa era muy
+                    estéril.</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    La esterilidad representa falta de fruto espiritual. El Mesías viene para traer vida y fruto donde
+                    hay
+                    muerte (Juan 15:5). Su obra hace fértil nuestra tierra espiritual.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:3</div>
+                <div class="hebrew">וַיֵּרָ֤א מַלְאַךְ־יְהוָה֙ אֶל־הָ֣אִשָּׁ֔ה וַיֹּ֣אמֶר אֵלֶ֔יהָ הִנֵּה־נָ֥א אַ֛תְּ
+                    עֲקָרָ֖ה וְלֹ֣א יָלָ֑דְתְּ וְהָרִ֖ית וְיָלַ֥דְתְּ בֵּֽן׃</div>
+                <div class="transliteration">Va-yerá malaj-Adonái el-ha-isháh va-yómer eléhá: hiné-na at akaráh ve-lo
+                    yaládt, ve-harít ve-yaládt ben.</div>
+                <div class="translation">Y se apareció el mensajero de Adonái a la mujer, y le dijo: "He aquí que tú
+                    eres
+                    estéril y nunca has dado a luz, pero concebirás y parirás un hijo."</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    Prefigura las anunciaciones mesiánicas. Como a la esposa de Manoaj, el mensajero divino anuncia
+                    nacimientos sobrenaturales (Lucas 1:30-31). La esterilidad vencida por poder divino.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:4</div>
+                <div class="hebrew">וְעַתָּה֙ הִשָּׁ֣מְרִי נָ֔א וְאַל־תִּשְׁתִּ֖י יַ֣יִן וְשֵׁכָ֑ר וְאַל־תֹּ֖אכְלִי
+                    כָּל־טָמֵֽא׃</div>
+                <div class="transliteration">Ve-atáh hishámerí ná, ve-al-tishtí yáyin ve-shejár, ve-al-tojlí kol-tamé.
+                </div>
+                <div class="translation">Ahora, pues, cuídate; no bebas vino ni licor, ni comas cosa inmunda.</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    La separación tipifica la preparación para lo santo. Como la madre de Shimshón se apartó, así Miryam
+                    fue
+                    preparada para concebir al Santo (Lucas 1:35). Pureza precede a la manifestación divina.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:5</div>
+                <div class="hebrew">כִּי֩ הִנֵּ֨ה אַ֜תְּ הָרָ֗ה וְיֹלַ֣דְתְּ בֵּן֮ וּמוֹרָ֣ה לֹא־יַעֲלֶ֣ה עַל־רֹאשׁוֹ֒
+                    כִּֽי־נְזִ֤יר אֱלֹהִים֙ יִהְיֶ֣ה הַנַּ֔עַר מִן־הַבֶּ֖טֶן וְה֣וּא יָחֵ֔ל לְהוֹשִׁ֥יעַ אֶת־יִשְׂרָאֵ֖ל
+                    מִיַּ֥ד פְּלִשְׁתִּֽים׃</div>
+                <div class="transliteration">Ki hiné at haráh ve-yoládt ben, u-moráh lo ya'aléh al-roshó, ki-nezír
+                    Elohím
+                    yihyéh hana'ar min-habéten, ve-hú yajél lehoshía et-Yisra'el mi-yad Pelishitím.</div>
+                <div class="translation">Porque he aquí que concebirás y darás a luz un hijo; navaja no pasará sobre su
+                    cabeza, porque el niño será nazareo de Elohím desde el vientre, y él comenzará a salvar a Israel de
+                    mano
+                    de los filisteos.</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    Shimshón, nazareo desde el vientre, tipifica al Mashíaj apartado desde la concepción (Lucas 1:35).
+                    Su
+                    misión salvadora prefigura la redención definitiva que Yeshúa traería a Su pueblo (Mateo 1:21).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:6</div>
+                <div class="hebrew">וַתָּבֹ֤וא הָאִשָּׁה֙ וַתֹּ֣אמֶר לְאִישָׁ֔הּ לֵאמֹ֑ר אִ֣ישׁ הָאֱלֹהִ֞ים בָּ֣א אֵלַ֗י
+                    וּמַרְאֵ֤הוּ כְּמַרְאֵה֙ מַלְאַ֣ךְ הָאֱלֹהִ֔ים נוֹרָ֖א מְאֹ֑ד וְלֹא־שְׁאִלְתִּ֙יהוּ֙ אֵ֣י מִזֶּ֔ה
+                    ה֖וּא
+                    וְאֶת־שְׁמ֣וֹ לֹֽא־הִגִּ֥יד לִֽי׃</div>
+                <div class="transliteration">Va-tavó ha-isháh va-tómer l'isháh leimór: ish ha-Elohím bá elái, u-mar'éhu
+                    ke-mar'é malaj ha-Elohím, norá me'od, ve-lo she'iltiéhu ei mizéh hú, ve'et shemó lo higid lí.</div>
+                <div class="translation">Y vino la mujer y dijo a su marido: "Un hombre de Elohím vino a mí, y su
+                    aspecto
+                    era como el aspecto de un mensajero de Elohím, muy imponente; y no le pregunté de dónde era, ni me
+                    reveló su nombre."</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    La descripción recuerda las manifestaciones del Mashíaj como Malaj (mensajero divino). El misterio
+                    de Su
+                    nombre y procedencia se alude en Miquéas 5:2: "de días eternos." Es revelado plenamente solo a los
+                    humildes (Lucas 1:31, Juan 8:58).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:7</div>
+                <div class="hebrew">וַיֹּ֨אמֶר לִ֜י הִנֵּ֣ה אָֽתְהָ֗ תְּהָרִים֙ וְיֹלַ֣דְתְּ בֵּ֔ן וְעַתָּ֗ה
+                    אַל־תִּשְׁתִּ֤י
+                    יַ֙יִן֙ וְשֵׁכָ֔ר וְאַל־תֹּ֖אכְלִי כָּל־טָמֵ֑א כִּ֣י נְזִ֧יר אֱלֹהִ֛ים יִהְיֶ֥ה הַנַּ֖עַר
+                    מִן־הַבֶּ֣טֶן
+                    עַ֖ד י֥וֹם מוֹתֽוֹ׃</div>
+                <div class="transliteration">Va-yómer lí: hiné at teharím ve-yoladt bēn, ve-'attáh al tishtí ya·yín
+                    ve-shejár, ve-al to'jlí kol tamé, ki nezír Elohím yihyéh hana'ar min habéten 'ad yom motó.</div>
+                <div class="translation">Y me dijo: "Mira, concebirás y darás a luz un hijo; ahora, no bebas vino ni
+                    licor,
+                    ni comas cosa inmunda, porque nazareo de Elohím será el niño desde el vientre hasta el día de su
+                    muerte."</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    Como Samson, Yeshúa fue apartado desde el vientre (Lucas 1:35). Él vivió consagrado a Elohím, sin
+                    pecado
+                    (Hebreos 4:15), cumpliendo la santidad del voto perpetuo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:8</div>
+                <div class="hebrew">וַיֶּעְתַּ֨ר מָנ֜וֹחַ אֶל־יְהוָ֗ה וַיֹּאמַר֮ בִּ֣י אֲדֹנָי֒ אִ֣ישׁ הָאֱלֹהִים֩
+                    אֲשֶׁ֨ר
+                    שָׁלַ֜חְתָּ יָבֹ֣א־נָ֗א עוֹד֙ אֵלֵ֔ינוּ וְיוֹרֵ֣נוּ מַה־נַּֽעֲשֶׂ֔ה לַנַּ֖עַר הַיּוּלָּֽד׃</div>
+                <div class="transliteration">Va-ye'tar Manóaj el-Adonái va-yómer: bí Adonái, ish ha-Elohím asher
+                    shalájta,
+                    yavó-na 'od eleinu, ve-yorénu mah na'aséh lana'ar ha-yulád.</div>
+                <div class="translation">Y Manoaj oró a Adonái y dijo: "Por favor, Adonái, que venga otra vez el hombre
+                    de
+                    Elohím que enviaste y nos enseñe qué hemos de hacer con el niño que va a nacer."</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    La súplica de instrucción recuerda las oraciones por entendimiento mesiánico. Solo por revelación
+                    divina
+                    podemos saber cómo vivir conforme al propósito del Mesías (Juan 16:13, Efesios 1:17).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:9</div>
+                <div class="hebrew">וַיִּשְׁמַ֤ע הָאֱלֹהִים֙ בְּק֣וֹל מָנ֔וֹחַ וַיָּבֹ֡א מַלְאַךְ֩ הָאֱלֹהִ֨ים ע֜וֹד
+                    אֶ֣ל־הָאִשָּׁ֗ה וְהִ֛יא יֹשֶׁ֥בֶת בַּשָּׂדֶ֖ה וּמָנ֥וֹחַ אִישָֽׁהּ אֵ֥ין עִמָּֽהּ׃</div>
+                <div class="transliteration">Va-yishma ha-Elohím be-qol Manóaj, va-yavó malaj ha-Elohím 'od el-ha-isháh,
+                    ve-hí yoshevet ba-sadéh, u-Manóaj isháh ein 'imáh.</div>
+                <div class="translation">Y Elohím oyó la voz de Manoaj, y el mensajero de Elohím volvió otra vez a la
+                    mujer,
+                    y ella estaba sentada en el campo, pero su esposo Manoaj no estaba con ella.</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    El malaj (mensajero) regresa al campo — lugar de revelación y encuentro (como los pastores en Lucas
+                    2).
+                    La salvación se manifiesta en lo común para mostrar Su gracia soberana (1 Corintios 1:27).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:10</div>
+                <div class="hebrew">וַתְּמַהֵ֥ר הָאִשָּׁ֖ה וַתָּ֣רָץ וַתַּגֵּ֑ד לְאִישָׁ֗הּ וַתֹּ֙אמֶר֙ אֵלָ֔יו הִנֵּ֗ה
+                    נִרְאָה֙ אֵלַ֔י הָאִ֕ישׁ אֲשֶׁ֥ר בָּ֖א בַּיּ֥וֹם אֵלָֽי׃</div>
+                <div class="transliteration">Va-te-mahér ha-isháh, va-táratz va-tagéd le-isháh, va-tómer eláv: hiné
+                    nir'áh
+                    elái ha-ish asher bá ba-yóm elái.</div>
+                <div class="translation">Y la mujer se apresuró, corrió y le contó a su esposo, y dijo: "He aquí, se me
+                    apareció el hombre que vino a mí el otro día."</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    La reacción de la mujer es como las mujeres del Evangelio que corren a anunciar la resurrección
+                    (Mateo
+                    28:8). La experiencia espiritual lleva al testimonio de fe.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:11</div>
+                <div class="hebrew">וַיָּ֤קָם וַיֵּ֙לֶךְ֙ מָנ֔וֹחַ אַחֲרֵ֖י אִשְׁתּ֑וֹ וַיָּבֹ֗א אֶל־הָאִ֛ישׁ וַיֹּ֥אמֶר
+                    ל֖וֹ הַאַתָּ֣ה הָאִ֔ישׁ אֲשֶׁ֥ר דִּבַּ֖רְתָּ אֶל־הָאִשָּֽׁה וַיֹּ֥אמֶר אָנִֽי׃</div>
+                <div class="transliteration">Va-yakám va-yélej Manóaj ajaré ishtó, va-yavó el-ha-ish, va-yómer ló:
+                    ha-attá
+                    ha-ish asher dibártá el-ha-isháh? Va-yómer: aní.</div>
+                <div class="translation">Y se levantó Manoaj y fue tras su esposa, y vino al hombre, y le dijo: "¿Eres
+                    tú el
+                    hombre que habló con la mujer?" Y él dijo: "Yo soy."</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    "Aní" — "Yo soy" — es eco de la declaración mesiánica: "Yo soy el que soy" (Éxodo 3:14, Juan 8:58).
+                    El
+                    malaj es manifestación del Verbo preencarnado, anticipando a Yeshúa.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:12</div>
+                <div class="hebrew">וַיֹּ֣אמֶר מָנ֔וֹחַ עַתָּ֕ה יָבֹ֥א דְבָרֶ֖יךָ מַה־יִּֽהְיֶ֥ה מִשְׁפַּֽט־הַנַּ֖עַר
+                    וּמַעֲשֵֽׂהוּ׃</div>
+                <div class="transliteration">Va-yómer Manóaj: atáh yavó d'vareja, mah yihyéh mishpat hana'ar u-ma'aséhú?
+                </div>
+                <div class="translation">Y dijo Manoaj: "Ahora que se cumpla tu palabra, ¿qué será la norma de vida del
+                    niño
+                    y su obra?"</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    Inquiere sobre la función mesiánica. Así los profetas indagaban el tiempo y circunstancias del
+                    Mashíaj
+                    (1 Pedro 1:10–11). La obra de Yeshúa es profetizada desde antes de Su nacimiento.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:13</div>
+                <div class="hebrew">וַיֹּ֤אמֶר מַלְאַךְ֙ יְהוָ֔ה אֶל־מָנ֖וֹחַ מִכֹּ֛ל אֲשֶׁר־אָמַ֥רְתִּי אֶל־הָאִשָּׁ֖ה
+                    תִּשָּׁמֵֽר׃</div>
+                <div class="transliteration">Va-yómer malaj Adonái el-Manóaj: mikól asher amártí el-ha-isháh, tishamér.
+                </div>
+                <div class="translation">Y el mensajero de Adonái dijo a Manoaj: "De todo lo que dije a la mujer, debe
+                    guardarse."</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    Todo lo dicho acerca del Mashíaj debe ser obedecido. Yeshúa es el cumplimiento perfecto de la
+                    palabra
+                    dada, y sus mandamientos son vida (Juan 14:15, Mateo 5:17-19).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:14</div>
+                <div class="hebrew">מִכֹּל֩ אֲשֶׁר־יֵצֵ֨א מִגֶּ֜פֶן הַיַּ֗יִן לֹ֤א תֹאכֵל֙ וְיַ֣יִן וְשֵׁכָ֔ר
+                    אַל־תֵּ֖שְׁתְּ
+                    וְכָל־טָמֵ֣א אַֽל־תֹּאכֵ֑ל כֹּל֙ אֲשֶׁ֣ר צִוִּיתִ֔יהָ תִּשְׁמֹ֖ר׃</div>
+                <div class="transliteration">Mikól asher yetsé migéfen ha-yayin lo to'jél, ve-yayin ve-shejár al tesht,
+                    ve-kol tamé al to'jél; kol asher tsivitíhá tishmór.</div>
+                <div class="translation">De todo lo que sale de la vid no comerá, ni vino ni licor beberá, ni cosa
+                    impura
+                    comerá; todo lo que le ordené, guardará.</div>
+                <div class="prophecy-fulfillment">
+                    <div class="prophecy-title"><strong>Cumplimiento profético:</strong></div>
+                    Yeshúa haMashíaj fue sin impureza, separado de los pecadores (Hebreos 7:26). Así también su Kehiláh
+                    está
+                    llamada a santidad en todo (1 Pedro 1:15-16).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:15</div>
+                <div class="hebrew">וַיֹּ֣אמֶר מָנ֔וֹחַ אֶל־מַלְאַ֖ךְ יְהוָ֑ה נַֽעַצְרָה־נָּ֣א אֹ֔תָךְ וְנַעֲשֶׂה־לְּךָ֖
+                    גְּדִֽי־עִזִּֽים׃</div>
+                <div class="transliteration">Va-yómer Manóaj el-malaj Adonái: na'atzráh-na otáj, ve-na'aséh lejá gedí
+                    'izzím.</div>
+                <div class="translation">Y dijo Manoaj al mensajero de Adonái: "Permítenos retenerte y prepararte un
+                    cabrito."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Como Avraham preparó hospitalidad para el Malaj de <span
+                        class="hebrew-term">יהוה</span> (Génesis 18), Manoaj reconoce su grandeza. Prefigura el
+                    reconocimiento del Mashíaj como digno de honra y sacrificio (Lucas 24:30-31).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:16</div>
+                <div class="hebrew">וַיֹּ֨אמֶר מַלְאַ֤ךְ יְהוָה֙ אֶל־מָנ֔וֹחַ אִם־תַּ֥עְצְרֵ֖נִי לֹ֣א אֹכַל֙
+                    בְּלַחְמֶ֔ךָ
+                    וְאִם־תַּעֲשֶׂ֣ה עֹלָ֔ה לַֽיהוָ֖ה תַּעֲלֶ֑נָּה כִּ֣י לֹא יָדַ֗ע מָנ֛וֹחַ כִּֽי־מַלְאַ֥ךְ יְהוָ֖ה
+                    הֽוּא׃
+                </div>
+                <div class="transliteration">Va-yómer malaj Adonái el-Manóaj: im ta'tsrení, lo ojal belajméja; ve-im
+                    ta'asé
+                    'oláh, la-Adonái ta'alénah. Ki lo yadá Manóaj ki malaj Adonái hú.</div>
+                <div class="translation">Y dijo el mensajero de Adonái a Manoaj: "Aunque me retengas, no comeré tu pan;
+                    pero
+                    si haces holocausto, a Adonái lo ofrecerás." Porque Manoaj no sabía que era el mensajero de Adonái.
+                </div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Prefigura la revelación progresiva del Mashíaj. Yeshúa no
+                    recibe adoración como hombre sino como Elohím revelado (Mateo 28:17, Juan 20:28).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:17</div>
+                <div class="hebrew">וַיֹּ֥אמֶר מָנ֖וֹחַ אֶל־מַלְאַ֣ךְ יְהוָ֑ה מִ֣י שְׁמֶ֔ךָ כִּֽי־יָבֹ֥א דְבָרֶ֖יךָ
+                    וְכִבַּדְנֽוּךָ׃</div>
+                <div class="transliteration">Va-yómer Manóaj el-malaj Adonái: mi sheméja, ki yavó d'vareja
+                    ve-kibbádnúja?
+                </div>
+                <div class="translation">Y dijo Manoaj al mensajero de Adonái: "¿Cuál es tu nombre, para que cuando se
+                    cumpla tu palabra te honremos?"</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Refleja el misterio del nombre del Mesías revelado
+                    progresivamente (Filipenses 2:9-11). Su nombre es sobre todo nombre.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:18</div>
+                <div class="hebrew">וַיֹּ֤אמֶר ל֙וֹ מַלְאַ֣ךְ יְהוָ֔ה לָ֛מָּה זֶ֥ה תִשְׁאַ֖ל לִשְׁמִ֑י וְהוּא־פֶ֖לִאי׃
+                </div>
+                <div class="transliteration">Va-yómer ló malaj Adonái: lamáh zeh tish'al lishmí, ve-hú pelí.</div>
+                <div class="translation">Y el mensajero de Adonái le dijo: "¿Por qué preguntas por mi nombre, siendo
+                    maravilloso?"</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> "Pelí" – maravilloso, es uno de los títulos del Mashíaj
+                    (Isaías
+                    9:6). El mensajero es una teofanía: la preencarnación del Verbo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:19</div>
+                <div class="hebrew">וַיִּקַּ֨ח מָנ֜וֹחַ אֶת־גְּדִ֣י הָעִזִּ֗ים וְאֶת־הַמִּנְחָה֙ וַיַּ֤עַל
+                    עַל־הַסֶּ֙לַע֙
+                    לַיהוָ֔ה וּמַפְלִ֕א לַעֲשׂ֖וֹת וּמָנ֥וֹחַ וְאִשְׁתּ֖וֹ רֹאִֽים׃</div>
+                <div class="transliteration">Va-yikáj Manóaj et-gedí ha-'izzím ve-et ha-minjáh, va-ya'al 'al ha-séla
+                    la-Adonái; u-maflí la'asót, u-Manóaj ve-ishtó ro'im.</div>
+                <div class="translation">Y tomó Manoaj el cabrito y la ofrenda vegetal, y los ofreció sobre la roca a
+                    Adonái; y Él hizo una maravilla, y Manoaj y su esposa observaban.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> El altar sobre la roca representa a Mashíaj como base de
+                    nuestra adoración y expiación (1 Corintios 10:4). Él es la ofrenda y el altar.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:20</div>
+                <div class="hebrew">וַיְהִ֗י בַּעֲלוֹת֙ הַלֶּ֔הָבָה מֵעַ֖ל הַמִּזְבֵּ֑חַ הַשָּׁמָ֔יְמָה וַיַּ֤עַל
+                    מַלְאַךְ־יְהוָה֙ בְּלֶ֣הָבַֽת הַמִּזְבֵּ֔חַ וּמָנ֥וֹחַ וְאִשְׁתּ֖וֹ רֹאִ֑ים וַיִּפְּל֥וּ
+                    עַל־פְּנֵיהֶ֖ם
+                    אָֽרְצָה׃</div>
+                <div class="transliteration">Va-yehí ba'alót ha-lehaváh me-'al ha-mizbéaj ha-shamáymah, va-ya'al malaj
+                    Adonái be-lehévát ha-mizbéaj; u-Manóaj ve-ishtó ro'im, va-yippelú 'al peneihem artzáh.</div>
+                <div class="translation">Y al subir la llama del altar hacia el cielo, ascendió el mensajero de Adonái
+                    en la
+                    llama del altar; y Manoaj y su esposa vieron esto, y cayeron sobre su rostro en tierra.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Ascensión gloriosa. Anticipa la ascensión de Yeshúa al
+                    cielo
+                    como señal de su aceptación (Hechos 1:9). Adoración y temor siguen la revelación.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:21</div>
+                <div class="hebrew">וּמַלְאַ֤ךְ יְהוָה֙ לֹ֣א יָסַ֔ף לְהֵרָא֖וֹת אֶל־מָנ֣וֹחַ וְאֶל־אִשְׁתּ֑וֹ אָ֗ז
+                    יָדַ֤ע
+                    מָנ֙וֹחַ֙ כִּֽי־מַלְאַ֣ךְ יְהוָ֔ה ה֖וּא׃</div>
+                <div class="transliteration">U-malaj Adonái lo yasáf le-heiráot el-Manóaj ve-el ishtó; az yadá' Manóaj
+                    ki
+                    malaj Adonái hú.</div>
+                <div class="translation">Y el mensajero de Adonái no volvió a aparecer a Manoaj ni a su esposa; entonces
+                    Manoaj supo que era el mensajero de Adonái.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Después de su ascensión, Yeshúa no se manifiesta
+                    físicamente a
+                    todos, pero los que le han visto por fe saben quién es Él (Juan 20:29).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:22</div>
+                <div class="hebrew">וַיֹּ֤אמֶר מָנ֙וֹחַ֙ אֶל־אִשְׁתּ֔וֹ מ֖וֹת נָמ֑וּת כִּ֣י אֱלֹהִ֔ים רָאִ֖ינוּ׃</div>
+                <div class="transliteration">Va-yómer Manóaj el-ishtó: mot namút, ki Elohím ra'ínu.</div>
+                <div class="translation">Y dijo Manoaj a su esposa: "Ciertamente moriremos, porque hemos visto a
+                    Elohím."
+                </div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Ver a Elohím significaba muerte en la antigüedad (Éxodo
+                    33:20),
+                    pero en Yeshúa vemos a Elohím y vivimos (Juan 1:18; 14:9).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:23</div>
+                <div class="hebrew">וַתֹּ֤אמֶר ל֙וֹ אִשְׁתּ֔וֹ אִם־חָפֵ֥ץ יְהוָ֖ה לַהֲמִיתֵ֑נוּ לֹ֣א לָקַ֤ח מִיָּדֵ֙נוּ֙
+                    עֹלָ֣ה וּמִנְחָ֔ה וְלֹ֤א הֶרְאָ֙נוּ֙ אֶת־כָּל־אֵ֔לֶּה וְכָעֵ֕ת לֹא־הִשְׁמִיעָ֥נוּ כָּזֹֽאת׃</div>
+                <div class="transliteration">Va-tómer lo ishtó: im jaféts Adonái lahamitéinu, lo laqáj mi-yadeinu 'oláh
+                    u-minjáh, ve-lo hera'ánu et-kol éleh, ve-ka-'et lo hishmi'ánu kazót.</div>
+                <div class="translation">Y su esposa le dijo: "Si Adonái quisiera matarnos, no habría aceptado de
+                    nuestras
+                    manos el holocausto y la ofrenda, ni nos habría mostrado todo esto, ni ahora nos habría hecho oír
+                    tales
+                    cosas."</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Reconocer la bondad de Elohím como señal de vida y
+                    propósito.
+                    En Mashíaj, no hay condenación (Romanos 8:1), sino gracia y revelación.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:24</div>
+                <div class="hebrew">וַתֵּ֥לֶד הָאִשָּׁ֖ה בֵּ֑ן וַתִּקְרָ֥א אֶת־שְׁמ֖וֹ שִׁמְשׁ֑וֹן וַיִּגְדַּ֥ל
+                    הַנַּ֖עַר
+                    וַיְבָרְכֵ֥הוּ יְהוָֽה׃</div>
+                <div class="transliteration">Va-téled ha-isháh ben, va-tiqrá et-shemó Shimshón; va-yigdal hana'ar,
+                    va-yevarejehú Adonái.</div>
+                <div class="translation">Y la mujer dio a luz un hijo, y le puso por nombre Shimshón; y creció el niño,
+                    y
+                    Adonái lo bendijo.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Como Shimshón fue bendecido y creció, así también Yeshúa
+                    crecía
+                    en gracia y sabiduría (Lucas 2:40). Ambos preparados para redención.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Jueces 13:25</div>
+                <div class="hebrew">וַתָּ֤חֶל רֽוּחַ־יְהוָה֙ לְפַעֲמ֔וֹ בְּמַחֲנֵה־דָ֖ן בֵּ֣ין צָרְעָ֑ה וּבֵ֖ין
+                    אֶשְׁתָּאֽוֹל׃</div>
+                <div class="transliteration">Va-tájél Ruaj-Adonái le-fa'amó, be-majaneh-Dán bein Tzor'áh u-vein
+                    Eshta'ól.
+                </div>
+                <div class="translation">Y comenzó el Espíritu de Adonái a impulsarlo en el campamento de Dan, entre
+                    Tzorá y
+                    Eshtaol.</div>
+                <div class="prophetic-content">
+                    <strong>Cumplimiento profético:</strong> Como el Ruaj Hakódesh vino sobre Shimshón, así también
+                    Yeshúa
+                    fue ungido desde el Jordán (Mateo 3:16), y enviado en poder para liberar.
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 3. Brit Hadasháh: Hebreos 13:15-16 (Ofrecer sacrificios espirituales, agradables a Elohím).
+                </h1>
+
+                <div class="verse-container">
+                    <div class="verse-number">Verso 15</div>
+                    <div class="aramaic">ܒܗ ܗܟܝܠ ܬܕܡܝܢ ܕܒܚܬܐ ܕܬܘܕܝܬܐ ܒܟܠ ܙܒܢܐ ܠܐܠܗܐ ܕܐܝܬܘܗܝ ܦܐܪܐ ܕܣܦܘܬܐ ܕܡܘܕܝܢ ܠܫܡܗ
+                    </div>
+                    <div class="transliteration"><strong>Fonética:</strong> Beh hākēl t'dammīn dabḥtā d-toditā b'khol
+                        zabnā l'Alāhā d-eytawhī parā d-sepūtā d-modīn l-shmeh.</div>
+                    <div class="literal-translation"><strong>Traducción literal:</strong> Por medio de Él, por tanto,
+                        ofrezcamos en todo tiempo a Elohim sacrificio de alabanza, es decir, el fruto de labios que
+                        confiesan su Nombre.</div>
+
+                    <div class="prophetic-content">
+                        <div class="prophetic-title">Cumplimiento profético en el Mashíaj:</div>
+                        <p>Mashíaj Yeshúa es el sacrificio perfecto (Hebreos 10:10–12). Ya no se requiere sacrificios de
+                            animales, sino alabanza sincera por medio de Él. Él es el nuevo altar, el mediador por el
+                            cual nos acercamos al Padre (Juan 14:6; Salmo 40:6-8). La profecía de Oseas 14:2 —
+                            "ofreceremos como novillos los frutos de nuestros labios" — se cumple en quienes adoran a
+                            Elohim por medio de Yeshúa.</p>
+                    </div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">Verso 16</div>
+                    <div class="aramaic">ܘܠܛܒܬܐ ܘܠܫܘܬܦܘܬܐ ܠܐ ܬܫܬܘܟܘܢ ܗܠܝܢ ܓܝܪ ܕܒܚܝܢ ܫܦܪܝܢ ܐܢܝܢ ܩܕܡ ܐܠܗܐ</div>
+                    <div class="transliteration"><strong>Fonética:</strong> U-leṭbātā u-le-shutafūtā lā teshtūkhūn;
+                        helēn gēr dabḥīn shaprayn innīn qādm Alāhā.</div>
+                    <div class="literal-translation"><strong>Traducción literal:</strong> Y no olviden el bien y la
+                        comunión (generosidad), porque con tales sacrificios se agrada Elohim.</div>
+
+                    <div class="prophetic-content">
+                        <div class="prophetic-title">Cumplimiento profético en el Mashíaj:</div>
+                        <p>El Mashíaj nos enseña que el verdadero sacrificio es hacer el bien y compartir (Lucas 6:38,
+                            Mateo 25:40). Su vida fue el ejemplo máximo de amor activo y entrega. En Él se cumple Isaías
+                            58:6–7, donde el ayuno y la devoción verdadera son compartir el pan con el hambriento. En
+                            Yeshúa, la justicia y la misericordia son el nuevo culto aceptable (Miqueas 6:8).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <div class="section-container">
+                    <h1>Punto 4. Contexto Histórico y Cultural</h1>
+                    <p>El capítulo 7 de Números describe la dedicación del Mishkán (Tabernáculo) y la ofrenda de los
+                        líderes de las tribus de Israel. Este evento marca un momento significativo en la transición de
+                        Israel de una nación nómada a una comunidad centrada en la adoración a Adonái יהוה en un lugar
+                        santificado.</p>
+                    <ul>
+                        <li><strong>Contexto Cultural:</strong> La dedicación del Mishkán fue un evento de gran
+                            importancia cultural y espiritual. Representaba la presencia continua y tangible de Adonái
+                            יהוה en medio de su pueblo. La ofrenda de los líderes tribales no solo mostró su devoción,
+                            sino que también estableció un patrón de contribución y participación comunitaria en el
+                            sostenimiento del servicio del Mishkán.</li>
+                        <li><strong>Contexto Geográfico:</strong> El Mishkán se situaba en el centro del campamento
+                            israelita, enfatizando su centralidad en la vida de la comunidad.</li>
+                        <li><strong>Contexto Arqueológico:</strong> Aunque no hay evidencia arqueológica directa de este
+                            evento específico, los descubrimientos de objetos similares en culturas contemporáneas del
+                            Cercano Oriente pueden iluminar el diseño y la función de los utensilios utilizados en el
+                            Mishkán.</li>
+                        <li><strong>Contexto Histórico:</strong> Este evento ocurrió poco después de la salida de Egipto
+                            y la recepción de la Toráh en el Monte Sinaí, marcando un período de consolidación de la
+                            identidad nacional y religiosa de Israel.</li>
+                    </ul>
+                </div>
+
+                <div class="section-container">
+                    <h2>Textos Fuente y Comentarios Profundos</h2>
+                    <div class="section-container">
+                        <h3>Aliyot (Números 7:1-89)</h3>
+                        <p>Cada versículo detalla las ofrendas específicas de cada líder tribal. Los comentarios
+                            rabínicos y mesiánicos a menudo ven un simbolismo profundo en la repetición de las ofrendas,
+                            destacando la unidad y diversidad dentro de la comunidad de Israel.</p>
+                        <p>La persistencia en la enumeración de las ofrendas enfatiza la importancia de cada
+                            contribución individual y la devoción colectiva.</p>
+                    </div>
+                    <div class="section-container">
+                        <h3>Haftaráh</h3>
+                        <p>Aunque no hay una Haftaráh tradicionalmente asociada con esta porción de Números, algunos
+                            sugieren una conexión con pasajes en los Nevi'ím que describen la dedicación del Templo de
+                            Salomón, donde también se enfatiza la ofrenda y la dedicación (por ejemplo, 1 Reyes 8).</p>
+                    </div>
+                    <div class="section-container">
+                        <h3>Brit Hadasháh</h3>
+                        <p>En el Brit Hadasháh, podemos ver reflejos de esta dedicación en la ofrenda de los creyentes y
+                            la dedicación de la Kehiláh (comunidad). Pasajes como 2 Corintios 9:7, que habla de dar con
+                            alegría y generosidad, pueden relacionarse con la actitud de los líderes tribales al ofrecer
+                            sus dones para el servicio del Eterno.</p>
+                        <p>Además, Yeshúa haMashíaj mismo es visto como el cumplimiento del Mishkán, siendo la
+                            manifestación tangible de la presencia del Eterno en medio de su pueblo (Juan 1:14).</p>
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <h1>Punto 5. Estudio, comentarios y conexiones proféticas de Números 7:1-89</h1>
+                    <div class="section-container">
+                        <h3>Comentarios Rabínicos</h3>
+                        <p>Los comentaristas judíos resaltan la repetición meticulosa de las ofrendas de cada tribu,
+                            enfatizando la igualdad y unidad de Israel ante Adonái יהוה. Aunque las ofrendas son
+                            idénticas, cada una es valorada individualmente, simbolizando la importancia de cada miembro
+                            de la comunidad. Rabinos como Rashi ven en estas ofrendas un reflejo de la dedicación y el
+                            compromiso necesarios para mantener la santidad del Mishkán.</p>
+                    </div>
+                    <div class="section-container">
+                        <h3>Comentario Judío Mesiánico</h3>
+                        <p>Desde una perspectiva judío mesiánica, estos versículos apuntan a Yeshúa haMashíaj como la
+                            ofrenda perfecta y definitiva. Así como los líderes tribales ofrecieron lo mejor de sus
+                            posesiones, Yeshúa se ofreció a sí mismo como el Cordero de Adonái יהוה, expiando los
+                            pecados del mundo (Yojanán - Juan 1:29). La dedicación del Mishkán, un lugar de encuentro
+                            entre Adonái יהוה y su pueblo, prefigura la obra de Yeshúa como el mediador que reconcilia a
+                            la humanidad con el Eterno.</p>
+                    </div>
+                    <div class="section-container">
+                        <h3>Conexiones Proféticas</h3>
+                        <p>La dedicación del Mishkán y las ofrendas simbolizan la consagración y dedicación requeridas
+                            para servir a Adonái יהוה. Esto se refleja en el Brit Hadasháh, donde los creyentes son
+                            llamados a ofrecer sus cuerpos como sacrificios vivos, santos y agradables a Adonái יהוה
+                            (Romanos 12:1). Cada ofrenda, aunque material, representa un corazón rendido y una vida
+                            dedicada al servicio del Eterno.</p>
+                    </div>
+                    <div class="section-container">
+                        <h3>Anotaciones gramaticales, léxicas y Guematría</h3>
+                        <p>El texto hebreo original utiliza términos específicos para describir cada elemento de la
+                            ofrenda, detallando pesos y medidas con precisión. Estos detalles no solo aseguran el
+                            cumplimiento exacto de las instrucciones de Adonái יהוה, sino que también invitan a una
+                            reflexión más profunda sobre el significado de cada componente. El uso de la Guematría
+                            (numerología hebrea) puede revelar conexiones numéricas y simbólicas entre las diferentes
+                            partes de la ofrenda, añadiendo capas adicionales de interpretación.</p>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <p>En resumen, Números 7:1-89 no solo describe un evento histórico, sino que también proporciona una
+                        rica fuente de enseñanza espiritual y profética, conectando el Tanakh con el Brit Hadasháh y
+                        resaltando la importancia de la dedicación y el sacrificio en la vida de fe.</p>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 6. Análisis Profundo de la Aliyáh (Números 7:1-89)</h1>
+                <div class="section-container">
+                    <p>La Aliyáh en Números 7 detalla las ofrendas de los líderes de las tribus durante la dedicación
+                        del Mishkán. Este evento es un acto de consagración y dedicación al servicio de Adonái יהוה.
+                        Cada tribu, a través de su líder, presenta ofrendas idénticas, simbolizando la unidad y la
+                        igualdad ante el Eterno, a pesar de la diversidad tribal.</p>
+                </div>
+
+                <div class="section-container">
+                    <h2>Comentario Judío</h2>
+                    <p>Los comentaristas judíos enfatizan la meticulosidad en la descripción de cada ofrenda. Cada
+                        detalle, desde el peso de la plata hasta el tipo de animal ofrecido, tiene un significado
+                        profundo. La repetición de las ofrendas subraya la importancia de cada contribución individual
+                        al bienestar colectivo del pueblo de Israel.</p>
+                </div>
+
+                <div class="section-container">
+                    <h2>Comentario Mesiánico</h2>
+                    <p>Desde una perspectiva mesiánica, este pasaje prefigura la ofrenda suprema de Yeshúa haMashíaj.
+                        Así como los líderes tribales ofrecieron lo mejor de sus posesiones para el Mishkán, Yeshúa se
+                        ofreció a sí mismo como el sacrificio perfecto, cumpliendo la ley y abriendo el camino para la
+                        reconciliación entre la humanidad y Adonái יהוה. El Mishkán, como lugar de encuentro entre el
+                        Eterno y su pueblo, apunta a Yeshúa como el verdadero tabernáculo, en quien habita la plenitud
+                        de la deidad.</p>
+                </div>
+
+                <div class="section-container">
+                    <h1>Punto 7. Conexión con los Moedim</h1>
+                    <p>El tema más relevante de la Aliyáh en Números 7:1-89 es la dedicación y consagración al servicio
+                        de Adonái יהוה. Cada tribu ofrece lo mejor de sí, simbolizando la unidad y la igualdad ante el
+                        Eterno. Este acto de dedicación prefigura la ofrenda suprema de Yeshúa haMashíaj, quien se
+                        ofreció a sí mismo como el sacrificio perfecto, cumpliendo la ley y abriendo el camino para la
+                        reconciliación entre la humanidad y Adonái יהוה.</p>
+                    <p>La dedicación del Mishkán se relaciona con los Moedim al destacar la importancia de la santidad y
+                        la comunión con Adonái יהוה. Así como el Mishkán era un lugar de encuentro, los Moedim son
+                        tiempos señalados para recordar y celebrar la relación entre Adonái יהוה y su pueblo. Esta
+                        conexión refuerza la idea de que la dedicación y la ofrenda son elementos esenciales para
+                        mantener una relación viva y activa con el Eterno.</p>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 8. Descubriendo al Mashiaj en la aliya</h1>
+                <div class="section-container">
+                    <p>En Números 7:1-89, Mashíaj se revela a través de varios tipos y sombras. El Mishkán, como lugar
+                        de encuentro entre Adonái יהוה y su pueblo, prefigura a Yeshúa como el verdadero tabernáculo, en
+                        quien habita la plenitud de la deidad. Las ofrendas de los líderes tribales, aunque diversas,
+                        apuntan a la unidad y perfección del sacrificio de Yeshúa. Cada detalle meticuloso en las
+                        ofrendas simboliza la entrega completa y sin reservas que Yeshúa hizo por la humanidad,
+                        cumpliendo así las promesas mesiánicas del Tanaj. Este pasaje nos invita a reflexionar sobre
+                        cómo cada acto de consagración y dedicación a Adonái יהוה es un reflejo de la entrega total de
+                        Yeshúa haMashíaj.</p>
+                </div>
+
+                <div class="section-container">
+                    <h1>Punto 9. Midrashim y Targumim</h1>
+                    <p>Los Midrashim y Targumim ofrecen ricas perspectivas sobre Números 7:1-89. El Midrash Rabbah
+                        destaca que la dedicación del Mishkán fue un evento de gran alegría, equiparable a la creación
+                        del mundo, ya que simbolizaba la presencia divina entre el pueblo. El Targum Yonatán añade que
+                        las ofrendas de cada tribu eran un reflejo de sus méritos y roles únicos en la historia de
+                        Israel. Estos textos resaltan la importancia de la dedicación y la ofrenda como actos de
+                        reconocimiento de la soberanía de Adonái יהוה. En el contexto mesiánico, vemos cómo estos actos
+                        prefiguran la ofrenda suprema de Yeshúa, quien se entregó a sí mismo como el Cordero perfecto,
+                        cumpliendo así la Toráh y abriendo el camino para la redención.</p>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <div class="section-container">
+                    <h1>Punto 10. Mandamientos encontrados en la Aliyá</h1>
+                    <p>En Números 7:1-89, los mandamientos implícitos se centran en la consagración y la ofrenda. Cada
+                        tribu, al presentar sus regalos, cumple con la mitzvá de dedicar recursos a Adonái יהוה. En el
+                        Brit Hadasháh, esto se refleja en la enseñanza de ofrecer nuestros cuerpos como sacrificio vivo,
+                        santo y agradable a Adonái יהוה (Ro-Romanos 12:1). La generosidad y la dedicación material se
+                        transforman en una entrega espiritual completa, donde cada creyente se convierte en un Mishkán
+                        viviente, reflejando la luz de Yeshúa haMashíaj.</p>
+                </div>
+
+                <div class="section-container">
+                    <h1>Punto 11. Preguntas y Respuestas en el Mashíaj</h1>
+                    <p>Aquí hay cinco preguntas de reflexión basadas en Números 7:1-89, con respuestas desde una
+                        perspectiva mesiánica:</p>
+                    <div class="question">1. ¿Qué simboliza la dedicación del Mishkán por parte de los líderes de las
+                        tribus?</div>
+                    <div class="answer">En Mashíaj, la dedicación simboliza la entrega total de nuestras vidas a Adonái
+                        יהוה, reconociendo que somos templos del Ruaj HaKodesh y que debemos vivir para su gloria.</div>
+                    <div class="question">2. ¿Por qué cada tribu ofreció exactamente los mismos regalos?</div>
+                    <div class="answer">Esto representa la unidad del cuerpo de Mashíaj, donde cada miembro, aunque
+                        diferente, contribuye igualmente al Reino, mostrando que la diversidad en la unidad es esencial.
+                    </div>
+                    <div class="question">3. ¿Cómo se relaciona la generosidad de las tribus con las enseñanzas del Brit
+                        Hadasháh sobre dar?</div>
+                    <div class="answer">Refleja el principio de dar con un corazón alegre y generoso, como se enseña en
+                        el Brit Hadasháh, sabiendo que Adonái יהוה ama al dador alegre y provee abundantemente.</div>
+                    <div class="question">4. ¿Qué significa que Adonái יהוה hablara con Moshéh desde el propiciatorio
+                        entre los querubines?</div>
+                    <div class="answer">Representa el acceso directo y personal a Adonái יהוה a través de Yeshúa,
+                        nuestro Sumo Kohen, quien abrió el camino para que podamos acercarnos con confianza al trono de
+                        la gracia.</div>
+                    <div class="question">5. ¿Cómo podemos aplicar el principio de dedicación y ofrenda en nuestra vida
+                        diaria?</div>
+                    <div class="answer">Podemos dedicarnos a servir a los demás con amor y generosidad, utilizando
+                        nuestros talentos y recursos para glorificar a Adonái יהוה, imitando el sacrificio de Yeshúa.
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 12. Resumen de la aliya</h1>
+                <div class="section-container">
+                    <p>En resumen, Números 7:1-89 narra la dedicación del Mishkán y la ofrenda de los líderes de cada
+                        tribu, reflejando un acto de consagración y unidad. En Mashíaj, estos actos simbolizan la
+                        entrega total de nuestras vidas a Adonái יהוה, la unidad en el cuerpo del Mashíaj, la
+                        generosidad en el dar y el acceso directo a Adonái יהוה a través de Yeshúa. La aplicación
+                        práctica es dedicarnos a servir a los demás, usando nuestros talentos para glorificar a Adonái
+                        יהוה, imitando el sacrificio de Yeshúa haMashíaj.</p>
+                </div>
+
+                <div class="section-container">
+                    <h1>Punto 13. Oración de Reflexión</h1>
+                    <p class="prayer-text">Adonái יהוה, te damos gracias por tu Mishkán y por las ofrendas de nuestros
+                        antepasados, que reflejan nuestra consagración a Ti. Ayúdanos a entregar nuestras vidas
+                        totalmente a Ti, reconociendo que somos templos de tu Ruaj HaKodesh. Que nuestra unidad en el
+                        cuerpo del Mashíaj sea evidente en nuestra generosidad y servicio. A través de Yeshúa haMashíaj,
+                        nuestro Sumo Kohen, permite que nos acerquemos a Ti con confianza y que usemos nuestros talentos
+                        y recursos para glorificarte. Que nuestra vida sea una ofrenda continua de amor y dedicación,
+                        reflejando el sacrificio de Yeshúa. Amén.</p>
+                </div>
+            </div>
+
+
+            <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a></p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="../index.html">Ir al contenido de las 54 parashot</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

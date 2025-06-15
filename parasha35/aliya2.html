@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 4:38-49</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>35. Parashá Naso (נשא) Aliyáh 2: (Números 4:38-49) Censo de los levitas encargados de transportar el
+            Mishkán.
+            <p>Haftaráh: Zacarías 2:10-13 (La gloria de Adonái habitando entre Su pueblo).</p>
+            <p>Brit Hadasháh: Efesios 4:11-16 (La organización y el servicio en la comunidad de creyentes).</p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Bemidbar / Números 4:38–49</h1>
+            <h2>Con texto hebreo original, fonética Tiberiana, traducción literal verso por verso y su cumplimiento
+                profético en Yeshúa haMashíaj</h2>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 38</div>
+            <div class="hebrew">וְכָל־פְּקֻדֵ֣י בְּנֵ֣י קְהָת֩ אֲשֶׁר־יִפְקֻד֨וּ עַל־פִּ֜י מֹשֶׁ֤ה וְאַהֲרֹן֙ בְּאֹהֶ֣ל
+                מוֹעֵ֔ד לְשֵׂ֣את אֶת־קְדֻשַּׁ֔ת אוֹהֶ֖ל מוֹעֵ֑ד כֹּל־עֹבְדֵיהֶ֥ם בְּיַד֖ אִיתָמָֽר׃</div>
+            <div class="transliteration">Ve-khol–p'kudéi b'nei Qehat asher yifkúdu, al pî Moshéh ve-Aharón b'ohel mo'ed,
+                l'set et–k'dushát ohel mo'ed, kol oveidéhem b'yad Itamar.</div>
+            <div class="translation">"Y todos los que fueron contados de los hijos de Qehat, según el censo de Moshé y
+                Aharón en el tabernáculo de reunión, para llevar la santidad del tabernáculo de reunión; todos sus
+                servidores estaban bajo la supervisión de Itamar."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Qehat representaba la sección interna del Mishkán con lo más santo: el Arón y el velo. Yeshúa es el
+                    que lleva la verdadera santidad al Lugar Santísimo, revelando el acceso directo a YHVH (Hebreos
+                    9:3–8). Itamar tipifica su autoridad y supervisión sobre Su Kehiláh.</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 39</div>
+            <div class="hebrew">וְנִפְקְד֖וּ מִמֶּ֑נּוּ מִבֶּן־שְׁלֹשִׁ֨ים שָׁנָ֜ה וָמַ֗עְלָה עַד־בֶּן־חֲמִשִּׁ֥ים
+                שָׁנָ֛ה לְכֹל֩ הָעֹבֵ֨ד בָּהֶ֜ם לְעָבְדָ֣ת אֹֽהֶל־מוֹעֵ֗ד לִשְׂאת֩ אֶת־עֲבֹדַ֨ת קֹ֜דֶשׁ אֹ֗הֶל מוֹעֵ֛ד
+                לְמַשָּׂאָ֖ם וּלְעָבְדָּתֵֽם׃</div>
+            <div class="transliteration">Ve-nifk'du miménnu mi-ben‑sheloshím shaná va‑ma'alá ad‑ben‑ḥamishím shaná,
+                l'khol ha-ovéd bahem l'avodát ohel‑mo'ed, l'set et‑avodát qódesh ohel mo'ed l'massám u-l'avodátém.</div>
+            <div class="translation">"Y fueron contados de ellos varones de 30 años en adelante hasta 50 años, todo el
+                que venía a servir entre ellos para el servicio del tabernáculo de reunión, para llevar la labor santa
+                del tabernáculo, por su carga y por su servicio."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>La franja de edad coincide con su inicio de ministerio a los 30 años, marcando plenitud espiritual.
+                    Él encarna el servicio ideal: carga, santidad y obediencia al Padre (Lucas 3:23; Hebreos 5:8–9).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 40</div>
+            <div class="hebrew">וַיְהִ֣י פְקֻדֵיהֶ֗ם לְמִשְׁפְּחֹתָּ֙ם כֹּל־הָעֹבְדִ֣ים בְּעָבְדֹתָ֣ם הַמָּסָ֗אָה
+                וְהָעֲבֹדָ֙ה אֶ֚לְפֵּי שְׁתַּ֣יִם אֶ֔לֶף וּשְׁלֹשִׁ֥י כֵּ֖ן ׀ כֻּלָּֽם׃</div>
+            <div class="transliteration">Va‑yehí p'kudéhem l'mishpejotám, kol ha‑ovedím b'avodotám hamassáh
+                ve‑ha'avodáh, alféy sh'táyim elef u‑shléshíken kolám.</div>
+            <div class="translation">"Y fue su número por familias, por todos los que trabajaban en sus cargas y en su
+                servicio, dos mil setecientos y treinta cada uno."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>El número 2730 representa la plenitud del llamado al servicio. En Yeshúa, el cuerpo completo de
+                    creyentes sostiene Su presencia y llamado espiritual, recolectando a "muchos hijos" para Gloria
+                    (Hebreos 2:10).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 41</div>
+            <div class="hebrew">וְכָל־שִׂמְשׂ֖וֹ אֶת־פְּקֻדֵ֣י בְּנֵֽי־קְהָת֑ אֲשֶׁ֤ר פְּקֻדִּים֙ עַל־פִּ֣י מֹשֶׁ֔ה
+                וְאָהֲרֹ֖ן לָשֵׂ֥את קְדֻשַּֽׁת׃</div>
+            <div class="transliteration">Ve-khol‑simšó et-p'kudéi b'nei Qehat asher p'kudím al-pî Moshéh ve-Aharón,
+                laset kedushát‑f.</div>
+            <div class="translation">"Y puso Moshé y Aharón sobre los que eran contados, para llevar la santidad."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Yeshúa impuso Su autoridad sobre Su cuerpo y lo envió para llevar lo santo al mundo (Juan 20:21). Él
+                    marca la tarea con autoridad espiritual.</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 42</div>
+            <div class="hebrew">לָשֵׂ֥את מִסְפַּ֛ר שֵׁנֵ֖י אָלָ֑פים שִׁשָּׁ֥ה מֵא֖וֹת שִׁבְעִ֥ים וְשִׁשִּֽׁים׃</div>
+            <div class="transliteration">Laset mispar shenei alafím shishá me'ot shiv'ím ve-shiším.</div>
+            <div class="translation">"Para llevar el número de dos mil seiscientos setenta y seis."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>El número exacto destaca que el servicio de la Kehiláh es medido, relevante y significativo, no
+                    caótico. En Mashíaj, cada siervo cuenta en el plan eterno (Efesios 2:10).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 43</div>
+            <div class="hebrew">זֹאת֙ פְּקֻדַּ֣ת הַקְּהָתִ֔י כֹּל֙ אֲשֶׁר־יִפְקְד֣וּ לַעֲבֹ֣ד בְּאֹֽהֶל־מוֹעֵ֑ד מֵאָ֥ה
+                וְעֶשְׂרִ֖ים וְשִׁבְעָֽה׃</div>
+            <div class="transliteration">Zot p'kudát ha-Qehatí, kol asher yifk'du la'avód b'ohel‑mo'ed: me'áh ve-'esrím
+                ve-shiv'áh.</div>
+            <div class="translation">"Este es el censo de los Qehatitas, de todos los que habían sido contados para
+                trabajar en el tabernáculo de reunión: ciento veintisiete."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Los Levitas eran una porción santa separada del resto. Sólo 127 estaban ocupados directamente con la
+                    santidad. Así el cuerpo de Mashíaj es santo y separado (1 Pedro 2:9).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 44</div>
+            <div class="hebrew">כֹּל֙ אֲשֶׁר־יִפְקְד֣וּ מִבְּנֵ֣י קְהָת֗ לָשָׂאת֙ אֶת־אוֹצְרֵ֣י קֹ֔דֶשׁ לַעֲשׂ֥וֹת
+                לָהֶ֖ם בְּאֹֽהֶל־מוֹעֵ֑ד לְצִוּ֣וּת לַיהוָ֔ה לְיַד֖ מֹשֶֽׁה׃</div>
+            <div class="transliteration">Kol asher yifk'du mi‑b'nei Qehat, lasót et‑otzréi qódesh la'asót lahem
+                b'ohel‑mo'ed, le‑tzivút l'Adonái, be-yad Moshéh.</div>
+            <div class="translation">"De todos los que fueron contados de los hijos de Qehat para llevar los tesoros de
+                santidad, y hacer para ellos en el tabernáculo de reunión por mandato de Adonái, por mano de Moshéh."
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Portar los "tesoros de santidad" apunta a custodiar la Palabra, presencia, amor y vida que Yeshúa nos
+                    legó. Su cuerpo es depositario de estas realidades y las lleva al mundo como un tesoro eterno
+                    (Marcos 16:20).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 45</div>
+            <div class="hebrew">וְאַךְ־אֵ֨ין לָהֶ֜ם מִתְּנַת־כֹּ֣הֲנִ֗ים הֵ֛ם אֵ֥ין לָהֶ֖ם אֲשֶׁ֣ר יִתְּנוּן־כֹּ֑הֲנִים
+                אֵ֤לֶּה֙ בְּנֵ֣י קְהָתִ֔י אֶלָּא־אָ֖רֲצָה יִתְּמוּ וְאַמְּר֥וּ אַֽל־יִטָּמֵֽא׃</div>
+            <div class="transliteration">Ve-akh‑ein lahem mitnát‑kohanim, heim ain lahem asher yitnún-kohanim; él leh
+                b'nei Qehatí ela-artzá yittamú ve-amrú al yitáme'.</div>
+            <div class="translation">"Pero no tenían derecho sacerdotal, ellos no podían instruir a los sacerdotes.
+                Ellos eran los hijos de Qehat, pero por lo demás, en tierra habitarán; y dijeron: 'No se contamine'."
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Aunque importantes, no todos son sacerdotes según orden de Arón; algunos sirven en tierra. Similar
+                    hoy: la mayoría no son oficiales sacerdotales, pero todos debemos evitar la inmundicia espiritual y
+                    servir en santidad (1 Corintios 15:58).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 46</div>
+            <div class="hebrew">וַיִּפְקְד֞וּ בְּנֵ֣י קְהָת֩ כִּ֤י לֹֽא־הֵבִ֙יאוּ֙ אֶת־קְדֻשַּׁ֔ת אֹ֖הֶל מוֹעֵ֑ד אֵ֥ין
+                לָהֶ֖ם לְכַּהֲנִֽים׃</div>
+            <div class="transliteration">Va‑yifk'du b'nei Qehat ki lo‑hevíu et‑kedushát ohel‑mo'ed, ein lahem l'kohaním.
+            </div>
+            <div class="translation">"Y fueron contados los hijos de Qehat, porque no habían llevado la santidad del
+                tabernáculo; no les corresponde sacerdotes."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Quienes desean ministrar deben estar cubiertos por lo santo. Sólo los revestidos pueden servir. Hoy,
+                    todos somos sacerdotes, pero para ministrar con poder, debemos haber sido transportados por Mashíaj
+                    (Apocalipsis 1:6).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 47</div>
+            <div class="hebrew">כִּ֤י אַחֵר֙ יִטְּמָא֔וּ וְתִפְקְדֶ֖ינָה עֲלֵיהֶ֑ם וּנְקָמָ֥ה תְּקַיֵּֽם׃</div>
+            <div class="transliteration">Ki aḥér yit'mé'u ve-tifkadená 'aléhem, u‑neqamá teqayéym.</div>
+            <div class="translation">"Porque pueden contaminarse y ser contados en su culpa; y es establecido venganza
+                contra ellos."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>La impureza puede contaminar al cuerpo. El Reino demanda pureza y responsabilidad comunitaria. En
+                    Mashíaj, hay redención del pecado, pero también una exigencia de obediencia y separación de la
+                    corrupción (2 Corintios 7:1).</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 48</div>
+            <div class="hebrew">וַיַּ֗עַשׂ מֹשֶׁ֙ה֙ אֶת־כֹּל־אֲשֶׁ֣ר צִוָּ֣ה יְהוָ֔ה בְּיַד־אִיתָמָ֖ר כֵּ֑ן עָשׂ֖וּ
+                בְּנֵ֥י קְהָתִֽי׃</div>
+            <div class="transliteration">Va-ya'as Moshéh et‑khol asher tzivá Adonái be-yad Itamar, kén 'asú b'nei
+                Qehatí.</div>
+            <div class="translation">"Moshé hizo todo lo que Adonái había mandado por mano de Itamar; así hicieron los
+                hijos de Qehat."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>La obediencia total al Padre es la marca de Su ministerio. En Mashíaj, la voluntad del Padre fue
+                    cumplida en Su totalidad (Juan 4:34; 17:4), y el cuerpo de Mashíaj sigue ese patrón.</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 49</div>
+            <div class="hebrew">וְאַֽחֵרִ֣ים לֹא־עָ֠שׂוּ כַּתִּקּ֤וּן לַיהוָה֙ לַמָּאָסִ֔ים עַל־פִּ֖י מֹשֶׁ֥ה
+                וְאֵת־פְּקֻדֵֽיהֶם׃</div>
+            <div class="transliteration">Ve‑aḥérím lo‑'asú ka‑tikkún la-Adonái lammásim al pî Moshéh ve-et p'kudéhem.
+            </div>
+            <div class="translation">"Pero otros no hicieron como estaba ordenado por orden de Moshé y su censo."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>No basta con conocimiento: es necesaria la obediencia. En Mashíaj, la bendición va a quienes obedecen
+                    Su palabra, no sólo la escuchan (Mateo 7:24–27).</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <div class="prophetic-title">Reflexión final:</div>
+            <p>Estos versículos destacan la santidad, orden y autoridad en el servicio del Mishkán. Cada detalle
+                requiere obediencia y reverencia. En Yeshúa haMashíaj, este servicio alcanza su plenitud: Somos llamados
+                a portar lo santo, obedecer, purificarnos y edificar al cuerpo del Reino con fidelidad celestial.</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 2. Haftaráh: Zacarías 2:10-13 (La gloria de Adonái habitando entre Su pueblo).</h1>
+            <h2>Con hebreo original, fonética tiberiana, traducción literal verso a verso y su cumplimiento profético en
+                Yeshúa haMashíaj</h2>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">📖 Zacarías 2:10</div>
+            <div class="hebrew">רְנְנִ֥י עָזְבִ֖י בַּת־צִיּ֑וֹן כִּ֛י רָאִ֥יתָ בַּיּ֖וֹם צִ֥יּֽוֹן׃</div>
+            <div class="transliteration"><strong>Rənnî 'ozvî bat‑Ṣiyyon, kî rā'îtā bayyôm Ṣiyyôn.</strong></div>
+            <div class="translation">"Alégrate y regocíjate, hija de Sión, porque he aquí vengo y habitaré en medio de
+                ti —declara Adonái— en aquel día."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>El Shakanah (morada) de Yeshúa en medio de Su pueblo se cumple de manera plena en Juan 1:14: "Y
+                    habitó entre nosotros". Él es la presencia viviente de Elohím en medio del remanente de Sión hoy.
+                </p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Zacarías 2:11</div>
+            <div class="hebrew">וְהָיוּ֙ לָךְ֙ גּוֹיִ֔ם וְחָרְשׁ֖וּ בַּחֹ֣רְבֵךְ׃</div>
+            <div class="transliteration"><strong>Ve‑hayû lakh goyyîm ve‑ḥarshû baḥorvêkh.</strong></div>
+            <div class="translation">"Y multitudes de pueblos vendrán a ti, y dirán: 'Sea santificado Adonái en ti'."
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Este pasaje profetiza el ecumenismo mesiánico: las naciones vendrán y proclamarán la santidad del
+                    Eterno. En el Nuevo Pacto, gentiles de toda nación forman parte del cuerpo de Mashíaj (Apocalipsis
+                    5:9–12), dando alabanza universal.</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Zacarías 2:12</div>
+            <div class="hebrew">וְהָיוּ֙ לְךְ֙ עַמִּ֔ים וּמַלְכֵּ֖י אַרְצ֑וֹת כְּשֶׁ֣מֶן עַל־גֵּ֣בַיִךְ֘ וְכַדֶּ֣שׁ
+                לְמִישֹֽׁן׃</div>
+            <div class="transliteration"><strong>Ve‑hayû lakh 'ammîm u‑malkê 'arṣôt, ke­shemen 'al‑ğeveyekh ve­ka­dad
+                    le­Mišon.</strong></div>
+            <div class="translation">"Se unirán a ti pueblos y reyes de tierras como aceite sobre la cabeza, y como
+                perfume sobre My Shíon."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>En Efesios 2:17–18 y Filipenses 2:9–11, se cumple el ungido del Mashíaj: "sobre Su cabeza corre
+                    aceite", reinado que afecta a todo el mundo. El perfume sobre Sión es la fragancia del sacrificio
+                    eterno de Yeshúa, aceptado por muchos.</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Zacarías 2:13</div>
+            <div class="hebrew">כִּי־עָרְפָה רָ֤אִיתִי אֶת־יַהְוֶה֙ יֹשֵׁ֣ב עַל־כִּסֵּ֔א וְכָל־שָׂרִ֖ים נְחָשִׁ֣ים
+                סָבִ֑יב וְאִתָּ֣ו אֶתֵּ֔ךְ֙ שָׁמַ֖עְתִּי מִמְּקוֹמ֥וֹ כִּֽי־נָאֲם־יְהוָֽה׃</div>
+            <div class="transliteration"><strong>Kî 'orfā rā'îtî et‑YHVH, yōšēb 'al‑kisse, ve­khol sā­rîm neḥāšîm săvîv;
+                    ve­ittāw et'ek, šāma'tî mimmaqômō kî nā'ām YHVH.</strong></div>
+            <div class="translation">"Porque he derribado a los reyes en sus lugares, los he visto vacíos de autoridad;
+                y he oído al que me envió, el que se sentó sobre Su trono —declara Adonái— y todos eran como serpientes
+                alrededor; y él te protege."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>Yeshúa, sentado a la diestra del Eterno (Hebreos 1:3; 8:1), ha vencido Satanás y sus huestes
+                    ("serpientes"), despojándolos de autoridad (Colosenses 2:15), y protege a Su pueblo: "nadie me
+                    arrebatará de la mano del Padre" (Juan 10:28).</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <div class="prophetic-title">✅ Reflexión final</div>
+            <p>Este pasaje es una <strong>visión de restauración mesiánica</strong>: el Eterno trae Su presencia a Su
+                pueblo, las naciones serán purificadas, los reyes ungidos por el Mesías, y el dominio de lo satánico
+                anulado. En Yeshúa haMashíaj todo esto se cumple, y somos llamados a vivir en esa realidad, adorando,
+                protegiendo y participando del reinado eterno.</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 3. de Brit Hadasháh: Efesios 4:11-16 (La organización y el servicio en la comunidad de creyentes).
+            </h1>
+            <h2>Su fonética aproximada, traducción literal y cumplimiento profético en el Mashíaj verso por verso</h2>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Efesios 4:11</div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Hebreo:</div>
+                <div class="hebrew">וְהוּא נָתַן אֶת־הָאֶחָד לִהְיוֹת שָׁלִיחַ, וְאֶת־הָאַחֵר נָבִיא, וְאֶת־הָאַחֵר
+                    מְבַשֵּׂר, וְאֶת־הָאַחֵר רֹעֶה, וְמַלְמֵד.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Fonética:</div>
+                <div class="transliteration">Vehu natan et-ha'eḥad lihyot shaliaḥ, ve'et-ha'aḥer navi, ve'et-ha'aḥer
+                    mevaser, ve'et-ha'aḥer ro'eh, u-malméd.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Traducción Literal:</div>
+                <div class="translation">Y Él dio a unos como apóstoles, a otros profetas, a otros evangelistas, a otros
+                    pastores y maestros.</div>
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="prophetic-title">Cumplimiento Mesiánico:</div>
+                <div>Mashíaj Yeshúa, como Cabeza del Cuerpo (Ef 1:22), distribuye estos cinco ministerios como reflejo
+                    de Su plenitud: Él mismo fue el Enviado (Shaliaḥ - Juan 20:21), Profeta (Deut 18:18), Evangelista
+                    (Lucas 4:43), Pastor (Juan 10:11) y Maestro (Mateo 7:28). Cada uno de estos ministerios prolonga Su
+                    obra.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Efesios 4:12</div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Hebreo:</div>
+                <div class="hebrew">לְכִשּׁוּר הַקְּדוֹשִׁים לַעֲבוֹדַת הַשֵּׁרוּת, לִבְנוֹת אֶת־גוּף הַמָּשִׁיחַ.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Fonética:</div>
+                <div class="transliteration">Le-kishur ha-kedoshim la-avodat ha-sherut, livnot et-guf ha-Mashíaḥ.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Traducción Literal:</div>
+                <div class="translation">Para el perfeccionamiento de los santos, para la obra del ministerio, para la
+                    edificación del cuerpo del Mesías.</div>
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="prophetic-title">Cumplimiento Mesiánico:</div>
+                <div>La función de estos dones ministeriales es preparar al pueblo redimido. Esto cumple Isaías 61:1-3,
+                    donde el Mashíaj unge y envía a sanar, edificar y fortalecer. Ahora, a través de su Cuerpo, sigue
+                    edificando.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Efesios 4:13</div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Hebreo:</div>
+                <div class="hebrew">עַד שֶׁנַּגִּיעַ כֻּלָּנוּ לְאַחְדוּת הָאֱמוּנָה וְלְדַעַת בֶּן־הָאֱלֹהִים, לְאָדָם
+                    שָׁלֵם, לְשִׁעוּר קוֹמַת מְלוֹא הַמָּשִׁיחַ.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Fonética:</div>
+                <div class="transliteration">'Ad shenaguiá kullánu le-aḥdut ha-emuná ve-leda'at Ben ha-Elohim, le-adam
+                    shalém, le-shiur komat meló ha-Mashíaḥ.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Traducción Literal:</div>
+                <div class="translation">Hasta que todos lleguemos a la unidad de la fe y del conocimiento del Hijo de
+                    Elohim, a un varón perfecto, a la medida de la estatura de la plenitud del Mesías.</div>
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="prophetic-title">Cumplimiento Mesiánico:</div>
+                <div>Esto alude al proceso escatológico de perfección del cuerpo de creyentes. Isaías 11:9 habla del
+                    conocimiento de YHWH cubriendo la tierra. Mashíaj es la medida de la humanidad perfecta restaurada
+                    (Salmo 8 cumplido en Hebreos 2:6-10).</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Efesios 4:14</div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Hebreo:</div>
+                <div class="hebrew">כְּדֵי שֶׁלֹּא נִהְיֶה עוֹד יְלָדִים, מִתְנוֹדְדִים וּנְשָׂאִים בְּכָל רוּחַ שֶׁל
+                    תּוֹרָה, בְּתַחְבּוּלוֹת אֲנָשִׁים, בְּעָרוּמָם לְהַטְעוֹת בִּמְרוּמִי הוֹנָאָה.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Fonética:</div>
+                <div class="transliteration">Kedéi she-lo niyé 'od yeladím, mitnodedím u-nesaím be-kol ruaḥ shel toráh,
+                    be-taḥbulot anashím, be-'arumám le-hat'ot bimrumei hona'áh.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Traducción Literal:</div>
+                <div class="translation">Para que ya no seamos niños fluctuantes, llevados por todo viento de doctrina,
+                    por estratagema de hombres que engañan con astucia para inducir al error.</div>
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="prophetic-title">Cumplimiento Mesiánico:</div>
+                <div>Yeshúa advirtió sobre los falsos maestros (Mateo 24:4-5). La estabilidad doctrinal proviene de
+                    conocer al Mashíaj (Juan 8:31-32) y estar arraigado en Él como la Verdad (Juan 14:6).</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Efesios 4:15</div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Hebreo:</div>
+                <div class="hebrew">אֶלָּא בְּדַבֵּר אֱמֶת בְּאַהֲבָה, נִגְדַּל בְּכֹל דָּבָר אֵלָיו, הוּא הָרֹאשׁ –
+                    הַמָּשִׁיחַ.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Fonética:</div>
+                <div class="transliteration">Ella be-daber emet be-ahaváh, nigdal be-kol davar elav, hu ha-rosh –
+                    ha-Mashíaḥ.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Traducción Literal:</div>
+                <div class="translation">Sino que hablando la verdad en amor, crezcamos en todo hacia Él, que es la
+                    cabeza: el Mesías.</div>
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="prophetic-title">Cumplimiento Mesiánico:</div>
+                <div>Esto se conecta con Zacarías 8:16-17 (decir verdad en amor) y Juan 15 (permanecer en amor). El
+                    crecimiento en Mashíaj es el camino hacia la imagen divina perdida en el Edén y restaurada en Él
+                    (Col 3:10).</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Efesios 4:16</div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Hebreo:</div>
+                <div class="hebrew">מִמֶּנּוּ כָּל הַגּוּף מְשֻׁלָּב וְקָשׁוּר בְּכָל חֶבֶר הַתְאִים, בְּפֹעַל מִדָּה
+                    כְּפִי גְּדֵל חֲבֵרוֹ, לְצְמִיחַ אֶת־הַגּוּף לְבִנְיָן עַצְמוֹ בְּאַהֲבָה.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Fonética:</div>
+                <div class="transliteration">Miménu kol ha-guf meshulav ve-kashur be-kol ḥéver ha-te'im, be-po'al middáh
+                    kefi gdel ḥavéro, letzmiaḥ et-ha-guf le-vinyán atzmo be-ahavá.</div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">Traducción Literal:</div>
+                <div class="translation">De Él, todo el cuerpo, bien concertado y unido por todas las coyunturas que se
+                    ayudan mutuamente, según la actividad propia de cada miembro, recibe su crecimiento para edificarse
+                    en amor.</div>
+            </div>
+
+            <div class="messianic-fulfillment">
+                <div class="prophetic-title">Cumplimiento Mesiánico:</div>
+                <div>El cuerpo unido en Mashíaj es cumplimiento de Ezequiel 37: los huesos secos se levantan y forman un
+                    solo cuerpo. Por Su amor, cada miembro crece y contribuye al todo. Es la restauración de Israel y
+                    las naciones en un solo pueblo bajo el Rey Pastor (Ezequiel 34:23; Juan 10:16).</div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Resumen</h3>
+            <p>Efesios 4:11-16 presenta la estructura ministerial establecida por el Mashíaj para el crecimiento y
+                madurez de su Cuerpo. Cada ministerio refleja aspectos de la obra de Yeshúa y contribuye al
+                perfeccionamiento de los santos hasta alcanzar la plenitud mesiánica.</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 4. Contexto Histórico y Cultural de Parashá Naso – Bemidbar / Números 4:38–49</h1>
+            <h2>Aliyáh 2: Continuación del Censo Levítico – Clanes de los Hijos de Merarí</h2>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Ubicación Histórica en el Ciclo del Éxodo</h2>
+                <p>Este pasaje se sitúa en el segundo año del Éxodo, durante la estadía de Israel en el desierto del
+                    Sinaí, específicamente en el periodo de preparación para la marcha hacia la Tierra Prometida. Aquí,
+                    Adonái ordena un censo adicional enfocado exclusivamente en los hijos de Merarí, los cuales tenían
+                    la responsabilidad de cargar la infraestructura más pesada del Mishkán.</p>
+                <p>Los meraritas eran parte de la tribu de Leví, pero tenían tareas distintas a los qehatitas
+                    (encargados de los utensilios sagrados) y a los gershonitas (encargados de las cortinas y
+                    coberturas). El enfoque de este pasaje es el detalle meticuloso del servicio designado, revelando el
+                    orden espiritual dentro del campamento de Israel.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Importancia del Censo Levítico</h2>
+                <p>El censo de los meraritas no era un simple recuento poblacional. Era una señal profética de que cada
+                    miembro del pueblo de Elohím tenía un rol divinamente asignado, y que ninguna función era menos
+                    sagrada que otra. Esta conciencia de orden y servicio distingue a Israel entre las naciones.</p>
+                <p>La precisión en los números y edades (de 30 a 50 años) marca el momento de máxima madurez física y
+                    espiritual. Esta norma, que luego también sería adoptada para los sacerdotes del Templo, reflejaba
+                    la expectativa de fuerza, experiencia y fidelidad en quienes servirían en las cosas de santidad.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Simbolismo del Rol de Merarí</h2>
+                <p>Los meraritas llevaban:</p>
+                <ul>
+                    <li>Los tablones y columnas del Mishkán</li>
+                    <li>Las basas de plata</li>
+                    <li>Las estacas y cuerdas de estructura</li>
+                </ul>
+                <p>Es decir, eran los soportes del Mishkán. Culturalmente, esto implica que su función era mantener la
+                    estructura y estabilidad de la santidad. Sin su tarea, el Mishkán no se podía erigir ni mantener
+                    firme. Esta función pesada simboliza a quienes sostienen el Reino desde lo invisible y difícil,
+                    reflejando valores como el sacrificio, la perseverancia y el orden.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">D.</span>Relación con la Cultura del Segundo Templo</h2>
+                <p>En tiempos del Segundo Templo, aunque el servicio merarita ya no implicaba cargar físicamente, su
+                    memoria seguía presente en las clases de levitas que mantenían la estructura, puertas, depósitos y
+                    almacenes (cf. 1 Crónicas 23:4–5). El principio de “funciones estructurales invisibles” seguía
+                    vigente.</p>
+                <p>Este trasfondo influenció también a la comunidad de Qumrán, que veía la estructura del templo como
+                    una imagen del orden celestial. Allí, los miembros eran divididos en turnos con tareas espirituales
+                    fijas, y muchos textos aluden al principio levítico como modelo escatológico.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">E.</span>Proyección Mesiánica y Espiritual</h2>
+                <p>En el Brit Hadasháh, este pasaje es comprendido a la luz del servicio espiritual dentro del Cuerpo
+                    del Mashíaj. Así como los meraritas no tenían una función visible pero esencial, en la Kehiláh
+                    también hay creyentes que sostienen la obra del Reino de manera silenciosa pero indispensable (1
+                    Corintios 12:22–24).</p>
+                <ul>
+                    <li>El apóstol Shaúl afirma en Efesios 4:16 que el Cuerpo “se edifica en amor, mediante la actividad
+                        de cada parte”.</li>
+                    <li>Yeshúa mismo cumple el rol merarita: soportó el peso de la estructura del Reino, no desde lo
+                        visible, sino en humildad y obediencia (Isaías 53:4–5).</li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Conclusión del Contexto Histórico y Cultural:</strong></p>
+                <p>La sección de Bemidbar 4:38–49 no es una simple lista censal. Es una declaración divina sobre el
+                    valor del servicio oculto, el honor del sacrificio, y la necesidad del orden espiritual en la
+                    edificación del Reino. Este orden anticipa el ministerio del Mashíaj y se refleja hoy en toda
+                    Kehiláh que opera bajo la instrucción del Ruaj HaKodesh.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Censo y funciones de los hijos de Merarí en el servicio del Mishkán</h3>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Comentarios Rabínicos Relevantes</h2>
+                <h3>1. Rashi (Rav Shlomó Yitzjaquí):</h3>
+                <p>Rashi destaca que la tarea de los meraritas, aunque menos visible, era extremadamente importante.
+                    Ellos cargaban los componentes más pesados del Mishkán, como las columnas y basas. Según Rashi, “la
+                    carga más pesada era sostenida por los más ocultos”. Esto enseña el valor del servicio silencioso.
+                </p>
+
+                <h3>2. Rambán (Najmánides):</h3>
+                <p>Rambán observa que los meraritas necesitaban carros y bueyes para su tarea (cf. Números 7:6–8),
+                    porque sus cargas no podían llevarse al hombro como las de Qehat. Esta necesidad logística no resta
+                    santidad al servicio, sino que muestra la variedad en las formas de ministrar.</p>
+
+                <h3>3. Sforno:</h3>
+                <p>Sforno enfatiza que el hecho de que se les encargaran los fundamentos estructurales del Mishkán
+                    refleja que la estabilidad de lo espiritual depende de un orden físico visible, y que ambos niveles
+                    están interconectados.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Comentario Judío Mesiánico</h2>
+                <h3>1. Yeshúa como Cumplimiento del “Cargador del Reino”</h3>
+                <p>El trabajo de los meraritas prefigura el rol de Yeshúa haMashíaj como aquel que llevó el peso del
+                    Reino. Así como las estructuras eran necesarias para levantar el Mishkán, así la obediencia de
+                    Yeshúa sostuvo el Reino visible entre los hombres (Isaías 53:4–6; Mateo 11:28–30).</p>
+
+                <h3>2. La Comunidad como “Meraritas Espirituales”</h3>
+                <p>En la Kehiláh de Mashíaj, hay quienes ejercen roles invisibles pero fundamentales:</p>
+                <ul>
+                    <li>Intercesores</li>
+                    <li>Servidores administrativos</li>
+                    <li>Quienes sostienen con recursos</li>
+                </ul>
+                <p>Estas personas cumplen una función espiritual equivalente a la de Merarí, según Efesios 4:16: “cada
+                    parte unida por las coyunturas que la sostienen”.</p>
+
+                <h3>3. Yeshúa Como el Fundamento Espiritual del Mishkán Celestial</h3>
+                <p>El Brit Hadasháh nos muestra que el Mishkán terrenal es copia del celestial (Hebreos 8:5), y Yeshúa
+                    es el pilar, la columna de la verdad y fundamento firme (Efesios 2:20; 1 Pedro 2:6).</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Conexión con la Haftaráh – Jueces 13:2–25</h2>
+                <p>Shimshón fue nazir desde el vientre, separado para cargar una misión pesada: liberar a Israel. Este
+                    paralelo con Merarí es potente:</p>
+                <ul>
+                    <li>Ambos fueron asignados desde su nacimiento.</li>
+                    <li>Ambos cargaban responsabilidad invisible pero fundamental.</li>
+                    <li>Ambos requerían obediencia sin desviación (cf. Shoftím 13:5).</li>
+                </ul>
+                <p>Yeshúa, como el último Nazir, también fue apartado desde el vientre para sostener el plan eterno de
+                    redención.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">D.</span>Conexión con el Brit Hadasháh – Romanos 12:3–8</h2>
+                <p>Shaúl habla de los diferentes dones y funciones dentro del cuerpo del Mesías:</p>
+                <p class="scripture">“El que sirve, que sirva con diligencia… el que preside, con solicitud…”</p>
+                <p>Así como los meraritas no eran visibles pero esenciales, también en la Kehiláh los que “sostienen la
+                    estructura” (administradores, diakonim, líderes silenciosos) tienen un rol fundamental para que la
+                    manifestación de la Gloria fluya.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">E.</span>Notas Gramaticales, Léxicas y Guemátricas</h2>
+                <h3>1. <span class="hebrew hebrew-term">מְרָרִי</span> – Merarí</h3>
+                <p>Raíz: <span class="hebrew hebrew-term">מרר</span> (marar) = “amargura”. Implica que el servicio puede
+                    ser pesado, difícil o sacrificado.</p>
+                <p>Tipológicamente, representa a Yeshúa quien “bebió la copa amarga” (Mateo 26:39), pero también a
+                    quienes sirven en lo arduo con fidelidad.</p>
+
+                <h3>2. <span class="hebrew hebrew-term">שָׂא אֶת־רֹאשׁ</span> – Sá et-rosh</h3>
+                <p>Literalmente “eleva la cabeza”. Más que contar, es dar valor, dignidad y propósito.</p>
+                <p>Cada merarita era contado no por utilidad, sino por destino profético.</p>
+
+                <h3>3. Guematría de <span class="hebrew hebrew-term">מְרָרִי</span> = 450</h3>
+                <p>450 = <span class="hebrew hebrew-term">עֵזֶר</span> (ézer), “ayuda”, como en “ezer kenegdó” (Génesis
+                    2:18).</p>
+                <p><strong>Implicación:</strong> Los meraritas son los “ayudadores invisibles” del Mishkán, igual que el
+                    Ruaj Hakodesh es “el Ayudador” en el Brit Hadasháh (Juan 14:26).</p>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Conclusión:</strong></p>
+                <p>Los hijos de Merarí representan la porción fiel del pueblo que sostiene con firmeza lo sagrado,
+                    incluso cuando no es visible. Yeshúa es el primer Merarita espiritual, cargando el Reino entero.
+                    Esta Aliyáh nos llama a valorar lo oculto, y a servir en obediencia aún cuando no hay reconocimiento
+                    humano.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 6. Análisis Profundo de la Aliyáh</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Censo y servicio específico de los Meraritas en el Mishkán</h3>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Estructura del Texto</h2>
+                <p>El pasaje está dividido en tres secciones claves:</p>
+                <ul>
+                    <li><strong>Versos 38–41:</strong> Censo de los Gershonitas (complementando su sección anterior), y
+                        su asignación bajo Itamar.</li>
+                    <li><strong>Versos 42–45:</strong> Detalle del censo de los Meraritas, sus tareas y edad de
+                        servicio.</li>
+                    <li><strong>Versos 46–49:</strong> Resumen de todos los levitas contados para el servicio: Qehat,
+                        Gershón y Merarí. Todo bajo la autoridad de Moshé y Aharón.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Comentario Judío Clásico</h2>
+                <p>Los sabios notan que aunque los Meraritas no manejaban los objetos más “sagrados” (como el Arón o el
+                    altar), su función era igualmente esencial. Su carga incluía:</p>
+                <ul>
+                    <li><span class="hebrew hebrew-term">קרשים</span> (kerashím): tablones</li>
+                    <li><span class="hebrew hebrew-term">בריחים</span> (berijím): travesaños</li>
+                    <li><span class="hebrew hebrew-term">עמודים</span> (amudím): columnas</li>
+                    <li><span class="hebrew hebrew-term">אדנים</span> (adanim): basas de plata</li>
+                </ul>
+                <p>Estos elementos permitían la existencia física del Mishkán. El Midrash resalta que "sin ellos, no
+                    habría lugar para que la presencia divina reposara".</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Comentario Judío Mesiánico</h2>
+                <p>Los meraritas son figuras del servicio silencioso pero vital. Son los que soportan el peso del Reino,
+                    muchas veces sin reconocimiento humano. En el contexto del Mashíaj:</p>
+                <ul>
+                    <li>Yeshúa asumió la carga estructural del Reino: la Toráh, la justicia, el juicio, y la expiación
+                        (Isaías 9:6).</li>
+                    <li>El madero que Él cargó (Juan 19:17) fue la “estructura de redención” que sostiene el Mishkán
+                        eterno.</li>
+                    <li>Así también, cada creyente es llamado a cargar su parte (Mateo 16:24), no como castigo, sino
+                        como participación en la obra del Reino.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">D.</span>Conexión con la Haftaráh – Jueces 13:2–25</h2>
+                <p>Shimshón fue llamado desde el vientre para un rol único. Aunque su misión fue individual y visible,
+                    su voto nazareo lo separó incluso de las funciones comunes del pueblo. Esto lo conecta con los
+                    meraritas, cuyo servicio no era como el de otros israelitas.</p>
+                <p>Ambos representan una consagración estructural: Shimshón como defensor físico del pueblo, los
+                    meraritas como portadores físicos del Mishkán. En ambos casos, la fuerza no era natural, sino dada
+                    por el Espíritu de Adonái (cf. Shoftím 13:25).</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">E.</span>Conexión con el Brit Hadasháh – Romanos 12:3–8</h2>
+                <p>El apóstol Shaúl habla de una estructura espiritual dentro del cuerpo de creyentes. La comparación
+                    entre los dones del Espíritu y las funciones físicas del Mishkán es directa:</p>
+                <ul>
+                    <li>Los meraritas = los que sostienen el orden y la estabilidad del cuerpo, como los que sirven,
+                        administran o lideran sin aplausos.</li>
+                    <li>Romanos 12:4–5: “Somos un solo cuerpo, pero con muchos miembros”.</li>
+                </ul>
+                <p>El paralelo está claro: cada parte cumple una función específica, y ninguna puede despreciarse. Como
+                    los meraritas, algunos llevan el peso de lo que otros no ven, pero sin ellos, la estructura se
+                    derrumba.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">F.</span>Síntesis Espiritual</h2>
+                <ul>
+                    <li>Yeshúa es el primer “Merarita” espiritual, sosteniendo todo el Reino con Su obediencia y carga.
+                    </li>
+                    <li>La Kehiláh es hoy la estructura viva del Mishkán. Cada creyente es una pieza que sostiene lo
+                        santo.</li>
+                    <li>El llamado es a valorar lo oculto, servir con reverencia, y permanecer firmes aunque el peso del
+                        Reino sea grande.</li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Conclusión:</strong></p>
+                <p>La Aliyáh de Bemidbar 4:38–49 enseña que el Reino no se construye solo con elementos gloriosos, sino
+                    con obediencia, esfuerzo y funciones ocultas. En Mashíaj, cada portador de “columnas, basas y
+                    estacas” tiene su recompensa. El servicio merarita se cumple hoy en todo aquel que sostiene
+                    fielmente el cuerpo de Mashíaj.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Servicio y censo de los levitas meraritas</h3>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Tema Central: El Llamado al Servicio Invisible pero Vital</h2>
+                <p>El tema más profundo de esta Aliyáh es el valor del servicio oculto y estructural en el Reino de
+                    Elohím. Aunque los meraritas no tocaban los objetos más sagrados, su función era absolutamente
+                    indispensable: sostener la infraestructura del Mishkán, asegurando que la presencia divina tuviera
+                    un lugar firme donde habitar.</p>
+                <p>Este principio revela que la santidad no depende de la visibilidad del rol, sino de su fidelidad,
+                    obediencia y peso espiritual.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Importancia en el Contexto de la Toráh</h2>
+                <p><strong>Revelación del diseño divino del servicio:</strong></p>
+                <p>La distribución de tareas entre los clanes levíticos es una manifestación práctica de la sabiduría
+                    celestial. Cada familia tiene una parte del plan, y el tabernáculo no puede funcionar si uno falla.
+                    Esto anticipa el cuerpo de Mashíaj, donde cada miembro es esencial (cf. 1 Corintios 12:12–27).</p>
+                <p><strong>Modelo de responsabilidad espiritual:</strong></p>
+                <p>La carga física representa el peso de responsabilidad espiritual. Lo que los meraritas cargaban
+                    (columnas, basas, tablones) era literalmente el fundamento del Mishkán.</p>
+                <p>En la Toráh, esto enseña que lo que sostiene lo sagrado no es la gloria sino la estructura, y que
+                    esta estructura debe ser firme, pura y bien organizada (Éxodo 26:15–30).</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Relación con la Obra de Yeshúa haMashíaj</h2>
+                <p><strong>Yeshúa como el Sostenedor del Reino:</strong></p>
+                <ul>
+                    <li>Él cargó el peso más grande: la culpa de Israel y del mundo (Isaías 53:4–5).</li>
+                    <li>Él es la piedra angular que sostiene la edificación entera (Efesios 2:20–22).</li>
+                    <li>En su vida oculta y en su obediencia hasta la muerte, Yeshúa encarnó el llamado merarita,
+                        soportando el peso invisible que otros no podían ver.</li>
+                </ul>
+                <p><strong>Yeshúa y la redención de lo “amargo”:</strong></p>
+                <p>El nombre <span class="hebrew hebrew-term">מְרָרִי</span> (Merarí) viene de “amargura”. Esto
+                    profetiza al Mashíaj que soportó la copa amarga (Mateo 26:39), y transformó esa amargura en
+                    redención y fundamento eterno.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">D.</span>Relación con los Moedím de Elohím</h2>
+                <p>Este tema se conecta fuertemente con Sukkot (la Fiesta de los Tabernáculos), cuyo símbolo central es
+                    una estructura frágil pero sagrada. Sin la base, sin las columnas, la sukkah se derrumba.</p>
+                <p>Así como los meraritas sostenían el Mishkán, el Mashíaj sostiene el verdadero Tabernáculo de
+                    redención, y nosotros estamos llamados a sostener Su cuerpo viviente.</p>
+                <p>En la era mesiánica, según Zacarías 14:16, las naciones vendrán cada año a Sukkot para adorar al Rey.
+                    ¿Por qué? Porque la estructura del Reino será restaurada plenamente por Aquel que llevó la carga.
+                </p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">E.</span>Aplicación Espiritual para Hoy</h2>
+                <p><strong>¿Qué carga estás llamado a portar?</strong></p>
+                <p>El Reino necesita pilares, estacas, sostenes espirituales. No todos predican, pero todos sostienen.
+                </p>
+                <p><strong>¿Estás dispuesto a servir sin visibilidad?</strong></p>
+                <p>Los meraritas cargaban en silencio. Así, muchas funciones vitales en la Kehiláh no tienen plataforma,
+                    pero sí recompensa eterna.</p>
+                <p><strong>¿Estás conectado a la estructura del Reino?</strong></p>
+                <p>Sin unidad y fidelidad al diseño divino, no puede haber Mishkán viviente. Tu obediencia estructural
+                    permite que el Reino permanezca visible en la tierra.</p>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Conclusión del Tema Central:</strong></p>
+                <p>Esta Aliyáh nos enseña que el servicio que sostiene la presencia de Elohím no siempre se ve, pero
+                    siempre es esencial. Los meraritas prefiguran el ministerio del Mashíaj y de todos los creyentes
+                    que, en humildad y sacrificio, sostienen lo que otros experimentan como “la gloria”. El Reino se
+                    edifica sobre estas vidas.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 8. Descubriendo al Mashíaj en cada Aliyáh</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Censo y funciones de los Meraritas en el Mishkán</h3>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Profecías Mesiánicas Ocultas en la Estructura Levítica</h2>
+                <p>Aunque no contiene declaraciones proféticas directas, esta Aliyáh presenta tipologías mesiánicas
+                    profundas, en la forma de carga, estructura, servicio silencioso y obediencia exacta, que revelan
+                    aspectos clave del ministerio de Yeshúa haMashíaj.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Métodos para Revelar al Mashíaj en el Texto</h2>
+                <h3>1. Tipologías del Servicio de Merarí</h3>
+                <ul>
+                    <li><strong>Carga pesada</strong> <span class="arrow">→</span> Yeshúa cargó la “estructura del
+                        Reino” sobre Sus hombros. (cf. Isaías 9:6: “el principado sobre Su hombro”).</li>
+                    <li><strong>Tablones y columnas del Mishkán</strong> <span class="arrow">→</span> Son figuras del
+                        cuerpo físico del Mashíaj (Juan 2:21). Así como esas partes formaban la casa de Adonái, Yeshúa
+                        es el Mishkán viviente, el lugar donde Elohím mora con los hombres.</li>
+                </ul>
+                <h3>2. Sombra de Sufrimiento y Consagración</h3>
+                <p><strong><span class="hebrew hebrew-term">מְרָרִי</span> – Merarí (“amargura”)</strong> <span
+                        class="arrow">→</span> Directa alusión al carácter de la misión de Yeshúa:</p>
+                <ul>
+                    <li>Bebió la copa amarga (Mateo 26:39)</li>
+                    <li>Su alma fue traspasada (Isaías 53:10)</li>
+                    <li>Fue hecho “varón de dolores” (Isaías 53:3)</li>
+                </ul>
+                <p>Esta carga no fue accidental: fue predestinada, como el censo que se hace “uno por uno” (<span
+                        class="hebrew hebrew-term">בְּמִסְפָּר שֵׁמוֹת</span>).</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Patrones Redentores (Tavnitot)</h2>
+                <ul>
+                    <li>El servicio silencioso, fuera de la visibilidad sacerdotal o profética, representa la obediencia
+                        secreta y absoluta de Yeshúa al Padre (Juan 5:19; Hebreos 5:8).</li>
+                    <li>La estructura del Mishkán sin decoración, sin brillo, pero absolutamente esencial, simboliza Su
+                        humanidad. No tenía atractivo externo (Isaías 53:2), pero era la piedra que sostiene todo el
+                        edificio (Efesios 2:20).</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">D.</span>Figuras y Paralelismos del Brit Hadasháh</h2>
+                <ul>
+                    <li><strong>Lucas 23:26:</strong> Shimón el Cirineo ayudó a cargar el madero. Esto muestra que
+                        Yeshúa no solo fue el Merarita supremo, sino que llama a otros a compartir esa carga (Mateo
+                        16:24).</li>
+                    <li><strong>Efesios 4:11–16:</strong> los dones dados a la Kehiláh — apóstoles, profetas, pastores,
+                        maestros — actúan como estructuras. Su trabajo es invisible, estructural y profundo. <span
+                            class="arrow">→</span> Paralelo exacto con la función merarita.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">E.</span>Sombras Celestiales y Cuerpo Glorificado</h2>
+                <ul>
+                    <li><strong>Hebreos 9:11–12</strong> dice que Mashíaj entró en el verdadero Mishkán, no hecho por
+                        manos humanas. <span class="arrow">→</span> Lo que los meraritas cargaban prefiguraba esa morada
+                        celestial. <span class="arrow">→</span> Yeshúa llevó la estructura no del tabernáculo físico,
+                        sino del propósito eterno del Reino.</li>
+                    <li><strong>Apocalipsis 21:22:</strong>
+                        <p class="scripture">“Y no vi templo en ella; porque el Adón Elohím y el Cordero son su templo.”
+                        </p> <span class="arrow">→</span> Cumplimiento supremo de la tipología de Merarí: todo apunta a
+                        Mashíaj como estructura viviente del lugar donde mora la Gloria.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">F.</span>Aplicación Personal y Reflexión Mesiánica</h2>
+                <p><strong>¿Dónde está el Mashíaj en esta Aliyáh?</strong></p>
+                <ul>
+                    <li>Está en la obediencia callada,</li>
+                    <li>en el peso que nadie ve,</li>
+                    <li>en la columna que no brilla, pero sostiene el Reino.</li>
+                </ul>
+                <p>Yeshúa no vino con esplendor visible (Isaías 53), pero en Él habitó toda la plenitud de la Shejináh
+                    (Colosenses 2:9). Él es la columna, la base, el madero, la estaca y el sostén. Todo el Mishkán —
+                    todo el plan — depende de Él.</p>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Conclusión:</strong></p>
+                <p>Descubrir al Mashíaj en Números 4:38–49 es contemplarlo como el sustentador invisible del Reino, el
+                    siervo fiel que cargó lo que nadie podía cargar, y que hoy nos llama a participar de su carga (Mateo
+                    11:28–30). Cada detalle de esta Aliyáh revela que lo que sostiene lo eterno no es visible, pero está
+                    glorificado en Mashíaj.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Censo y funciones de los Meraritas en el servicio del Mishkán</h3>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Midrashim Relevantes</h2>
+                <h3>1. Bamidbar Rabá 6:9</h3>
+                <p>Este midrash enseña que aunque los Meraritas no portaban los elementos sagrados como el Arón o el
+                    altar, su carga era igualmente santa, pues “toda parte del Mishkán contenía Kedusháh, aún los
+                    tablones y estacas”.</p>
+                <p><strong>Aplicación mesiánica:</strong> Enseña que en el cuerpo de Mashíaj, no hay función sin
+                    santidad. Cada acto de servicio —por más oculto— lleva carga espiritual (1 Corintios 12:18–24).</p>
+                <h3>2. Tanjumá, Parashá Naso 12</h3>
+                <p>El Midrash enfatiza que la división entre Qehat, Gershón y Merarí no implicaba jerarquía, sino
+                    armonía funcional. La función de Merarí fue llamada "el cimiento de la presencia".</p>
+                <p><strong>Conexión profética:</strong> Esto apunta a Mashíaj como el fundamento espiritual invisible
+                    sobre el cual se edifica el Reino (Efesios 2:20).</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Targumim (Traducciones Arameas Antiguas)</h2>
+                <h3>Targum Onkelos – Bemidbar 4:44–49</h3>
+                <p>Este Targum traduce literalmente, pero introduce el término “<span class="aramaic">פֻּלְחָנָא
+                        דְּמִשְׁכָּן</span>” (servicio del Mishkán), subrayando que el servicio merarita era igual de
+                    divino que el sacerdotal.</p>
+                <p><strong>Lectura mesiánica:</strong> El “servicio” en el Reino de Mashíaj no se mide por visibilidad,
+                    sino por fidelidad. Yeshúa enseñó que “el mayor es el que sirve” (Lucas 22:26), revelando la
+                    grandeza del rol merarita como figura suya.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Textos de Qumrán y Literatura del Segundo Templo</h2>
+                <h3>1. Rollo del Templo (11Q19)</h3>
+                <p>Describe que los “portadores de la estructura” del templo son igual de importantes que los que
+                    ofician. Se indica que los levitas del servicio estructural representan el “orden de fundamento del
+                    cielo”.</p>
+                <p><strong>Implicación profética:</strong> Este principio es llevado a cumplimiento en Yeshúa como
+                    cimiento espiritual de la Kehiláh (1 Pedro 2:4–6) y en los creyentes que “sostienen” la obra.</p>
+                <h3>2. Libro de los Jubileos 30:2–6</h3>
+                <p>Aunque habla sobre Leví, incluye la consagración de sus descendientes como “guardianes del altar y de
+                    los fundamentos del tabernáculo”.</p>
+                <p><strong>Aplicación:</strong> En el Reino de Mashíaj, todo siervo que guarda, transporta o sostiene
+                    algo en la Kehiláh es parte del ministerio mesiánico, aunque su labor no sea visible ni sacerdotal.
+                </p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">D.</span>Textos Apócrifos Relevantes</h2>
+                <h3>1. Eclesiástico (Sirácida) 45:15–19</h3>
+                <p>Aunque habla principalmente de Aharón, menciona que “los siervos del altar y del santuario son
+                    elevados por el Eterno”, incluyendo a los que “limpian, llevan y cuidan”.</p>
+                <p><strong>Conexión mesiánica:</strong> Así como los meraritas cargaban físicamente el Mishkán, hoy
+                    muchos discípulos del Mashíaj sostienen con oración, ayuno, enseñanza, o sustento lo que mantiene en
+                    pie a la Kehiláh.</p>
+            </div>
+
+            <div class="conclusion">
+                <h2><span class="point-letter">E.</span>Reflexión Final</h2>
+                <p>Estos textos rabínicos, arameos, sectarios y apócrifos coinciden en que:</p>
+                <ul>
+                    <li>La función de Merarí era invisible pero indispensable.</li>
+                    <li>Su rol tenía equivalencia espiritual con el sacerdocio.</li>
+                    <li>Anticipaba un modelo escatológico de Reino, en que todo servicio es glorioso si es fiel.</li>
+                </ul>
+                <p>Yeshúa haMashíaj cumple este modelo en su máxima expresión:</p>
+                <p>Cargó el Reino sin buscar gloria, sirvió como fundamento invisible, y llamó a otros a hacer lo mismo
+                    (Juan 13:14–17).</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 10. Mandamientos Encontrados o Principios y Valores</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Censo y funciones de los levitas meraritas</h3>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Mandamientos (Mitzvot) Hallados en Esta Aliyáh</h2>
+                <p>Aunque esta sección no presenta mitzvot en la forma clásica del “Lo ta‘asé” (no harás) o “Ta‘asé”
+                    (harás), contiene mandamientos operativos entregados a los levitas que son parte del sistema de
+                    culto del Mishkán. Desde una perspectiva halájica y mesiánica, estos representan ordenanzas con
+                    proyección espiritual eterna.</p>
+                <h3>1. Mandamiento de contar a los levitas por nombre y por familia</h3>
+                <p class="scripture">“Todos los contados de los levitas… por nombre y por cabeza…” (v. 48)</p>
+                <p><strong>Valor espiritual:</strong> Cada siervo del Reino es contado individualmente. Su servicio no
+                    es genérico, sino personal, intencional y específico.</p>
+                <h3>2. Mandamiento de servir de los 30 a los 50 años</h3>
+                <p class="scripture">“De 30 a 50 años, todos los que venían para servir…” (v. 39, 43)</p>
+                <p><strong>Valor espiritual:</strong> El servicio requiere madurez. No cualquiera sirve: se requiere
+                    preparación, formación, y fuerza espiritual.</p>
+                <h3>3. Mandato de asignar funciones concretas según familia y carga</h3>
+                <p class="scripture">“Cada uno conforme a su servicio y a su carga…” (v. 49)</p>
+                <p><strong>Valor espiritual:</strong> En el Reino de Mashíaj, no todos tienen la misma función. Hay
+                    orden, diseño y complementariedad, y actuar fuera de tu diseño espiritual puede ser desastroso (cf.
+                    1 Corintios 12:14–26).</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Principios Espirituales Relevantes</h2>
+                <h3>1. Santidad estructural</h3>
+                <p>Cada componente del Mishkán tenía su grado de Kedusháh, incluso las estacas y tablones.</p>
+                <p><strong>Aplicación:</strong> No hay detalle que no tenga propósito en el Reino. Todo servicio debe
+                    realizarse con intención santa.</p>
+                <h3>2. Responsabilidad sin protagonismo</h3>
+                <p>Los Meraritas no eran visibles como los sacerdotes, pero sin ellos no había Mishkán.</p>
+                <p><strong>Aplicación:</strong> La verdadera grandeza se encuentra en la fidelidad, no en la exposición
+                    (Mateo 6:4).</p>
+                <h3>3. Obediencia exacta a la instrucción divina</h3>
+                <p>Moshé no improvisó, sino que asignó según fue mandado por Adonái.</p>
+                <p><strong>Aplicación:</strong> El Ruaj Hakodesh guía a cada creyente en su llamado; salir de esa
+                    asignación puede traer confusión espiritual.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Cómo Se Aplican en el Brit Hadasháh</h2>
+                <h3>1. Cada miembro es contado e importante</h3>
+                <p class="scripture">“El cuerpo no es un solo miembro, sino muchos…” (1 Corintios 12:14)</p>
+                <p>Así como los meraritas eran contados uno a uno, en Mashíaj cada creyente es reconocido
+                    individualmente y tiene una función específica.</p>
+                <h3>2. Servir con madurez espiritual</h3>
+                <p class="scripture">“Que no sea neófito…” (1 Timoteo 3:6)</p>
+                <p>Como los levitas requerían una edad mínima, así también el Reino demanda madurez y discernimiento.
+                </p>
+                <h3>3. El servicio debe estar bajo autoridad legítima</h3>
+                <p class="scripture">“Obedeced a vuestros pastores y sujetaos a ellos…” (Hebreos 13:17)</p>
+                <p>El texto enseña que todo servicio debe estar bajo cobertura espiritual legítima, como lo estaban los
+                    meraritas bajo Moshé e Itamar.</p>
+            </div>
+
+            <div class="conclusion">
+                <h2><span class="point-letter">D.</span>Conclusión</h2>
+                <p>Esta Aliyáh presenta principios espirituales eternos:</p>
+                <ul>
+                    <li>El servicio en el Reino requiere madurez, obediencia, estructura y reverencia.</li>
+                    <li>Todos los roles —visibles o invisibles— son santos si son designados por Adonái.</li>
+                    <li>En Yeshúa haMashíaj, todo creyente es llamado a cargar algo del Reino: su don, su carga, su
+                        función. Cada uno será evaluado según lo que se le confió (Mateo 25:14–30).</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 11. Preguntas de Reflexión (Con Respuestas en el Mashíaj)</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Censo y funciones de los Meraritas</h3>
+
+            <div class="answer">
+                <p class="question">1. ¿Estoy dispuesto a servir en el Reino sin ser visto ni reconocido?</p>
+                <p><strong>Respuesta en el Mashíaj:</strong> Yeshúa haMashíaj lavó los pies de sus discípulos en secreto
+                    (Juan 13:5), demostrando que el verdadero servicio no busca aplausos, sino obediencia. Él es el
+                    modelo perfecto de humildad. Si seguimos su ejemplo, servimos con gozo aun sin reconocimiento,
+                    sabiendo que el Padre que ve en lo secreto recompensa públicamente (Mateo 6:4).</p>
+            </div>
+
+            <div class="answer">
+                <p class="question">2. ¿Estoy cargando lo que Adonái me asignó, o estoy buscando otra carga que no es
+                    mía?</p>
+                <p><strong>Respuesta en el Mashíaj:</strong> Mashíaj no se asignó a sí mismo Su tarea; vino “para hacer
+                    la voluntad del que me envió” (Juan 6:38). Así como los Meraritas solo cargaban lo que les fue
+                    designado, en Él aprendemos que la fidelidad no está en la grandeza de la tarea, sino en hacer
+                    exactamente lo que el Padre ordena (Filipenses 2:8). Nuestro shalom está en Su yugo, no en el
+                    nuestro (Mateo 11:29–30).</p>
+            </div>
+
+            <div class="answer">
+                <p class="question">3. ¿Reconozco el valor de los “portadores del Reino” que trabajan tras bambalinas?
+                </p>
+                <p><strong>Respuesta en el Mashíaj:</strong> Yeshúa honró a la viuda que dio dos monedas, al siervo fiel
+                    que solo “dio de beber a uno de estos pequeños” (Mateo 25:40). En Su Reino, los “menores” son los
+                    más grandes (Lucas 22:26). Cada portador invisible —como los meraritas— es precioso ante el trono
+                    celestial.</p>
+            </div>
+
+            <div class="answer">
+                <p class="question">4. ¿Estoy actuando bajo autoridad espiritual legítima, como los levitas bajo Moshé y
+                    Itamar?</p>
+                <p><strong>Respuesta en el Mashíaj:</strong> Mashíaj reconocía la autoridad del Padre y solo hacía “lo
+                    que veía hacer al Padre” (Juan 5:19). Él nos enseñó el principio de cobertura espiritual. No hay
+                    libertad sin sujeción en el Reino. Servir bajo la autoridad de Mashíaj y de Su orden establecido es
+                    esencial para cumplir correctamente nuestro propósito.</p>
+            </div>
+
+            <div class="answer">
+                <p class="question">5. ¿Estoy sirviendo con madurez espiritual o con motivaciones inmaduras y
+                    personales?</p>
+                <p><strong>Respuesta en el Mashíaj:</strong> Yeshúa comenzó su ministerio a los 30 años, edad de madurez
+                    levítica, como se detalla aquí. Él esperó el tiempo del Padre, y no actuó antes de la señal (Lucas
+                    3:23). En Él aprendemos que servir en el Reino exige no solo pasión, sino carácter formado, madurez
+                    espiritual y obediencia progresiva.</p>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Reflexión Final:</strong></p>
+                <p>Esta Aliyáh nos llama a evaluar nuestro servicio no por su visibilidad, sino por su fidelidad. En
+                    Mashíaj encontramos el ejemplo, la autoridad, la motivación y la recompensa. Somos llamados a ser
+                    meraritas espirituales, cargando con amor lo que el Reino necesita para mantenerse firme y visible
+                    en este mundo.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 12. Resumen de la Aliyáh</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: Censo y funciones específicas de los Meraritas</h3>
+
+            <div class="section-container">
+                <h2><span class="point-letter">A.</span>Resumen Narrativo</h2>
+                <p>Esta sección continúa el censo y la organización de los levitas para el servicio del Mishkán,
+                    enfocándose especialmente en el clan de Merarí. Se enumeran todos los levitas varones de entre 30 y
+                    50 años —edad de plenitud espiritual y fuerza física— que estarían encargados de una función sagrada
+                    y práctica: transportar la estructura física del Tabernáculo.</p>
+                <p>La carga de los Meraritas incluía:</p>
+                <ul>
+                    <li>Los tablones del Mishkán (<span class="hebrew hebrew-term">קרשים</span>)</li>
+                    <li>Las basas de plata (<span class="hebrew hebrew-term">אדנים</span>)</li>
+                    <li>Las columnas y travesaños (<span class="hebrew hebrew-term">עמודים ובריחים</span>)</li>
+                    <li>Estacas y cuerdas de soporte</li>
+                </ul>
+                <p>Este trabajo no era menor. Sin su correcta ejecución, el Mishkán no podía sostenerse, y por tanto, la
+                    presencia de Adonái no podía reposar entre el pueblo.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">B.</span>Propósito y Significado Espiritual</h2>
+                <p>Esta Aliyáh transmite la importancia de:</p>
+                <ul>
+                    <li>La obediencia exacta a la instrucción divina</li>
+                    <li>El valor del servicio oculto pero esencial</li>
+                    <li>La necesidad de estructura espiritual visible y firme</li>
+                </ul>
+                <p>El diseño del Reino se edifica sobre personas que llevan el peso del Reino de forma humilde y firme.
+                    Estos siervos, representados por los Meraritas, son el cimiento oculto de la Kehiláh viviente.</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">C.</span>Aplicación Mesiánica</h2>
+                <p>Yeshúa haMashíaj es la plenitud del Merarita perfecto:</p>
+                <ul>
+                    <li>Cargó el peso del Reino (Isaías 9:6)</li>
+                    <li>Llevó el madero de ejecución como estaca del pacto (Juan 19:17)</li>
+                    <li>Sostuvo la estructura invisible de la redención eterna (Hebreos 9:11–12)</li>
+                </ul>
+                <p>Así también, cada creyente es llamado a ser parte de ese Mishkán viviente, llevando su parte con
+                    fidelidad (1 Pedro 2:5).</p>
+            </div>
+
+            <div class="section-container">
+                <h2><span class="point-letter">D.</span>Conexión con el Cuerpo del Mashíaj</h2>
+                <p>Romanos 12:3–8 y 1 Corintios 12:28 afirman que cada miembro tiene un rol distinto, pero todos son
+                    vitales. El ministerio merarita es reflejo del creyente que:</p>
+                <ul>
+                    <li>No predica, pero intercede</li>
+                    <li>No enseña, pero sostiene con recursos</li>
+                    <li>No lidera, pero mantiene unidad, orden y soporte invisible</li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <h2><span class="point-letter">E.</span>Conclusión</h2>
+                <p>El Reino de Elohím se edifica sobre vidas ocultas, silenciosas y obedientes. Esta Aliyáh muestra que
+                    lo más estructural no siempre es visible. En Yeshúa, entendemos que la Gloria reposa donde hay
+                    servicio fiel, aun sin reconocimiento humano.</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="content-container">
+            <h1>Punto 13. Tefiláh de la Aliyáh</h1>
+            <h2>Parashá Naso – Bemidbar / Números 4:38–49</h2>
+            <h3>Aliyáh 2: El servicio oculto pero esencial de los Meraritas</h3>
+            <p><em>Tefiláh: Oración basada en los temas de la Aliyáh y su cumplimiento en Mashíaj</em></p>
+
+            <div class="prayer-text">
+                <p>Avinu Malkénu, nuestro Rey y Fundamento Eterno,</p>
+                <p>Gracias por enseñarnos que en Tu Reino nada es accidental,<br>y que cada función, por oculta que sea,
+                    sostiene Tu Gloria entre nosotros.</p>
+                <p>Así como designaste a los hijos de Merarí a llevar sobre sus hombros la estructura del
+                    Mishkán,<br>enséñanos hoy a llevar con fidelidad la carga que nos has confiado:<br>las columnas de
+                    la verdad, las basas de justicia, las estacas de obediencia,<br>y los travesaños del amor y la
+                    unidad.</p>
+                <p>No permitas que despreciemos lo pequeño,<br>ni que menospreciemos las funciones de otros.<br>Líbranos
+                    de buscar reconocimiento humano,<br>y haznos siervos como Yeshúa,<br>quien cargó el Reino con
+                    obediencia hasta la muerte,<br>quien fue el pilar oculto del Mishkán eterno,<br>quien transformó la
+                    amargura en redención.</p>
+                <p>Ruaj HaKodesh, fortalece nuestros hombros para no desmayar,<br>aunque el peso sea grande, aunque
+                    nadie lo vea.<br>Enséñanos que en cada acción fiel, silenciosa y ordenada,<br>Tú habitas, Tú reinas,
+                    Tú santificas.</p>
+                <p>Haz de nosotros Meraritas espirituales,<br>que no buscan tronos, sino estacas,<br>que no desean
+                    altares, sino bases que sostienen,<br>que aman el orden, la fidelidad y el llamado escondido.</p>
+                <p>Que nunca nos apartemos de nuestro diseño,<br>ni carguemos lo que no nos has asignado.<br>Y si somos
+                    llamados a sostener la estructura mientras otros brillan,<br>danos el gozo de saber que sin
+                    nosotros, el Mishkán no se sostiene.</p>
+                <p>En el Nombre de Yeshúa haMashíaj,<br>quien cargó lo que no podíamos,<br>y nos dio un lugar en el
+                    Reino eterno.</p>
+            </div>
+
+            <p class="prayer-conclusion">Amén.</p>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya3.html">Continuar con la Aliyá 3</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

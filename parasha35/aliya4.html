@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 5:11-31</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>35. Parashá Naso (נשא) Aliyáh 4: (Números 5:11-31) La ley de los celos y la prueba de la esposa sospechosa
+            de adulterio.
+            <p>Haftaráh: Proverbios 5:15-20 (La fidelidad en el matrimonio y el cuidado de la relación).</p>
+            <p>Brit Hadasháh: Juan 8:1-11 (Yeshúa y la mujer sorprendida en adulterio, el llamado al arrepentimiento).
+            </p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Bemidbar / Números 5:11–31</h1>
+            <h2>Perspectiva Judío-Mesiánica</h2>
+            <p style="text-align: center; font-style: italic;">Con texto hebreo, transliteración tiberiana, traducción
+                literal verso por verso, y su cumplimiento profético en Yeshúa haMashíaj</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 11</div>
+            <div class="hebrew">וַיְדַבֵּ֤ר יְהוָה֙ אֶל־מֹשֶׁ֔ה לֵאמֹ֖ר׃</div>
+            <div class="transliteration">Vaydavér Adonái el‑Moshéh le‑'emór.</div>
+            <div class="translation">"Y habló יהוה a Moshéh, diciendo:"</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Así como יהוה habló a Moshéh, <strong>Yeshúa es la Palabra viva</strong>, quien habla a su pueblo y
+                revela el camino de santidad y redención (Yojanán 1:14). Él es el mediador superior que nos transmite la
+                voluntad perfecta del Padre.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 12</div>
+            <div class="hebrew">דַּבֵּ֞ר אֶל־בְּנֵ֤י יִשְׂרָאֵל֙ וְאָמַרְתָּ֣ אֲלֵהֶ֔ם אִ֥ישׁ אִישׁ֙ כִּֽי־תִשְׂטֶ֣ה
+                אִשְׁתּ֔וֹ וּמָעֲלָ֥ה ב֖וֹ מָ֑עַל׃</div>
+            <div class="transliteration">Dabbér el‑benê‑Yisra'êl we‑'amartá 'ălêhem: 'Îš 'îš kî‑tiśteh 'ištô û‑mā'ălāh
+                ḇô mā'al.</div>
+            <div class="translation">"Habla a los hijos de Israel y diles: 'Cualquier hombre cuya esposa se desvíe y le
+                sea infiel;"</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Este patrón muestra que incluso en la intimidad del matrimonio, la justicia divina cuida del corazón y
+                de la verdad. <strong>Mashíaj ve lo que está oculto y aplica juicio justo</strong> (Mateo 12:36). La
+                infidelidad matrimonial es tipo de la infidelidad espiritual hacia Elohím.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 13</div>
+            <div class="hebrew">וְשָׁכַ֨ב אִ֣ישׁ אֹתָהּ֮ שִׁכְבַת־זֶרַע֒ וְנֶעְלַם֙ מֵעֵינֵ֣י אִישָׁ֔הּ וְנִסְתְּרָ֖ה
+                וְהִ֣יא נִטְמָ֑אָה וְעֵד֙ אֵ֣ין בָּ֔הּ וְהִ֖וא לֹ֥א נִתְפָּֽשָׂה׃</div>
+            <div class="transliteration">We‑šāḵaḇ 'îš 'otāh šiḵḇaṯ‑zera' we‑ne'lam mē'ênê 'îšāh we‑nistərāh we‑hî'
+                niṭmā'āh; we‑'êḏ 'ên bāh we‑hiw' lō' niṯpāśāh.</div>
+            <div class="translation">"y un hombre yace con ella carnalmente, y esto se oculta a los ojos de su marido, y
+                ella se contamina en secreto, y no hay testigo contra ella, ni fue sorprendida;"</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Yeshúa enseña que el juicio humano puede errar al percibir lo invisible, pero Él, la verdad encarnada,
+                <strong>discierne corazones y restaura justicia verdadera</strong> (Yojanán 8:32). Ningún pecado oculto
+                escapa a su conocimiento perfecto.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 14</div>
+            <div class="hebrew">וְעָבַ֨ר עָלָ֧יו רֽוּחַ־קִנְאָ֛ה וְקִנֵּ֥א אֶת־אִשְׁתּ֖וֹ וְהִ֣וא נִטְמָ֑אָה אוֹ־עָבַ֨ר
+                עָלָ֤יו רֽוּחַ־קִנְאָה֙ וְקִנֵּ֣א אֶת־אִשְׁתּ֔וֹ וְהִ֖יא לֹ֥א נִטְמָֽאָה׃</div>
+            <div class="transliteration">We‑'āḇar 'ālāw rûaḥ‑qin'āh we‑qinnē' 'eṯ‑'ištô we‑hiw' niṭmā'āh; 'ô‑'āḇar 'ālāw
+                rûaḥ‑qin'āh we‑qinnē' 'eṯ‑'ištô we‑hî' lō' niṭmā'āh.</div>
+            <div class="translation">"y viene sobre él espíritu de celos, y tiene celos de su mujer, habiéndose ella
+                contaminado; o viene sobre él espíritu de celos, y tiene celos de su mujer, no habiéndose ella
+                contaminado;"</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El "espíritu de celos" puede ser justo o injusto. <strong>Yeshúa representa el celo santo de
+                    Elohím</strong> por su pueblo (2 Corintios 11:2), distinguiendo entre sospecha humana falible y el
+                celo divino que busca pureza y fidelidad verdaderas.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 15</div>
+            <div class="hebrew">וְהֵבִ֨יא הָאִ֣ישׁ אֶת־אִשְׁתּוֹ֮ אֶל־הַכֹּהֵן֒ וְהֵבִ֤יא אֶת־קָרְבָּנָהּ֙ עָלֶ֔יהָ
+                עֲשִׂירִ֥ת הָאֵיפָ֖ה קֶ֣מַח שְׂעֹרִ֑ים לֹא־יִצֹ֨ק עָלָ֜יו שֶׁ֗מֶן וְלֹא־יִתֵּ֤ן עָלָיו֙ לְבֹנָ֔ה
+                כִּֽי־מִנְחַ֤ת קְנָאֹת֙ ה֔וּא מִנְחַ֥ת זִכָּר֖וֹן מַזְכֶּ֥רֶת עָוֺֽן׃</div>
+            <div class="transliteration">We‑hêḇî' hā'îš 'eṯ‑'ištô 'el‑hakkōhēn we‑hêḇî' 'eṯ‑qorḇānāh 'ālehā 'ăśîriṯ
+                hā'êp̄āh qemaḥ śə'ōrîm; lō'‑yiṣōq 'ālāyw šemen we‑lō'‑yittēn 'ālāyw leḇōnāh, kî‑minḥaṯ qənā'ōṯ hû'
+                minḥaṯ zikkārôn mazkereṯ 'āwōn.</div>
+            <div class="translation">"entonces el hombre traerá su mujer al sacerdote, y traerá su ofrenda por ella, la
+                décima parte de un efa de harina de cebada; no echará sobre ella aceite, ni pondrá sobre ella incienso,
+                porque es ofrenda de celos, ofrenda recordativa, que trae a la memoria el pecado."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                El sacerdote que recibe la ofrenda prefigura a <strong>Yeshúa, nuestro Sumo Sacerdote</strong>, quien
+                intercede por los acusados. La ofrenda sin aceite ni incienso (símbolos de gozo y oración) representa el
+                estado sombrío de la sospecha, pero Él purifica y restaura con perfecta justicia.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 16</div>
+            <div class="hebrew">וְהִקְרִ֥יב אֹתָ֖הּ הַכֹּהֵ֑ן וְהֶֽעֱמִדָ֖הּ לִפְנֵ֥י יְהוָֽה׃</div>
+            <div class="transliteration">We‑hiqrîḇ 'otāh hakkōhēn we‑he'ĕmîḏāh lip̄nê Adonái.</div>
+            <div class="translation">"Y el sacerdote la hará acercar, y la pondrá delante de יהוה."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en el Mashíaj:</div>
+                Ser puesta "delante de יהוה" significa enfrentar la verdad absoluta. <strong>En Yeshúa, todos
+                    comparecemos ante el tribunal de la gracia</strong>, donde Él es tanto Juez como Abogado. Su
+                presencia revela y purifica (1 Juan 1:7).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 17</div>
+            <div class="hebrew">וְנָתַן הַכֹּהֵן אֶת־הַטָּהוֹר עַל־יְדֵי הָעֵדִים וְקָרַב הַכֹּהֵן אֶת־הַטָּמֵא
+                וְעֵינָיו בְּחִנָּם וְהִכִּירָהּ הַכֹּהֵן אֶת־הַטָּמֵאתָֽהּ׃</div>
+            <div class="transliteration">We‑nāṯan hakkōhēn 'et-hattāhōr 'al-yᵉdê ha'ēdîm; we‑qārāv hakkōhēn 'et-hattāmē'
+                we-'ênāyw bᵉḥinnām; we‑hikkîrāh hakkōhēn 'et-hattāmē'āh.</div>
+            <div class="translation">"Y el kohén pondrá la mano del inocente sobre los testigos; luego acercará y verá a
+                la impura, y sus ojos la reconocerán".</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Yeshúa, como Kohén real, <strong>ve con ojos de
+                amor y verdad</strong>. Él conoce al corazón y reconoce la inocencia o la culpabilidad sin errar
+            (Hebreos 4:13).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 18</div>
+            <div class="hebrew">וְשָׂם הַכֹּהֵן אֶת־הַטָּהוֹר וְאֶת־הָעֵדִים אֲשֶׁר יִתְקַעֲרוּ עִמּוֹ הַטָּהוֹר
+                עַל־יְדֵי הַטִּמְואָ֑ה׃</div>
+            <div class="transliteration">We‑sām hakkōhēn 'et-hattāhōr we‑'et-hā'ēdîm 'ăšer yittiqa'ăṯû 'immō hattāhōr
+                'al-yᵉdê hattimmē'āh.</div>
+            <div class="translation">"El kohén pondrá la mano del inocente y de los testigos sobre la impura".</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Con una sola mano, <strong>Mashíaj une la inocencia
+                con el testimonio de verdad</strong>, para que la redención sea completa y basada en justicia real
+            (Romanos 3:26).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 19</div>
+            <div class="hebrew">וְהַכֹּהֵן יִטַּל־מֵעַל הַקֹּדֶשׁ מִקְּטֹרֶת אֶת־כַּף־נֶחָרֶת הַמִּשְׁקָאָה
+                אֲשֶׁר־בַּמַּעֲרֶכֶת וְאַל־כַּף־נֶחָרֶת יִמָּסֵר עַל־הָאִשָּׁ֑ה אִשֶּׁה־זָרַעֵ֖ר וְאֵת הַמָּֽיִם׃</div>
+            <div class="transliteration">We‑hakkōhēn yittāl me'āl haqqōḏēš mikkōṭōreṯ 'et-kapp nefḥāret hammishqāh
+                'ăšer‑bammaraḵet; we‑'al-kapp nefḥāret yimmāśēr 'al-hā'ishāh 'išeh-zerā'ēr we‑'et-hammayim.</div>
+            <div class="translation">"El kohén tomará del lugar santo la parte superior del incienso (mizzôkār), la
+                porción del sacrificio, la colocará sobre la palma de la impura —como ofrenda de cereal— y añadirá las
+                aguas."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Yeshúa utiliza <strong>la santidad del lugar y de
+                Su propia vida</strong> para revertir la impureza. Él ofrece en sí mismo la ofrenda perfecta y añade
+            "agua viva" (Juan 4:10).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 20</div>
+            <div class="hebrew">וְיָשַׂק אֶת־הַמָּיִם בְּכַף־יְדֵהּ הָאֵלֶּה וְנָתַנוּ עַל־כַּף־נֶחָרֶת הַכֹּהֵן׃</div>
+            <div class="transliteration">We‑yāsaq 'et-hammayim bᵉkapp‑yᵉdêh hā'êlleh; we‑nāṯanû 'al‑kapp nefḥāret
+                hakkōhēn.</div>
+            <div class="translation">"Y tomará los aguas en esa mano y las pondrá sobre la palma de la impura mano del
+                kohén."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> La mano del sacerdote, llena del agua de limpieza,
+            representa que <strong>El Señor no solo limpia por su palabra, sino que lo hace con gracia
+                palpable</strong>, restaurando el contagio espiritual (Efesios 5:26).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 21</div>
+            <div class="hebrew">וְכָתַב הַכֹּהֵן אֶת־הַלְּעָנָ֣ה עַל־הַטָּהוֹר וְאֶת־חֹמֶר הַדִּבֵּ֗ר וְיִמְחוֹ
+                אֶל־הַמָּֽיִם׃</div>
+            <div class="transliteration">We‑kāṯav hakkōhēn 'et-hallᵉ'ānāh 'al-hattāhōr we‑'et-ḥōmer haddîbēr we‑yimmḥō
+                'el-hammayim.</div>
+            <div class="translation">"El kohén escribirá la maldición y la tinta sobre el agua y lo borrará en el agua."
+            </div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Así como Él <strong>borra nuestro manifiesto
+                (salvación) del Libro</strong>, también borra lo oculto —nuestra maldición personal— en las aguas de su
+            sangre (Apocalipsis 3:5).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 22</div>
+            <div class="hebrew">וְהִשְׁקָה הַכֹּהֵ֗ן אֶת־הָאִשָּׁ֛ה מֵהַמַּ֥יִם הָמְחֻקִ֖ים מֵחָכָ֑ם וּמִמְּחוֹלָ֖י
+                עַד־בְּטַנָּֽהּ׃</div>
+            <div class="transliteration">We‑hiškā hakkōhēn 'et-hā'ishāh me‑hammayim hamməḥūqîm meḥāḵām û-mi–mimməḥōlây
+                'ad-bᵉṭannāh.</div>
+            <div class="translation">"El kohén hará beber a la mujer esas aguas borradas, el agua que hierve."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Al beber de la fuente de Mashíaj, <strong>la brasa
+                interior del juicio se convierte en fuego de purificación</strong>, y somos restaurados o vindicados por
+            Él.
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 23</div>
+            <div class="hebrew">וְהָיְתָה הָאִשָּׁה זֹאת וְטֻמְאָתָהּ תָּבֹא עָלֶיהָ עַד־בֹּא עִמּוֹ בְּעֶלְיָנוּ
+                וְהָיְתָה הָאִשָּׁה לְאָשָׁם וּמְאוּשְׁמָה</div>
+            <div class="transliteration">We‑hayᵉṯāh hā'ishāh zōt we‑ṭummātāh tāḇō' ʿālehā ad‑bō ʿimmō bə'elyānū;
+                we‑hayᵉṯāh hā'ishāh le'āšām ū‑mᵉ'ûšmāh.</div>
+            <div class="translation">"Y la mujer será maldita, y su impureza vendrá sobre ella, hasta que venga encima
+                suyo su marido; y la mujer será culpable, contaminada."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> El pecado trae maldición y ruptura (Romanos 5:19).
+            Sin embargo, Mashíaj sustenta su brazo sobre nosotros, quitando nuestra maldición (Gálatas 3:13) y
+            restaurando lo contaminado ante la mirada de su padre —nuestro marido redentor.
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 24</div>
+            <div class="hebrew">וְסָפַג הכֹּהֵן אֶת־דְּמֵי־הָאָרוֹן אֲשֶׁר־טָהֲרָהּ לְחֹם־אִישָׁהּ</div>
+            <div class="transliteration">We‑sāfaḡ hakkōhēn 'et‑dmê‑hā'arōn 'ăšer‑ṭāharāh ləḥōm‑'ishāh.</div>
+            <div class="translation">"Y el kohén hará que ella beba de la sangre de la maldición, la cual limpia al
+                marido por su esposa."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Esto prefigura la sangre de Yeshúa: <strong>que
+                limpia al marido y esposa del juicio</strong>, purificando no solo la relación humana, sino también la
+            espiritual (1 Yochanan/1 Juan 1:7, Apocalipsis 1:5).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 25</div>
+            <div class="hebrew">וּהָאָשָׁם יְהִי עַל־רָאשָׁהּ וְעַל־בִּטְנָהּ וּבָאָשְׁמָהּ תְהֵרָה</div>
+            <div class="transliteration">U‑hā'āšām yᵉhî ʿāl‑rāšāh u‑ʿāl‑biṭnāh; ubā'āšᵉmāh tᵉhērāh.</div>
+            <div class="translation">"Y la maldición será sobre su cabeza y su vientre, y la mujer quedará maldita."
+            </div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Las consecuencias del pecado recaen en toda la
+            persona. Pero en Mashíaj, esas impurezas no se quedan, sino que son tomadas por Él, y somos hechos benditos.
+            Él carga nuestra mancha para que podamos ser limpiados ante Adonái.
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 26</div>
+            <div class="hebrew">וְלֹא־יִנָּקֶהְהַאִשָּׁה טֻמְאָתָהּ עַל־בְּטַנָּהּ וְחוּט־הֶעֶרַלְמָהּ יָּצֵא</div>
+            <div class="transliteration">We‑lō‑yinnāqêh hā'ishāh ṭummātāh ʿāl‑beṭannāh; we‑ḥūt‑hē'ērālmah yāṣē.</div>
+            <div class="translation">"Y la mujer no se limpiará de su impureza; su vientre encogerá, y su muslo
+                descenderá."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> El pecado no purificado genera consecuencias
+            visibles. Sin embargo, Mashíaj restaura la esterilidad espiritual, impulsa una nueva creación, y repara lo
+            roto en nuestro interior (2 Corintios 5:17).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 27</div>
+            <div class="hebrew">וְיָצָא יָמוּת עַל־הָאִשָּׁה הַטְּמֵאָה אֲשֶׁר לֹא־טָהֲרָה בְּעֵינֵי־אִישָׁהּ</div>
+            <div class="transliteration">We‑yāṣā' yāmūt ʿāl‑hā'ishāh hattəmê'āh 'ăšer lō‑ṭāharā bᵉ'ēnê‑'ishāh.</div>
+            <div class="translation">"Y saldrá sobre la mujer la muerte, la impura que no se purificó ante los ojos de
+                su marido."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> La ausencia de expiación conduce a la separación
+            eterna. Mas Yeshúa dijo: <strong>"Yo soy la resurrección y la vida"</strong> (Yojanán 11:25). Él ofrece vida
+            y redención, anulando lo que mataría el alma.
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 28</div>
+            <div class="hebrew">וְהָיָה֙ אִ֣ישׁ לֹֽא־גִ֣יל בְּבִלְתִּי יִרְאֶ֔ה וְשָׂרַ֖ף נַפְשׁ֑וֹ כִּֽי־חִנָּ֔ם
+                עָ֥שָׂה לְעֵינֵ֖י יְהוָֽה וְתוֹעֵבָ֥ה הִ֖יא לַֽה'׃</div>
+            <div class="transliteration">We‑hayᵉh ʾīš lō‑gîl be‑bilṯî yir'eh we‑śārāf napšô ki‑ḥinnām ʿāsāh lᵉ'ēnê YHVH
+                wə‑ṭôʿēḇāh hî la‑YHVH.</div>
+            <div class="translation">"Entonces el hombre será llevado sin alegría, en deshonra será consumido y su alma
+                se consumirá, porque en vano lo hizo a los ojos de יהוה, y abominación es para יהוה."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> El pecado no confesado ante el esposo divino
+            provoca destrucción interior. Mas Yeshúa, que llevó nuestra maldición, ha reemplazado consumición con vida
+            abundante (Juan 10:10) y ha hecho de la abominación objeto de Su redención.
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 29</div>
+            <div class="hebrew">וְהַנִּקָּ֤ה הִוא־תִזְוֶה֙ וְהִנִּקְתָּ֣ה בְּלִבָּ֔הּ וְהָאִשָּׁ֖ה לֹ֣א־תִהְיֶ֣ה
+                לְרָקִ֑ית וּרֹאשָׁ֥הּ לֹֽא־יָרֵֽם׃</div>
+            <div class="transliteration">We‑hanikkāh hî—tizweh; we‑hinniktāh bəliḇāh; we‑hā'ishāh lō‑tîhî lᵉrāqîṯ;
+                urōšāh lō‑yārēm.</div>
+            <div class="translation">"Pero la inocente será conducida con honor, y será limpia de su impureza; la mujer
+                no será afrenta, y su cabeza no será levantada en vergüenza."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Quien confiesa y bebe el agua de purificación será
+            honorable y limpia. En Yeshúa, la inocente no será avergonzada, y su cabeza queda en alto: "Nadie condenará
+            a los que están en Mashíaj Yeshúa" (Romanos 8:1).
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 30</div>
+            <div class="hebrew">וְהַכֹּהֵן֙ יַכְרִ֣ית אֹתָ֔הּ מֵאֹהֶ֥ל אָבִ֖יהָ וּמֵחַֽי־אָ֑בִיהָ כִּ֤י קָרְאָה֙ רָעָ֣ה
+                בְּיִשְׂרָאֵ֔ל וּמְתָ֥ה גְּוִיָּתָ֖הּ׃</div>
+            <div class="transliteration">We‑hakōhēn yakhʳîṯ 'ōṯāh mê'ōhel ʾāvîhā ū‑mêḥay‑'āvīhā; kî qār'āh rā'āh
+                bêYisra'ēl û‑mᵉtāh gᵉwîyātāh.</div>
+            <div class="translation">"Y el sacerdote la apartará de la tienda de su padre y de la casa de su padre, y
+                morirá su cuerpo; por cuanto causó aflicción en Israel, así pagará su sangre."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> Cualquier pecado grita justicia, incluso en la
+            intimidad. Sin embargo, Yeshúa ofrece un camino de salvación: "El que cree en Él no es condenado" (Juan
+            3:18), y sus seguidores pertenecen a su familia divina —no a la muerte.
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 31</div>
+            <div class="hebrew">וְהָיָה֙ הָרֹאשׁ֔ יָרֹ֖ם לָלֶ֣כֶת וְהַבֶּ֑טֶן וְהַבֶּ֣טֶן תִּשְׁחָ֔ח וַיֵּרֶף־יִּרְאֶ֥ה
+                לֹ֖א יִשָּֽׂא׃</div>
+            <div class="transliteration">We‑hayᵉh harōš yārōm lāleḵeṯ, we‑habbeṭen tîšāḥaḥ wa‑yēref yir'eh lō‑jissā'.
+            </div>
+            <div class="translation">"Y su cabeza caerá al andar, y su vientre se consumirá, y se curvará su vientre, y
+                ya no se levantará."</div>
+            <div class="highlight">Cumplimiento en el Mashíaj:</div> El pecado sin arrepentimiento roba vida y dignidad.
+            Pero en Yeshúa, "aunque caigan, no quedarán postrados" (Salmo 37:24). En Él, la caída se convierte en gracia
+            y la consumición en crecimiento redentor.
+        </div>
+
+        <div class="conclusion">
+            <h3>✅ Reflexión Final</h3>
+            <p>Estos últimos versos revelan la severidad del juicio por infidelidad, reflejando la santidad de la
+                Alianza. Sin embargo, <strong>en Mashíaj hay clemencia y rescate</strong>: Él limpia, exalta y restaura
+                lo que estaba por morir, cumpliendo la justicia con gracia. En Él, la acusación se transforma en
+                vindicación, la caída en redención, la maldición en vida eterna.</p>
+        </div>
+
+        <div class="conclusion">
+            <h3>Continuación del Estudio</h3>
+            <p>Estos primeros seis versos establecen el fundamento del ritual de sotá (la mujer sospechosa), revelando
+                principios proféticos fundamentales:</p>
+            <ul>
+                <li><strong>Mediación sacerdotal:</strong> El rol del kohen prefigura la intercesión perfecta de Yeshúa
+                </li>
+                <li><strong>Juicio divino vs. humano:</strong> Solo Elohím conoce la verdad del corazón</li>
+                <li><strong>Proceso de purificación:</strong> El ritual apunta hacia la limpieza espiritual en Mashíaj
+                </li>
+            </ul>
+            <p class="prayer-conclusion">¿Continuamos con los siguientes versos para completar este estudio profético?
+            </p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 2. Haftaráh: Proverbios 5:15-20 (La fidelidad en el matrimonio y el cuidado de la relación).</h1>
+            <h2>Perspectiva Judío-Mesiánica</h2>
+            <p style="text-align: center; font-style: italic;">Cada verso con texto hebreo, transliteración tiberiana,
+                traducción literal, y su cumplimiento profético en Yeshúa haMashíaj</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 15</div>
+            <div class="hebrew">שְׁתֵה־מַיִם מִבּוֹרֶךָ וְנֹזְלִים מִתּוֹךְ בְּאֵרֶךָ׃</div>
+            <div class="transliteration">Šĕtê-mayim mibôreḵā wĕnōzĕlîm mittôḵ bĕʾēreḵā.</div>
+            <div class="translation">"Bebe agua de tu propia cisterna, y corrientes de en medio de tu pozo."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en Mashíaj:</div>
+                La fuente propia representa la fidelidad al pacto. Yeshúa es la <strong>fuente de agua viva</strong>
+                (Juan 4:14). Él ofrece plenitud eterna, no fugaz pasión temporal como las aguas ajenas.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 16</div>
+            <div class="hebrew">יָפוּצוּ מַעְיְנֹתֶיךָ חוּצָה בָּרְחֹבוֹת פַּלְגֵי־מָיִם׃</div>
+            <div class="transliteration">Yāpûṣû ma'yĕnōteḵā ḥûṣāh bārĕḥōḇôt palgê-māyim.</div>
+            <div class="translation">"¿Se derramarán tus fuentes por fuera, tus corrientes de aguas por las plazas?"
+            </div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en Mashíaj:</div>
+                Esta pregunta retórica advierte contra el desperdicio. En Yeshúa, nuestras fuentes espirituales no se
+                desperdician, sino que fluyen ordenadamente para bendición: <strong>"ríos de agua viva fluirán de su
+                    interior"</strong> (Juan 7:38).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 17</div>
+            <div class="hebrew">יִהְיוּ־לְךָ לְבַדֶּךָ וְאֵין לְזָרִים אִתָּךְ׃</div>
+            <div class="transliteration">Yihyû-lĕḵā lĕḇaddeḵā wĕʾên lĕzārîm ʾittāḵ.</div>
+            <div class="translation">"Sean para ti solo, y no para extraños contigo."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en Mashíaj:</div>
+                La exclusividad del pacto matrimonial refleja nuestra relación con Mashíaj. Él nos llama a
+                <strong>fidelidad absoluta</strong>, sin mezclar la adoración verdadera con ídolos o "extraños"
+                espirituales (Santiago 4:4).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 18</div>
+            <div class="hebrew">יְהִי־מְקוֹרְךָ בָרוּךְ וּשְׂמַח מֵאֵשֶׁת נְעוּרֶיךָ׃</div>
+            <div class="transliteration">Yĕhî-mĕqôrĕḵā ḇārûḵ ûśĕmaḥ mēʾēšet nĕʿûreḵā.</div>
+            <div class="translation">"Sea bendito tu manantial, y alégrate con la mujer de tu juventud."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en Mashíaj:</div>
+                En Yeshúa hallamos renovación del pacto y enamoramiento eterno. Él nos llama a recuperar <strong>la
+                    bendición del primer amor espiritual</strong>: "El Espíritu y la novia dicen: ¡Ven!" (Apocalipsis
+                22:17).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 19</div>
+            <div class="hebrew">אַיֶּלֶת אֲהָבִים וְיַעֲלַת־חֵן דַּדֶּיהָ יְרַוֻּךָ בְכָל־עֵת בְּאַהֲבָתָהּ תִּשְׁגֶּה
+                תָמִיד׃</div>
+            <div class="transliteration">ʾAyyelet ʾăhāḇîm wĕya'ălat-ḥên daddeyhā yĕrawwuḵā ḇĕḵol-ʿêt bĕʾahaḇātāh tišgeh
+                tāmîd.</div>
+            <div class="translation">"Como cierva amada y graciosa gacela, sus caricias te satisfagan en todo tiempo; en
+                su amor sé embriagado siempre."</div>
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento en Mashíaj:</div>
+                Bajo la sombra del Mesías, el corazón encuentra <strong>satisfacción continua sin sequedad
+                    espiritual</strong>. Él impregna nuestra vida de amor persuasivo y fiel, como describe el Cantar de
+                los Cantares proféticamente (Salmo 1:3).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Verso 20</div>
+            <div class="hebrew">וְלָמָּה תִשְׁגֶּה בְנִי בְזָרָה וּתְחַבֵּק חֵק נָכְרִיָּה׃</div>
+            <div class="transliteration">Wĕlāmmāh ṯišgeh ḇĕnî ḇĕzārāh ûtĕḥabbēq ḥêq noḵrîyāh.</div>
+            <div class="literal-translation">"¿Y por qué, hijo mío, andarías perdido con la extraña, y abrazarías el
+                seno de la forastera?"</div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Traducción literal y significado:</div>
+                <ul>
+                    <li><em>"¿Por qué andarías perdido con la extraña?"</em>: cuestionamiento sobre buscar satisfacción
+                        fuera del pacto establecido.</li>
+                    <li><em>"Y abrazarías el seno de la forastera"</em>: la intimidad con lo ajeno trae destrucción
+                        espiritual y física.</li>
+                </ul>
+            </div>
+
+            <div class="fulfillment">
+                <div class="fulfillment-title">Cumplimiento profético en Mashíaj:</div>
+                <p>Este verso plantea la pregunta fundamental sobre la <strong>infidelidad espiritual</strong>, una
+                    imagen profética que encuentra su respuesta en Yeshúa haMashíaj:</p>
+
+                <div class="prophetic-section">
+                    <strong>1. Advertencia contra la idolatría:</strong> Así como el esposo no debe buscar a la
+                    "extraña", Israel y la Iglesia no deben buscar otros dioses. Mashíaj es nuestro único Esposo
+                    verdadero (Oseas 2:19-20).
+                </div>
+
+                <div class="prophetic-section">
+                    <strong>2. Llamado al arrepentimiento:</strong> La pregunta retórica invita a la reflexión. En
+                    Yeshúa, encontramos el camino de regreso del adulterio espiritual a la fidelidad covenant (Jeremías
+                    3:14).
+                </div>
+
+                <div class="prophetic-section">
+                    <strong>3. Contraste con la verdadera intimidad:</strong> Mientras la "forastera" ofrece muerte,
+                    Yeshúa ofrece <strong>vida abundante</strong> (Juan 10:10). Él es el esposo fiel que nunca abandona
+                    ni engaña.
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>✅ Reflexión Aplicada</h3>
+            <p>Proverbios 5:15-20 establece un paradigma espiritual profundo: la fidelidad matrimonial como tipo del
+                pacto con Elohím. En <strong>Yeshúa haMashíaj</strong>, este principio alcanza su máxima expresión.</p>
+
+            <p>Donde hay fidelidad, gozo y pacto, nace celebración divina. En Mashíaj, <strong>la alianza de la sangre
+                    es vivificante y motivo de alabanza</strong> celestial. Nos invita a responderle no como esclavos
+                temerosos, sino como novios enamorados, en deleite, gratitud y gozo que reverbera hasta el trono
+                celestial.</p>
+
+            <p class="prayer-conclusion">La Palabra nos llama a la fidelidad que trae bendición eterna a través del
+                Mashíaj.</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 3. Brit Hadasháh: Juan 8:1-11 (Yeshúa y la mujer sorprendida en adulterio, el llamado al
+                arrepentimiento).</h1>
+            <h2>La Mujer Sorprendida en Adulterio</h2>
+
+            <div class="explanation">
+                <p><strong>Nota:</strong> Este pasaje (Juan 7:53–8:11) no se encuentra en algunos manuscritos griegos
+                    antiguos, pero sí está presente en la tradición aramea siriaca de la Peshitta.</p>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:1</div>
+            <div class="aramaic">ܝܫܘܥ ܕܝܢ ܐܙܠ ܠܛܘܪܐ ܕܙܝܬܐ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> Yeshua din azal le-Turā de-Zaytā.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Pero Yeshúa fue al monte de los Olivos.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                Según Zacarías 14:4, los pies del Mesías reposarán sobre el monte de los Olivos en el día final. Aquí,
+                Yeshúa anticipa Su rol mesiánico desde ese monte clave en los eventos redentores.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:2</div>
+            <div class="aramaic">ܒܨܦܪܐ ܕܝܢ ܬܘܒ ܐܬܐ ܠܗܝܟܠܐ ܘܟܠܗ ܥܡܐ ܐܬܘ ܠܘܬܗ ܘܝܬܒ ܗܘܐ ܘܡܠܦ ܗܘܐ ܠܗܘܢ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> Be-ṣafra din tūb āthā le-heykālā, w-kulhā ʿammā āthū
+                lūteh, w-yateb hawā w-malp hawā le-hun.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Al amanecer volvió al Templo, y todo el pueblo
+                vino a Él; y sentándose, les enseñaba.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                Yeshúa se presenta como el Maestro (Rabí) prometido en Deuteronomio 18:15. Enseña en el Templo,
+                cumpliendo Isaías 2:3: "de Sion saldrá la Torá".
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:3</div>
+            <div class="aramaic">ܐܝܬܝܘ ܕܝܢ ܣܦܪܐ ܘܦܪܝܫܐ ܐܢܬܬܐ ܕܐܫܬܟܚܬ ܒܚܛܝܬܐ ܘܐܩܝܡܘ ܗܝ ܒܡܨܥܬܐ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> Īthayw din saprē u-Farīshē antathā de-eshtakḥat
+                be-ḥaṭīthā w-aqīmū hay be-meṣʿetā.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Trajeron entonces los escribas y fariseos a
+                una mujer sorprendida en pecado, y la pusieron en medio.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                La mujer representa a Israel culpable (véase Oseas 2:2-5). Mashíaj interviene como el que media entre la
+                justicia y la misericordia.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:4</div>
+            <div class="aramaic">ܘܐܡܪܝܢ ܠܗ ܡܠܦܢܐ ܗܕܐ ܐܢܬܬܐ ܐܫܬܟܚܬ ܟܕ ܓܠܝܐܝܬ ܚܛܝܐ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> W-amrīn leh malpānā, hādē antathā eshtakḥat kad
+                gelīāyit ḥaṭīā.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Y le dijeron: Rabí, esta mujer fue hallada
+                cometiendo pecado en el mismo acto.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                La acusación directa recuerda la ley de Moisés (Levítico 20:10). Sin embargo, el juicio del Mashíaj
+                revela la intención del corazón humano, no solo la letra.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:5</div>
+            <div class="aramaic">ܘܒܢܡܘܣܐ ܕܡܘܫܐ ܦܩܕ ܕܐܝܟܢܐ ܗܠܝܢ ܢܪܓܡܘܢ ܐܢܬ ܕܝܢ ܡܢܐ ܐܡܪܐ ܐܢܬ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> U-be-namusā de-Mosheh peqad de-aykhnā halīn
+                nirgamūn. Ant din manā emarā ant?</div>
+            <div class="translation"><strong>Traducción literal:</strong> Y en la Ley de Moisés nos ordenó que a tales
+                se apedree. Tú pues, ¿qué dices?</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                Según Isaías 11:3–4, el Mesías juzgará con justicia, no por apariencias. Su juicio trasciende la letra y
+                se basa en la intención y la restauración.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:6</div>
+            <div class="aramaic">ܘܗܕܐ ܐܡܪܘ ܟܕ ܡܢܣܝܢ ܠܗ ܕܢܗܘܐ ܠܗܘܢ ܡܐ ܕܢܩܛܘܢ ܒܗ. ܝܫܘܥ ܕܝܢ ܐܬܚܬ ܘܟܬܒ ܗܘܐ ܒܐܪܥܐ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> W-hādā amrū kad mensīn leh de-nehwē lehūn mā
+                de-naqṭūn beh. Yeshua din etḥat w-ketab hawā be-arʿā.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Esto decían tentándolo, para tener de qué
+                acusarlo. Pero Yeshúa se inclinó y escribía en la tierra.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                Jeremías 17:13 habla de los que se apartan de YHWH: "serán escritos en el polvo". Yeshúa escribe en el
+                suelo, mostrando autoridad divina sobre el juicio.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:7</div>
+            <div class="aramaic">ܟܕ ܗܘ ܕܝܢ ܡܬܟܪܪܝܢ ܠܡܫܐܠܘܗܝ ܐܬܦܫܛ ܘܐܡܪ ܠܗܘܢ ܡܢ ܕܠܐ ܒܗ ܚܛܝܬܐ ܩܕܡܝܐ ܢܪܡܐ ܥܠܝܗ ܟܐܦܐ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> Kad hū din methkarrīn le-meshalūh, etpasheṭ w-amar
+                lehūn: Man de-lā beh ḥaṭītā, qadmāyā nermā ʿaleyh kāfā.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Como insistían en preguntarle, se enderezó y
+                les dijo: El que esté sin pecado entre vosotros, sea el primero en arrojar la piedra.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                El juicio del Mesías es justo. Él cumple Eclesiastés 7:20 ("no hay justo que no peque"). Aquí revela que
+                todos son culpables y necesitan redención.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:8</div>
+            <div class="aramaic">ܘܬܘܒ ܐܬܚܬ ܘܟܬܒ ܗܘܐ ܥܠ ܐܪܥܐ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> W-tūb etḥat w-ketab hawā ʿal arʿā.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Y otra vez se inclinó y escribía en la tierra.
+            </div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                Refuerza el juicio de Dios escrito "en tierra", aludiendo nuevamente a Jeremías 17:13. Su silencio es
+                juicio.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:9</div>
+            <div class="aramaic">ܗܢܘܢ ܕܝܢ ܟܕ ܫܡܥܘ ܢܦܩܘ ܚܕ ܚܕ ܟܕ ܫܪܝܐ ܡܢ ܩܫܝܫܐ ܘܫܒܩ ܐܬܬܐ ܒܠܚܘܕܝܗ ܟܕ ܗܝ ܒܡܨܥܬܐ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> Hanūn din kad shamʿū, nafaqū ḥad ḥad, kad sharayā
+                men qashīshē, w-shabaq atthā belḥūdāyā kad hī be-meṣʿetā.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Ellos al oír esto, salieron uno por uno,
+                comenzando por los ancianos, y quedó la mujer sola, en medio.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                El juicio de Mashíaj expone el pecado oculto (Salmo 90:8). Todos se retiran en reconocimiento de su
+                propia culpa.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:10</div>
+            <div class="aramaic">ܝܫܘܥ ܕܝܢ ܐܬܦܫܛ ܘܐܡܪ ܠܐܢܬܬܐ ܐܝܟܐ ܐܢܘܢ? ܠܐ ܐܢܫ ܚܝܒܟܝ?</div>
+            <div class="transliteration"><strong>Fonética:</strong> Yeshūa din etpasheṭ w-amar le-antathā: Aykā anūn? Lā
+                enāsh ḥayebkī?</div>
+            <div class="translation"><strong>Traducción literal:</strong> Yeshúa se enderezó y le dijo a la mujer:
+                ¿Dónde están? ¿Ninguno te condenó?</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                Miqueas 7:8-9 muestra que el justo cae pero se levanta. Aquí se cumple la restauración en misericordia.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">🕎 Juan 8:11</div>
+            <div class="aramaic">ܗܝ ܕܝܢ ܐܡܪܬ ܠܐ ܐܢܫ. ܘܐܡܪ ܠܗ ܝܫܘܥ ܐܦ ܐܢܐ ܠܐ ܚܝܒܬܟܝ ܙܠܝ ܘܡܟܝܠ ܠܐ ܬܚܛܝܢ.</div>
+            <div class="transliteration"><strong>Fonética:</strong> Hay din amrat: Lā enāsh. W-amar lah Yeshūa: Ap anā
+                lā ḥayebtkī. Zelī w-mekīl lā teḥṭīn.</div>
+            <div class="translation"><strong>Traducción literal:</strong> Ella dijo: Nadie, Señor. Y Yeshúa le dijo:
+                Tampoco yo te condeno. Vete, y desde ahora no peques más.</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                Isaías 53:11 dice que por Su conocimiento justificará el Justo a muchos. Mashíaj perdona, no por anular
+                la Torá, sino por cumplirla en justicia y gracia (Romanos 8:1–4).
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Reflexión Final</h3>
+            <p>Este pasaje demuestra cómo Yeshúa, el Mashíaj, cumple perfectamente el equilibrio entre justicia y
+                misericordia profetizado en las Escrituras. Su respuesta revela tanto la universalidad del pecado humano
+                como la posibilidad de redención y restauración.</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 4. Contexto Histórico y Cultural</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. El Juicio de la Sotáh: Un Procedimiento Singular</div>
+                <p>La sección describe un rito complejo que se aplica cuando un marido, sin tener pruebas,
+                    <strong>sospecha que su esposa ha cometido adulterio</strong>. Este procedimiento tiene el propósito
+                    de:</p>
+                <ul>
+                    <li><strong>Revelar la verdad oculta</strong> cuando no hay testigos ni evidencia.</li>
+                    <li><strong>Preservar la santidad del matrimonio</strong>.</li>
+                    <li><strong>Evitar linaje ilegítimo dentro de Israel</strong>.</li>
+                </ul>
+
+                <p>Este rito no es común en otras culturas antiguas. Su singularidad radica en:</p>
+                <ul>
+                    <li>La intervención directa de Elohím.</li>
+                    <li>La escritura del "rollo de maldición" que se disuelve en agua.</li>
+                    <li>La participación del kohén como mediador.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. La Cultura de Santidad y el Matrimonio en Israel</div>
+                <p>En la época del Mishkán y del Primer Templo, el matrimonio no solo era un contrato legal, sino un
+                    <strong>pacto espiritual</strong>. La fidelidad conyugal era reflejo de la fidelidad de Israel a su
+                    Elohím (cf. Oseas 2:16).</p>
+                <ul>
+                    <li>El adulterio espiritual o físico <strong>rompía el vínculo de pacto</strong>.</li>
+                    <li>Esta ley protegía la santidad del hogar, el linaje tribal, y la presencia divina en medio del
+                        campamento.</li>
+                </ul>
+
+                <p>Este procedimiento solo era ejecutado si:</p>
+                <ul>
+                    <li>El esposo sentía celos justificados.</li>
+                    <li>No había testigos.</li>
+                    <li>La esposa negaba el acto.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Práctica Ritual y Espiritualidad del Templo</div>
+                <p>Este rito se realizaba en el atrio del Mishkán o del Templo. La mujer:</p>
+                <ul>
+                    <li>Era llevada por su esposo ante el kohén.</li>
+                    <li>Se le soltaba el cabello (humillación pública simbólica).</li>
+                    <li>Bebía agua sagrada mezclada con polvo del suelo del santuario y tinta de un rollo que contenía
+                        la maldición escrita.</li>
+                </ul>
+
+                <p>El juicio era inmediato y sobrenatural:</p>
+                <ul>
+                    <li><strong>Si era culpable:</strong> sufría una maldición física visible (vientre hinchado, muslo
+                        caído).</li>
+                    <li><strong>Si era inocente:</strong> quedaba libre, incluso bendecida con fertilidad.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. El Significado de la Maldición y del Agua</div>
+                <p>El agua mezclada con polvo y tinta representa:</p>
+                <ul>
+                    <li><strong>El juicio divino escrito</strong>.</li>
+                    <li><strong>El polvo del santuario</strong> = recordatorio de la santidad.</li>
+                    <li><strong>La tinta borrada</strong> = Elohím mismo ejecutando justicia.</li>
+                </ul>
+
+                <p>Es notable que el <strong>Nombre sagrado de Elohím se disolvía en el agua</strong>, lo que no ocurre
+                    en ningún otro rito. Esto enseña:</p>
+                <div class="scripture">
+                    La paz entre marido y mujer es tan valiosa, que Elohím permite borrar Su Nombre por ella (Talmud
+                    Bavlí, Guitín 90b).
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">E. Uso en Época del Segundo Templo</div>
+                <p>En tiempos del Segundo Templo, el rito de la Sotáh era conocido, aunque no siempre practicado por
+                    falta de pureza comunitaria.</p>
+                <ul>
+                    <li>El Talmud (Sotáh 47a) afirma que se suspendió este juicio <strong>cuando el adulterio se volvió
+                            frecuente</strong>, como señal de corrupción nacional.</li>
+                </ul>
+                <p>Esto revela que la sociedad debía estar en un estado de santidad para que el juicio divino operara
+                    con justicia.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">F. Conexión Espiritual Profunda</div>
+                <p>El pasaje es un espejo del corazón humano:</p>
+                <ul>
+                    <li>Muestra que <strong>el pecado oculto no escapa a la mirada de Elohím</strong>.</li>
+                    <li>Enseña que <strong>el juicio de Elohím busca restaurar la verdad, no solo castigar</strong>.
+                    </li>
+                    <li>Expresa el profundo valor del <strong>pacto conyugal como modelo del pacto de Israel con
+                            Elohím</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">G. Aplicación Mesiánica</div>
+                <p>Yeshúa haMashíaj confronta esta ley de una forma revolucionaria en <strong>Yojanán / Juan
+                        8:1–11</strong>, cuando una mujer adúltera es llevada ante Él. En vez de ejecutar la ley con
+                    piedras, Él:</p>
+                <ul>
+                    <li>Desciende y escribe en el polvo (alusión directa a la Sotáh).</li>
+                    <li>No niega la ley, pero expone el pecado oculto de los acusadores.</li>
+                    <li>Declara: "El que esté libre de pecado, tire la primera piedra."</li>
+                    <li>Le dice a la mujer: "Vete y no peques más."</li>
+                </ul>
+
+                <p><strong>Yeshúa es el Kohén que purifica, no humilla.</strong> Es el juicio hecho carne —que no
+                    destruye, sino <strong>restaura el pacto mediante gracia y verdad</strong>.</p>
+            </div>
+
+            <div class="conclusion">
+                <div class="prophetic-title">Conclusión del Contexto Histórico y Cultural:</div>
+                <p>Este rito revela que <strong>la fidelidad conyugal representa la fidelidad espiritual entre Israel y
+                        su Elohím</strong>. En Yeshúa haMashíaj, el juicio de la Sotáh no desaparece: <strong>se cumple
+                        y se transforma</strong>, pasando del agua amarga al agua viva que revela, purifica y restaura.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Comentarios Rabínicos Tradicionales</div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">1. Rashi – Números 5:12</div>
+                    <p>Rashi señala que este juicio solo aplica <strong>cuando no hay testigos y no hay
+                            confesión</strong>, pero hay una "advertencia" previa del esposo. La Toráh crea un
+                        procedimiento <strong>para restaurar la paz y la verdad</strong> en el hogar.</p>
+                    <div class="scripture">
+                        "La Toráh es tan cuidadosa con la paz en el hogar que permite borrar el Nombre sagrado de Elohím
+                        en agua."
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">2. Talmud Bavlí, Sotáh 14a</div>
+                    <p>Los sabios interpretan el agua amarga como reflejo del juicio divino:</p>
+                    <div class="scripture">
+                        "Así como el pecado fue en secreto, así la respuesta viene de lo alto, sin necesidad de juicio
+                        humano."
+                    </div>
+                    <p>Este procedimiento demuestra que <strong>la verdad no puede permanecer oculta</strong>, y que
+                        Elohím interviene directamente en los asuntos del corazón.</p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Comentario Judío Mesiánico</div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">1. El juicio de la Sotáh como imagen del juicio de Israel</div>
+                    <ul>
+                        <li>Israel es comparado repetidamente a una <strong>esposa infiel</strong> (cf. Jeremías 3:1–8,
+                            Oseas 2).</li>
+                        <li>La ceremonia de la Sotáh es un retrato simbólico del <strong>pueblo que ha roto el
+                                pacto</strong>, y está siendo juzgado.</li>
+                        <li>El juicio es amargo —pero <strong>no es para destrucción</strong>, sino para restauración.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">2. Yeshúa haMashíaj y la Mujer Adúltera (Juan 8:1–11)</div>
+                    <ul>
+                        <li>Esta escena no es solo un acto de misericordia, es <strong>una alusión directa al rito de la
+                                Sotáh</strong>.</li>
+                        <li>Yeshúa actúa como kohén: <strong>se agacha y escribe en el polvo</strong>, como en la
+                            ceremonia de Bemidbar 5.</li>
+                        <li>Él no niega el juicio, sino que <strong>revela la hipocresía</strong> de los acusadores: "El
+                            que esté libre de pecado…"</li>
+                        <li>La mujer es liberada porque <strong>Mashíaj carga con su juicio.</strong></li>
+                    </ul>
+                    <p><strong>Él toma el agua amarga, la transforma en agua viva.</strong></p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Aplicación Profética</div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">1. La tinta del rollo borrada en el agua (v.23)</div>
+                    <p><span class="arrow">→</span> El Nombre de Elohím se disuelve como acto de reconciliación. En el
+                        Brit Hadasháh, <strong>Mashíaj mismo es el Nombre</strong> (Filipenses 2:9). Él "se borra" para
+                        que la mujer pueda vivir (cf. Isaías 53:8).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">2. El vientre y el muslo afectados (v.27)</div>
+                    <p><span class="arrow">→</span> Esto muestra que <strong>el pecado oculto afecta la fuente de vida y
+                            la herencia futura.</strong> Pero Mashíaj, al restaurar a la mujer (Juan 8),
+                        <strong>reconecta con el propósito divino: vida, descendencia, fruto espiritual.</strong></p>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. Guematría y Significados Profundos</div>
+                <ul>
+                    <li><span class="hebrew-term">מַיִם מָרִים</span> (mayim marim – agua amarga) = 330<br>
+                        330 = <span class="hebrew-term">שַׁלּוֹם</span> (shalom – paz) + <span
+                            class="hebrew-term">שֶׁקֶר</span> (sheqer – mentira) → El juicio por mentira restaura la paz
+                        si hay verdad.</li>
+                    <li><span class="hebrew-term">סוֹטָה</span> (Sotáh – mujer infiel) = 475<br>
+                        475 = <span class="hebrew-term">בָּרוּךְ שֵׁם</span> (baruj shem – "Bendito sea el Nombre") →
+                        Aun la mujer infiel, si se arrepiente, puede llevar la bendición del Nombre.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">E. Relación con el Brit Hadasháh – Efesios 5:25–27</div>
+                <div class="scripture">
+                    "...para presentársela a sí mismo como una comunidad gloriosa, sin mancha ni arruga..."
+                </div>
+                <p>Yeshúa <strong>purifica a su Esposa (la Kehiláh) con agua y palabra</strong>, como el kohén
+                    purificaba a la mujer en este rito.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">F. Conexión con los Moedim – Yom Kipur</div>
+                <ul>
+                    <li>En Yom Kipur, el kohén también <strong>confiesa el pecado del pueblo</strong>, lleva la culpa
+                        fuera, y ofrece expiación.</li>
+                    <li>Así como la Sotáh podía ser perdonada, <strong>en Yom Kipur se permite una nueva
+                            oportunidad</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <div class="prophetic-title">Conclusión del Estudio y Conexión Profética:</div>
+                <p>El rito de la Sotáh no solo revela pecado: apunta al <strong>poder del juicio divino para
+                        restaurar</strong>. En Yeshúa haMashíaj, el agua amarga se convierte en agua viva. Él toma el
+                    juicio sobre sí, restaura la honra de la Esposa, y nos presenta limpios ante el Padre. Este pasaje
+                    no es de condena, sino de redención profunda.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 6. Análisis Profundo de la Aliyáh</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Estructura y dinámica del texto</div>
+                <p>Esta Aliyáh contiene <strong>una de las secciones legales más singulares de la Toráh</strong>, en la
+                    que se combina:</p>
+                <ul>
+                    <li><strong>Ley moral y conyugal</strong></li>
+                    <li><strong>Procedimiento ritual del Mishkán</strong></li>
+                    <li><strong>Intervención directa de Elohím como juez invisible</strong></li>
+                </ul>
+
+                <p>Se divide en cuatro etapas fundamentales:</p>
+                <ul>
+                    <li><strong>Sospecha del esposo</strong> (v.12–14)</li>
+                    <li><strong>Presentación ante el kohén</strong> (v.15–20)</li>
+                    <li><strong>Ceremonia con agua amarga</strong> (v.21–27)</li>
+                    <li><strong>Resultado del juicio y conclusión legal</strong> (v.28–31)</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Elementos Clave del Ritual</div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">1. La ofrenda de cebada (v.15)</div>
+                    <ul>
+                        <li>Sin aceite ni incienso = símbolo de dolor, no de celebración.</li>
+                        <li>Cebada = alimento animal, lo más bajo espiritualmente.</li>
+                        <li>Representa <strong>un espíritu humillado</strong>, sin dulzura ni fragancia.</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">2. El agua santa mezclada con polvo (v.17)</div>
+                    <ul>
+                        <li>Agua del santuario + polvo del Mishkán = mezcla de vida y juicio.</li>
+                        <li>El polvo evoca la humildad ("polvo eres") y el juicio en el suelo del Santuario.</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">3. La tinta disuelta del rollo (v.23)</div>
+                    <ul>
+                        <li>El Nombre sagrado se borra para que la mujer viva. Esto nunca ocurre en ninguna otra ley.
+                        </li>
+                        <li>Revela que Elohím <strong>prefiere que Su Nombre sea borrado antes que destruir un hogar
+                                injustamente</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">4. El juramento y la maldición (v.19–22)</div>
+                    <ul>
+                        <li>El kohén pronuncia una fórmula legal y espiritual.</li>
+                        <li>La mujer acepta beber el agua como señal de inocencia.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">C. Dimensión espiritual: Juicio sobrenatural</div>
+                <p>Este rito revela que en el Reino:</p>
+                <ul>
+                    <li><strong>No hay pecado oculto que no será revelado</strong> (cf. Lucas 12:2–3)</li>
+                    <li>Pero tampoco hay justicia sin misericordia. El juicio aquí <strong>no busca castigar, sino
+                            liberar la verdad</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">D. Interpretación mesiánica profunda</div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">1. Yeshúa es el Kohén que administra la justicia perfecta</div>
+                    <ul>
+                        <li>Él discierne lo que está en el corazón sin necesidad de pruebas humanas (Juan 2:25).</li>
+                        <li>En la escena de la mujer adúltera (Juan 8), <strong>no niega la ley de Bemidbar 5, la
+                                trasciende con compasión y verdad</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">2. Yeshúa es el rollo de maldición escrito… y borrado</div>
+                    <ul>
+                        <li>En Su entrega, <strong>su nombre es humillado, "borrado"</strong>, para salvar a la Esposa
+                            infiel (Filipenses 2:7–9).</li>
+                        <li>Su cuerpo es el rollo escrito que recibe la condena (Isaías 53:5).</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="highlight">3. El agua amarga = el juicio de pecado</div>
+                    <ul>
+                        <li>Él <strong>bebe la copa de amargura por nosotros</strong> (Mateo 26:39).</li>
+                        <li>Así transforma lo que sería muerte para nosotros en vida eterna.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">E. Implicaciones para la Kehiláh</div>
+                <ul>
+                    <li>La comunidad redimida debe ser <strong>esposa fiel</strong>. Cuando hay sospecha de pecado
+                        oculto, la única salida es <strong>la luz del juicio de Elohím</strong>.</li>
+                    <li>Pero si estamos en Mashíaj, no tememos el juicio, porque en Él <strong>ya hemos sido hallados
+                            limpios</strong> (Romanos 8:1).</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">F. Midrash mesiánico – Israel, la Sotáh nacional</div>
+                <p>Israel, a lo largo de la historia, fue como <strong>una esposa infiel</strong>, adorando ídolos,
+                    rompiendo el pacto. Pero en Mashíaj, como en Oseas 2, <strong>la Esposa es traída al desierto para
+                        reconciliación</strong>, no para destrucción.</p>
+            </div>
+
+            <div class="conclusion">
+                <div class="prophetic-title">Conclusión del Análisis Profundo:</div>
+                <p>Esta Aliyáh muestra que el pecado oculto no puede sostenerse en la Presencia de Adonái, pero también
+                    revela que Su juicio busca restaurar. En Yeshúa haMashíaj, el juicio que caería sobre la Esposa lo
+                    asume Él. Él es el Kohén, la tinta, el rollo, el agua, el altar, y el perdón. El Reino no se
+                    construye sobre acusaciones, sino sobre <strong>restauración profética y expiación real</strong>.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+
+            <div class="section-container">
+                <div class="prophetic-title">A. Tema Central: El Juicio de la Verdad Oculta y la Restauración del Pacto
+                </div>
+                <p>Esta Aliyáh revela uno de los principios más poderosos de la Toráh: <strong>Elohím no solo juzga lo
+                        externo, sino que revela lo oculto —no para destruir, sino para restaurar.</strong></p>
+
+                <p>El juicio de la Sotáh no es simplemente un proceso de sospecha marital; es una <strong>representación
+                        dramática del juicio espiritual que acontece entre el Esposo celestial y Su Esposa,
+                        Israel</strong>.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">B. Importancia del Tema en la Toráh</div>
+                <ul>
+                    <li><strong>El Pacto Matrimonial es Sagrado:</strong> La Toráh lo equipara al pacto nacional con
+                        Elohím (cf. Oseas, Jeremías). La infidelidad conyugal representa la apostasía espiritual.</li>
+                    <li><strong>La Verdad Saldrá a la Luz:</strong> Donde no hay testigos, Elohím actúa como Juez. La
+                        justicia en el Reino no depende de evidencia forense, sino de la <strong>presencia santísima que
+                            discierne los pensamientos</strong> (cf. Salmo 139).</li>
+                    <li><strong>Restauración, no solo Condena:</strong> El rito está diseñado para que la mujer inocente
+                        sea vindicada públicamente, y para que el matrimonio pueda sanarse con verdad.</li>
+                </ul>
+            </div>
+
+            <div class="content-container">
+                <h1>Temas Relevantes sobre el Juicio de la Sotáh</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 5:11–31</h2>
+                    <h3>Aliyáh 4: El juicio de la mujer sospechosa – סוֹטָה (Sotáh)</h3>
+                </div>
+                <div class="explanation">
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Cómo se Relaciona con Yeshúa haMashíaj</div>
+                            <p>Yeshúa no solo viene a juzgar con justicia —Él es el juicio hecho carne, pero también la
+                                restauración del pacto:</p>
+                            <p>En Juan 8:1–11, cuando se presenta una mujer sorprendida en adulterio, Él no niega la
+                                ley, sino que va más profundo:</p>
+                            <ul>
+                                <li>No hay testigos justos.</li>
+                                <li>El juicio cae sobre Él, no sobre ella.</li>
+                                <li>Le dice: “Ni yo te condeno… vete y no peques más.”</li>
+                            </ul>
+                            <p>→ Él absorbe la maldición de la Sotáh para liberar a la Esposa.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Conexión con los Moedim – Pesaj y Yom Kipur</div>
+                            <p>Pesaj: En la noche del juicio, la sangre en los postes revela la separación entre
+                                inocencia y culpa. Así también el juicio de la Sotáh separa lo oculto.</p>
+                            <p>Yom Kipur: El chivo para Azazel lleva el pecado oculto “fuera del campamento” (cf.
+                                Levítico 16).</p>
+                            <p>Mashíaj se hace portador del juicio de la Esposa, y la devuelve al Esposo reconciliada.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="point-letter">E</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Conexión con el Brit Hadasháh – Efesios 5:25–27</div>
+                            <p>“...para presentársela a sí mismo como una comunidad gloriosa, sin mancha ni arruga...”
+                            </p>
+                            <p>La Kehiláh no es una esposa perfecta en sí misma, sino una esposa redimida, purificada y
+                                restaurada por la gracia del Mashíaj.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">F</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Enseñanza Central para Hoy</div>
+                            <ul>
+                                <li>El Reino de Elohím no tolera pecado oculto.</li>
+                                <li>No acepta juicios injustos.</li>
+                                <li>No condena sin redención.</li>
+                                <li>No deja impune la infidelidad espiritual.</li>
+                            </ul>
+                            <p>Yeshúa toma el juicio para dar vida. La Esposa no queda condenada si hay teshuváh. La
+                                verdad revelada no destruye: limpia, libera, restaura.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <p>Conclusión del Tema Más Relevante:</p>
+                        <p>El juicio de la Sotáh nos enseña que Elohím desea un pueblo puro, una Esposa fiel. Yeshúa,
+                            como nuestro Kohén, recibe la amargura, disuelve el rollo del juicio en Su sangre, y
+                            devuelve a la Esposa su dignidad, su pureza y su llamado. La verdad no teme la luz, y el
+                            pacto es más fuerte que la acusación.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 8. Descubriendo a Mashíaj en cada Aliyáh</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 5:11–31</h2>
+                    <h3>Aliyáh 4: El juicio de la mujer sospechosa – סוֹטָה (Sotáh)</h3>
+                </div>
+                <div class="explanation">
+                    <div class="point-letter">A</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Profecías Mesiánicas y Reflexión</div>
+                            <p>Este pasaje, aunque no es profético en sentido directo, está lleno de tipologías
+                                (טִפּוּסִים), sombras (צְלָלִים), y patrones redentores (תַּבְנִיתוֹת) que revelan a
+                                Yeshúa haMashíaj.</p>
+                            <p>Cada paso del ritual de la Sotáh proyecta una imagen del juicio redentor, la intercesión
+                                sacerdotal y la restauración del pacto roto, temas centrales en la obra de Yeshúa.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">B</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Tipologías Mesiánicas Claras</div>
+                            <ul>
+                                <li>
+                                    <strong>La Mujer Sotáh = Israel infiel</strong>
+                                    <p>Israel es la esposa de Elohím (Jeremías 3:14, Oseas 2:2).</p>
+                                    <p>Ha cometido adulterio espiritual con ídolos.</p>
+                                    <p>Esta Aliyáh muestra el juicio necesario cuando no hay testigos visibles… solo
+                                        Elohím ve.</p>
+                                    <p>Yeshúa se convierte en el Esposo que asume la infidelidad de la Esposa para
+                                        restaurarla.</p>
+                                </li>
+                                <li>
+                                    <strong>El Kohén = Yeshúa haMashíaj</strong>
+                                    <p>Intermediario entre el esposo (Elohím) y la esposa (Israel).</p>
+                                    <p>Da el agua amarga (juicio), pero también administra gracia cuando hay
+                                        arrepentimiento.</p>
+                                    <p>En Juan 8:1–11, Yeshúa actúa como el Kohén que no condena, sino que restaura.</p>
+                                </li>
+                                <li>
+                                    <strong>El rollo de maldición borrado = La obra de Mashíaj</strong>
+                                    <p>La tinta del Nombre sagrado se disuelve en el agua → Mashíaj se vacía a sí mismo
+                                        (Filipenses 2:7) para que la Esposa sea limpiada.</p>
+                                    <p>Isaías 53: “Cortado fue de la tierra de los vivientes… por la rebelión de mi
+                                        pueblo fue herido.”</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Métodos para Descubrir al Mashíaj</div>
+                            <table>
+                                <tr>
+                                    <th>Método</th>
+                                    <th>Ejemplo en la Aliyáh</th>
+                                    <th>Cumplimiento en Yeshúa haMashíaj</th>
+                                </tr>
+                                <tr>
+                                    <td>Sombra (Tzelal)</td>
+                                    <td>Agua amarga como juicio oculto</td>
+                                    <td>Mashíaj bebe la copa amarga en Getsemaní (Mat. 26:39)</td>
+                                </tr>
+                                <tr>
+                                    <td>Figura Sacerdotal</td>
+                                    <td>Kohén como mediador</td>
+                                    <td>Mashíaj es el Kohén eterno (Heb. 4:14–16)</td>
+                                </tr>
+                                <tr>
+                                    <td>Patrón Redentor</td>
+                                    <td>Mujer juzgada pero potencialmente liberada</td>
+                                    <td>Yeshúa intercede por la acusada (Juan 8:11)</td>
+                                </tr>
+                                <tr>
+                                    <td>Texto Profético</td>
+                                    <td>Oseas 2, Jeremías 3</td>
+                                    <td>Mashíaj restaura a la esposa infiel con amor eterno</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Midrashim Mesiánicos</div>
+                            <p><strong>Talmud Bavlí – Sotáh 17a</strong></p>
+                            <p>“El Nombre sagrado es borrado con tal de traer paz entre esposo y esposa.”</p>
+                            <p>→ En el Brit Hadasháh, Mashíaj es el Nombre encarnado que es “borrado” (escarnecido,
+                                crucificado), para lograr la paz (shalom) entre Elohím y la humanidad (Isaías 9:6).</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">E</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Profundización Teológica</div>
+                            <ul>
+                                <li>
+                                    <strong>El juicio como redención</strong>
+                                    <p>El agua amarga tenía dos resultados:</p>
+                                    <p>Si la mujer es culpable → juicio manifiesto</p>
+                                    <p>Si es inocente → bendición y fertilidad</p>
+                                    <p>→ En Yeshúa, el juicio se transforma en oportunidad de vida. Aún el culpable, si
+                                        se vuelve, es restaurado.</p>
+                                </li>
+                                <li>
+                                    <strong>El cuerpo como rollo de maldición</strong>
+                                    <p>Shaúl dice que “el acta de los decretos que nos era contraria fue clavada en el
+                                        madero” (Colosenses 2:14).</p>
+                                    <p>→ Esto es una imagen perfecta del rollo que el Kohén borraba en el agua.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">F</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Aplicación Mesiánica para la Kehiláh</div>
+                            <ul>
+                                <li>¿Acusamos o restauramos?</li>
+                                <li>¿Somos instrumentos del juicio o de la gracia?</li>
+                                <li>¿Permitimos que Mashíaj revele lo oculto en nosotros… o lo escondemos bajo
+                                    religiosidad?</li>
+                                <li>Yeshúa no niega el juicio. Él lo carga.</li>
+                                <li>Él nos llama no solo a ser perdonados, sino también a vivir como Esposa purificada
+                                    (Apocalipsis 19:7–8).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <p>Conclusión del Descubrimiento del Mashíaj:</p>
+                        <p>Cada elemento del juicio de la Sotáh anuncia al Mashíaj redentor: Él es el Kohén, el agua, el
+                            rollo, la tinta, el altar y la sangre. Él no destruye a la esposa infiel. La lava. La viste.
+                            La llama amada otra vez.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-container">
+                <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 5:11–31</h2>
+                    <h3>Aliyáh 4: Juicio de la Sotáh – la mujer sospechosa</h3>
+                </div>
+                <div class="explanation">
+                    <div class="point-letter">A</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Midrashim Relevantes</div>
+                            <ul>
+                                <li>
+                                    <strong>Bamidbar Rabá 9:1–3</strong>
+                                    <p>“Grandes son las obras de la Toráh, que incluso cuando no hay testigos ni prueba,
+                                        Elohím desciende a juzgar con justicia”.</p>
+                                    <p>Este midrash enseña que el juicio de la Sotáh es un ejemplo supremo de la
+                                        justicia celestial directa. No se basa en evidencia humana, sino en revelación
+                                        divina. Es un caso donde la presencia de Elohím actúa como juez invisible.</p>
+                                </li>
+                                <li>
+                                    <strong>Sotáh 2a–3b (Talmud Bavlí)</strong>
+                                    <p>“El Nombre de Elohím es borrado para hacer paz entre el hombre y su esposa”.</p>
+                                    <p>Este principio es profundamente mesiánico: la paz shalom vale más que incluso el
+                                        honor del Nombre escrito.</p>
+                                    <p>→ En Mashíaj, Elohím encarna ese principio: Su Nombre (Yeshúa) es humillado,
+                                        borrado, traspasado… para reconciliarnos.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">B</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Targum Onkelos sobre Números 5</div>
+                            <p>El Targum arameo conserva una traducción literal, pero con matices adicionales:</p>
+                            <p>Al hablar del juramento de la mujer, el Targum dice: “Y que la palabra de Elohím sea el
+                                juicio contra ella si mintiere”.</p>
+                            <p>Esto refuerza que el juicio es de boca divina, no de tribunal humano.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Manuscritos del Mar Muerto – Qumrán</div>
+                            <p>Aunque no hay un rollo dedicado específicamente a la Sotáh, hay textos en la Regla de la
+                                Comunidad (1QS 5:5–6) que hacen eco del mismo principio:</p>
+                            <p>“Si uno oculta su culpa y no la confiesa… será cortado del consejo de los justos.”</p>
+                            <p>→ En Qumrán, la pureza de comunidad era absoluta. El ocultamiento de pecado era motivo de
+                                expulsión, como en la Sotáh.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Conexión con Libros Proféticos</div>
+                            <ul>
+                                <li>
+                                    <strong>Oseas 2</strong>
+                                    p>Israel como esposa infiel, disciplinada, llevada al desierto, y reconciliada.</p>
+                                    <p>→ La ceremonia de la Sotáh tiene una aplicación nacional en Oseas.</p>
+                                </li>
+                                <li>
+                                    <strong>Jeremías 3:1–14</strong>
+                                    <p>“He aquí que como la mujer traiciona a su compañero, así me ha traicionado la
+                                        casa de Israel”.</p>
+                                    <p>→ El lenguaje legal del pacto roto es casi idéntico al de Bemidbar 5.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">E</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Libros Apócrifos y Sapienciales</div>
+                            <ul>
+                                <li>
+                                    <strong>Sirácida 23:22–26 (Eclesiástico)</strong>
+                                    <p>“La esposa infiel traerá vergüenza, y su pecado será visible en su vientre.”</p>
+                                    <p>Este texto refleja la consecuencia descrita en Números 5:27.</p>
+                                    <p>→ La sabiduría apócrifa también ve el adulterio como una corrupción del templo
+                                        interior, el cuerpo.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">F</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Aplicación Mesiánica del Testimonio Rabínico</div>
+                            <p>Los sabios, sin intención mesiánica, nos ofrecen una visión que el Brit Hadasháh
+                                profundiza:</p>
+                            <ul>
+                                <li>El Nombre de Elohím puede ser borrado para traer paz → Yeshúa se hizo “sin forma ni
+                                    hermosura” por nuestra restauración.</li>
+                                <li>El juicio es del cielo → Yeshúa juzga con justicia, pero también con gracia (Juan
+                                    5:22).</li>
+                                <li>La restauración del hogar es sagrada → Mashíaj no vino a destruir la Esposa, sino a
+                                    redimirla (Efesios 5:25–27).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <p>Conclusión del Punto 9:</p>
+                        <p>Los textos rabínicos, arameos, y sapienciales refuerzan que el juicio de la Sotáh es más que
+                            un procedimiento: Es un espejo de la fidelidad espiritual, un acto de misericordia envuelto
+                            en juicio. En Yeshúa haMashíaj, todos estos elementos encuentran su cumplimiento: Él es el
+                            Nombre borrado, el Kohén que intercede, el agua que purifica, y la Palabra que restaura la
+                            verdad del pacto eterno.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-container">
+                <h1>Punto 10. Mandamientos Encontrados o Principios y Valores</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 5:11–31</h2>
+                    <h3>Aliyáh 4: El juicio de la mujer sospechosa – סוֹטָה (Sotáh)</h3>
+                </div>
+                <div class="explanation">
+                    <div class="point-letter">A</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Mitzvot (Mandamientos) Identificables</div>
+                            <ul>
+                                <li>
+                                    <strong>Mitzváh de llevar a la mujer sospechosa ante el kohén</strong>
+                                    <p>📖 Números 5:15 – “Entonces el hombre traerá a su mujer al sacerdote…”</p>
+                                    <p>Tipo: Aseh (mandamiento positivo)</p>
+                                    <p>Valor: Restablecer la verdad en el vínculo matrimonial.</p>
+                                    <p>Aplicación mesiánica: Llevar el juicio al Kohén celestial (Yeshúa), quien juzga
+                                        con justicia y restaura la comunión (Hebreos 4:15–16).</p>
+                                </li>
+                                <li>
+                                    <strong>Mitzváh de ofrecer el sacrificio de cebada sin aceite ni incienso</strong>
+                                    <p>📖 Números 5:15 – “Una décima de efa de harina de cebada; no derramará aceite ni
+                                        pondrá incienso…”</p>
+                                    <p>Tipo: Aseh</p>
+                                    <p>Valor: El juicio no es para gozo, sino para purificación.</p>
+                                    <p>Aplicación mesiánica: Representa que Mashíaj se ofreció sin gloria externa para
+                                        expiar nuestras traiciones espirituales (Isaías 53:2).</p>
+                                </li>
+                                <li>
+                                    <strong>Mitzváh de escribir las maldiciones en el rollo y borrarlas en agua</strong>
+                                    <p>📖 Números 5:23 – “Y escribirá el kohén estas maldiciones en un rollo, y las
+                                        borrará en las aguas amargas…”</p>
+                                    <p>Tipo: Aseh</p>
+                                    <p>Valor: Juicio escrito → Veredicto divino → Misericordia posible</p>
+                                    <p>Aplicación mesiánica: Mashíaj es el rollo “borrado”, cargando el juicio para
+                                        ofrecernos vida (Colosenses 2:14).</p>
+                                </li>
+                                <li>
+                                    <strong>Mitzváh de administrar el agua santa con el polvo del santuario</strong>
+                                    <p>📖 Números 5:17 – “Y tomará el kohén agua santa… y tomará del polvo que está en
+                                        el suelo del tabernáculo…”</p>
+                                    <p>Tipo: Aseh</p>
+                                    <p>Valor: El juicio debe proceder del santuario, no de la carne.</p>
+                                    <p>Aplicación mesiánica: Mashíaj, como santuario viviente, purifica con agua y
+                                        palabra (Efesios 5:26).</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">B</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Principios Espirituales y Morales</div>
+                            <ul>
+                                <li><strong>El matrimonio es sagrado:</strong> No puede existir paz en el campamento si
+                                    hay traición en la intimidad.</li>
+                                <li><strong>La verdad será revelada:</strong> Aunque no haya testigos humanos, el Cielo
+                                    actúa como tribunal.</li>
+                                <li><strong>El juicio tiene una intención redentora:</strong> La inocente es vindicada;
+                                    la culpable, corregida.</li>
+                                <li><strong>Elohím valora la paz más que Su propio Nombre escrito:</strong> La tinta del
+                                    Nombre se disuelve para restaurar la armonía del pacto.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Relevancia para la Kehiláh Mesiánica</div>
+                            <ul>
+                                <li>El principio de confesión y purificación sigue vigente (1 Juan 1:9).</li>
+                                <li>El matrimonio espiritual con Mashíaj exige fidelidad, verdad, y santidad.</li>
+                                <li>La comunidad que oculta pecado está enferma; la que lo confiesa y purifica, florece.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Cumplimiento en Yeshúa haMashíaj</div>
+                            <table>
+                                <tr>
+                                    <th>Mitzváh</th>
+                                    <th>Cumplimiento en Mashíaj</th>
+                                </tr>
+                                <tr>
+                                    <td>Traer a la mujer al kohén</td>
+                                    <td>Mashíaj recibe a la mujer en Juan 8</td>
+                                </tr>
+                                <tr>
+                                    <td>Ofrenda sin gloria</td>
+                                    <td>Él se humilló, sin belleza ni honor (Isaías 53:2)</td>
+                                </tr>
+                                <tr>
+                                    <td>Rollo borrado</td>
+                                    <td>Él cargó el decreto contra nosotros (Col. 2:14)</td>
+                                </tr>
+                                <tr>
+                                    <td>Agua con polvo</td>
+                                    <td>Él purifica con agua viva y juicio redentor</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <p>Conclusión del Punto 10:</p>
+                        <p>Los mandamientos de esta Aliyáh enseñan que la fidelidad es el corazón del pacto con Elohím.
+                            Mashíaj, como Kohén perfecto, no solo ejecuta juicio, sino que reconcilia al infiel, redime
+                            al culpable, y exalta al arrepentido. La justicia de la Toráh encuentra en Él su expresión
+                            más profunda: juicio con misericordia, verdad con gracia.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-container">
+                <h1>Punto 11. Preguntas de Reflexión</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 5:11–31</h2>
+                    <h3>Aliyáh 4: El juicio de la mujer sospechosa – סוֹטָה (Sotáh)</h3>
+                </div>
+                <div class="explanation">
+                    <div class="question">1. ¿Qué hago con los pecados o sospechas que no tienen testigos, pero que
+                        pesan en mi alma?</div>
+                    <div class="answer">🕊️ Respuesta en el Mashíaj: Mashíaj ve el corazón más allá de la evidencia
+                        externa (Juan 2:25). No espera acusadores, sino arrepentimiento genuino. Él no busca condenarte,
+                        sino llevarte a una restauración completa mediante Su compasión y juicio justo (1 Juan 1:9).
+                    </div>
+                    <div class="question">2. ¿Confío en que la justicia de Elohím puede manifestarse aun cuando los
+                        hombres no la ven?</div>
+                    <div class="answer">🕊️ Respuesta en el Mashíaj: Yeshúa es testigo fiel y verdadero (Apocalipsis
+                        3:14). Él revela lo que está oculto no para destruir, sino para sanar. Su juicio no es como el
+                        de los hombres: es justo, compasivo y restaurador.</div>
+                    <div class="question">3. ¿He acusado a otros sin tener verdad, o desde mis propias heridas o celos?
+                    </div>
+                    <div class="answer">🕊️ Respuesta en el Mashíaj: Como en Juan 8, Él invita a mirar hacia dentro
+                        antes de lanzar piedras. El juicio comienza en el corazón. Mashíaj enseña que el celo no es
+                        excusa para dañar: es ocasión para revisar nuestra comunión con Él.</div>
+                    <div class="question">4. ¿Estoy dispuesto a beber el agua amarga de corrección para ser vindicado?
+                    </div>
+                    <div class="answer">🕊️ Respuesta en el Mashíaj: Beber el juicio de Elohím es reconocer que su
+                        disciplina es medicina, no castigo final (Hebreos 12:5–6). Si somos inocentes, Él nos vindicará.
+                        Si somos culpables, Él tomará nuestra culpa y nos restaurará.</div>
+                    <div class="question">5. ¿Cómo reacciono ante un juicio divino que revela mi pecado oculto?</div>
+                    <div class="answer">🕊️ Respuesta en el Mashíaj: En Yeshúa, el juicio no es el final: es el
+                        principio de la redención. Él no expone para avergonzar, sino para limpiar. La mujer en Juan 8
+                        fue sorprendida en pecado, pero encontró perdón, no piedras. Mashíaj es el agua amarga que se
+                        vuelve agua viva.</div>
+                    <div class="conclusion">
+                        <p>✅ Reflexión Final</p>
+                        <p>La ceremonia de la Sotáh nos confronta con la realidad del pecado oculto, pero más aún con el
+                            poder sanador de la verdad revelada. Yeshúa no cancela el juicio, lo redime desde adentro,
+                            cargando la vergüenza, bebiendo la amargura, y borrando el decreto para que vivamos
+                            reconciliados con nuestro Esposo eterno.</p>
+                        <p>¿Estamos dispuestos a ser expuestos… para ser restaurados?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 12. Resumen de la Aliyáh</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 5:11–31</h2>
+                    <h3>Aliyáh 4: El juicio de la mujer sospechosa – סוֹטָה (Sotáh)</h3>
+                </div>
+                <div class="explanation">
+                    <div class="point-letter">A</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Resumen Narrativo</div>
+                            <p>En esta Aliyáh se presentan las leyes relativas a la mujer acusada de infidelidad sin
+                                evidencia directa. Este procedimiento sagrado incluye:</p>
+                            <ul>
+                                <li>La presentación de la mujer ante el kohén.</li>
+                                <li>La ofrenda de harina de cebada sin aceite ni incienso.</li>
+                                <li>La preparación de aguas amargas con polvo del santuario.</li>
+                                <li>La escritura y disolución del rollo de maldición.</li>
+                                <li>El juramento de la mujer, quien bebe el agua como señal de inocencia o culpa.</li>
+                            </ul>
+                            <p>Si es inocente, queda purificada y es bendecida; si es culpable, su cuerpo lo revela por
+                                juicio divino. Este juicio no es por venganza ni condena, sino para revelar lo oculto y
+                                restaurar la santidad del pacto matrimonial.</p>
+                        </div>
+                    </div>
+                    <div class="point-letter">B</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Aplicación Espiritual</div>
+                            <ul>
+                                <li>La fidelidad no es solo un asunto moral: es espiritual y profético.</li>
+                                <li>El juicio de Elohím puede intervenir donde los hombres no pueden discernir.</li>
+                                <li>El Nombre de Elohím es “borrado” simbólicamente para lograr reconciliación
+                                    verdadera.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">C</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Cumplimiento Mesiánico</div>
+                            <p>Yeshúa haMashíaj cumple cada dimensión de esta Aliyáh:</p>
+                            <ul>
+                                <li>Como el Kohén fiel, Él intercede por nosotros cuando hemos traicionado el pacto.
+                                </li>
+                                <li>Como el rollo escrito, Él fue llevado al madero con nuestra culpa escrita sobre Él
+                                    (Colosenses 2:14).</li>
+                                <li>Como las aguas amargas, Él bebió la copa de juicio en Getsemaní (Mateo 26:39) para
+                                    que nosotros recibiéramos agua viva.</li>
+                                <li>Como Esposo fiel, Él no repudia a la Esposa caída, sino que la restaura (Oseas
+                                    2:19–20; Efesios 5:25–27).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="point-letter">D</div>
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Conexión con el Reino de Mashíaj</div>
+                            <p>Este juicio no representa la ira de Elohím, sino Su celo santo por Su pueblo. El juicio
+                                no es el fin… es el camino hacia la restauración. Yeshúa carga el juicio para redimir a
+                                la Esposa infiel, lavarla en pureza, y vestirla de honra nuevamente.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <p>Conclusión del Resumen:</p>
+                        <p>Números 5:11–31 es una Aliyáh que pone en escena la gravedad de la fidelidad, la necesidad de
+                            discernimiento divino, y el poder del juicio que redime. Mashíaj aparece como la figura que
+                            lleva la amargura, toma el lugar del juicio, y ofrece restauración profética, revelando la
+                            verdad con gracia y llamando a la Esposa a una nueva alianza.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="content-container">
+                <h1>Punto 13. Tefiláh de la Aliyáh</h1>
+                <div class="section-container">
+                    <h2>Parashá Naso – Bemidbar / Números 5:11–31</h2>
+                    <h3>Aliyáh 4: El juicio de la mujer sospechosa – סוֹטָה (Sotáh)</h3>
+                </div>
+                <div class="explanation">
+                    <div class="prophetic-content">
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">Tefiláh – Oración inspirada en la enseñanza del juicio de la
+                                Sotáh y su cumplimiento en Yeshúa haMashíaj</div>
+                            <p>Avinu Malkeinu, Rey Justo y Esposo Fiel,</p>
+                            <p>Nos presentamos hoy ante Ti, como una Esposa que a veces ha sido infiel, que ha dudado en
+                                lo oculto, y ha caminado lejos de Tu pacto.</p>
+                            <p>Te damos gracias porque Tú no dejas el pecado sin tratar, pero tampoco abandonas al
+                                pecador sin redención. Tú ves lo que el ojo no ve, y conoces lo que no decimos con los
+                                labios.</p>
+                            <p>Gracias porque en Tu misericordia has provisto un camino de restauración: Que en vez de
+                                destruir a la Esposa infiel, Tú tomaste Su lugar; Que en vez de escribir el rollo de
+                                maldición contra nosotros, lo escribiste sobre Tu Hijo; Y que Yeshúa haMashíaj bebió las
+                                aguas amargas del juicio para que nosotros bebiéramos las aguas vivas del perdón.</p>
+                            <p>Hoy venimos ante Ti no con justificaciones, sino con un corazón abierto. Si hay en
+                                nosotros iniquidad escondida, revélala. Si hay sospecha no resuelta, límpiala. Si hay
+                                juicio sobre nuestras vidas, permítenos afrontarlo con Teshuváh, no con miedo.</p>
+                            <p>Y si ya hemos sido perdonados en Mashíaj, líbranos de la vergüenza innecesaria, restaura
+                                nuestra identidad, y recíbenos otra vez como Esposa fiel.</p>
+                            <p>Que seamos comunidad de luz, donde la verdad no se esconde, donde el pacto no se rompe
+                                con facilidad, y donde el juicio se convierte en redención.</p>
+                            <p>Barúj Atá Adonái, que restauras a la esposa infiel, que redimes a Israel con justicia, y
+                                que en Yeshúa haMashíaj nos das esperanza, pureza, y alianza renovada.</p>
+                            <p>Amén veAmén.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a></p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya5.html">Continuar con la Aliyá 5</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
