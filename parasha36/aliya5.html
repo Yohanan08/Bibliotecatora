@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 10:11-34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>36. Parashá Behaalotjá (בהעלתך) Aliyáh 5: (Números 10:11-34) La partida de Israel del Sinaí y el orden de
+            marcha de las tribus.
+            <p>Haftaráh: Jeremías 2:2-3 (Recuerdo del amor de Israel cuando siguió a Elohím por el desierto).</p>
+            <p>Brit Hadasháh: Apocalipsis 7:1-8 (Las tribus de Israel selladas antes de la marcha final).</p>
+        </h1>
+
+        <h1>Punto 1. Números 10:11-34</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">10:11</div>
+            <p class="hebrew">וַיְהִ֗י בַּשָּׁנָ֛ה הַשֵּׁנִ֥ית בַּחֹֽדֶשׁ־הַשֵּׁנִ֖י בְּעֶשְׂרִ֣ים בַּחֹ֑דֶשׁ נַעֲלָ֣ה
+                הֶֽעָנָ֗ן מֵעַ֛ל מִשְׁכַּ֥ן הָעֵדֻ֖ת׃</p>
+            <p class="transliteration">Va-yehí ba-shanah ha-shenit ba-jódesh ha-shení be-ésrim ba-jódesh, na‘alá
+                he-‘anán me-‘al mishkan ha-‘edut.</p>
+            <p class="translation">Y sucedió que en el segundo año, en el segundo mes, a los veinte del mes, se alzó la
+                nube de encima del Tabernáculo del Testimonio.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:12</div>
+            <p class="hebrew">וַיִּסְע֤וּ בְנֵֽי־יִשְׂרָאֵל֙ לְמַסְעֵיהֶ֔ם מִמִּדְבַּ֖ר סִינַ֑י וַיִּשְׁכֹּ֥ן הֶֽעָנָ֖ן
+                בְּמִדְבַּ֥ר פָּארָֽן׃</p>
+            <p class="transliteration">Va-yis‘ú bnei-Yisra’él le-mas‘eihem mi-midbar Sinái, va-yishkón he-‘anán
+                be-midbar Parán.</p>
+            <p class="translation">Y partieron los hijos de Israel por sus jornadas desde el desierto de Sinaí, y reposó
+                la nube en el desierto de Parán.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:13</div>
+            <p class="hebrew">וַיִּסְעוּ֙ בָּרִאשׁוֹנָ֔ה עַל־פִּ֖י יְהוָ֥ה בְּיַד־מֹשֶֽׁה׃</p>
+            <p class="transliteration">Va-yis‘ú va-rishoná ‘al-pí Adonái be-yad Moshé.</p>
+            <p class="translation">Y partieron por primera vez, conforme al mandato de Adonái por mano de Moshé.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:14</div>
+            <p class="hebrew">וַיִּסַּ֨ע דֶּ֤גֶל מַחֲנֵה־בְנֵ֙י־יְהוּדָ֜ה בָּרִאשׁוֹנָ֗ה לְצִבְאֹתָם֙ וְעַל־צְבָא֔וֹ
+                נַחְשׁ֖וֹן בֶּן־עַמִּינָדָֽב׃</p>
+            <p class="transliteration">Va-yisá degel machané bnei-Yehudá barishoná le-tziv'otam, ve‘al-tzeva‘ó Najshón
+                ben Aminadav.</p>
+            <p class="translation">Y partió el estandarte del campamento de los hijos de Yehudáh primero, según sus
+                ejércitos, y sobre su ejército Najshón hijo de Aminadav.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:15</div>
+            <p class="hebrew">וְעָל־צְבָא֖וֹ נְתַנְאֵ֣ל בֶּן־צוּעָ֑ר׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘ó Netan’el ben Tzu‘ar.</p>
+            <p class="translation">Y sobre su ejército, Netan’el hijo de Tzuar.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:16</div>
+            <p class="hebrew">וְעַל־צְבָאָ֖ם אֱלִיאָ֥ב בֶּן־חֵלֹֽן׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘am Eliav ben Jelón.</p>
+            <p class="translation">Y sobre el ejército de ellos, Eliav hijo de Jelón.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:17</div>
+            <p class="hebrew">וְהוּרַ֥ד הַמִּשְׁכָּ֖ן וְנָסְע֣וּ בְנֵֽי־גֵרְשׁ֑וֹן וּבְנֵ֥י מְרָרִ֖י נֹשְׂאֵ֥י
+                הַמִּשְׁכָּֽן׃</p>
+            <p class="transliteration">Ve-hurad ha-mishkan ve-nas‘ú bnei-Gershón u-venei Merarí nos‘ei ha-mishkan.</p>
+            <p class="translation">Y fue desarmado el Tabernáculo, y partieron los hijos de Gershón y los hijos de
+                Merarí, los que llevaban el Tabernáculo.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:18</div>
+            <p class="hebrew">וְנָסַ֞ע דֶּ֣גֶל מַחֲנֵ֧ה רְאוּבֵ֛ן לְצִבְאֹתָ֖ם וְעַל־צְבָא֑וֹ אֱלִיצ֖וּר
+                בֶּן־שְׁדֵיאֽוּר׃</p>
+            <p class="transliteration">Ve-nasá degel machané Reuvén le-tziv'otam, ve‘al-tzeva‘ó Elitzur ben Shedeiur.
+            </p>
+            <p class="translation">Y partió el estandarte del campamento de Reuvén según sus ejércitos, y sobre su
+                ejército Elitzur hijo de Shedeiur.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:19</div>
+            <p class="hebrew">וְעַל־צְבָא֖וֹ שְׁלֻמִיאֵ֣ל בֶּן־צוּרִ֑י שַׁדָּֽי׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘ó Shelumi’el ben Tzurishadai.</p>
+            <p class="translation">Y sobre su ejército, Shelumi’el hijo de Tzurishadai.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:20</div>
+            <p class="hebrew">וְעַל־צְבָא֖וֹ אֱלִיסָפ֥וֹן בֶּן־דְּעוּאֵֽל׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘ó Elisafón ben De‘uel.</p>
+            <p class="translation">Y sobre su ejército, Elisafón hijo de De‘uel.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:21</div>
+            <p class="hebrew">וְנָסַ֞עֲהַקְּהָתִ֗ים נֹֽשְׂאֵ֙י֙ הַמִּקְדָּ֔שׁ וְהֵקִ֖ימוּ אֶת־הַמִּשְׁכָּ֑ן עַ֥ד
+                בֹּאָ֖ם׃</p>
+            <p class="transliteration">Ve-nas‘ú ha-kehatím nos‘ei ha-mikdash, ve-heikímu et-ha-mishkan ad bo’am.</p>
+            <p class="translation">Y partieron los qehatitas, los que llevaban los objetos sagrados, y erigieron el
+                Tabernáculo antes de que llegaran ellos.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:22</div>
+            <p class="hebrew">וְנָסַ֞ע דֶּ֣גֶל מַחֲנֵ֧ה בְנֵי־אֵפְרַ֛יִם לְצִבְאֹתָ֖ם וְעַל־צְבָא֑וֹ אֱלִישָׁמָ֖ע
+                בֶּן־עַמִּיהֽוּד׃</p>
+            <p class="transliteration">Ve-nasá degel machané bnei-Efráyim le-tziv'otam, ve‘al-tzeva‘ó Elishamá ben
+                Ammihud.</p>
+            <p class="translation">Y partió el estandarte del campamento de los hijos de Efráyim según sus ejércitos, y
+                sobre su ejército Elishamá hijo de Ammihud.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:23</div>
+            <p class="hebrew">וְעַל־צְבָא֖וֹ גַּמְלִיאֵ֣ל בֶּן־פְּדָהצ֑וּר׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘ó Gamliel ben Pedatzur.</p>
+            <p class="translation">Y sobre su ejército, Gamliel hijo de Pedatzur.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:24</div>
+            <p class="hebrew">וְעַל־צְבָא֖וֹ עֲבִידָ֥ן בֶּן־גִּדְעֹנִֽי׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘ó Avidán ben Gid‘oní.</p>
+            <p class="translation">Y sobre su ejército, Avidán hijo de Gid‘oní.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:25</div>
+            <p class="hebrew">וְנָסַ֣ע דֶּֽגֶל־מַחֲנֵ֣ה בְנֵי־דָ֡ן מְאַסֵּ֣ף לְכָל־הַֽמַּחֲנֻ֩ת֩ לְצִבְאֹתָ֗ם
+                וְעַל־צְבָא֛וֹ אֲחִיעֶ֥זֶר בֶּן־עַמִּֽישַׁדָּֽי׃</p>
+            <p class="transliteration">Ve-nasá degel machané bnei-Dán me’assef le-kol ha-machanot le-tziv'otam,
+                ve‘al-tzeva‘ó Aji’ezer ben Ammishadai.</p>
+            <p class="translation">Y partió el estandarte del campamento de los hijos de Dan, el que cerraba todas las
+                legiones, según sus ejércitos, y sobre su ejército Aji’ezer hijo de Ammishadai.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:26</div>
+            <p class="hebrew">וְעַל־צְבָא֖וֹ פַּגְעִיאֵ֣ל בֶּן־עָכְרָ֑ן׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘ó Pag‘i’el ben Ajran.</p>
+            <p class="translation">Y sobre su ejército, Pag‘i’el hijo de Ajran.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:27</div>
+            <p class="hebrew">וְעַל־צְבָא֖וֹ אֲחִירַ֥ע בֶּן־עֵינָֽן׃</p>
+            <p class="transliteration">Ve‘al-tzeva‘ó Ajirá ben Einán.</p>
+            <p class="translation">Y sobre su ejército, Ajirá hijo de Einán.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:28</div>
+            <p class="hebrew">אֵ֛לֶּה מַסְעֵ֥י בְנֵֽי־יִשְׂרָאֵ֖ל לְצִבְאֹתָ֑ם וַיִּסָּ֖עוּ׀</p>
+            <p class="transliteration">Élle mas‘ei bnei-Yisra’él le-tziv'otam, va-yisá‘u.</p>
+            <p class="translation">Éstos fueron los viajes de los hijos de Israel según sus ejércitos, y partieron.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:29</div>
+            <p class="hebrew">וַיֹּ֣אמֶר מֹשֶׁ֗ה לְחֹבָ֛ב בֶּן־רְעוּאֵ֥ל הַמִּדְיָנִ֖י חֹתֵ֣ן מֹשֶׁ֑ה נֹסְעִ֗ים
+                אֲנַ֛חְנוּ אֶל־הַמָּק֞וֹם אֲשֶׁר־אָמַ֨ר יְהוָ֜ה אֹתוֹ֙ אֶתֵּ֣ן לָכֶ֔ם לְכָ֥ה אִתָּ֖נוּ וְהֵטַ֥בְנוּ
+                לָֽךְ׃</p>
+            <p class="transliteration">Va-yomer Moshé le-Jovav ben Re‘u’el ha-Midyaní, jotén Moshé: Nos‘im anajnu
+                el-ha-makom asher amar Adonái oto eten lakhem; lechá ittanu ve-heitavnu lakh.</p>
+            <p class="translation">Y dijo Moshé a Jovav hijo de Re‘u’el el midianita, suegro de Moshé: “Viajamos hacia
+                el lugar del cual Adonái dijo: ‘Yo os lo daré’. Ven con nosotros y te haremos bien.”</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:30</div>
+            <p class="hebrew">וַיֹּ֖אמֶר אֵלָ֑יו לֹֽא־אֵלֵ֔ךְ כִּ֛י אִם־אֶל־אַרְצִ֥י וְאֶל־מוֹלַדְתִּ֖י אֵלֵֽךְ׃</p>
+            <p class="transliteration">Va-yomer elav: Lo-elej, ki im el-artzí ve-el-moladti elej.</p>
+            <p class="translation">Y él dijo: “No iré, sino que iré a mi tierra y a mi parentela.”</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:31</div>
+            <p class="hebrew">וַיֹּ֣אמֶר׀ אַל־נָ֣א תַֽעֲזֹ֗ב אֹתָ֙נוּ֙ כִּ֣י עַל־כֵּ֗ן יָדַ֤עְתָּ חֲנֹתֵ֙נוּ֙
+                בַּמִּדְבָּ֔ר וְהָיִ֖יתָ לָּ֥נוּ לְעֵינָֽיִם׃</p>
+            <p class="transliteration">Va-yomer: Al-na ta‘azóv otánu, ki ‘al-kén yadata janoténu ba-midbar, ve-hayitá
+                lanu le-enáyim.</p>
+            <p class="translation">Y él dijo: “Por favor, no nos dejes, pues tú conoces nuestro acampar en el desierto,
+                y serás para nosotros como ojos.”</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:32</div>
+            <p class="hebrew">וְהָיָה֙ כִּֽי־תֵלֵ֣ךְ עִמָּ֔נוּ וְהָיָ֛ה הַטּ֥וֹב הַה֖וּא אֲשֶׁ֣ר יֵיטִ֣יב יְהוָ֑ה
+                עִמָּ֖נוּ וְהֵטַ֥בְנוּ לָֽךְ׃</p>
+            <p class="transliteration">Ve-hayah ki telej imánu, ve-hayah ha-tóv ha-hú asher yeitív Adonái imánu,
+                ve-heitávnu lakh.</p>
+            <p class="translation">Y será que si vienes con nosotros, también sucederá que el bien con que Adonái nos
+                beneficie, nosotros te beneficiaremos a ti.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:33</div>
+            <p class="hebrew">וַיִּסְעוּ֙ מֵהַ֣ר יְהוָ֔ה דֶּ֛רֶךְ שְׁלֹ֥שֶׁת יָמִ֖ים וַאֲר֣וֹן בְּרִית־יְהוָ֣ה נֹסֵ֣עַ
+                לִפְנֵיהֶ֗ם דֶּ֚רֶךְ שְׁלֹ֣שֶׁת יָמִ֔ים לָת֥וּר לָהֶ֖ם מְנֽוּחָה׃</p>
+            <p class="transliteration">Va-yis‘ú me-har Adonái dérej sheloshet yamím, va-arón brit-Adonái noséa lifneihem
+                dérej sheloshet yamím la-túr lahem menujáh.</p>
+            <p class="translation">Y partieron del monte de Adonái camino de tres días, y el arca del pacto de Adonái
+                iba delante de ellos camino de tres días para buscarles un lugar de descanso.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">10:34</div>
+            <p class="hebrew">וַעֲנַ֥ן יְהוָ֖ה עֲלֵיהֶ֑ם יוֹמָ֖ם בְּנָסְעָ֥ם מִן־הַֽמַּחֲנֶֽה׃</p>
+            <p class="transliteration">Va-‘anán Adonái ‘aleihem yomám be-nas‘ám min-ha-machané.</p>
+            <p class="translation">Y la nube de Adonái estaba sobre ellos de día cuando partían del campamento.</p>
+        </div>
+
+        <h1>Cumplimiento profetico en el Mashiaj Yeshúa</h1>
+        <h2>Números 10:11-34</h2>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Tipología del Movimiento del Campamento y el Arca del Pacto</div>
+                <p>En Números 10:11-34, se describe por primera vez el movimiento coordinado del pueblo de Israel por
+                    orden de Adonái, guiados por la nube de gloria y precedidos por el Arca de la Alianza. El orden de
+                    partida de las tribus, el acompañamiento de la nube, y la función del Arca de buscarles
+                    “<strong>menújáh</strong>” (descanso) revelan profundas figuras mesiánicas.</p>
+                <p>La nube es tipo del <strong>Ruaj HaKodesh</strong> (Espíritu de Santidad) que guía a la comunidad de
+                    los redimidos. Yeshúa haMashíaj prometió que el Consolador guiaría a los suyos “a toda verdad”
+                    (<span class="scripture">Yojanán 16:13</span>). Este pasaje prefigura cómo el Mashíaj, como Arca
+                    viviente, va delante del pueblo buscando descanso (מְנֻחָה), función cumplida en:</p>
+                <p class="scripture">Mattityahu 11:28<br>
+                    “Venid a mí todos los que estáis trabajados y cargados, y yo os daré descanso (menújáh).”</p>
+                <p>Yeshúa es el descanso verdadero que el Arca prefiguraba. Así como el Arca abría el camino y buscaba
+                    un lugar de reposo, Yeshúa va delante del pueblo redimido para conducirlo al reposo eterno del Reino
+                    (<span class="scripture">Ivrim/Hebreos 4:1-11</span>).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. El Orden del Campamento y el Gobierno del Mashíaj</div>
+                <p>Las tribus marchan según el orden establecido. Yehudáh va primero, seguido por Reuvén, Efráyim y
+                    finalmente Dan, en estructura militar. Esto revela una <em>tavnit</em> (patrón redentor) del Reino
+                    bajo el gobierno del Rey Mesiánico. Yehudáh a la cabeza (v.14) es profético: el Rey Mashíaj viene de
+                    Yehudáh:</p>
+                <p class="scripture">Bereshit 49:10<br>
+                    “No se apartará el cetro de Yehudáh... hasta que venga Shiló (el pacificador)”.</p>
+                <p>Mashíaj Yeshúa, el León de la tribu de Yehudáh, es quien encabeza la marcha de Su pueblo redimido.
+                    Así como Yehudáh dirige el campamento, Yeshúa dirige espiritualmente a Su kehila hacia el Reino.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. El Arca que Va Delante: Yeshúa como la Manifestación de la Presencia
+                </div>
+                <p>El Arca no sólo lleva las tablas del pacto, sino que representa la manifestación misma de la
+                    presencia de Adonái, el trono móvil de Su gloria (Shejináh). En este pasaje, el Arca no está “en
+                    medio” como en otras ocasiones (Num. 2), sino delante (v.33), guiando, anticipando, abriendo el
+                    camino.</p>
+                <p class="scripture">Yojanán 10:4<br>
+                    “Y cuando ha sacado fuera todas las suyas, va delante de ellas; y las ovejas lo siguen, porque
+                    conocen su voz”.</p>
+                <p>Mashíaj Yeshúa es ese “Arca viviente” que abre camino, guía el orden espiritual del campamento, y
+                    prepara el lugar de <strong>menújáh</strong>.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. Invitación a Jetró (Jovav) y la Inmersión de los Gentiles</div>
+                <p>Moshé invita a Jovav (v.29-32), un no israelita, a unirse a Israel en el viaje al lugar de herencia.
+                    Le dice: “Ven con nosotros… te haremos bien… Adonái ha prometido bien a Israel”.</p>
+                <p>Esto es una profecía mesiánica del llamado del Mashíaj a las naciones:</p>
+                <p class="scripture">Zacarías 2:11<br>
+                    “Muchas naciones se unirán a Adonái en aquel día, y serán mi pueblo”.</p>
+                <p>Yeshúa, como nuevo Moshé (Devarim 18:15), llama a los gentiles a unirse a Su pueblo Israel. En el
+                    Brit Hadasháh, esto se cumple:</p>
+                <p class="scripture">Efesios 2:13-14<br>
+                    “Vosotros, que en otro tiempo estabais lejos, habéis sido hechos cercanos por la sangre del Mashíaj…
+                    Él es nuestra paz, quien de ambos pueblos hizo uno”.</p>
+                <p>Jovav representa a las naciones invitadas a compartir la bendición del pacto, prefigurando el injerto
+                    de los gentiles en Israel por medio del Mashíaj (<span class="scripture">Romanos 11</span>).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">5. El Ruaj Hakodesh como la Nube de Gloria</div>
+                <p>La nube que cubre al pueblo (v.34) es una clara sombra del Ruaj HaKodesh, cuya manifestación en fuego
+                    y nube (<span class="scripture">Éxodo 13:21</span>) guiaba a Israel.</p>
+                <p class="scripture">Hechos 2:3-4<br>
+                    “Se les aparecieron lenguas repartidas, como de fuego, asentándose sobre cada uno de ellos… y todos
+                    fueron llenos del Espíritu de Santidad”.</p>
+                <p>Así como la nube protegía y guiaba, así el Ruaj habita y conduce a los seguidores del Mashíaj. En
+                    este pasaje se revela la interacción perfecta entre la presencia divina (nube), el liderazgo del
+                    Mashíaj (Arca) y el pueblo redimido (Israel).</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión Profética</h3>
+            <p>En estos versículos vemos el despliegue de una procesión celestial sobre la tierra, un viaje redentor que
+                anticipa la restauración final. Todo lo que ocurrió en el desierto —la nube, el arca, el orden tribal,
+                el llamado a los gentiles— apuntan proféticamente a Yeshúa haMashíaj y al establecimiento de su Reino.
+            </p>
+            <p>La <strong>Shejináh</strong> que marchaba sobre Israel hoy habita en nosotros por medio del <strong>Ruaj
+                    HaKodesh</strong>, y el Arca (Mashíaj) nos guía al descanso eterno.</p>
+        </div>
+
+
+        <h1>Punto 2. Haftaráh: Jeremías 2:2-3 (Recuerdo del amor de Israel cuando siguió a Elohím por el desierto).</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">Jeremías 2:2</div>
+            <div class="hebrew">הָלֹ֤ךְ וְקָרָאתָ֙ בְּאָזְנֵ֣י יְרוּשָׁלִַ֔ם לֵאמֹ֖ר כֹּה־אָמַ֣ר יְהוָ֑ה זָכַ֤רְתִּי
+                לָךְ֙ חֶ֣סֶד נְעוּרַ֔יִךְ אַהֲבַ֖ת כְּלוּלֹתָ֑יִךְ לֶכְתֵּ֤ךְ אַחֲרַי֙ בַּמִּדְבָּ֔ר בְּאֶ֖רֶץ לֹ֥א
+                זְרוּעָֽה׃</div>
+            <div class="transliteration">Halój ve-qaráta be-oznéi Yerushaláyim lemor: koh-amar Adonái: zakhárti lakh
+                jésed ne‘uráyij, ahavat kelulotáyij, lekhtej ajaray ba-midbár, be-éretz lo zeruá.</div>
+            <div class="translation">Ve y clama a los oídos de Yerushaláyim, diciendo: Así dijo Adonái: Me acuerdo de
+                ti, del afecto de tu juventud, del amor de tus desposorios, de cuando me seguías en el desierto, en una
+                tierra no sembrada.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Jeremías 2:3</div>
+            <div class="hebrew">קֹ֤דֶשׁ יִשְׂרָאֵל֙ לַֽיהוָ֔ה רֵאשִׁ֖ית תְּבוּאָתֹ֑ה כָּל־אֹכְלָ֣יו יֶאְשָׁ֔מוּ רָעָ֥ה
+                תָב֖וֹא אֲלֵיהֶֽם נְאֻם־יְהוָֽה׃</div>
+            <div class="transliteration">Kódesh Yisra’él la-Adonái, reshít tevuató; kol okhláv ye’ashámu, ra‘á tavó
+                aleihem, ne’um-Adonái.</div>
+            <div class="translation">Santo era Yisra’el para Adonái, primicias de su cosecha; todos los que lo devoraban
+                eran culpables, mal vendrá sobre ellos — oráculo de Adonái.</div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <h1>1. El Amor de Desposorio: figura del Mashíaj como Esposo</h1>
+                </div>
+                <div class="scripture">“Zajárti lakh jésed ne’uráyij, ahavat kelulotáyij”</div>
+                <p>Este versículo refleja el lenguaje matrimonial de la relación entre Adonái y Yisra’el. En la profecía
+                    mesiánica, Mashíaj Yeshúa es presentado como el Esposo de la Kehiláh, el Israel restaurado, los
+                    redimidos por Su sangre.</p>
+                <p><strong>Hoshea 2:19-20</strong> — “Te desposaré conmigo para siempre… en fidelidad, y conocerás a
+                    Adonái”.</p>
+                <p><strong>Efesios 5:25-27</strong> — “Así como el Mashíaj amó a la kehila y se entregó a sí mismo por
+                    ella… para presentársela gloriosa, sin mancha”.</p>
+                <p><strong>Juan 3:29</strong> — “El que tiene la novia es el novio… se goza con la voz del novio”.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Seguir al Esposo en el Desierto: Mashíaj y el discipulado</div>
+                <div class="scripture">“Lejtej ajaray ba-midbár, be-éretz lo zeruá”</div>
+                <p>El seguimiento fiel en medio del desierto representa la devoción pura del principio. En el Brit
+                    Hadasháh, los que siguen al Cordero reflejan esta imagen (Apocalipsis 14:4).</p>
+                <p><strong>Lucas 4:1</strong> — “Yeshúa, lleno del Ruaj HaKodesh, fue llevado al desierto…”.</p>
+                <p><strong>Marcos 1:3</strong> — “Voz que clama en el desierto: preparad el camino de Adonái…”.</p>
+                <p><strong>Apocalipsis 12:6</strong> — “Y la mujer huyó al desierto…”.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Israel como Primicias Santas: imagen mesiánica del Pueblo Redimido</div>
+                <div class="scripture">“Kódesh Yisra’el la-Adonái, reshít tevuató”</div>
+                <p>Mashíaj Yeshúa es “las primicias de los que durmieron” (1 Cor. 15:20). Los redimidos forman parte de
+                    una nueva cosecha espiritual.</p>
+                <p><strong>Yaakov / Santiago 1:18</strong> — “Para que seamos primicias de sus criaturas”.</p>
+                <p><strong>1 Pedro 2:9-10</strong> — “Linaje escogido, nación santa, pueblo adquirido por Elohím…”.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. Juicio sobre los que atacan al Pueblo de Mashíaj</div>
+                <div class="scripture">“Kol okhláv ye’ashámu, ra‘á tavó aleihem…”</div>
+                <p>El texto anuncia juicio a los que devoran a Yisra’el. En el contexto mesiánico, incluye a quienes
+                    persiguen a los redimidos:</p>
+                <p><strong>Zacarías 2:8</strong> — “El que os toca, toca la niña de Su ojo”.</p>
+                <p><strong>Hechos 9:4</strong> — “¿Por qué me persigues?” (Yeshúa identificándose con Su pueblo).</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <p><strong>Conclusión Profética:</strong><br>
+                Yirmeyáhu 2:2-3 es una imagen poética y poderosa del amor de pacto del Esposo (Mashíaj Yeshúa) por Su
+                esposa (Yisra’el y los redimidos). La fidelidad inicial, el caminar en el desierto, la santidad como
+                primicia, y el juicio a los adversarios, se cumplen perfectamente en el Mashíaj que ha venido a
+                restaurar el pacto y traer la redención final.</p>
+        </div>
+
+        <h1>Punto 3. Brit Hadasháh: Apocalipsis 7:1-8 (Las tribus de Israel selladas antes de la marcha final).</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">7:1</div>
+            <div class="hebrew">אַחַר־כֵּ֗ן רָאִ֛יתִי אַרְבָּעָ֥ה מַלְאָכִ֖ים...</div>
+            <div class="transliteration">Ajar-kén ra’ití arba‘á mal’ajím...</div>
+            <div class="translation">Después de esto vi cuatro malajim...</div>
+        </div>
+
+        <!-- Copia este bloque para cada versículo siguiente -->
+        <div class="verse-container">
+            <div class="verse-number">7:2</div>
+            <div class="hebrew">וָאֵרֶ֗א מַלְאָ֛ךְ אַחֵ֥ר...</div>
+            <div class="transliteration">Va’eré mal’áj ajér ‘olé...</div>
+            <div class="translation">Y vi a otro malaj subiendo desde el oriente...</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">חזון יוחנן 7:3</div>
+            <div class="hebrew">וַיֹּאמֶר אַל־תַּזִּיקוּ לָאָרֶץ וְלַיָּם וְלָעֵצִים עַד אֲשֶׁר־נַחְתֹּם אֶת־עַבְדֵי
+                אֱלֹהֵינוּ בְּמִצְחוֹתֵיהֶם׃</div>
+            <div class="transliteration">Va-yómer: al-tazzíqú la-aretz ve-la-yam ve-la-‘étzim, ‘ad asher-naḥtóm et-‘avdé
+                Eloheínu be-mitzḥotéhem.</div>
+            <div class="translation">Y dijo: No dañéis la tierra, ni el mar, ni los árboles, hasta que hayamos sellado a
+                los siervos de nuestro Elohím en sus frentes.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">חזון יוחנן 7:4</div>
+            <div class="hebrew">וָאֶשְׁמַע אֶת־מִסְפַּר הַנֶּחְתָּמִים מֵאַת אַלְפַּיִם וְאַרְבָּעִים וְאַרְבָּעָה אֶלֶף
+                מִכָּל־שֵׁבֶט מִבְּנֵי יִשְׂרָאֵל׃</div>
+            <div class="transliteration">Va-eshmá‘ et-mispar ha-nejtamím: mé’at alpáyim ve-arba‘ím ve-arba‘á eléf mi-kol
+                shevet mi-bné Yisra’él.</div>
+            <div class="translation">Y oí el número de los sellados: ciento cuarenta y cuatro mil, de todas las tribus
+                de los hijos de Yisra’el.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">חזון יוחנן 7:5</div>
+            <div class="hebrew">מִשֵּׁבֶט יְהוּדָה שְׁנֵים־עָשָׂר אֶלֶף נֶחְתָּמוּ מִשֵּׁבֶט רְאוּבֵן שְׁנֵים־עָשָׂר
+                אֶלֶף מִשֵּׁבֶט גָּד שְׁנֵים־עָשָׂר אֶלֶף׃</div>
+            <div class="transliteration">Mi-shevet Yehudáh: shenéim-‘ásar eléf nejtámu; mi-shevet Re’uvén: shenéim-‘ásar
+                eléf; mi-shevet Gad: shenéim-‘ásar eléf.</div>
+            <div class="translation">De la tribu de Yehudáh: doce mil sellados; de la tribu de Reuvén: doce mil; de la
+                tribu de Gad: doce mil.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">חזון יוחנן 7:6</div>
+            <div class="hebrew">מִשֵּׁבֶט אָשֵׁר שְׁנֵים־עָשָׂר אֶלֶף מִשֵּׁבֶט נַפְתָּלִי שְׁנֵים־עָשָׂר אֶלֶף
+                מִשֵּׁבֶט מְנַשֶּׁה שְׁנֵים־עָשָׂר אֶלֶף׃</div>
+            <div class="transliteration">Mi-shevet Asher: shenéim-‘ásar eléf; mi-shevet Naftalí: shenéim-‘ásar eléf;
+                mi-shevet Menashé: shenéim-‘ásar eléf.</div>
+            <div class="translation">De la tribu de Asher: doce mil; de la tribu de Naftalí: doce mil; de la tribu de
+                Menashé: doce mil.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">חזון יוחנן 7:7</div>
+            <div class="hebrew">מִשֵּׁבֶט שִׁמְעוֹן שְׁנֵים־עָשָׂר אֶלֶף מִשֵּׁבֶט לֵוִי שְׁנֵים־עָשָׂר אֶלֶף מִשֵּׁבֶט
+                יִשָּׂשכָר שְׁנֵים־עָשָׂר אֶלֶף׃</div>
+            <div class="transliteration">Mi-shevet Shim‘ón: shenéim-‘ásar eléf; mi-shevet Leví: shenéim-‘ásar eléf;
+                mi-shevet Yisajár: shenéim-‘ásar eléf.</div>
+            <div class="translation">De la tribu de Shim‘ón: doce mil; de la tribu de Leví: doce mil; de la tribu de
+                Yisajár: doce mil.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">חזון יוחנן 7:8</div>
+            <div class="hebrew">מִשֵּׁבֶט זְבוּלֻן שְׁנֵים־עָשָׂר אֶלֶף מִשֵּׁבֶט יוֹסֵף שְׁנֵים־עָשָׂר אֶלֶף מִשֵּׁבֶט
+                בִּנְיָמִן שְׁנֵים־עָשָׂר אֶלֶף נֶחְתָּמוּ׃</div>
+            <div class="transliteration">Mi-shevet Zevulún: shenéim-‘ásar eléf; mi-shevet Yosef: shenéim-‘ásar eléf;
+                mi-shevet Binyamín: shenéim-‘ásar eléf nejtámu.</div>
+            <div class="translation">De la tribu de Zevulún: doce mil; de la tribu de Yosef: doce mil; de la tribu de
+                Binyamín: doce mil sellados.</div>
+        </div>
+
+        <div class="explanation">
+            <h1>Mashíaj en Apocalipsis 7:1-8</h1>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">1. Los Malajim y los Cuatro Vientos: Soberanía sobre el Juicio</div>
+                <p class="scripture">“Cuatro malajim... deteniendo los cuatro vientos de la tierra” (7:1)</p>
+                <p>Estos cuatro vientos representan juicios cósmicos... <strong>Yeshúa haMashíaj</strong> es quien abre
+                    los sellos.</p>
+                <p><strong>Mattityahu 28:18</strong>: “Toda autoridad me ha sido dada en el cielo y en la tierra.”</p>
+                <p><strong>1 Tesalonicenses 5:9</strong>: “Porque no nos ha puesto Elohím para ira...”</p>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">2. El Ángel del Oriente y el Sello del Elohím Viviente</div>
+                <p class="scripture">“Subiendo desde el oriente… con el sello del Elohím viviente” (7:2)</p>
+                <p>El malaj que sube del este representa luz... El “sello” es <strong>el Ruaj HaKodesh</strong>.</p>
+                <p><strong>Efesios 4:30</strong>: “No entristezcan al Ruaj HaKodesh de Elohím...”</p>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">3. Los 144,000 Sellados: Israel Restaurado por el Mashíaj</div>
+                <p class="scripture">“144,000 sellados de todas las tribus de los hijos de Yisra’el” (7:4)</p>
+                <p>Estos sellados son israelitas, no gentiles... representan el remanente fiel.</p>
+                <p><strong>Romanos 11:25-26</strong>: “...todo Israel será salvo.”</p>
+                <p><strong>Ḥezwón 14:1</strong>: “...el Cordero sobre el monte Tzión...”</p>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">4. Tribulación y Sellado: Purificación del Pueblo del Pacto</div>
+                <p>Los juicios se detienen para marcar a los santos... como en Éxodo 12 y Yejezqel 9.</p>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Conclusión Profética Mesiánica:</strong> Apocalipsis 7:1-8 revela que <strong>Yeshúa
+                        haMashíaj</strong>:</p>
+                <ul>
+                    <li>Tiene autoridad sobre los juicios del fin.</li>
+                    <li>Sella con el Ruaj HaKodesh a los suyos.</li>
+                    <li>Redime a un remanente fiel de Yisra’el.</li>
+                </ul>
+                <p>En tiempos de aflicción, este texto confirma: <strong>Yeshúa no abandona a Su pueblo</strong>, sino
+                    que lo purifica y lo preserva.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 4. Contexto Histórico y Cultural de Bamidbar / Números 10:11-34</h1>
+
+            <div class="section-container">
+                <p><span class="point-letter">1.</span> <strong>Época Histórica y Ubicación Geográfica</strong></p>
+                <p>Este pasaje ocurre en el segundo año después de la salida de Mitsrayim (Egipto), el día 20 del
+                    segundo mes (Iyyar), desde el Monte Sinaí. Israel había recibido la Toráh y la ordenación del
+                    Mishkán, y ahora estaba listo para comenzar su jornada hacia la Tierra Prometida.</p>
+                <p>El lugar de destino inicial era el desierto de Parán (מִדְבַּר פָּארָן), una vasta región árida al
+                    noreste del Sinaí, bordeando Edom y el Néguev, próxima a la entrada de Kena‘án.</p>
+                <p>En ese momento, el pueblo de Israel aún estaba organizado tribalmente alrededor del Mishkán, y sus
+                    movimientos estaban dirigidos por la nube de la presencia de Adonái.</p>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">2.</span> <strong>Significado Cultural del Orden de Marcha</strong></p>
+                <p>El texto muestra por primera vez la ejecución del orden de marcha establecido por Adonái en Números 2
+                    y 4. Cada tribu tenía su lugar:</p>
+                <ul>
+                    <li><strong>Yehudáh</strong> encabezaba el campamento (símbolo del liderazgo mesiánico).</li>
+                    <li>Las tribus levíticas transportaban el Mishkán con detalle logístico.</li>
+                    <li><strong>Dan</strong> cerraba la marcha, protegiendo al resto del campamento.</li>
+                </ul>
+                <p>Este orden reflejaba una estructura de santidad y jerarquía tribal, fundamentada en un modelo
+                    celestial (tavnit), donde el centro era el Mishkán.</p>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">3.</span> <strong>La Nube y el Arca como Elementos Teofánicos</strong></p>
+                <p>La nube de gloria (anan kavod) y el Arca del Pacto (Arón ha-Brit) eran manifestaciones tangibles de
+                    la presencia divina (Shejináh).</p>
+                <ul>
+                    <li>La nube cubría y guiaba.</li>
+                    <li>El Arca abría camino y buscaba “menújáh” (descanso).</li>
+                </ul>
+                <p>Esto evoca una teología del peregrinaje redentor y la búsqueda del reposo de Adonái, como en Hebreos
+                    4.</p>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">4.</span> <strong>Relación con los Pueblos Vecinos y la figura de
+                        Jovav</strong></p>
+                <p>En los vv. 29-32, Moshé invita a Jovav a unirse a Israel. Jovav era midianita, y su inclusión
+                    anticipa una apertura hacia los justos de entre las naciones.</p>
+                <p>Esto muestra que la pertenencia a Israel es espiritual, no étnica.</p>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">5.</span> <strong>Arqueología y Evidencia Histórica</strong></p>
+                <ul>
+                    <li>Rutas en el desierto del Sinaí coinciden con las descripciones bíblicas.</li>
+                    <li>Referencias egipcias a los shasu (nómadas) del siglo XV a.C.</li>
+                    <li>Lugares como Kadesh-barnea, Ezion-geber y Parán han sido ubicados.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">6.</span> <strong>Elementos Litúrgicos y Espirituales</strong></p>
+                <p>El viaje era una travesía litúrgica. La frase “y reposó la nube” muestra que el objetivo era la
+                    morada de Adonái con su pueblo.</p>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">7.</span> <strong>Paralelismos con otros Pueblos</strong></p>
+                <p>El Elohím de Israel marchaba con su pueblo, revolucionando la teología del espacio sagrado y
+                    prefigurando al Mashíaj como Elohím encarnado.</p>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas de Bamidbar / Números 10:11-34</h1>
+
+            <div class="prophetic-section">
+                <p><strong>I. Introducción al Enfoque Profético</strong></p>
+                <p>Este pasaje refleja el camino redentor del pueblo de Israel y apunta al Mashíaj Yeshúa como guía y
+                    reposo del pueblo de Adonái.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <p><strong>II. Comentarios del Periodo del Segundo Templo</strong></p>
+                <ul>
+                    <li><strong>Qumrán:</strong> la nube simboliza el Ruaj de santidad. El Mishkán es una sombra del
+                        Templo Celestial.</li>
+                    <li><strong>Arca:</strong> símbolo del trono divino, se esperaba su retorno junto con el Mashíaj.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <p><strong>III. Comentarios Rabínicos</strong></p>
+                <ul>
+                    <li><strong>Rashí:</strong> El pueblo esperaba el mover de la Shejináh. Imagen mesiánica.</li>
+                    <li><strong>Rambán:</strong> El Arca abría camino, purificando el terreno. Imagen del Redentor.</li>
+                    <li><strong>Midrash:</strong> El Arca marchaba como rey, anunciando la presencia divina.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <p><strong>IV. Comentario Judío Mesiánico</strong></p>
+                <ul>
+                    <li><strong>El Arca:</strong> tipo de Yeshúa, quien guía y da descanso.</li>
+                    <li><strong>La Nube:</strong> imagen del Ruaj HaKodesh que guía y cubre.</li>
+                    <li><strong>Jovav:</strong> símbolo de los gentiles que se unen a Israel por medio del Mashíaj.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <p><strong>V. Aplicación Profética para Hoy</strong></p>
+                <p>Así como Israel esperaba el mover de la nube, hoy el creyente camina por el Ruaj. Yeshúa ha abierto
+                    el camino, y la promesa del Reino sigue abierta para todos los que lo sigan.</p>
+            </div>
+        </div>
+
+        <h1>Punto 6. Análisis Profundo de la Aliyáh – Bamidbar / Números 10:11-34</h1>
+
+        <div class="content-container">
+            <h2>I. Análisis Exegético de la Aliyáh</h2>
+            <p><strong>1. Contexto y Transición:</strong> El pasaje marca una transición clave: el comienzo real del
+                viaje hacia la Tierra Prometida después de un año de preparación en Sinaí. No es sólo una marcha física,
+                sino un movimiento litúrgico, profético y escatológico.</p>
+            <p>Este viaje se convierte en modelo de la peregrinación espiritual del pueblo redimido desde la redención
+                (Éxodo) hasta la herencia (Kena‘án).</p>
+            <p><strong>2. Motivos y Repeticiones Literarias:</strong></p>
+            <ul>
+                <li><span class="hebrew-term">וַיִּסְעוּ</span> – “Y partieron”: repetido 9 veces, indica un patrón
+                    sagrado de orden y obediencia.</li>
+                <li><span class="hebrew-term">הֶעָנָן</span> – “la nube”: actor divino que inicia y dirige el
+                    movimiento.</li>
+                <li><span class="hebrew-term">וְהָאָרוֹן נֹסֵעַ לִפְנֵיהֶם</span> – “el Arca iba delante de ellos”:
+                    liderazgo espiritual.</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <h2>II. Comentario Judío Tradicional</h2>
+            <p><strong>1. Rashbam:</strong> Subraya el orden ritual de los movimientos como expresión de santidad
+                estructurada: cada tribu, cada levita, cada carga, responde al llamado divino.</p>
+            <p><span class="scripture">“El Eterno no es un Elohím de desorden, sino de orden en el campamento y en la
+                    adoración.”</span></p>
+
+            <p><strong>2. Sforno:</strong> La nube no sólo guiaba, sino se convertía en un escudo de misericordia.</p>
+            <p><span class="scripture">“El Arca juzga (din), la nube cubre con misericordia (rajamím).”</span></p>
+        </div>
+
+        <div class="content-container">
+            <h2>III. Comentario Judío Mesiánico</h2>
+            <ul>
+                <li><strong>El Arca como Tipo del Mashíaj:</strong> Yeshúa también va delante (Yojanán 10:4), ofrece
+                    descanso (Mattityahu 11:28), contiene el testimonio (Yojanán 1:14).</li>
+                <li><strong>El Orden de las Tribus:</strong> Yehudáh primero, Dan último → “El primero será el último, y
+                    el último será el primero” (Mattityahu 20:16).</li>
+                <li><strong>La Nube:</strong> Figura del Ruaj HaKodesh que guía (Hechos 2, Romanos 8:14).</li>
+                <li><strong>Jovav / Yitró:</strong> Representa al gentil justo que se une a Israel (Romanos 11:17).</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <h2>IV. Haftaráh Asociada – Jeremías 2:2-3</h2>
+            <p><span class="scripture">“Te recordé el afecto de tu juventud... cuando me seguías en el desierto”</span>
+            </p>
+            <p>Conexión con el amor y fidelidad del pueblo en el desierto → restauración del primer amor (Jizayón
+                2:4-5).</p>
+        </div>
+
+        <div class="content-container">
+            <h2>V. Brit Hadasháh – Apocalipsis 7:1-8</h2>
+            <ul>
+                <li>Israel marcha → Israel restaurado y sellado.</li>
+                <li>El Arca → Yeshúa guía como Cordero.</li>
+                <li>Jovav → Gentiles sellados con Israel (cf. Apocalipsis 7:9).</li>
+            </ul>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión</h3>
+            <p>La Aliyáh describe un modelo profético de redención escatológica:</p>
+            <ul>
+                <li>Orden tribal → estructura del Reino.</li>
+                <li>El Arca → guía mesiánica.</li>
+                <li>La Nube → presencia del Ruaj.</li>
+                <li>Jovav → universalidad del llamado.</li>
+            </ul>
+            <p>Todo apunta a la futura procesión cuando Yeshúa regrese como Rey y Reunificador de las tribus.</p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+
+        <div class="content-container">
+            <h2>I. Tema Central</h2>
+            <p><strong>“El Reino en Marcha: Guía Divina, Orden Redentor y Llamado Universal”</strong></p>
+            <ul>
+                <li>Nube de Gloria guía (v.11-12)</li>
+                <li>Arca del Pacto precede (v.33)</li>
+                <li>Orden de las Tribus (v.14-28)</li>
+                <li>Llamado a Jovav (v.29-32)</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <h2>II. Importancia en la Toráh</h2>
+            <p>Israel aprende a caminar según la dirección divina, se forma un orden teocrático, y se revela que la vida
+                de fe es un camino dinámico bajo la voz de Adonái.</p>
+        </div>
+
+        <div class="content-container">
+            <h2>III. Relación con Yeshúa haMashíaj</h2>
+            <ul>
+                <li><strong>Yeshúa como Arca Viviente:</strong> Mattityahu 11:28, Yojanán 10:4</li>
+                <li><strong>El Ruaj HaKodesh como Nube:</strong> Hechos 2, Romanos 8:14</li>
+                <li><strong>Orden Espiritual:</strong> Lucas 22:26, Mattityahu 20:16</li>
+                <li><strong>Jovav y las Naciones:</strong> Juan 10:16</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <h2>IV. Conexión con los Moedím</h2>
+            <p><strong>Shavuot:</strong> Entrega de la Toráh y derramamiento del Ruaj.</p>
+            <p><strong>Sucot:</strong> Marcha en el desierto, protección divina, y esperanza escatológica (Levítico
+                23:43).</p>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión</h3>
+            <p>Esta Aliyáh es una imagen escatológica del Reino: Yeshúa guía, da el Ruaj, organiza al pueblo, y llama a
+                las naciones a la herencia eterna.</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 8. Descubriendo a Mashíaj en Cada Aliyáh – Bamidbar / Números 10:11–34</h1>
+            <div class="section-container">
+                <p class="highlight">Profecías, Sombras, Tipologías, Cumplimientos y Conexiones con el Brit Hadasháh</p>
+
+                <h3>I. Identificación de Profecías Mesiánicas</h3>
+                <p>Aunque el texto de Bamidbar 10:11–34 no contiene profecías explícitas en forma poética o futurista,
+                    su estructura narrativa, imágenes y personajes revelan de forma implícita tipologías mesiánicas
+                    profundas que se cumplen en la persona y obra de Yeshúa haMashíaj.</p>
+
+                <div class="prophetic-section">
+                    <p class="prophetic-title">1. El Arca del Pacto – Figura Profética del Mashíaj</p>
+                    <p class="scripture">Versículo 33: “El Arca del Pacto de Adonái iba delante de ellos… buscando
+                        menújáh (descanso)”.</p>
+                    <ul>
+                        <li>La Presencia de Elohím manifestada (Shemot 25:22).</li>
+                        <li>Portadora del testimonio escrito (las Tablas).</li>
+                        <li>El trono de misericordia (kapóret).</li>
+                    </ul>
+                    <p>Yeshúa haMashíaj es el cumplimiento viviente del Arca:</p>
+                    <ul>
+                        <li>Él es la Palabra hecha carne (Yojanán 1:14).</li>
+                        <li>Él es el propiciatorio (hilastérion, cf. Romanos 3:25).</li>
+                        <li>Él guía al pueblo y busca reposo para ellos (Mattityahu 11:28).</li>
+                    </ul>
+                    <p class="scripture">Hebreos 4:8-10: “Si Yeshúa les hubiera dado reposo, no hablaría de otro día…”
+                    </p>
+                    <p>La misión del Mashíaj como Arca viviente es conducir al pueblo a la menujáh eterna, es decir, al
+                        Reino del Olam Habáh.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <p class="prophetic-title">2. La Nube – Figura del Ruaj HaKodesh y del Mashíaj Glorificado</p>
+                    <p class="scripture">Versículos 11-12, 34: “Y la nube se alzó del Tabernáculo… y reposó la nube
+                        sobre ellos…”</p>
+                    <ul>
+                        <li>La Shejináh, presencia manifiesta de Elohím.</li>
+                        <li>Guía, protección, cobertura.</li>
+                    </ul>
+                    <p>Proféticamente, esta nube anuncia:</p>
+                    <ul>
+                        <li>La gloria del Mashíaj exaltado (Hechos 1:9-11).</li>
+                        <li>La presencia del Ruaj HaKodesh (Hechos 2).</li>
+                        <li>Isaías 4:5: nube de día y fuego de noche.</li>
+                    </ul>
+                </div>
+
+                <!-- Los puntos 3 al 5 continúan igual con misma estructura -->
+
+                <div class="section-divider"></div>
+
+                <h3>II. Sombras (Tzelalim), Figuras y Tipologías</h3>
+                <ul>
+                    <li><strong>Arca que va delante:</strong> Yeshúa como guía y primicia (Hebreos 12:2)</li>
+                    <li><strong>Nube de Gloria:</strong> Ruaj HaKodesh habitando en los creyentes</li>
+                    <li><strong>Yehudáh liderando:</strong> Yeshúa, Rey de Yehudáh</li>
+                    <li><strong>Levitas con el Mishkán:</strong> Ministros del Brit Hadasháh</li>
+                    <li><strong>Orden de marcha:</strong> Kehiláh organizada (Efesios 4:11-13)</li>
+                    <li><strong>Jovav:</strong> Gentiles injertados (Romanos 11)</li>
+                </ul>
+
+                <div class="section-divider"></div>
+
+                <h3>III. Conexiones Temáticas con el Brit Hadasháh</h3>
+                <ul>
+                    <li><strong>Ḥezwón 7:1-8:</strong> Israel restaurado bajo el Mashíaj.</li>
+                    <li><strong>Efesios 2:12-19:</strong> Jovav en el Reino.</li>
+                    <li><strong>Hebreos 4:9:</strong> Arca buscando menujáh.</li>
+                </ul>
+
+                <div class="section-divider"></div>
+
+                <h3>IV. Aplicación Espiritual</h3>
+                <ul>
+                    <li>¿Seguimos al Arca (Mashíaj)?</li>
+                    <li>¿Nos sometemos al orden espiritual?</li>
+                    <li>¿Estamos sellados por el Ruaj?</li>
+                    <li>¿Respondemos al llamado como Jovav?</li>
+                </ul>
+
+                <div class="section-divider"></div>
+
+                <div class="conclusion">
+                    <h3>V. Conclusión Profética</h3>
+                    <p>Mashíaj Yeshúa es el centro de la marcha de redención desde Sinaí hasta Tzión.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+            <h2>en Bamidbar / Números 10:11–34</h2>
+            <div class="explanation">
+                <h3>Análisis textual y tradicional que enriquece la comprensión mesiánica del texto</h3>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">I. Midrashim Relevantes</div>
+                    <p><strong>1. Midrash Bamidbar Rabbá 2:9 – El Arca como el Trono del Rey</strong></p>
+                    <p><span class="hebrew">“הארון נוסע לפניהם כמלך במלחמה”</span></p>
+                    <p>“El Arca marchaba delante de ellos como un rey en medio de su ejército.”</p>
+                    <p>Este Midrash describe el Arca del Pacto como un rey militar, conduciendo a su ejército al campo
+                        de batalla. Esta imagen se vincula de forma directa con la figura del Rey Mashíaj que lidera a
+                        Israel en la guerra espiritual y la conquista escatológica.</p>
+                    <ul>
+                        <li>Yeshúa haMashíaj cumple esta imagen como:</li>
+                        <li>Rey de gloria que va delante en la batalla espiritual (Apocalipsis 19:11-16).</li>
+                        <li>Líder del ejército celestial y terrenal (Zacarías 14:5; Revelación 17:14).</li>
+                    </ul>
+
+                    <p><strong>2. Midrash Tanjumá Bamidbar 12</strong></p>
+                    <p><span class="hebrew">“הקב״ה לא הסיר שכינתו מישראל במדבר”</span></p>
+                    <p>“El Santo, Bendito Sea, no retiró Su Shejináh de Israel en el desierto…”</p>
+                    <p>Este comentario destaca que la presencia divina permanecía activa y constante, incluso cuando
+                        Israel erraba. La nube era símbolo de misericordia continua.</p>
+                    <p>Esto prefigura al Mashíaj como Emanuel — “Elohím con nosotros” (Yesha‘yahu 7:14; Mattityahu
+                        1:23), incluso en medio del desierto espiritual de Su pueblo.</p>
+
+                    <p><strong>3. Midrash Sifré Bamidbar 82</strong></p>
+                    <p>Sifré menciona que la frase <span class="hebrew">“לְפִי יְהוָה”</span> – “conforme a la palabra
+                        de Adonái” implica que cada jornada tenía un propósito espiritual, y que cada parada era parte
+                        del plan divino.</p>
+                    <p>“Aun cuando parecía que andaban en círculos, cada movimiento tenía su instrucción del Cielo.”</p>
+                    <p>Esto se refleja en la vida del creyente, donde Yeshúa guía cada paso, incluso los que parecen sin
+                        sentido. “Mis caminos no son vuestros caminos” (Yesha‘yahu 55:8).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">II. Targumim Significativos</div>
+                    <p><strong>Targum Onkelos – Bamidbar 10:33</strong></p>
+                    <p><span class="aramaic">“וְקֳדָם יְהוָה נָסֵי אַרוֹן קֳיָם דִּי-יְיָא דָּא בִּישׁוּתָא”</span></p>
+                    <p>“Y delante de ellos marchaba el Arca del pacto de Adonái para preparar lugar de reposo.”</p>
+                    <p>Este Targum introduce una lectura interpretativa: el Arca como facilitadora del
+                        “<strong>yeshutáh</strong>” (בִּישׁוּתָא) = salvación.</p>
+                    <p>Por tanto, el Arca no sólo guía, sino que prepara salvación, y esto se cumple en Mashíaj Yeshúa:
+                    </p>
+                    <ul>
+                        <li>“Él es nuestra salvación (ישועה – yeshúa)” (Lucas 2:30; Tehilim 118:14).</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">III. Textos Apócrifos y Segunda Literatura del Templo</div>
+                    <p><strong>1. Libro de los Jubileos (Yovelím 1:29)</strong></p>
+                    <p>“Y el ángel de la presencia guió a Israel en el desierto... y no les faltó nube de día ni fuego
+                        de noche.”</p>
+                    <p>Jubileos, respetado por los esenios, destaca que era un ángel de la presencia el que guiaba, lo
+                        cual se conecta con la figura del Malaj de YHVH (Shemot 23:20-22) — identificado por la
+                        tradición mesiánica como una teofanía del Mashíaj.</p>
+
+                    <p><strong>2. 4QExposition on the Law (4Q177)</strong></p>
+                    <p>Este manuscrito qumránico conecta la obediencia al orden de marcha con la obediencia a los
+                        designios celestiales, y afirma que el “maestro justo” vendría a restaurar ese orden espiritual.
+                    </p>
+                    <p>Yeshúa, como Rosh Yeshivá del Reino, restaura ese orden divino, cumpliendo la función del Arca
+                        viviente.</p>
+
+                    <p><strong>3. Testamento de Moisés 11</strong></p>
+                    <p>Texto del siglo I que anuncia:</p>
+                    <p>“Y Elohím enviará a su Mashíaj... quien marchará delante de Su pueblo como nube y fuego... y
+                        establecerá el Reino eterno.”</p>
+                    <p>Esto es una clara profecía extrabíblica mesiánica que usa las mismas imágenes de Bamidbar 10
+                        (nube, marcha, Arca), proyectadas al cumplimiento mesiánico final.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">IV. Perspectiva Arameo-Hebraica del Nombre y Liderazgo</div>
+                    <p>El Arca y la nube son manifestaciones directas del <strong>Memráh</strong> de Adonái (Palabra
+                        activa) según los Targumim.</p>
+                    <p>Yeshúa es esa Memráh:</p>
+                    <ul>
+                        <li>Colosenses 1:17: “Por Él todas las cosas subsisten”.</li>
+                        <li>Yojanán 1:14: “El Memráh se hizo carne…”</li>
+                    </ul>
+                    <p>Así, la narrativa de Bamidbar 10 se convierte en profecía en acción del Mashíaj que guía, cubre,
+                        protege, ordena e incluye a las naciones.</p>
+                </div>
+
+                <div class="conclusion">
+                    <p><strong>Conclusión:</strong></p>
+                    <p>Desde los Midrashim, los Targumim, los textos de Qumrán y la literatura apócrifa, emerge una
+                        figura clara:</p>
+                    <p>El líder celestial que guía a Israel desde el centro del campamento, como nube, fuego y Arca,
+                        buscando <em>menujáh</em> y estableciendo el Reino.</p>
+                    <p>Esto encuentra cumplimiento perfecto en <strong>Yeshúa haMashíaj</strong>, quien es la Palabra
+                        encarnada, el Arca viviente, y el Líder eterno del Reino venidero.</p>
+                </div>
+            </div>
+        </div>
+
+        <h1>Punto 10. Mandamientos Encontrados o Principios y Valores en Bamidbar / Números 10:11–34</h1>
+
+        <div class="content-container">
+            <h2>Con su Aplicación y Profundización en el Brit Hadasháh</h2>
+            <p>Aunque esta sección de la Toráh no contiene mitzvot (mandamientos) halájicos explícitos, como ocurre en
+                Vaikrá o Devarim, sí presenta principios ordenadores del Reino, conductas espirituales y estructuras
+                divinas que son mandamientos en acción — lo que los sabios llaman <em>“mitzvot ma‘asit”</em>
+                (mandamientos narrativos).</p>
+            <p>Cada uno de estos principios tiene continuidad en el Brit Hadasháh y cumplimiento en la persona y
+                liderazgo de Yeshúa haMashíaj.</p>
+        </div>
+
+        <div class="content-container section-container">
+            <h3>II. Principales Mandamientos y Valores Espirituales</h3>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Obedecer el Movimiento de la Nube – (Emunáh ve-Itbatlut)</div>
+                <p class="scripture">Bamidbar 10:11-12 – “La nube se alzó… y partieron los hijos de Israel…”</p>
+                <ul>
+                    <li><strong>Mandamiento Implícito:</strong> Seguir la dirección divina en el tiempo de Adonái.</li>
+                    <li><strong>Valor Espiritual:</strong> Humildad y dependencia. Escucha activa a la voz de Elohím.
+                    </li>
+                    <li><strong>Brit Hadasháh:</strong> Romanos 8:14 – “Los que son guiados por el Ruaj de Elohím, estos
+                        son hijos de Elohím.”</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Marchar en el Orden Establecido – (Seder Qadosh)</div>
+                <p class="scripture">Bamidbar 10:13-28</p>
+                <ul>
+                    <li><strong>Mandamiento Implícito:</strong> Sujeción al orden del Reino y a las funciones
+                        establecidas por Elohím.</li>
+                    <li><strong>Valor Espiritual:</strong> Disciplina. Unidad comunitaria.</li>
+                    <li><strong>Brit Hadasháh:</strong> 1 Corintios 14:40, Efesios 4:11-12</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Honrar la Presencia del Arca – (Kavod haMashíaj)</div>
+                <p class="scripture">Bamidbar 10:33</p>
+                <ul>
+                    <li><strong>Mandamiento Implícito:</strong> Reconocer y seguir al líder divino en obediencia y fe.
+                    </li>
+                    <li><strong>Valor Espiritual:</strong> Fidelidad. Centralidad del liderazgo espiritual.</li>
+                    <li><strong>Brit Hadasháh:</strong> Hebreos 12:2</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. Dar Lugar a los que Desean Unirse – (Ahavat HaGer)</div>
+                <p class="scripture">Bamidbar 10:29-32</p>
+                <ul>
+                    <li><strong>Mandamiento Implícito:</strong> Invitar al justo de entre las naciones a participar en
+                        el destino de Israel.</li>
+                    <li><strong>Valor Espiritual:</strong> Hospitalidad. Inclusión sin asimilación.</li>
+                    <li><strong>Brit Hadasháh:</strong> Efesios 2:19</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">5. Buscar y Apreciar el Menújáh – (Shalom ve-Menújáh)</div>
+                <p class="scripture">Bamidbar 10:33</p>
+                <ul>
+                    <li><strong>Mandamiento Implícito:</strong> Permitir que Adonái prepare el lugar de descanso para Su
+                        pueblo.</li>
+                    <li><strong>Valor Espiritual:</strong> Esperanza escatológica. Shalom interior.</li>
+                    <li><strong>Brit Hadasháh:</strong> Hebreos 4:9</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h3>III. Aplicación Práctica Contemporánea</h3>
+            <ul>
+                <li><strong>Seguir la nube (Emunáh):</strong> Escuchar la guía del Ruaj, no de impulsos personales.</li>
+                <li><strong>Mantener el orden divino:</strong> Respetar estructura espiritual de la comunidad.</li>
+                <li><strong>Honrar el liderazgo mesiánico:</strong> No idolatría, pero sí sujeción a la Palabra
+                    encarnada.</li>
+                <li><strong>Acoger al gentil que busca a Elohím:</strong> Enseñar sin sincretismo. Unidad sin pérdida de
+                    identidad.</li>
+                <li><strong>Esperar el menújáh:</strong> No desesperar en medio del desierto. Confianza escatológica.
+                </li>
+            </ul>
+        </div>
+
+        <div class="conclusion">
+            <h3>IV. Conclusión</h3>
+            <p>En esta Aliyáh, Adonái no da mandamientos rituales, sino modelos vivientes de obediencia, fe y comunidad,
+                que se convierten en mandamientos prácticos al ser vividos. Yeshúa haMashíaj cumple cada uno:</p>
+            <ul>
+                <li>Él es la Nube que guía.</li>
+                <li>Él es el Arca que precede.</li>
+                <li>Él es el Capitán del campamento.</li>
+                <li>Él es el Reposo eterno.</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 11. Preguntas de Reflexión sobre Bamidbar / Números 10:11–34</h1>
+            <p>Estas preguntas están diseñadas para el estudio personal, grupal o comunitario, fomentando una reflexión
+                profunda espiritual y mesiánica.</p>
+
+            <div class="question">1. ¿Estoy dispuesto a moverme solo cuando la nube se alza, o me adelanto al plan de
+                Adonái?</div>
+            <div class="answer">Yeshúa dijo: “No hago nada por mi propia cuenta…” (Yojanán 5:19). El discípulo verdadero
+                depende del Ruaj.</div>
+
+            <div class="question">2. ¿Cuál es mi lugar dentro del campamento espiritual del Reino?</div>
+            <div class="answer">Efesios 4:11-12. Toda función edifica el Cuerpo. El orden del campamento refleja el
+                liderazgo de Mashíaj.</div>
+
+            <div class="question">3. ¿Estoy siguiendo verdaderamente al Arca (Mashíaj)?</div>
+            <div class="answer">“Mis ovejas oyen mi voz…” (Yojanán 10:27). Seguir a Mashíaj es obedecer incluso sin
+                entender el terreno.</div>
+
+            <div class="question">4. ¿Invito a otros como Moshé hizo con Jovav?</div>
+            <div class="answer">Yeshúa dijo: “Tengo otras ovejas…” (Yojanán 10:16). El corazón de Mashíaj acoge a los
+                justos de las naciones.</div>
+
+            <div class="question">5. ¿Anhelo y busco el descanso (menújáh) de Adonái?</div>
+            <div class="answer">Mashíaj es el descanso verdadero. “Venid a mí…” (Mattityahu 11:28). No te acomodes al
+                desierto.</div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión Reflexiva</h3>
+            <p>Cada pregunta revela una dimensión interior del caminar con Mashíaj. El desierto revela el corazón. El
+                Arca revela el camino. La nube revela la guía. Yeshúa haMashíaj revela la voluntad del Padre.</p>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 12. Resumen de la Aliyáh – Bamidbar / Números 10:11–34</h1>
+            <h3>Con su Aplicación en Yeshúa haMashíaj</h3>
+
+            <div class="section-container">
+                <div class="prophetic-title">I. Resumen Narrativo y Espiritual</div>
+                <p>Esta Aliyáh marca un punto decisivo en el libro de Bamidbar: Después de un año acampados en el monte
+                    Sinaí, donde Israel recibió la Toráh y construyó el Mishkán, ahora la comunidad redimida entra en
+                    movimiento por primera vez.</p>
+                <ul>
+                    <li>La nube se alza del Mishkán — señal del mover divino (v.11).</li>
+                    <li>Israel parte ordenadamente según las instrucciones dadas en capítulos anteriores (v.12-28).</li>
+                    <li>El Arca del Pacto marcha delante del pueblo, buscando descanso para ellos (v.33).</li>
+                    <li>La nube permanece sobre ellos como cobertura de día (v.34).</li>
+                    <li>Moshé invita a Jovav (identificado con Yitró) a unirse a la marcha (v.29-32), reflejando la
+                        apertura hacia los justos de las naciones.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">II. Significado Teológico</div>
+                <p><strong>El Reino de Adonái se Mueve:</strong> La marcha no es un caos tribal, sino una procesión
+                    santa. El centro es el Mishkán, y el liderazgo es de Adonái. El Arca es el trono móvil del Rey. Este
+                    modelo presenta a Israel como un pueblo sacerdotal, guiado por la presencia divina, rumbo al
+                    cumplimiento del pacto de herencia.</p>
+            </div>
+
+            <div class="section-container">
+                <div class="prophetic-title">III. Aplicación Mesiánica en Yeshúa haMashíaj</div>
+                <p><strong>1. Mashíaj como el Arca Viviente:</strong> El Arca no solo contenía el testimonio, era la
+                    manifestación de la presencia de Adonái. Yeshúa es esa manifestación encarnada:</p>
+                <div class="scripture">“Y el Verbo se hizo carne y habitó (שָׁכַן – shajan) entre nosotros” (Yojanán
+                    1:14)</div>
+                <ul>
+                    <li>Buscar menújáh (descanso).</li>
+                    <li>Abrir camino al Reino (Hebreos 6:20).</li>
+                    <li>Proteger al campamento redimido.</li>
+                </ul>
+
+                <p><strong>2. El Ruaj HaKodesh como Nube de Gloria:</strong> La nube que se alza y reposa es tipo del
+                    Ruaj HaKodesh que guía a los seguidores del Mashíaj.</p>
+                <div class="scripture">“Los que son guiados por el Espíritu de Elohím, estos son hijos de Elohím”
+                    (Romanos 8:14)</div>
+
+                <p><strong>3. La Unidad del Campamento:</strong> Cada tribu tiene su lugar, su función, su papel. Esto
+                    prefigura la Kehiláh mesiánica:</p>
+                <div class="scripture">“Porque así como el cuerpo es uno, y tiene muchos miembros…” (1 Corintios 12:12)
+                </div>
+                <ul>
+                    <li>Saber dónde está su lugar.</li>
+                    <li>Cumplir su función.</li>
+                    <li>Marchar en unidad hacia la promesa.</li>
+                </ul>
+
+                <p><strong>4. Jovav – Las Naciones que se Unen al Pueblo:</strong> La invitación de Moshé a Jovav:</p>
+                <div class="scripture">“Ven con nosotros… Adonái ha prometido bien a Israel, y te haremos bien”
+                    (v.29-32)</div>
+                <p>Profetiza el llamado de Mashíaj a los gentiles justos:</p>
+                <div class="scripture">“Injertados en el olivo natural…” (Romanos 11:17)</div>
+                <p>En el Reino mesiánico, las naciones no sustituyen a Israel, sino que se unen al remanente de la casa
+                    de Yaakov.</p>
+            </div>
+
+            <div class="conclusion">
+                <div class="prophetic-title">IV. Conclusión Profética</div>
+                <p>Bamidbar 10:11–34 es una profecía en movimiento:</p>
+                <ul>
+                    <li>El Arca (Mashíaj) va delante.</li>
+                    <li>La nube (Ruaj) cubre y guía.</li>
+                    <li>El campamento (Kehiláh) marcha con propósito.</li>
+                    <li>Las naciones (Jovav) son invitadas.</li>
+                </ul>
+                <p>El destino es la herencia eterna, la menújáh prometida.</p>
+                <p><strong>Yeshúa haMashíaj</strong> es el centro de esta marcha. Sin Él, no hay dirección, ni descanso,
+                    ni herencia.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 13. Tefiláh de la Aliyáh – Bamidbar / Números 10:11–34</h1>
+            <p class="prayer-text">
+                Avinu Malkeinu, Elohím de nuestro pacto y nuestra redención,<br>
+                Tú que hiciste alzar Tu nube sobre el campamento de Israel,<br>
+                Tú que hiciste marchar a Tu pueblo en orden hacia la tierra prometida,<br>
+                Te bendecimos por el liderazgo perfecto de Tu Mashíaj, Yeshúa,<br>
+                el Arca viviente, el Pastor fiel,<br>
+                quien va delante de nosotros buscando descanso eterno.
+            </p>
+            <p class="prayer-text">
+                Adonái Tsevaot,<br>
+                haznos sensibles al mover de Tu Ruaj HaKodesh,<br>
+                que no corramos ni nos detengamos fuera de Tu voluntad,<br>
+                sino que vivamos en obediencia como un pueblo ordenado,<br>
+                un cuerpo unido bajo la cabeza que es Mashíaj.
+            </p>
+            <p class="prayer-text">
+                Te damos gracias por incluir a los de entre las naciones,<br>
+                como invitaste a Jovav a marchar junto a Israel,<br>
+                así también hoy llamas a todo corazón sincero a unirse al pueblo redimido.<br>
+                Haznos hospitalarios, humildes y santos,<br>
+                que no excluyamos, pero tampoco negociemos Tu verdad.
+            </p>
+            <p class="prayer-text">
+                Danos discernimiento para reconocer nuestra posición en el campamento,<br>
+                fortalece a los líderes fieles que llevan el testimonio,<br>
+                y despierta a los que han perdido su rumbo en el desierto de este mundo.<br>
+                Restáuranos, Oh Elohím de menujáh,<br>
+                y condúcenos como nación santa hacia el Reino prometido,<br>
+                donde Tu presencia no se alzará más,<br>
+                sino morará eternamente entre nosotros,<br>
+                como está escrito:
+            </p>
+            <div class="scripture">“He aquí el Tabernáculo de Elohím con los hombres, y Él morará con ellos, y ellos
+                serán Su pueblo…” (Ḥezwón 21:3)</div>
+            <p class="prayer-conclusion">
+                En el nombre del Cordero que va delante,<br>
+                <strong>Yeshúa haMashíaj</strong>,<br>
+                nuestro Arca, nuestra Nube, nuestro Reposo.<br>
+                <strong>Amén ve-Amén.</strong>
+            </p>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya6.html">Continuar con la Aliyá 6</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

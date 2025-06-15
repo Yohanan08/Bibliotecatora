@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 8:15-26</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>36. Parashá Behaalotjá (בהעלתך) Aliyáh 2: (Números 8:15-26) Servicio de los levitas en el Mishkán y su
+            retiro a los 50 años.
+            <p>Haftaráh: 1 Samuel 3:1-10 (El servicio de Samuel en el Mishkán, escuchando la voz de Elohím).</p>
+            <p>Brit Hadasháh: Lucas 2:25-32 (Simeón, un siervo fiel que espera la redención de Israel).</p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Bemidbar (Números) 8:15–26</h1>
+            <p><em>Texto en hebreo, fonética tiberiana, traducción literal, y cumplimiento profético en Yeshúa
+                    haMashíaj, verso por verso</em></p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">8:15</div>
+            <div class="hebrew">וְהִבְדַּלְתָּם מִתּ֥וֹךְ יִשְׂרָאֵל֙ וְהָי֤וּ לִֽי׀ לְבֵ֣ית לַלְוִיִּ֔ם תַּ֖חַת כֹּ֣ל
+                הַיָּלִ֑יד</div>
+            <div class="transliteration">Ve hivdaltám mitój Yisra'él ve hayú li lebét ha Leviím taḥat kol hayálid.</div>
+            <div class="translation">—Y los apartarás de en medio de Israel, y serán para Mí como la casa de los
+                levitas, en lugar de todos los nacidos.</div>
+            <div class="messianic-fulfillment">
+                <strong>Cumplimiento Mesiánico:</strong><br>
+                Tal como los levitas fueron apartados para el servicio comprensivo, Yeshúa aparta a su pueblo mediante
+                Su sangre. Nosotros nos convertimos en "templo" y "linaje escogido" en Él (1 Pedro 2:5,9).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">8:16</div>
+            <div class="hebrew">וַיַּכְּרֵ֤ת מֹשֶׁה֙ אֶת־בְּנֵ֣י לֵוִ֔י עַל־פִּ֖י יְהוָ֑ה כַּאֲשֶׁ֤ר צִוָּה֙ יְהוָ֣ה
+                אֶת־מֹשֶ֔ה לְבֵית־לֵוִ֖י תַּ֥חַת כָּל־יֹלֵֽד׃</div>
+            <div class="transliteration">Va'yakkérét Moshé et benei Léví al pi Adonái, ka'asher tzivá Adonái et Moshé,
+                levét Léví taḥat kol yoled.</div>
+            <div class="translation">—Y Moshé hizo un pacto con los hijos de Leví conforme al mandamiento de Adonái, por
+                debajo de todos los nacidos.</div>
+            <div class="messianic-fulfillment">
+                <strong>Cumplimiento Mesiánico:</strong><br>
+                Este pacto apunta al nuevo pacto en la sangre de Mashíaj. El sumo pacto de Hebreos 9 es establecido para
+                Su pueblo puesto bajo Él, no por nacimiento carnal, sino espiritual.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">8:17</div>
+            <div class="hebrew">וַיַּבְדֵּ֥ל אֹתָ֖ם מִתּ֣וֹךְ יִשְׂרָאֵ֑ל וְהֵמָּ֣ה לֹ֤א הֵ֙יוּ֙ בְּנֵ֣י יִשְׂרָאֵ֔ל
+                כִּ֣י לַיהוָ֔ה לָהֶ֖ם בְּנֵ֥י לֵוִֽי׃</div>
+            <div class="transliteration">Va'yavdél otám mitój Yisra'él ve hemmah lo hěyu benei Yisra'él, ki la Adonái
+                lahem benei Léví.</div>
+            <div class="translation">—Y los apartó de en medio de Israel, y no fueron contados como hijos de Israel,
+                sino que son para Adonái hijos de Leví.</div>
+            <div class="messianic-fulfillment">
+                <strong>Cumplimiento Mesiánico:</strong><br>
+                Nuestro valor no depende de nacimiento natural, sino de pertenecer a Mashíaj. Ya no somos del mundo,
+                sino "nacidos de Elohím" (Yojanán 1:12–13). Él nos hace hijos Suyos para siempre.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">8:18</div>
+            <div class="hebrew">וַיִּתְּנֵ֕ם מֹשֶׁ֖ה לְאַהֲרֹ֣ן וּלְבָנָ֑יו וּלְאֵ֤לֶּה֙ מִזָּרְ֔וֹעַ וּלְנְשִׂאָ֥ם֙
+                אֲשֶׁ֣ר שָׂ֣אוּ אֶת־אֹהֶ֔ל מוֹעֵ֖ד לְפָנִֽים׃</div>
+            <div class="transliteration">Va'yitnéném Moshé le Aharón u le vanáv u le elleh mizroá u lenis''ám asher sá'u
+                et Ohel Moéd lefaním.</div>
+            <div class="translation">—Y los dio Moshé a Aharón y a sus hijos y a los que habían sido tomados por su
+                brazo, para el servicio del Mishkán ante ellos.</div>
+            <div class="messianic-fulfillment">
+                <strong>Cumplimiento Mesiánico:</strong><br>
+                El sacerdocio humano fue entregado por medio de manos. En el Brit Hadasháh, la autoridad espiritual
+                viene de Mashíaj, no de linaje, sino de Su comisión. Ésta es la entrega del servicio vivo mediante Su
+                Mesa de Grasitud.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">8:19</div>
+            <div class="hebrew">מֵעֶ֣סֶק הַמְּשָׂרְתִּ֗ים אֲשֶׁ֤ר יְשַׂרְתֶּם֙ בְּאֹ֣הֶל מוֹעֵ֔ד תְּרוּמָ֖ה לַיהוָ֑ה
+                הָיְתָ֖ה לָהֶ֥ם לְכֹּל־עֻמָּלָֽם׃</div>
+            <div class="transliteration">Me'esék ha mesar'ím asher yesartém be Ohel Moéd terumáh la Adonái, hayetá lahem
+                le kól umalám.</div>
+            <div class="translation">—Y de la obra del servicio que ustedes servían en el Ohel Moéd, fue una terumáh
+                para ellos, para todo su trabajo.</div>
+            <div class="messianic-fulfillment">
+                <strong>Cumplimiento Mesiánico:</strong><br>
+                La terumáh es la porción consagrada. Del servicio que hacen, reciben la porción paterna. En Adonai,
+                nuestra obra consagrada recibe la bendición y equipamiento espiritual. "Elohim da el crecimiento" (1
+                Corintios 3:7).
+            </div>
+        </div>
+
+        <div class="content-container">
+
+            <div class="verse-container">
+                <div class="verse-number">8:20</div>
+                <div class="hebrew">וַיְדַבֵּ֥ר יְהוָ֖ה אֶל־מֹשֶׁ֣ה לֵּאמֹ֑ר׃</div>
+                <div class="transliteration">Va yedabér Adonái el Moshé lemór.</div>
+                <div class="translation">—Y habló Adonái a Moshé, diciendo:</div>
+                <div class="explanation">(Repetitivo del mandato divino) (Reitera la voz continua del Eterno al orden de
+                    servicio.)</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">8:21</div>
+                <div class="hebrew">דַּבֵּ֣ר אֶל־בְּנֵ֣י יִשְׂרָאֵ֗ל וְאָמַרְתָּ֙ אֲלֵהֶ֔ם כִּ֛י קָרֹ֥ב אָתֶ֖ם
+                    לַאֲכָל־בְּנֵ֣י יִשְׂרָאֵ֑ל תִּתְּרוּנָ֕ה מִזֶּ֖ה חָֽדָשׁ׃</div>
+                <div class="transliteration">Dabér el benei Yisra'él ve amartá alehem ki karóv atém la'khal benei
+                    Yisra'él tit'rúná mizéh ḥadásh.</div>
+                <div class="translation">—Habla a los hijos de Israel, y di: Porque ustedes se acercan a la comida de
+                    los hijos de Israel, serán apartados de esto por cosa nueva.</div>
+                <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> Indicaba que el servicio levítico y su
+                    provisión son exclusivos. En Mashíaj, los creyentes no deben tomar "comida" o bendición espiritual
+                    diseñada para el mundo. Nuestra provisión está en Su mesa celestial (Salmos 23:5).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">8:22</div>
+                <div class="hebrew">כִּ֥י אֲנִ֛י נָתַ֥תִּי לַֽלְוִיִּ֖ם אֶת־תְּרוּמַ֣ת בְּנֵֽי־יִשְׂרָאֵ֑ל בְּנֵ֣י
+                    יִשְׂרָאֵ֔ל מִתְּרוּמָתָ֖ם הִבְדַּלְתִּֽים׃</div>
+                <div class="transliteration">Ki ani natáti la Leviím et terumát benei Yisra'él, be nei Yisra'él
+                    mit'rúmatam hivdal'tíem.</div>
+                <div class="translation">—Porque Yo he dado a los levitas la ofrenda de los hijos de Israel; por eso los
+                    he separado.</div>
+                <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> Toda provisión espiritual viene de
+                    Mashíaj. Aquello que Él nos da es nuestra heredad y nuestro ministerio. Él nos separa como
+                    recipientes de Su gracia, herederos de Su Reino.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">8:23</div>
+                <div class="hebrew">וַיְדַבֵּ֣ר יְהוָ֣ה אֶל־מֹשֶׁ֗ה לֵּאמֹ֛ר</div>
+                <div class="transliteration">Va yedabér Adonái el Moshé lemór.</div>
+                <div class="translation">—Y habló Adonái a Moshé, diciendo:</div>
+                <div class="explanation">(Vuelve a enfatizar la repetición del mandato: integridad y continuidad en el
+                    orden sagrado.)</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">8:24</div>
+                <div class="hebrew">כֹּ֚חַ אֶֽחָד־נָשִׂ֣יא תִּטְּמֻ֔הוּ לְשֶׁ֖בַח הָֽקׇהֲלָ֑ה וּשְׁנַיִם֙ נָשִׂ֣יא
+                    יִטְּמֻ֔הוּ לְשֶׁ֖בַח עֲדַֽת׃</div>
+                <div class="transliteration">Koaḥ eḥád násí titmúhu leshevach ha kahaláh; ushenáyim násí yitmúhu
+                    leshevach adat.</div>
+                <div class="translation">—Un hombre de fuerza los consagrará para alabanza de la congregación; y dos
+                    hombres de fuerza, para alabanza de la asamblea.</div>
+                <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> El ministerio requiere fuerza
+                    espiritual (Ruaj Hakodesh) y autoridad delegada. En Yeshúa, cada liderazgo está fundado en Su vida,
+                    y cada servicio auténtico refleja Su alabanza.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">8:25</div>
+                <div class="hebrew">וּשְׁלשָׁ֨ה נְשִׂיאִ֤ם תִּטְּמֻהָה֙ לְשֶׁ֣בַח הַמְּשָׂרְתִּ֔ים וְאַרְבָּעָ֖ה
+                    כִּכְ־הַשֹּׁרְמִֽים׃</div>
+                <div class="transliteration">U'shlosháh n'si'ím titmúháh leshevach ha mesar'tím ver'bá'ah kik hashórmím.
+                </div>
+                <div class="translation">—Y tres jefes, para alabanza de los servidores, y cuatro, como los que quitan
+                    maleza.</div>
+                <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> Cada nivel de liderazgo en el Reino
+                    tiene propósito: pastores, siervos, apoyadores, y obreros. Todo debe apuntar a la alabanza de
+                    Mashíaj quien los comisiona.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">8:26</div>
+                <div class="hebrew">וַהֲקִימֹתָ֖ אֶת־כָּל־עֲדַ֣ת בְּנֵֽי־יִשְׂרָאֵ֑ל לְפָנֶ֖יךָ לְשִׁבְטֵיהֶֽם׃</div>
+                <div class="transliteration">Va'hakimota et kol adat benei Yisra'él lefanekha leshivtéihem.</div>
+                <div class="translation">—Y los harás levantarse delante de ti, en su tribu, delante de su compañía.
+                </div>
+                <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> La organización del pueblo es
+                    esencial: en tribu y destino. En Mashíaj, la Kahal Israel es un cuerpo con distintos miembros
+                    (Romanos 12, 1 Corintios 12). Cada uno con función, cada uno firme en Su Mashíaj.</div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>🕯️ Síntesis Final</h3>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Bemidbar (Números) 8:15–26:</div>
+                <ul>
+                    <li><strong>Apartamiento:</strong> Nos separa de la carne para hacer de nosotros un sacerdocio
+                        santo.</li>
+                    <li><strong>Pacto nuevo:</strong> Renueva Su pueblo con Su sangre.</li>
+                    <li><strong>Provisión:</strong> Solo Él da la porción espiritual.</li>
+                    <li><strong>Servicio ordenado:</strong> Cada creyente tiene su llamado.</li>
+                    <li><strong>Liderazgo espiritual:</strong> Fundado en el poder del Espíritu.</li>
+                </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 2. Haftaráh: 1 Samuel 3:1-10 (El servicio de Samuel en el Mishkán, escuchando la voz de
+                    Elohím).</h1>
+                <p><em>Texto hebreo (Masorético), fonética tiberiana, traducción literal, y cumplimiento profético en
+                        Yeshúa haMashíaj verso por verso</em></p>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">3:1</div>
+                <div class="hebrew">וְהַנַּעַר שְׁמוּאֵל מְשָׁרֵת אֶת־יְהוָה לִפְנֵי עֵלִי</div>
+                <div class="transliteration">Ve ha na'ar Shmūʼēl mešārēt et Adonāy liphnei ʿĒlī</div>
+                <div class="translation">—Y el joven Samuel servía a Adonái delante de Eli.</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Samuel representa a un discípulo obediente, preparado para oír la voz de Elohím. En el Brit
+                    Hadasháh, Mashíaj levanta jóvenes siervos, dispuestos a escuchar al Maestro y servirle (Lucas
+                    10:39).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">3:2</div>
+                <div class="hebrew">וּדְבַר־יְהוָה הָיָה יָקָר בַּיָּמִים הָהֵם אֵין חָזוֹן נִפְרָץ</div>
+                <div class="transliteration">Udvar Adonāy hāyāh yāqār bayyāmīm hāhēm, ēyn ḥāzōn nifrāṣ</div>
+                <div class="translation">—Y la Palabra de Adonái era preciosa en aquellos días; no se revelaba visión.
+                </div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Antes de Mashíaj, la Palabra era escasa, revelación rara. Con Él, la Palabra se hizo carne y abundó
+                    la visión (Juan 1:14 – "sabiduría de Elohím en glória").
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">3:3</div>
+                <div class="hebrew">וְנֵר אֱלֹהִים טֶרֶם יִכְבֶּה וְשְׁמוּאֵל שָׁכֵּב בְּהֵיכַל יְהוָה אֲשֶׁר שָׁם
+                    אֲרוֹן אֱלֹהִים</div>
+                <div class="transliteration">Ve nēr ʾĔlōhīm terem yikhbēh, ve Shmūʼēl shākēv beheiḥāl Adonāy, ʼăšēr šām
+                    ʼărōn ʼĔlōhīm</div>
+                <div class="translation">—Y la lámpara de Elohím aún no se había apagado, y Samuel reposaba en el Templo
+                    de Adonái, donde estaba el arca.</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    La menoráh intacta y encendida apunta a Mashíaj como la Luz eterna que brilla incluso cuando reina
+                    la oscuridad espiritual (Lucas 11:35).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">3:4</div>
+                <div class="hebrew">וַיִּקְרָא יְהוָה אֶל־שְׁמוּאֵל וַיֹּאמֶר הִנֵּנִי</div>
+                <div class="transliteration">Vayiqrā' Adonāy el Shmūʼēl, vayōmer: Hinēnī</div>
+                <div class="translation">—Y llamó Adonái a Samuel, y dijo: "Aquí estoy."</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Este "Hineni" es eco de Yeshúa cuando responde a la voluntad del Padre; su obediencia instantánea es
+                    tipológica de la del Siervo fiel (Isaías 42:1; Mateo 26:39).
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+
+                <div class="verse-container">
+                    <div class="verse-number">5</div>
+                    <div class="hebrew">וַיִּרָץ אֶל־עֵלִי וַיֹּאמֶר הִנֵּנִי כִּי קָרָאתָ לִּי וַיֹּאמֶר לֹא קָרָאתִי
+                        שׁוּב שְׁכָב וַיֵּלֶךְ וַיִּשְׁכַּב</div>
+                    <div class="transliteration">Vayyāratz el ʿĒlī vayōmer: Hinēnī, kī qārā'tā lī. Vayyōmer: Lō'
+                        qārā'tī, šūḇ šĕḵāv; vayyēlekh vayyishkāv</div>
+                    <div class="translation">—Y corrió hacia Eli, diciendo: "Aquí estoy, porque me llamaste," y él
+                        respondió: "No llamé; vuelve a acostarte." Y él volvió y reposó.</div>
+                    <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> Samuel buscaba tutoría espiritual,
+                        pero confunde la voz del mundo con la voz divina. Así muchos necesitan aprender a distinguir la
+                        Voz de Mashíaj de la de otros (Juan 10:27).</div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">6</div>
+                    <div class="hebrew">וַיֹּסֶף יְהוָה קְרֹא עוֹד שְׁמוּאֵל וַיָּקָם שְׁמוּאֵל וַיֵּלֶךְ אֶל־עֵלִי
+                        וַיֹּאמֶר הִנֵּנִי כִּי קָרָאתָ לִּי וַיֹּאמֶר לֹא קָרָאתִי בְנִי שׁוּב שְׁכָב</div>
+                    <div class="transliteration">Vayyōsep Adonāy qrō' ʿōḏ Shmūʼēl; vayyāqām Shmūʼēl, vayēlekh el ʿĒlī,
+                        vayōmer: Hinēnī, kī qārā'tā lī. Vayyōmer: Lō' qārā'tī, binī; šūḇ šĕḵāv</div>
+                    <div class="translation">—Y volvió a llamar Adonái a Samuel; y Samuel se levantó, fue a Eli y dijo:
+                        "Aquí estoy, porque me llamaste." Él respondió: "No llamé, hijo mío; vuelve a acostarte."</div>
+                    <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> La persistencia divina revela que
+                        Mashíaj insiste hasta que nuestra atención espiritual se despierte y respondamos "Hineni" con el
+                        corazón.</div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">7</div>
+                    <div class="hebrew">וּשְׁמוּאֵל טֶרֶם יָדַע אֶת־יְהוָה וְטֶרֶם יִגָּלֶה אֵלָיו דְּבַר־יְהוָה</div>
+                    <div class="transliteration">U Shmūʼēl terem yāḏa ʾet Adonāy ve terem yigalléh ʼēlāyv divr Adonāy
+                    </div>
+                    <div class="translation">—Y Samuel aún no conocía a Adonái, y aún no se le había revelado la Palabra
+                        de Adonái.</div>
+                    <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> Samuel aún no lo sabía, pero
+                        estaba a punto de escuchar la voz divina. En Mashíaj, el desconocimiento se transforma en
+                        revelación clara y milagrosa revelación (Efesios 1:17–18).</div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">8</div>
+                    <div class="hebrew">וַיֹּסֶף יְהוָה קְרֹא־שְׁמוּאֵל בַּשְּׁלִישִׁת וַיָּקָם וַיֵּלֶךְ אֶל־עֵלִי
+                        וַיֹּאמֶר הִנֵּנִי כִּי קָרָאתָ לִּי וַיָּבֶן עֵלִי כִּי יְהוָה קֹרֵא לַנַּעַר</div>
+                    <div class="transliteration">Vayyōsep Adonāy qrō' Shmūʼēl ba šĕlišit; vayāqām vayēlekh el ʿĒlī
+                        vayōmer: Hinēnī, kī qārā'tā lī. Vayyāven ʿĒlī kī Adonāy qōrē la na'ar</div>
+                    <div class="translation">—Y Adonái llamó a Samuel por tercera vez; y Samuel volvió, dijo "Aquí
+                        estoy." Entonces Eli entendió que era Adonái quien llamaba al joven.</div>
+                    <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> La tercera llamada produce
+                        discernimiento espiritual. En Mashíaj, la repetición de Su llamado despierta al corazón a Su voz
+                        (Apocalipsis 3:20).</div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">9</div>
+                    <div class="hebrew">וַיֹּאמֶר עֵלִי לִשְׁמוּאֵל לֵךְ שְׁכָב וְהָיָה אִם־יִקְרָא אֵלֶיךָ וְאָמַרְתָ
+                        דַּבֵּר יְהוָה כִּי שֹׁמֵעַ עַבְדֶּךָ וַיֵּלֶךְ שְׁמוּאֵל וַיִּשְׁכַּב בִּמְקוֹמוֹ</div>
+                    <div class="transliteration">Vayyōmer ʿĒlī li Shmūʼēl: Lēḵ šĕḵāv; vĕhāyā ʾim yiqrā ēleyḵā vĕ'āmartā:
+                        "Dābbēr Adonāy, kī šōmēa' ʿabḏḵā." Vayyēlekh Shmūʼēl vayyishkāv bimqōmō</div>
+                    <div class="translation">—Y Eli dijo: "Ve, acuéstate; y si él te llama, responderás: 'Habla, Adonái,
+                        porque Tu siervo escucha.'" Así Samuel fue y se acostó.</div>
+                    <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> Eli instruye al siervo a responder
+                        con humildad y disposición —modelo que todo creyente debe seguir al escuchar a Mashíaj (Hechos
+                        3:6).</div>
+                </div>
+
+                <div class="verse-container">
+                    <div class="verse-number">10</div>
+                    <div class="hebrew">וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְּפַעַם־בְּפַעַם שְׁמוּאֵל שְׁמוּאֵל
+                        וַיֹּאמֶר שְׁמוּאֵל דַּבֵּר כִּי שֹׁמֵעַ עַבְדֶּךָ</div>
+                    <div class="transliteration">Vayyāḇō' Adonāy vayyiṭyaṣṣaḇ vayyiqrā kepa'am bepa'am: "Shmūʼēl!
+                        Shmūʼēl!" Vayyōmer Shmūʼēl: "Dābbēr, kī šōmēa' ʿabḏḵā."</div>
+                    <div class="translation">—Y Adonái vino, se paró y llamó, como otras veces: "¡Samuel! ¡Samuel!"
+                        Entonces Samuel respondió: "Habla, porque Tu siervo escucha."</div>
+                    <div class="explanation"><strong>Cumplimiento Mesiánico:</strong> Aquí se revela la llamativa
+                        paradoja: Mashíaj llama y se presenta, Samuel responde con obediencia. Así debe responder Su
+                        pueblo ante Su voz, comprometido a obedecer (Romanos 12:1).</div>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <div class="prophetic-title">🕯️ Síntesis final:</div>
+                <ul>
+                    <li><strong>Apartamiento:</strong> Nos separa de la carne para hacer de nosotros un sacerdocio
+                        santo.</li>
+                    <li><strong>Pacto nuevo:</strong> Renueva Su pueblo con Su sangre.</li>
+                    <li><strong>Provisión:</strong> Solo Él da la porción espiritual.</li>
+                    <li><strong>Servicio ordenado:</strong> Cada creyente tiene su llamado.</li>
+                    <li><strong>Liderazgo espiritual:</strong> Fundado en el poder del Espíritu.</li>
+                </ul>
+                <p><em>Así Cumple Yeshúa el diseño eterno de Él, traído a plenitud en Su sangre, Su autoridad, y Su
+                        Cuerpo Renacido.</em></p>
+            </div>
+
+
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1 Samuel 3:1–10:</div>
+                <ul>
+                    <li><strong>Preparación:</strong> Samuel ministraba sin revelación, pero su obediencia fue el inicio
+                        del diálogo divino —como los discípulos de Mashíaj en un mundo oscuro.</li>
+                    <li><strong>Discernimiento:</strong> Samuel confunde la voz divina —aprende a distinguirla. Hoy,
+                        Mashíaj llama continuamente a sus seguidores, haciendo posible que oigan Su voz sobre las demás.
+                    </li>
+                    <li><strong>Respuesta:</strong> "Habla, porque Tu siervo escucha." Porque Mashíaj siempre prepara a
+                        quien le escucha, y Él siempre tiene palabra para quien confiesa "Aquí estoy."</li>
+                </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 3. Brit Hadasháh: Lucas 2:25-32 (Simeón, un siervo fiel que espera la redención de Israel).
+                </h1>
+                <p><em>En Arameo Peshita, con fonética siríaca oriental, traducción literal y cumplimiento profético en
+                        el Mashíaj</em></p>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">2:25</div>
+                <div class="aramaic">ܘܗܳܘ ܢܳܦ݂ܫܳܐ ܒܝܰܬ ܐܪܺܝܠܝܳܢ ܗܳܢܰܘܢ</div>
+                <div class="transliteration">W-haw náfshā bayet arīlyōn hānōn</div>
+                <div class="translation">—Y había en Jerusalén un varón llamado Simeón, justo y piadoso, que esperaba el
+                    consuelo de Israel...</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Simeón representa a los fieles judíos que aguardaban al Mashíaj. Su fidelidad activa trae culto
+                    profético cuando el Espíritu le revela que verá al Mesías (Lv 12:8 renegando sacrificado y Mt
+                    23:39).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">2:26</div>
+                <div class="aramaic">ܘܪܽܘܚܳܐ ܩܰܕ݂ܺܝܫܳܐ ܥܠܶܝܗܶܝ ܘܥܰܠ ܠܐ ܐܳܦ݂ܳܝܶܗܝ ܠܳܒ݂ܥܶܝܢܳܐ ܥܰܕ ܕܶܚܙܶܬܴܗ ܒܝܰܬ ܡܻܪܝܳܐ
+                    ܕܡܫܝܚܳܐ ܕܡܳܪܝܳܐ</div>
+                <div class="transliteration">w-rūḥā qadyīshā 'alyēhī w-'al lā 'āpōyēhī l-bā'īnō 'ad d-ḥzēth bayet Maryō
+                    d-Mashīḥō d-Marīō</div>
+                <div class="translation">—...porque el Espíritu Santo estaba sobre él, y él no vería muerte antes de
+                    haber visto al Ungido del Adon.</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Simeón fue complacido por el Ruaj Hakodesh para recitar el "Nunc dimittis". Este anuncio señala
+                    directamente a Yeshúa como el Mesías esperado —la manifestación del Siervo prometido.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">2:27</div>
+                <div class="aramaic">ܘܐܚܶܙ ܪܺܐܝܶܬܶܗܝ ܠܗ ܘܩܰܒܼܠܶܗ ܒܕ݂݁ܰܝܬܶܗܝ ܘܒܪܰܟ ܠܐܠܗܳܐ</div>
+                <div class="transliteration">W-'aḥēz rē'ēthēhī lah w-qābelēhī b-daytēhī w-brākh l-Alōhā</div>
+                <div class="translation">—Y le tomó en sus brazos y bendijo a Elohím.</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Simeón reconoce y presenta al Niño en un acto de adoración profética; un rito mesiánico que revela
+                    el verdadero Rey y Príncipe de paz (Isa 9:6).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">2:28</div>
+                <div class="aramaic">ܘܐܡܰܪ ܠܳܐܠܳܗܳܐ ܚܻܠ ܫܪܒܰܥܢܳܐ ܐܰܠܰܗܳܐ ܥܠܡ݂ܳܐ ܗܶܢܰܐ ܕܰܐܶܙܰܕ ܚܙܶܐ ܥܰܝܢܳܝܗܝ
+                    ܣܰܘܿܪܳܐܰܕ݂݂ܳܟ݂ܶܢܟܰܢܶܐ</div>
+                <div class="transliteration">W-'amar l-Alōhā ḥāl šarbā'ānō Alōhā 'almō hēnā d-'ezzād ḥzē ʿīnōyhī
+                    sowrōdakhonēh</div>
+                <div class="translation">—Y dijo: "Ahora, Adon, despides a Tu siervo en paz, según Tu palabra;</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    "Sirviente" es término mesiánico que refleja al siervo fiel (Isa 42:1; 53:11). Simeón reconoce que
+                    el propósito divino se cumple: el Siervo anunciado ha venido.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">2:29</div>
+                <div class="aramaic">ܕܗܳܐ ܚܙܝ ܥܝܢܳܝ ܦܪܳܣܳܦܳܟܳܐ</div>
+                <div class="transliteration">d-hā ḥzē ʿīnōyhī fètṣōkākhā</div>
+                <div class="translation">—"...porque mis ojos han visto Tu salvación"</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    "Yeshua" significa salvación. Simeón profetiza que el bebé es la salvación preparada por Adonái,
+                    como había sido prometido (Sal 118:26).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">2:30</div>
+                <div class="aramaic">ܐܺܝܟ ܕܳܝܬܶܐ ܥܠܳܡܳܐ ܒܶܩܳܕܡܶܝܢ ܥܰܡ݂ܝܳܐ</div>
+                <div class="transliteration">'ēk' d-yatē 'alamō b-qōdmēn ʿamyō</div>
+                <div class="translation">—"...lo que habías preparado ante todos los pueblos"</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Profecía mesiánica que anticipa la misión universal de Mashíaj —luz para las naciones, no solo para
+                    Israel (Isa 49:6).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">2:31</div>
+                <div class="aramaic">ܐܢܘܪܳܐ ܠܩܰܪܰܐ ܠܓܝܪܽܘܟܣܝܳܐ ܘܪܰܒܳܐ ܠܫܽܘܪܳܝܳܐ ܕܝܳܫܪܐܝܾܐ</div>
+                <div class="transliteration">'nūrā l-qārā lgirūksāyā w-rabbā l-shūrāyō d-Yīśrā'īē</div>
+                <div class="translation">—"...Luz para revelación a los gentiles, y gloria para Tu pueblo Israel."</div>
+                <div class="messianic-fulfillment">
+                    <strong>Cumplimiento Mesiánico:</strong><br>
+                    Cumple Isaías 42:6 y 49:6. Yeshúa es luz universal, inaugurando salvación para los gentiles y gloria
+                    redentora para Israel.
+                </div>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 4. Contexto Histórico y Cultural de Bemidbar (Números) 8:15–26</h1>
+
+                <div class="section-container">
+                    <p>Este pasaje describe la conclusión del proceso de consagración de los levitas para el servicio
+                        sagrado en el <span class="hebrew-term">משכן</span> (Mishkán - Tabernáculo). Proporciona
+                        detalles esenciales sobre su rol, funciones, edad de servicio, y su posición como sustitutos de
+                        los primogénitos de Israel.</p>
+
+                    <p>A continuación, se analiza el trasfondo histórico, cultural, geográfico y litúrgico, incluyendo
+                        su desarrollo posterior en el Primer y Segundo Templo, así como en otras tradiciones judías
+                        antiguas.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">I. Contexto Temporal y Geográfico:</div>
+                    <p>Esta sección ocurre en el segundo año después del éxodo de <span class="hebrew-term">מצרים</span>
+                        (Mitsrayim) (Números 1:1; 9:1), cuando Israel está acampado en el desierto del Sinaí. El <span
+                            class="hebrew-term">משכן</span> (Mishkán) ya ha sido levantado y los líderes tribales han
+                        traído sus ofrendas. Es el momento de activar el sistema levítico para el funcionamiento regular
+                        del <span class="hebrew-term">משכן</span> (Mishkán).</p>
+
+                    <p>La consagración descrita aquí es la fase final del proceso iniciado en Éxodo 32 (tras el pecado
+                        del becerro de oro) cuando los levitas se distinguieron por su celo por la santidad de <span
+                            class="hebrew-term">אדני</span> (Adonái), lo cual les valió su elevación al rol sacerdotal
+                        auxiliar.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">II. Aspectos Litúrgicos del Servicio Levítico:</div>
+                    <p>Verso 15 afirma que una vez purificados y presentados como <span class="hebrew-term">תנופה</span>
+                        (tenufáh - ofrenda mecida), los levitas quedarían oficialmente dedicados al servicio. Esto
+                        incluía:</p>
+
+                    <ul>
+                        <li>Asistencia a los <span class="hebrew-term">כהנים</span> (kohanim - sacerdotes hijos de
+                            Aharón) en el servicio del <span class="hebrew-term">משכן</span> (Mishkán).</li>
+                        <li>Traslado del <span class="hebrew-term">משכן</span> (Mishkán) y sus utensilios durante el
+                            viaje por el desierto.</li>
+                        <li>Custodia del <span class="hebrew-term">אהל מועד</span> (Ohel Moed - tienda de reunión).</li>
+                        <li>Supervisión musical y tareas de limpieza y preparación.</li>
+                    </ul>
+
+                    <p><span class="highlight">Importancia cultural:</span> Ser levita no era sólo una función técnica,
+                        sino una identidad de vida —vivir sin heredad en la tierra, dedicados al servicio de <span
+                            class="hebrew-term">אדני</span> (Adonái) (Devarim 10:9).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">III. Edad de Servicio y Retiro (Versos 24–26):</div>
+                    <p>El texto estipula que los levitas comenzaban su servicio desde los 25 años y lo continuaban hasta
+                        los 50 años, después de lo cual ayudaban pero ya no ministraban directamente.</p>
+
+                    <p>Este sistema:</p>
+                    <ul>
+                        <li>Aseguraba fortaleza física durante los años activos.</li>
+                        <li>Permitía una transición intergeneracional donde los mayores enseñaban a los jóvenes.</li>
+                        <li>Reforzaba la santidad del servicio al no ser dominado por longevidad ritual, sino por
+                            pureza, disciplina y renovación continua.</li>
+                    </ul>
+
+                    <p>🕍 En el Primer y Segundo Templo, estos límites de edad fueron cuidadosamente observados (ver
+                        Talmud Bavli, Hullin 24a), y los levitas eran seleccionados por familias con tareas específicas
+                        según sus linajes (Kehat, Merari, Gershon).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">IV. Desarrollo en Época del Segundo Templo:</div>
+                    <p>Durante el período del Segundo Templo, los levitas continuaron como ministros de música,
+                        custodios del Templo, jueces y supervisores de sacrificios, aunque ya no trasladaban el <span
+                            class="hebrew-term">משכן</span> (Mishkán), puesto que el Templo era fijo. Según Flavio
+                        Josefo (Antigüedades Judías, libro 20), los levitas eran reconocidos por su habilidad musical y
+                        conocimiento profundo de la <span class="hebrew-term">הלכה</span> (halajá).</p>
+
+                    <p>En Qumrán (Manuscritos del Mar Muerto), los levitas tienen un rol escatológico. En el Documento
+                        de Damasco (CD) y el Rollo del Templo (11QT), se los ve como líderes en la comunidad restaurada,
+                        mostrando cómo el servicio levítico se convirtió en símbolo de pureza escatológica y dedicación.
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">V. Significado Profético:</div>
+                    <p>Este contexto refleja una tipología mesiánica que el <span class="hebrew-term">ברית החדשה</span>
+                        (Brit Hadasháh) toma para hablar del sacerdocio renovado en <span class="hebrew-term">ישוע
+                            המשיח</span> (Yeshúa haMashíaj):</p>
+
+                    <ul>
+                        <li>Los levitas son sustitutos de los primogénitos → <span class="hebrew-term">משיח</span>
+                            (Mashíaj), el Primogénito eterno, toma el lugar de muchos (Yeshayáhu 53:5).</li>
+                        <li>El retiro a los 50 años marca un ciclo de liberación → <span class="hebrew-term">משיח</span>
+                            (Mashíaj) inaugura el verdadero jubileo espiritual (Lucas 4:19).</li>
+                        <li>El servicio intergeneracional es reflejo del modelo discipular que <span
+                                class="hebrew-term">ישוע</span> (Yeshúa) implementó (2 Timoteo 2:2).</li>
+                    </ul>
+                </div>
+
+                <div class="conclusion">
+                    <div class="prophetic-title">VI. Conclusión del Contexto:</div>
+                    <ul>
+                        <li><strong>Históricamente,</strong> este pasaje sella la estructura levítica como fundamento
+                            del culto a <span class="hebrew-term">אדני</span> (Adonái).</li>
+                        <li><strong>Culturalmente,</strong> refleja un modelo de dedicación total, separación del mundo
+                            y renovación generacional.</li>
+                        <li><strong>Proféticamente,</strong> es figura del servicio mesiánico eterno que <span
+                                class="hebrew-term">ישוע המשיח</span> (Yeshúa haMashíaj) inaugura al constituir una
+                            nueva generación sacerdotal bajo Su liderazgo eterno (Hebreos 7:24).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas – Bemidbar (Números) 8:15–26</h1>
+
+                <div class="section-container">
+                    <p>Esta sección final del capítulo 8 concluye el proceso de consagración de los levitas y establece
+                        el modelo espiritual del servicio ordenado, consagrado y limitado por <span
+                            class="hebrew-term">אדני</span> (Adonái). Desde una perspectiva judía tradicional y
+                        mesiánica, se revelan principios proféticos profundos relacionados con la obra de <span
+                            class="hebrew-term">ישוע המשיח</span> (Yeshúa haMashíaj).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">I. Comentarios del Tiempo del Segundo Templo</div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">1. Edad de servicio (25–50 años)</div>
+                        <p>El Talmud (Hullin 24a) interpreta que los levitas comenzaban una preparación a los 25 y
+                            comenzaban funciones completas a los 30 (cf. 4:3), en armonía con el servicio de <span
+                                class="hebrew-term">ישוע</span> (Yeshúa), quien comienza Su ministerio público a los 30
+                            años (Lucas 3:23), siguiendo el patrón levítico.</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">2. Fin del servicio a los 50 años (v. 25):</div>
+                        <p>Esta disposición no indica retiro absoluto, sino cambio de función. El versículo 26 dice que
+                            ayudarán "como asistentes", no que se retiren de la comunidad. Esto simboliza el valor del
+                            liderazgo maduro como mentores espirituales (véase Sifrei Zuta 8:25).</p>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">II. Comentario Judío Mesiánico</div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">1. Verso 15 – "Después de eso, los levitas vendrán a servir en el
+                            <span class="hebrew-term">אהל מועד</span> (Ohel Moed)…"</div>
+                        <p>Este paso posterior a la purificación (vv. 7–14) es profético: la pureza precede al
+                            ministerio. En el <span class="hebrew-term">ברית החדשה</span> (Brit Hadasháh), los
+                            seguidores de <span class="hebrew-term">משיח</span> (Mashíaj) son purificados por Su sangre
+                            y preparados para el servicio (Hebreos 9:14; 1 Pedro 1:2).</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">2. Verso 16 – "Me son dados como un regalo…"</div>
+                        <p>La frase hebrea <span class="hebrew">נְתוּנִים נְתוּנִים הֵם לִי</span> – "dados, dados son a
+                            Mí" repite intencionalmente la palabra <span class="hebrew">נתונים</span> (netuním), para
+                            enfatizar entrega total.</p>
+                        <p>🔁 En el contexto mesiánico: <span class="hebrew-term">ישוע המשיח</span> (Yeshúa haMashíaj)
+                            se ofrece a Sí mismo como ofrenda completa, y nosotros somos entregados al Padre a través de
+                            Él (Juan 17:6, 9, 24).</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">3. Verso 19 – "Para que no haya plaga…"</div>
+                        <p>Los levitas interceden entre Israel y <span class="hebrew-term">אדני</span> (Adonái),
+                            evitando juicio divino. Esto es un patrón profético claro:</p>
+                        <p>🩸 <span class="hebrew-term">משיח</span> (Mashíaj) es el intermediario final, el que quita el
+                            pecado y detiene el juicio (Isaías 53:4–5; 1 Timoteo 2:5–6).</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">4. Versos 23–26 – Limitación del servicio por edad</div>
+                        <p>Esto muestra que el servicio no es eterno en la carne.</p>
+                        <p>☁️ Solo <span class="hebrew-term">משיח</span> (Mashíaj) posee el sacerdocio eterno e
+                            inmutable (Hebreos 7:24–25).</p>
+                        <p>Este contraste resalta la fragilidad del sacerdocio levítico y la plenitud del sacerdocio
+                            mesiánico.</p>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">III. Notas de los Primeros Siglos sobre <span class="hebrew-term">ישוע
+                            המשיח</span> (Yeshúa haMashíaj)</div>
+                    <p>Los primeros nazarenos y padres de la fe judía mesiánica (como los Ebionitas y <span
+                            class="hebrew-term">נוצרים</span> - notzrim) vieron en la figura de los levitas una sombra
+                        del pueblo del Nuevo Pacto.</p>
+
+                    <p>Epístola a los Hebreos (cap. 7–10) es la explicación más explícita del reemplazo del sacerdocio
+                        levítico por el sacerdocio eterno de <span class="hebrew-term">משיח</span> (Mashíaj).</p>
+
+                    <p>Clemente de Roma (c. 95 d.C.) escribió sobre los líderes como "servidores según el modelo
+                        levítico", pero que ahora tienen como Cabeza a <span class="hebrew-term">משיח</span> (Mashíaj).
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">IV. Aplicación Espiritual en la <span class="hebrew-term">קהילה</span>
+                        (Kehiláh)</div>
+                    <ul>
+                        <li><span class="highlight">Servicio en pureza</span> – Solo quienes han sido limpiados en <span
+                                class="hebrew-term">משיח</span> (Mashíaj) pueden servir con eficacia espiritual.</li>
+                        <li><span class="highlight">Consagración total</span> – No somos de nosotros mismos, sino dados
+                            a Él completamente (Romanos 12:1).</li>
+                        <li><span class="highlight">Relevos generacionales</span> – El discipulado continúa en las
+                            generaciones, pero el liderazgo permanece en <span class="hebrew-term">משיח</span>
+                            (Mashíaj).</li>
+                        <li><span class="highlight">Limitación humana y supremacía del <span
+                                    class="hebrew-term">משיח</span> (Mashíaj)</span> – Los levitas servían por 25 años;
+                            <span class="hebrew-term">ישוע</span> (Yeshúa) ministra para siempre (Hebreos 8:1–2).</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">V. Análisis Léxico y Guematría</div>
+                    <p><span class="hebrew">נתונים</span> (Netuním) – "dados" aparece dos veces: valor guemátrico 506 ×
+                        2 = 1012</p>
+                    <p>Coincide con el valor de <span class="hebrew">משיח בן דוד</span> (Mashíaj ben David) = 434 + 52 =
+                        486 → símbolo de repetición y plenitud mesiánica.</p>
+
+                    <p><span class="hebrew">שֵׁרֵת</span> (shéret) – "ministrar": raíz compartida con <span
+                            class="hebrew">משרת</span> (masharet – servidor), usada para <span
+                            class="hebrew-term">משיח</span> (Mashíaj) en Isaías 52–53.</p>
+                </div>
+
+                <div class="conclusion">
+                    <div class="prophetic-title">Conclusión Profética:</div>
+                    <ul>
+                        <li>Los levitas como tipo del Mesías: apartados, sustitutos, intercesores.</li>
+                        <li>Su tiempo limitado resalta la necesidad de un sacerdocio eterno, cumplido en <span
+                                class="hebrew-term">ישוע</span> (Yeshúa).</li>
+                        <li>El servicio no era un derecho, sino una gracia otorgada por <span
+                                class="hebrew-term">אלהים</span> (Elohím) —lo mismo sucede en el <span
+                                class="hebrew-term">ברית החדשה</span> (Brit Hadasháh).</li>
+                        <li><span class="hebrew-term">משיח ישוע</span> (Mashíaj Yeshúa) no solo cumple el rol de Levita,
+                            sino que lo trasciende, inaugurando un servicio eterno, celestial y eficaz.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="content-container">
+                <h1>Punto 6. Análisis Profundo de la Aliyáh – Bemidbar (Números) 8:15–26</h1>
+
+                <div class="section-container">
+                    <p>Esta Aliyáh concluye el capítulo 8 y desarrolla plenamente el orden del servicio levítico, su
+                        función intercesora, sus limitaciones temporales, y su rol como sustituto redentor en el <span
+                            class="hebrew-term">משכן</span> (Mishkán). Desde una lectura judía tradicional y mesiánica,
+                        esta sección ofrece una visión rica en paralelismos proféticos con la persona y obra de <span
+                            class="hebrew-term">ישוע המשיח</span> (Yeshúa haMashíaj).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">I. Análisis Judío Tradicional</div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">1. La Entrada Oficial de los Levitas al Servicio (v. 15)</div>
+                        <div class="hebrew">"וְאַחֲרֵי־כֵ֞ן יָבֹ֤אוּ הַלְוִיִּם֙ לַעֲבֹ֔ד אֵ֖ת עֲבֹדָתָ֑ם"</div>
+
+                        <p>– Indica que sólo después del proceso completo de purificación y presentación (vv. 6–14), los
+                            levitas podían comenzar su función. Según Rashi, esto subraya que la preparación espiritual
+                            y ritual es condición indispensable para el servicio sagrado.</p>
+
+                        <p>🕍 En el Segundo Templo, el Midrash Sifrei menciona que incluso si un levita estaba impuro
+                            ritualmente, no podía ni siquiera tocar un instrumento hasta completar su purificación.</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">2. Los Levitas como Sustitutos Espirituales (vv. 16–19)</div>
+                        <div class="hebrew">"כִּ֤י נְתוּנִם֙ נְתוּנִ֣ם הֵ֔מָּה לִ֖י"</div>
+
+                        <p>– El énfasis repetido "netuním netuním" (dados, dados) indica propiedad total. Rambán
+                            (Najmánides) ve en esto un principio de "temurah": transferencia legal del derecho
+                            espiritual del primogénito hacia los levitas.</p>
+
+                        <p>📜 En este contexto, los levitas funcionan como "kaparáh colectiva" —una forma de cubrir y
+                            representar al pueblo, especialmente en tiempos de juicio (como el becerro de oro).</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">3. Prevención de la Plaga (v. 19)</div>
+                        <div class="hebrew">"וְלֹא־יִהְיֶ֥ה בִבְנֵֽי־יִשְׂרָאֵ֖ל נֶ֑גֶף"</div>
+
+                        <p>– Este verso afirma que la función intercesora del levita era preventiva, no solo ritual. Ibn
+                            Ezra conecta esto con la presencia divina: si Israel se acerca a lo sagrado sin mediación
+                            adecuada, hay peligro mortal (como en el caso de Nadav y Avihú).</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">4. Edad y Tiempo de Servicio (vv. 24–26)</div>
+                        <div class="hebrew">"מִבֶּן חָמֵשׁ וְעֶשְׂרִים... עַד בֶּן־חֲמִשִּׁים שָׁנָה"</div>
+
+                        <p>– El servicio era limitado por edad. Según Seder Olam y Maimónides, los años entre 25 y 30
+                            eran de preparación, y el servicio completo comenzaba a los 30 (coherente con Bamidbar 4:3).
+                        </p>
+
+                        <p>🎼 Los levitas mayores de 50 enseñaban, supervisaban, y asistían (Talmud Bavli, Hullin 24a),
+                            pero no se retiraban del entorno del <span class="hebrew-term">משכן</span> (Mishkán),
+                            mostrando un modelo comunitario de generación a generación.</p>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">II. Análisis Judío Mesiánico</div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">1. El Servicio de los Levitas como Figura del <span
+                                class="hebrew-term">משיח</span> (Mashíaj)</div>
+                        <p><span class="hebrew-term">ישוע</span> (Yeshúa), como <span class="hebrew-term">המשיח
+                                כהן</span> (HaMashíaj Kohén), cumple y trasciende el servicio levítico:</p>
+
+                        <ul>
+                            <li><span class="highlight">Purificación previa al ministerio</span> → <span
+                                    class="hebrew-term">ישוע</span> (Yeshúa) fue sin mancha (1 Kefa 2:22) y se consagró
+                                en <span class="hebrew-term">טבילה</span> (teviláh) (Mateo 3:13–17).</li>
+                            <li><span class="highlight">Sustituto por el pueblo</span> → Él reemplaza a todo Israel en
+                                juicio (Yeshayáhu 53:5–6).</li>
+                            <li><span class="highlight">Intercesor entre <span class="hebrew-term">אדני</span> (Adonái)
+                                    e Israel</span> → Su obra en el madero detiene el juicio divino, como lo hacían los
+                                levitas simbólicamente.</li>
+                        </ul>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">2. Los Levitas como Tipo de la <span
+                                class="hebrew-term">קהילה</span> (Kehiláh) Mesiánica</div>
+                        <p>Cada creyente en <span class="hebrew-term">משיח</span> (Mashíaj), redimido y purificado,
+                            entra en un sacerdocio renovado:</p>
+
+                        <div class="scripture">"Ustedes son linaje escogido, real sacerdocio…" (1 Kefa 2:9)</div>
+
+                        <p>Así como los levitas eran dados a <span class="hebrew-term">אדני</span> (Adonái) en lugar de
+                            los primogénitos, los que están en <span class="hebrew-term">משיח</span> (Mashíaj) son
+                            entregados al Reino como pueblo separado (Tito 2:14).</p>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">3. La Edad y el Oficio en la Dispensación Mesiánica</div>
+                        <p><span class="hebrew-term">ישוע</span> (Yeshúa) inicia su ministerio a los 30 años (Lucas
+                            3:23), en paralelo con el modelo levítico.</p>
+                        <p>Su sacerdocio, sin embargo, no está limitado por edad ni por muerte:</p>
+
+                        <div class="scripture">"Tiene un sacerdocio que no puede transferirse, pues permanece para
+                            siempre" (Hebreos 7:24).</div>
+
+                        <p>Los creyentes maduros en <span class="hebrew-term">משיח</span> (Mashíaj) sirven como
+                            mentores, siguiendo el modelo levítico de transición generacional espiritual (2 Timoteo
+                            2:2).</p>
+                    </div>
+                </div>
+
+                <div class="conclusion">
+                    <div class="prophetic-title">III. Conclusión del Análisis</div>
+                    <p>Esta Aliyáh establece un patrón profético del ministerio redentor:</p>
+
+                    <ul>
+                        <li><span class="highlight">Purificación + Consagración</span> → Servicio santo</li>
+                        <li><span class="highlight">Sustitución levítica</span> → Sustitución mesiánica</li>
+                        <li><span class="highlight">Intercesión preventiva</span> → Expiación completa</li>
+                        <li><span class="highlight">Límite humano</span> → Sacerdocio eterno de <span
+                                class="hebrew-term">משיח</span> (Mashíaj)</li>
+                        <li><span class="highlight">Transmisión generacional</span> → Formación discipular mesiánica
+                        </li>
+                    </ul>
+
+                    <p>Este diseño revela la sabiduría divina en preparar, ordenar y proteger Su servicio, prefigurando
+                        la redención perfecta en <span class="hebrew-term">משיח ישוע</span> (Mashíaj Yeshúa), que no
+                        solo cumple cada elemento, sino que los llena de poder eterno.</p>
+                </div>
+            </div>
+
+            <div class="prayer-conclusion">
+                <p><em>Baruj Adonai por Su sabiduría eterna revelada en Su Palabra</em></p>
+            </div>
+
+            <div class="content-container">
+                <h1>Punto 7. Tema Más Relevante de la Aliyáh – Bemidbar (Números) 8:15–26</h1>
+                <h2>Tema Central: “Sustitución Consagrada y Servicio Intercesor: Un Modelo del Sacerdocio de Mashíaj”
+                </h2>
+                <div class="section-container">
+                    <h3>1. Importancia del Tema en el Contexto de la Toráh</h3>
+                    <p><strong>Sustitución Redentora:</strong> Los levitas reemplazan a los primogénitos de cada familia
+                        israelita, que originalmente estaban dedicados a Adonái desde Éxodo 13:2. Sin embargo, a causa
+                        del pecado del becerro de oro (Shemot 32), esa consagración fue transferida a los levitas, que
+                        se mantuvieron fieles.</p>
+                    <p>Esta sustitución refleja una ley espiritual: la redención requiere un representante justo. En
+                        este caso, no se trata de redención eterna, sino de funcionalidad ritual en el Mishkán. Sin
+                        embargo, el modelo es claro: una persona o grupo consagrado actúa en lugar de muchos.</p>
+                    <p><strong>Intercesión Preventiva:</strong> El verso 19 afirma que el servicio levítico impide la
+                        plaga entre los hijos de Israel. Esto es vital: el servicio de los levitas no solo ministra,
+                        sino que protege. Este es el corazón de toda función sacerdotal: interceder y guardar al pueblo
+                        de las consecuencias del juicio divino.</p>
+                    <p><strong>Servicio con Límite Temporal:</strong> La limitación de edad (25–50 años) establece un
+                        patrón de transición generacional y demuestra que el servicio humano, aunque valioso, es
+                        temporal. Este límite se convierte en una sombra del sacerdocio eterno e inmutable del Mashíaj,
+                        sin reemplazo, sin sucesión.</p>
+                </div>
+                <div class="section-container">
+                    <h3>2. Relevancia del Tema en Yeshúa haMashíaj</h3>
+                    <p><strong>Mashíaj como Sustituto Verdadero:</strong> Así como los levitas fueron “dados dados”
+                        (נתונים) a Adonái, Mashíaj es el Siervo dado totalmente al Padre, y por medio de Él, nosotros
+                        también somos dados al Padre (Juan 17:6). Él no solo toma el lugar de un primogénito, sino el
+                        lugar de todo Israel y la humanidad.</p>
+                    <p>“El justo por los injustos, para llevarnos a Elohím.” (1 Kefa 3:18)</p>
+                    <p><strong>Mashíaj como Intercesor Perfecto:</strong> Mientras que los levitas impedían la plaga con
+                        su presencia, Yeshúa detiene el juicio eterno con Su sangre. Su intercesión no es simbólica ni
+                        temporal, sino eficaz y eterna:</p>
+                    <p>“Por eso puede salvar completamente a los que por medio de Él se acercan a Elohím, viviendo
+                        siempre para interceder por ellos.” (Hebreos 7:25)</p>
+                    <p><strong>Mashíaj como KohénGadol sin Límite de Tiempo:</strong> Donde los levitas se retiraban a
+                        los 50 años, Mashíaj nunca cesa de servir. Su sacerdocio es según el orden de Malki-Tzedek, no
+                        por linaje humano, sino por poder de una vida indestructible (Hebreos 7:16).</p>
+                    <p>“Tú eres kohén para siempre, según el orden de Malki-Tzedek.” (Tehilím 110:4; Hebreos 5:6)</p>
+                </div>
+                <div class="section-container">
+                    <h3>3. Conexión con los Moedím de Elohím</h3>
+                    <p>Este tema se relaciona particularmente con Yom Kipur y Pesaj:</p>
+                    <ul>
+                        <li>En Pesaj, se rescata a los primogénitos con la sangre del cordero (Éxodo 12:13), pero aquí
+                            se establece que los levitas sustituyen a los primogénitos → Mashíaj es el Cordero, el
+                            Primogénito, y el Sustituto.</li>
+                        <li>En Yom Kipur, el servicio sacerdotal impide el juicio sobre Israel → Mashíaj entra al Lugar
+                            Santísimo celestial para hacer una expiación eterna (Hebreos 9:11–14).</li>
+                    </ul>
+                </div>
+                <div class="section-container">
+                    <h3>4. Aplicación Actual en la Kehiláh Mesiánica</h3>
+                    <p><strong>Consagración total:</strong> Así como los levitas no pertenecían a sí mismos, los
+                        discípulos de Mashíaj son completamente de Él.</p>
+                    <p><strong>Intercesión diaria:</strong> El llamado de cada creyente es interceder y servir, no como
+                        ritual vacío, sino como canal de misericordia y luz.</p>
+                    <p><strong>Discipulado generacional:</strong> El modelo de servicio con relevo enseña a formar a
+                        otros, a pasar el fuego del llamado con fidelidad y pureza.</p>
+                </div>
+                <div class="conclusion">
+                    <h3>Conclusión</h3>
+                    <p>El tema más relevante de esta Aliyáh es el principio de sustitución consagrada y servicio
+                        intercesor. Los levitas no sólo actuaban por Israel, ellos eran Israel representado. Esta verdad
+                        encuentra su realización perfecta en Yeshúa haMashíaj, el Siervo fiel, el Primogénito eterno, el
+                        Intercesor inmutable.</p>
+                    <p>Por Él, cada creyente se convierte en parte de ese servicio vivo, ofrecido como sacrificio
+                        agradable a Elohím (Romanos 12:1), no en un Mishkán terrenal, sino en el Mishkán celestial de Su
+                        Reino.</p>
+                </div>
+            </div>
+            <div class="content-container">
+                <h1>Punto 8. Descubriendo a Mashíaj en cada Aliyáh – Bemidbar (Números) 8:15–26</h1>
+                <p>Esta Aliyáh presenta figuras, sombras (צְלָלִים), tipologías (טִיפּוֹלוֹגִיּוֹת) y patrones
+                    redentores (תַּבְנִיתוֹת) que apuntan directa y claramente al Mashíaj Yeshúa. Cada elemento del
+                    texto revela un aspecto profético de Su identidad, función y obra redentora. A continuación,
+                    aplicamos las herramientas mesiánicas tradicionales para descubrirlo en cada componente clave.</p>
+                <div class="section-container">
+                    <h3>1. Los Levitas como Sombra del Siervo Sustituto (vv. 15–16)</h3>
+                    <p>“...vendrán los levitas a servir en el Ohel Moed… porque dados, dados son a Mí, en lugar de los
+                        primogénitos.”</p>
+                    <p><strong>Tipología Mesiánica:</strong> Los levitas son sustitutos → Yeshúa es el Sustituto
+                        universal (2 Corintios 5:21).</p>
+                    <p>“Dados, dados” (נתונים) → señala consagración completa, como la entrega voluntaria de Mashíaj
+                        (Juan 10:17–18).</p>
+                    <p><strong>Texto paralelo:</strong> Isaías 53:10 – “Adonái quiso quebrantarlo… si pusiere su alma en
+                        expiación.” → Aquí Mashíaj se da completamente al Padre, como los levitas.</p>
+                </div>
+                <div class="section-container">
+                    <h3>2. Presentación como Tenufáh – Ofrenda Mecíánica (vv. 15, 21)</h3>
+                    <p>“...y presentará Aharón a los levitas como ofrenda mecida delante de Adonái…”</p>
+                    <p><strong>Patrón redentor (תַּבְנִית):</strong> En el sistema levítico, la tenufáh implicaba ser
+                        mostrados y elevados ante Adonái.</p>
+                    <p>Mashíaj fue ofrecido públicamente (Yojanán 19:17) y levantado (Juan 12:32), cumpliendo este gesto
+                        de ofrenda pública redentora.</p>
+                    <p><strong>Paralelismo con el cordero de Pesaj,</strong> que también se “presentaba” (Éxodo 12:5):
+                        Mashíaj es el Cordero y el Levita ofrecido.</p>
+                </div>
+                <div class="section-container">
+                    <h3>3. Prevención del Juicio – Figura del Intercesor (v. 19)</h3>
+                    <p>“...para que no haya plaga entre los hijos de Israel, al acercarse al santuario.”</p>
+                    <p><strong>Sombra profética (צֵל):</strong> Los levitas eran barrera intercesora entre Israel y el
+                        juicio → Mashíaj es el intercesor perfecto entre Elohím y los hombres.</p>
+                    <p>Isaías 53:5 – “...el castigo de nuestra paz fue sobre Él.”</p>
+                    <p><strong>Término clave:</strong> נֶגֶף (neguéf, plaga) → usado en Shemot 12:13 en Pesaj; Mashíaj
+                        detiene la plaga del juicio eterno con Su sangre.</p>
+                </div>
+                <div class="section-container">
+                    <h3>4. Limitación del Servicio – Contraste con el Sacerdocio Eterno (vv. 24–26)</h3>
+                    <p>“De 25 años en adelante… hasta 50 años… después ministrarán a sus hermanos.”</p>
+                    <p><strong>Figura contrastante (סוֹפֵר בֶּנִגּוּד):</strong> Mientras los levitas tenían límite,
+                        Mashíaj no tiene fin en Su sacerdocio.</p>
+                    <p>Hebreos 7:23–24 – “Pero Este, por cuanto permanece para siempre, tiene un sacerdocio inmutable.”
+                    </p>
+                    <p><strong>El contraste resalta la superioridad del sacerdocio de Yeshúa,</strong> no heredado ni
+                        limitado, sino por poder de vida eterna.</p>
+                </div>
+                <div class="content-container">
+                    <h1>Estudio Mesiánico - Bemidbar (Números) 8:15-26</h1>
+
+                    <div class="section-container">
+                        <h2>5. El Servicio de Ayuda Post-Retiro – Modelo del Discipulado</h2>
+                        <div class="scripture">"...y ayudarán a sus hermanos en el Mishkán…"</div>
+
+                        <p>🧬 <strong>Patrón discipular:</strong> Los levitas retirados siguen sirviendo, pero en otra
+                            función: <strong>formación y apoyo</strong>. Esto se refleja en el mandato de Yeshúa a los
+                            discípulos:</p>
+                        <div class="scripture">"Vayan y hagan discípulos…" (Mattityáhu 28:19)</div>
+
+                        <p>Mashíaj no sólo ministra; <strong>forma ministros</strong>. El rol de los levitas retirados
+                            es figura del liderazgo espiritual maduro, modelo en la kehila'h.</p>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>6. Figuras Lingüísticas y Guematría Mesiánica</h3>
+
+                        <p>🔡 <strong><span class="hebrew-term">נתונים</span> (Netuním):</strong></p>
+                        <ul>
+                            <li>Guematría = 506</li>
+                            <li>Dos veces → 1012</li>
+                            <li>Este valor coincide con la suma de <span class="hebrew-term">"מֶלֶךְ מָשִׁיחַ"</span>
+                                (Melej Mashíaj – Rey Mesías) en valor atbash.</li>
+                        </ul>
+
+                        <p>📜 <strong>Abundancia profética del doble dar:</strong> Netuním + Tenufáh + sustitución →
+                            triple corona que describe perfectamente a Mashíaj:</p>
+                        <ul>
+                            <li>Entregado (<span class="hebrew-term">נתון</span>)</li>
+                            <li>Elevado (Tenufáh)</li>
+                            <li>Sustituto perfecto (Kaparah)</li>
+                        </ul>
+                    </div>
+
+                    <div class="conclusion">
+                        <div class="prophetic-title">Conclusión Mesiánica del Punto 8:</div>
+                        <p><strong>Mashíaj está presente en cada aspecto de esta Aliyáh</strong>:</p>
+                        <ul>
+                            <li>Como sustituto de muchos (Levitas)</li>
+                            <li>Como ofrenda pública (Tenufáh)</li>
+                            <li>Como protector de Israel (Intercesor)</li>
+                            <li>Como sacerdote sin límite (Kohen eterno)</li>
+                            <li>Como mentor discipular (formador de generaciones)</li>
+                        </ul>
+
+                        <p>Cada levita consagrado, presentado y limitado, es sombra del <strong>Siervo
+                                perfecto</strong>, <strong>el Mashíaj de Israel</strong>, que cumple y trasciende cada
+                            rol, estableciendo un Reino de sacerdotes bajo Su autoridad, pureza y amor redentor.</p>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="content-container">
+                    <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos – Bemidbar (Números) 8:15–26</h1>
+
+                    <p>Esta sección de la Toráh es profundamente desarrollada en las <strong>tradiciones
+                            orales</strong>, <strong>comentarios midráshicos</strong>, <strong>traducciones arameas
+                            antiguas (Targumim)</strong>, y textos del <strong>segundo templo y literatura
+                            apócrifa</strong>. Cada fuente aporta una dimensión adicional a la comprensión del servicio
+                        levítico como figura mesiánica. A continuación se exponen estos elementos con sus implicaciones
+                        en el contexto de <strong>Yeshúa haMashíaj</strong>.</p>
+
+                    <div class="section-container">
+                        <h3>I. Midrashim Relevantes</h3>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">1. Bamidbar Rabbah 6:3</div>
+                            <div class="scripture">"Los levitas fueron tomados en lugar de los primogénitos por mérito
+                                de su celo en el pecado del becerro. Como está escrito: 'Quien esté por Adonái, venga a
+                                Mí.'"</div>
+                            <p>🕊️ <strong>Interpretación mesiánica:</strong> Este midrash reconoce que la elección
+                                levítica se basa en obediencia y celo. Mashíaj, como el único justo, fue también
+                                apartado como representante de todo el pueblo por Su fidelidad (Filipenses 2:8–9).</p>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">2. Sifré Bamidbar §64</div>
+                            <div class="scripture">"El levita no tiene herencia entre sus hermanos, porque Adonái es su
+                                heredad."</div>
+                            <p>🪔 <strong>Aplicación mesiánica:</strong> Yeshúa, como levita celestial, se vacía de toda
+                                herencia terrenal para tomar posesión de lo eterno (Lucas 9:58). Así también, sus
+                                seguidores tienen su porción en Él (Efesios 1:11).</p>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">3. Midrash Tanjuma, Beha'alotja 12</div>
+                            <div class="scripture">"Desde los 50 años ya no llevarán carga, pero enseñarán sabiduría."
+                            </div>
+                            <p>📘 <strong>Aplicación mesiánica:</strong> Se proyecta el modelo de liderazgo maduro y
+                                enseñanza discipular, como Mashíaj que forma talmidim (discípulos) y delega el Reino.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>II. Targumim (Traducciones Arameas)</h3>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">1. Targum Onkelos sobre Números 8:19</div>
+                            <div class="scripture">"…Para que no haya herida entre los hijos de Israel, los di a Aharón
+                                como asistentes para el perdón del pueblo."</div>
+                            <p>🩸 <strong>Nota teológica:</strong> El término "para el perdón" sugiere una función más
+                                que ritual —una mediación espiritual, sombra del rol intercesor de Mashíaj (Isaías
+                                53:12).</p>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">2. Targum Pseudo-Jonatán</div>
+                            <div class="scripture">"…los levitas son dados como redención por los primogénitos de
+                                Israel, para servir día y noche en el santuario."</div>
+                            <p>⚖️ <strong>Lectura mesiánica:</strong> Yeshúa es la redención final, el Primogénito que
+                                sustituye a todos (Colosenses 1:18), sirviendo eternamente como intercesor celestial
+                                (Hebreos 7:25).</p>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>III. Textos Apócrifos y del Segundo Templo</h3>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">1. Libro de los Jubileos 30:17</div>
+                            <div class="scripture">"Y los levitas serán siempre los ministros del santuario… y su
+                                herencia será con los mensajeros del cielo."</div>
+                            <p>🌌 <strong>Implicación mesiánica:</strong> Sugiere un sacerdocio transcendente, reflejado
+                                en la función de Mashíaj que sirve no en tabernáculo terrenal, sino en el celestial
+                                (Hebreos 8:1–2).</p>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">2. Rollo del Templo (11Q19)</div>
+                            <div class="scripture">"El levita servirá como guardián, purificador, cantor y enseñador…"
+                            </div>
+                            <p>🎵 <strong>Conexión mesiánica:</strong> Yeshúa cumple todos estos roles:</p>
+                            <ul>
+                                <li><strong>Guardián</strong> del rebaño (Juan 10)</li>
+                                <li><strong>Purificador</strong> (Hebreos 9:13–14)</li>
+                                <li><strong>Cantor</strong> de la salvación (Hebreos 2:12)</li>
+                                <li><strong>Enseñador</strong> por excelencia (Lucas 4:15)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>IV. Apoyo en Qumrán y Escritos Nazarenos</h3>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">1. Documento de Damasco (CD III,7)</div>
+                            <div class="scripture">"Los levitas enseñarán la Toráh y serán custodios de la pureza
+                                comunitaria."</div>
+                            <p>📖 <strong>Relación mesiánica:</strong> En el Brit Hadasháh, los líderes son llamados a
+                                enseñar y custodiar la doctrina pura (2 Timoteo 1:13–14). Mashíaj es el modelo de pureza
+                                perfecta (Hebreos 4:15).</p>
+                        </div>
+                    </div>
+
+                    <div class="conclusion">
+                        <strong>Conclusión:</strong><br>
+                        Estas fuentes rabínicas, arameas y sectarias revelan un entendimiento antiguo del servicio
+                        levítico como <strong>figura redentora, intercesora, educativa y purificadora</strong> —todos
+                        atributos que <strong>alcanzan su plenitud en Mashíaj Yeshúa</strong>. Las funciones atribuidas
+                        a los levitas no eran exclusivamente rituales, sino <strong>prototipos del Sumo Sacerdote
+                            celestial</strong> que serviría en perfección y eternidad.
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="content-container">
+                    <h1>Punto 10. Mandamientos Encontrados o Principios y Valores – Bemidbar (Números) 8:15–26</h1>
+
+                    <p>En esta Aliyáh no encontramos mitzvot nuevas codificadas entre las 613, pero sí se confirman y
+                        amplifican <strong>mandamientos ya revelados</strong> anteriormente, junto con
+                        <strong>principios eternos</strong> que son centrales para el servicio sacerdotal, la vida
+                        comunitaria y la identidad mesiánica. Estos principios, aunque no todos sean normativos hoy en
+                        ausencia del Templo, <strong>son perpetuamente aplicables en Yeshúa haMashíaj</strong>.</p>
+
+                    <div class="section-container">
+                        <h3>I. Mandamientos Expresados o Confirmados</h3>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">1. Servicio exclusivo de los levitas en el Mishkán (v. 15)
+                            </div>
+                            <div class="scripture">📖 "Y después de eso vendrán los levitas a servir en el Ohel Moed…"
+                            </div>
+                            <p>🔹 <strong>Mandamiento confirmativo:</strong> Los levitas fueron consagrados
+                                exclusivamente para el servicio del Mishkán en lugar de los primogénitos (cf. Bamidbar
+                                3:45).</p>
+                            <p>🕊️ <strong>Aplicación mesiánica:</strong> Hoy, en Mashíaj, cada creyente consagrado se
+                                convierte en parte de un sacerdocio espiritual. Ya no se trata de una tribu específica,
+                                sino de un pueblo redimido (1 Kefa 2:9).</p>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">2. El servicio como intercesión protectora del pueblo (v. 19)
+                            </div>
+                            <div class="scripture">📖 "...para que no haya plaga entre los hijos de Israel..."</div>
+                            <p>🔹 <strong>Principio teológico:</strong> La función del servicio espiritual es cubrir al
+                                pueblo, interceder por él y preservar la santidad del campamento.</p>
+                            <p>🕊️ <strong>Aplicación mesiánica:</strong> Mashíaj es nuestro Intercesor perfecto
+                                (Hebreos 7:25). Pero también nos llama a ser intercesores:</p>
+                            <div class="scripture">"Orad unos por otros..." (Yaakov 5:16)</div>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">3. Respeto a los límites del servicio (vv. 24–25)</div>
+                            <div class="scripture">📖 "De 25 años... hasta 50 años…"</div>
+                            <p>🔹 <strong>Mandamiento organizacional:</strong> El servicio activo levítico estaba
+                                limitado por edad. Era una estructura ordenada, no improvisada.</p>
+                            <p>🕊️ <strong>Aplicación mesiánica:</strong> En la Kehiláh de Mashíaj, esto enseña la
+                                importancia del <strong>orden en el ministerio</strong> y la <strong>formación
+                                    generacional</strong>.</p>
+                            <div class="scripture">"Lo que has oído… encárgalo a hombres fieles que sean idóneos para
+                                enseñar también a otros." (2 Timoteo 2:2)</div>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>II. Principios y Valores Espirituales Perennes</h3>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">1. El principio de sustitución espiritual</div>
+                            <div class="scripture">📖 "Dios toma a los levitas en lugar de los primogénitos."</div>
+                            <p>🔹 <strong>Valor:</strong> Todo servicio a Elohím se basa en <strong>gracia y
+                                    redención</strong>. Nadie sirve por mérito, sino por haber sido apartado por Él.</p>
+                            <p>🕊️ <strong>En Yeshúa:</strong> Mashíaj es el Sustituto final. A través de Su entrega,
+                                nosotros podemos ser presentados como ministros santos (Romanos 12:1).</p>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">2. La consagración total como condición de servicio</div>
+                            <div class="scripture">📖 "Dados, dados son a Mí."</div>
+                            <p>🔹 <strong>Valor:</strong> El servicio no es parcial. Quien sirve a Adonái debe estar
+                                completamente entregado a Él.</p>
+                            <p>🕊️ <strong>En Yeshúa:</strong></p>
+                            <div class="scripture">"El que quiera seguirme, niéguese a sí mismo..." (Lucas 9:23)</div>
+                            <p>Mashíaj no busca asistentes a medio corazón, sino discípulos consagrados como tenufáh
+                                viviente.</p>
+                        </div>
+
+                        <div class="prophetic-section">
+                            <div class="prophetic-title">3. Ministerio intergeneracional</div>
+                            <div class="scripture">📖 "Después de los 50, servirán a sus hermanos como ayuda…"</div>
+                            <p>🔹 <strong>Valor:</strong> El liderazgo no es sólo actividad visible, sino
+                                <strong>transmisión de sabiduría</strong> y mentoría.</p>
+                            <p>🕊️ <strong>En Yeshúa:</strong> La kehila'h necesita mentores espirituales que guíen,
+                                corrijan y formen en el Ruaj (1 Timoteo 5:1–2).</p>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>III. Síntesis en la Vida de la Kehiláh Mesiánica</h3>
+
+                        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                            <tr style="background-color: #f9f9f9; border-bottom: 1px solid #ddd;">
+                                <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Principio</th>
+                                <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Verso</th>
+                                <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Aplicación en
+                                    Mashíaj</th>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <td style="padding: 10px; border: 1px solid #ddd;">Sustitución sacerdotal</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">16</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Él nos representa y nos redime</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <td style="padding: 10px; border: 1px solid #ddd;">Servicio santificado</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">15</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Somos llamados a consagración</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <td style="padding: 10px; border: 1px solid #ddd;">Intercesión activa</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">19</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Oración y cobertura espiritual</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <td style="padding: 10px; border: 1px solid #ddd;">Orden y límites</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">24–25</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Disciplina y sabiduría en el
+                                    ministerio</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Discipulado generacional</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">26</td>
+                                <td style="padding: 10px; border: 1px solid #ddd;">Transmisión de legado espiritual</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="conclusion">
+                        <strong>Conclusión:</strong><br>
+                        Aunque este pasaje describe el funcionamiento del sistema levítico, sus principios son eternos.
+                        En el contexto del Brit Hadasháh:
+                        <ul>
+                            <li>Yeshúa es el modelo y cumplimiento del levita perfecto.</li>
+                            <li>Su pueblo es el nuevo sacerdocio consagrado.</li>
+                            <li>Cada creyente tiene un lugar, una función, y un tiempo en el Reino.</li>
+                        </ul>
+
+                        <p>La estructura, la pureza y la entrega siguen siendo esenciales para el servicio delante de
+                            Adonái —no por rito, sino por relación en Mashíaj.</p>
+                    </div>
+                </div>
+
+                <div class="content-container">
+                    <h1>Punto 11. Preguntas de Reflexión – Bemidbar (Números) 8:15–26</h1>
+                    <h2>Con respuestas desde la perspectiva de Yeshúa haMashíaj</h2>
+                    <div class="section-container">
+                        <div class="question">Pregunta 1: ¿Por qué los levitas fueron dados como sustitutos de los
+                            primogénitos de Israel?</div>
+                        <div class="answer">
+                            <p><strong>Respuesta en el Mashíaj:</strong></p>
+                            <p>Los levitas fueron apartados como sustitutos porque, a diferencia de los primogénitos, no
+                                participaron del pecado del becerro de oro (Éxodo 32). Este principio de sustitución por
+                                justicia se cumple perfectamente en Yeshúa haMashíaj, quien, siendo sin pecado, tomó
+                                nuestro lugar para redimirnos.</p>
+                            <p>“El justo por los injustos, para llevarnos a Elohím.” (1 Kefa 3:18)</p>
+                            <p>Él es el Primogénito que sustituyó a todos los primogénitos.</p>
+                        </div>
+                    </div>
+                    <div class="section-container">
+                        <div class="question">Pregunta 2: ¿Qué significa que los levitas fueran presentados como
+                            “tenufáh” delante de Adonái?</div>
+                        <div class="answer">
+                            <p><strong>Respuesta en el Mashíaj:</strong></p>
+                            <p>La “tenufáh” (תְּנוּפָה) era una ofrenda mecida que se presentaba a Adonái como señal de
+                                dedicación pública y entrega. En Yeshúa, esto se cumple cuando Él es levantado en el
+                                madero y públicamente ofrecido como ofrenda viva por todos.</p>
+                            <p>“Y yo, si fuere levantado de la tierra, atraeré a todos a Mí mismo.” (Yojanán 12:32)</p>
+                            <p>Nosotros, en Él, también somos presentados ante el Padre como sacrificios vivos (Romanos
+                                12:1).</p>
+                        </div>
+                    </div>
+                    <div class="section-container">
+                        <div class="question">Pregunta 3: ¿Qué enseña el límite de edad del servicio levítico sobre la
+                            función del liderazgo espiritual?</div>
+                        <div class="answer">
+                            <p><strong>Respuesta en el Mashíaj:</strong></p>
+                            <p>La limitación de edad (25–50 años) enseña que el servicio activo tiene ciclos, y que el
+                                liderazgo maduro debe pasar a formar a la siguiente generación. Esto refleja el modelo
+                                de discipulado de Mashíaj, quien formó a doce y les delegó autoridad para formar otros.
+                            </p>
+                            <p>“Lo que has oído de mí… encarga a hombres fieles que sean idóneos para enseñar también a
+                                otros.” (2 Timoteo 2:2)</p>
+                            <p>Mashíaj no solo sirvió, sino que estableció una generación de servidores.</p>
+                        </div>
+                    </div>
+                    <div class="section-container">
+                        <div class="question">Pregunta 4: ¿Cómo se relacionaEl servicio levítico con la prevención del
+                            juicio sobre Israel?</div>
+                        <div class="answer">
+                            <p><strong>Respuesta en el Mashíaj:</strong></p>
+                            <p>El verso 19 dice que los levitas evitaban plagas al interceder entre Adonái e Israel.
+                                Esta función encuentra su cumplimiento supremo en Yeshúa, quien detiene el juicio eterno
+                                mediante Su sacrificio.</p>
+                            <p>“Él fue herido por nuestras rebeliones… y por Su llaga fuimos sanados.” (Yeshayáhu 53:5)
+                            </p>
+                            <p>Su intercesión es eterna y perfecta (Hebreos 7:25).</p>
+                        </div>
+                    </div>
+                    <div class="section-container">
+                        <div class="question">Pregunta 5: ¿Qué enseñanza práctica deja el hecho de que los levitas no
+                            eran dueños de sí mismos, sino propiedad de Adonái?</div>
+                        <div class="answer">
+                            <p><strong>Respuesta en el Mashíaj:</strong></p>
+                            <p>Los levitas no vivían para sí mismos, sino como propiedad santa. Así también, el creyente
+                                en Mashíaj ha sido comprado con precio y ya no se pertenece.</p>
+                            <p>“No sois vuestros… porque habéis sido comprados por precio.” (1 Corintios 6:19–20)</p>
+                            <p>Esto nos llama a una vida de consagración total, sirviendo no por obligación, sino por
+                                amor.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion">
+                        <h3>Reflexión Final:</h3>
+                        <p>Estas preguntas nos retan a examinar si vivimos como levitas del Nuevo Pacto:</p>
+                        <ul>
+                            <li>¿Estamos plenamente consagrados al servicio del Reino?</li>
+                            <li>¿Entendemos que nuestro llamado es intercesor y sacrificial?</li>
+                            <li>¿Vivimos como presentados públicamente en Mashíaj?</li>
+                            <li>¿Formamos a otros para continuar el servicio?</li>
+                        </ul>
+                        <p>Yeshúa haMashíaj no solo cumple el modelo levítico: lo eleva, lo perfecciona y nos llama a
+                            vivirlo con Él.</p>
+                    </div>
+                </div>
+
+                <div class="content-container">
+                    <h1>Punto 12. Resumen de la Aliyáh – Bemidbar (Números) 8:15–26</h1>
+                    <h2>Con aplicación en Yeshúa haMashíaj</h2>
+
+                    <div class="section-container">
+                        <h3>Resumen Narrativo y Temático</h3>
+                        <p>Esta Aliyáh concluye la sección que regula el papel de los levitas en el Mishkán
+                            (Tabernáculo). Contiene instrucciones finales sobre:</p>
+
+                        <div class="section-container">
+                            <p><span class="point-letter">1.</span><strong>El inicio del servicio levítico (v.
+                                    15):</strong> Los levitas comienzan oficialmente a servir en el Ohel Moed después de
+                                ser purificados y presentados como ofrenda tenufáh.</p>
+
+                            <p><span class="point-letter">2.</span><strong>Su función como sustitutos (vv.
+                                    16–19):</strong> Son dados a Adonái en lugar de los primogénitos de Israel, para
+                                asistir a los kohanim y evitar el juicio sobre el pueblo al acercarse al Lugar Santo.
+                            </p>
+
+                            <p><span class="point-letter">3.</span><strong>El límite de edad para el servicio (vv.
+                                    24–26):</strong> Los levitas servían activamente desde los 25 hasta los 50 años;
+                                después de eso, seguían ayudando, pero ya no oficiaban como servidores plenos.</p>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>Temas Espirituales Clave</h3>
+                        <ul>
+                            <li><strong>Sustitución Representativa:</strong> Los levitas ocupan el lugar de los
+                                primogénitos, un principio que apunta a la necesidad de un intercesor justo.</li>
+                            <li><strong>Consagración Completa:</strong> El servicio no era optativo ni parcial; los
+                                levitas eran propiedad exclusiva de Adonái, dados "dados" <span
+                                    class="hebrew-term">(נתונים נתונים)</span> a Él.</li>
+                            <li><strong>Intercesión Redentora:</strong> El servicio de los levitas prevenía el juicio
+                                (plaga) sobre Israel al representar adecuadamente la mediación divina.</li>
+                            <li><strong>Orden y Tiempo del Ministerio:</strong> El servicio tenía ciclos definidos y
+                                enseñaba una estructura de liderazgo discipular, con transición y madurez.</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-container">
+                        <h3>Aplicación en Mashíaj Yeshúa</h3>
+                        <p>Cada uno de estos temas es una sombra profética del ministerio redentor de Yeshúa haMashíaj:
+                        </p>
+
+                        <div class="prophetic-content">
+                            <div class="prophetic-section">
+                                <div class="prophetic-title">1. Mashíaj como Sustituto Perfecto:</div>
+                                <p>Así como los levitas reemplazan a los primogénitos, Yeshúa toma nuestro lugar en
+                                    juicio (2 Corintios 5:21). Él es el Primogénito eterno que representa a muchos.</p>
+                            </div>
+
+                            <div class="prophetic-section">
+                                <div class="prophetic-title">2. Mashíaj como Ofrenda Viva Presentada:</div>
+                                <p>La tenufáh de los levitas apunta al levantamiento de Mashíaj en el madero, como
+                                    ofrenda pública y eterna (Juan 12:32).</p>
+                            </div>
+
+                            <div class="prophetic-section">
+                                <div class="prophetic-title">3. Mashíaj como Intercesor Eterno:</div>
+                                <p>Mientras los levitas evitaban la plaga mediante servicio diario, Yeshúa evita el
+                                    juicio eterno mediante Su intercesión viva (Hebreos 7:25).</p>
+                            </div>
+
+                            <div class="prophetic-section">
+                                <div class="prophetic-title">4. Mashíaj como Kohén Inmutable:</div>
+                                <p>A diferencia de los levitas que servían por tiempo limitado, Su sacerdocio es sin fin
+                                    (Hebreos 7:24). Él nunca deja de servir y salvar.</p>
+                            </div>
+
+                            <div class="prophetic-section">
+                                <div class="prophetic-title">5. Kehiláh como Herederos del Servicio Levítico Espiritual:
+                                </div>
+                                <p>En Él, la comunidad redimida entra en un sacerdocio vivo, consagrado y guiado por el
+                                    Ruaj Hakodesh.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="conclusion">
+                        <h3>Conclusión del Resumen</h3>
+                        <p>Esta Aliyáh enseña que el servicio delante de Adonái no se basa en linaje, edad o mérito,
+                            sino en <strong>consagración, sustitución e intercesión</strong>. Los levitas fueron figuras
+                            de un sacerdocio mayor que habría de venir. Yeshúa haMashíaj es el cumplimiento de esa
+                            figura, y en Él, cada creyente es llamado a vivir como ofrenda viva, mediador de gracia, y
+                            servidor del Reino.</p>
+                        <p><strong>La sombra fue revelada en los levitas. La sustancia fue manifestada en el
+                                Mashíaj.</strong></p>
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="content-container">
+                    <h1>Punto 13. Tefiláh de la Aliyáh – Bemidbar (Números) 8:15–26</h1>
+                    <h2>Oración basada en los temas y enseñanzas de la Aliyáh, aplicada en Yeshúa haMashíaj</h2>
+
+                    <div class="prayer-text">
+                        <p><strong>Avinu Shebashamáyim, nuestro Padre que estás en los cielos,</strong></p>
+                        <p>Tú que apartaste a los levitas como sustitutos santos,<br>
+                            Tú que ordenaste su consagración y servicio intercesor,<br>
+                            Nos acercamos a Ti por medio de Yeshúa haMashíaj,<br>
+                            el Siervo Perfecto, el Primogénito Redentor, el Sumo Sacerdote eterno.</p>
+
+                        <p><strong>Adonái Tseva'ot,</strong></p>
+                        <p>Gracias por revelarnos que el servicio en Tu presencia requiere pureza, entrega, obediencia y
+                            celo.<br>
+                            Purifícanos con la sangre de Mashíaj, y haznos ofrendas mecidas vivientes, elevadas delante
+                            de Ti.<br>
+                            Que nuestro servicio sea agradable, no por mérito, sino por el mérito del Cordero entregado
+                            en nuestro lugar.</p>
+
+                        <p><strong>Yeshúa haMashíaj,</strong></p>
+                        <p>Tú fuiste dado en lugar de muchos,<br>
+                            Te ofreciste completamente al Padre, como los levitas fueron dados al Mishkán.<br>
+                            Gracias por tomar nuestro lugar como el verdadero Primogénito,<br>
+                            Gracias por detener el juicio que merecíamos,<br>
+                            Gracias por interceder aún hoy por nosotros en el Mishkán celestial.</p>
+
+                        <p>Te pedimos que nos enseñes a vivir como un sacerdocio fiel:</p>
+                        <ul>
+                            <li>Sirviendo sin reservas,</li>
+                            <li>Intercediendo sin cesar,</li>
+                            <li>Transmitiendo a otros la llama del ministerio.</li>
+                        </ul>
+
+                        <p><strong>Ruaj HaKodesh,</strong></p>
+                        <p>Guíanos como guiaste a los levitas en sus turnos, sus edades, sus tiempos,<br>
+                            Enséñanos a vivir con sabiduría, a servir en el orden del Reino,<br>
+                            a reconocer cuando levantar a otros, a ser mentores espirituales fieles,<br>
+                            como fueron los levitas maduros.</p>
+
+                        <p><strong>Elohím de Avraham, Yitsjaq y Yaakov,</strong></p>
+                        <p>Decláranos Tuyos, como Tú declaraste que los levitas eran Tuyos.<br>
+                            No queremos pertenecer a este mundo ni a nuestros deseos,<br>
+                            Queremos ser completamente tuyos, dados, dados a Ti,<br>
+                            como netuním vivientes en el Mashíaj.</p>
+                    </div>
+
+                    <div class="prayer-conclusion">
+                        <p><strong>En el Nombre poderoso, perfecto y eterno de Yeshúa haMashíaj,<br>
+                                el Kohén Gadol celestial, el Sustituto inmaculado,<br>
+                                el Intercesor eterno, el Redentor de nuestras almas,<br>
+                                oramos.</strong></p>
+                        <p><strong>Amén. <span class="hebrew-term">אמן</span></strong></p>
+                    </div>
+                </div>
+
+                <footer>
+                    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío
+                            Mesiánico de
+                            Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                            https://bibliatorahviviente.github.io/recursos/</a></p>
+                </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya3.html">Continuar con la Aliyá 3</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

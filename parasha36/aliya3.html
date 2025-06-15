@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 9:1-14</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>36. Parashá Behaalotjá (בהעלתך) Aliyáh 3: (Números 9:1-14) La celebración de Pésaj en el desierto y la
+            provisión de Pésaj Shení (segundo Pesaj).
+            <p>Haftaráh: Ezequiel 45:16-46:18 (Instrucciones sobre la observancia de Pésaj en el futuro Templo).</p>
+            <p>Brit Hadasháh: Juan 6:53-56 (Yeshúa, el Cordero de Pesaj, invita a participar de Su vida).</p>
+        </h1>
+
+        <h1>Punto 1. Números 9:1–14</h1>
+        <h2>Comentario Mesiánico Verso por Verso</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">9:1</div>
+            <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה בְּאֶרֶץ מִצְרַיִם לֵאמֹר׃</div>
+            <div class="transliteration">Va-yedabber Adonái el-Moshé be'erets Mitsrayim le-emor.</div>
+            <div class="translation">—Habló Adonái a Moshé en tierra de Egipto, diciendo:</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético en Mashíaj:</div>
+                <p>El llamado divino viene incluso en medio de lugar de opresión. Yeshúa fue informado por el Padre
+                    desde Su concepción (Lucas 1:30–31), mostrando que el plan redentor no permanece oculto por la
+                    opresión del mundo, sino que su antítulo se declara desde el contexto más adverso.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:2</div>
+            <div class="hebrew">שְׂאוּ לָכֶם אֶת־חֹדֶשׁ הָעֵשֶׂר בְּחֹדֶשׁ הַזֶּה יֵאָמֵר לָכֶם מִקְרָא־קֹדֶשׁ יִהְיֶה
+                לָכֶם׃</div>
+            <div class="transliteration">Se'u lakhem et-chodesh ha-eisér be-chodesh ha-zeh ye'amer lakhem miqra kodésh
+                yihyéh lakhem.</div>
+            <div class="translation">—Guardad para vosotros el mes diez; en este mes se os dirá que habrá de ser para
+                vosotros convocación santa.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento Mesiánico:</div>
+                <p>Este primer mes (Aviv) prefigura el mes mesiánico de la redención. El cordero de Pesaj sería
+                    sacrificado en ese mes (Éxodo 12). Yeshúa, llamado Cordero de Elohim, cumple esa figura exacta en el
+                    tiempo señalado, y nos convoca a una vida santa en Él como una convocación santa.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:3</div>
+            <div class="hebrew">בְּעֶשְׂרִ֣י לְחֹדֶ֣שׁ הָאָ֗ז יֵאָמַ֨ר לָהֶ֜ם מִקְרָ֣א קֹ֗דֶשׁ וְהָעֲבִד֥וּ אִ֛ישׁ
+                אֶת־מִשְׁמֶרֶת֖וֹ לְמִשְׁמֶ֥רֶת הַחֹדֶֽשׁ׃</div>
+            <div class="transliteration">Be-esri le-chodesh ha-az ye'amer la-hem miqra kodesh ve-ha'avdu ish
+                et-mishmereto le-mishmeret ha-chodesh.</div>
+            <div class="translation">—En el décimo mes de aquel año se les dijo que harían una convocatoria santa; cada
+                hombre guardaría la ordenanza de ese mes.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético en Mashíaj:</div>
+                <p>El décimo mes es simbólico del cumplimiento pleno de la Torá; en ese tiempo, la voz mesiánica resuena
+                    en la pausa de jubileos. Yeshúa trajo cumplimiento a todas las fiestas (Gálatas 4:4) y su ministerio
+                    cumplió la convocación santa para todos los creyentes, vigente cada mes como un recordatorio de
+                    redención y puridad.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:4</div>
+            <div class="hebrew">וַיַּ֣עַשׂ הָעָ֗ם בְּחֹדֶשׁ־הַעֲשִׂרִ֛י בְּחֹדֶשׁ הַזֶּ֖ה פְּסַח׃</div>
+            <div class="transliteration">Va-ya'as ha-am be-chodesh ha-esri be-chodesh ha-zeh Pesach.</div>
+            <div class="translation">—El pueblo hizo en el mes décimo, en ese mes, la Pesaj.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento transformador:</div>
+                <p>El Pesaj se convierte en símbolo del sacrificio del Mashíaj. Él es el Cordero de Pesaj. El acto de
+                    guardar El Pesaj se trasciende en Él como declaración constante de redención, y su muerte inauguró
+                    el nuevo pacto.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:5</div>
+            <div class="hebrew">בְּחֹדֶשׁ הַשֵּׁנִי בַּשָּׁנָה הַשֵּׁנִית בְּחֹדֶשׁ־הַשֵּׁנִי בָּעֶשְׂרִ֣י לַחֹדֶ֣שׁ
+                הַזֶּה עָשׂוּ הָעָ֗ם פֶּסַח׃</div>
+            <div class="transliteration">Be-chodesh ha-sheni ba-shanah ha-shenit be-chodesh ha-sheni ba-esri la-chodesh
+                ha-zeh asu ha-am Pesach.</div>
+            <div class="translation">—En el mes segundo, en el segundo año, hicieron el pueblo El Pesaj, en el mes
+                segundo, porque no podían hacerla en el mes primero, porque eran impuros por causa del contacto con un
+                cadáver.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                <p>Incluso en tiempos de impureza, como en tiempos de pecado (simbolizado por el cadáver), Yeshúa ofrece
+                    purificación y gracia: no están limitados por su pasado, sino por Su presencia redentora. Él
+                    restaura la comunión y permite que celebremos la libertad aun después de pecado grave.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:6</div>
+            <div class="hebrew">וַיְהִ֥י אִישׁ֙ רָצַ֣ע אִ֔ישׁ בְּנִדָּ֖ה אִישׁ לִקְרוֹב֑וֹ לְט֥וֹמָאָה לְנֶ֖גֶף
+                בִּשְׁכְבֹ֥ת אִישֽׁׁוֹ׃</div>
+            <div class="transliteration">Va-yehi ish ratsá ish be-niddah ish likrovó le-tomáah le-negéf bishkeivot ishó.
+            </div>
+            <div class="translation">—Y nació que alguien estuvo contaminado por enfermedad de impureza o impureza por
+                tocar cadáver, y no podía celebrar El Pesaj.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético:</div>
+                <p>Esto modela la condición de impureza espiritual por el pecado. Pero en Mashíaj se cumple la gracia
+                    delimitada de celebrar El Pesaj. Él aborda nuestro estado contaminado y lo cubre con Su sangre
+                    —ambientándonos para celebrar libertad espiritual incluso estando "impuro".</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:7</div>
+            <div class="hebrew">וַיִּתְיַצֵּ֥ב הָעָ֖ם מֵעַל לְפָנָ֑יו בַּיּ֥וֹם הַשֵּׁמִ֖ינִי לְקַחְתּ֥וֹ עֹנֹֽת׃</div>
+            <div class="transliteration">Va-yityatzév ha-am me-al lefanáv bayyom ha-shemini le-qahtó onot.</div>
+            <div class="translation">—Y estuvo el pueblo frente a Moshé el día octavo, para tomar su ofrenda según las
+                ordenanzas legítimas.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                <p>El acto de comparecer "día octavo" corresponde al Día de la Dedicación (Janucá), un tiempo de
+                    renovación espiritual. Yeshúa es la constante revelación de esa luz nueva, y llama a Su pueblo a
+                    presentarse renovados ante Él.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:8</div>
+            <div class="hebrew">וַיֹּ֥אמֶר יְהוָ֖ה אֶל־מֹשֶׁ֑ה אָ֠מַר הָעָם לִ֤י שַׁאֲנָה֙ מִמֶּ֣נּוּ זֶ֔ה וַתֹּאמְׁר֥
+                גַּם זֶ֖ה יַעֲשֶׂה יְהוָֽה׃</div>
+            <div class="transliteration">Va-yomer Adonái el-Moshé amar ha-am li shanah miménú zeh va-tomer gam zeh
+                ya'aseh Adonái.</div>
+            <div class="translation">—Y dijo Adonái a Moshé: "Han hecho bien al no celebrar El Pesaj en su debido tiempo
+                porque estaban impuros. Por tanto, digles: 'También hagan esto.'"</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+                <p>La elocuencia divina al decir "también hagan esto" presenta un movimiento inclusivo: la gracia abarca
+                    tanto a los limpios como a los impuros. En Mashíaj, todos tienen acceso al Reino, independientemente
+                    de su estado. La gracia es para todos.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:9</div>
+            <div class="hebrew">אֲמַרְתָּ֞ה גַּם־כָּ֨ל־הָעָ֧ם בְּחֹרְאֵ֣י טֻמְאָתָ֗ם וְנִגְאַרֵיהֶ֛ם וְהִקְרִ֥יבוּ
+                מִקְרֶ֖ה פֶּסַח לַיהוָֽה׃</div>
+            <div class="transliteration">Amarta gam-kol ha-am be-choré n-tumátem ve-nigareihem ve-hikrivu miqré Pesach
+                la-Adonái.</div>
+            <div class="translation">—"Diles que también toda persona que esté impurificada a causa de su contacto con
+                leprosía o muerte podrá ofrecer El Pesaj a Adonái."</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                <p>Esto revela que la limpieza espiritual no es prerrequisito para la gracia. En Mashíaj, la gracia se
+                    ofrece a todos, incluso a quienes están enfermos o contaminados espiritualmente. Somos restaurados
+                    no porque estemos limpios, sino porque Él es pureza para nosotros.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:10</div>
+            <div class="hebrew">לוֹ־יִתְרֹ֣שׁ עָלָ֗יו הָעָ֤ם לָשׂ֙וּם֙ עֹלָ֔ה בְּעַ֖מּוּד־שַׁלֶּ֣טֶת יֵאָכֵ֑ל אִ֠ישׁ
+                עַל־מִשְׁפַּחְתּ֨וֹ וְאִ֧ישׁ עַל־בֵּית־אָבִ֛יו יַעֲשֶׂ֥ה אֶת־מִקְרַ֖ע פֶּסַח לַֽיהוָה׃</div>
+            <div class="transliteration">Lo yit-rosh alav ha-am la-sum olah be-amud-Shalléteht ye'akhel ish
+                al-mishpachto ve-'ish al-beit aviv ya'aseh et-miqqa' Pesach la-Adonái.</div>
+            <div class="translation">—Nada incurrirá por ello: sacrificará ofrenda quemada a la intercesión de la
+                bendición. Cada uno según su clan.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                <p>La extensión de esta ordenanza deja en claro que la gracia es universal ("cada uno"). En Mashíaj no
+                    hay excepción: la obra consumada es suficiente y accesible a toda familia, tribu, género o condición
+                    espiritual.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:11</div>
+            <div class="hebrew">וְאִ֨ישׁ כִּפְגֹר֜וֹ כִּפְגּוֹר֙ וְטֻמְאָ֣ה מַגֵּפָ֣ה אוֹ־נֶ֗דֶף לֹא־יִשְׂרָ֤ף עָלָיו֙
+                מִקְרַ֣ע פֶּסַח֙ זָר֔וּעַ לַיהוָ֖ה וְעָלָ֑יו פְּק֥וּד נַפְשׁ֛וֹ מֵחֶטְא֥וֹ ה֖וּא׃</div>
+            <div class="transliteration">Ve-ish kifgoró kifgor ve-tum'ah magéfah o-nedef lo yisraf alav miqré Pesach
+                zarúa la-Adonái ve-alav pequd nafsho me-cheto hu.</div>
+            <div class="translation">—Y el que está ocioso, impuro por plaga o contacto con cadáver, no será culpable si
+                la presentaran, pero le será contada su alma por su pecado.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                <p>Este verso apunta al principio de responsabilidad personal y a la expiación concedida. Si uno no
+                    participa por juicio justificado, no es culpable. Pero si desoye la gracia voluntaria, es
+                    responsable. En Yeshúa, se nos llama a responder a la invitación de la gracia; no hacerlo es
+                    rechazar el medio de redención.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:12</div>
+            <div class="hebrew">וְגַ֤ם הַגֵּ֙ר֙ וְהַגֵּ֣ר הַגָּר֔ הוא־לְהוּקַ֖ד כָּהַתֹּ֣רֶת הָאַחַ֑ת חֻקַּ֥תֵ֥יהֶ֖ם
+                יִהְי֥וּ מִקְרַֽע פֶּסַח֙ לַיהוָ֔ה כְּכֹ֖ל י֥וֹלֵד עַל־בֵּֽית־אֲבִיהֶֽם׃</div>
+            <div class="transliteration">Ve-gam ha-ger ve-hager hagar hu le-hūqád ka-hátorét ha-aḥát chukoteihem yihyu
+                miqré Pesach la-Adonái kekhol yōled al-beit avihem.</div>
+            <div class="translation">—Un ger también, por el extranjero lo mismo; cuya ordenanza sea una sola, será
+                guardado, y su estatuto será igual al de un nacido entre sus casas, en su condición de cada linaje.
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                <p>El "ger" (extranjero) simboliza al gentío. Ellos reciben el mismo derecho de redención; El Pesaj es
+                    también suya. En Mashíaj, tanto judíos como gentiles forman parte del cuerpo redimido con igualdad.
+                    No hay distinción ante la Gracia consumida.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:13</div>
+            <div class="hebrew">חֻקַּ֨ת קֹ֜הֵל בְּיִשְׂרָאֵ֗ל חֻקַּ֤ת עוֹלָם֙ תִּשְׁמְר֔וּם בְּכָל־דֹּ֖ר וְדֹּ֑ר
+                תִּֽהְיֶ֧ה לְדִֽירֹתֶ֛יךָ וּבְזֹבְחֶ֖יךָ תֹּ֥אכַֽלוּ׃</div>
+            <div class="transliteration">Hukát kohéiḷ bev-Yisra'él chukat olám tishm'ruhum bekhol dor vador tihyéh
+                le-ḏiroteḵa uv-zovḥeċka to'akhlu.</div>
+            <div class="translation">—Es estatuto perpetuo para Israel; lo guardaréis en cada generación. Será en tus
+                moradas y en tus sacrificios seréis partícipes y comeréis.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                <p>El principio de perpetuidad se traslada al Nuevo Pacto. En Mashíaj, somos llamados a vivir la Gracia
+                    perpetua, no como observancia, sino como vida en Él. El cuerpo redimido es templo y participación
+                    continua del sacrificio consumado.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="verse-container">
+            <div class="verse-number">9:14</div>
+            <div class="hebrew">וְאִ֣ם־יַקְרִ֣יב אִ֗ישׁ מִנָּ֛זֶל לִקְרַ֥ע פֶּ֖סַח בְּכָל־הַקְּהָלָ֑ה לֹֽא־יִחָ֧שַׁב
+                לְרָגָ֛ע וְקִרְבַּ֥ת נַפְשׁ֖וֹ בָּאֵֽלֶּה׃</div>
+            <div class="transliteration">Ve-ish im-yakriv min-nazel liqra' Pesach be-khol ha-qehālāh lo yichasháv
+                le-raga' ve-qirvat nafsho ba-'elleh.</div>
+            <div class="translation">—Y si alguno teme su ánimo para ofrecer El Pesaj por toda la asamblea, no será
+                considerado pastor, pero se le tendrá en cuenta su corazón en ofrecerla.</div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento profético en Mashíaj:</div>
+                <p>El corazón es lo que importa: quien participa con convicción, aunque no se acerque exactamente a la
+                    orden, es aceptado. En Mashíaj no hay rigidez ritual, sino justicia del corazón. La obediencia es
+                    interna, no decorativa (1 Samuel 16:7).</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <div class="prophetic-title">✅ Conclusión general:</div>
+            <p>Números 9:1–14 revela el principio del Pesaj como señal de redención, gracia abierta, inclusión del
+                impuro y extranjero, y un estatuto perpetuo con accesibilidad universal. Su cumplimiento pleno se
+                encuentra en <strong>Mashíaj Yeshúa</strong>: Él es el Cordero, nuestra redención perfecta, y nos llama
+                a vivir como parte de Su pueblo celebrado en todo tiempo, en toda condición, por medio de Él.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+            <h2>Temas Principales del Pasaje</h2>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. La Gracia Inclusiva de Elohim</div>
+                <p>El pasaje demuestra que la gracia divina no excluye a nadie por su condición. Los impuros, los
+                    enfermos, los extranjeros - todos tienen acceso a la redención. Esto prefigura la obra inclusiva de
+                    Mashíaj, quien vino no solo por los justos, sino por los pecadores.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. El Pesaj como Prefigura Mesiánica</div>
+                <p>Cada elemento del Pesaj apunta hacia Yeshúa: el cordero sin mancha, la sangre protectora, la
+                    liberación de la esclavitud, y la celebración perpetua. <span class="highlight">Yeshúa es nuestro
+                        Pesaj</span>, sacrificado por nosotros (1 Corintios 5:7).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. La Responsabilidad Personal</div>
+                <p>Aunque la gracia está disponible para todos, cada persona debe responder individualmente. El
+                    versículo 13 advierte sobre las consecuencias de rechazar la gracia divina, prefigurando la
+                    necesidad de aceptar personalmente a Mashíaj.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. La Unidad de Judíos y Gentiles</div>
+                <p>La inclusión del <span class="hebrew-term">גֵּר</span> (extranjero) en las mismas condiciones que los
+                    israelitas nativos prefigura la unión de judíos y gentiles en el cuerpo de Mashíaj, donde "no hay
+                    judío ni griego" (Gálatas 3:28).</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h2>Aplicaciones Espirituales</h2>
+
+            <div class="section-container">
+                <div class="question">¿Cómo nos habla este pasaje hoy?</div>
+                <div class="answer">
+                    <strong>1. Accesibilidad Universal:</strong> Como los israelitas impuros tenían una segunda
+                    oportunidad para celebrar Pesaj, nosotros también tenemos accesibilidad constante a la gracia de
+                    Elohim en Mashíaj, sin importar nuestro pasado o condición actual.
+                </div>
+
+                <div class="answer">
+                    <strong>2. Celebración Perpetua:</strong> Así como Israel debía celebrar Pesaj "de generación en
+                    generación", nosotros celebramos continuamente la obra redentora de Yeshúa, no solo en fechas
+                    específicas, sino como estilo de vida.
+                </div>
+
+                <div class="answer">
+                    <strong>3. Corazón sobre Ritual:</strong> El énfasis en la intención del corazón (versículo 14) nos
+                    recuerda que Elohim mira el corazón, no la perfección ritual. Nuestra sinceridad importa más que
+                    nuestra perfección.
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h2>Conexiones Proféticas</h2>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Cumplimiento en el Nuevo Pacto:</div>
+
+                    <div class="scripture">
+                        <strong>Juan 1:29</strong> - "He aquí el Cordero de Elohim, que quita el pecado del mundo."
+                    </div>
+
+                    <div class="scripture">
+                        <strong>1 Corintios 5:7</strong> - "Porque nuestro Pesaj, que es Yeshúa, ya fue sacrificado por
+                        nosotros."
+                    </div>
+
+                    <div class="scripture">
+                        <strong>Efesios 2:13-14</strong> - "Pero ahora en Yeshúa, vosotros que en otro tiempo estabais
+                        lejos, habéis sido hechos cercanos por la sangre de Yeshúa. Porque él es nuestra paz..."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h2>Reflexión Personal</h2>
+
+            <div class="prayer-text">
+                Este pasaje nos invita a reflexionar sobre nuestra propia respuesta a la gracia divina. Como los
+                israelitas que se acercaron a Moisés preguntando por qué debían ser excluidos de la celebración,
+                nosotros también podemos acercarnos confiadamente al trono de la gracia.
+            </div>
+
+            <div class="prayer-text">
+                <strong>Preguntas para meditación:</strong>
+            </div>
+
+            <ul>
+                <li>¿Hay áreas en mi vida donde me siento "impuro" o indigno de acercarme a Elohim?</li>
+                <li>¿Cómo puedo celebrar continuamente la obra redentora de Yeshúa en mi vida diaria?</li>
+                <li>¿Estoy excluyendo a otros de la gracia que yo mismo he recibido?</li>
+                <li>¿Mi adoración viene del corazón o es meramente ritual?</li>
+            </ul>
+        </div>
+
+        <div class="prayer-conclusion">
+            <em>"Bendito sea Adonái, quien nos ha redimido no según nuestros méritos, sino según Su gracia abundante
+                manifestada en Mashíaj Yeshúa. Que podamos vivir cada día celebrando Su liberación, incluyendo a otros
+                en Su amor, y respondiendo con corazones sinceros a Su llamado. Amén."</em>
+        </div>
+
+        <h1>Ezequiel 45:16–46:18</h1>
+        <h1>Punto 2. Haftaráh: Ezequiel 45:16-46:18 (Instrucciones sobre la observancia de Pésaj en el futuro Templo).
+        </h1>
+
+        <div class="verse-container">
+            <div class="verse-number">45:16</div>
+            <div class="hebrew">וּבַשָּׁנָה הַשֵּׁשִׁית בְּמִקְרָא־קֹדֶשׁ יִהְיֶה־לוֹ לְכֹל־הָעֵדָה קָרְבָּן
+                מָלֵאֵי־שָׁנָה לַעֲשׂוֹת אֶת־חַטַּאתָם׃</div>
+            <div class="transliteration">Uvashanah hashéshit bemiqra-qódesh yihyéh-lo lekhol-ha'edah korban
+                malé'ei-shanah la'asót et-ḥattātam.</div>
+            <div class="translation">—Y en el año sexto, en convocación santa, será para toda la asamblea ofrenda para
+                completar el año, para hacer su expiación.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                El ciclo anual de expiación es figura que apunta al ciclo profético cumplido en el Mashíaj. En Su "año
+                de gracia" inauguró el perdón eterno, la expiación y la redención definitiva cuyo efecto dura para
+                siempre (Lucas 4:19).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">45:17</div>
+            <div class="hebrew">וְזֶ֤ה הַתַּקֵּן֙ לָהֶ֔ם מִנְחָ֖ה לַמָּשִׁ֑יחַ וּמַעֲשֵׂה֙ כַּפֹּ֣רֶת וּמַזְבֵּ֔חַ
+                וְאִשּׁ֥וּ הַשָּׁעִ֖יר לַחַטָּֽאת׃</div>
+            <div class="transliteration">Ve-zeh hattaken lahem minḥah laMashiʻaḥ uma'aséh kapóret u‑mazbéaḥ ve‑'issu
+                ha‑sha'ir laḥattát.</div>
+            <div class="translation">—Y este es el reglamento para ellos: ofrenda para el Ungido, el trabajo del
+                propiciatorio y del altar, y ofrecer el macho cabrío por el pecado.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                La ofrenda para el Ungido (Mashíach) prefigura la ofrenda redentora del propio Mashíaj. Él es el Cordero
+                ("sha'ir"), el que fue ofrecido por el pecado, cumpliendo el mandato mismo de este templo restaurado.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:1</div>
+            <div class="hebrew">וְהָיָה֙ בְּיוֹם֙ חַג־הַתַּכְּנִית֙ שְֽׁעֲרֵ֣י הַמִּקְדָּ֔שׁ תִּפָּקְח֖וּ בְּיוֹם֙
+                שַׁבְּת֔וֹ יִפְקְחוּ֙ לְתוֹלַ֣עַת בָּעָ֔ם יִשְׂאוּ עָלֶ֖יהָ מִנְחָֽה׃</div>
+            <div class="transliteration">Vehayá beyom ḥag-hattakhnít she'aréi hamiqdaš tiphaqékhû beyom shábbeto
+                yiphqeḥû letolá'at ba'am yis'û alehá minḥah.</div>
+            <div class="translation">—Y será en el primer día del tacníf (solsticio, dedicación), las puertas del
+                santuario serán abiertas en día de reposo, serán abiertas para purificarse el pueblo; ofrecerán su
+                ofrenda.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                La apertura del santuario en día santo simboliza la apertura del acceso a Elohím por medio del Mashíaj.
+                Él es la Puerta (Juan 10:9), inaugurando un culto abierto y limpio, sin restricciones rituales, en el
+                día de reposo eterno.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:2</div>
+            <div class="hebrew">וּנְשָׁאֲת֣וּ עַל־פִּקּוּדֵיהֶ֗ם חֲמִשִּׁ֛ים נָשִׂ֥יא לָהֶ֖ם בְּרַ֣ב עָלָ֑ם
+                לְהִתְיַדֵּ֥ב לָאָדָ֖ם בְּא֥וֹת לָהֶֽם׃</div>
+            <div class="transliteration">Unešʼāṯû al-pikkudéihem ḥam'íšim nāśî lāhēm berāv ʻalām le-hityaddēḇ la-adām
+                be-ʼōṯ lāhēm.</div>
+            <div class="translation">—Y su peso será en su responsabilidad cincuenta, un príncipe para ellos en número,
+                para decenciar al pueblo para ellos como señal.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                El número 50 remite al jubileo: liberación y restauración. En el Reino de Mashíaj, la autoridad
+                espiritual no se ejerce por poder humano, sino por designio divino, restaurando justicia, libertad y
+                renovación.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:3</div>
+            <div class="hebrew">בְּיוֹם֙ חַג־הַמַּעֲרֶכֶת֙ מִזְבֵּ֣חַ עֹלָ֔ה וּשְׁעָרָ֖יו יִפְתָּחוּ֙ עַל־אַפְסֵיהֶ֔ן
+                מַזְבֵּ֥חַ עֹלָ֖ה לְפָנָֽיו׃</div>
+            <div class="transliteration">Beyom ḥag-hama'arekheṯ mizbēaḥ oláh u-she'ārāyō yiphteḥû al-afsēhēm; mizbēaḥ
+                oláh lefanáv.</div>
+            <div class="translation">—En el día del montaje, se abrirán sus puertas, su altar de holocausto frente a
+                ellas.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                El montaje del altar alude a la construcción del nuevo pacto. Mashíaj organiza el altar celestial y lo
+                presenta para aceptación universal. El altar se muestra en la fe abierta y visible de Su sangre
+                ofrecida.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:4</div>
+            <div class="hebrew">עָלָ֧ה יַעֲלוּ֩ בְנ֨וֹת הָעָ֤ם֙ אֹת֔וֹ מִזְבֵּ֥חַ מִנְחָ֖ת חַמָּ֑ה׃</div>
+            <div class="transliteration">ʻĀlâ ya'alû benôt ha-'ām ôṯō mizbēaḥ minḥat ḥammāh.</div>
+            <div class="translation">—Subirán hijas del pueblo, junto al altar, ofrenda matinal.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                La ofrenda de las hijas del pueblo indica la inclusión de todos los hijos de Israel en el ministerio del
+                altar. En Mashíaj, tanto hombres como mujeres tienen acceso igualitario al altar de gracia (Gálatas
+                3:28), participando activamente en Su obra.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:5</div>
+            <div class="hebrew">וְהַנָּשִׁ֤ים מֵאֵ֨ת בְּנ֤וֹת הֵיכַל֙ יַעַלְנָ֔ה מִזְבֵּ֥חַ מִנְחַ֖ת קָרְבָּ֑ן לַיהוָֽה׃
+            </div>
+            <div class="transliteration">Ve-hannāšîm me-et benôt heikhal ya'al'nā mizbēaḥ minḥat qorbān l'Adonāy.</div>
+            <div class="translation">—Las mujeres, de entre las hijas del templo, subirán al altar para ofrecer una
+                ofrenda de sacramento ante Adonái.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Esto enfatiza el sacerdocio real del pueblo en Mashíaj, donde hombres y mujeres participan activamente.
+                En Él, somos constituidos reyes y sacerdotes (Apocalipsis 1:6).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:6</div>
+            <div class="hebrew">וּמִזְבֵּ֨חַ הַזֶּ֤ה לְלֹ֙א֙ יֵכָלֶ֔ה נַפְשׁ֖וֹ לְהַקְרִ֑יב מִנְחַ֖ת חֹֽם׃</div>
+            <div class="transliteration">U‑mizbēaḥ ha-zeh le-lo yēḥāleh nafshō le‑hakrīv minḥat ḥôm.</div>
+            <div class="translation">—Y de este altar nadie podrá ofrecer sacrificio de calor arbitrario con su propio
+                ánimo.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento profético en Mashíaj:</div>
+                El servicio delante del altar no se hace por deseo humano, sino por revelación divina en Mashíaj. El
+                altar de gracia no se gobierna por caprichos, sino por Su voluntad perfecta (Efesios 4:11–12).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:7</div>
+            <div class="hebrew">וּזְבַח־קָרְבָּן יַעֲקֹב֙ וַעֲקִיד֖וֹ יַעֲקֹב֑ בִּקּ֤וֹל פִּצֻּצִים֙ יַעֲלֶ֔ה חַנּ֥וּן
+                עַל־וּסוֹדָ֖ם עַל־זֵ֥כֶר בָּנִֽים׃</div>
+            <div class="transliteration">U-zvaḥ qorbān Ya'aqōḇ va-'aqīdō Ya'aqōḇ bi-qōl piṣṣūṣīm ya'aléh ḥannūn
+                al-usōdām `al-zeḵēr bānīm.</div>
+            <div class="translation">—Y el sacrificio íntegro de Jacob y su ofrenda de acción de gracias de Jacob,
+                subirá en aroma suave sobre su base, como recuerdo de hijos.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Jacob aquí representa al remanente espiritual, cuyo sacrificio y gratitud son ofrecidos en rito
+                renovado. En Mashíaj, nuestra gratitud es aroma delicado delante del Padre (2 Corintios 2:15), y
+                nuestras generaciones son contadas en Su memoria.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:8</div>
+            <div class="hebrew">וּמִנְחַ֞ת אַבְרָהָ֤ם יַעַל֙ לִפְנֵ֔י מִטַּפְתָּ֖ם בְּתַרְבּוּתָ֑ם מִנְחַ֖ת קָצִ֣יר
+                הַחִטִּֽים׃</div>
+            <div class="transliteration">U-minḥat Avraham ya'l lifnê mettáphtâm bə-tarbūtâm minḥat qaṣîr ha-ḥittîm.
+            </div>
+            <div class="translation">—Y la ofrenda de Abraham subirá delante de su descendencia, en su multiplicación:
+                ofrenda de cosecha de trigo.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Abraham representa el linaje de la promesa. En Mashíaj, los "hijos de Abraham" son contados por fe, no
+                por carne. Nuestra cosecha de trigo espiritual (nuevas vidas, frutos santificados) asciende como ofrenda
+                ante el altar del Reino.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:9</div>
+            <div class="hebrew">וְאָדָ֞ם שֶׂ֤ה׀ יַשִּֽׁית־לּוֹ֙ לַחְמָ֔ה לְחָ֖מָא כְּכָל־י֣וֹם סַֽעֲדָ֑ה וְנֶ֖פֶשׁוֹ
+                לֹ֥א יִוָּתֵֽר׃</div>
+            <div class="transliteration">Ve-adám se yassít-lô laḥmāh laḥāmā ke-khol-yôm sa'adah ve-nefshō lo yivater.
+            </div>
+            <div class="translation">—Y un hombre ofrecerá a su pan una torta diaria, cada día; y su alma no quedará
+                vacía.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Este pan diario representa el pan de vida que es Mashíaj. Él se ofrece por Su pueblo día tras día, y en
+                Él nuestra alma nunca tiene falta (Juan 6:35).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:10</div>
+            <div class="hebrew">וּשְׂמוֹלִ֜ית ט֗וֹבָה יַשִּׁ֤ית־לּוֹ֙ מַ֣יִם טְהֹרִ֔ים לְשָׁ֥חַת אֹֽכָל־י֖וֹם אֲשֶׁ֣ר
+                יַעֲשֶׂ֑ה לַה ישָׁמְשָֽׁה׃</div>
+            <div class="transliteration">U-smelít ṭôḇāh yásít-lô mayim ṭehōrîm le-shāḥaṭ okāl-yôm asher ya'aséh
+                lah'Shemeshāh.</div>
+            <div class="translation">—Y puesta buena grasa pondrá agua pura para la matanza diaria para el manjar del
+                alba.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Agua pura y grasa, símbolos de pureza y abundancia divina, representan la provisión completa de Mashíaj.
+                En Él hay plenitud de gracia y paz (Juan 4:14).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:11</div>
+            <div class="hebrew">בְּקָר֣וֹב יִקְרִבֵ֗ם בְּקָר֛וֹב לְהַקְרִ֥יב לִפְנֵ֖י יְהוָ֑ה כִּרְצֹנ֤וֹ לֵאמֹר֙ אִ֣ישׁ
+                עַל־דִּבְרֹ֔וֹ לְשַׂ֖בַּע נַפְשֽׁוֹ׃</div>
+            <div class="transliteration">Beqarôv yiqrivém bekharôv le-hakrív lifnê Adonāy kirtsônō le-'imôr 'ish
+                al-dibrô lešabba' nafshô.</div>
+            <div class="translation">—En el día cercano ofrecerán, cercanas para presentar delante de Adonái, según su
+                deseo; dirán: "Cada uno según su palabra para saciar su alma."</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                La libertad del creyente al traer su ofrenda al altar refleja la gracia del Reino. En Mashíaj podemos
+                acercarnos con confianza, según Su deseo misericordioso, diciendo: "Yo vengo a saciar mi alma contigo."
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:12</div>
+            <div class="hebrew">וְעַתָּה֙ בְּאַנְשֵׁ֣י נָשׂ֔וֹא יִהְיֶ֖ה מִנְחַ֣ת קֻדָּשׁ֑וֹת מִטַּפְתָּ֣ם
+                וּמִתְּרֻבָּתָ֔ם לִפְנֵ֖י יְהוָֽה׃</div>
+            <div class="transliteration">Ve-'attāh be-'anshê nāsô' yihyéh minḥat qudashôṯ mitáphtam u-mitrubātām lifnê
+                Adonāy.</div>
+            <div class="translation">—Pero ahora, en los hombres que sostienen, será ofrenda de sus santidades según sus
+                censos y su abundancia delante de Adonáy.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                La implicación de los líderes ("sostienen") subraya la responsabilidad e intencionalidad del ministerio.
+                En la Kehiláh de Mashíaj, pastores y siervos presentan no sólo su función, sino sus vidas santificadas,
+                sus familias y abundancia como ofrenda viva.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:13</div>
+            <div class="hebrew">יּֽוֹמָם֙ מִשַּׁ֣חַר יִֽקְרַ֔ב מִנְחַ֖ת חֻקַּ֣ת עוֹלָ֑ם בְּכָל־שַׁעַ֖ר יִתְּר֥וֹם
+                לְשַּֽׁעַר׃</div>
+            <div class="transliteration">Yōmām mi-shachar yiqráv minḥat ḥukqāt olám bē-khol sha'ar yitrom le-sha'ar.
+            </div>
+            <div class="translation">—De día, desde la mañana temprano, traerán ofrenda perpetua eterna; en cada portón
+                será presentada, puerta por puerta.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                El culto no cesa; cada mañana el altar recibe adoración. En Mashíaj, nuestra vida es oferta continua y
+                constante, no limitada a tiempos litúrgicos.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:14</div>
+            <div class="hebrew">וּשְׁקָ֣לָהּ חֹ֔מֶשׂ לֶחֶם֙ עָרְבֵּ֣נוּ אֶחָ֔ד כַּפַּ֖ר שָׁ֥עָה לַשּֽׁוּרֵי׃</div>
+            <div class="transliteration">U-sexālāh ḥomèḥ leḥem ʻarbenû 'eḥād kappar shā'ah lashurê.</div>
+            <div class="translation">—Y será su peso: un ómer de harina fina, por las mañanas, una comparteción matinal
+                para los guardianes.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Esto es figura de la plenitud diaria —un ómer de pan nuevo como sustento espiritual constante y
+                suficiente, proporcionado por la gracia del Mashíaj quien nos alimenta día tras día.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:15</div>
+            <div class="hebrew">וּשְׁקָ֣לָהּ לֶ֗חֶם מָעִתַּ֛יִם שְׁע֥וֹר רִאשֹׁ֖נִית יוֹמַ֣ת לַשּֽׁוּרֵי׃</div>
+            <div class="transliteration">U-sexālāh leḥem ma'itṭāyim se'or ri'shōniyĭṯ yomâth lashurê.</div>
+            <div class="translation">—Y su peso: dos ómer de cebada, cuando entraba el guardián.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                La cebada representa lo sencillo, lo común. Son ambos los más humildes lo que traen abundancia. En el
+                Reino de Mashíaj, no sólo los versados traen su ofrenda, sino también los sencillos y humildes, con
+                doble porción.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:16</div>
+            <div class="hebrew">אֲשֶֽׁר־יַֽעֲל֧וּ פַּֽעַם׀ אַחַ֣ת בַּבֳּקֶ֣ר וּפַ֗עַם אַחַת֙ בָּעֶ֔רֶב יְקַדְּשׁ֖וּ
+                בַשְּׁעָרִ֣ים שֶׁלּ֑וֹתָם מַ֖יִם לְבֵית־הַשִּֽׁיכּוּר׃</div>
+            <div class="transliteration">'Asher-ya'alû pa'am aḥ̣āt ba-boqer u-pa'am aḥ̣āt va-'ereḇ yeqadišū ba-sh'ārîm
+                shelôtām mayim lĕvēṭ ha‑shikkūr.</div>
+            <div class="translation">—Los cuales subirán una vez por la mañana y una vez por la tarde; santificarán en
+                sus portones sus libaciones al agua para la Casa de Ablución.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Las libaciones múltiples al día simbolizan la purificación continua del creyente en el Ruaj Hakodesh. En
+                Mashíaj, nuestra vida se mantiene pura con Su agua viva y renovadora tanto de madrugada como al
+                atardecer (1 Corintios 10:16).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:17</div>
+            <div class="hebrew">הַשֹּׁרְְרִ֛ים וְהַאַשָּׁכֹ֖ורִים הַבֹּלְחִ֑ים יַֽעֲשׂ֥וּ זֶ֛ה כַּדְּבָר֖וֹ וְיִשְׁתוּ֙
+                עָלָ֣יו כָּל־הַשָּׂ֔רָא וְהָעָ֖ם אֵיתָֽם׃</div>
+            <div class="transliteration">Ha-shorrərîm ve-ha-asharōrîm habolḥîm ya'asū zeh ka-dibbārō ve-yishtû 'alav
+                kol-haśśarah ve-ha-'ām ēythām.</div>
+            <div class="translation">—Los encargados y los porteros que vigilan lo harán según dicha orden, y beberán
+                sobre él todos los funcionarios y el pueblo con ellos.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                Los ministros y porteros bebían juntos con el pueblo —símbolo de comunión y proximidad. En Mashíaj,
+                líderes y congregación comparten el alimento espiritual del Reino como parte de una familia redimida.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">46:18</div>
+            <div class="hebrew">בְּשַׁבָּת֥וֹ יָקְרִ֖יבוּ מִנְחַ֣ת שְׂבָעָ֑ה פְּאַת־הָאַשָּׁכ֖וֹר קָצִֽיר׃</div>
+            <div class="transliteration">Besabbatō yaq̱rīvû minḥat sev'āh pe'at ha-ashshāḵōr qaṣîr.</div>
+            <div class="translation">—En su reposo ofrecerán ofrenda de satisfacción: el primer grano recogido.</div>
+
+            <div class="messianic-fulfillment">
+                <div class="messianic-title">Cumplimiento mesiánico:</div>
+                La ofrenda del primer grano en día de reposo prefigura la ofrenda del Primogénito y la satisfacción que
+                Él trae. En Mashíaj, Él es el primer fruto (1 Corintios 15:20) cuya siembra produce reposo eterno y
+                plenitud del fruto redentor.
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <div class="highlight">✅ Conclusión:</div>
+            Este extenso pasaje detalla el orden del culto en el templo restaurado, pero cada rito, cada figura y cada
+            ordenanza tienen su cumplimiento en el Reino inaugurado por Yeshúa haMashíaj. Él es la ofrenda perpetua, el
+            sacerdote eterno, el pan y agua de vida, el Pan de primicias, el Puerta del reposo eterno, y el año de
+            Jubilación eterno.
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 3. Brit Hadasháh: Juan 6:53-56 (Yeshúa, el Cordero de Pesaj, invita a participar de Su vida).</h1>
+            <div class="verse-container">
+                <div class="verse-number">6:53</div>
+                <div class="aramaic">ܘܐܡܰܪ ܠܶܗܘܢ ܝܶܫܽܘܥ ܐܰܡܺܝܢ ܐܰܡܺܝܢ ܐܶܐܡܪ ܐܢܳܐ ܠܟ݂ܽܘܢ ܕ݁ܶܐܠܳܐ ܬ݁ܶܐܟ݂ܸܠܽܘܢ ܦ݁ܰܓ݂ܪܶܗ
+                    ܕ݁ܰܒ݂ܪܶܗ ܕ݁ܐ݈ܢܳܫܳܐ</div>
+                <div class="transliteration">W-amar lehun Yeshua “Amén amén, emar: ‘Anā lakun d’elo tekhīlūn phagrēh
+                    d’abreh d’enāshē.’</div>
+                <div class="translation">—Y Yeshúa les dijo: “De cierto, de cierto os digo: Si no coméis la carne del
+                    Hijo de Hombre…”</div>
+                <div class="literal-translation">…que no comáis la carne del Hijo del hombre…</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                    <p>Yeshúa se presenta como el Mesías y verdadero cordero de Pesaj, señalando que la vida espiritual
+                        no se recibe sólo por la tradición, sino por una comunión viva y personal con Él. En cada Pesaj,
+                        el pueblo consumía el sacrificio; Él invita a una consumación cada día en vida con Él.</p>
+                </div>
+            </div>
+            <div class="verse-container">
+                <div class="verse-number">6:54</div>
+                <div class="aramaic">ܘܰܗܳܘ ܕܶܝܣܰܟ݂ܠ ܦ݁ܰܓܪܶܗ ܘܫܳܬ݁ܰܐ ܕ݁ܡܶܝܐ ܐܺܝܬܠܶܗܘܢ ܚܰܝܽܘܬܳܐ ܕ݁ܠܰܥܶܠܰܡ ܘܐܰܢܐ ܐܺܝܬܠܶܗܘܢ
+                    ܒܰܩܰܢܽܘܡܟ݂ܽܘܢ ܠܶܗܘܢ</div>
+                <div class="transliteration">W-haw dīsāḵal phagrēh w-shotā d-mayyā ītlēhun ḥayūtā d-l‘ālam w-anā ītlēhun
+                    bəqānūmkun lehun.</div>
+                <div class="translation">—“…y bebiere mi sangre, tiene vida eterna; yo lo resucitaré en el día
+                    postrero.”</div>
+                <div class="literal-translation">Y el que coma su carne y beba su sangre tiene vida eterna; y yo lo
+                    resucitaré en el fin de los días.</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                    <p>Él no solo ofrece vida, sino certeza de resurrección. El vínculo con Mashíaj garantiza acceso a
+                        la vida eterna, y la consumación al final de los tiempos cumplirá la esperanza del Siervo
+                        prometido.</p>
+                </div>
+            </div>
+            <div class="verse-container">
+                <div class="verse-number">6:55</div>
+                <div class="aramaic">ܦ݁ܰܓ݂ܪܝ ܓ݁ܶܝܪ ܫܰܪܺܝܪܳܐܝܬ݂ ܐܺܝܬܰܘܗ݈ܝ ܡܶܐܟ݂ܽܘܠܬ݁ܳܐ ܘܕ݂ܶܡܝ ܫܰܪܺܝܪܳܐܝܬ݂ ܐܺܝܬܰܘܗ݈ܝ
+                    ܡܰܫܬ݁ܝܳܐ</div>
+                <div class="transliteration">Phagrēh gēr sharyārōyth ēthawhī mēkhōlthō w-demy sharyārōyth ēthawhī
+                    mashṭayō.</div>
+                <div class="translation">—“Porque mi carne es verdadera comida, y mi sangre verdadera bebida.”</div>
+                <div class="literal-translation">Porque mi carne es verdaderamente comida y mi sangre verdaderamente
+                    bebida.</div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                    <p>El habla sinocultismo: no es simbólico, es comunión real. El mensaje mesiánico en el judaísmo
+                        mesiánico enseña que comer y beber su vida es asemejarse a Él y vivir en Su integridad divina.
+                    </p>
+                </div>
+            </div>
+            <div class="verse-container">
+                <div class="verse-number">6:56</div>
+                <div class="aramaic">ܡܶܢ ܕ݁ܶܐܟ݂ܽܠ ܦ݁ܰܓ݂ܪܝ ܘܫܳܬ݂ܶܐ ܕ݁ܰܡܝ ܕܸ݁ܒܝ ܒܶܝ ܒ݁ܥܰܠܽܘܟ݂ܳܐ ܘܰܐܶܢܐ ܒ݁ܶܗܽܘܢ</div>
+                <div class="transliteration">Min dēkhol phagrēh w-shotē d-demy dibē bey ba‘alkhō w-ana behūn.</div>
+                <div class="translation">—“El que come mi carne y bebe mi sangre permanece en mí, y yo en él.”</div>
+                <div class="literal-translation">El que coma mi carne y beba mi sangre permanece en mí, y yo en él.
+                </div>
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Cumplimiento mesiánico:</div>
+                    <p>Este hablar de perichoresis —comunión mutual en el Espíritu— revela el propósito mesiánico:
+                        habitar recíprocamente en Mashíaj, ser Su morada y llevar Su vida. Así el creyente se convierte
+                        en templo del Ruaj y extensión de la redención divina.</p>
+                </div>
+            </div>
+            <div class="conclusion">
+                <h3>Conclusión</h3>
+                <p>En este pasaje, Yeshúa revela que el verdadero consumo de su carne y sangre —vía fe y comunión viva—
+                    es el medio divino para:</p>
+                <ul>
+                    <li>Obtener vida eterna</li>
+                    <li>Asegurar la resurrección futura</li>
+                    <li>Establecer una relación íntima y permanente</li>
+                    <li>Consumir la verdad divina (no solo su promesa)</li>
+                </ul>
+                <p>Desde una hermenéutica mesiánica judía, se trata del Cordero de Pesaj encarnado y del sacerdote
+                    eterno que nos invita a la comunión continua con Él. No es un rito humano, sino real y sobrenatural,
+                    replicado en la vida del pueblo de Mashíaj.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 4. Contexto Histórico y Cultural – Bemidbar (Números) 9:1–14</h1>
+            <div class="explanation">
+                <p>Este pasaje, ubicado en el segundo año después de la salida de Mitsrayim, en el primer mes (Aviv),
+                    establece los preparativos para la primera celebración de Pésaj fuera de Egipto. No es solo una
+                    repetición de la ordenanza, sino la primera ejecución comunitaria del memorial de la redención. En
+                    este contexto, Adonái revela también la gracia extendida a quienes, por impureza ritual o distancia,
+                    no pueden celebrar a tiempo, inaugurando el concepto del Pésaj Shení (segundo Pesaj).</p>
+            </div>
+            <div class="section-container">
+                <h2>I. Ubicación Temporal y Espacial</h2>
+                <ul>
+                    <li>📍 Lugar: Desierto del Sinaí.</li>
+                    <li>📅 Tiempo: Año 2 desde el Éxodo, mes primero (Aviv), 14 del mes (Números 9:1–3).</li>
+                    <li>🕍 Estructura religiosa vigente: Mishkán erigido; tribus organizadas por campamentos.</li>
+                </ul>
+                <p>En este momento, Israel está por emprender su marcha hacia la Tierra Prometida, y Adonái prepara al
+                    pueblo no solo física, sino espiritualmente, renovando su identidad redimida con El Pesaj.</p>
+            </div>
+            <div class="section-container">
+                <h2>II. La Institución del Pésaj Shení</h2>
+                <p>Este pasaje es el único en la Toráh que legisla una segunda oportunidad para celebrar El Pesaj (vv.
+                    6–13). Si un israelita estaba ritualmente impuro (por contacto con cadáver) o lejos en viaje, podía
+                    celebrarla el mes siguiente, el 14 de Iyar, manteniendo todos los requisitos originales.</p>
+                <p>📜 Esta legislación demuestra:</p>
+                <ul>
+                    <li>La centralidad de la redención en el ciclo espiritual del pueblo.</li>
+                    <li>El carácter inclusivo y misericordioso del Elohím de Israel.</li>
+                    <li>La necesidad de que nadie quede excluido de la redención.</li>
+                </ul>
+            </div>
+            <div class="section-container">
+                <h2>III. Componentes Culturales y Ritualísticos</h2>
+                <p>• 🐑 Pésaj no era solo comida, sino experiencia: memoria, juicio evitado, libertad, esperanza.</p>
+                <p>• 📖 Según Éxodo 12, debía celebrarse:</p>
+                <ul>
+                    <li>El 14 de Aviv.</li>
+                    <li>Con cordero sin defecto.</li>
+                    <li>Sin hueso quebrado.</li>
+                    <li>Con matzot y hierbas amargas.</li>
+                    <li>Solo por circuncidados (Éxodo 12:48–49).</li>
+                </ul>
+                <p>🔁 Esta estructura se confirma en Números 9:3–5 y es reproducida en el Pésaj Shení, mostrando que el
+                    estándar espiritual no cambia —lo que cambia es el acceso misericordioso a él.</p>
+            </div>
+            <div class="section-container">
+                <h2>IV. Evidencia del Rol de Moshé como Mediador</h2>
+                <p>Cuando los hombres impuros por cadáver preguntan qué deben hacer (v. 7), Moshé no responde
+                    inmediatamente, sino consulta a Adonái (v. 8). Este patrón rabínico de “שְׁאֵלָה וּתְשׁוּבָה”
+                    (pregunta y respuesta) es modelo de liderazgo espiritual humilde, revelando que ni siquiera el
+                    profeta responde sin dirección divina.</p>
+                <p>👉 En la tradición judía mesiánica, esto prefigura al único Mediador perfecto, Yeshúa haMashíaj,
+                    quien no solo consulta al Padre, sino que es la Palabra misma hecha carne (Yojanán 1:14).</p>
+            </div>
+            <div class="section-container">
+                <h2>V. La Extensión del Mandamiento al Ger (extranjero) – v. 14</h2>
+                <p>La Toráh aclara que el extranjero que habita entre Israel también puede celebrar el Pésaj, con una
+                    sola ley para todos:</p>
+                <p>“תּוֹרָה אַחַת יִהְיֶה לָכֶם וְלַגֵּר” – “Una misma Toráh habrá para vosotros y para el extranjero.”
+                    (v. 14)</p>
+                <p>Este principio refleja la inclusión profética de las naciones en la redención de Israel, cumplimiento
+                    que los profetas y el Brit Hadasháh reiteran:</p>
+                <p>“Y serán mis testigos en Jerusalén, Judea, Samaria y hasta lo último de la tierra.” (Hechos 1:8)</p>
+            </div>
+            <div class="section-container">
+                <h2>VI. Relación con Prácticas del Segundo Templo y Qumrán</h2>
+                <ul>
+                    <li>🕍 En el Segundo Templo, el Pésaj Shení fue practicado según esta halajáh (ver Mishná Pesajim
+                        9:3–5).</li>
+                    <li>🗞 En Qumrán, aunque el calendario es diferente, también hay mención de celebración alternativa
+                        de Pésaj (4QMMT), reflejando el principio de inclusión de impuros.</li>
+                </ul>
+            </div>
+            <div class="section-container">
+                <h2>VII. Perspectiva Profética</h2>
+                <ul>
+                    <li>La Toráh señala que nadie puede excusarse de celebrar la redención (v. 13).</li>
+                    <li>Pero también enseña que Adonái da acceso misericordioso al que no pudo celebrar por impureza
+                        —principio cumplido en Mashíaj, quien limpia la impureza y nos acerca a la mesa (1 Corintios
+                        5:7–8).</li>
+                </ul>
+            </div>
+            <div class="conclusion">
+                <h2>Conclusión del Contexto</h2>
+                <p>Números 9:1–14 revela que:</p>
+                <ul>
+                    <li>El Pesaj no es solo memorial, sino marca identitaria y redentora del pueblo de Adonái.</li>
+                    <li>Adonái provee acceso incluso al impuro —prefigurando la obra del Mashíaj.</li>
+                    <li>El mandato se extiende al extranjero (ger), cumplido en la inclusión de las naciones en el Reino
+                        por medio de Yeshúa haMashíaj.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas – Bemidbar (Números) 9:1–14</h1>
+            <div class="explanation">
+                <p>Este pasaje central sobre el Pésaj en el desierto no es una mera repetición ritual, sino una
+                    revelación profética sobre la inclusividad de la redención, el tiempo profético de la gracia, y la
+                    figura mesiánica del cordero de Pesaj. Desde la perspectiva judía tradicional y mesiánica, ofrece un
+                    panorama riquísimo sobre cómo El Pesaj no solo es un rito, sino un modelo profético de redención en
+                    el Mashíaj Yeshúa.</p>
+            </div>
+            <div class="section-container">
+                <h2>I. Comentarios Rabínicos Relevantes</h2>
+                <div class="prophetic-section">
+                    <p><strong>1. Rashi (sobre v. 7):</strong></p>
+                    <p>Cuando los hombres impuros por un cadáver preguntan qué hacer, Rashi enfatiza el mérito de su
+                        pregunta. Aunque no podían participar, deseaban hacerlo, lo cual revela una fe activa.</p>
+                    <p><strong>👉 En contexto mesiánico:</strong></p>
+                    <p>Esto refleja el anhelo espiritual de aquellos que están lejos o impuros, pero que desean
+                        acercarse. En Yeshúa, el corazón dispuesto recibe acceso a la mesa del Reino (Lucas 15:20).</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>2. Sforno (sobre v. 13):</strong></p>
+                    <p>Sforno ve el castigo por no participar del Pésaj como una señal de que no participar
+                        voluntariamente implica cortar la identidad espiritual con Israel.</p>
+                    <p><strong>👉 En Mashíaj:</strong></p>
+                    <p>Esto confirma que el Pésaj es la clave de identidad espiritual. Rechazar al Cordero de redención
+                        es rechazar el propósito mismo del Reino.</p>
+                    <p>“Porque nuestra Pésaj, Mashíaj, fue inmolado.” (1 Corintios 5:7)</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>II. Comentario Judío Mesiánico</h2>
+                <div class="prophetic-section">
+                    <p><strong>1. El Pésaj Shení como figura de la gracia extendida</strong></p>
+                    <p>Números 9:10–11 introduce un principio radical en la Toráh:</p>
+                    <p>⏳ Si no puedes hoy… puedes mañana.</p>
+                    <p>Esto se convierte en un modelo profético de gracia que se manifiesta en Yeshúa haMashíaj:</p>
+                    <ul>
+                        <li>Quienes están impuros (simbolizando el pecado) no quedan excluidos si se vuelven a Adonái.
+                        </li>
+                        <li>La redención no se limita a una única oportunidad.</li>
+                        <li>La misma Toráh aplica al extranjero: la salvación no es solo para Israel físico, sino
+                            también para los gentiles injertados (Romanos 11:17).</li>
+                    </ul>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>2. Mashíaj como cumplimiento del Pesaj</strong></p>
+                    <p>Cada detalle de la ordenanza del Pésaj encuentra cumplimiento en Yeshúa:</p>
+                    <table>
+                        <tr>
+                            <th>Elemento de Pésaj</th>
+                            <th>Cumplimiento en Mashíaj</th>
+                        </tr>
+                        <tr>
+                            <td>Cordero sin defecto</td>
+                            <td>Yeshúa sin pecado (1 Pedro 1:19)</td>
+                        </tr>
+                        <tr>
+                            <td>Sangre en los dinteles</td>
+                            <td>Su sangre cubre nuestros corazones (Hebreos 10:22)</td>
+                        </tr>
+                        <tr>
+                            <td>Comerlo completamente</td>
+                            <td>Debemos consumir su enseñanza, su vida, su Ruaj (Juan 6:53–56)</td>
+                        </tr>
+                        <tr>
+                            <td>Sin hueso quebrado</td>
+                            <td>Juan 19:36 testifica que no se quebró hueso suyo</td>
+                        </tr>
+                        <tr>
+                            <td>Día 14 de Aviv</td>
+                            <td>Yeshúa murió exactamente en esa fecha (Mateo 26:2)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>III. Notas de los Primeros Siglos – Comunidad Nazarena</h2>
+                <ul>
+                    <li>Los nazarenos del siglo I guardaban Pésaj no solo como memorial de Éxodo, sino como memorial de
+                        la muerte y resurrección del Mashíaj.</li>
+                    <li>La Didajé y escritos de los Evyonim indican una celebración de la cena redentora en el contexto
+                        de Pésaj, no en domingos gentiles.</li>
+                    <li>El Evangelio Hebreo de los Nazarenos cita a Yeshúa celebrando la Pésaj conforme a Éxodo 12 y
+                        Números 9, validando la halajáh original.</li>
+                </ul>
+            </div>
+            <div class="section-container">
+                <h2>IV. Conexión con la Parasháh anterior (Bemidbar 8)</h2>
+                <ul>
+                    <li>Números 8 presenta a los levitas como sustitutos, y ahora en Números 9 se instituye el Pesaj,
+                        donde un cordero sustituye al pueblo.</li>
+                    <li>Ambas secciones revelan una misma verdad: la redención se logra a través de un sustituto justo.
+                    </li>
+                    <li>En Mashíaj, esta sustitución se convierte en expiación eterna (Yeshayáhu 53:5–6).</li>
+                </ul>
+            </div>
+            <div class="section-container">
+                <h2>V. Aplicación Espiritual en la Kehiláh</h2>
+                <div class="prophetic-section">
+                    <p><strong>1. Acceso universal a la redención:</strong></p>
+                    <p>No importa cuán impuro o lejano estés, Adonái abre una segunda puerta.</p>
+                    <p>Mashíaj es esa puerta (Yojanán 10:9).</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>2. Responsabilidad de participar en la redención:</strong></p>
+                    <p>No participar del Pésaj es grave (v. 13). En Mashíaj, ignorar Su sacrificio es rechazar el único
+                        camino a la vida eterna (Hebreos 10:29).</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>3. Unidad en la Ley espiritual:</strong></p>
+                    <p>Un mismo mandamiento para israelita y extranjero (v. 14). En Mashíaj, todos somos uno en Él
+                        (Gálatas 3:28).</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>VI. Guematría y Análisis Léxico Mesiánico</h2>
+                <div class="prophetic-section">
+                    <p><strong>• Pésaj Shení</strong></p>
+                    <p>Valor guemátrico: 448</p>
+                    <p>→ Coincide con el valor de Mashíaj ben Yosef = 156 + 292 = 448</p>
+                    <p>📜 El segundo Pésaj está conectado espiritualmente con el siervo sufriente, quien fue rechazado
+                        primero, pero vindicado después.</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>• Tamé (impuro)</strong></p>
+                    <p>Valor: 50 → número del jubileo, señalando que incluso el impuro puede entrar al jubileo por
+                        Mashíaj.</p>
+                </div>
+            </div>
+            <div class="conclusion">
+                <h2>Conclusión Profética:</h2>
+                <ul>
+                    <li>Esta Aliyáh enseña que la redención no es opcional, pero sí misericordiosamente accesible.</li>
+                    <li>Mashíaj cumple cada aspecto del Pésaj —y lo eleva a una redención eterna.</li>
+                    <li>El Pésaj Shení profetiza el segundo llamado, la segunda oportunidad, y la gracia para los que
+                        estaban lejos, que es el núcleo del mensaje mesiánico.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 6. Análisis Profundo de la Aliyáh – Bemidbar (Números) 9:1–14</h1>
+            <div class="explanation">
+                <p>Esta Aliyáh no solo regula una práctica ritual, sino que constituye una revelación espiritual y
+                    profética fundamental sobre la redención en Israel, revelando patrones que serán cumplidos y
+                    elevados en Mashíaj Yeshúa. A continuación, se presenta un análisis profundo desde la perspectiva
+                    judía tradicional, judía mesiánica y profética-aplicativa.</p>
+            </div>
+            <div class="section-container">
+                <h2>I. Análisis del Texto – Claves Temáticas</h2>
+                <div class="prophetic-section">
+                    <p><strong>1. Versos 1–5: Primer Pesaj post-Éxodo</strong></p>
+                    <ul>
+                        <li>El mandato dado a Moshé confirma la continuidad de la redención.</li>
+                        <li>Esta es la primera vez que Israel celebra la redención fuera de Mitsrayim, en obediencia
+                            activa.</li>
+                        <li>Reafirma que Pésaj es más que conmemoración: es identidad, obediencia, y conexión con el
+                            propósito divino.</li>
+                    </ul>
+                    <p>📌 El cumplimiento literal de Éxodo 12 señala el peso profético del ritual, ya que es el
+                        fundamento de toda vida redimida en Israel.</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>2. Versos 6–8: El dilema de la impureza</strong></p>
+                    <ul>
+                        <li>Algunos hombres estaban טְמֵאִים – teme’im (ritualmente impuros) por contacto con un
+                            cadáver.</li>
+                        <li>Moshé no improvisa, sino que consulta al Eterno.</li>
+                    </ul>
+                    <p>🕊️ Aquí se establece un principio eterno: “La pureza externa no determina el acceso, sino la
+                        disposición del corazón, y el mandato del Eterno.” Esto abre el camino a la Pésaj Shení, un acto
+                        profético de gracia extendida.</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>3. Versos 9–12: Institución del Segundo Pesaj (Pésaj Shení)</strong></p>
+                    <ul>
+                        <li>Se establece la posibilidad de celebrar la redención en otro momento si alguien estuvo
+                            impuro o lejos.</li>
+                        <li>La celebración debe hacerse exactamente igual al Pésaj original (cordero, matzá, sin hueso
+                            quebrado…).</li>
+                    </ul>
+                    <p>🕎 Esta instrucción guarda el estándar del ritual original, pero lo adapta a una condición de
+                        gracia: No baja la santidad, pero extiende el acceso.</p>
+                    <p>📖 En el mensaje del Mashíaj, esto apunta directamente al llamado al pecador, al impuro, al
+                        lejano, y también al extranjero: “Ustedes que en otro tiempo estaban lejos, ahora han sido
+                        acercados por la sangre del Mashíaj.” (Efesios 2:13)</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>4. Verso 13: La gravedad de rechazar el Pesaj</strong></p>
+                    <ul>
+                        <li>Si alguien, estando puro y en su lugar, decide no celebrar el Pésaj, será "karet" (cortado).
+                        </li>
+                        <li>No participar de la redención es una forma de cortar la conexión con Israel y con el
+                            propósito del Reino.</li>
+                    </ul>
+                    <p>⚖️ En el contexto del Brit Hadasháh: El que desprecia la obra del Mashíaj no solo rechaza un
+                        rito, rechaza la única vía de acceso al Padre (Hebreos 10:28–29).</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>5. Verso 14: La Toráh es una para todos – judíos y gerím</strong></p>
+                    <ul>
+                        <li>El extranjero que habita entre Israel también puede celebrar el Pésaj.</li>
+                        <li>Solo hay una Toráh para todos: “תּוֹרָה אַחַת” – una sola instrucción para todos los que
+                            pertenecen al pueblo del pacto.</li>
+                    </ul>
+                    <p>🌍 Este verso tiene implicaciones mesiánicas y escatológicas: En el Mashíaj, la redención se
+                        extiende a todas las naciones, sin dos sistemas de fe ni de ley. “Un solo cuerpo, un solo
+                        Espíritu, una sola fe…” (Efesios 4:4–6)</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>II. Análisis Judío Mesiánico</h2>
+                <div class="prophetic-section">
+                    <p><strong>1. Pésaj Shení como figura profética de redención para los “que llegaron tarde”</strong>
+                    </p>
+                    <ul>
+                        <li>Aquellos impuros o en camino simbolizan:
+                            <ul>
+                                <li>A los pecadores necesitados de redención.</li>
+                                <li>A los gentiles, que llegaron después a la promesa.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>🔯 En Mashíaj, el segundo llamado se hace universal: “Muchos primeros serán últimos, y últimos
+                        serán primeros.” (Mateo 19:30)</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>2. El Cordero sin hueso quebrado</strong></p>
+                    <p>• El detalle técnico “וְעֶצֶם לֹא יִשְׁבְּרוּ-בּוֹ” (v. 12) tiene cumplimiento exacto en Mashíaj:
+                        “Porque estas cosas sucedieron para que se cumpliera la Escritura: No será quebrado hueso suyo.”
+                        (Juan 19:36) Esto valida que Mashíaj es el Cordero de Pesaj.</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>3. La Inclusión del Ger – el Evangelio a las Naciones</strong></p>
+                    <ul>
+                        <li>El “ger” no es visitante, sino residente entre Israel, comprometido con la Toráh.</li>
+                        <li>En el Reino del Mashíaj, los gentiles no se convierten en otra religión, sino que son
+                            injertados al pueblo del pacto (Romanos 11:17).</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>III. Aplicaciones Prácticas y Espirituales</h2>
+                <div class="prophetic-section">
+                    <p><strong>1. Celebrar el Pésaj es vital para la identidad espiritual</strong></p>
+                    <p>→ El creyente en Mashíaj no puede desconectarse de las raíces de redención.</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>2. El corazón dispuesto encuentra acceso</strong></p>
+                    <p>→ Aún en impureza o lejanía, Adonái abre puertas. ¡Mashíaj es esa puerta! (Juan 10:9)</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>3. La gracia no cancela el estándar</strong></p>
+                    <p>→ La Pésaj Shení no es una versión “light”, sino el mismo nivel de compromiso. La gracia eleva,
+                        no rebaja.</p>
+                </div>
+                <div class="prophetic-section">
+                    <p><strong>4. El Reino es inclusivo, pero no permisivo</strong></p>
+                    <p>→ El extranjero que acepta El Pesaj se somete al mismo pacto. En Mashíaj, todos se ajustan a Su
+                        Toráh.</p>
+                </div>
+            </div>
+            <div class="conclusion">
+                <h2>Conclusión del Análisis</h2>
+                <p>Esta Aliyáh enseña que:</p>
+                <ul>
+                    <li>La redención es permanente, sagrada, y accesible.</li>
+                    <li>Mashíaj Yeshúa es su cumplimiento perfecto.</li>
+                    <li>La puerta que se abre para los impuros, los extranjeros y los alejados, no rebaja el estándar
+                        del Reino, sino que revela su misericordia y universalidad.</li>
+                </ul>
+                <p>En Él, hay Pésaj eterno. En Él, hay redención para todos.</p>
+            </div>
+        </div>
+        <div class="content-container"></div>
+        <h1>Punto 7. Tema Más Relevante de la Aliyáh 3: Números 9:1-14</h1>
+        <div class="section-container">
+            <h2>Tema Central:</h2>
+            <p>El tema más relevante de esta Aliyáh es la celebración del Pésaj (פֶּסַח) en el desierto, particularmente
+                la inclusión del mandato para Pésaj Shení (פֶּסַח שֵׁנִי) —la segunda oportunidad para aquellos que
+                estaban impuros o lejos en el momento de la primera celebración. Este pasaje revela la compasión y
+                flexibilidad del mandato divino en relación con la participación del pueblo en los tiempos señalados de
+                Adonái.</p>
+        </div>
+        <div class="section-container">
+            <h2>Importancia en el contexto de la Toráh:</h2>
+            <p>Este texto subraya la centralidad de Pésaj como conmemoración de la redención de Mitsráyim (Egipto) y
+                enfatiza la responsabilidad de cada israelita de participar en esta memoria colectiva. También introduce
+                una dimensión legal y espiritual clave: el principio de permitir una segunda oportunidad para los que no
+                pudieron participar originalmente, preservando la integridad comunitaria y el acceso al pacto.</p>
+        </div>
+        <div class="section-container">
+            <h2>Conexión con las Enseñanzas de Yeshúa haMashíaj:</h2>
+            <p>Yeshúa haMashíaj, identificado como el Cordero de Pésaj (שה פסח), ofrece una segunda oportunidad
+                espiritual a todos los que están "lejos" —ya sea por impureza espiritual o separación— para entrar en el
+                pacto renovado mediante Su sacrificio. El Brit Hadasháh (Juan 6:53-56) retoma esta temática cuando
+                Yeshúa invita a comer Su carne y beber Su sangre, simbolizando la participación en Su vida redentora y
+                la conmemoración mesiánica del verdadero Pésaj.</p>
+        </div>
+        <div class="section-container">
+            <h2>Conexión con los Moedím de Elohím (מועדי אלהים):</h2>
+            <p>Este pasaje tiene una relación directa con el Moéd de Pésaj, pero además revela un principio que se
+                repite en las festividades: el acceso misericordioso y universal a la redención, sin que se anule la
+                santidad ni la observancia ordenada. Pésaj Shení es una manifestación temprana del patrón de
+                restauración, que se verá consumado en Moedím como Yom Teruáh, Yom Kipur, y Sucot en el Reino Mesiánico.
+                En todos ellos, el corazón del mensaje es la redención ofrecida por Elohím Alef Tav, revelado en Yeshúa.
+            </p>
+        </div>
+        <div class="conclusion">
+            <h2>Conclusión Temática:</h2>
+            <p>El pasaje enseña que la adoración y conmemoración de la redención no son eventos estacionales, sino una
+                convocatoria perpetua a todos los que deseen participar del pacto. Así como en el desierto se permitió
+                una segunda oportunidad para celebrar Pésaj, en el tiempo presente, por medio de Yeshúa haMashíaj, se
+                extiende una invitación constante a entrar en la redención eterna.</p>
+            <p>Este principio prepara el camino para entender que la redención no se limita al calendario, sino que está
+                disponible para los humildes, arrepentidos y obedientes en todo tiempo.</p>
+        </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 8. Descubriendo a Mashíaj en Números 9:1-14</h1>
+            <div class="section-container">
+                <h2>Identificación de Profecías Mesiánicas y Reflexión:</h2>
+                <p>Números 9:1-14 contiene una proyección mesiánica clave en la institución de Pésaj y Pésaj Shení, que
+                    proféticamente señala hacia la redención inclusiva y perfecta en Yeshúa haMashíaj. La provisión del
+                    Pésaj Shení (Segunda Pascua) abre un patrón profético que revela al Mesías como el Cordero que
+                    ofrece redención incluso a los “excluidos” o los “impuros” que no pudieron participar en el tiempo
+                    señalado.</p>
+            </div>
+            <div class="section-container">
+                <h2>Métodos usados para descubrir al Mashíaj en este pasaje:</h2>
+                <div class="prophetic-section">
+                    <h3>Tipologías (טִיפּוֹלוֹגִיּוֹת):</h3>
+                    <p>El cordero del Pésaj representa tipológicamente a Yeshúa, el Cordero sin mancha ofrecido por la
+                        redención (cf. Shemot 12:5 // Juan 1:29; 1 Corintios 5:7).</p>
+                    <p>La segunda oportunidad de Pésaj Shení tipifica la misericordia extendida a los gentiles y a los
+                        exiliados de Israel que fueron alejados del templo o del calendario religioso, pero son
+                        acercados en Yeshúa.</p>
+                </div>
+                <div class="prophetic-section">
+                    <h3>Sombras y Figuras (צְלָלִים וְדְמוּיוֹת):</h3>
+                    <p>El “hombre que estuvo impuro por un cadáver” (טָמֵא לְנֶפֶשׁ אָדָם) se proyecta como la figura de
+                        alguien contaminado por la muerte, incapaz de participar. Esto refleja a la humanidad
+                        contaminada por el pecado y la muerte (Romanos 6:23), pero redimida por Aquel que venció la
+                        muerte: Yeshúa.</p>
+                </div>
+                <div class="prophetic-section">
+                    <h3>Patrones Redentores (תַּבְנִית):</h3>
+                    <p>El patrón de permitir la celebración un mes después implica un orden celestial de misericordia,
+                        no solo juicio. Este patrón se repite en la vida de Mashíaj, quien ofrece perdón incluso a los
+                        que llegan “tarde” (como el ladrón en la estaca).</p>
+                </div>
+                <div class="prophetic-section">
+                    <h3>Nombres y Títulos Proféticos:</h3>
+                    <p>El Pésaj mismo es una figura de redención. Yeshúa es nombrado como nuestro Pésaj (1 Corintios
+                        5:7), cumpliendo la redención simbólica que comenzó en Mitsráyim y se actualiza en cada
+                        generación.</p>
+                </div>
+                <div class="prophetic-section">
+                    <h3>Eventos Simbólicos y Paralelismos Temáticos:</h3>
+                    <p>Aquellos que estaban lejos del campamento o impuros y aún así pueden participar después de un
+                        tiempo representan a las ovejas perdidas de la casa de Israel (Mateo 15:24) y a los gentiles que
+                        estaban alejados de los pactos (Efesios 2:12-13), pero que ahora han sido “acercados” por la
+                        sangre del Mashíaj.</p>
+                </div>
+                <div class="prophetic-section">
+                    <h3>Midrashim Mesiánicos:</h3>
+                    <p>En el Midrash Sifré BeMidbar 69 se comenta que el mandamiento de Pésaj Shení no fue anticipado
+                        por Moshé sino que fue revelado por la necesidad del pueblo, lo que se ve como un acto de
+                        compasión directa del Cielo. Esto apunta a la naturaleza intercesora y mediadora del Mashíaj,
+                        quien responde a nuestras limitaciones y clama por una oportunidad ante el trono celestial.</p>
+                </div>
+                <div class="prophetic-section">
+                    <h3>Cumplimientos Tipológicos en el Brit Hadasháh:</h3>
+                    <p>Yeshúa celebra Su última cena en Pésaj (Mateo 26:17-30) y se ofrece como el verdadero Cordero. En
+                        Juan 6:53-56 Él dice: “Si no coméis la carne del Hijo del Hombre y no bebéis su sangre, no
+                        tenéis vida en vosotros”, reafirmando el símbolo del cordero de Pésaj.</p>
+                    <p>Su muerte coincidió con la preparación del Pésaj, cumpliendo el símbolo profético.</p>
+                </div>
+                <div class="prophetic-section">
+                    <h3>Análisis Lingüístico:</h3>
+                    <p>El uso del término “טָמֵא” (tamé, impuro) está fuertemente ligado al estado del ser humano
+                        apartado de la santidad, y la provisión del segundo Pésaj enseña que la pureza y la inclusión
+                        son posibles por medio de la obediencia al mandamiento y al mediador designado, Yeshúa (Hebreos
+                        9:13-14).</p>
+                </div>
+            </div>
+            <div class="conclusion">
+                <h2>Conclusión:</h2>
+                <p>Números 9:1-14 revela a Mashíaj como el cumplimiento perfecto del Pésaj, no solo en el acto redentor,
+                    sino también en el principio de la segunda oportunidad: Pésaj Shení. Esta segunda Pascua revela que
+                    la gracia de Elohím Alef Tav en Yeshúa haMashíaj se extiende más allá de los límites del calendario,
+                    del Templo y de la pureza ritual, para alcanzar a todo el que desee entrar en pacto. Es una
+                    proclamación del mensaje mesiánico más profundo: la redención está disponible para todos los que
+                    están dispuestos, aún si llegaron tarde o vienen de lejos.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos – Números 9:1-14</h1>
+            <div class="section-container">
+                <h2>Midrashim Relevantes:</h2>
+                <div class="prophetic-section">
+                    <p><strong>Sifré BeMidbar 66:</strong> Este midrash resalta cómo el mandamiento del Pésaj Shení no
+                        fue dado inicialmente con el resto de las leyes en el Sinaí, sino que fue revelado
+                        posteriormente, a raíz del clamor de personas impuras que deseaban participar del Pésaj. El
+                        Midrash enfatiza que “בזכות בקשתם ניתנה פרשה זו” (por el mérito de su petición, esta sección fue
+                        dada), revelando que las oportunidades de redención también emergen del deseo ardiente del
+                        corazón del pueblo. Se ve aquí la compasión divina en acción, un concepto que en la literatura
+                        mesiánica se relaciona con la redención extendida a los excluidos.</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>Targumim:</h2>
+                <div class="prophetic-section">
+                    <p><strong>Targum Onkelos sobre Bemidbar 9:10:</strong> Este targum retiene la esencia del texto
+                        hebreo, pero usa el arameo “זִמְנָא תִּנְיָנָא” (segunda ocasión) para Pésaj Shení, destacando
+                        que este es un evento nuevo en el calendario espiritual, no meramente una repetición. La
+                        estructura aramea muestra la diferenciación entre la justicia y la misericordia divina, un
+                        elemento crucial para la teología mesiánica.</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>Fuentes Apócrifas:</h2>
+                <div class="prophetic-section">
+                    <p><strong>Libro de Jubileos (Yovelim):</strong> Si bien el texto de Números 9:1-14 no se menciona
+                        directamente en los libros apócrifos, el Libro de Jubileos alude al calendario festivo y la
+                        necesidad de mantener las celebraciones de manera precisa (cf. Jubileos 49). Esta obsesión por
+                        la corrección del calendario refleja el mismo espíritu del Pésaj Shení: que ni la impureza ni la
+                        distancia interrumpan la conmemoración del tiempo sagrado.</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>Comentarios Rabínicos Clásicos:</h2>
+                <div class="prophetic-section">
+                    <p><strong>Rashí (Números 9:7):</strong> En su comentario sobre el verso donde los hombres impuros
+                        se quejan de no poder celebrar el Pésaj, Rashí cita el Talmud (Sukkah 25a) diciendo que esos
+                        hombres eran los portadores del ataúd de Yosef. Esto introduce una dimensión espiritual
+                        profunda: su pureza fue comprometida por un acto de fidelidad a los restos del redentor de
+                        Israel —lo cual conecta con el concepto mesiánico de cargar con la muerte para asegurar la
+                        promesa futura.</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>Tradición Oral y Mesiánica:</h2>
+                <div class="prophetic-section">
+                    <p><strong>En la literatura de los Nazratim del primer siglo:</strong> Pésaj Shení era visto como
+                        una figura del retorno tardío, especialmente de los gentiles injertados (Romanos 11). En algunos
+                        midrashim mesiánicos, se enseña que Yeshúa cumplió Pésaj no solo para los presentes, sino
+                        también para los “lejanos” —los que todavía estaban “tamé”, pero serían purificados por Su
+                        sangre (Hebreos 9:14).</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <h2>Reflexión Apócrifa y Mesiánica:</h2>
+                <div class="prophetic-section">
+                    <p><strong>Escritos de Qumrán:</strong> Aunque no se halla en los libros canónicos, los escritos de
+                        Qumrán evidencian que algunas comunidades esperaban una restauración escatológica de Pésaj —no
+                        solo como memoria, sino como un nuevo éxodo. Yeshúa es presentado en el Brit Hadasháh como el
+                        líder de este nuevo éxodo (Lucas 9:31; Hebreos 3:1-6), lo cual enriquece la visión profética de
+                        Números 9:1-14.</p>
+                </div>
+            </div>
+            <div class="conclusion">
+                <h2>Conclusión:</h2>
+                <p>Números 9:1-14 es una mina rica de revelación oral y escrita, que revela el corazón del Elohím
+                    redentor. La presencia de comentarios midráshicos, arameos y ecos en textos no canónicos muestra que
+                    el mensaje de Pésaj Shení trasciende el texto y se convierte en una teología de inclusión,
+                    restauración y segunda oportunidad en Yeshúa haMashíaj.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 11. Preguntas de Reflexión – Números 9:1-14 (Con Respuestas en el Mashíaj)</h1>
+            <div class="section-container">
+                <div class="question">1. ¿Por qué es tan importante el mandato de celebrar Pésaj, incluso para quienes
+                    están impuros o lejos?</div>
+                <div class="answer">
+                    <p><strong>Respuesta en el Mashíaj:</strong></p>
+                    <p>Porque Pésaj es una proclamación de la redención dada por Elohím a Su pueblo, y Yeshúa haMashíaj
+                        es el cumplimiento pleno de esa redención. Incluso aquellos que están espiritualmente impuros o
+                        distantes —por pecado o ignorancia— son invitados a acercarse a través de la sangre del Cordero
+                        (Efesios 2:13). La provisión del Pésaj Shení revela que la misericordia en el Mashíaj no está
+                        limitada por el calendario, sino ofrecida continuamente.</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="question">2. ¿Qué revela la institución de Pésaj Shení sobre el carácter de Adonái y su plan
+                    de redención?</div>
+                <div class="answer">
+                    <p><strong>Respuesta en el Mashíaj:</strong></p>
+                    <p>Revela que Adonái es compasivo, justo y deseoso de que nadie se quede fuera del pacto por razones
+                        ajenas a su voluntad. Esta segunda oportunidad es una sombra de la obra de Yeshúa, quien vino
+                        precisamente “por los que estaban perdidos” (Lucas 19:10), trayendo una redención para quienes
+                        no pudieron participar en el tiempo señalado, dando vida a los excluidos.</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="question">3. ¿Cuál es el mensaje espiritual detrás de la severa advertencia contra omitir el
+                    Pésaj sin causa válida?</div>
+                <div class="answer">
+                    <p><strong>Respuesta en el Mashíaj:</strong></p>
+                    <p>Es un llamado a no tomar livianamente la redención. Así como el hombre que voluntariamente no
+                        participa de Pésaj es "cortado", también aquel que rechaza deliberadamente a Yeshúa haMashíaj
+                        como el Cordero de Elohím permanece fuera del pacto (Hebreos 10:26-29). El sacrificio del
+                        Mashíaj no puede ser ignorado sin consecuencias eternas.</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="question">4. ¿Qué enseñanza podemos extraer sobre el papel del "extranjero" en este texto?
+                </div>
+                <div class="answer">
+                    <p><strong>Respuesta en el Mashíaj:</strong></p>
+                    <p>El extranjero (ger גר) que desea participar debe hacerlo bajo los mismos estatutos. Esto revela
+                        la visión mesiánica de que no hay más separación entre judío y gentil, porque todos somos uno en
+                        el Mashíaj Yeshúa (Gálatas 3:28-29). La inclusión en Pésaj señala el injerto profetizado de los
+                        gentiles en el pueblo de Elohím (Romanos 11).</p>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="question">5. ¿Cómo aplicamos hoy la celebración de Pésaj en el contexto del Brit Hadasháh?
+                </div>
+                <div class="answer">
+                    <p><strong>Respuesta en el Mashíaj:</strong></p>
+                    <p>Hoy, celebramos Pésaj no solo recordando el éxodo físico, sino también el nuevo éxodo espiritual
+                        que Yeshúa ha provisto a través de Su sangre. En cada seder de Pésaj, recordamos Su sacrificio
+                        como el Cordero perfecto y anunciamos Su regreso (1 Corintios 11:26). Vivimos Pésaj al andar en
+                        santidad, participando de Su cuerpo y sangre con reverencia y fe.</p>
+                </div>
+            </div>
+            <div class="conclusion">
+                <h2>Conclusión:</h2>
+                <p>Estas preguntas nos invitan a ver en Números 9:1-14 no solo una instrucción ritual, sino una
+                    revelación profética profunda del corazón redentor de nuestro Padre manifestado en Yeshúa haMashíaj,
+                    quien es nuestro Pésaj eterno y quien nos invita a todos —puros o impuros, cercanos o lejanos— a
+                    entrar en Su pacto de vida.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 12. Resumen de la Aliyáh – Números 9:1-14</h1>
+            <div class="section-container">
+                <h2>Resumen Narrativo:</h2>
+                <p>En este pasaje, Adonái ordena a Moshé que el pueblo de Israel celebre el Pésaj en su tiempo señalado,
+                    el día 14 del primer mes, al atardecer. Los hijos de Israel obedecen y realizan el Pésaj en el
+                    desierto de Sinaí conforme a todos los estatutos dados.</p>
+                <p>Sin embargo, algunos hombres estaban impuros por contacto con un cadáver y no pudieron participar.
+                    Acuden a Moshé y Aharón, quienes consultan a Adonái, y entonces se introduce una nueva mitzváh:
+                    Pésaj Shení, la segunda oportunidad para celebrar el Pésaj un mes después, el día 14 del segundo
+                    mes, para aquellos que estén impuros o de viaje. También se establece que el forastero (ger גר) que
+                    vive entre Israel debe observar el Pésaj según las mismas leyes y estatutos.</p>
+            </div>
+            <div class="section-container">
+                <h2>Aplicación en Mashíaj:</h2>
+                <p>Este texto resume el corazón del Evangelio: nadie queda fuera del pacto si tiene un corazón
+                    dispuesto. A través de Yeshúa haMashíaj, el verdadero Pésaj, incluso los que estuvieron lejos por
+                    pecado o impureza pueden ahora entrar en comunión por medio de Su sangre. El Pésaj Shení prefigura a
+                    Yeshúa como el mediador que ofrece redención a los excluidos y a los que no pudieron participar en
+                    la primera convocatoria divina.</p>
+            </div>
+            <div class="section-container">
+                <h2>Elementos Claves del Resumen:</h2>
+                <ul>
+                    <li>Mandato de celebrar el Pésaj en su tiempo (14 de Nisán).</li>
+                    <li>Cumplimiento fiel del pueblo en el desierto.</li>
+                    <li>Presentación de una necesidad: impureza por contacto con muerto.</li>
+                    <li>Respuesta divina: institución de Pésaj Shení (14 de Iyar).</li>
+                    <li>Inclusión del extranjero bajo las mismas leyes.</li>
+                    <li>Principio mesiánico: misericordia que extiende la redención más allá de la impureza o la
+                        distancia.</li>
+                </ul>
+            </div>
+            <div class="conclusion">
+                <h2>Mensaje Central del Pasaje:</h2>
+                <p>La redención es un llamado universal y accesible, pero no arbitrario: requiere obediencia, santidad y
+                    un corazón comprometido con los tiempos de Elohím. En Yeshúa, la oportunidad de participar en Su
+                    redención siempre está abierta para los que se acercan en emunáh (fe).</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 13. Tefiláh de la Aliyáh – Números 9:1-14</h1>
+            <div class="section-container">
+                <h2>Tefiláh basada en los temas y enseñanzas de Números 9:1-14, conectada con la vida espiritual en
+                    Mashíaj Yeshúa:</h2>
+                <p class="prayer-text">Adonái יהוה, Elohím Alef Tav,</p>
+                <p class="prayer-text">Tú que redimiste a Israel de Mitsráyim con brazo extendido,</p>
+                <p class="prayer-text">y diste el mandamiento eterno del Pésaj como señal de liberación,</p>
+                <p class="prayer-text">te doy gracias por tu compasión,</p>
+                <p class="prayer-text">porque aún cuando estamos impuros o lejos,</p>
+                <p class="prayer-text">Tú haces provisión para nuestra cercanía.</p>
+                <p class="prayer-text">Gracias por el Pésaj Shení,</p>
+                <p class="prayer-text">la segunda oportunidad que apunta a Tu gran misericordia,</p>
+                <p class="prayer-text">la cual se cumplió plenamente en Yeshúa haMashíaj,</p>
+                <p class="prayer-text">el Cordero sin mancha, ofrecido por nuestras transgresiones.</p>
+                <p class="prayer-text">Purifícame por Su sangre,</p>
+                <p class="prayer-text">hazme digno de participar en Tu redención eterna,</p>
+                <p class="prayer-text">aunque yo haya estado alejado,</p>
+                <p class="prayer-text">aunque haya sido impuro por causa del pecado,</p>
+                <p class="prayer-text">hoy me acerco por medio de Él,</p>
+                <p class="prayer-text">quien es el Camino, la Verdad y la Vida.</p>
+                <p class="prayer-text">Enséñame a guardar Tus tiempos señalados con fidelidad,</p>
+                <p class="prayer-text">a celebrar Tu Pésaj no solo con labios, sino con el corazón,</p>
+                <p class="prayer-text">a recordar que Tu redención no excluye,</p>
+                <p class="prayer-text">sino que llama a cada uno con amor eterno.</p>
+                <p class="prayer-text">Incluye a los que están lejanos,</p>
+                <p class="prayer-text">a los que aún no han oído,</p>
+                <p class="prayer-text">y permite que también ellos celebren contigo</p>
+                <p class="prayer-text">la victoria sobre la muerte,</p>
+                <p class="prayer-text">la salida del exilio,</p>
+                <p class="prayer-text">y la libertad que sólo Yeshúa puede dar.</p>
+                <p class="prayer-text">Baruj Atá יהוה,</p>
+                <p class="prayer-text">que das segundas oportunidades a Tu pueblo,</p>
+                <p class="prayer-text">y enviaste a Tu Mashíaj</p>
+                <p class="prayer-text">para ser nuestro Cordero perpetuo.</p>
+                <p class="prayer-conclusion">Amén, veAmén.</p>
+            </div>
+            <div class="section-container">
+                <h2>Aplicación Espiritual:</h2>
+                <p>Esta tefiláh es un clamor de los que desean retornar al pacto,</p>
+                <p>una confesión de impureza transformada por redención,</p>
+                <p>y una proclamación de fe en Yeshúa haMashíaj como el Pésaj eterno.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./aliya4.html">Continuar con la Aliyá 4</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

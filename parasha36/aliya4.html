@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 9:15-10:10</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>36. Parashá Behaalotjá (בהעלתך) Aliyáh 4: (Números 9:15-10:10) La nube que guía a Israel en el desierto y
+            las trompetas de plata para convocar al campamento.
+            <p>Haftaráh: Isaías 4:2-6 (La presencia de Elohím como nube y sombra de protección).</p>
+            <p>Brit Hadasháh: 1 Corintios 15:51-52 (La trompeta final y la resurrección de los santos).</p>
+        </h1>
+
+        <div class="content-container">
+            <h1>Punto 1. Parashá Beha’alotjá (בהעלתך) – Números 9:15–10:10</h1>
+            <div class="section-container">
+                <h2>Texto Hebreo, Fonética y Traducción Literal + Cumplimiento Mesiánico por Verso</h2>
+                <div class="verse-container">
+                    <div class="verse-number">Números 9:15</div>
+                    <div class="hebrew">וּבְיוֹם הָקִים אֶת־הַמִּשְׁכָּן כִּסָּה הֶעָנָן אֶת־הַמִּשְׁכָּן לְאֹהֶל
+                        הָעֵדֻת וּבָעֶרֶב יִהְיֶה עַל־הַמִּשְׁכָּן כְּמַרְאֵה־אֵשׁ עַד־בֹּקֶר׃</div>
+                    <div class="transliteration">U-véyom haqím et-hamishkán kisá heanán et-hamishkán le-óhel haedút,
+                        u-vaérev yihyéh al-hamishkán ke-mar'éh ésh ad bóqer.</div>
+                    <div class="translation">Y en el día que fue erigido el Mishkán, la nube lo cubrió, sobre el
+                        tabernáculo del testimonio; y por la noche será sobre el Mishkán como la apariencia de fuego
+                        hasta la mañana.</div>
+                    <div class="prophetic-content">
+                        <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                        <p>La nube representa la presencia del Ruaj Hakodesh, y el fuego, el juicio y la santidad.
+                            Yeshúa es el verdadero Mishkán (Juan 1:14), en quien habita la plenitud de la Shejináh
+                            (Colosenses 2:9).</p>
+                    </div>
+                </div>
+                <div class="verse-container">
+                    <div class="verse-number">Números 9:16</div>
+                    <div class="hebrew">כֵּן יִהְיֶה תָּמִיד הֶעָנָן יְכַסֶּנּוּ וּמַרְאֵה־אֵשׁ לָיְלָה׃</div>
+                    <div class="transliteration">Kén yihyéh tamíd heanán yejassénnu, u-mar'éh ésh layláh.</div>
+                    <div class="translation">Así será siempre: la nube lo cubría, y la apariencia de fuego por la noche.
+                    </div>
+                    <div class="prophetic-content">
+                        <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                        <p>Como luz perpetua en medio de las tinieblas, Yeshúa guía como la columna de fuego, luz del
+                            mundo (Juan 8:12).</p>
+                    </div>
+                </div>
+                <div class="verse-container">
+                    <div class="verse-number">Números 9:17</div>
+                    <div class="hebrew">וּלְפִי הֵעָלוֹת הֶעָנָן מֵעַל הָאֹהֶל וְאַחֲרֵי־כֵן יִסְעוּ בְּנֵי יִשְׂרָאֵל
+                        וּבִמְקוֹם אֲשֶׁר יִשְׁכָּן־שָׁם הֶעָנָן שָׁם יַחֲנוּ בְּנֵי יִשְׂרָאֵל׃</div>
+                    <div class="transliteration">U-lefí he’alót heanán me’al haóhel ve-ajarején yis’ú benéi Yisraél,
+                        u-bimqóm asher yishkan-shám heanán, shám yajanú benéi Yisraél.</div>
+                    <div class="translation">Y conforme se alzaba la nube sobre el tabernáculo, entonces partían los
+                        hijos de Yisraél; y en el lugar donde permanecía la nube, allí acampaban los hijos de Yisraél.
+                    </div>
+                    <div class="prophetic-content">
+                        <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                        <p>Los discípulos siguen la dirección del Ruaj de Mashíaj. Donde Él mora, allí está su Kehiláh
+                            (Mateo 18:20).</p>
+                    </div>
+                </div>
+
+                <div class="content-container">
+                    <div class="section-container">
+                        <div class="verse-container">
+                            <div class="verse-number">Números 9:18</div>
+                            <div class="hebrew">עַל־פִּי יְהוָה יִסְעוּ בְּנֵי יִשְׂרָאֵל וְעַל־פִּי יְהוָה יַחֲנוּ
+                                כָּל־יְמֵי אֲשֶׁר יִשְׁכֹּן הֶעָנָן עַל־הַמִּשְׁכָּן יַחֲנוּ׃</div>
+                            <div class="transliteration">Al-pí YHVH yis’ú benéi Yisraél ve-al-pí YHVH yajanú, kol yeméi
+                                asher yishkón heanán al-hamishkán yajanú.</div>
+                            <div class="translation">Por mandato de YHVH partían los hijos de Yisraél, y por mandato de
+                                YHVH acampaban; todos los días que la nube reposaba sobre el Mishkán, acampaban.</div>
+                            <div class="prophetic-content">
+                                <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                                <p>Yeshúa es el rostro visible de YHVH. Su guía es nuestra autoridad (Juan 10:27).</p>
+                            </div>
+                        </div>
+                        <div class="verse-container">
+                            <div class="verse-number">Números 9:19</div>
+                            <div class="hebrew">וּבְהַאֲרִיךְ הֶעָנָן עַל־הַמִּשְׁכָּן יָמִים רַבִּים וְשָׁמְרוּ בְנֵי
+                                יִשְׂרָאֵל אֶת־מִשְׁמֶרֶת יְהוָה וְלֹא יִסָּעוּ׃</div>
+                            <div class="transliteration">U-veha’aríj heanán al-hamishkán yamím rabbím, ve-shamrú benéi
+                                Yisraél et-mishméret YHVH ve-ló yissá’ú.</div>
+                            <div class="translation">Y cuando la nube se detenía por muchos días sobre el Mishkán, los
+                                hijos de Yisraél guardaban la ordenanza de YHVH y no partían.</div>
+                            <div class="prophetic-content">
+                                <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                                <p>Nos enseña a esperar en obediencia hasta que Él diga que avancemos (Hechos 1:4-8).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="verse-container">
+                            <div class="verse-number">Números 9:20</div>
+                            <div class="hebrew">וְיֵשׁ אֲשֶׁר יִהְיֶה הֶעָנָן מְעַט יָמִים עַל־הַמִּשְׁכָּן עַל־פִּי
+                                יְהוָה יַחֲנוּ וְעַל־פִּי יְהוָה יִסָּעוּ׃</div>
+                            <div class="transliteration">Ve-yesh asher yihyéh heanán me’at yamím al-hamishkán; al-pí
+                                YHVH yajanú, ve-al-pí YHVH yissá’ú.</div>
+                            <div class="translation">Y a veces la nube estaba pocos días sobre el Mishkán; por mandato
+                                de YHVH acampaban, y por mandato de YHVH partían.</div>
+                            <div class="prophetic-content">Cumplimiento en Mashíaj: A veces las temporadas son breves,
+                                pero deben obedecerse igualmente. Él es nuestro ritmo.</div>
+                        </div>
+
+                        <div class="verse-container">
+                            <div class="verse-number">Números 9:21</div>
+                            <div class="hebrew">וְיֵשׁ אֲשֶׁר־יִהְיֶה הֶעָנָן מֵעֶרֶב עַד־בֹּקֶר וְנַעַלָה הֶעָנָן
+                                בַּבֹּקֶר וְנָסָעוּ אוֹ יוֹמָם וָלַיְלָה וְנַעַל הֶעָנָן וְנָסָעוּ׃</div>
+                            <div class="transliteration">Ve-yesh asher-yihyéh heanán me’érev ad bóqer, ve-na’aláh heanán
+                                babóqer ve-nasá’u; ó yomám va-layláh ve-na’al heanán ve-nasá’u.</div>
+                            <div class="translation">Y a veces estaba la nube desde la tarde hasta la mañana; y al
+                                levantarse la nube en la mañana, partían; o de día o de noche, cuando se levantaba la
+                                nube, partían.</div>
+                            <div class="prophetic-content">Cumplimiento en Mashíaj: Nuestra obediencia no depende del
+                                tiempo natural, sino de la voz de Mashíaj.</div>
+                        </div>
+
+                        <div class="verse-container">
+                            <div class="verse-number">Números 9:22</div>
+                            <div class="hebrew">אוֹ יֹמַיִם אוֹ חֹדֶשׁ אוֹ יָמִים בְּהַאֲרֹךְ הֶעָנָן עַל־הַמִּשְׁכָּן
+                                לִשְׁכֹּן עָלָיו יִשְׁכְּנוּ בְנֵי יִשְׂרָאֵל וְלֹא יִסָּעוּ וּבְהֵעָלֹתוֹ יִסָּעוּ׃
+                            </div>
+                            <div class="transliteration">Ó yomáyim, ó jódesh, ó yamím, ve-ha’arój heanán al-hamishkán
+                                lishkón aláv, yishkenú benéi Yisraél ve-ló yissá’ú, u-vehe’alotó yissá’ú.</div>
+                            <div class="translation">Sea dos días, un mes o muchos días que la nube reposara sobre el
+                                Mishkán, los hijos de Yisraél acampaban y no partían; y al levantarse, partían.</div>
+                            <div class="prophetic-content">Cumplimiento en Mashíaj: Yeshúa es el amo del tiempo;
+                                seguimos Su calendario, no el nuestro (Hechos 1:7).</div>
+                        </div>
+
+                        <div class="verse-container">
+                            <div class="verse-number">Números 9:23</div>
+                            <div class="hebrew">עַל־פִּי יְהוָה יַחֲנוּ וְעַל־פִּי יְהוָה יִסָּעוּ אֶת־מִשְׁמֶרֶת יְהוָה
+                                שָׁמָרוּ עַל־פִּי יְהוָה בְּיַד מֹשֶׁה׃</div>
+                            <div class="transliteration">Al-pí YHVH yajanú, ve-al-pí YHVH yissá’ú; et-mishméret YHVH
+                                shamárú, al-pí YHVH be-yad Moshéh.</div>
+                            <div class="translation">Por mandato de YHVH acampaban, y por mandato de YHVH partían;
+                                guardaban la ordenanza de YHVH conforme a Su palabra por medio de Moshé.</div>
+                            <div class="prophetic-content">Cumplimiento en Mashíaj: Yeshúa es el Profeta como Moshé
+                                (Deut. 18:15). Él es la Palabra viviente por quien seguimos cada instrucción (Hebreos
+                                1:1-2).</div>
+                        </div>
+
+                        <div class="content-container">
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:1</div>
+                                <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה לֵּאמֹר׃</div>
+                                <div class="transliteration">Vayedabbér YHVH el-Moshéh lemór.</div>
+                                <div class="translation">Y habló YHVH a Moshé diciendo:</div>
+                                <div class="prophetic-content">
+                                    <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                                    <p>Así como la instrucción vino a través de Moshé, ahora ha sido revelada plenamente
+                                        en Yeshúa, el Profeta prometido (Hechos 3:22).</p>
+                                </div>
+                            </div>
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:2</div>
+                                <div class="hebrew">עֲשֵׂה לְךָ שְׁתֵּי חֲצֹצְרֹת כֶּסֶף מִקְשָׁה תַעֲשֶׂה אֹתָם וְהָיוּ
+                                    לְךָ לְמִקְרָא הָעֵדָה וּלְמַסַּע אֶת־הַמַּחֲנוֹת׃</div>
+                                <div class="transliteration">Aséh lejá shtei jatzotzerót késef, miqsháh ta’aséh otám;
+                                    vehayú lejá le-miqrá ha’edáh, u-lemassá et-hamajanót.</div>
+                                <div class="translation">Hazte dos trompetas de plata; de una sola pieza las harás. Te
+                                    servirán para convocar a la asamblea y para hacer mover los campamentos.</div>
+                                <div class="prophetic-content">
+                                    <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                                    <p>Las trompetas tipifican la proclamación del Reino. Yeshúa enviará a sus ángeles
+                                        con gran trompeta (Mateo 24:31), reuniendo a los escogidos.</p>
+                                </div>
+                            </div>
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:3</div>
+                                <div class="hebrew">וְתָקְעוּ בָהֵן וְנוֹעֲדוּ אֵלֶיךָ כָּל־הָעֵדָה אֶל־פֶּתַח אֹהֶל
+                                    מוֹעֵד׃</div>
+                                <div class="transliteration">Ve-taq’ú va-hén ve-no’adú eléijá kol ha’edáh el-pétaḥ ohel
+                                    moéd.</div>
+                                <div class="translation">Cuando se toquen, toda la asamblea se reunirá contigo a la
+                                    entrada del Ohel Moéd (la Tienda de Reunión).</div>
+                                <div class="prophetic-content">
+                                    <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                                    <p>Yeshúa es quien reúne a su pueblo en un solo cuerpo, y la trompeta final nos
+                                        convocará ante Su presencia (1 Tesalonicenses 4:16).</p>
+                                </div>
+                            </div>
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:4</div>
+                                <div class="hebrew">וְאִם בְּאַחַת יִתְקָעוּ וְנֹעֲדוּ אֵלֶיךָ הַנְּשִׂיאִים רָאשֵׁי
+                                    אַלְפֵי יִשְׂרָאֵל׃</div>
+                                <div class="transliteration">Ve-ím be-áḥat yitqá’u, ve-no’adú eléijá hanesi’ím, roshéi
+                                    alféi Yisraél.</div>
+                                <div class="translation">Pero si se toca solo una, entonces se reunirán contigo los
+                                    príncipes, los jefes de miles de Yisraél.</div>
+                                <div class="prophetic-content">
+                                    <p><strong>Cumplimiento en Mashíaj:</strong></p>
+                                    <p>Los “nasiím” son líderes espirituales; en Mashíaj, los apóstoles y ancianos
+                                        fueron convocados para edificar su Kehiláh (Efesios 4:11-13).</p>
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:5</div>
+                                <div class="hebrew">וּתְקַעְתֶּם תְּרוּעָה וְנָסְעוּ הַמַּחֲנוֹת הַחֹנִים קֵדְמָה׃</div>
+                                <div class="transliteration">U-teqa’tem teru’áh, ve-nas’ú hamajanót hachoním qédmáh.
+                                </div>
+                                <div class="translation">Y al tocar un toque de alarma (teru’áh), partirán los
+                                    campamentos que están acampados al oriente.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    “Teru’áh” apunta a Yom Teruáh (Toque de trompetas), donde se anuncia la venida del
+                                    Rey. Yeshúa vendrá desde el oriente (Mateo 24:27).
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:6</div>
+                                <div class="hebrew">וּתְקַעְתֶּם תְּרוּעָה שֵׁנִית וְנָסְעוּ הַמַּחֲנוֹת הַחֹנִים
+                                    תֵּימָנָה תְּרוּעָה יִתְקְעוּ לְמַסְעֵיהֶם׃</div>
+                                <div class="transliteration">U-teqa’tem teru’áh shenít, ve-nas’ú hamajanót hachoním
+                                    témánáh; teru’áh yitqé’ú le-mass’eihem.</div>
+                                <div class="translation">Y al tocar una segunda alarma, partirán los campamentos que
+                                    están al sur; se tocará una alarma para sus partidas.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    La marcha del pueblo se hace ordenada por el sonido divino. Así también, el Cuerpo
+                                    de Mashíaj avanza según la voz del Ruaj (Apocalipsis 1:10).
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:7</div>
+                                <div class="hebrew">וּבְהַקְהִיל אֶת־הַקָּהָל תִּתְקְעוּ וְלֹא תָרוּעוּ׃</div>
+                                <div class="transliteration">U-vehaq’híl et-haqahal, titqé’ú ve-ló tarú’ú.</div>
+                                <div class="translation">Y para reunir la asamblea tocaréis, pero no con alarma.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    Yeshúa convoca a su comunidad no con terror, sino con voz de amor y paz (Juan 10:3).
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:8</div>
+                                <div class="hebrew">וּבְנֵי אַהֲרֹן הַכֹּהֲנִים יִתְקְעוּ בַּחֲצֹצְרוֹת וְהָיוּ לָכֶם
+                                    לְחֻקַּת עוֹלָם לְדֹרֹתֵיכֶם׃</div>
+                                <div class="transliteration">U-venéi Aharón ha-kohanim yitqé’ú ba-jatzotzerót, ve-hayú
+                                    lakhém le-juqqat olám le-dorotéijem.</div>
+                                <div class="translation">Y los hijos de Aharón, los sacerdotes, tocarán las trompetas; y
+                                    será para ustedes estatuto perpetuo por sus generaciones.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    En Yeshúa tenemos un Sumo Sacerdote celestial (Hebreos 4:14), y Él mismo convocará a
+                                    su pueblo como el verdadero hijo de Aharón, conforme a orden superior (Hebreos
+                                    7:11-17).
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:9</div>
+                                <div class="hebrew">וְכִי תָבוֹאוּ מִלְחָמָה בְּאַרְצְכֶם עַל־הַצַּר הַצֹּרֵר אֶתְכֶם
+                                    וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת וְנִזְכַּרְתֶּם לִפְנֵי יְהוָה אֱלֹהֵיכֶם וְנוֹשַׁעְתֶּם
+                                    מֵאֹיְבֵיכֶם׃</div>
+                                <div class="transliteration">Ve-ki tavo’ú miljamáh be-artzéjem al-hatzár hatzórer etkém,
+                                    va-hare’ótem ba-jatzotzerót, ve-nizkartém lifné YHVH Elohéijem, ve-nosha’tém
+                                    me-oyvéijem.</div>
+                                <div class="translation">Y cuando entren en guerra en su tierra contra el adversario que
+                                    los oprime, tocarán alarma con las trompetas, y serán recordados ante YHVH su
+                                    Elohím, y serán salvos de sus enemigos.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    En medio de la guerra espiritual, invocamos el Nombre de Yeshúa, y somos recordados
+                                    delante del trono de MarYah. Él pelea nuestras batallas (Apocalipsis 19:11-16).
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Números 10:10</div>
+                                <div class="hebrew">וּבְיוֹם שִׂמְחַתְכֶם וּבְמוֹעֲדֵיכֶם וּבְרָאשֵׁי חָדְשֵׁיכֶם
+                                    וּתְקַעְתֶּם בַּחֲצֹצְרוֹת עַל־עֹלֹתֵיכֶם וְעַל־זִבְחֵי שַלְמֵיכֶם וְהָיוּ לָכֶם
+                                    לְזִכָּרוֹן לִפְנֵי אֱלֹהֵיכֶם אֲנִי יְהוָה אֱלֹהֵיכֶם׃</div>
+                                <div class="transliteration">U-veyóm simjatjém, u-vemo’adéijem, u-verashéi jodsheijem,
+                                    u-teqa’tem ba-jatzotzerót al-oloteijem ve-al-zivjéi shalmeijem, ve-hayu lakhém
+                                    le-zikarón lifné Elohéijem; Aní YHVH Elohéijem.</div>
+                                <div class="translation">Y en el día de su alegría, en sus moadím, y en los comienzos de
+                                    mes, tocarán las trompetas sobre sus holocaustos y sobre los sacrificios de paz; y
+                                    serán para ustedes por memorial delante de su Elohím. Yo soy YHVH su Elohím.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    Yeshúa es el cumplimiento de cada moed, y el memorial de nuestra redención eterna.
+                                    En Él celebramos con gozo (Colosenses 2:16-17).
+                                </div>
+                            </div>
+
+                            <h1>Punto 2. Haftaráh: Isaías 4:2-6 (La presencia de Elohím como nube y sombra de
+                                protección).</h1>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Yeshayahu 4:2</div>
+                                <div class="hebrew">בַּיּוֹם הַהוּא יִהְיֶה צֶמַח יְהוָה לְצְבִי וּלְכָבוֹד וּפְרִי
+                                    הָאָרֶץ לְגָאוֹן וּלְתִפְאֶרֶת לִפְלֵיטַת יִשְׂרָאֵל׃</div>
+                                <div class="transliteration">Ba-yóm ha-hú yihyéh tzemáj YHVH letzví u-lejavód u-frí
+                                    ha-áretz le-ga’ón u-letif’éret lifleitát Yisraél.</div>
+                                <div class="translation">En aquel día será el renuevo de YHVH hermoso y glorioso, y el
+                                    fruto de la tierra será majestad y esplendor para los sobrevivientes de Yisraél.
+                                </div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    “Tzemáj – צֶמַח” es uno de los títulos proféticos de Mashíaj (Zacarías 6:12). Yeshúa
+                                    es ese renuevo que crece del tronco de Yishai (Isaías 11:1). Él es la belleza y
+                                    gloria de Adonái יהוה encarnada (Juan 1:14). Este verso profetiza el regreso
+                                    glorioso del Mesías y la restauración física y espiritual del remanente de Yisraél
+                                    (Romanos 11:5).
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Yeshayahu 4:3</div>
+                                <div class="hebrew">וְהָיָה הַנִּשְׁאָר בְּצִיּוֹן וְהַנּוֹתָר בִּירוּשָׁלִַם קָדוֹשׁ
+                                    יֵאָמֵר לוֹ כָּל־הַכָּתוּב לַחַיִּים בִּירוּשָׁלִָם׃</div>
+                                <div class="transliteration">Ve-hayáh hanish’ár be-Tsiyón ve-hanotár bi-Yerushaláyim
+                                    qádósh ye’ámer ló kol ha-katúv la-jayím bi-Yerushaláyim.</div>
+                                <div class="translation">Y el que quede en Tsiyón y el que sea dejado en Yerushaláyim
+                                    será llamado santo; todo aquel que esté inscrito para vida en Yerushaláyim.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    El libro de la vida contiene los nombres de los redimidos por la sangre del Cordero
+                                    (Daniel 12:1; Apocalipsis 20:12). Solo en Mashíaj Yeshúa se alcanza la santidad que
+                                    permitirá permanecer en la Yerushaláyim celestial (Hebreos 12:22-24). Él es quien
+                                    inscribe a los suyos con su sangre, cumpliendo esta promesa.
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Yeshayahu 4:4</div>
+                                <div class="hebrew">אִם רָחַץ אֲדֹנָי אֵת צֹאַת בְּנוֹת צִיּוֹן וְאֶת־דַּם יְרוּשָׁלִַם
+                                    יָדִיחַ מִקֶּרֶבָּהּ בְּרוּחַ מִשְׁפָּט וּבְרוּחַ בִּעֵר׃</div>
+                                <div class="transliteration">Im rajáts Adonái et-tzó’at benot Tsiyón, ve-et-dám
+                                    Yerushaláyim yadíaj miqérebáh, be-ruaj mishpát u-ve-ruaj bi’ér.</div>
+                                <div class="translation">Cuando Adonái lave la inmundicia de las hijas de Tsiyón y
+                                    limpie la sangre de Yerushaláyim de en medio de ella con espíritu de juicio y
+                                    espíritu de ardor.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    Yeshúa, el fuego consumidor (Lucas 3:16-17), purifica a su pueblo con el Ruaj
+                                    Hakodesh y fuego. Él es quien lava a Tsiyón con su sangre y juicio justo (Efesios
+                                    5:25-27; Hebreos 9:14). El Espíritu de Santidad trae juicio que refina, no condena.
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Yeshayahu 4:5</div>
+                                <div class="hebrew">וּבָרָא יְהוָה עַל כָּל־מְכוֹן הַר־צִיּוֹן וְעַל מִקְרָאֶהָ עָנָן
+                                    יוֹמָם וְעָשָׁן וְנֹגַהּ אֵשׁ לֶהָבָה לָיְלָה כִּי עַל־כָּל־כָּבוֹד חֻפָּה׃</div>
+                                <div class="transliteration">U-vará YHVH al kol-mekhón har-Tsiyón ve-al miqra’éhah anán
+                                    yomám ve-ashán, ve-nógah esh lehaváh lailáh; ki al-kol kavód jupáh.</div>
+                                <div class="translation">Y creará YHVH sobre todo lugar del monte Tsiyón y sobre sus
+                                    asambleas nube de día y humo, y resplandor de fuego llameante de noche; porque sobre
+                                    toda gloria habrá cobertura.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    Mashíaj es la nube protectora y el fuego purificador. Como el Mishkán era cubierto
+                                    por la gloria y nube, ahora Su pueblo es cubierto por la gloria de Su Presencia.
+                                    Yeshúa es la jupáh celestial sobre los redimidos. La jupáh representa cobertura
+                                    matrimonial (Apocalipsis 21:2), la unión eterna de Mashíaj con Su novia.
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">Yeshayahu 4:6</div>
+                                <div class="hebrew">וְסֻכָּה תִהְיֶה לְצֵל יוֹמָם מֵחֹרֶב וּלְמַחְסֶה וּלְמִסְתּוֹר
+                                    מִזֶּרֶם וּמִמָּטָר׃</div>
+                                <div class="transliteration">Ve-sukáh tihyéh le-tsél yomám me-jórev u-lemajseh
+                                    u-lemistór mi-zérem u-mimmátar.</div>
+                                <div class="translation">Y será una sukkáh (cabaña) para sombra contra el calor del día,
+                                    para refugio y escondedero contra la tormenta y contra la lluvia.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento en Mashíaj:</div>
+                                    Yeshúa es nuestra sukkáh (Juan 1:14: "habitó entre nosotros" = eskēnōsen = hizo
+                                    sukkáh). En Él encontramos protección en la tribulación final (Isaías 32:2,
+                                    Apocalipsis 7:14-17). Él es el refugio del justo, sombra del Altísimo (Salmo 91).
+                                </div>
+                            </div>
+
+                            <h1>Punto 3. Brit Hadasháh: 1 Corintios 15:51-52 (La trompeta final y la resurrección de los
+                                santos).</h1>
+
+                            <div class="verse-container">
+                                <div class="verse-number">1 Corintios 15:51</div>
+                                <div class="aramaic">ܗܐ ܐܡܪ ܐܢܐ ܠܟܘܢ ܪܙܐ: ܠܘ ܟܠܢ ܕܢܕܡܟ, ܐܠܐ ܟܠܢ ܡܬܚܠܦܝܢ.</div>
+                                <div class="transliteration">He emar aná lakhón rázā: ló kulán denedmaj, elā kulán
+                                    mithḥalefín.</div>
+                                <div class="translation">He aquí, os digo un misterio: no todos dormiremos, pero todos
+                                    seremos transformados.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento Profético en el Mashíaj:</div>
+                                    <div class="prophetic-section">
+                                        El “misterio” revelado solo en Mashíaj es la resurrección gloriosa (véase Daniel
+                                        12:2). “Dormir” es un eufemismo para los que mueren en <em>emunáh</em> (fe) en
+                                        Yeshúa. Esta transformación es parte del <strong>Tikún Olam</strong>
+                                        (restauración de todas las cosas), donde el cuerpo mortal será revestido de
+                                        inmortalidad por el poder del Mashíaj resucitado (Romanos 8:11). Él es las
+                                        <strong>primicias (bikkurím)</strong> de la resurrección (1 Corintios 15:20), y
+                                        esta promesa se cumplirá en Su regreso.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="verse-container">
+                                <div class="verse-number">1 Corintios 15:52</div>
+                                <div class="aramaic">ܒܚܕ ܙܒܢܐ ܒܚܕ ܥܝܢ ܒܩܪܢܐ ܐܚܪܝܬܐ ܟܕ ܬܩܥ ܘܡܝܬܐ ܢܩܘܡܘܢ ܠܐ ܚܒܠܐ ܘܐܢܐܚܢܢ
+                                    ܡܬܚܠܦܝܢ.</div>
+                                <div class="transliteration">Be-jad zebnā, be-jad ‘ain, be-qarnā aḥraytā, ked teqa‘,
+                                    u-maytē neqúmún lā ḥablā, u-anāḥnan mithḥalefín.</div>
+                                <div class="translation">En un instante, en un abrir de ojos, al sonar la última
+                                    trompeta: se tocará la trompeta, y los muertos se levantarán incorruptibles, y
+                                    nosotros seremos transformados.</div>
+                                <div class="prophetic-content">
+                                    <div class="prophetic-title">Cumplimiento Profético en el Mashíaj:</div>
+                                    <div class="prophetic-section">
+                                        La “última trompeta” es eco directo de <strong>Yom Teru’áh</strong> (Levítico
+                                        23:24), cuando el Rey es coronado. Mashíaj volverá con voz de trompeta (1
+                                        Tesalonicenses 4:16), y entonces ocurrirá la resurrección gloriosa. Los que
+                                        murieron en Mashíaj se levantarán incorruptibles, cumpliéndose Ezequiel 37.
+                                        Mashíaj es la Trompeta de Elohím, y su regreso reunirá a todos sus redimidos
+                                        para establecer el Reino milenial desde Yerushaláyim.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="conclusion">
+                                <strong>Resumen Mesiánico:</strong><br>
+                                Este pasaje revela que Yeshúa es el secreto escondido (<span
+                                    class="hebrew-term">רָזָא</span> rāzā), la vida que vence la muerte. Por Su
+                                resurrección, garantiza la nuestra. Esta transformación es obra exclusiva del
+                                <strong>Ruaj Hakodesh</strong> (Filipenses 3:21), y señala el cumplimiento de la promesa
+                                de Isaías 25:8: “Destruirá a la muerte para siempre”. En Mashíaj, cada fiesta, cada
+                                trompeta, cada resurrección, encuentra su plenitud.
+                            </div>
+
+                            <div class="content-container">
+                                <h1>Punto 4 – Contexto Histórico y Cultural de Bamidbar / Números 9:15–10:10</h1>
+
+                                <div class="section-container">
+                                    <p><span class="highlight">Época del Desierto y el Mishkán:</span> Este pasaje se
+                                        sitúa cronológicamente en el segundo año después del éxodo de Mitsráyim
+                                        (Egipto), dentro del periodo del desierto... <em>(contenido completo incluido
+                                            arriba)</em></p>
+                                </div>
+
+                                <div class="section-container">
+                                    <p><span class="highlight">Importancia del Mishkán:</span> El Mishkán servía como el
+                                        centro espiritual de todo el campamento... </p>
+                                </div>
+
+                                <div class="section-container">
+                                    <p><span class="highlight">Geografía y Estrategia:</span> El pueblo acampaba
+                                        alrededor del Mishkán en un orden tribal específico... </p>
+                                </div>
+
+                                <div class="section-container">
+                                    <p><span class="highlight">Instrumentos Litúrgicos y su Propósito:</span> Las
+                                        trompetas de plata (חֲצֹצְרוֹת) eran únicas... </p>
+                                </div>
+
+                                <div class="section-container">
+                                    <p><span class="highlight">Tipología y Prefiguración del Reino Mesiánico:</span>
+                                        Todo el sistema litúrgico y de movilización descrito... </p>
+                                </div>
+
+                                <div class="section-container">
+                                    <p><span class="highlight">Comparación con el Segundo Templo:</span> Durante el
+                                        período del Segundo Templo... </p>
+                                </div>
+
+                                <div class="section-container">
+                                    <p><span class="highlight">Relación con Qumrán:</span> Los manuscritos de Qumrán,
+                                        especialmente el Rollo de la Guerra... </p>
+                                </div>
+
+                                <div class="conclusion">
+                                    <p><strong>Conclusión:</strong> Este pasaje presenta no solo un momento histórico de
+                                        organización, sino el modelo celestial del Reino de Elohím en marcha...</p>
+                                </div>
+                            </div>
+
+                            <div class="content-container">
+                                <h1>Punto 5 – Estudio, Comentarios y Conexiones Proféticas</h1>
+
+                                <div class="section-container">
+                                    <h2>A. Comentarios Rabínicos Tradicionales</h2>
+                                    <ul>
+                                        <li><strong>Rashi:</strong> la nube era señal de favor divino.</li>
+                                        <li><strong>Rambán:</strong> la nube es continuación de la revelación del Sinaí.
+                                        </li>
+                                        <li><strong>Sforno:</strong> la nube representa la voluntad activa de Elohím.
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h2>B. Comentarios Judío Mesiánicos</h2>
+                                    <ul>
+                                        <li><strong>El Mishkán como figura del Mashíaj:</strong> Yeshúa es la Presencia
+                                            Habitante (Juan 1:14).</li>
+                                        <li><strong>Nube y fuego:</strong> prefiguran al Ruaj Hakodesh (Hechos 2).</li>
+                                        <li><strong>Trompetas:</strong> voz del Mashíaj (1 Tes. 4:16; Mateo 24:31).</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h2>C. Conexiones Proféticas</h2>
+                                    <ul>
+                                        <li><strong>Isaías 4:5-6:</strong> nube y fuego en la Yerushaláyim restaurada
+                                            (Apoc. 21:3).</li>
+                                        <li><strong>Zacarías 9:14:</strong> YHWH toca el shofar (Apoc. 1:10).</li>
+                                        <li><strong>Apocalipsis 11:15:</strong> séptima trompeta y Reino del Mashíaj.
+                                        </li>
+                                        <li><strong>Éxodo 19:16:</strong> trompeta del Sinaí prefigura Día de YHWH (1
+                                            Cor. 15:52).</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h2>D. Aplicaciones Espirituales Actuales</h2>
+                                    <ul>
+                                        <li>Obediencia al Ruaj es evidencia de vida en Mashíaj.</li>
+                                        <li>La proclamación mesiánica es urgente: Mashíaj viene.</li>
+                                        <li>Las festividades deben vivirse con conciencia profética.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h2>E. Notas Gramaticales, Léxicas y Guemátricas</h2>
+                                    <ul>
+                                        <li><strong>צֶמַח (Tzemáj):</strong> Guematría = 138 = מְנוֹרָה (Menoráh).</li>
+                                        <li><strong>ענן (Anán):</strong> nube como símbolo de misterio → revelación.
+                                        </li>
+                                        <li><strong>תרועה (Teru’áh):</strong> clamor profético del regreso del Rey.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="conclusion">
+                                    <p><strong>F. Conclusión:</strong> Este pasaje de Números 9:15–10:10 es una
+                                        coreografía profética. El pueblo sigue la nube y el fuego como figura del
+                                        Mashíaj...</p>
+                                </div>
+                            </div>
+
+                            <h1>Punto 6 – Análisis Profundo de la Aliyáh</h1>
+                            <div class="content-container">
+                                <h2>Bamidbar / Números 9:15–10:10</h2>
+                                <p class="highlight">Análisis y Comentario Judío y Mesiánico de la Aliyáh, Haftaráh y
+                                    Brit Hadasháh asociadas</p>
+
+                                <div class="section-container">
+                                    <h3>A. Análisis Judío y Exegético Tradicional</h3>
+                                    <p><strong>Tema Central Tradicional:</strong> La dirección divina visible sobre el
+                                        Mishkán a través de la nube y el fuego, y la organización litúrgica y militar
+                                        del campamento a través de las trompetas sagradas. El sistema se basa en la
+                                        completa dependencia del pueblo a la manifestación de la voluntad de Adonái
+                                        יהוה.</p>
+                                    <ul>
+                                        <li>La nube y el fuego manifiestan la Shejináh.</li>
+                                        <li>La guía divina no es fija ni predecible – el pueblo debe esperar el
+                                            movimiento divino.</li>
+                                        <li>Las trompetas convocan, mueven y protegen.</li>
+                                    </ul>
+                                    <p><strong>Perspectiva de la Halajáh:</strong> Estas instrucciones tienen un
+                                        carácter eterno. El uso de las trompetas en los moadím fue preservado incluso
+                                        después del exilio. En la liturgia tradicional judía, el shofar sustituye
+                                        parcialmente este rol en Yom Teru’áh y otros días solemnes.</p>
+                                </div>
+
+                                <div class="section-container">
+                                    <h3>B. Análisis Mesiánico Profundo</h3>
+                                    <p><strong>Tema Central:</strong> Mashíaj Yeshúa es el cumplimiento viviente del
+                                        Mishkán, la nube, el fuego y las trompetas.</p>
+                                    <ul>
+                                        <li><strong>Mishkán –</strong> Juan 1:14 (“habitó” – eskēnōsen); Juan 2:19-21:
+                                            Su cuerpo es el santuario.</li>
+                                        <li><strong>Nube y Fuego –</strong> Mateo 17: nube de gloria; Hechos 2: lenguas
+                                            de fuego; Romanos 8:14.</li>
+                                        <li><strong>Trompetas –</strong> 1 Tes. 4:16, Apoc. 11:15, Mateo 24:31: Su voz
+                                            convoca, guía y protege.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h3>C. Haftaráh: Zacarías 2:10–4:7</h3>
+                                    <p><strong>Relación:</strong> Restauración del Mishkán glorioso y anuncio del
+                                        “Renuevo” mesiánico.</p>
+                                    <ul>
+                                        <li>Zacarías 2:10 – “Habitaré en medio de ti.”</li>
+                                        <li>Zacarías 3:8 – “Mi siervo, el Renuevo.”</li>
+                                        <li>Zacarías 4:6 – “No con fuerza, sino con mi Espíritu.”</li>
+                                    </ul>
+                                    <p><strong>Cumplimiento:</strong> Yeshúa es el “Renuevo”, presencia divina en medio
+                                        del pueblo.</p>
+                                </div>
+
+                                <div class="section-container">
+                                    <h3>D. Brit Hadasháh: 1 Cor. 15:51–52 / 1 Tes. 4:16–17</h3>
+                                    <ul>
+                                        <li>Transformación corporal y convocatoria final.</li>
+                                        <li>Resurrección y redención final por la voz del Mashíaj.</li>
+                                        <li>Su voz como trompeta (Apoc. 1:10) cumple Números 10.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h3>E. Conclusión Espiritual</h3>
+                                    <ul>
+                                        <li>La nube = Gloria oculta de Mashíaj.</li>
+                                        <li>El fuego = Su juicio purificador.</li>
+                                        <li>Las trompetas = convocatoria al Reino venidero.</li>
+                                    </ul>
+                                    <p class="highlight">Yeshúa haMashíaj es la Nube, el Fuego, el Mishkán y la
+                                        Trompeta.</p>
+                                </div>
+                            </div>
+
+                            <h2>Punto 7 – Tema Más Relevante de la Aliyáh</h2>
+                            <div class="content-container">
+                                <p><strong>Tema Central:</strong> La Guía Soberana de Adonái יהוה sobre Su Pueblo a
+                                    través de Su Presencia y Su Voz.</p>
+                                <p>La nube y el fuego dirigen cada movimiento del pueblo. Las trompetas representan la
+                                    voz sagrada de Elohím a través de los kohaním.</p>
+
+                                <div class="section-container">
+                                    <h3>Importancia en la Toráh</h3>
+                                    <ul>
+                                        <li>Dependencia absoluta de Yisraél del movimiento divino.</li>
+                                        <li>Vida espiritual basada en obediencia, no autonomía.</li>
+                                        <li>Las trompetas tienen función escatológica.</li>
+                                        <li>Guía divina basada en revelación, no lógica.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h3>Relación con Yeshúa haMashíaj</h3>
+                                    <ul>
+                                        <li><strong>Nube y Fuego:</strong> Juan 1:14, Hebreos 1:3, Mateo 17:5, Hechos
+                                            1:9.</li>
+                                        <li><strong>Trompetas:</strong> Mateo 24:31, 1 Tes. 4:16, Apoc. 1:10. Él convoca
+                                            como Rey y Sumo Sacerdote.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <h3>Toráh y Brit Hadasháh</h3>
+                                    <p>En la Toráh: señales externas (nube y trompeta).<br>
+                                        En el Brit Hadasháh: Yeshúa habita dentro y guía con su voz por el Ruaj.</p>
+                                </div>
+
+                                <div class="section-container">
+                                    <h3>Relación con los Moedím</h3>
+                                    <ul>
+                                        <li>Yom Teru’áh anuncia alerta, juicio y coronación.</li>
+                                        <li>Yeshúa será revelado con gran shofar al final de los tiempos.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container conclusion">
+                                    <h3>Conclusión</h3>
+                                    <p>La lección es la dependencia total del pueblo a Elohím. Mashíaj es nuestra nube,
+                                        fuego y trompeta.</p>
+                                    <ul>
+                                        <li>No nos movemos sin Su dirección.</li>
+                                        <li>No combatimos sin Su sonido.</li>
+                                        <li>No celebramos sin Su proclamación.</li>
+                                        <li>Todo lo hacemos conforme a Su Presencia.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="content-container">
+                                <h1>Punto 8 – Descubriendo a Mashíaj en cada Aliyáh</h1>
+                                <h3>Bamidbar / Números 9:15–10:10</h3>
+                                <p><em>(Profecías Mesiánicas y Reflexión a través de Tipologías, Figuras, Títulos y
+                                        Cumplimientos en el Brit Hadasháh)</em></p>
+
+                                <div class="section-container">
+                                    <span class="point-letter">A.</span> <strong>Identificación de Profecías Mesiánicas
+                                        Ocultas</strong>
+                                    <p>Este pasaje, aunque en su lectura superficial parece logístico y ceremonial, está
+                                        saturado de imágenes que prefiguran la persona, ministerio, voz y regreso del
+                                        Mashíaj Yeshúa.</p>
+                                    <ul>
+                                        <li><strong>La Nube y el Fuego</strong> (Números 9:15-23) = La Presencia de
+                                            Elohím en Mashíaj (Juan 1:14; Mateo 17:5).</li>
+                                        <li><strong>Las Trompetas de Plata</strong> (Números 10:1-10) = Voz mesiánica
+                                            escatológica (1 Tesalonicenses 4:16; Apocalipsis 1:10).</li>
+                                        <li><strong>El Movimiento del Campamento</strong> = El llamado a salir, guiados
+                                            por el Ruaj en Yeshúa (Romanos 8:14; Hebreos 11:8-10).</li>
+                                        <li><strong>El Sacerdocio que hace sonar la voz divina</strong> = Prefiguración
+                                            de Mashíaj como Kohen Gadol de orden superior (Hebreos 5–7).</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <span class="point-letter">B.</span> <strong>Figuras y Tipologías Proféticas del
+                                        Mashíaj</strong>
+                                    <ol>
+                                        <li><strong>La Nube y el Fuego</strong> – Figura de Mashíaj como Shejináh
+                                            Visible<br>
+                                            <span class="highlight">Tipo:</span> El Mishkán (la tienda del testimonio)
+                                            era la morada de la Gloria, y la nube descendía para habitar sobre él.<br>
+                                            <span class="highlight">Sombra:</span> Yeshúa es la imagen visible del
+                                            Elohím invisible (Colosenses 1:15). Él es el testimonio vivo de la Toráh y
+                                            del Reino.
+                                        </li>
+
+                                        <li><strong>Trompetas de Plata</strong> – Voz y Autoridad Mesiánica<br>
+                                            <span class="highlight">Tipo:</span> Las trompetas convocaban a todo el
+                                            pueblo.<br>
+                                            <span class="highlight">Sombra:</span> La “última trompeta” es la voz de
+                                            Yeshúa, no de un malaj. En Apocalipsis 1:10 se dice que la voz del Mashíaj
+                                            es como de shofar.<br>
+                                            <span class="highlight">Cumplimiento:</span> En Mateo 24:31, Yeshúa reúne a
+                                            sus escogidos con “gran sonido de trompeta”.
+                                        </li>
+
+                                        <li><strong>Movimiento del Campamento</strong> – Discípulos en Marcha<br>
+                                            <span class="highlight">Figura:</span> El pueblo no caminaba por lógica ni
+                                            por geografía, sino por revelación.<br>
+                                            <span class="highlight">En Mashíaj:</span> Así viven los talmidím – no por
+                                            vista, sino por obediencia al Ruaj (2 Corintios 5:7).<br>
+                                            <span class="highlight">Patrón Redentor:</span> Esto es una figura del Éxodo
+                                            mayor, cuando Mashíaj guíe a los redimidos a la Yerushaláyim celestial
+                                            (Apocalipsis 21).
+                                        </li>
+                                    </ol>
+                                </div>
+
+                                <div class="section-container">
+                                    <span class="point-letter">C.</span> <strong>Títulos y Nombres Proféticos
+                                        Relacionados</strong>
+                                    <ul>
+                                        <li><strong>הענן (HaAnán – La Nube)</strong> → El Mesías viene “en las nubes del
+                                            cielo” (Daniel 7:13; Mateo 24:30).</li>
+                                        <li><strong>אש (Esh – Fuego)</strong> → Yeshúa “os bautizará con el Ruaj
+                                            Hakodesh y con fuego” (Lucas 3:16).</li>
+                                        <li><strong>קול שופר (Qol Shofar – Voz de trompeta)</strong> → La voz del
+                                            Mashíaj es como shofar (Éxodo 19:16; Apocalipsis 1:10).</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <span class="point-letter">D.</span> <strong>Métodos Mesiánicos Aplicados</strong>
+                                    <ul>
+                                        <li><strong>Tavnitot (Patrones Redentores):</strong> La Kehiláh es llamada a
+                                            permanecer en Mashíaj hasta que Él anuncie el movimiento.</li>
+                                        <li><strong>Midrashim Mesiánicos:</strong> Yeshúa como “La Luz del Mundo” (Juan
+                                            8:12) cumple literalmente el Midrash Tanjuma sobre la nube del Mishkán.</li>
+                                        <li><strong>Cumplimientos Tipológicos en el Brit Hadasháh:</strong> El fuego del
+                                            altar = Yeshúa como korban tamíd. Las trompetas = anuncios mesiánicos en los
+                                            moadím.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="section-container">
+                                    <span class="point-letter">E.</span> <strong>Reflexión Mesiánica y Aplicación
+                                        Espiritual</strong>
+                                    <ul>
+                                        <li><strong>¿Dónde está hoy la nube?</strong> En el Ruaj Hakodesh dentro del
+                                            creyente (Juan 16:13).</li>
+                                        <li><strong>¿Dónde está el fuego?</strong> Yeshúa nos enciende como antorchas
+                                            vivas (Mateo 5:14-16).</li>
+                                        <li><strong>¿Dónde están las trompetas?</strong> La proclamación del Besoráh es
+                                            nuestra trompeta.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="conclusion">
+                                    <strong>F. Conclusión Profética:</strong>
+                                    <p>Bamidbar 9:15–10:10 contiene claves mesiánicas escondidas en lenguaje ritual:</p>
+                                    <ul>
+                                        <li><strong>La nube:</strong> Mashíaj como Guía sobrenatural.</li>
+                                        <li><strong>El fuego:</strong> Su purificación.</li>
+                                        <li><strong>El Mishkán:</strong> Su cuerpo.</li>
+                                        <li><strong>Las trompetas:</strong> Su voz en el fin de los tiempos.</li>
+                                        <li><strong>El campamento en marcha:</strong> La Kehiláh que avanza al encuentro
+                                            del Novio.</li>
+                                    </ul>
+                                    <p>Todo en esta Aliyáh apunta al Mashíaj celestial que regresará con fuego, nubes, y
+                                        sonido de trompeta para redimir plenamente a Yisraél y a la Kehiláh de las
+                                        naciones.</p>
+                                </div>
+                            </div>
+</body>
+
+<div class="content-container">
+    <h1>Punto 9</h1>
+    <h2>Midrashim, Targumim, Textos Fuentes y Apócrifos en relación a Bamidbar / Números 9:15–10:10</h2>
+
+    <div class="section-container">
+        <h3 class="point-letter">A. Midrashim Relevantes</h3>
+        <p><strong>1. Midrash Bamidbar Rabá 15:13</strong><br>
+            “La nube descendía como la realeza celestial sobre el campamento, indicando que la presencia divina estaba
+            presente entre los redimidos.”</p>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Aplicación Mesiánica:</div>
+            <p>El Midrash compara la nube con una corona real. Esto anticipa al <strong>Mashíaj</strong> como Rey cuya
+                gloria envuelve a Su pueblo. En <strong>Mateo 17:5</strong>, una nube brillante cubre a Yeshúa en la
+                transfiguración y se oye la voz de Adonái: “Este es mi Hijo”. Aquí, la nube es la confirmación mesiánica
+                de Su realeza y divinidad.</p>
+        </div>
+
+        <p><strong>2. Midrash Tanjuma, Parashá Beha’alotjá 13</strong><br>
+            “Así como las trompetas despertaban a los campamentos, así el sonido de las trompetas despertará a los
+            muertos en el futuro.”</p>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Aplicación Mesiánica:</div>
+            <p>Este Midrash conecta directamente el toque de trompeta con la resurrección. <strong>1 Corintios
+                    15:52</strong> y <strong>1 Tesalonicenses 4:16</strong> citan exactamente esta interpretación: el
+                shofar final despierta a los que duermen. El Midrash anticipa claramente el cumplimiento en Yeshúa, como
+                el que hará sonar la última trompeta.</p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h3 class="point-letter">B. Targumim</h3>
+        <p><strong>Targum Onkelos sobre Números 9:15</strong><br>
+            En lugar de “la nube cubría el Mishkán”, Onkelos agrega: “la Gloria de la Shejináh cubría el Tabernáculo de
+            Testimonio.”</p>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Reflexión Mesiánica:</div>
+            <p>Esto interpreta la nube no solo como un fenómeno físico, sino como la manifestación de la
+                <strong>Kavod</strong> misma de Elohím. En el Brit Hadasháh, Yeshúa es presentado como esa gloria
+                revelada en carne (<strong>Juan 1:14</strong>, <strong>Hebreos 1:3</strong>). El Targum prefigura Su
+                encarnación como portador de la gloria celestial.</p>
+        </div>
+
+        <p><strong>Targum Pseudo-Yonatán sobre Números 10:2</strong><br>
+            “Harás para ti dos trompetas de plata purificada… para reunir al pueblo y para despertar el campamento
+            cuando partan al lugar donde la Shejináh los guíe.”</p>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Comentario:</div>
+            <p>El Targum añade que el propósito de la trompeta es guiar al pueblo hacia el lugar de la Shejináh. En
+                contexto mesiánico, esto es la vocación de Yeshúa: guiar a su <strong>Kehiláh</strong> hacia el Reino
+                eterno, como el Buen Pastor que va delante (<strong>Juan 10:4</strong>).</p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h3 class="point-letter">C. Textos del Segundo Templo y Qumrán</h3>
+        <p><strong>1QM (Rollo de la Guerra) – Col. III</strong><br>
+            “Cuando el tiempo llegue para el enfrentamiento de los hijos de la luz, ellos harán sonar las trompetas del
+            testimonio y convocarán a los justos.”</p>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Conexión Profética:</div>
+            <p>Este texto describe el uso de trompetas como convocación final para la guerra escatológica. Las trompetas
+                de Números 10 son vistas aquí como instrumentos apocalípticos, preludio de la victoria del Mashíaj.
+                <strong>Apocalipsis 11:15</strong> confirma esto: con la séptima trompeta llega el Reino del Mesías.</p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h3 class="point-letter">D. Libros Apócrifos y Pseudepigráficos</h3>
+        <p><strong>Libro de Enoc (1 Enoc 62:2–6)</strong><br>
+            “En ese día, el Rey de Gloria se sentará en el trono del juicio… y se escuchará un sonido como de trompeta
+            sobre las montañas.”</p>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Relación Mesiánica:</div>
+            <p>El Mashíaj en 1 Enoc aparece como Rey glorioso con voz de trompeta. Este eco profético anticipa la imagen
+                del retorno de Yeshúa como juez y redentor (<strong>Apocalipsis 19:11–16</strong>).</p>
+        </div>
+
+        <p><strong>Sabiduría de Salomón 18:15–16</strong><br>
+            “Tu Verbo omnipotente descendió como guerrero poderoso... llevando espada aguda y severo decreto.”</p>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Relación con Números 10:</div>
+            <p>Aquí, el “Verbo” (Logos) es un mensajero celestial que ejecuta juicio y salvación, paralelamente al rol
+                que Mashíaj cumple en <strong>Apocalipsis 19:13</strong>: “Su nombre es el Verbo de Elohím”.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="conclusion">
+        <h3>Conclusión Profética</h3>
+        <p>Los Midrashim y Targumim reconocen que:</p>
+        <ul>
+            <li>La <strong>nube</strong> no era mera neblina: era gloria consciente.</li>
+            <li>Las <strong>trompetas</strong> no eran simples instrumentos rituales: eran voces vivas del Cielo.</li>
+        </ul>
+        <p><strong>Yeshúa haMashíaj</strong> es:</p>
+        <ul>
+            <li>La <strong>Gloria</strong> que cubre el pueblo (Targum Onkelos, Juan 1:14).</li>
+            <li>El <strong>Sonido final</strong> que convoca a los redimidos (Midrash Tanjuma, 1 Tes. 4:16).</li>
+            <li>El <strong>Rey de Gloria</strong> con trompeta y espada que viene a redimir a Tsiyón (1 Enoc, Apoc.
+                11:15; 19:13–16).</li>
+        </ul>
+        <p>Toda interpretación tradicional que une trompeta, nube y fuego con redención escatológica, se cumple en
+            Mashíaj Yeshúa con claridad y poder.</p>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 10 – Mandamientos Encontrados en Bamidbar 9:15–10:10</h1>
+    <div class="section-container">
+        <p class="highlight">A. Mitzvot (Mandamientos) Halladas en la Aliyáh</p>
+        <p>En esta sección de la Toráh se encuentran mitzvot que no solo establecen prácticas rituales del desierto,
+            sino principios espirituales eternos, tanto en el contexto del Pacto Sinaítico como en su renovación a
+            través del Mashíaj.</p>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">1. Observar y seguir la nube y el fuego</p>
+            <p><strong>Fuente:</strong> Bamidbar 9:17-23</p>
+            <p><strong>Aplicación:</strong> Romanos 8:14 – Guiados por el Ruaj Hakodesh.</p>
+            <p class="scripture">“Porque todos los que son guiados por el Espíritu de Elohím, éstos son hijos.”</p>
+            <p><strong>Valor:</strong> Obediencia diaria a la dirección divina.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">2. Fabricar dos trompetas de plata purificada</p>
+            <p><strong>Fuente:</strong> Bamidbar 10:2</p>
+            <p><strong>Aplicación:</strong> Mateo 24:31, 1 Corintios 14:8</p>
+            <p><strong>Valor:</strong> Claridad y autoridad profética.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">3. Convocar la asamblea con trompeta</p>
+            <p><strong>Fuente:</strong> Bamidbar 10:3-4</p>
+            <p><strong>Aplicación:</strong> Apocalipsis 1:10, Efesios 4:11</p>
+            <p><strong>Valor:</strong> Discernimiento en el liderazgo.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">4. Tocar trompeta antes de marchar</p>
+            <p><strong>Fuente:</strong> Bamidbar 10:5-6</p>
+            <p><strong>Aplicación:</strong> Hechos 13:2</p>
+            <p><strong>Valor:</strong> Confirmación profética antes de actuar.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">5. Trompetas en tiempos de guerra</p>
+            <p><strong>Fuente:</strong> Bamidbar 10:9</p>
+            <p><strong>Aplicación:</strong> Apocalipsis 19:11, Efesios 6:12</p>
+            <p><strong>Valor:</strong> Intercesión profética activa.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">6. Trompetas en moadím y Rosh Jodesh</p>
+            <p><strong>Fuente:</strong> Bamidbar 10:10</p>
+            <p><strong>Aplicación:</strong> Colosenses 2:16-17, Lucas 22:15-16</p>
+            <p><strong>Valor:</strong> Identidad profética fortalecida.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-container">
+        <h2>Principios Eternos Extraídos</h2>
+        <ul>
+            <li>Dirección divina continua</li>
+            <li>Unidad con orden</li>
+            <li>Tiempo y espacio sagrado</li>
+            <li>Voz profética pura</li>
+            <li>Adoración alineada con proclamación</li>
+        </ul>
+    </div>
+
+    <div class="conclusion">
+        <strong>Conclusión:</strong> Los mandamientos no son liturgia antigua, sino principios proféticos vivos en
+        Mashíaj Yeshúa, quien es la Trompeta, el Mishkán y el Camino.
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 11 – Preguntas de Reflexión</h1>
+
+    <div class="question">Pregunta 1: ¿Por qué era necesario seguir la nube?</div>
+    <div class="answer">Respuesta: Representa la guía del Ruaj Hakodesh (Romanos 8:14; Juan 5:19).</div>
+
+    <div class="question">Pregunta 2: ¿Qué representa el fuego sobre el Mishkán?</div>
+    <div class="answer">Respuesta: La santidad visible del Mashíaj, luz del mundo (Juan 8:12).</div>
+
+    <div class="question">Pregunta 3: ¿Qué enseñan las trompetas?</div>
+    <div class="answer">Respuesta: Voz divina que convoca y dirige, cumplida en Yeshúa (Juan 10:27).</div>
+
+    <div class="question">Pregunta 4: ¿Cómo responder a la última trompeta?</div>
+    <div class="answer">Respuesta: Estar preparados espiritualmente (1 Corintios 15:52; Mateo 25).</div>
+
+    <div class="question">Pregunta 5: ¿Qué enseña el moverse según la nube?</div>
+    <div class="answer">Respuesta: Sujeto al tiempo del Cielo, como vivió Yeshúa (Marcos 1:35; Apocalipsis 16:15).</div>
+
+    <div class="conclusion">
+        <p><strong>Conclusión Reflexiva:</strong> Vivir atentos a la nube, encendidos por el fuego, y listos para el
+            llamado del Shofar del Mashíaj. Él es quien cumple todo.</p>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 12 – Resumen de la Aliyáh</h1>
+    <h2>Bamidbar / Números 9:15–10:10</h2>
+    <div class="section-container">
+        <h3>Resumen Narrativo</h3>
+        <p>Esta Aliyáh describe dos componentes vitales del sistema espiritual del campamento de Yisraél en el desierto:
+        </p>
+        <ul>
+            <li><strong>La nube y el fuego sobre el Mishkán</strong> (Números 9:15–23): guiaban los movimientos del
+                pueblo.</li>
+            <li><strong>Las trompetas de plata</strong> (Números 10:1–10): convocaban, alertaban, celebraban.</li>
+        </ul>
+        <p>Ambos elementos forman un sistema celestial de guía divina, convocación y protección.</p>
+    </div>
+
+    <div class="section-container">
+        <h3>Aplicación y Cumplimiento en Mashíaj Yeshúa</h3>
+        <div class="prophetic-section">
+            <div class="prophetic-title">1. La Nube y el Fuego → Yeshúa es la Shejináh Encarnada</div>
+            <p class="scripture">Juan 1:14</p>
+            <p>“Y la Palabra se hizo carne y habitó entre nosotros, y vimos su gloria...”</p>
+            <p class="scripture">Mateo 17:5</p>
+            <p>La nube cubrió a Yeshúa en la transfiguración.</p>
+            <p class="scripture">Colosenses 2:9</p>
+            <p>La gloria de Elohím habita corporalmente en el Mashíaj.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">2. Las Trompetas → Yeshúa es la Voz que Convoca</div>
+            <p class="scripture">Apocalipsis 1:10</p>
+            <p>“Oí detrás de mí una gran voz como de trompeta…”</p>
+            <p class="scripture">1 Tesalonicenses 4:16</p>
+            <p>“El mismo Adón descenderá... con trompeta de Elohím…”</p>
+            <p>Yeshúa convoca a Su pueblo como la trompeta final (Mateo 24:31).</p>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h3>Mensajes Clave para el Pueblo del Mashíaj</h3>
+        <ul>
+            <li><strong>Dependencia del Ruaj Hakodesh:</strong> como la nube y el fuego, el creyente es guiado por el
+                Ruaj del Mashíaj.</li>
+            <li><strong>Unidad y orden espiritual:</strong> cada miembro tiene su lugar y debe seguir la voz divina.
+            </li>
+            <li><strong>Convocación escatológica:</strong> las trompetas anuncian el retorno de Yeshúa.</li>
+        </ul>
+    </div>
+
+    <div class="conclusion">
+        <strong>Conclusión:</strong> Este pasaje revela al Mashíaj como:
+        <ul>
+            <li>La nube de dirección,</li>
+            <li>El fuego de purificación,</li>
+            <li>El Mishkán de la presencia divina,</li>
+            <li>Y la trompeta que convoca a los redimidos.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>Punto 13 – Tefiláh (Oración) de la Aliyáh</h1>
+    <h3>Bamidbar / Números 9:15–10:10</h3>
+    <div class="prayer-text">
+        Abba Qadosh, Elohím de Avraham, Yitsjaq y Ya'aqov,<br>
+        Tú que habitaste sobre el Mishkán en nube de día y fuego de noche,<br>
+        hoy venimos ante Ti por los méritos de Yeshúa haMashíaj,<br>
+        nuestro Mishkán viviente y Trompeta celestial,<br>
+        para suplicarte que nos enseñes a movernos solo bajo Tu dirección.<br><br>
+
+        No permitas que avancemos por lógica humana,<br>
+        ni que detengamos el paso por temor o comodidad.<br>
+        Como el pueblo en el desierto,<br>
+        haz que seamos guiados únicamente por Tu nube,<br>
+        la presencia viva del Ruaj Hakodesh.<br><br>
+
+        Que tu fuego arda de noche sobre nosotros,<br>
+        iluminando nuestras tinieblas,<br>
+        purificando nuestro ser interior,<br>
+        y renovando nuestra esperanza mientras esperamos<br>
+        la manifestación gloriosa de Tu Hijo desde las nubes del cielo.<br><br>
+
+        Haz sonar sobre nuestras vidas la trompeta de Tu voz,<br>
+        convócanos a la unidad,<br>
+        despiértanos del letargo,<br>
+        anúncianos el tiempo de Tu mover santo.<br><br>
+
+        Queremos ser un campamento ordenado,<br>
+        un pueblo que se alista a la señal del Shamayim,<br>
+        una comunidad que no se conforma a este mundo,<br>
+        sino que espera la redención con lámparas encendidas.<br><br>
+
+        Yeshúa, Trompeta de Redención,<br>
+        haznos sensibles a tu llamado.<br>
+        Prepáranos para la teru’áh final,<br>
+        cuando reunas a tus escogidos de los cuatro vientos,<br>
+        y establezcas tu Reino visible desde Tsiyón.<br><br>
+
+        <div class="prayer-conclusion">
+            Bendito seas, Adonái יהוה,<br>
+            porque no has dejado de hablarnos ni un solo día.<br>
+            Tu nube sigue cubriendo a tus fieles,<br>
+            Tu fuego sigue ardiendo en tus testigos,<br>
+            y Tu trompeta resuena en cada palabra del Mashíaj.<br><br>
+            Amén, Ken Yehi Ratzon – Que así sea Tu voluntad.
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+            Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a></p>
+</footer>
+</main>
+
+<button class="aliya-button"><a href="./aliya5.html">Continuar con la Aliyá 5</a></button>
+
+
+<script src="../index.js"></script>
+
+</body>
+
+</html>

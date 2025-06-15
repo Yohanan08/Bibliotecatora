@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bamidbar (במדבר) – Números 11:30-12:16</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>36. Parashá Behaalotjá (בהעלתך) Aliyáh 7: (Números 11:30-12:16) Castigo de Miriam por murmurar contra Moshé
+            y su lepra temporal.
+            <p>Haftaráh: Miqueas 6:3-8 (La fidelidad de Moshé y el llamado a hacer justicia).</p>
+            <p>Brit Hadasháh: Santiago 5:9-11 (El llamado a no murmurar y a perseverar).</p>
+        </h1>
+
+        <h1>Punto 1. Castigo de Miriam por murmurar contra Moshé y su lepra temporal.</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 11:30</div>
+            <div class="hebrew">וַיֵּאָסֵ֥ף מֹשֶׁ֛ה אֶל־הַֽמַּחֲנֶ֖ה ה֥וּא וְזִקְנֵ֥י יִשְׂרָאֵֽל׃</div>
+            <div class="transliteration">Va-ye-a-séf Moshéh el-ha-ma-ja-néh hú ve-ziq-néi Yisraél.</div>
+            <div class="translation">Traducción Literal: Y Moshé volvió al campamento, él y los ancianos de Israel.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 11:31</div>
+            <div class="hebrew">וְר֣וּחַ נָסַ֣ע מֵאֵת֩ יְהוָ֨ה וַיָּ֜גָז שַׂלְוִ֗ים...</div>
+            <div class="transliteration">Ve-ruaj nasá me-ét Adonái va-ya-gáz sal-vím min-ha-yám...</div>
+            <div class="translation">Traducción Literal: Y un viento salió de parte de Adonái... como dos codos sobre la
+                superficie de la tierra.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 11:32</div>
+            <div class="hebrew">וַיָּֽקָם֙ הָעָ֔ם כׇּל־הַיּ֖וֹם הַה֣וּא...</div>
+            <div class="transliteration">Va-yaqám ha-ám kol-ha-yóm ha-hú ve-kol-ha-láylah...</div>
+            <div class="translation">Traducción Literal: Y se levantó el pueblo... y las tendieron para ellos,
+                extendidas alrededor del campamento.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 11:33</div>
+            <div class="hebrew">הַבָּשָׂ֗ר עוֹדֶ֛נּוּ בֵּֽין־שִׁנֵּיהֶ֖ם...</div>
+            <div class="transliteration">Ha-básar odénnu bén-shinéhem térém yikáret...</div>
+            <div class="translation">Traducción Literal: La carne aún estaba entre sus dientes... y Adonái golpeó al
+                pueblo con una gran plaga.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 11:34</div>
+            <div class="hebrew">וַיִּקְרָ֧א אֶת־שֵׁ֛ם הַמָּק֖וֹם הַה֑וּא...</div>
+            <div class="transliteration">Va-yiqrá et-shem ha-máqom ha-hú: Kivrot-ha-Taaváh...</div>
+            <div class="translation">Traducción Literal: Y llamó el nombre de aquel lugar Kivrot-ha-Taaváh... porque
+                allí enterraron al pueblo que codiciaba.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 11:35</div>
+            <div class="hebrew">מִקִּבְר֣וֹת הַתַּאֲוָ֗ה נָסְע֛וּ הָעָ֖ם...</div>
+            <div class="transliteration">Mi-Kivrot-ha-Taaváh nas'ú ha-ám jatzerót...</div>
+            <div class="translation">Traducción Literal: Desde Kivrot-ha-Taaváh viajó el pueblo a Jatzerót, y se
+                quedaron en Jatzerót.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:1</div>
+            <div class="hebrew">וַתְּדַבֵּ֨ר מִרְיָ֜ם וְאַהֲרֹ֗ן בְּמֹשֶׁ֙ה֙ עַל־אֹד֣וֹת הָאִשָּׁ֔ה הַכֻּשִׁ֖ית...</div>
+            <div class="transliteration">Va-te-dabbér Miryám ve-Aharón be-Moshéh al-odót ha-isháh ha-kushít...</div>
+            <div class="translation">Traducción Literal: Y hablaron Miryám y Aharón contra Moshé a causa de la mujer
+                cusita que había tomado.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:2</div>
+            <div class="hebrew">וַיֹּֽאמְר֞וּ הֲרַ֤ק אַךְ־בְּמֹשֶׁה֙ דִּבֶּ֣ר יְהוָ֔ה...</div>
+            <div class="transliteration">Va-yomrú ha-rak ak be-Moshéh dibbér Adonái...</div>
+            <div class="translation">Traducción Literal: Y dijeron: ¿Acaso ha hablado Adonái solamente con Moshé? ¿No ha
+                hablado también con nosotros?</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:3</div>
+            <div class="hebrew">וְהָאִ֥ישׁ מֹשֶׁ֖ה עָנָ֣ו מְאֹ֑ד...</div>
+            <div class="transliteration">Ve-ha-ish Moshé anáv me'ód mikól ha-adám...</div>
+            <div class="translation">Traducción Literal: Y el hombre Moshé era muy humilde, más que cualquier otro
+                hombre sobre la faz de la tierra.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:4</div>
+            <div class="hebrew">וַיֹּאמֶר֩ יְהוָ֨ה פִּתְאֹ֜ם אֶל־מֹשֶׁ֣ה...</div>
+            <div class="transliteration">Va-yómer Adonái pit'om el-Moshé...</div>
+            <div class="translation">Traducción Literal: Y dijo Adonái repentinamente a Moshé, a Aharón y a Miryám:
+                Salgan los tres al Tabernáculo de reunión.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:5</div>
+            <div class="hebrew">וַיֵּ֣רֶד יְהוָ֗ה בְּעַמּ֙וּד עָנָ֔ן...</div>
+            <div class="transliteration">Va-yéred Adonái be-amúd anán...</div>
+            <div class="translation">Traducción Literal: Y descendió Adonái en columna de nube, y se detuvo a la entrada
+                del tabernáculo, y llamó a Aharón y a Miryám.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:6</div>
+            <div class="hebrew">וַיֹּאמֶ֗ר שִׁמְעוּ־נָ֛א דְּבָרָ֖י...</div>
+            <div class="transliteration">Va-yómer: Shimú-na devarái...</div>
+            <div class="translation">Traducción Literal: Y dijo: Oigan ahora mis palabras. Si hubiera entre ustedes un
+                profeta, yo hablaré con él en visión y en sueño.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:7</div>
+            <div class="hebrew">לֹא־כֵ֖ן עַבְדִּ֣י מֹשֶׁ֑ה...</div>
+            <div class="transliteration">Lo-ken avdí Moshé, be-kol beytí ne'emán hu.</div>
+            <div class="translation">Traducción Literal: No así es con mi siervo Moshé; en toda mi casa, fiel es él.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:8</div>
+            <div class="hebrew">פֶּ֤ה אֶל־פֶּה֙ אֲדַבֶּר־בּ֔וֹ...</div>
+            <div class="transliteration">Péh el-péh adabbér-bo...</div>
+            <div class="translation">Traducción Literal: Boca a boca hablo con él, claramente y no en enigmas; contempla
+                la imagen de Adonái.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:9</div>
+            <div class="hebrew">וַיִּֽחַר־אַ֥ף יְהוָ֖ה בָּ֑ם...</div>
+            <div class="transliteration">Va-yijar af Adonái bam...</div>
+            <div class="translation">Traducción Literal: Y se encendió la ira de Adonái contra ellos, y se fue.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:10</div>
+            <div class="hebrew">וְהֶ֤עָנָן֙ סָ֣ר מֵעַ֣ל הָאֹ֔הֶל...</div>
+            <div class="transliteration">Ve-he-anán sar me-al ha-ohel...</div>
+            <div class="translation">Traducción Literal: Y la nube se apartó, y he aquí Miryám era leprosa como la
+                nieve; y Aharón la vio leprosa.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:11</div>
+            <div class="hebrew">וַיֹּ֤אמֶר אַהֲרֹן֙ אֶל־מֹשֶׁ֔ה...</div>
+            <div class="transliteration">Va-yómer Aharón el-Moshé...</div>
+            <div class="translation">Traducción Literal: Y dijo Aharón a Moshé: Te ruego, Adon, no pongas sobre
+                nosotros pecado por haber actuado neciamente.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:12</div>
+            <div class="hebrew">אַל־נָ֤א תְהִ֙י כַמֵּ֔ת...</div>
+            <div class="transliteration">Al-na tehi ka-met asher be-tzét mé-rejem imó...</div>
+            <div class="translation">Traducción Literal: Te ruego, no sea como un muerto, cuya carne está medio
+                consumida al nacer.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:13</div>
+            <div class="hebrew">וַיִּצְעַ֥ק מֹשֶׁ֖ה אֶל־יְהוָ֑ה...</div>
+            <div class="transliteration">Va-yitzaq Moshé el-Adonái le'emor...</div>
+            <div class="translation">Traducción Literal: Y clamó Moshé a Adonái: Oh Elohím, te ruego, sánala ahora.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:14</div>
+            <div class="hebrew">וַיֹּ֨אמֶר יְהוָ֜ה אֶל־מֹשֶׁ֗ה...</div>
+            <div class="transliteration">Va-yómer Adonái el-Moshé...</div>
+            <div class="translation">Traducción Literal: Que sea apartada siete días fuera del campamento y luego sea
+                reunida.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:15</div>
+            <div class="hebrew">וַתִּסָּגֵ֥ר מִרְיָ֖ם...</div>
+            <div class="transliteration">Va-tisagér Miryám mi-jutz la-majanéh...</div>
+            <div class="translation">Traducción Literal: Y Miryám fue apartada siete días, y el pueblo no partió hasta
+                que fue reunida.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Números 12:16</div>
+            <div class="hebrew">וְאַחַ֕ר נָֽסְעוּ֙ הָעָ֔ם...</div>
+            <div class="transliteration">Ve-ajár nas'ú ha-ám me-Jatzerót...</div>
+            <div class="translation">Traducción Literal: Y después el pueblo partió de Jatzerót y acampó en el desierto
+                de Parán.</div>
+        </div>
+
+        <div class="content-container">
+            <h1>Cumplimiento Profético en el Mashíaj: Números 11:30–12:16</h1>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. El Ruaj que reposa sobre los setenta ancianos (11:30)</div>
+                <div class="hebrew">וַיֵּאָסֵ֥ף מֹשֶׁ֛ה אֶל־הַֽמַּחֲנֶ֖ה ה֥וּא וְזִקְנֵ֥י יִשְׂרָאֵֽל׃</div>
+                <div class="translation">Y Moshé volvió al campamento, él y los ancianos de Israel.</div>
+                <p><strong>Tipología:</strong> Moshé, como figura mesiánica, es el canal por el cual el Ruaj haKodesh se
+                    reparte a otros líderes.</p>
+                <p><strong>Paralelismo directo:</strong> Yeshúa haMashíaj, después de su resurrección, sopló sobre sus
+                    discípulos y les dijo: “Recibid el Ruaj haKodesh” (Juan 20:22), cumpliendo la promesa de Yoel 3:1
+                    [2:28].</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. El juicio por la codicia y el “manjar de carne” (11:31–35)</div>
+                <p><strong>Clave profética:</strong> El pueblo menospreció el man (el pan celestial) y anheló carne, lo
+                    cual desató juicio.</p>
+                <p><strong>Sombra profética:</strong> El man representa a Yeshúa como el verdadero pan del cielo (Juan
+                    6:32-35). Los que rechazan el alimento espiritual provisto por Elohím (al Mashíaj), caen bajo
+                    juicio.</p>
+                <p>Así como murieron en Kivrot-ha-Taaváh, muchos “mueren” espiritualmente al desear las cosas del mundo
+                    más que al Mashíaj.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Miryám y Aharón murmuran contra Moshé (12:1–2)</div>
+                <p><strong>Profecía en figura:</strong> Moshé representa al Mesías rechazado por los suyos. Miryám
+                    representa la lideranza profética de Israel que rechaza la autoridad divina. Aharón, el sacerdocio,
+                    participa pero luego intercede.</p>
+                <p><strong>Cumplimiento en Yeshúa:</strong> Así como cuestionaron a Moshé, los líderes de Israel
+                    cuestionaron la autoridad de Yeshúa: “¿Con qué autoridad haces estas cosas?” (Mateo 21:23).</p>
+                <p>El Ruaj haKodesh testifica que Yeshúa veía a Elohím “cara a cara” (Números 12:8). Él es el Davar
+                    hecho carne (Juan 1:14).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. La lepra de Miryám y el clamor intercesor de Moshé (12:10–13)</div>
+                <p><strong>Figura mesiánica:</strong> Miryám, castigada por su rebelión, simboliza a Israel rebelde y
+                    leprosa. Moshé clama: <span class="hebrew">אֵל נָא רְפָא נָא לָהּ</span> — "¡Oh El, sána, por favor,
+                    a ella!".</p>
+                <p>Esto tipifica la intercesión de Yeshúa desde el madero: “Padre, perdónalos, porque no saben lo que
+                    hacen” (Lucas 23:34).</p>
+                <p><strong>Esperanza:</strong> Como Miryám fue expulsada y luego restaurada, Israel será restaurado por
+                    la intercesión del justo (Romanos 11:26).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">5. Israel detenido por causa de Miryám (12:15)</div>
+                <p><strong>Figura profética:</strong> El pueblo no puede avanzar hasta que Miryám es restaurada.</p>
+                <p><strong>Aplicación mesiánica:</strong> La redención de la humanidad no estará completa hasta que
+                    Israel sea restaurado en el Mashíaj (Romanos 11:15): “Porque si su rechazo es la reconciliación del
+                    mundo, ¿qué será su aceptación sino vida de entre los muertos?”</p>
+            </div>
+
+            <div class="conclusion">
+                <h3>Resumen: Revelaciones del Mashíaj en Números 11:30–12:16</h3>
+                <ul>
+                    <li><strong>Moshé</strong> → figura del Mashíaj, canal del Ruaj.</li>
+                    <li><strong>Man rechazado</strong> → Yeshúa rechazado como pan de vida.</li>
+                    <li><strong>Juicio por codicia</strong> → rechazo al alimento espiritual.</li>
+                    <li><strong>Miryám</strong> → figura de Israel rebelde; lepra como exilio.</li>
+                    <li><strong>Clamor de Moshé</strong> → intercesión mesiánica.</li>
+                    <li><strong>Detención del pueblo</strong> → sin restauración de Israel no hay avance final.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h1>Punto 2. Haftaráh: Miqueas 6:3-8 (La fidelidad de Moshé y el llamado a hacer justicia).</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">Miqueas 6:3</div>
+            <div class="hebrew">עַמִּ֖י מֶ֣ה עָשִׂ֑יתִי לְךָ֣ וּמָ֔ה הִלְּאִיתִ֖יךָ עֲנֵ֥ה בִֽי׃</div>
+            <div class="transliteration">Amí, mah asíti lejá, u-má hilléitija? Anéh ví.</div>
+            <div class="translation">Pueblo mío, ¿qué te he hecho? ¿Y en qué te he cansado? Respóndeme.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Miqueas 6:4</div>
+            <div class="hebrew">כִּ֤י הֶעֱלִיתִ֙יךָ֙ מֵאֶ֣רֶץ מִצְרַ֔יִם וּמִבֵּ֥ית עֲבָדִ֖ים פְּדִיתִ֑יךָ וָאֶשְׁלַ֤ח
+                לְפָנֶ֙יךָ֙ אֶת־מֹשֶׁ֔ה אַהֲרֹ֖ן וּמִרְיָֽם׃</div>
+            <div class="transliteration">Ki he-e-lítijá me-éretz Mitzrayim, u-mi-beit avadím pedítijá; va-eshlaj
+                lefanéja et-Moshé, Aharón u-Miryám.</div>
+            <div class="translation">Porque te hice subir de la tierra de Mitsráyim, y de casa de siervos te redimí; y
+                envié delante de ti a Moshé, Aharón y Miryám.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Miqueas 6:5</div>
+            <div class="hebrew">עַמִּי֙ זְכָר־נָ֣א מַה־יָּעַ֗ץ בָּלָק֙ מֶ֣לֶךְ מוֹאָ֔ב וּמֶ֖ה עָנָ֣ה אֹת֑וֹ בִּלְעָ֣ם
+                בֶּן־בְּע֔וֹר מִן־הַשִּׁטִּ֖ים עַד־הַגִּלְגָּ֑ל לְמַ֣עַן דַּ֔עַת צִדְק֖וֹת יְהוָֽה׃</div>
+            <div class="transliteration">Amí, zekhár-na mah ya'atz Baláq mélej Moav, u-mah aná oto Bil'am ben Be'or,
+                min-ha-Shittím ad ha-Guilgál, le-ma'án da'at tzidkot Adonái.</div>
+            <div class="translation">Pueblo mío, recuerda ahora qué aconsejó Baláq, rey de Moav, y qué le respondió
+                Bil'am hijo de Beor, desde Shittím hasta Guilgál, para que conozcas las justicias de Adonái.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Miqueas 6:6</div>
+            <div class="hebrew">בַּמָּ֤ה אֲקַדֵּם֙ יְהוָ֔ה אִכַּ֖ף לֵאלֹ֣הֵי מָר֑וֹם הַאֲקַדְּמֶ֣נּוּ בְעֹל֔וֹת
+                בַּעַגָּלִ֖ים בְּנֵי שָׁנָֽה׃</div>
+            <div class="transliteration">Ba-má akadém Adonái, ikáf le-Elohéy maróm; ha-akaddeménnu be-olót, ba-agalím
+                bené shanáh?</div>
+            <div class="translation">¿Con qué me presentaré ante Adonái, me inclinaré al Elohím de lo alto? ¿Me
+                presentaré ante Él con holocaustos, con becerros de un año?</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Miqueas 6:7</div>
+            <div class="hebrew">הֲיִרְצֶ֤ה יְהוָה֙ בְּאַלְפֵ֣י אֵילִ֔ים בְּרִבְב֖וֹת נַחֲלֵי־שָ֑מֶן הַאֶתֵּ֤ן בְּכֹ֙רִי֙
+                פִּשְׁעִ֔י פְּרִ֖י בִּטְנִ֥י חַטַּֽאת נַפְשִֽׁי׃</div>
+            <div class="transliteration">Ha-yirtze Adonái be-alfé eilím, be-rivvot najaléi-shámen? Ha-etén bejorí
+                pish'í, perí vitní jatat nafshí?</div>
+            <div class="translation">¿Se complacerá Adonái en millares de carneros, en diez mil torrentes de aceite?
+                ¿Daré a mi primogénito por mi rebelión, el fruto de mi vientre por el pecado de mi alma?</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Miqueas 6:8</div>
+            <div class="hebrew">הִגִּ֣יד לְךָ֤ אָדָם֙ מַה־טּ֔וֹב וּמָ֛ה יְהוָ֥ה דּוֹרֵ֖שׁ מִמְּךָ֑ כִּ֣י אִם־עֲשׂ֤וֹת
+                מִשְׁפָּט֙ וְאַהֲבַ֣ת חֶ֔סֶד וְהַצְנֵ֥עַ לֶֽכֶת֙ עִם־אֱלֹהֶֽיךָ׃</div>
+            <div class="transliteration">Higgíd lejá adám mah tov, u-mah Adonái doresh miméja; ki im-asót mishpát,
+                ve-ahávat jésed, ve-hatznéa lejet im Elohéja.</div>
+            <div class="translation">Te fue declarado, oh hombre, lo que es bueno; y qué pide Adonái de ti: solamente
+                hacer justicia, amar misericordia, y andar humildemente con tu Elohím.</div>
+        </div>
+
+        <h1>Cumplimiento Profético en el Mashíaj – Miqueas 6:3–8</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">1. Miqueas 6:3 – El clamor del Eterno: ¿Qué te hice?</div>
+            <div class="hebrew">עַמִּי מֶה עָשִׂיתִי לְךָ...</div>
+            <div class="translation">"Pueblo mío, ¿qué te he hecho?"</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Profecía y Figura Mesiánica:</div>
+                <div class="scripture">“¡Yerushaláyim, Yerushaláyim... y no quisiste!” (Mattityahu 23:37)</div>
+                Estas palabras reflejan el dolor divino hacia un pueblo rebelde, que culmina en el rechazo del Mashíaj
+                Yeshúa.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">2. Miqueas 6:4 – Moshé, Aharón y Miryám como prefiguraciones</div>
+            <div class="hebrew">וָאֶשְׁלַח לְפָנֶיךָ אֶת־מֹשֶׁה אַהֲרֹן וּמִרְיָם</div>
+            <div class="translation">"Envié delante de ti a Moshé, Aharón y Miryám"</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Figura Profética:</div>
+                Moshé → Toráh viva; <br />
+                Aharón → Sumo Sacerdote (Hebreos 4:14);<br />
+                Miryám → Profecía y comunidad creyente.<br />
+                <div class="scripture">Hebreos 1:1–2</div>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">3. Miqueas 6:5 – Baláq, Bil’ám y la justicia de Elohím</div>
+            <div class="hebrew">זְכָר־נָא מַה־יָּעַץ בָּלָק... לְמַעַן דַּעַת צִדְק֖וֹת יְהוָֽה</div>
+            <div class="translation">"Recuerda... para que conozcas las justicias de Adonái"</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento en el Mashíaj:</div>
+                <div class="scripture">“Lo veré... saldrá una estrella de Yaakov” (Bamidbar 24:17)</div>
+                Yeshúa es “la Estrella resplandeciente de la mañana” (Apocalipsis 22:16).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">4. Miqueas 6:6–7 – ¿Qué ofrendas pueden redimir?</div>
+            <div class="hebrew">הַאֶתֵּן בְּכֹרִי פִּשְׁעִי...</div>
+            <div class="translation">"¿Daré a mi primogénito por mi rebelión?"</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Profecía Redentora:</div>
+                El primogénito humano no puede redimir (Salmo 49:7).<br />
+                <div class="scripture">Isaías 53:10–11; Romanos 8:32</div>
+                Yeshúa, el Primogénito celestial, fue dado por el pecado del pueblo.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">5. Miqueas 6:8 – El corazón de la Toráh y su encarnación en el Mashíaj</div>
+            <div class="hebrew">הִגִּיד לְךָ אָדָם מַה־טּוֹב...</div>
+            <div class="translation">"Se te ha declarado, oh hombre, lo que es bueno..."</div>
+            <div class="prophetic-content">
+                <div class="prophetic-title">Cumplimiento Pleno en Yeshúa:</div>
+                Justicia → <span class="scripture">Isaías 42:1; Mateo 12:18</span><br />
+                Jésed → Él es la manifestación del amor leal de Elohím.<br />
+                Humildad → <span class="scripture">Filipenses 2:8</span><br />
+                En Yeshúa, el corazón de la Toráh se cumple y capacita a los creyentes.
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Resumen: El Mashíaj Revelado en Miqueas 6:3–8</h3>
+            <ul>
+                <li><span class="highlight">Reproche divino:</span> Clamor por Israel → Juan 5:39–40</li>
+                <li><span class="highlight">Líderes redentores:</span> Moshé, Aharón, Miryám → Profeta, Sacerdote,
+                    Testigo fiel</li>
+                <li><span class="highlight">Profecía de Bil'am:</span> Estrella de Yaakov → Ap. 22:16</li>
+                <li><span class="highlight">Sacrificio ineficaz:</span> Ofrendas humanas → Redención real en el
+                    Primogénito celestial</li>
+                <li><span class="highlight">Justicia vivida:</span> Mishpat, jésed, humildad → Encarnados en Yeshúa</li>
+            </ul>
+        </div>
+
+        <h1>Punto 3. Brit Hadasháh: Santiago 5:9-11 (El llamado a no murmurar y a perseverar).</h1>
+
+        <div class="verse-container">
+            <div class="verse-number">Santiago 5:9</div>
+            <div class="prophetic-title">Griego:</div>
+            <div class="hebrew">Μὴ στενάζετε, ἀδελφοί, κατ’ ἀλλήλων, ἵνα μὴ κριθῆτε• ἰδοὺ ὁ κριτὴς πρὸ τῶν θυρῶν
+                ἕστηκεν.</div>
+            <div class="prophetic-title">Fonética:</div>
+            <div class="transliteration">Mé stenázete, adelphoí, kat’ allḗlōn, hína mē krithḗte; idoù ho kritḗs prò tōn
+                thyrṓn héstēken.</div>
+            <div class="prophetic-title">Traducción literal:</div>
+            <div class="translation">No suspiren (giman) unos contra otros, hermanos, para que no seáis juzgados; he
+                aquí, el Juez está parado ante las puertas.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Santiago 5:10</div>
+            <div class="prophetic-title">Griego:</div>
+            <div class="hebrew">Ὑπόδειγμα λάβετε, ἀδελφοί, τῆς κακοπαθείας καὶ τῆς μακροθυμίας τοὺς προφήτας, οἳ
+                ἐλάλησαν ἐν τῷ ὀνόματι Κυρίου.</div>
+            <div class="prophetic-title">Fonética:</div>
+            <div class="transliteration">Hypódeigma lábete, adelphoí, tēs kakopatheías kaì tēs makrothymías toùs
+                prophḗtas, hoì elálēsan en tō onómati Kyríou.</div>
+            <div class="prophetic-title">Traducción literal:</div>
+            <div class="translation">Tomad como ejemplo, hermanos, de sufrimiento y paciencia a los profetas que
+                hablaron en el nombre del Adon.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Santiago 5:11</div>
+            <div class="prophetic-title">Griego:</div>
+            <div class="hebrew">Ἰδοὺ μακαρίζομεν τοὺς ὑπομένοντας• τὴν ὑπομονὴν Ἰὼβ ἠκούσατε καὶ τὸ τέλος Κυρίου εἴδετε,
+                ὅτι πολύσπλαγχνος ἐστὶν ὁ Κύριος καὶ οἰκτίρμων.</div>
+            <div class="prophetic-title">Fonética:</div>
+            <div class="transliteration">Idoù makarízomen toùs hypoménontas; tēn hypomonḕn Iṓb ēkoúsate kaì tò télos
+                Kyríou eídete, hóti polýsplagchnos estìn ho Kýrios kaì oiktírmōn.</div>
+            <div class="prophetic-title">Traducción literal:</div>
+            <div class="translation">He aquí, consideramos bienaventurados a los que perseveran; oísteis de la paciencia
+                de Iyov (Job), y visteis el propósito del Adón, que muy compasivo y misericordioso es el Adón.
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <h1>Cumplimiento Profético en el Mashíaj – Santiago 5:9–11</h1>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. “No gemáis unos contra otros… el Juez está a la puerta” (5:9)</div>
+                <div>Este versículo proyecta una imagen de juicio inminente, evocando Yom Adonái. Yeshúa es ese Juez
+                    (Mateo 16:27; Juan 5:22). La puerta representa el umbral del juicio escatológico y la entrada al
+                    Reino (Mateo 25:10).</div>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. “Tomad como ejemplo a los profetas… que hablaron en el nombre del Adón”
+                    (5:10)</div>
+                <div>Los profetas prefiguraron al Mashíaj. Yeshúa es el profeta supremo prometido por Moshé (Deut.
+                    18:18) y sufrió como ellos (Mateo 23:37).</div>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. “Bienaventurados los que sufren con paciencia… oísteis de Iyov” (5:11)
+                </div>
+                <div>Iyov es figura mesiánica. Yeshúa fue el justo que sufrió sin causa, tentado, afligido y vindicado
+                    (Isaías 53:9, Mateo 4, 1 Pedro 3:18).</div>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. “El Adón es muy compasivo y misericordioso” (5:11)</div>
+                <div>Esto refleja Éxodo 34:6. Yeshúa encarna estos atributos (Mateo 11:29) como MarYah manifestado en
+                    carne.</div>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <h2>Resumen Profético-Mesiánico</h2>
+            <div class="translation">
+                <ul>
+                    <li><strong>El Juez está a la puerta:</strong> Yom Adonái → <em>Yeshúa como Juez designado</em>
+                        (Juan 5:22)</li>
+                    <li><strong>Ejemplo de los profetas:</strong> Vocación sufriente → <em>Yeshúa como Profeta por
+                            excelencia</em></li>
+                    <li><strong>Iyov – modelo de paciencia:</strong> Hombre justo afligido → <em>Mashíaj sufriente,
+                            glorificado</em></li>
+                    <li><strong>Elohím compasivo:</strong> Atributos divinos → <em>Yeshúa como encarnación de la
+                            compasión</em></li>
+                </ul>
+            </div>
+        </div>
+
+        <h1>Punto 4: Contexto Histórico y Cultural – Números 11:30–12:16</h1>
+        <div class="content-container">
+
+            <div class="section-container">
+                <strong class="highlight">1. Geografía y cronología del pasaje</strong>
+                <p>El relato ocurre en el desierto de Parán, dentro del segundo año de la salida de Mitsráyim (Egipto),
+                    después de haber salido del monte Sinaí (Números 10:12).</p>
+                <p>Se menciona <strong>Kivrot ha-Taaváh</strong> (קִבְרוֹת הַתַּאֲוָה), “Tumbas del deseo”, posiblemente
+                    al norte del Sinaí.</p>
+            </div>
+
+            <div class="section-container">
+                <strong class="highlight">2. Marco cultural: sociedad tribal en transición</strong>
+                <p>Israel salía de Egipto hacia una nación pactada. Se presentan tensiones entre Moshé, Aharón y Miryám,
+                    figuras centrales con roles proféticos, sacerdotales y comunitarios.</p>
+            </div>
+
+            <div class="section-container">
+                <strong class="highlight">3. Arqueología del entorno</strong>
+                <p>Sin localización exacta de Kivrot ha-Taaváh. Jatzerot y Kadesh Barnea ofrecen evidencia arqueológica
+                    de campamentos. Egipto registró movimientos semíticos en esa zona.</p>
+            </div>
+
+            <div class="section-container">
+                <strong class="highlight">4. Estructura del campamento y Mishkán</strong>
+                <p>El Mishkán servía como centro espiritual y judicial. La acusación contra Moshé es contestada por una
+                    teofanía que refuerza su autoridad única (Números 12:5).</p>
+            </div>
+
+            <div class="section-container">
+                <strong class="highlight">5. Elementos sociales y teológicos</strong>
+                <p>La queja por carne simboliza nostalgia por el sistema egipcio. La lepra de Miryám representa una
+                    ruptura relacional con el pacto.</p>
+            </div>
+
+            <div class="section-container">
+                <strong class="highlight">6. Segundo Templo: ecos litúrgicos</strong>
+                <p>Leído como advertencia contra el <em>lashón hará</em>. Qumrán lo interpreta como símbolo de
+                    conflictos internos.</p>
+            </div>
+
+            <div class="section-container">
+                <strong class="highlight">7. Influencia en el pensamiento mesiánico</strong>
+                <p>La unicidad de Moshé como mediador inspira Hebreos 3:3–6. Yeshúa es presentado como mayor que Moshé,
+                    encarnando la gloria divina (Yohanán 1:14).</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h1>Punto 5 – Comentarios y Conexiones Proféticas: Números 11:30–12:16</h1>
+        <div class="prophetic-content">
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Comentarios Rabínicos Tradicionales</div>
+                <ul>
+                    <li><strong>Midrash Tanjumá:</strong> los ancianos recibieron parte del Ruaj de Moshé, resaltando su
+                        unicidad.</li>
+                    <li><strong>Sifrei Bamidbar:</strong> setenta ancianos como prefiguración del Sanedrín.</li>
+                    <li><strong>Rashí:</strong> el pecado fue rechazar el man, no solo pedir carne.</li>
+                    <li><strong>Talmud Yerushalmi:</strong> codicia espiritual como advertencia.</li>
+                    <li><strong>Midrash Sifré:</strong> Miryám practicó <em>lashón hará</em>.</li>
+                    <li><strong>Rambam:</strong> advertencia eterna sobre hablar contra justos.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Comentario Judío Mesiánico</div>
+                <p>Miryám representa la oposición religiosa. Moshé figura del Mashíaj es vindicado por la voz del cielo
+                    (<em>Mattityahu 17:5</em>). Tzará’at prefigura el juicio por rechazar al Enviado de Adonái
+                    (<em>Mateo 12:32</em>).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Notas del Segundo Templo</div>
+                <p>Qumrán usa Números 12 como fundamento para separar a los murmuradores. Targumim asocian la crítica de
+                    Miryám a pureza ritual y liderazgo, reflejo del conflicto del liderazgo en Yerushaláyim.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4. Aplicación espiritual actual</div>
+                <p>Codicia espiritual es desear poder humano en vez de provisión celestial. Murmuración contra líderes
+                    espirituales es lepra del alma. El juicio comienza por la Casa.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">5. Análisis gramatical y guemátrico</div>
+                <ul>
+                    <li><strong>מִרְיָם (Miryám):</strong> raíz מרה (amargura), tipología de rebelión emocional.</li>
+                    <li><strong>צָרַעַת (Tzará’at):</strong> raíz tzará = herido; aislamiento espiritual.</li>
+                    <li><strong>Guematría:</strong> מרים = 290. Taaváh = 406. Contraste con deseo justo (Mishlé 10:24).
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 6: Análisis Profundo de la Aliyáh – Números 11:30–12:16</h1>
+
+            <div class="section-container">
+                <p><span class="point-letter">1.</span><strong>Estructura Literaria y Unidad Narrativa</strong></p>
+                <p>Esta Aliyáh presenta dos narrativas:</p>
+                <ul>
+                    <li>La repartición del Ruaj sobre los ancianos y el juicio por la codorniz (11:30–35).</li>
+                    <li>La murmuración de Miryám y Aharón contra Moshé (cap. 12).</li>
+                </ul>
+                <p>Ambas están unidas temáticamente por el rechazo de la provisión divina, ya sea espiritual o material.
+                </p>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">2.</span><strong>Comentario Judío Tradicional</strong></p>
+                <ul>
+                    <li><strong>a)</strong> Ramban dice que la profecía de los ancianos es delegación divina, no pérdida
+                        de poder de Moshé.</li>
+                    <li><strong>b)</strong> Ibn Ezra resalta que Eldad y Medad muestran que el Ruaj no depende de
+                        estructura humana.</li>
+                    <li><strong>c)</strong> Rashí enseña que Miryám habló primero y por eso fue castigada.</li>
+                    <li><strong>d)</strong> Midrash Tanjumá ve la crítica como un cuestionamiento al rol único de Moshé.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">3.</span><strong>Comentario Judío Mesiánico</strong></p>
+                <ul>
+                    <li><strong>a)</strong> Así como Moshé delega el Ruaj, Yeshúa sopla sobre sus discípulos (Juan
+                        20:22).</li>
+                    <li><strong>b)</strong> Miryám simboliza el Israel religioso que rechaza al Siervo de Adonái.</li>
+                    <li><strong>c)</strong> La revelación “cara a cara” a Moshé anticipa la revelación plena del
+                        Mashíaj.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">4.</span><strong>Conexión con la Haftaráh – Miqueas 6:3–8</strong></p>
+                <p>“Pueblo mío, ¿qué te he hecho?” (Miq. 6:3) refleja el clamor de Adonái ante el rechazo del man.</p>
+                <p>Moshé, Aharón y Miryám son mencionados como enviados del Eterno, destacando la necesidad de
+                    obediencia a sus siervos.</p>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">5.</span><strong>Conexión con el Brit Hadasháh – Yaakov (Santiago)
+                        5:9–11</strong></p>
+                <ul>
+                    <li>Advertencia contra la murmuración – “el Juez está a la puerta”.</li>
+                    <li>Moshé como ejemplo de obediencia profética sufrida, reflejada en Yeshúa.</li>
+                    <li>“Padre, perdónalos” (Lucas 23:34) ← intercesión del Mashíaj como la de Moshé.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <p><span class="point-letter">6.</span><strong>Aplicación Teológica y Espiritual</strong></p>
+                <p>La Aliyáh muestra dos peligros espirituales:</p>
+                <ul>
+                    <li>Desprecio a la provisión divina.</li>
+                    <li>Murmuración contra los instrumentos del Eterno.</li>
+                </ul>
+                <p>Yeshúa es el intercesor que no abandona al pueblo hasta que haya sanidad.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 7: Tema más relevante de la Aliyáh – Números 11:30–12:16</h1>
+
+            <p><strong>Tema Central:</strong> El Rechazo de la Autoridad Divina y la Misericordia Intercesora</p>
+            <p>Se revela un doble rechazo: del man (sustento espiritual) y de la autoridad de Moshé.</p>
+
+            <h3>Importancia en la Toráh</h3>
+            <p>Moshé clama por Miryám y enseña que rebelarse contra el ungido trae consecuencias para toda la comunidad.
+            </p>
+
+            <h3>Conexión con el Brit Hadasháh</h3>
+            <ul>
+                <li><strong>a)</strong> El man → Yeshúa: “Yo soy el pan que descendió del cielo” (Juan 6:41).</li>
+                <li><strong>b)</strong> Rechazo del profeta → rechazo del Mashíaj: “Escúchenle” (Lucas 9:35).</li>
+                <li><strong>c)</strong> Intercesión de Moshé → Intercesión del Mashíaj: “Padre, perdónalos” (Lucas
+                    23:34).</li>
+            </ul>
+
+            <h3>Relación con los Moedím</h3>
+            <ul>
+                <li><strong>Yom Kipur:</strong> separación de Miryám representa purificación nacional.</li>
+                <li><strong>Sucot:</strong> quejas en medio del viaje, contraste con la fidelidad divina en el desierto.
+                </li>
+            </ul>
+
+            <h3>Aplicación para el Creyente</h3>
+            <p>Donde hay murmuración y orgullo, no fluye el Ruaj. Como Moshé, debemos interceder en lugar de contender.
+            </p>
+
+            <div class="conclusion">
+                <p><strong>Conclusión:</strong> Yeshúa haMashíaj es el man rechazado, el profeta incomprendido, pero
+                    también el intercesor compasivo. Como Moshé, clama aún por la restauración del pueblo, hasta que
+                    haya purificación y redención.</p>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 8 – Descubriendo al Mashíaj en Números 11:30–12:16</h1>
+
+            <div class="section-container">
+                <h2>I. Identificación de Figuras Mesiánicas</h2>
+
+                <p><span class="point-letter">1.</span> <strong>Moshé – figura directa del Mashíaj</strong><br>
+                    Moshé es el profeta único, fiel en toda la casa de Elohím (12:7).<br>
+                    Hablaba con Adonái “boca a boca”, y veía Su temunah (forma/semblanza) (12:8).<br>
+                    <strong>Cumplimiento:</strong> Yeshúa es ese profeta anunciado por Moshé (Devarim 18:18), pero más
+                    aún:<br>
+                    <span class="scripture">“El que me ha visto, ha visto al Padre” (Yohanán 14:9)</span><br>
+                    Yeshúa no solo ve la forma de Elohím, sino que es su revelación encarnada.
+                </p>
+
+                <p><span class="point-letter">2.</span> <strong>Miryám – figura de Israel rebelde y enfermo</strong><br>
+                    Habla contra Moshé y recibe tzará’at como castigo. Representa la desobediencia desde dentro de
+                    Israel.<br>
+                    <strong>Cumplimiento:</strong> Israel rechazó al Ungido, y fue “expulsado del campamento”
+                    (exilio).<br>
+                    <span class="scripture">“Padre, perdónalos, porque no saben lo que hacen” (Lucas 23:34)</span><br>
+                    Y espera fuera del campamento (Hebreos 13:13) hasta que Israel sea restaurado (Romanos 11:26).
+                </p>
+
+                <p><span class="point-letter">3.</span> <strong>Codornices – símbolo del juicio por deseos
+                        carnales</strong><br>
+                    El pueblo codicia carne y mueren en Kivrot-ha-Taaváh.<br>
+                    <strong>Tipología:</strong> El man es figura del pan celestial (Yeshúa):<br>
+                    <span class="scripture">“Yo soy el pan vivo que descendió del cielo” (Juan 6:51)</span><br>
+                    Rechazar el man es rechazar a Mashíaj. Quien come del pan celestial vivirá para siempre (Yohanán
+                    6:58).
+                </p>
+            </div>
+
+            <div class="section-container">
+                <h2>II. Métodos para Descubrir al Mashíaj</h2>
+                <ul>
+                    <li><strong>Sombras proféticas (Tzelalim):</strong> La nube que desciende prefigura la
+                        Transfiguración (Mateo 17:5).</li>
+                    <li><strong>Eventos simbólicos:</strong> Miryám apartada 7 días → símbolo de purificación antes de
+                        la redención completa de Israel.</li>
+                    <li><strong>Títulos proféticos:</strong> Moshé es “fiel en toda mi casa” (נֶאֱמָן בְּכָל־בֵּיתִי),
+                        aplicado también a Yeshúa (Hebreos 3:1–6).</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2>III. Midrashim y Conexiones Mesiánicas</h2>
+                <ul>
+                    <li><strong>Midrash Tanjumá (Tzav 13):</strong> “El Ruaj reposa sobre los que cargan el peso del
+                        pueblo” → Yeshúa carga nuestras debilidades (Yeshayahu 53:4).</li>
+                    <li><strong>Midrash Rabbá (Bamidbar 15:6):</strong> El cielo defiende el honor del profeta →
+                        autoridad de Yeshúa defendida por el cielo (Mateo 17:5).</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2>IV. Cumplimientos en el Brit Hadasháh</h2>
+                <ul>
+                    <li><strong>Moshé ungido con Ruaj</strong> → Yeshúa lleno del Ruaj sin medida (Juan 3:34)</li>
+                    <li><strong>Moshé intercede por Miryám</strong> → Yeshúa intercede por los suyos (Lucas 23:34)</li>
+                    <li><strong>Pueblo rechaza el man</strong> → Multitudes rechazan a Yeshúa (Juan 6:66)</li>
+                    <li><strong>Miryám enferma</strong> → Israel endurecido por incredulidad (Romanos 11:25)</li>
+                    <li><strong>Espera por restauración</strong> → Redención final espera restauración de Israel</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2>V. Reflexión Mesiánica Final</h2>
+                <p>La Aliyáh presenta un patrón redentor claro:</p>
+                <ul>
+                    <li>El pueblo se rebela.</li>
+                    <li>El profeta fiel intercede.</li>
+                    <li>El cielo interviene con juicio y misericordia.</li>
+                    <li>La restauración ocurre fuera del campamento.</li>
+                </ul>
+                <p>Este patrón es una plantilla profética del ministerio de Yeshúa, quien sufrió el rechazo, intercedió
+                    por los rebeldes, fue excluido del campamento (murió fuera de Yerushaláyim), y regresará cuando
+                    Miryám – Israel – sea purificada.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h1>Punto 9 – Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+
+            <div class="section-container">
+                <h2>I. Midrashim Relevantes</h2>
+                <ul>
+                    <li><strong>Midrash Bamidbar Rabbá 15:19:</strong> desprecio del man como desprecio a la Toráh →
+                        rechazo del Mashíaj.</li>
+                    <li><strong>Midrash Tanjumá Beha’alotjá 16:</strong> Miryám fue castigada por intenciones internas →
+                        rechazo profundo del Ungido.</li>
+                    <li><strong>Sifré Bamidbar 99:</strong> se cuestiona la unicidad profética de Moshé → como a Yeshúa
+                        (Juan 10:30).</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2>II. Targumim sobre Números 12</h2>
+                <ul>
+                    <li><strong>Onkelos:</strong> Traducción literal; la esposa es llamada <em>gueretá</em> (prosélita).
+                    </li>
+                    <li><strong>Pseudo-Jonatán:</strong> Añade que Moshé vive en santidad “como un ángel” → críticas
+                        similares a las que recibió Yeshúa.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2>III. Textos Apócrifos y Qumrán</h2>
+                <ul>
+                    <li><strong>2 Baruj 48:36–39:</strong> el pueblo rechazó el pan del cielo → rechazo del Mashíaj
+                        (Juan 6:66).</li>
+                    <li><strong>1QS 8:12–15:</strong> rebelión de Miryám → aislamiento de los que murmuran en la
+                        comunidad del Ruaj.</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h2>IV. Tradiciones Mesiánicas Nazarenas</h2>
+                <p>Asocian la lepra de Miryám al exilio de Israel y la oración de Moshé con la intercesión de Yeshúa.
+                    Conectan con Yaakov 5:9–11 y restauración futura de Israel.</p>
+            </div>
+
+            <div class="section-container">
+                <h2>Conclusión: Integración Midráshica y Mesiánica</h2>
+                <ul>
+                    <li><strong>Midrash Rabbá:</strong> Rechazo del man → rechazo del Mashíaj.</li>
+                    <li><strong>Targum PJ:</strong> Miryám cuestiona separación → Yeshúa apartado para Elohím.</li>
+                    <li><strong>Baruj 2:</strong> Rechazo tras provisión → resistencia humana a redención.</li>
+                    <li><strong>Qumrán:</strong> Murmuración rompe unidad del Ruaj.</li>
+                    <li><strong>Tradición Nazarena:</strong> Miryám como Israel exiliado → restauración por intercesión
+                        del Justo.</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="content-container">
+            <h1>Punto 10 – Mandamientos, Principios y Valores</h1>
+            <h2>Números 11:30–12:16</h2>
+
+            <div class="section-container">
+                <h3>I. Mandamientos Identificables (Mitzvot implícitas)</h3>
+
+                <p><span class="point-letter">1.</span> <strong>Prohibición de hablar lashón hará (lengua
+                        perversa)</strong></p>
+                <p>Fuente: Números 12:1</p>
+                <p>Miryám habla contra Moshé → juicio inmediato.</p>
+                <p><strong>Halajáh derivada:</strong> “No andarás chismeando entre tu pueblo” (Vaikrá 19:16)</p>
+                <p><strong>Confirmado por Yeshúa:</strong> “De toda palabra ociosa que hablen los hombres, darán
+                    cuenta…” (Mattityahu 12:36)</p>
+
+                <p><span class="point-letter">2.</span> <strong>Respeto y temor ante la autoridad profética
+                        legítima</strong></p>
+                <p>Fuente: Números 12:6–8</p>
+                <p>Moshé recibe revelación directa, diferente a cualquier otro profeta.</p>
+                <p><strong>Principio halájico:</strong> No cuestionar a quien ha sido claramente elegido por Adonái como
+                    líder espiritual.</p>
+                <p><strong>Confirmado por el Brit Hadasháh:</strong> “Obedeced a vuestros guías espirituales y sujetaos
+                    a ellos” (Hebreos 13:17)</p>
+
+                <p><span class="point-letter">3.</span> <strong>Separación y purificación ante el pecado de la
+                        lengua</strong></p>
+                <p>Fuente: Números 12:14–15</p>
+                <p>Miryám es apartada siete días fuera del campamento.</p>
+                <p><strong>Halajáh relacionada:</strong> “Habitará solo; fuera del campamento será su morada” (Vaikrá
+                    13:46)</p>
+                <p><strong>Aplicación mesiánica:</strong> “Purificaos, los que lleváis los utensilios de Adonái”
+                    (Yeshayahu 52:11) – Yeshúa llama a una santidad interna, desde el corazón (Mateo 5:8).</p>
+            </div>
+
+            <div class="section-container">
+                <h3>II. Principios Éticos y Espirituales</h3>
+
+                <ul>
+                    <li><strong>Principio de intercesión en lugar de represalia:</strong> Moshé no se defiende, sino que
+                        clama por la sanidad de Miryám. <em>“Padre, perdónalos…”</em> (Lucas 23:34)</li>
+                    <li><strong>Principio de humildad extrema:</strong> “Y el hombre Moshé era muy humilde…” (Núm. 12:3)
+                        → “Aprended de mí, que soy manso y humilde de corazón” (Mateo 11:29)</li>
+                    <li><strong>Principio de gratitud por el sustento espiritual:</strong> El man representa la
+                        provisión divina. → “Trabajad por el alimento que permanece…” (Yohanán 6:27)</li>
+                    <li><strong>Principio de responsabilidad comunitaria:</strong> Por la lepra de Miryám, todo Israel
+                        se detiene. → “Si un miembro sufre, todos sufren con él” (1 Corintios 12:26)</li>
+                </ul>
+            </div>
+
+            <div class="section-container">
+                <h3>III. Valores Confirmados por el Mashíaj</h3>
+                <table>
+                    <tr>
+                        <td><strong>Valor en la Toráh</strong></td>
+                        <td><strong>Enseñanza de Yeshúa haMashíaj</strong></td>
+                    </tr>
+                    <tr>
+                        <td>No murmurar</td>
+                        <td>Mateo 7:1 – “No juzguéis para que no seáis juzgados”</td>
+                    </tr>
+                    <tr>
+                        <td>Pureza de labios</td>
+                        <td>Mateo 12:36 – “Por tus palabras serás condenado o justificado”</td>
+                    </tr>
+                    <tr>
+                        <td>Humildad</td>
+                        <td>Filipenses 2:8 – “Se humilló a sí mismo…”</td>
+                    </tr>
+                    <tr>
+                        <td>Intercesión</td>
+                        <td>Romanos 8:34 – “Mashíaj intercede por nosotros”</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <h2>Punto 11 – Preguntas de Reflexión con Respuestas en el Mashíaj</h2>
+            <div class="question">1. ¿Por qué el pueblo menospreció el man si era alimento milagroso del cielo?</div>
+            <div class="answer">El man representaba el sustento espiritual del cielo. Rechazarlo fue rebelión contra la
+                voluntad de Elohím. <br>
+                <em>“Yo soy el pan que descendió del cielo”</em> (Yohanán 6:41)
+            </div>
+
+            <div class="question">2. ¿Qué revela el castigo de Miryám sobre el valor de la autoridad profética?</div>
+            <div class="answer">Rechazar a Moshé fue rechazar la elección divina. <br>
+                <em>“El que me recibe, recibe al que me envió”</em> (Mateo 10:40)
+            </div>
+
+            <div class="question">3. ¿Por qué Moshé, siendo ofendido, intercede por su hermana?</div>
+            <div class="answer">Refleja el corazón del Mashíaj: misericordia y perdón. <br>
+                <em>“Padre, perdónalos...”</em> (Lucas 23:34)
+            </div>
+
+            <div class="question">4. ¿Qué significa que el pueblo no avanzó hasta que Miryám fue restaurada?</div>
+            <div class="answer">La restauración de un miembro afecta a toda la comunidad. <br>
+                <em>“¿Qué será su aceptación sino vida de entre los muertos?”</em> (Romanos 11:15)
+            </div>
+
+            <div class="question">5. ¿Qué enseñanza práctica nos deja la humildad de Moshé en comparación con Yeshúa?
+            </div>
+            <div class="answer">La autoridad verdadera se ejerce desde la humildad. <br>
+                <em>“Se despojó a sí mismo, tomando forma de siervo”</em> (Filipenses 2:6–8)
+            </div>
+
+            <h3>Resumen: Enseñanzas del Mashíaj en Cada Respuesta</h3>
+            <ul>
+                <li><strong>Rechazo del man:</strong> Rechazo del pan celestial – Yeshúa</li>
+                <li><strong>Autoridad profética:</strong> Rechazo del enviado → rechazo de Elohím</li>
+                <li><strong>Intercesión de Moshé:</strong> Modelo de la misericordia de Yeshúa</li>
+                <li><strong>Restauración de Miryám:</strong> Restauración final de Israel en el Mashíaj</li>
+                <li><strong>Humildad de Moshé:</strong> El corazón del siervo perfecto: Yeshúa</li>
+            </ul>
+        </div>
+
+        <div class="verse-container">
+            <h1>Punto 12 – Resumen de la Aliyáh y su Aplicación en el Mashíaj</h1>
+            <h2>Números 11:30–12:16</h2>
+
+            <div class="section-container">
+                <h3>I. Resumen de los Eventos Clave</h3>
+                <ul>
+                    <li>Moshé regresa al campamento con los ancianos (11:30), tras recibir asistencia espiritual a
+                        través del Ruaj haKodesh.</li>
+                    <li>Adonái envía codornices en respuesta a la queja del pueblo, pero con juicio (11:31–34). El lugar
+                        es llamado Kivrot ha-Taaváh, “Tumbas del Deseo”.</li>
+                    <li>Israel se traslada a Jatzerót, donde ocurre una crisis de liderazgo interno (11:35–12:1).</li>
+                    <li>Miryám y Aharón murmuran contra Moshé, cuestionando su exclusividad como profeta (12:1–2).</li>
+                    <li>Adonái desciende en la nube, vindica a Moshé como profeta superior, y castiga a Miryám con
+                        tzará’at (lepra) (12:5–10).</li>
+                    <li>Aharón intercede, y Moshé clama por su sanidad con una breve pero poderosa tefiláh (12:11–13).
+                    </li>
+                    <li>Miryám es aislada por siete días, y el pueblo no avanza hasta que ella es restaurada (12:14–16).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-content">
+                <h3>II. Aplicación en el Mashíaj – Enseñanza Redentora</h3>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Moshé: Figura del Siervo Ungido</div>
+                    <p>Moshé, humillado y obediente, representa a Yeshúa, quien también fue cuestionado por los suyos,
+                        pero recibió defensa del cielo.</p>
+                    <p>Así como Moshé fue confirmado por el Eterno, también Yeshúa fue proclamado por voz celestial:</p>
+                    <div class="scripture">“Este es mi Hijo amado, a Él oíd” (Mateo 17:5)</div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Rechazo del Man: Rechazo del Mashíaj</div>
+                    <p>El pueblo desprecia el man por codiciar carne, así como muchos rechazan el alimento espiritual
+                        del Mashíaj por deseos temporales.</p>
+                    <p>Esto nos enseña que la búsqueda del placer sin disciplina espiritual termina en muerte
+                        espiritual.</p>
+                    <div class="scripture">“Yo soy el pan vivo... el que come de este pan vivirá para siempre” (Yohanán
+                        6:51)</div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. La lepra de Miryám: símbolo del juicio sobre el orgullo espiritual
+                    </div>
+                    <p>Miryám representa el liderazgo religioso que cuestiona al Ungido del Eterno.</p>
+                    <p>Su castigo es una advertencia profética a toda generación que se levanta contra el testimonio del
+                        Mashíaj.</p>
+                    <p>Aun así, Adonái no la destruye, sino que la restaura por medio de la intercesión del justo
+                        —figura de la intercesión eterna de Yeshúa.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">4. La detención del pueblo: no hay avance sin restauración</div>
+                    <p>El campamento no pudo continuar su travesía hasta que la rebelde fue sanada.</p>
+                    <p>De igual forma, el avance del Reino espera la restauración de Israel y la unidad de la Kehiláh en
+                        humildad y obediencia.</p>
+                </div>
+            </div>
+
+            <div class="explanation">
+                <h3>III. Aplicación Espiritual para Hoy</h3>
+                <ul>
+                    <li>La queja debilita el alma.</li>
+                    <li>La murmuración espiritual trae enfermedad.</li>
+                    <li>La humildad y la intercesión restauran.</li>
+                </ul>
+                <p>Yeshúa nos llama a vivir con gratitud por el pan del cielo, a respetar el liderazgo espiritual
+                    ordenado, y a ejercer misericordia aun cuando somos heridos.</p>
+            </div>
+
+            <div class="conclusion">
+                <h3>Conclusión</h3>
+                <p>La Aliyáh de Bemidbar 11:30–12:16 es una joya profética que revela a Yeshúa como:</p>
+                <ul>
+                    <li>El man vivo rechazado por muchos.</li>
+                    <li>El profeta superior a todos, confirmado por el cielo.</li>
+                    <li>El intercesor que ora por los rebeldes.</li>
+                    <li>El restaurador que espera a Israel fuera del campamento.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <h1>Punto 13 – Tefiláh de la Aliyáh</h1>
+            <h2>Números 11:30–12:16</h2>
+
+            <div class="prayer-text">
+                <p>Avínu Malkénu, Elohím de Abraham, Yitsjaq y Yaakov,<br>
+                    Tú que hablaste cara a cara con Moshé, y lo defendiste en santidad como tu siervo fiel,<br>
+                    Tú que enviaste tu man desde el cielo, y sin embargo el pueblo codició la carne del exilio,<br>
+                    Tú que mostraste tu juicio en la nube, y tu misericordia en la intercesión del justo...</p>
+
+                <p>Hoy nos acercamos a Ti, por los méritos de Yeshúa haMashíaj, tu Siervo sufriente y glorificado,<br>
+                    Aquel que es el man verdadero, el pan que descendió del cielo, el profeta más grande que Moshé,<br>
+                    El que fue despreciado, rechazado, y sin embargo intercedió por nosotros desde el madero.</p>
+
+                <p>Abba Qadosh,<br>
+                    Líbranos de murmurar contra tu provisión,<br>
+                    Guárdanos de despreciar tu Palabra viva,<br>
+                    Haznos sensibles al Ruaj haKodesh, para no codiciar las cosas de Egipto mientras caminamos hacia la
+                    tierra prometida.</p>
+
+                <p>Purifícanos como purificaste a Miryám,<br>
+                    Si nos has apartado fuera del campamento por causa de nuestra lengua o rebelión,<br>
+                    Te rogamos como lo hizo Moshé:<br>
+                    <strong>“El na, refá na lanu”</strong> – ¡Oh El, sáname, por favor!
+                </p>
+
+                <p>Que la humildad de Moshé sea nuestro ejemplo,<br>
+                    Y que el amor intercesor de Yeshúa arda en nuestros corazones,<br>
+                    Para que seamos un pueblo que no se detiene por pecado,<br>
+                    Sino que avanza en unidad y restauración hacia la gloria de tu promesa.</p>
+
+                <p>Haznos entender que no podemos movernos si un hermano sufre,<br>
+                    Y que solo cuando todos seamos restaurados, tu nube avanzará sobre nosotros nuevamente.</p>
+
+                <p class="prayer-conclusion">Bendito eres Tú, Adonái Tzevaot,<br>
+                    Que eres compasivo, lento para la ira y grande en misericordia.<br>
+                    Nos sometemos a tu juicio y abrazamos tu gracia.<br>
+                    <br>
+                    <strong>BaShem Yeshúa haMashíaj, Amen ve Amen.</strong>
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="../index.html">Ir al contenido de las 54 parashot</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
