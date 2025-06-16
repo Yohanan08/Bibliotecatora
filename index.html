@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contenido de las Parashot</title>
     <link rel="stylesheet" href="./Parashot.css">
 </head>
+
 <body>
 
     <div class="navbar">
@@ -33,19 +35,19 @@
             </div>
             <div class="sidebar-subtitle">Estudios y enseñanzas</div>
         </div>
-        
+
         <div class="sidebar-content">
             <div class="menu-section">
                 <a href="./Profesias-de-las-parashot/profesias-de-las-parashot.html" class="menu-item">
                     <span class="icon">🕎</span>
                     <span class="menu-text">Profecías mesiánicas de las 54 Parashot</span>
                 </a>
-                
+
                 <a href="./Estudios-a-la-Luz-del-Mashiaj/EstudiosalaluzdelmashiajYeshua.html" class="menu-item">
                     <span class="icon">🕎</span>
                     <span class="menu-text">Estudios a la luz de nuestro Adonai Yeshúa HaMashíaj</span>
                 </a>
-                
+
                 <a href="fiestas.html" class="menu-item">
                     <span class="icon">🕎</span>
                     <span class="menu-text">Fiestas del Eterno, bajo la luz de nuestro Adonai Yeshúa HaMashíaj</span>
@@ -63,6 +65,10 @@
         <h1><span class="torah-icon">📜</span> 54 PARASHOT</h1>
     </header>
 
+    <div class="search-bar">
+        <input type="text" id="buscador" placeholder="Buscar parashá por nombre...">
+    </div>
+
     <div class="container" id="contenedores">
         <!-- Los contenedores se generarán aquí con JavaScript -->
     </div>
@@ -71,12 +77,12 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>SHALOM* *ALEJEM</h2>
-            <p>Bienvenidos a este espacio de estudio y reflexión 
-                del Ministerio Judío Mesiánico. 
-                Nos sentimos honrados de tenerte con nosotros 
-                en este viaje de aprendizaje y crecimiento espiritual. 
-                Aquí, nos dedicamos a profundizar en las Escrituras Hebreas, 
-                explorando el Tanaj y el Brit Hadashá bajo la luz de 
+            <p>Bienvenidos a este espacio de estudio y reflexión
+                del Ministerio Judío Mesiánico.
+                Nos sentimos honrados de tenerte con nosotros
+                en este viaje de aprendizaje y crecimiento espiritual.
+                Aquí, nos dedicamos a profundizar en las Escrituras Hebreas,
+                explorando el Tanaj y el Brit Hadashá bajo la luz de
                 nuestro Adonai Yeshúa HaMashíaj.</p>
         </div>
     </div>
@@ -102,27 +108,37 @@
             div.classList.add("box");
             div.innerHTML = `
                 <p>${nombres[i]}</p>
-                <a href="parasha${i+1}.html" class="btn">Ir a ${nombres[i]}</a>
+                <a href="parasha${i + 1}.html" class="btn">Ir a ${nombres[i]}</a>
             `;
             contenedor.appendChild(div);
         }
 
-         // Obtener el modal y el botón de cierre
-         var modal = document.getElementById("miModal");
+       document.getElementById("buscador").addEventListener("input", function () {
+        const texto = this.value.toLowerCase();
+        const contenedores = document.querySelectorAll(".box");
+
+        contenedores.forEach(box => {
+            const parasha = box.textContent.toLowerCase();
+            box.style.display = parasha.includes(texto) ? "block" : "none";
+        });
+    });
+
+        // Obtener el modal y el botón de cierre
+        var modal = document.getElementById("miModal");
         var closeBtn = document.querySelector(".close");
 
         // Mostrar el modal automáticamente cuando se carga la página
-        window.onload = function() {
+        window.onload = function () {
             modal.style.display = "flex";
         };
 
         // Cerrar el modal al hacer clic en la "X"
-        closeBtn.onclick = function() {
+        closeBtn.onclick = function () {
             modal.style.display = "none";
         };
 
         // Cerrar el modal si el usuario hace clic fuera de él
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
             }
@@ -132,9 +148,9 @@
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
             const hamburgerBtn = document.getElementById('hamburgerBtn');
-            
+
             const isActive = sidebar.classList.contains('active');
-            
+
             if (isActive) {
                 closeSidebar();
             } else {
@@ -146,11 +162,11 @@
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
             const hamburgerBtn = document.getElementById('hamburgerBtn');
-            
+
             sidebar.classList.add('active');
             overlay.classList.add('active');
             hamburgerBtn.classList.add('active');
-            
+
             // Prevenir scroll del body cuando el menú está abierto
             document.body.style.overflow = 'hidden';
         }
@@ -159,17 +175,17 @@
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
             const hamburgerBtn = document.getElementById('hamburgerBtn');
-            
+
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
             hamburgerBtn.classList.remove('active');
-            
+
             // Restaurar scroll del body
             document.body.style.overflow = 'auto';
         }
 
         // Cerrar menú con tecla Escape
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') {
                 closeSidebar();
             }
@@ -184,4 +200,5 @@
     </script>
 
 </body>
+
 </html>
