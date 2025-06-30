@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los 150 Salmos - Aplicación Completa</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        select, input, button {
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .psalm-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .psalm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .psalm-title {
+            color: #667eea;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .psalm-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+
+        .copy-btn {
+            background: linear-gradient(45deg, #17a2b8, #138496);
+        }
+
+        .share-btn {
+            background: linear-gradient(45deg, #fd7e14, #dc3545);
+        }
+
+        .psalm-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #444;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .social-share {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 1000;
+            min-width: 300px;
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .facebook { background: #3b5998; }
+        .twitter { background: #1da1f2; }
+        .whatsapp { background: #25d366; }
+        .telegram { background: #0088cc; }
+        .linkedin { background: #0077b5; }
+        .pinterest { background: #bd081c; }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+        }
+
+        .audio-progress {
+            flex: 1;
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .audio-progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        @media (max-width: 768px) {
+            .controls-row {
+                flex-direction: column;
+            }
+            
+            .psalm-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Soporte para idiomas RTL (Árabe y Hebreo) */
+        .psalm-card[dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .psalm-card[dir="rtl"] .psalm-content {
+            text-align: right;
+        }
+
+        .psalm-card[dir="rtl"] .psalm-header {
+            flex-direction: row-reverse;
+        }
+
+        .psalm-card[dir="rtl"] .psalm-actions {
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-book-open" style="margin-right: 15px;"></i>Los 150 Salmos</h1>
+            <p>Aplicación completa con traducción, audio y compartir</p>
+        </header>
+
+        <div class="controls">
+            <div class="controls-row">
+                <select id="languageSelect">
+                    <option value="es">Español</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="it">Italiano</option>
+                    <option value="pt">Português</option>
+                    <option value="ru">Русский</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ar">العربية</option>
+                    <option value="he">עברית (Hebrew)</option>
+                </select>
+
+                <select id="psalmSelect">
+                    <option value="">Seleccionar Salmo</option>
+                </select>
+
+                <input type="text" id="searchInput" placeholder="Buscar en salmos...">
+                
+                <button onclick="translateAll()">
+                    <i class="fas fa-language"></i> Traducir Todo
+                </button>
+                
+                <button onclick="showRandomPsalm()">
+                    <i class="fas fa-random"></i> Salmo Aleatorio
+                </button>
+            </div>
+        </div>
+
+        <div id="psalmsContainer">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i> Cargando salmos...
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para compartir -->
+    <div class="overlay" id="shareOverlay" onclick="closeShareModal()"></div>
+    <div class="social-share" id="shareModal">
+        <button class="close-btn" onclick="closeShareModal()">&times;</button>
+        <h3>Compartir Salmo</h3>
+        <div class="social-buttons">
+            <a href="#" class="social-btn facebook" onclick="shareOn('facebook')">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="#" class="social-btn twitter" onclick="shareOn('twitter')">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <a href="#" class="social-btn whatsapp" onclick="shareOn('whatsapp')">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="social-btn telegram" onclick="shareOn('telegram')">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+            <a href="#" class="social-btn linkedin" onclick="shareOn('linkedin')">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="#" class="social-btn pinterest" onclick="shareOn('pinterest')">
+                <i class="fab fa-pinterest"></i> Pinterest
+            </a>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Base de datos de salmos (primeros 5 como ejemplo)
+        const psalmsData = {
+            1: {
+                title: "Salmo 1 - Los dos caminos",
+                content: "Bienaventurado el varón que no anduvo en consejo de malos, ni estuvo en camino de pecadores, ni en silla de escarnecedores se ha sentado; sino que en la ley de Jehová está su delicia, y en su ley medita de día y de noche. Será como árbol plantado junto a corrientes de aguas, que da su fruto en su tiempo, y su hoja no cae; y todo lo que hace, prosperará. No así los malos, que son como el tamo que arrebata el viento. Por tanto, no se levantarán los malos en el juicio, ni los pecadores en la congregación de los justos. Porque Jehová conoce el camino de los justos; mas la senda de los malos perecerá."
+            },
+            2: {
+                title: "Salmo 2 - El reino del Mesías",
+                content: "¿Por qué se amotinan las gentes, y los pueblos piensan cosas vanas? Se levantarán los reyes de la tierra, y príncipes consultarán unidos contra Jehová y contra su ungido, diciendo: Rompamos sus ligaduras, y echemos de nosotros sus cuerdas. El que mora en los cielos se reirá; el Señor se burlará de ellos. Luego hablará a ellos en su furor, y los turbará con su ira. Pero yo he puesto mi rey sobre Sion, mi santo monte."
+            },
+            3: {
+                title: "Salmo 3 - Oración matutina de confianza en Dios",
+                content: "Oh Jehová, ¡cuánto se han multiplicado mis adversarios! Muchos son los que se levantan contra mí. Muchos son los que dicen de mi alma: No hay para él salvación en Dios. Mas tú, Jehová, eres escudo alrededor de mí; mi gloria, y el que levanta mi cabeza. Con mi voz clamé a Jehová, y él me respondió desde su monte santo. Yo me acosté y dormí, y desperté, porque Jehová me sustentaba."
+            },
+            4: {
+                title: "Salmo 4 - Oración vespertina de confianza en Dios",
+                content: "Respóndeme cuando clamo, oh Dios de mi justicia. Cuando estaba en angustia, tú me hiciste ensanchar; ten misericordia de mí, y oye mi oración. Hijos de los hombres, ¿hasta cuándo volveréis mi honra en infamia, amaréis la vanidad, y buscaréis la mentira? Sabed, pues, que Jehová ha escogido al piadoso para sí; Jehová oirá cuando yo a él clamare."
+            },
+            5: {
+                title: "Salmo 5 - Oración pidiendo protección",
+                content: "Escucha mis palabras, oh Jehová; considera mi gemir. Está atento a la voz de mi clamor, Rey mío y Dios mío, porque a ti oraré. Oh Jehová, de mañana oirás mi voz; de mañana me presentaré delante de ti, y esperaré. Porque tú no eres un Dios que se complace en la maldad; el malo no habitará junto a ti."
+            }
+        };
+
+        let currentLanguage = 'es';
+        let currentPsalm = null;
+        let allPsalms = {};
+        let audioContext = null;
+
+        // Inicializar la aplicación
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePsalms();
+            populatePsalmSelect();
+            setupEventListeners();
+            displayAllPsalms();
+        });
+
+        function initializePsalms() {
+            // Generar los 150 salmos con contenido base
+            for (let i = 1; i <= 150; i++) {
+                if (!psalmsData[i]) {
+                    psalmsData[i] = {
+                        title: `Salmo ${i}`,
+                        content: `Contenido del Salmo ${i}. Este es un texto de ejemplo que representa el contenido bíblico del salmo número ${i}. En una implementación completa, aquí estaría el texto completo de cada salmo.`
+                    };
+                }
+            }
+            allPsalms = { ...psalmsData };
+        }
+
+        function populatePsalmSelect() {
+            const select = document.getElementById('psalmSelect');
+            for (let i = 1; i <= 150; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Salmo ${i}`;
+                select.appendChild(option);
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('languageSelect').addEventListener('change', handleLanguageChange);
+            document.getElementById('psalmSelect').addEventListener('change', handlePsalmSelect);
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+        }
+
+        function handleLanguageChange() {
+            currentLanguage = document.getElementById('languageSelect').value;
+            if (Object.keys(allPsalms).length > 0) {
+                translateAll();
+            }
+        }
+
+        function handlePsalmSelect() {
+            const selectedPsalm = document.getElementById('psalmSelect').value;
+            if (selectedPsalm) {
+                displaySinglePsalm(parseInt(selectedPsalm));
+            } else {
+                displayAllPsalms();
+            }
+        }
+
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm.trim() === '') {
+                displayAllPsalms();
+                return;
+            }
+
+            const filteredPsalms = {};
+            Object.keys(allPsalms).forEach(key => {
+                const psalm = allPsalms[key];
+                if (psalm.title.toLowerCase().includes(searchTerm) || 
+                    psalm.content.toLowerCase().includes(searchTerm)) {
+                    filteredPsalms[key] = psalm;
+                }
+            });
+
+            displayPsalms(filteredPsalms);
+        }
+
+        async function translateAll() {
+    showLoading();
+
+    try {
+        const translatedPsalms = {};
+        const batchSize = 5;  // traducir en tandas de 5 para evitar saturar la API
+        const keys = Object.keys(psalmsData);
+
+        for (let i = 0; i < keys.length; i += batchSize) {
+            const batch = keys.slice(i, i + batchSize);
+
+            const batchPromises = batch.map(async (key) => {
+                const psalm = psalmsData[key];
+
+                let translatedTitle, translatedContent;
+
+                try {
+                    [translatedTitle, translatedContent] = await Promise.all([
+                        translateText(psalm.title, currentLanguage),
+                        translateText(psalm.content, currentLanguage)
+                    ]);
+                } catch (e) {
+                    console.warn(`Fallo en API para Salmo ${key}, usando localTranslate`);
+                    translatedTitle = await localTranslate(psalm.title, currentLanguage);
+                    translatedContent = await localTranslate(psalm.content, currentLanguage);
+                }
+
+                return { key, psalm: { title: translatedTitle, content: translatedContent } };
+            });
+
+            const batchResults = await Promise.all(batchPromises);
+
+            batchResults.forEach(({ key, psalm }) => {
+                translatedPsalms[key] = psalm;
+            });
+
+            // Mostrar progreso
+            const progress = Math.round(((i + batchSize) / keys.length) * 100);
+            document.getElementById('psalmsContainer').innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Traduciendo salmos... ${progress}%
+                </div>
+            `;
+        }
+
+        allPsalms = translatedPsalms;
+        displayAllPsalms();
+        showNotification(`Salmos traducidos a ${getLanguageName(currentLanguage)}`);
+
+    } catch (error) {
+        console.error('Error general durante la traducción:', error);
+        showNotification('Error durante la traducción. Se usará contenido original.', 'error');
+        displayAllPsalms();
+    }
+}
+
+        function getLanguageName(code) {
+            const names = {
+                'es': 'Español',
+                'en': 'English',
+                'fr': 'Français',
+                'de': 'Deutsch',
+                'it': 'Italiano',
+                'pt': 'Português',
+                'ru': 'Русский',
+                'zh': '中文',
+                'ja': '日本語',
+                'ar': 'العربية'
+            };
+            return names[code] || code;
+        }
+
+        async function translateText(text, targetLang) {
+            if (targetLang === 'es') return text;
+            
+            try {
+                // Usar API de traducción gratuita de MyMemory
+                const response = await fetch(
+                    `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=es|${targetLang}`
+                );
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.responseStatus === 200 && data.responseData) {
+                        return data.responseData.translatedText;
+                    }
+                }
+            } catch (error) {
+                console.warn('Error con API de traducción, usando traducción local:', error);
+            }
+
+            // Fallback con traducción local mejorada
+            return await localTranslate(text, targetLang);
+        }
+
+        async function localTranslate(text, targetLang) {
+            // Diccionario más completo para traducción local
+            const translations = {
+                en: {
+                    // Títulos
+                    'Salmo': 'Psalm',
+                    'Los dos caminos': 'The Two Ways',
+                    'El reino del Mesías': 'The Kingdom of the Messiah',
+                    'Oración matutina de confianza en Dios': 'Morning Prayer of Trust in God',
+                    'Oración vespertina de confianza en Dios': 'Evening Prayer of Trust in God',
+                    'Oración pidiendo protección': 'Prayer Asking for Protection',
+                    
+                    // Palabras comunes bíblicas
+                    'Bienaventurado': 'Blessed',
+                    'Jehová': 'Lord',
+                    'Dios': 'God',
+                    'alma': 'soul',
+                    'corazón': 'heart',
+                    'oración': 'prayer',
+                    'pueblo': 'people',
+                    'tierra': 'earth',
+                    'cielo': 'heaven',
+                    'justicia': 'righteousness',
+                    'misericordia': 'mercy',
+                    'salvación': 'salvation',
+                    'paz': 'peace',
+                    'amor': 'love',
+                    'gloria': 'glory',
+                    'santo': 'holy',
+                    'bendición': 'blessing',
+                    'rey': 'king',
+                    'señor': 'lord',
+                    'enemigo': 'enemy',
+                    'enemigos': 'enemies',
+                    'monte': 'mountain',
+                    'agua': 'water',
+                    'aguas': 'waters',
+                    'viento': 'wind',
+                    'luz': 'light',
+                    'tinieblas': 'darkness',
+                    'camino': 'way',
+                    'sendero': 'path',
+                    'vida': 'life',
+                    'muerte': 'death',
+                    'eternidad': 'eternity',
+                    'para siempre': 'forever'
+                },
+                fr: {
+                    'Salmo': 'Psaume',
+                    'Los dos caminos': 'Les Deux Voies',
+                    'El reino del Mesías': 'Le Royaume du Messie',
+                    'Oración matutina de confianza en Dios': 'Prière matinale de confiance en Dieu',
+                    'Oración vespertina de confianza en Dios': 'Prière du soir de confiance en Dieu',
+                    'Oración pidiendo protección': 'Prière demandant protection',
+                    
+                    'Bienaventurado': 'Bienheureux',
+                    'Jehová': 'Éternel',
+                    'Dios': 'Dieu',
+                    'alma': 'âme',
+                    'corazón': 'coeur',
+                    'oración': 'prière',
+                    'pueblo': 'peuple',
+                    'tierra': 'terre',
+                    'cielo': 'ciel',
+                    'justicia': 'justice',
+                    'misericordia': 'miséricorde',
+                    'salvación': 'salut',
+                    'paz': 'paix',
+                    'amor': 'amour',
+                    'gloria': 'gloire',
+                    'santo': 'saint',
+                    'rey': 'roi',
+                    'señor': 'seigneur',
+                    'enemigo': 'ennemi',
+                    'enemigos': 'ennemis'
+                },
+                de: {
+                    'Salmo': 'Psalm',
+                    'Jehová': 'Herr',
+                    'Dios': 'Gott',
+                    'alma': 'Seele',
+                    'corazón': 'Herz',
+                    'oración': 'Gebet',
+                    'pueblo': 'Volk',
+                    'tierra': 'Erde',
+                    'cielo': 'Himmel',
+                    'justicia': 'Gerechtigkeit',
+                    'paz': 'Frieden',
+                    'amor': 'Liebe',
+                    'gloria': 'Herrlichkeit'
+                },
+                it: {
+                    'Salmo': 'Salmo',
+                    'Jehová': 'Signore',
+                    'Dios': 'Dio',
+                    'alma': 'anima',
+                    'corazón': 'cuore',
+                    'oración': 'preghiera',
+                    'pueblo': 'popolo',
+                    'tierra': 'terra',
+                    'cielo': 'cielo',
+                    'justicia': 'giustizia',
+                    'paz': 'pace',
+                    'amor': 'amore',
+                    'gloria': 'gloria'
+                },
+                pt: {
+                    'Salmo': 'Salmo',
+                    'Jehová': 'Senhor',
+                    'Dios': 'Deus',
+                    'alma': 'alma',
+                    'corazón': 'coração',
+                    'oración': 'oração',
+                    'pueblo': 'povo',
+                    'tierra': 'terra',
+                    'cielo': 'céu',
+                    'justicia': 'justiça',
+                    'paz': 'paz',
+                    'amor': 'amor',
+                    'gloria': 'glória'
+                },
+                he: {
+                    'Salmo': 'תהילים',
+                    'Los dos caminos': 'שני הדרכים',
+                    'El reino del Mesías': 'מלכות המשיח',
+                    'Oración matutina de confianza en Dios': 'תפילת בוקר של אמונה באלוהים',
+                    'Oración vespertina de confianza en Dios': 'תפילת ערב של אמונה באלוהים',
+                    'Oración pidiendo protección': 'תפילה לבקשת הגנה',
+                    
+                    'Bienaventurado': 'אשרי',
+                    'Jehová': 'יהוה',
+                    'Dios': 'אלוהים',
+                    'alma': 'נשמה',
+                    'corazón': 'לב',
+                    'oración': 'תפילה',
+                    'pueblo': 'עם',
+                    'tierra': 'ארץ',
+                    'cielo': 'שמים',
+                    'justicia': 'צדק',
+                    'misericordia': 'רחמים',
+                    'salvación': 'ישועה',
+                    'paz': 'שלום',
+                    'amor': 'אהבה',
+                    'gloria': 'כבוד',
+                    'santo': 'קדוש',
+                    'bendición': 'ברכה',
+                    'rey': 'מלך',
+                    'señor': 'אדון',
+                    'enemigo': 'אויב',
+                    'enemigos': 'אויבים',
+                    'monte': 'הר',
+                    'agua': 'מים',
+                    'aguas': 'מים',
+                    'viento': 'רוח',
+                    'luz': 'אור',
+                    'tinieblas': 'חושך',
+                    'camino': 'דרך',
+                    'sendero': 'נתיב',
+                    'vida': 'חיים',
+                    'muerte': 'מוות',
+                    'eternidad': 'נצח',
+                    'para siempre': 'לעולם'
+                }
+            };
+
+            let translatedText = text;
+            
+            if (translations[targetLang]) {
+                // Ordenar por longitud descendente para evitar traducciones parciales
+                const sortedKeys = Object.keys(translations[targetLang])
+                    .sort((a, b) => b.length - a.length);
+                
+                sortedKeys.forEach(key => {
+                    const regex = new RegExp(`\\b${key}\\b`, 'gi');
+                    translatedText = translatedText.replace(regex, translations[targetLang][key]);
+                });
+            }
+            
+            return translatedText;
+        }
+
+        function showLoading() {
+            document.getElementById('psalmsContainer').innerHTML = `
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Traduciendo salmos...
+                    <br><small>Esto puede tomar unos segundos</small>
+                </div>
+            `;
+        }
+
+        function displayAllPsalms() {
+            displayPsalms(allPsalms);
+        }
+
+        function displaySinglePsalm(psalmNumber) {
+            const psalm = {};
+            psalm[psalmNumber] = allPsalms[psalmNumber];
+            displayPsalms(psalm);
+        }
+
+        function displayPsalms(psalms) {
+            const container = document.getElementById('psalmsContainer');
+            container.innerHTML = '';
+
+            Object.keys(psalms).forEach(key => {
+                const psalm = psalms[key];
+                const psalmCard = createPsalmCard(key, psalm);
+                container.appendChild(psalmCard);
+            });
+        }
+
+        function createPsalmCard(psalmNumber, psalm) {
+            const card = document.createElement('div');
+            card.className = 'psalm-card';
+            
+            // Agregar dirección RTL para hebreo y árabe
+            if (currentLanguage === 'he' || currentLanguage === 'ar') {
+                card.setAttribute('dir', 'rtl');
+            }
+            
+            card.innerHTML = `
+                <div class="psalm-header">
+                    <h2 class="psalm-title">${psalm.title}</h2>
+                    <div class="psalm-actions">
+                        <button class="action-btn play-btn" onclick="playPsalm(${psalmNumber})">
+                            <i class="fas fa-play"></i> ${currentLanguage === 'he' ? 'השמע' : currentLanguage === 'ar' ? 'استمع' : 'Escuchar'}
+                        </button>
+                        <button class="action-btn copy-btn" onclick="copyPsalm(${psalmNumber})">
+                            <i class="fas fa-copy"></i> ${currentLanguage === 'he' ? 'העתק' : currentLanguage === 'ar' ? 'نسخ' : 'Copiar'}
+                        </button>
+                        <button class="action-btn share-btn" onclick="openShareModal(${psalmNumber})">
+                            <i class="fas fa-share-alt"></i> ${currentLanguage === 'he' ? 'שתף' : currentLanguage === 'ar' ? 'شارك' : 'Compartir'}
+                        </button>
+                    </div>
+                </div>
+                <div class="psalm-content" id="psalm-${psalmNumber}">
+                    ${psalm.content}
+                </div>
+                <div class="audio-controls" id="audio-controls-${psalmNumber}" style="display: none;">
+                    <button onclick="togglePlayPause(${psalmNumber})" id="play-pause-${psalmNumber}">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <div class="audio-progress">
+                        <div class="audio-progress-bar" id="progress-${psalmNumber}"></div>
+                    </div>
+                    <span id="time-${psalmNumber}">0:00 / 0:00</span>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function showRandomPsalm() {
+            const randomPsalm = Math.floor(Math.random() * 150) + 1;
+            document.getElementById('psalmSelect').value = randomPsalm;
+            displaySinglePsalm(randomPsalm);
+            showNotification(`Mostrando Salmo ${randomPsalm} aleatorio`);
+        }
+
+        async function playPsalm(psalmNumber) {
+            const psalm = allPsalms[psalmNumber];
+            const audioControls = document.getElementById(`audio-controls-${psalmNumber}`);
+            
+            audioControls.style.display = 'flex';
+            
+            // Simular reproducción de audio usando Speech Synthesis API
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(psalm.content);
+                utterance.lang = getLanguageCode(currentLanguage);
+                utterance.rate = 0.8;
+                utterance.pitch = 1;
+                
+                utterance.onstart = () => {
+                    updatePlayButton(psalmNumber, true);
+                    simulateProgress(psalmNumber, psalm.content.length * 50); // Estimación de duración
+                };
+                
+                utterance.onend = () => {
+                    updatePlayButton(psalmNumber, false);
+                    document.getElementById(`audio-controls-${psalmNumber}`).style.display = 'none';
+                };
+                
+                speechSynthesis.speak(utterance);
+                showNotification('Reproduciendo audio del salmo');
+            } else {
+                showNotification('Audio no disponible en este navegador', 'error');
+            }
+        }
+
+        function getLanguageCode(lang) {
+            const codes = {
+                'es': 'es-ES',
+                'en': 'en-US',
+                'fr': 'fr-FR',
+                'de': 'de-DE',
+                'it': 'it-IT',
+                'pt': 'pt-BR',
+                'ru': 'ru-RU',
+                'zh': 'zh-CN',
+                'ja': 'ja-JP',
+                'ar': 'ar-SA',
+                'he': 'he-IL'
+            };
+            return codes[lang] || 'es-ES';
+        }
+
+        function updatePlayButton(psalmNumber, isPlaying) {
+            const button = document.getElementById(`play-pause-${psalmNumber}`);
+            button.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
+        }
+
+        function togglePlayPause(psalmNumber) {
+            if (speechSynthesis.speaking) {
+                if (speechSynthesis.paused) {
+                    speechSynthesis.resume();
+                    updatePlayButton(psalmNumber, true);
+                } else {
+                    speechSynthesis.pause();
+                    updatePlayButton(psalmNumber, false);
+                }
+            }
+        }
+
+        function simulateProgress(psalmNumber, duration) {
+            const progressBar = document.getElementById(`progress-${psalmNumber}`);
+            const timeDisplay = document.getElementById(`time-${psalmNumber}`);
+            let currentTime = 0;
+            
+            const interval = setInterval(() => {
+                if (!speechSynthesis.speaking) {
+                    clearInterval(interval);
+                    return;
+                }
+                
+                currentTime += 100;
+                const progress = (currentTime / duration) * 100;
+                progressBar.style.width = `${Math.min(progress, 100)}%`;
+                
+                const minutes = Math.floor(currentTime / 60000);
+                const seconds = Math.floor((currentTime % 60000) / 1000);
+                const totalMinutes = Math.floor(duration / 60000);
+                const totalSeconds = Math.floor((duration % 60000) / 1000);
+                
+                timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')} / ${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+            }, 100);
+        }
+
+        function copyPsalm(psalmNumber) {
+            const psalm = allPsalms[psalmNumber];
+            const textToCopy = `${psalm.title}\n\n${psalm.content}`;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showNotification('Salmo copiado al portapapeles');
+            }).catch(() => {
+                // Fallback para navegadores que no soportan clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showNotification('Salmo copiado al portapapeles');
+            });
+        }
+
+        function openShareModal(psalmNumber) {
+            currentPsalm = psalmNumber;
+            document.getElementById('shareOverlay').style.display = 'block';
+            document.getElementById('shareModal').style.display = 'block';
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareOverlay').style.display = 'none';
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        function shareOn(platform) {
+            if (!currentPsalm) return;
+            
+            const psalm = allPsalms[currentPsalm];
+            const shareText = `${psalm.title}\n\n${psalm.content.substring(0, 200)}...`;
+            const shareUrl = window.location.href;
+            
+            const urls = {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`,
+                twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+                whatsapp: `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`,
+                telegram: `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`,
+                linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+                pinterest: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(shareUrl)}&description=${encodeURIComponent(shareText)}`
+            };
+            
+            if (urls[platform]) {
+                window.open(urls[platform], '_blank', 'width=600,height=400');
+                closeShareModal();
+                showNotification(`Compartiendo en ${platform.charAt(0).toUpperCase() + platform.slice(1)}`);
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification show ${type}`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Atajos de teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'f':
+                        e.preventDefault();
+                        document.getElementById('searchInput').focus();
+                        break;
+                    case 'r':
+                        e.preventDefault();
+                        showRandomPsalm();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
