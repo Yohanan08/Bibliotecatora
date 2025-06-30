@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Santidad</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <div class="content-container">
+            <h1>📜 Fundamentos Bíblicos Sobre Pureza Sexual y Dominio Propio</h1>
+
+            <div class="content-container">
+        <h2>📜 1. Fundamentos en la Toráh</h2>
+        
+        <div class="section-container">
+            <p>Aunque la Toráh <strong>no menciona explícitamente</strong> la palabra "masturbación", nos da <strong>principios muy claros</strong>:</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">a)</span> Santidad del zéra' זֶרַע (semilla)</div>
+                <ul>
+                    <li>El semen es portador de <strong>vida</strong>, bendición y pacto:</li>
+                    <div class="scripture">"Bendeciré tu simiente (זַרְעֲךָ zār'aḵā)" (Bereshit 22:17)</div>
+                    <li>Por eso, incluso su <strong>emisión natural</strong> requería inmersión (Vayikrá 15:16–18):</li>
+                    <div class="scripture">"Y quedará impuro hasta la tarde" – muestra que el zéra' no es algo vulgar, sino algo consagrado.</div>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">b)</span> El caso de Onán – Bereshit (Génesis) 38:9–10</div>
+                <div class="scripture">"Y sabiendo Onán que la descendencia no sería suya, sucedía que cuando se llegaba a la mujer de su hermano, derramaba en tierra para no dar descendencia a su hermano. Y fue malo ante los ojos de Adonái יהוה, y Él le quitó la vida."</div>
+                <ul>
+                    <li>Onán <strong>interrumpe el propósito</strong> divino del zéra'.</li>
+                    <li>El pecado no es solo "masturbación" sino <strong>vaciar la semilla para fines egoístas</strong>, sin cumplir el diseño del Creador.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">c)</span> Znut זְנוּת – inmoralidad sexual</div>
+                <p>La Toráh condena toda forma de <strong>inmoralidad sexual</strong>, que incluye:</p>
+                <ul>
+                    <li>Relación fuera del pacto matrimonial.</li>
+                    <li>Uso egoísta del propio cuerpo para placer separado del propósito divino.</li>
+                </ul>
+                <div class="scripture">"No contaminarás tu tierra con prostitución" (Devarim 23:17)</div>
+                <div class="scripture">"No habrá ramera de las hijas de Israel"</div>
+                <p>La masturbación, aunque no implique otro cuerpo, se basa en el <strong>ego</strong>, apartada del diseño de Elohím.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h2>✡ 2. En el Tanaj – pureza interior</h2>
+        
+        <div class="scripture">"¿Con qué limpiará el joven su camino? Con guardar Tu palabra" (Tehilim / Salmos 119:9)</div>
+        
+        <p>La pureza sexual no es solo externa, sino interior:</p>
+        <div class="scripture">"Examina mi corazón, pruébame" (Salmos 26:2)</div>
+        
+        <p>Y:</p>
+        <div class="scripture">"Sea grato delante de Ti el meditar de mi corazón" (Salmos 19:14)</div>
+        
+        <p>Esto incluye <strong>pensamientos, fantasías y deseos</strong> que llevan a la masturbación.</p>
+    </div>
+
+    <div class="content-container">
+        <h2>🕊 3. Solución y esperanza en el Mashíaj Yeshúa</h2>
+        
+        <p>El Brit Hadasháh enseña:</p>
+        <div class="scripture">"Porque esta es la voluntad de Elohím: vuestra santificación; que os apartéis de la inmoralidad sexual" (1 Tesalonicenses 4:3)</div>
+        
+        <p>Yeshúa va más allá:</p>
+        <div class="scripture">"El que mira a una mujer para codiciarla, ya adulteró con ella en su corazón" (Mattityahu 5:28)</div>
+        
+        <p>Esto incluye la <strong>fantasía sexual</strong> que suele acompañar la masturbación.</p>
+        
+        <div class="prophetic-section">
+            <div class="prophetic-title">✅ En el Mashíaj:</div>
+            <ul>
+                <li>Recibimos <strong>perdón</strong> por faltas pasadas.</li>
+                <li>Recibimos el <strong>Ruaj Hakodesh</strong> para dominio propio.</li>
+                <li>Nuestra sexualidad es redimida y enfocada a la santidad:</li>
+            </ul>
+            <div class="scripture">"¿No sabéis que vuestro cuerpo es templo del Ruaj Hakodesh?" (1 Corintios 6:19)</div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h2>🔑 4. Resumen</h2>
+        
+        <ul>
+            <li>La Toráh no menciona "masturbación", pero sí establece:
+                <ul>
+                    <li>✡ El zéra' tiene un propósito santo (vida, pacto, bendición).</li>
+                    <li>✡ Usarlo solo para placer egoísta rompe ese propósito → inmoralidad.</li>
+                </ul>
+            </li>
+            <li>El Tanaj enseña: pureza interior, dominio de pensamientos y deseos.</li>
+            <li>En Yeshúa encontramos:
+                <ul>
+                    <li>Perdón por pecados sexuales.</li>
+                    <li>Fuerza para vivir en pureza.</li>
+                    <li>Restauración del propósito divino del cuerpo.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>📜 Versículos Específicos de Apoyo</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">📜 1. Bereshit (Génesis) 22:17</div>
+            <div class="scripture">"Multiplicaré tu zéra' (semilla) como las estrellas del cielo"</div>
+            <p>El <strong>zéra'</strong> (semen, descendencia) tiene un <strong>propósito sagrado</strong>: continuar la vida, cumplir el pacto de Elohím y reflejar Su bendición. No fue dado solo para placer, sino para vida y pacto.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">📜 2. Vayikrá (Levítico) 15:16–18</div>
+            <div class="scripture">"El hombre que tenga emisión de semen lavará todo su cuerpo con agua y quedará impuro hasta la tarde"</div>
+            <p>Incluso en el marco legítimo (matrimonio), la Toráh muestra que el zéra' implica algo <strong>santo</strong>. Su uso produce <strong>impureza ritual temporal</strong>, indicando que no es cosa vulgar, sino que debe tratarse con respeto.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">📜 3. Devarim (Deuteronomio) 23:17</div>
+            <div class="scripture">"No habrá ramera de las hijas de Israel, ni sodomita de los hijos de Israel"</div>
+            <p>Todo uso sexual que no esté unido al <strong>propósito santo del pacto</strong> es visto como <strong>znut (inmoralidad sexual)</strong>, algo que contamina al pueblo.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">📜 4. Tehilim (Salmos) 26:2</div>
+            <div class="scripture">"Examíname, יהוה, y pruébame; escudriña mis entrañas y mi corazón"</div>
+            <p>La pureza no es solo exterior, sino <strong>interior</strong>: pensamientos, deseos, fantasías. El que practica masturbación normalmente acompaña el acto con pensamientos que rompen esa pureza interior.</p>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">📜 5. Salmos 19:14</div>
+            <div class="scripture">"Sean gratos los dichos de mi boca y la meditación de mi corazón delante de Ti, יהוה, roca mía y redentor mío"</div>
+            <p>El Eterno desea que incluso lo que imaginamos o deseamos sea limpio y santo.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <div class="prophetic-title">✡ 6. En el Mashíaj – el Brit Hadasháh</div>
+            
+            <div class="verse-container">
+                <div class="verse-number">📖 1 Tesalonicenses 4:3</div>
+                <div class="scripture">"Esta es la voluntad de Elohím: vuestra santificación; que os apartéis de la inmoralidad sexual"</div>
+                <p>El uso egoísta del zéra' (masturbación) forma parte de lo que la Escritura llama <strong>inmoralidad sexual</strong> (<em>porneia</em>), aunque sea individual.</p>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">📖 Mattityahu (Mateo) 5:28</div>
+                <div class="scripture">"Cualquiera que mira a una mujer para codiciarla, ya adulteró con ella en su corazón"</div>
+                <p>Muestra que no solo el acto físico cuenta, sino también <strong>la fantasía y la intención del corazón</strong>, que casi siempre acompañan la masturbación.</p>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">📖 1 Corintios 6:19</div>
+                <div class="scripture">"¿No sabéis que vuestro cuerpo es templo del Ruaj Hakodesh?"</div>
+                <p>El cuerpo, y lo que hacemos con él, tiene que reflejar la <strong>santidad de Elohím</strong>, no solo buscar placer aislado.</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <div class="prophetic-title">✅ Resumen breve:</div>
+            <ul>
+                <li>El zéra' fue dado para vida y bendición (Bereshit).</li>
+                <li>Su uso requiere respeto ritual (Vayikrá).</li>
+                <li>Desviarlo del propósito es inmoralidad sexual (Devarim).</li>
+                <li>La pureza verdadera incluye mente y corazón (Salmos).</li>
+                <li>En Mashíaj, somos llamados a santificación y a ver el cuerpo como templo.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>🙏 Tefiláh por santidad sexual y dominio propio</h2>
+        
+        <div class="prayer-text">
+            Adonái יהוה, Creador de mi cuerpo y mi alma,<br>
+            Tú que formaste mi ser en secreto y soplaste aliento de vida en mí,<br>
+            Reconozco delante de Ti que el zéra' que colocaste en mí no me pertenece, sino que es Tuyo,<br>
+            creado para la bendición, el pacto y la vida.<br><br>
+
+            Perdóname, oh Elohím, por todo uso egoísta y desordenado de mi cuerpo,<br>
+            Por cada pensamiento y mirada que me ha apartado de Tu camino,<br>
+            Por cada vez que he deshonrado el propósito santo de Tu don.<br><br>
+
+            Purifícame según Tu promesa:<br>
+            <em>"Y esparciré sobre vosotros agua pura, y seréis purificados"</em> (Yejezkel 36:25)<br><br>
+
+            Renueva mi mente y mi corazón,<br>
+            Para que no busque placer lejos de Tu voluntad,<br>
+            Sino que encuentre gozo verdadero en la obediencia y en Tu presencia.<br><br>
+
+            Fortaléceme, Ruaj Hakodesh, para dominar mi cuerpo en santidad,<br>
+            Haz que mi corazón tema ofenderte más que desee saciarse,<br>
+            Recuérdame que soy templo donde Tú habitas,<br>
+            Y que fui comprado con sangre preciosa, la sangre de Yeshúa haMashíaj.<br><br>
+
+            Quiero que mi semilla sea bendición y no maldición,<br>
+            Que mis pensamientos sean limpios como el agua viva,<br>
+            Y que mi vida refleje Tu luz en un mundo que no conoce pureza.<br><br>
+
+            Gracias, Mashíaj Yeshúa, porque en Ti hay perdón,<br>
+            Y en Tu poder, libertad para vivir en Kedusháh.<br><br>
+
+            Sea Tu Nombre, Adonái יהוה, exaltado en mi vida,<br>
+            Hoy y siempre. Amén.
+        </div>
+    </div>
+
+            <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia
+                        Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a>
+                </p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
