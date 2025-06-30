@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>Parasháh #35: Nasó (נָשֹׂא) – “Eleva / Levanta”</h1>
+        <div class="section-container">
+            <p>📖 <strong>Bemidbar / Números 4:21–7:89</strong></p>
+            <p>Aunque esta parasháh no contiene profecías mesiánicas directas como Isaías, encontramos sombras y figuras
+                que apuntan a Yeshúa haMashíaj y Su obra redentora.</p>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title"> Profecía / Sombra mesiánica #1: La Ley del Nazir (נָזִיר)</div>
+                <div class="scripture">Números 6:1–21</div>
+                <p><strong>Contexto y significado:</strong> El Nazir se apartaba para Elohím, absteniéndose de vino y no
+                    cortándose el cabello, como señal de consagración.</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Yeshúa vivió una vida totalmente consagrada y santa. Su
+                    dedicación superó la del Nazir, y su “corona” (נֵזֶר – nezer) conecta con Su título de Mashíaj, el
+                    Ungido.</p>
+                <p><strong>Aplicación espiritual:</strong> Somos llamados a vivir vidas apartadas, reflejando la
+                    santidad del Mashíaj.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"> Profecía / Sombra mesiánica #2: La bendición sacerdotal (ברכת כהנים)</div>
+                <div class="scripture">Números 6:22–27</div>
+                <p>«Adonái te bendiga y te guarde… Adonái haga resplandecer Su rostro sobre ti…»</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Yeshúa es el rostro de Elohím que resplandece sobre
+                    nosotros. Él mismo es nuestra paz (Efesios 2:14).</p>
+                <p><strong>Aplicación espiritual:</strong> En el Mashíaj recibimos gracia, protección y Shalom
+                    verdadero.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"> Profecía / Sombra mesiánica #3: La dedicación del altar</div>
+                <div class="scripture">Números 7:1–89</div>
+                <p><strong>Contexto y significado:</strong> Los príncipes de Israel trajeron ofrendas idénticas,
+                    mostrando unidad.</p>
+                <p><strong>Cumplimiento mesiánico:</strong> El altar representa la obra redentora de Yeshúa, Su
+                    sacrificio perfecto ofrecido una vez.</p>
+                <p><strong>Aplicación espiritual:</strong> Así como el altar fue ungido y santificado, el sacrificio del
+                    Mashíaj nos santifica.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"> Profecía / Sombra mesiánica #4: La ley del celo y el voto de restitución
+                </div>
+                <div class="scripture">Números 5:5–31</div>
+                <p><strong>Contexto y significado:</strong> La ley del celo trataba sobre sospecha de infidelidad; la
+                    restitución restauraba lo robado.</p>
+                <p><strong>Cumplimiento mesiánico:</strong> Yeshúa pagó por nuestra infidelidad espiritual y nos
+                    reconcilió con Elohím.</p>
+                <p><strong>Aplicación espiritual:</strong> Somos llamados a fidelidad, sabiendo que el Mashíaj llevó
+                    nuestra culpa.</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <p><strong>Conclusión:</strong> Aunque no contiene profecías directas, Nasó está llena de figuras:</p>
+            <ul>
+                <li>El Nazir → santidad del Mashíaj.</li>
+                <li>Bendición sacerdotal → Shalom en Yeshúa.</li>
+                <li>El altar → sacrificio perfecto.</li>
+                <li>Ley del celo → redención de nuestra infidelidad.</li>
+            </ul>
+            <p>Todo apunta al plan eterno de redención revelado en el Mashíaj.</p>
+        </div>
+
+        <div class="content-container">
+            <p>La parashá Nasó es rica en simbolismo y tiene varias conexiones mesiánicas que pueden ser interpretadas a
+                la luz del Brit Hadasháh. Aunque no todas son profecías directas, encontramos alusiones que apuntan a
+                Yeshúa haMashíaj. Aquí algunas de las principales:</p>
+        </div>
+
+        <div class="prophetic-content">
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">1️⃣ El Voto del Nazareo (Números 6:1-21)</div>
+                <p>El nazareo se consagraba absteniéndose de productos de la vid, no cortándose el cabello y evitando la
+                    impureza por muertos.</p>
+                <p class="highlight">Tipología Mesiánica:</p>
+                <p>Yeshúa es el Nazareo definitivo, consagrado desde nacimiento (<span class="scripture">Matityah
+                        2:23</span>). Su vida refleja dedicación total a Adonái, y Su sacrificio en el madero cumple el
+                    simbolismo del nazareo que ofrece su cabello como señal de voto cumplido (<span
+                        class="scripture">Números 6:18</span>).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2️⃣ La Bendición Sacerdotal (Números 6:22-27)</div>
+                <p class="hebrew">יְבָרֶכְךָ יהוה וְיִשְׁמְרֶךָּ׃ יָאֵר יהוה פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ׃ יִשָּׂא יהוה
+                    פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם׃</p>
+                <p class="transliteration">Yevarejejá Adonái veyishmereja; yaer Adonái panav eleja vijuneka; yisá Adonái
+                    panav eleja veyasem lejá shalom.</p>
+                <p class="translation">"Adonái te bendiga y te guarde... y ponga en ti paz."</p>
+                <p class="highlight">Interpretación Mesiánica:</p>
+                <p>Yeshúa, como Kohen Gadol (<span class="scripture">Hebreos 7:26</span>), intercede y nos imparte esta
+                    bendición. La paz (shalom) es la que Él mismo ofrece (<span class="scripture">Yojanán 14:27</span>).
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3️⃣ Las Ofrendas de los Príncipes (Números 7)</div>
+                <p>Los príncipes traen ofrendas idénticas para la dedicación del Mishkán.</p>
+                <p class="highlight">Tipología Mesiánica:</p>
+                <p>Representan la unidad del pueblo en devoción. Yeshúa une a todas las tribus en un solo cuerpo (<span
+                        class="scripture">Kehiláh</span>). Además, la dedicación del Mishkán prefigura a Yeshúa como el
+                    verdadero templo (<span class="scripture">Yojanán 2:21</span>).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">4️⃣ La Voz de Adonái en el Tabernáculo (Números 7:89)</div>
+                <p>Mosheh escucha la voz divina desde el propiciatorio entre los querubines.</p>
+                <p class="highlight">Conexión Mesiánica:</p>
+                <p>Prefigura la revelación más clara de Elohím a través de Yeshúa, nuestro mediador (<span
+                        class="scripture">1 Timoteo 2:5</span>).</p>
+            </div>
+
+        </div>
+
+        <div class="conclusion">
+            <p><strong>✡ Reflexión Mesiánica:</strong></p>
+            <ul>
+                <li>Yeshúa es el nazareo perfecto, consagrado desde nacimiento.</li>
+                <li>Es nuestro sumo sacerdote que bendice con shalom.</li>
+                <li>Une al pueblo como un solo cuerpo espiritual.</li>
+                <li>Revela plenamente la voluntad de Elohím como mediador.</li>
+            </ul>
+            <p>Estos temas apuntan proféticamente a Su identidad y obra redentora.</p>
+        </div>
+
+        <div class="prayer-conclusion">
+            <p>🙏 "Adonái, gracias por Yeshúa haMashíaj, nuestro consagrado, sacerdote y mediador. Ayúdanos a seguir Su
+                ejemplo y vivir unidos en Tu shalom. Amén."</p>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente
+            profesia.</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

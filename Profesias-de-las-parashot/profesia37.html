@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>📜 Parasháh #37: Shelaj Lejá (<span class="hebrew-term">שְׁלַח-לְךָ</span>) – Envíales por ti mismo</h1>
+        <h3>Sección del Tanak: Bemidbar / Números 13:1–15:41</h3>
+
+        <div class="content-container">
+            <h2>🌿 Contexto general</h2>
+            <p>En esta parasháh, <strong>Mosheh</strong> (<span class="hebrew-term">משֶׁה</span>) envía 12 espías a la
+                tierra de <strong>Kenáan</strong> (<span class="hebrew-term">כְּנַעַן</span>). Diez de ellos traen un
+                mal informe que provoca que el <strong>Kahal</strong> (<span class="hebrew-term">קָהָל</span>,
+                Comunidad) caiga en incredulidad y rebeldía, trayendo juicio de Adonái יהוה. Sólo <strong>Yehoshúa bin
+                    Nun</strong> (<span class="hebrew-term">יְהוֹשֻׁעַ בִּן-נוּן</span>) y <strong>Kalev ben
+                    Yefunneh</strong> (<span class="hebrew-term">כָּלֵב בֶּן-יְפֻנֶּה</span>) mantienen fe plena.
+                Finalmente, la parasháh concluye con la <strong>mitsváh</strong> (<span
+                    class="hebrew-term">מִצְוָה</span>) de los <strong>tsitsit</strong> (<span
+                    class="hebrew-term">צִיצִת</span>).</p>
+            <p>Vamos a descubrir sus alusiones y sombras mesiánicas:</p>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h2 class="prophetic-title">Profecía / Sombra Mesiánica #1: Yehoshúa bin Nun (<span
+                        class="hebrew-term">יְהוֹשֻׁעַ בִּן-נוּן</span>) – tipo de Yeshúa haMashíaj</h2>
+
+                <div class="prophetic-title">1️⃣ Referencia en el Tanaj</div>
+                <div class="scripture">📖 Bemidbar 13:16</div>
+                <div class="verse-container">
+                    <div class="hebrew">וַיִּקְרָא מֹשֶׁה לְהוֹשֵׁעַ בִּן-נוּן יְהוֹשֻׁעַ</div>
+                    <div class="transliteration">Vayiqrá Mosheh leHoshea bin Nun Yehoshúa</div>
+                    <div class="translation">“Y Mosheh llamó a Hoshea bin Nun, Yehoshúa”</div>
+                </div>
+
+                <div class="prophetic-title">2️⃣ Contexto y significado profético</div>
+                <p>El nombre original <span class="hebrew-term">הוֹשֵׁעַ</span> (Hoshea, “Él salva”) es cambiado a <span
+                        class="hebrew-term">יְהוֹשֻׁעַ</span> (Yehoshúa, “Adonái es salvación”). Yehoshúa se convierte
+                    en el líder que introducirá finalmente al pueblo en la tierra prometida, imagen directa del Mashíaj
+                    que introduce a la Kehiláh en el Reino del Adonái יהוה.</p>
+
+                <div class="prophetic-title">3️⃣ Cumplimiento en Yeshúa haMashíaj</div>
+                <p>El nombre “Yehoshúa” (<span class="hebrew-term">יְהוֹשֻׁעַ</span>) en arameo siríaco oriental es
+                    <span class="aramaic" style="font-size: 1.1em; display: inline-block; margin: 0 3px;">ܝܫܘܥ</span>
+                    (Yeshúa). Tal como Yehoshúa bin Nun fue fiel entre los incrédulos y condujo al pueblo, Yeshúa
+                    haMashíaj vino como el Capitán de nuestra salvación (Ivrim / Hebreos 2:10). Comentarios judío
+                    mesiánicos (por ejemplo, Midrash Bamidbar Rabbah 16) ven en la figura de Yehoshúa una prefiguración
+                    del futuro redentor.</p>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h2 class="prophetic-title">Profecía / Sombra Mesiánica #2: Kalev (<span
+                        class="hebrew-term">כָּלֵב</span>) – figura del creyente fiel</h2>
+                <div class="prophetic-title">1️⃣ Referencia en el Tanaj</div>
+                <div class="scripture">📖 Bemidbar 14:24</div>
+                <div class="verse-container">
+                    <div class="hebrew">וְעַבְדִּי כָלֵב... וַיְבִיאֹתִיו אֶל-הָאָרֶץ</div>
+                    <div class="transliteration">Ve’avdí Kalev… vayeví’otív el-ha’áretz</div>
+                    <div class="translation">“Pero a mi siervo Kalev… lo introduciré en la tierra”</div>
+                </div>
+                <div class="prophetic-title">2️⃣ Contexto y significado profético</div>
+                <p>Kalev representa la fe auténtica que sigue plenamente a Adonái יהוה, aunque la mayoría dude. En la
+                    tradición mesiánica, Kalev simboliza la remanente fiel dentro de Israel.</p>
+                <div class="prophetic-title">3️⃣ Cumplimiento en Yeshúa haMashíaj</div>
+                <p>Así como Kalev perseveró, Yeshúa enseña: “El que persevere hasta el fin será salvo” (Mattityahu
+                    24:13). Kalev, “perro” en hebreo, simboliza humildad, reflejando la humillación voluntaria de Yeshúa
+                    (Filippiyim / Filipenses 2:7-8).</p>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h2 class="prophetic-title">Profecía / Sombra Mesiánica #3: El juicio por incredulidad – anuncio de un
+                    nuevo pacto</h2>
+                <div class="prophetic-title">1️⃣ Referencia en el Tanaj</div>
+                <div class="scripture">📖 Bemidbar 14:22–23</div>
+                <p class="scripture">“…todos los que vieron mi gloria… no verán la tierra…”</p>
+                <div class="prophetic-title">2️⃣ Contexto y significado profético</div>
+                <p>La incredulidad del Kahal trajo juicio y postergación de la entrada. Esto anuncia la necesidad de un
+                    Brit Jadasháh (<span class="hebrew-term">בּרית חֲדָשָׁה</span>, Nuevo Pacto) para dar un corazón
+                    nuevo (Yejezqel / Ezequiel 36:26).</p>
+                <div class="prophetic-title">3️⃣ Cumplimiento en Yeshúa haMashíaj</div>
+                <p>Yeshúa, en el Brit Hadasháh, ofrece ese corazón nuevo para que podamos entrar verdaderamente en la
+                    “tierra prometida” espiritual. En Ivrim / Hebreos capítulos 3 y 4, el autor explica que por
+                    incredulidad no entraron en el reposo, pero los que creen en Yeshúa entran en el verdadero Shabat
+                    mesiánico.</p>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h2 class="prophetic-title">Profecía / Sombra Mesiánica #4: Los tsitsit (<span
+                        class="hebrew-term">צִיצִת</span>) – recuerdo del Mashíaj</h2>
+                <div class="prophetic-title">1️⃣ Referencia en el Tanaj</div>
+                <div class="scripture">📖 Bemidbar 15:38–39</div>
+                <p class="scripture"><span class="hebrew-term">וְעָשׂוּ לָהֶם צִיצִת עַל-כַּנְפֵי בִגְדֵיהֶם…</span></p>
+                <div class="prophetic-title">2️⃣ Contexto y significado profético</div>
+                <p>Los tsitsit recordaban a Israel todas las mitsvot (<span class="hebrew-term">מִצְוֹת</span>) y
+                    apartarse de la idolatría. Rabinos del segundo Templo enseñaban que el tsitsit es un recordatorio
+                    del Rey y Su Toráh.</p>
+                <div class="prophetic-title">3️⃣ Cumplimiento en Yeshúa haMashíaj</div>
+                <p>La mujer enferma (Mattityahu 9:20) tocó el kanaf (<span class="hebrew-term">כנף</span>) del manto de
+                    Yeshúa, es decir, los tsitsit, creyendo que hallaría sanidad mesiánica (basado en Malají / Malaquías
+                    3:20: “y habrá sanidad en sus alas [<span class="hebrew-term">כנפיו</span>]”). Comentarios judío
+                    mesiánicos interpretan que las “alas” (kanaf) son los extremos del talit, donde están los tsitsit.
+                </p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h2>✡ Resumen</h2>
+            <p>La parasháh Shelaj Lejá, aunque es histórica, está llena de sombras mesiánicas:</p>
+            <ul>
+                <li>✅ Yehoshúa bin Nun (figura del Redentor que entra a la tierra prometida)</li>
+                <li>✅ Kalev (el remanente fiel)</li>
+                <li>✅ Juicio por incredulidad (anuncia la necesidad de Brit Jadasháh)</li>
+                <li>✅ Tsitsit (memorial de santidad y sanidad mesiánica)</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="explanation">
+            <div class="question">🔎 1️⃣ ¿Por qué Mosheh cambia el nombre de Hoshea a Yehoshúa? ¿Qué implica eso
+                espiritualmente?</div>
+            <div class="answer">
+                <p>📜 En Bemidbar 13:16 se dice:</p>
+                <div class="verse-container">
+                    <div class="hebrew">וַיִּקְרָא מֹשֶׁה לְהוֹשֵׁעַ בִּן-נוּן יְהוֹשֻׁעַ</div>
+                    <div class="transliteration">Vayiqrá Mosheh leHoshea bin Nun Yehoshúa</div>
+                </div>
+                <p>El nombre <span class="hebrew-term">הוֹשֵׁעַ</span> (Hoshea) significa "él salva" o “salvación”.
+                    Mosheh añade la letra <span class="hebrew-term">י</span> (Yod), convirtiéndolo en <span
+                        class="hebrew-term">יְהוֹשֻׁעַ</span> (Yehoshúa), que significa “Adonái יהוה es salvación”.</p>
+                <p><strong>🔑 Espiritualmente:</strong></p>
+                <ul>
+                    <li>Indica que la salvación de Israel no viene de un hombre, sino del mismo יהוה actuando por medio
+                        del hombre que Él escoge.</li>
+                    <li>Proféticamente, señala al Mashíaj que llevaría ese nombre en arameo: <span class="aramaic"
+                            style="font-size: 1.1em; display: inline-block; margin: 0 3px;">ܝܫܘܥ</span> (Yeshúa), siendo
+                        Él mismo la manifestación de יהוה como Salvador.</li>
+                </ul>
+                <div class="scripture">📖 En el Brit Hadasháh: Mattityahu 1:21:<br>“…y le pondrás por nombre Yeshúa
+                    (<span class="aramaic" style="font-size: 1.1em; display: inline-block; margin: 0 3px;">ܝܫܘܥ</span>),
+                    porque Él salvará (<span class="hebrew-term">יושיע</span>) a su pueblo de sus pecados.”</div>
+                <p>Los sabios judío mesiánicos ven aquí una alusión clara: así como Yehoshúa bin Nun fue quien llevó a
+                    Israel a la tierra prometida después de Mosheh, Yeshúa haMashíaj es quien lleva al pueblo de Elohím
+                    a la plenitud del Reino prometido.</p>
+            </div>
+
+            <div class="question">🔎 2️⃣ ¿Cómo se conecta la incredulidad del Kahal con las palabras de Yeshúa sobre la
+                generación incrédula?</div>
+            <div class="answer">
+                <p>📜 Bemidbar 14:22–23:</p>
+                <div class="scripture">“...no verán la tierra... todos los que me tentaron y no creyeron…”</div>
+                <p>Yeshúa haMashíaj en el Brit Hadasháh denuncia a su generación como:</p>
+                <div class="scripture">“Generación incrédula y perversa…” (Mattityahu 17:17)</div>
+                <p><strong>📖 Conexión profunda:</strong></p>
+                <ul>
+                    <li>En ambos casos, el juicio viene por la falta de <strong>emunáh</strong> (<span
+                            class="hebrew-term">אֱמוּנָה</span>, fe) en las promesas de Adonái.</li>
+                    <li>Los espías vieron milagros, pero dudaron; la generación de Yeshúa vio milagros, pero rechazó a
+                        Mashíaj.</li>
+                    <li>Midrash Tanjumá Shelaj 8 enseña que “sus corazones se apartaron de la shejináh” — exactamente lo
+                        que denuncia Yeshúa: “Este pueblo me honra con sus labios, pero su corazón está lejos”
+                        (Yesha‘yahu 29:13 citado en Mattityahu 15:8).</li>
+                </ul>
+                <p><span class="arrow">➡</span> En Yeshúa: Quien cree, entra en la promesa. Quien duda, queda fuera,
+                    repitiendo el error del Kahal en el desierto.</p>
+            </div>
+
+            <div class="question">🔎 3️⃣ ¿Qué relación existe entre Kalev y la figura de Mashíaj ben Yosef?</div>
+            <div class="answer">
+                <p>📜 Kalev (<span class="hebrew-term">כָּלֵב</span>) fue uno de los dos que tuvo emunáh perfecta y
+                    siguió totalmente a Adonái.</p>
+                <p><strong>🔑 Relación mesiánica:</strong></p>
+                <ul>
+                    <li>Kalev representa al remanente fiel en Israel que permanece leal pese a la presión.</li>
+                    <li>Mashíaj ben Yosef, según el Talmud (Sukáh 52a) y textos de Qumrán (4Q285), es el siervo
+                        sufriente que permanece fiel hasta la muerte, incluso rechazado por la mayoría.</li>
+                </ul>
+                <p>Kalev, como Mashíaj ben Yosef:</p>
+                <ul>
+                    <li>Permanece firme entre la murmuración.</li>
+                    <li>Se juega la vida para defender la promesa de Elohím.</li>
+                    <li>Su nombre "Kalev" contiene la palabra "lev" (<span class="hebrew-term">לֵב</span>, corazón),
+                        aludiendo a un corazón consagrado, como el de Mashíaj que dio su vida.</li>
+                </ul>
+                <div class="scripture">📖 En el Brit Hadasháh, Yeshúa soportó el rechazo del pueblo, pero “por el gozo
+                    puesto delante de Él, soportó el madero” (Ivrim 12:2), mostrando el mismo corazón indivisible de
+                    Kalev.</div>
+            </div>
+
+            <div class="question">🔎 4️⃣ ¿Por qué el Brit Hadasháh enfatiza tanto “entrar en el reposo” tomando este
+                pasaje?</div>
+            <div class="answer">
+                <p>📜 Ivrim / Hebreos 3–4 cita el episodio de los espías para enseñar sobre entrar en el "reposo".</p>
+                <p><strong>🔑 En la raíz hebrea:</strong> “reposo” <span class="arrow">→</span> <span
+                        class="hebrew-term">שָׁבָת</span> (shabat), pero también <span class="hebrew-term">מנוחה</span>
+                    (menujáh).</p>
+                <ul>
+                    <li>Israel no entró en la menujáh física por su incredulidad.</li>
+                    <li>En Mashíaj, el reposo es espiritual y escatológico: la entrada al Reino mesiánico y la
+                        reconciliación definitiva con יהוה.</li>
+                </ul>
+                <div class="scripture">📖 “Queda un reposo para el pueblo de Elohím” (Ivrim 4:9):<br>Este reposo es el
+                    Reino bajo el reinado de Yeshúa haMashíaj. Mashíaj mismo es nuestro reposo (<span
+                        class="hebrew-term">מנוחתנו</span>), pues Él dice: “Venid a mí… y hallaréis descanso (<span
+                        class="hebrew-term">מנוחה</span>) para vuestras almas” (Mattityahu 11:28–29).</div>
+                <p>Así, el episodio enseña que sin fe en Mashíaj, no podemos entrar en el reposo del Reino.</p>
+            </div>
+
+            <div class="question">🔎 5️⃣ ¿Qué otros textos del Tanak vinculan los tsitsit y las “alas” del Mashíaj?
+            </div>
+            <div class="answer">
+                <p>📜 Bemidbar 15:38 manda poner tsitsit “en los kanaf (<span class="hebrew-term">כנף</span>, extremos /
+                    alas) de sus vestiduras”.</p>
+                <p><strong>🔑 Textos clave:</strong></p>
+                <ul>
+                    <li><strong>Malají 3:20 (o 4:2 en otras numeraciones):</strong> <span class="hebrew-term">וּמָרְפֵּא
+                            בִּכְנָפֶיהָ</span> “...y habrá sanidad en sus alas (kanaféha)”. En la exégesis judía
+                        mesiánica, las “alas” aluden a los kanafot del talit, donde cuelgan los tsitsit. La mujer en
+                        Mattityahu 9:20 tocó precisamente el kanaf, creyendo recibir esa sanidad mesiánica.</li>
+                    <li><strong>Tehilim / Salmos 91:4:</strong> <span class="hebrew-term">בְּאֶבְרָתוֹ יָסֵךְ
+                            לָךְ</span> “Con sus plumas te cubrirá”. También interpretado como protección mesiánica bajo
+                        las “alas” del Altísimo.</li>
+                    <li><strong>Rut 3:9:</strong> “Extiende el borde (<span class="hebrew-term">כנפך</span>, kanafjá) de
+                        tu manto sobre tu sierva”. Un símbolo de redención mesiánica: Rut, gentil, es redimida bajo el
+                        kanaf del redentor.</li>
+                </ul>
+                <p>📖 Así, los tsitsit no sólo recuerdan los mandamientos, sino que en la fe judío mesiánica apuntan a
+                    la cobertura sanadora y redentora del Mashíaj, el que trae marpé (sanidad) en sus “alas”.</p>
+            </div>
+
+            <div class="conclusion">
+                <h2>✡ Conclusión:</h2>
+                <p>Cada pregunta revela un vínculo vivo y profundo con Yeshúa haMashíaj:</p>
+                <ul>
+                    <li>✅ Yehoshúa bin Nun prefigura Su Nombre y misión.</li>
+                    <li>✅ La incredulidad repite el patrón de rechazar la salvación.</li>
+                    <li>✅ Kalev refleja el corazón indivisible del Siervo sufriente.</li>
+                    <li>✅ El reposo verdadero se halla sólo en Él.</li>
+                    <li>✅ Y hasta los tsitsit, en los kanafot, nos llevan a ver la sanidad mesiánica.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-content">
+            <h2>Conexión mesiánica en el Brit Hadasháh</h2>
+            <div class="prophetic-section">
+                <div class="prophetic-title">📜 1️⃣ Yehoshúa bin Nun y Yeshúa haMashíaj</div>
+                <p>Yehoshúa (<span class="hebrew-term">יְהוֹשֻׁעַ</span>) es figura profética del Redentor, pues él es
+                    quien introduce a Israel a la tierra prometida, mientras que Mosheh (<span
+                        class="hebrew-term">משֶׁה</span>) sólo puede ver la tierra desde lejos. El Brit Hadasháh declara
+                    a Yeshúa haMashíaj (<span class="aramaic"
+                        style="font-size: 1.1em; display: inline-block; margin: 0 3px;">ܝܫܘܥ</span>) como aquel que nos
+                    introduce en el Reino:</p>
+                <div class="scripture">📖 “Porque si Yehoshúa (Josué) les hubiera dado el reposo, no hablaría después de
+                    otro día…” (Ivrim / Hebreos 4:8)</div>
+                <p>Aquí el autor de Ivrim muestra que Yehoshúa bin Nun dio reposo físico, pero Yeshúa da el reposo
+                    eterno y espiritual.</p>
+                <p><strong>🔑 Aplicación espiritual:</strong> Así como Yehoshúa bin Nun fue valiente entre la
+                    incredulidad, nosotros como talmidím (discípulos) debemos mantener nuestra fe firme en las promesas
+                    del Adonái, aunque todo el mundo dude.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">📜 2️⃣ Incredulidad del Kahal y la advertencia de Yeshúa</div>
+                <p>En Bemidbar 14:22–23, la generación incrédula muere en el desierto. Yeshúa denuncia:</p>
+                <div class="scripture">“Generación incrédula y perversa… ¿hasta cuándo he de estar con vosotros?”
+                    (Mattityahu 17:17)</div>
+                <p>Yeshúa compara esa generación con la del desierto, que vio milagros pero no creyó.</p>
+                <div class="scripture">📖 En el Brit Hadasháh: Ivrim / Hebreos 3:19: “Vemos que no pudieron entrar a
+                    causa de su incredulidad.”</div>
+                <p>El autor insta a no endurecer el corazón como aquella generación, sino recibir el mensaje de Mashíaj.
+                </p>
+                <p><strong>🔑 Aplicación espiritual:</strong> No basta ver milagros o señales; debemos confiar
+                    totalmente en Yeshúa haMashíaj como la Salvación de יהוה.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">📜 3️⃣ Kalev y el remanente fiel en el Mashíaj</div>
+                <p>Kalev (<span class="hebrew-term">כָּלֵב</span>) tuvo “ruaj acheret” (<span class="hebrew-term">רוּחַ
+                        אַחֶרֶת</span>) — “otro espíritu” (Bemidbar 14:24). En el Brit Hadasháh, Shaúl / Pablo llama a
+                    los creyentes:</p>
+                <div class="scripture">“Un remanente escogido por gracia” (Romiyim / Romanos 11:5).</div>
+                <p>Así como Kalev permaneció fiel en medio de la murmuración, los talmidím de Yeshúa forman un remanente
+                    fiel, que sigue al Mashíaj aunque la mayoría de Israel no crea.</p>
+                <p><strong>🔑 Aplicación espiritual:</strong> Ser parte del remanente significa perseverar en la fe
+                    aunque el ambiente sea contrario, permaneciendo firmes en las promesas del Mashíaj.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">📜 4️⃣ El “reposo” en Mashíaj</div>
+                <p>La entrada a la tierra prometida se ve como entrada al “reposo” (<span
+                        class="hebrew-term">מְנוּחָה</span>, menujáh).</p>
+                <p><strong>Brit Hadasháh:</strong></p>
+                <div class="scripture">“Queda un reposo para el pueblo de Elohím…” (Ivrim / Hebreos 4:9)</div>
+                <p>Yeshúa dice:</p>
+                <div class="scripture">“Venid a mí todos… y hallaréis descanso (<span
+                        class="hebrew-term">מְנוּחָה</span>) para vuestras almas.” (Mattityahu 11:28–29)</div>
+                <p><strong>🔑 Aplicación espiritual:</strong> Mashíaj mismo es el reposo: cuando le seguimos, tenemos
+                    shalom (<span class="hebrew-term">שָׁלוֹם</span>) interno, y esperamos el reposo final en el Reino
+                    Mesiánico.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">📜 5️⃣ Tsitsit y la sanidad en las “alas” del Mashíaj</div>
+                <p>Bemidbar 15:38–39 manda poner tsitsit en los kanafot (<span class="hebrew-term">כנפיו</span>). Malají
+                    3:20 (4:2):</p>
+                <div class="scripture">“Y habrá sanidad en sus alas (<span class="hebrew-term">כנפיו</span>).”</div>
+                <p>En el Brit Hadasháh: Mattityahu 9:20:</p>
+                <div class="scripture">“Una mujer… tocó el kanaf (borde) de su manto…”</div>
+                <p>Creyendo que en el Mashíaj se cumplía Malají: la sanidad venía en sus “alas” (kanaf).</p>
+                <p><strong>🔑 Aplicación espiritual:</strong> Los tsitsit recuerdan la Toráh escrita. En Mashíaj, la
+                    Toráh es escrita en nuestro corazón (Ivrim 8:10), y hallamos sanidad y perdón bajo Su cobertura.</p>
+            </div>
+            <div class="conclusion">
+                <h3>🌿 Conclusión: conexión profunda</h3>
+                <p>La Parasháh Shelaj Lejá, a la luz del Brit Hadasháh, enseña:</p>
+                <ul>
+                    <li>✅ La fidelidad del Mashíaj (figura de Yehoshúa bin Nun).</li>
+                    <li>✅ El peligro de la incredulidad (ejemplo del Kahal).</li>
+                    <li>✅ La promesa del reposo eterno en Yeshúa.</li>
+                    <li>✅ El llamado a ser remanente fiel (como Kalev).</li>
+                    <li>✅ Y la sanidad mesiánica bajo Su cobertura (tsitsit / kanaf).</li>
+                </ul>
+            </div>
+            <div class="prayer-text">
+                <h3>🙏 Tefiláh (Oración reflexiva):</h3>
+                <p>Adonái יהוה, gracias porque en Yeshúa haMashíaj hallamos el verdadero reposo, sanidad y vida eterna.
+                    Haznos parte del remanente fiel como Kalev, para que confiemos plenamente en tus promesas, vivamos
+                    bajo la cobertura de tu Toráh y no caigamos en la incredulidad. B’shem Yeshúa haMashíaj, Amén.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente
+            profesia.</a></button>
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

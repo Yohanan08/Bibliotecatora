@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>Parasháh #34: BeMidbar (בְּמִדְבַּר) – “En el desierto”</h1>
+        <div class="section-container">
+            <p><strong>Lectura:</strong> Bemidbar / Números 1:1–4:20</p>
+            <p>🌿 Esta parasháh comienza con la orden de levantar un censo (שְׂאוּ אֶת-רֹאשׁ), organiza las tribus
+                alrededor del Mishkán y establece la función específica de los levitas en el santuario.</p>
+            <p>Aunque parece solo administrativa, revela claves proféticas sobre el Mashíaj y Su obra redentora.</p>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title"> Profecía / Sombra mesiánica principal</div>
+                <div class="scripture">📖 Bemidbar 1:2 – שְׂאוּ אֶת-רֹאשׁ כָּל-עֲדַת בְּנֵי-יִשְׂרָאֵל</div>
+                <p class="transliteration">Se’ú et-rosh kol adat Benei Yisra’el</p>
+                <p class="translation">“Levantad el censo de toda la asamblea de los hijos de Israel…”</p>
+                <p><strong>Significado:</strong> שְׂאוּ (se’ú) no es solo contar, sino “elevar” o “alzar”. Dar dignidad,
+                    propósito y misión al pueblo.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">🕊 Cumplimiento mesiánico en Yeshúa</div>
+                <p>🔹 Yeshúa es el centro del Kahal, como el Mishkán estaba en el centro del campamento (<span
+                        class="scripture">Efesiyim 2:20–21</span>).</p>
+                <p>🔹 “Y yo, si fuere levantado (נִשָּׂא, nisa) de la tierra, a todos atraeré a mí mismo.” (<span
+                        class="scripture">Yochanán 12:32</span>)</p>
+                <p>🔹 Así como se alzaban las cabezas, Mashíaj fue alzado en el madero para redimirnos.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Levitas y Yeshúa como Sumo Sacerdote</div>
+                <p>Los levitas servían al Mishkán; Yeshúa es nuestro <span class="hebrew">כּהֵן גָּדוֹל</span> (Kohen
+                    Gadol) según Malki-Tsedeq (<span class="scripture">Ivrim 8:1</span>).</p>
+                <p>Purifica, guarda y media por Su pueblo, como los levitas cuidaban el santuario.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">🌟 Censo como prefiguración del pueblo redimido</div>
+                <p>El censo no dejaba fuera a nadie; en el Brit Hadasháh estamos inscritos en el <span
+                        class="hebrew">סֵפֶר הַחַיִּים</span> (Sefer haJaim, Libro de la Vida) (<span
+                        class="scripture">Jizayón 20:12</span>).</p>
+                <p>Yeshúa nos incluye y da identidad eterna en Su Kehiláh.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">⚔ El pueblo como ejército espiritual</div>
+                <p>El censo contaba a los varones aptos para la milicia (<span class="scripture">כָּל יֹצֵא
+                        צָבָא</span>).</p>
+                <p>Hoy somos el ejército espiritual de Mashíaj, luchando contra las tinieblas (<span class="scripture">2
+                        Corintiyim 10:4</span>).</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <p><strong>✡ Conclusión:</strong></p>
+            <ul>
+                <li>Mashíaj es el centro, como el Mishkán.</li>
+                <li>Fue “alzado” para atraer a todos.</li>
+                <li>Es nuestro Sumo Sacerdote que guarda y purifica.</li>
+                <li>Nos cuenta y valora como Su pueblo redimido.</li>
+                <li>Formamos parte de Su ejército espiritual.</li>
+            </ul>
+            <p>Desde el primer capítulo de Bemidbar, todo apunta proféticamente a Yeshúa haMashíaj.</p>
+        </div>
+
+        <h1>2. Contexto y significado profético – análisis profundo</h1>
+
+        <div class="content-container">
+            <div class="section-container">
+                <p class="point-letter">A) “Se’ú et-rosh” – elevar las cabezas</p>
+                <p>El mandato de censar al pueblo usa el verbo <span class="hebrew">שְׂאוּ</span> (se’ú), que
+                    literalmente significa “alzar, elevar, exaltar”.</p>
+                <p>No es solo contar, sino elevar la dignidad de cada miembro del Kahal.</p>
+                <p><strong>Midrash Bamidbar Rabbah 2:13</strong> enseña:</p>
+                <div class="scripture">“El Rey cuenta a Sus hijos para mostrar Su amor y recordarlos siempre ante Él.”
+                </div>
+                <p>En hebreo, <span class="hebrew">ראש</span> (rosh) = “cabeza”, también alude a dignidad y liderazgo.
+                </p>
+            </div>
+
+            <div class="section-container">
+                <p class="point-letter">B) El Mishkán en el centro del campamento</p>
+                <p>Bemidbar capítulo 2 describe que Israel debía acampar alrededor del <em>Ohel Mo’ed</em>, teniendo
+                    siempre la Presencia divina (<span class="hebrew">שכינה</span>, Shejináh) como centro.</p>
+                <p>Cada tribu tenía su lugar, pero todo giraba en torno al Mishkán, morada visible de Adonái.</p>
+            </div>
+        </div>
+
+        <h1>3. Cumplimiento en Yeshúa haMashíaj – explicación mesiánica extensa</h1>
+
+        <div class="content-container">
+            <div class="section-container">
+                <p class="point-letter">A) El que eleva nuestras cabezas</p>
+                <p>En el Brit Hadasháh, Yeshúa dice:</p>
+                <div class="scripture">“Ve’ani im-nisá min ha’aretz, emshoch et-kulam elai” (יוחנן / Juan 12:32)</div>
+                <p>“Y yo, si soy levantado (נִשָּׂא, nisá) de la tierra, atraeré a todos a mí mismo.”</p>
+                <p>El verbo hebreo <span class="hebrew">נשא</span> (nasa), misma raíz que <span
+                        class="hebrew">שְׂאוּ</span> (se’ú), muestra que Mashíaj fue elevado en el madero para elevarnos
+                    a nosotros.</p>
+                <p>Su elevación no es solo física, sino exaltación mesiánica para reunir y redimir a Israel y a las
+                    naciones.</p>
+            </div>
+
+            <div class="section-container">
+                <p class="point-letter">B) Mashíaj como centro del Kahal</p>
+                <p>El Mishkán en el centro del campamento es figura directa del Mashíaj como centro espiritual del
+                    pueblo.</p>
+                <p><span class="scripture">Yochanán 1:14</span> dice:</p>
+                <div class="scripture">“VehaDavar nasáh basar veshajan benu” (וְהַדָּבָר נָשָׂא בָּשָׂר וְשָׁכַן
+                    בֵּינוּ)</div>
+                <p>“Y el Verbo se hizo carne y tabernaculizó entre nosotros.”</p>
+                <p>En arameo Peshita:</p>
+                <div class="aramaic">ܘܡܠܬܐ ܒܣܪܐ ܗܘܐ ܘܫܪܝܬ ܒܝܢܬܢ</div>
+                <p>Así como el Mishkán era centro visible de la presencia divina, Yeshúa es la presencia misma de Adonái
+                    entre Su pueblo.</p>
+            </div>
+
+            <div class="section-container">
+                <p class="point-letter">C) El censo y el “libro de la vida”</p>
+                <p>Cada persona era contada con nombre y tenía lugar asignado.</p>
+                <p>En el Brit Hadasháh, <span class="scripture">Apocalipsis 21:27</span> menciona el <em>Sefer
+                        haJaim</em> (ספר החיים, Libro de la Vida), donde están inscritos los nombres de los redimidos
+                    por el Mashíaj.</p>
+                <p>Mashíaj confirma:</p>
+                <div class="scripture">“No os regocijéis de que los espíritus se os sujetan, sino de que vuestros
+                    nombres están escritos en los cielos.” (Luqas 10:20)</div>
+            </div>
+
+            <div class="section-container">
+                <p class="point-letter">D) Los levitas y Mashíaj como Kohen Gadol</p>
+                <p>Los levitas servían y guardaban el Mishkán.</p>
+                <p>En <span class="scripture">Ivrim / Hebreos 8:1</span>:</p>
+                <div class="scripture">“Tenemos tal Sumo Sacerdote, que se sentó a la diestra del trono de la Majestad…”
+                </div>
+                <p>Mashíaj es el que ministra ante el Padre y guarda espiritualmente a Su pueblo.</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <p><strong>📖 Síntesis de la conexión mesiánica:</strong></p>
+            <ul>
+                <li>El verbo <span class="hebrew">שְׂאוּ</span> (se’ú, elevar) profetiza la elevación del Mashíaj que
+                    atrae a todos.</li>
+                <li>El Mishkán al centro prefigura a Yeshúa como centro y fundamento del Kahal.</li>
+                <li>Cada uno contado → en el Brit Hadasháh, cada creyente inscrito en el Libro de la Vida.</li>
+                <li>Los levitas → Mashíaj, nuestro Sumo Sacerdote eterno.</li>
+            </ul>
+        </div>
+
+        <div class="prayer-conclusion">
+            <p>✡ <strong>Aplicación espiritual para nosotros:</strong> Vivir con Yeshúa como centro de nuestro
+                campamento interior. Saber que somos contados, valorados y elevados en Su redención. Permanecer unidos
+                como Kahal santo alrededor de Su presencia.</p>
+        </div>
+
+
+        <div class="prayer-conclusion">
+            <p>🙏 “Adonái, gracias por darnos identidad en Yeshúa. Ayúdanos a tenerlo en el centro de nuestra vida,
+                levantar nuestras cabezas y esperar Su regreso. B’shem Yeshúa haMashíaj, Amén.”</p>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente
+            profesia.</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudios a la luz del Mashiaj Judío</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Fuente más moderna */
             background-color: #f4f4f4;
             color: #333;
             margin: 0;
             padding: 0;
         }
 
-        .content {
+        .container {
+            /* Cambié .content a .container para mayor claridad */
             max-width: 900px;
             margin: 50px auto;
             background: white;
-            padding: 20px;
+            padding: 20px 40px;
+            /* Más espacio a los lados */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
@@ -29,160 +33,189 @@
             margin-bottom: 20px;
         }
 
-        h2 { 
-            text-align: center; 
-            color: #000; 
-            margin-bottom: 20px; 
-        } 
+        h2 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: normal;
+            /* Título secundario más ligero */
+            font-size: 1.2rem;
+        }
 
+        .prophetic-content {
+            background-color: #f9f9f9;
+            /* Un fondo ligeramente diferente para el párrafo */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+            border-left: 4px solid #4379f7;
+            /* Un detalle de color */
+        }
+
+        /* --- INICIO DE LOS CAMBIOS PRINCIPALES --- */
+
+        /* 1. Convertimos la lista en un contenedor de cuadrícula (grid) */
         .content-list {
+            display: grid;
+            /* Crea columnas flexibles: se ajustarán automáticamente.
+               Cada tarjeta tendrá un tamaño mínimo de 200px. */
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            /* Espacio entre las tarjetas */
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin-top: 40px;
+            /* Espacio arriba de las tarjetas */
         }
 
+        /* 2. Damos estilo a cada elemento de la lista para que sea una "tarjeta" */
         .content-list li {
-            background: #4379f7;
-            color: white;
-            margin: 10px 0;
-            padding: 15px;
+            background: #ffffff;
             border-radius: 8px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            /* Transición suave para el hover */
+            display: flex;
+            /* Para que el enlace 'a' pueda llenar todo el espacio */
         }
 
+        /* 3. Añadimos un efecto al pasar el cursor sobre la tarjeta */
         .content-list li:hover {
-            background: #3558d3;
+            transform: translateY(-5px);
+            /* Levanta la tarjeta ligeramente */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
             cursor: pointer;
         }
 
-        .content-list a {
-            display: block;
-            background: #4379f7;
-            color: white;
-            padding: 15px;
-            border-radius: 20px;
-            font-size: 18px;
-            font-weight: bold;
+        /* 4. Hacemos que el enlace ocupe toda la tarjeta y le damos estilo */
+        .content-list li a {
+            color: #333;
+            /* Color de texto oscuro */
             text-decoration: none;
-            transition: 0.3s;
+            font-weight: bold;
+            font-size: 1rem;
+            padding: 20px;
+            /* Espacio interno de la tarjeta */
+            text-align: center;
+            width: 100%;
+            /* El enlace ocupa todo el ancho de la tarjeta */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .content-list a:hover {
-            background: #3558d3;
-            cursor: pointer;
-        }
-
-        .prophetic-content { 
-            background-color: white; 
-            padding: 20px; 
-            border-radius: 5px; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-            margin-top: 20px; 
-        } 
+        /* --- FIN DE LOS CAMBIOS PRINCIPALES --- */
 
         .aliya-button {
             background-color: #4CAF50;
             border: none;
             color: white;
-            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            padding: 12px 20px;
             text-align: center;
-            display: inline-block;
-            font-size: clamp(14px, 4vw, 16px);
-            margin: 4px 2px;
+            text-decoration: none;
+            /* Quitamos el subrayado del enlace dentro del botón */
+            display: block;
+            /* Hacemos que ocupe todo el ancho */
+            font-size: 16px;
+            margin: 40px auto 10px;
+            /* Centrado y con margen */
             cursor: pointer;
             border-radius: 10px;
             font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: all 0.3s;
-            width: auto;
-            max-width: 100%;
+            max-width: 400px;
+            /* Ancho máximo para el botón */
+        }
+
+        .aliya-button a {
+            color: white;
+            /* El texto del enlace debe ser blanco */
+            text-decoration: none;
         }
 
         .aliya-button:hover {
             background-color: #45a049;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
             transform: translateY(-2px);
         }
 
-        .aliya-button a {
-            text-decoration: none;
-            color: black;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
 
         /* Responsividad */
         @media (max-width: 768px) {
             h1 {
-                font-size: 1.5rem; /* Reducir el tamaño del título en pantallas pequeñas */
+                font-size: 1.5rem;
             }
 
-            .content {
+            .container {
                 margin: 20px;
                 padding: 15px;
-            }
-
-            .content-list li {
-                font-size: 16px; /* Reducir el tamaño de fuente de los elementos */
-                padding: 12px;
-            }
-
-            .content-list a {
-                font-size: 16px; /* Reducir el tamaño de fuente de los enlaces */
-                padding: 12px;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.2rem; /* Título aún más pequeño en dispositivos muy pequeños */
+                font-size: 1.2rem;
             }
 
-            .content-list li {
-                font-size: 14px; /* Font-size más pequeño para dispositivos más pequeños */
-                padding: 10px;
-            }
-
-            .content-list a {
-                font-size: 14px; /* Font-size más pequeño para enlaces */
-                padding: 10px;
+            .content-list {
+                grid-template-columns: 1fr;
+                /* En pantallas muy pequeñas, una sola columna */
             }
         }
     </style>
 </head>
+
 <body>
-    <main class="content">
+    <main class="container">
         <header>
             <h1>📜 Profesias de las 54 Parashot</h1>
-
             <h2>Descubre el Mensaje Profético de las 54 Parashot</h2>
-
-            <p class="prophetic-content ">
-                Cada Parasháh de la Toráh revela un mensaje oculto sobre el Mashíaj Yeshúa. Este estudio te guiará a través de las 54 porciones semanales, mostrando su cumplimiento perfecto en Yeshúa haMashíaj, con base en los textos hebreos y arameos más antiguos. Disfruta de la riqueza espiritual de las Escrituras como nunca antes, 
+            <p class="prophetic-content">
+                Cada Parasháh de la Toráh revela un mensaje oculto sobre el Mashíaj Yeshúa. Este estudio te guiará a
+                través de las 54 porciones semanales, mostrando su cumplimiento perfecto en Yeshúa haMashíaj, con base
+                en los textos hebreos y arameos más antiguos. Disfruta de la riqueza espiritual de las Escrituras como
+                nunca antes,
                 con revelaciones profundas del Reino del Eterno.
             </p>
         </header>
 
-        <section class="content">
+        <section>
             <ul class="content-list">
                 <li><a href="../Profesias-de-las-parashot/profesia17.html">Profesia de la Parasha 17 Yitro</a></li>
                 <li><a href="../Profesias-de-las-parashot/profesia18.html">Profesia de la Parasha 18 Mishpatim</a></li>
                 <li><a href="../Profesias-de-las-parashot/profesia19.html">Profesia de la Parasha 19 Teruma</a></li>
-                <li><a href="../Profesias-de-las-parashot/profesia20tetzave.html">Profesia de la Parasha 20 tetzave</a></li>
-                <li><a href="../Profesias-de-las-parashot/profesia21Kitisa.html">Profesia de la Parasha 21 Kitisa</a></li>
-                <li><a href="../Profesias-de-las-parashot/profesia22vayakel.html">Profesia de la Parasha 22 Vayakhel</a></li>
-                <li><a href="../Profesias-de-las-parashot/profesia23pekudei.html">Profesia de la Parasha 23 pekudei</a></li>
-                <li><a href="../Profesias-de-las-parashot/Profesia24vayikra.html">Profesia de la Parasha 24 Vayikra</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia20tetzave.html">Profesia de la Parasha 20 tetzave</a>
+                </li>
+                <li><a href="../Profesias-de-las-parashot/profesia21Kitisa.html">Profesia de la Parasha 21 Kitisa</a>
+                </li>
+                <li><a href="../Profesias-de-las-parashot/profesia22vayakel.html">Profesia de la Parasha 22 Vayakhel</a>
+                </li>
+                <li><a href="../Profesias-de-las-parashot/profesia23pekudei.html">Profesia de la Parasha 23 pekudei</a>
+                </li>
+                <li><a href="../Profesias-de-las-parashot/Profesia24vayikra.html">Profesia de la Parasha 24 Vayikra</a>
+                </li>
                 <li><a href="../Profesias-de-las-parashot/profesia25tzav.html">Profesia de la Parasha 25 Tzav</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia26.html">Profesia de la Parasha 26 Shemini</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia27.html">Profesia de la Parasha 27 Tazria</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia28.html">Profesia de la Parasha 28 Metzora</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia29.html">Profesia de la Parasha 29 Ajareimot</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia30.html">Profesia de la Parasha 30 Kedoshim</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia31.html">Profesia de la Parasha 31 Emor</a></li>
                 <li><a href="../Profesias-de-las-parashot/profesia32.html">Profesia de la Parasha 32 Behar</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia33.html">Profesia de la Parasha 33 Bejukotai</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia34.html">Profesia de la Parasha 34 Bamidbar</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia35.html">Profesia de la Parasha 35 Naso</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia36.html">Profesia de la Parasha 36 Behaalotja</a></li>
+                <li><a href="../Profesias-de-las-parashot/profesia37.html">Profesia de la Parasha 37 Shelaj Leja</a>
+                </li>
             </ul>
 
-            <button class="aliya-button"><a href="../index.html">Ir al contenido de las 54 Parashot.</a></button>
+            <a href="../index.html" class="aliya-button">Ir al contenido de las 54 Parashot</a>
         </section>
     </main>
 </body>
+
 </html>

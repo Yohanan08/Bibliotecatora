@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>Parasháh #36: Beha’alotjá (בְּהַעֲלֹתְךָ) – “Cuando enciendas”</h1>
+        <div class="section-container">
+            <div class="translation">Lectura: Bemidbar / Números 8:1–12:16</div>
+        </div>
+
+        <div class="content-container">
+            <p>Esta parasháh está llena de imágenes y figuras proféticas que revelan aspectos del Mashíaj, tanto en su
+                primera venida como en su regreso glorioso, así como en su rol actual como guía y luz del mundo.</p>
+            <p>Analicemos, una por una, las más importantes sombras mesiánicas:</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Profecía / Sombra mesiánica #1: La Menoráh de oro puro (מְנוֹרָה)</div>
+                    <div class="scripture">Referencia: Bemidbar 8:1–4</div>
+                    <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה לֵּאמֹר: דַּבֵּר אֶל־אַהֲרֹן וְאָמַרְתָּ אֵלָיו
+                        בְּהַעֲלֹתְךָ אֶת־הַנֵּרוֹת...</div>
+                    <div class="translation">“Y habló Adonái a Mosheh, diciendo: Habla a Aharón y dile: Cuando enciendas
+                        las lámparas...”</div>
+                    <p>Contexto y significado: La Menoráh estaba hecha de <span class="hebrew-term">זָהָב טָהוֹר</span>
+                        (oro puro), tenía siete brazos y debía alumbrar hacia el frente. Era símbolo de la
+                        <strong>shejináh</strong>, la presencia visible de Adonái que iluminaba el Mishkán.
+                    </p>
+                    <p>El Midrash Bamidbar Rabbah 15 enseña que la menoráh era testimonio ante las naciones de que la
+                        presencia divina moraba en Israel.</p>
+                    <p class="highlight">Cumplimiento mesiánico:</p>
+                    <p>En el Brit Hadasháh, Yeshúa haMashíaj dice de sí mismo: <em>“Ani Or HaOlam”</em> (אֲנִי אוֹר
+                        הָעוֹלָם, Yo soy la luz del mundo) – Yochanán / Juan 8:12.</p>
+                    <div class="aramaic">ܐܢܐ ܢܘܗܪܐ ܕܥܠܡܐ</div>
+                    <p>La menoráh de oro puro representa la naturaleza divina y perfecta del Mashíaj, quien refleja sin
+                        mancha la gloria de יהוה.</p>
+                    <p>En Revelación 1:12–13, Yochanán ve al “Hijo del Hombre” caminando entre siete menorot doradas,
+                        símbolo de que Mashíaj está en medio de Su Kehiláh (Comunidad Mesiánica).</p>
+                    <p class="highlight">Aplicación espiritual:</p>
+                    <p>Así como Aharón debía mantener la llama siempre encendida, nosotros debemos mantener encendida la
+                        luz del Mashíaj en nuestra vida, reflejando Su carácter santo ante el mundo.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Profecía / Sombra mesiánica #2: La nube de gloria (עָנַן הַכָּבוֹד)
+                    </div>
+                    <div class="scripture">Referencia: Bemidbar 9:15–23</div>
+                    <div class="hebrew">וּבְיוֹם הֲקִים הַמִּשְׁכָּן כִּסָּה הֶעָנָן אֶת־הַמִּשְׁכָּן... וּבָעֶרֶב
+                        יִהְיֶה עַל־הַמִּשְׁכָּן כְּמַרְאֵה־אֵשׁ עַד־בֹּקֶר</div>
+                    <div class="translation">“El día que fue erigido el Mishkán, la nube lo cubrió… y por la noche había
+                        sobre el Mishkán como apariencia de fuego hasta la mañana.”</div>
+                    <p>Contexto y significado: La nube representaba la presencia activa de יהוה, que daba dirección,
+                        protección y testimonio de Su cercanía.</p>
+                    <p class="highlight">Cumplimiento mesiánico:</p>
+                    <p>Yeshúa haMashíaj promete enviar el <strong>Ruaj Hakodesh</strong> para guiar y enseñar:</p>
+                    <p class="scripture">“Cuando venga el Espíritu de verdad, Él os guiará a toda verdad.” (Yochanán
+                        16:13)</p>
+                    <p>En la transfiguración (Mattityahu 17:5), una nube luminosa los cubre, y de ella sale la voz:
+                        “Este es mi Hijo amado...”</p>
+                    <div class="aramaic">ܥܢܢܐ ܕܢܘܗܪܐ</div>
+                    <p class="highlight">Aplicación espiritual:</p>
+                    <p>Así como Israel seguía la nube, el creyente sigue la voz del Ruaj Hakodesh, confiando incluso
+                        cuando no ve el camino claro.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Conclusión</h3>
+            <p>La Parasháh Beha’alotjá nos revela cómo cada elemento apuntaba proféticamente a Yeshúa haMashíaj...</p>
+        </div>
+
+        <div class="content-container">
+            <p>La Parasháh Behaalotjá (בְּהַעֲלֹתְךָ) es la número 36 del ciclo anual de lectura de la Toráh. Se
+                encuentra en el libro de Bemidbar (Números) 8:1-12:16. Aunque esta parasháh no contiene profecías
+                mesiánicas directas como las que se encuentran en Isaías o Salmos, podemos encontrar alusiones y
+                patrones que apuntan a Yeshúa haMashíaj a través de una interpretación mesiánica más profunda.</p>
+            <p>Aquí hay algunos puntos relevantes que pueden ser interpretados desde una perspectiva mesiánica:</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. La Menoráh (מְנוֹרָה):</div>
+                    <p class="scripture">Texto: Bemidbar 8:1-4 describe cómo Aharón debe encender las lámparas de la
+                        Menoráh.</p>
+                    <p class="highlight">Interpretación Mesiánica:</p>
+                    <p>La Menoráh simboliza la luz de Elohím que ilumina al mundo. Yeshúa haMashíaj es la "Luz del
+                        Mundo" (Juan 8:12). Así como el sumo sacerdote debía mantener la luz encendida, los creyentes
+                        deben mantener la luz de Yeshúa brillando a través de sus vidas.</p>
+                    <p class="highlight">Conexión:</p>
+                    <p>La luz que emana de la Menoráh puede verse como un símbolo de la presencia divina y de la guía
+                        del Ruaj HaKodesh (רוּחַ הַקֹּדֶשׁ), que Yeshúa prometió enviar.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. La Dedicación de los Levitas:</div>
+                    <p class="scripture">Texto: Bemidbar 8:5-26 describe la purificación y dedicación de los levitas
+                        para el servicio en el Mishkán.</p>
+                    <p class="highlight">Interpretación Mesiánica:</p>
+                    <p>Los levitas eran apartados para el servicio exclusivo a Elohím. De manera similar, los creyentes
+                        en Yeshúa son llamados a ser apartados y dedicados al servicio de Elohím.</p>
+                    <p>La limpieza y purificación de los levitas puede verse como paralelo a la limpieza del pecado a
+                        través del sacrificio de Yeshúa.</p>
+                    <p class="highlight">Conexión:</p>
+                    <p>Así como los levitas servían en el Mishkán, los creyentes sirven en el cuerpo del Mashíaj, la
+                        Kehiláh (קהילה), usando sus dones para la gloria de Elohím.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. La Celebración del Pésaj (פֶּסַח):</div>
+                    <p class="scripture">Texto: Bemidbar 9:1-14 habla sobre la segunda oportunidad para celebrar Pésaj.
+                    </p>
+                    <p class="highlight">Interpretación Mesiánica:</p>
+                    <p>Pésaj conmemora la liberación de Israel de Mitzrayim. Yeshúa es el Cordero de Pésaj que fue
+                        sacrificado para liberar de la esclavitud del pecado.</p>
+                    <p>La segunda oportunidad simboliza la gracia y misericordia de Elohím que da otra oportunidad a los
+                        que se arrepienten.</p>
+                    <p class="highlight">Conexión:</p>
+                    <p>La sangre del cordero que protegía de la muerte es un precursor de la sangre de Yeshúa, que
+                        ofrece redención y vida eterna.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">4. La Nube y el Fuego:</div>
+                    <p class="scripture">Texto: Bemidbar 9:15-23 describe cómo guiaban a los israelitas.</p>
+                    <p class="highlight">Interpretación Mesiánica:</p>
+                    <p>Representan la presencia y guía de Elohím. Yeshúa prometió enviar al Ruaj HaKodesh para guiar a
+                        sus seguidores.</p>
+                    <p class="highlight">Conexión:</p>
+                    <p>Así como dependían de la nube y el fuego, los creyentes dependen del Ruaj HaKodesh para dirección
+                        en sus vidas.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">5. Las Trompetas (חֲצוֹצְרוֹת):</div>
+                    <p class="scripture">Texto: Bemidbar 10:1-10 sobre el uso para convocar y para la guerra.</p>
+                    <p class="highlight">Interpretación Mesiánica:</p>
+                    <p>Simbolizan el llamado al arrepentimiento y la proclamación del evangelio. También apuntan al
+                        sonido del shofar que anunciará la venida del Mashíaj.</p>
+                    <p class="highlight">Conexión:</p>
+                    <p>La trompeta es un llamado a despertar y prepararse para la llegada del Reino de Elohím.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">6. El Deseo de Carne (תַּאֲוָה):</div>
+                    <p class="scripture">Texto: Bemidbar 11:4-35 relata la queja del pueblo.</p>
+                    <p class="highlight">Interpretación Mesiánica:</p>
+                    <p>Advierte contra la falta de contentamiento y buscar deseos carnales en lugar de la provisión
+                        espiritual.</p>
+                    <p class="highlight">Conexión:</p>
+                    <p>El maná (מָן) es un símbolo del pan del cielo que Yeshúa ofrece.</p>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">7. El Liderazgo de Mosheh (מֹשֶׁה):</div>
+                    <p class="scripture">Texto: Bemidbar 12:1-16 sobre la crítica de Miryam y Aharón.</p>
+                    <p class="highlight">Interpretación Mesiánica:</p>
+                    <p>Mosheh es tipo del Mashíaj. Así como Mosheh fue mediador, Yeshúa es el mediador perfecto.</p>
+                    <p class="highlight">Conexión:</p>
+                    <p>La fidelidad de Mosheh es ejemplo para líderes, de servir con humildad.</p>
+                </div>
+            </div>
+
+            <div class="conclusion">
+                <p><strong>Nota Adicional:</strong> En 1 Corintios 10:1-11, Shaúl usa la experiencia de Israel en el
+                    desierto como advertencia para la fidelidad y obediencia a Elohím.</p>
+                <p>Cada uno de estos puntos muestra cómo la Toráh apunta al Mashíaj a través de símbolos y patrones.</p>
+            </div>
+        </div>
+
+        <div class="prayer-conclusion">
+            <p><strong>Tefiláh (Oración final)</strong></p>
+            <p class="prayer-text">Adonái יהוה, gracias porque cada letra de Tu Toráh nos dirige a Yeshúa haMashíaj...
+                B’shem Yeshúa haMashíaj. Amén.</p>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente
+            profesia.</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        .verse-container {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .verse-number {
+            font-weight: bold;
+            color: #000;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .hebrew {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .transliteration {
+            font-style: italic;
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .translation {
+            margin: 10px 0;
+        }
+
+        .aramaic {
+            font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+            direction: rtl;
+            font-size: 1.3em;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .explanation {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .point-letter {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 8px;
+            color: #000;
+        }
+
+        .content-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .section-container {
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            text-align: center;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0;
+        }
+
+        .prophetic-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .prophetic-section {
+            margin-bottom: 20px;
+        }
+
+        .prophetic-title {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        .scripture {
+            font-style: italic;
+            margin: 10px 20px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .conclusion {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .literal-translation {
+            margin: 10px 0;
+            font-style: italic;
+            color: #444;
+        }
+
+        .prayer-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .prayer-conclusion {
+            font-style: italic;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #google_translate_element {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            font-size: clamp(12px, 2.5vw, 14px);
+        }
+
+        /* Botones */
+        .boton-descargar {
+            display: block;
+            width: clamp(150px, 70%, 180px);
+            margin: 15px auto;
+            padding: clamp(8px, 2vw, 10px);
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: clamp(12px, 3vw, 14px);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .boton-descargar:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+
+        .aliya-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+            text-align: center;
+            display: inline-block;
+            font-size: clamp(14px, 4vw, 16px);
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .aliya-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .aliya-button a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: clamp(12px, 2vw, 14px);
+            color: #777;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="google_translate_element"></div>
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+
+        <h1>📜 Profecía #31</h1>
+        <h2>Mo’adéi Adonái (מוֹעֲדֵי יְהוָה) – Las Fiestas Santas como anuncio del plan mesiánico en Yeshúa haMashíaj
+        </h2>
+
+        <div class="content-container">
+            <div class="section-container">
+                <p class="point-letter">1. Referencia en el Tanaj – Cita del verso y libro</p>
+                <p><strong>Vayiqrá / Levítico 23:2 (fonética tiberiana):</strong></p>
+                <div class="hebrew">דַּבֵּר אֶל-בְּנֵי-יִשְׂרָאֵל וְאָמַרְתָּ אֲלֵיהֶם מוֹעֲדֵי יְהוָה אֲשֶׁר-תִּקְרְאוּ
+                    אֹתָם מִקְרָאֵי קֹדֶשׁ אֵלֶּה הֵם מוֹעֲדָי</div>
+                <div class="transliteration">Daber el-Benei Yisra’el ve’amarta alehem: Mo’adéi Adonái asher-tikre’u otam
+                    mikra’ei kodesh, eleh hem mo’adai.</div>
+                <div class="translation">“Habla a los hijos de Israel y diles: Las fiestas señaladas de Adonái, que
+                    proclamaréis como convocaciones santas, estas son mis fiestas señaladas.”</div>
+            </div>
+
+            <div class="section-container">
+                <p class="point-letter">2. Contexto y significado profético – análisis profundo</p>
+                <p>La Parasháh Emor dedica un capítulo entero (Vayiqrá 23) a enumerar los Mo’adím (מוֹעֲדִים, tiempos
+                    señalados):</p>
+                <ul>
+                    <li>Pésaj (פֶּסַח)</li>
+                    <li>Jag HaMatsot (חַג הַמַּצּוֹת)</li>
+                    <li>Reshit Katzir (רֵאשִׁית קָצִיר, Primicias)</li>
+                    <li>Shavu‘ot (שָׁבוּעוֹת)</li>
+                    <li>Yom Teru‘áh (יוֹם תְּרוּעָה, Trompetas)</li>
+                    <li>Yom HaKipurim (יוֹם הַכִּפּוּרִים, Expiación)</li>
+                    <li>Sukkot (סֻּכּוֹת, Tabernáculos)</li>
+                </ul>
+                <p>Según el Midrash Torat Kohanim, estos Mo’adím son citas divinas, no invención humana.</p>
+                <div class="scripture">Mo’ed (מוֹעֵד): raíz יעד → reunirse, fijar cita. Mo’adéi Adonái → “Tiempos
+                    señalados por Adonái”.</div>
+                <p>Proféticamente, son ensayos del plan completo de redención a través del Mashíaj.</p>
+            </div>
+
+            <div class="section-container">
+                <p class="point-letter">3. Cumplimiento mesiánico en Yeshúa haMashíaj – explicación extensa</p>
+                <p><strong>A) Pésaj (פֶּסַח):</strong> Memorial de la salida de Mitsráyim. En el Brit Hadasháh, Yeshúa
+                    es nuestro Cordero inmolado.</p>
+                <div class="scripture">“Porque nuestro Pésaj ha sido sacrificado, el Mashíaj.” (1 Corintiyim 5:7)</div>
+
+                <p><strong>B) Jag HaMatsot:</strong> Simboliza pureza. Yeshúa, sin pecado, fue sepultado en ese tiempo.
+                </p>
+                <div class="scripture">Su cuerpo no vio corrupción (Tehilim 16:10).</div>
+
+                <p><strong>C) Reshit Katzir:</strong> Primicias de la cosecha.</p>
+                <div class="scripture">“El Mashíaj ha resucitado… primicias de los que durmieron.” (1 Corintiyim 15:20)
+                </div>
+
+                <p><strong>D) Shavu‘ot:</strong> Entrega de la Toráh. En Hechos 2, el Ruaj Hakodesh desciende.</p>
+                <div class="aramaic">ܘܐܬܡܠܝܘ ܟܠܗܘܢ ܡܢ ܪܘܚܐ ܕܩܘܕܫܐ</div>
+
+                <p><strong>E) Yom Teru‘áh:</strong> Sonido del shofar anuncia al Rey.</p>
+                <div class="scripture">“El Mashíaj descenderá del cielo con trompeta…” (1 Thessalonikím 4:16)</div>
+
+                <p><strong>F) Yom HaKipurim:</strong> Día de Expiación. Yeshúa es nuestro Kohen Gadol.</p>
+                <div class="scripture">Entró al Lugar Santísimo celestial (Ivrim 9:12).</div>
+
+                <p><strong>G) Sukkot:</strong> Morada de Adonái con Su pueblo. Se celebrará en el Reino mesiánico.</p>
+                <div class="scripture">“Todas las naciones subirán a Yerushalayim…” (Zejaryah 14:16)</div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <p><strong>4. Síntesis mesiánica:</strong></p>
+            <ul>
+                <li>Fiestas primaverales ya cumplidas en la primera venida del Mashíaj.</li>
+                <li>Festas otoñales se cumplirán en Su regreso.</li>
+                <li>El plan está inscrito en el calendario sagrado.</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <p class="point-letter">5. Perspectiva rabínica y judío mesiánica</p>
+            <div class="scripture">“Israel es redimido en Nisán (Pésaj), y el toque del shofar anuncia al Rey.” (Midrash
+                Bamidbar Rabbah)</div>
+            <div class="scripture">En Qumrán (4Q521) se espera un Mesías que proclame libertad (deror) y resurrección.
+            </div>
+        </div>
+
+        <div class="content-container">
+            <p class="point-letter">6. Aplicación espiritual para nosotros:</p>
+            <ul>
+                <li>Vivir sabiendo que nuestra fe está anclada en el plan eterno de Elohím.</li>
+                <li>Celebra las fiestas como proclamación viva del Mashíaj.</li>
+                <li>Prepararnos como Novia para Su regreso.</li>
+            </ul>
+        </div>
+
+        <h1>📜 Referencia clave en el Tanaj – Vayiqrá / Levítico 21:16–23</h1>
+
+        <div class="content-container">
+            <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל-מֹשֶׁה לֵּאמֹר׃ אִישׁ מִזֶּרַע אַהֲרֹן הַכֹּהֵן אֲשֶׁר-יִהְיֶה בוֹ
+                מוּם לֹא יִגַּשׁ לְהַקְרִיב אֶת-לֶחֶם אֱלֹהָיו</div>
+            <div class="translation">“Y habló Adonái a Mosheh diciendo: Ningún hombre de la descendencia de Aharón el
+                kohen que tenga un defecto se acercará para ofrecer el pan de su Elohím…”</div>
+        </div>
+
+        <div class="content-container">
+            <p class="point-letter">✡ Contexto y significado espiritual</p>
+            <p>El texto enumera defectos físicos (מוּם, <span class="hebrew-term">mum</span>): ceguera, cojera, miembros
+                deformes, joroba, problemas en los ojos, sarna, testículos dañados, etc.</p>
+            <p>El Kohen con defecto podía comer de las ofrendas, pero no podía acercarse al altar ni ministrar.</p>
+            <div class="scripture">En la halajá y el Midrash (Sifra Emor): el mum simboliza una ruptura del shalom
+                (integridad, plenitud). El servicio sacerdotal exige <span class="hebrew-term">tamim</span> (תָּמִים,
+                perfección).</div>
+        </div>
+
+        <div class="content-container">
+            <p class="point-letter">🌿 Conexión mesiánica profunda: el Mashíaj restaura cada defecto</p>
+            <div class="prophetic-section">
+                <p class="prophetic-title">🔹 1. El defecto físico en el Kohen como imagen del defecto espiritual del
+                    hombre</p>
+                <div class="scripture">Tehilim 51:7: “En pecado me concibió mi madre.”</div>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">🔹 2. Mashíaj como Kohen Gadol tamim (Sumo Sacerdote perfecto)</p>
+                <div class="scripture">Ivrim / Hebreos 7:26: “Porque tal Kohen Gadol nos convenía: kadosh, inocente,
+                    incontaminado, apartado de los pecadores...”</div>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">🔹 3. Mashíaj restaura y purifica: cada “mum” es sanado en Él</p>
+                <div class="scripture">Midrash Tanjumá Emor 7: “En los días del Mashíaj, Adonái sanará a los ciegos,
+                    cojos y mudos…”</div>
+                <div class="scripture">Yesha‘yahu 35:5–6: “Entonces se abrirán los ojos de los ciegos, los oídos de los
+                    sordos se abrirán. Saltará el cojo como ciervo…”</div>
+                <p>En el Brit Hadasháh, Yeshúa sana ciegos (Mattityahu 9:27), cojos (Yochanán 5), mudos y leprosos. Esto
+                    cumple literalmente la profecía y es signo mesiánico.</p>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">🔹 4. Restauración espiritual: de kohanim imperfectos a un sacerdocio
+                    perfecto en Él</p>
+                <div class="scripture">1 Kefa / Pedro 2:9: “Mas vosotros sois linaje escogido, <span
+                        class="hebrew-term">memlejet kohanim</span> (מַמְלֶכֶת כֹּהֲנִים), nación santa…”</div>
+                <p>En Mashíaj, incluso los que teníamos “defectos” pasamos a ser kohanim espirituales: reconciliados,
+                    restaurados y dignificados.</p>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">🔹 5. En el Reino mesiánico: restauración completa</p>
+                <div class="scripture">Talmud Bavlí, Sanhedrín 98a: “En los días del Mashíaj no habrá ni enfermedad ni
+                    defecto.”</div>
+                <div class="scripture">Revelación / Jizayón 21:4: “Y ya no habrá llanto, ni clamor, ni dolor…”</div>
+                <p>Mashíaj llevará al remanente a un estado sin <span class="hebrew-term">mum</span>, plenamente
+                    restaurado para servir ante el trono de Adonái.</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <p><strong>📖 Síntesis espiritual y profética:</strong></p>
+            <ul>
+                <li>Los defectos físicos del Kohen reflejan el defecto espiritual del hombre.</li>
+                <li>Mashíaj, como Kohen Gadol sin defecto, restaura toda imperfección.</li>
+                <li>Su obra transforma a los defectuosos en una Kehiláh de kohanim santos.</li>
+                <li>El Reino mesiánico culmina con sanidad física y espiritual total.</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <p class="point-letter">✡ Aplicación personal:</p>
+            <ul>
+                <li>Reconocer nuestras “imperfecciones” y permitir que el Mashíaj nos restaure.</li>
+                <li>Vivir como kohanim espirituales: consagrados, sanados y reconciliados.</li>
+                <li>Anhelar el día en que toda enfermedad y defecto desaparecerán ante Su gloria.</li>
+            </ul>
+        </div>
+
+        <div class="content-container">
+            <h2>🙏 Tefiláh (Oración reflexiva)</h2>
+            <p class="prayer-text">Adonái יהוה, gracias por darnos tus Mo’adím como señales vivas de Tu redención en el
+                Mashíaj. Ayúdanos a celebrar con entendimiento, a vivir consagrados y a esperar con gozo Su regreso.
+                B’shem Yeshúa haMashíaj, Amén.</p>
+        </div>
+
+        <footer>
+            <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                    Biblia Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                    https://bibliatorahviviente.github.io/recursos/</a></p>
+        </footer>
+    </main>
+
+    <button class="aliya-button"><a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html">Ir a la siguiente
+            profesia.</a></button>
+
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
