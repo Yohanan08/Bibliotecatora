@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Restauración de Israel.</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+      .translation {
+        margin: 10px 0;
+      }
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .section-container {
+        margin-bottom: 25px;
+      }
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+      strong {
+        color: #000;
+      }
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="google_translate_element"></div>
+
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <div class="content-container">
+        <h1>La Restauración de Israel</h1>
+        <p>
+          La restauración de Israel es un tema central en las Escrituras, tanto
+          en el Tanakh como en el Brit Hadasháh. Es esencial comprender este
+          tema desde una perspectiva judía mesiánica, reconociendo que la
+          Kehiláh no reemplaza a Israel, sino que se injerta en la promesa hecha
+          a Abraham. A continuación, exploraremos este tema en profundidad,
+          utilizando las fuentes originales y evitando la terminología cristiana
+          tradicional.
+        </p>
+      </div>
+
+      <h2>Fundamentos Bíblicos de la Restauración de Israel</h2>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. Promesa a Abraham (Bereshit 12:3):
+          </div>
+          <div class="hebrew">וְנִבְרְכוּ בְךָ כֹּל מִשְׁפְּחֹת הָאֲדָמָה</div>
+          <div class="transliteration">
+            Uverajtí mevarjekha umekaleleja a'or, venivrekhú bekhá kol mishpejot
+            ha'adamah
+          </div>
+          <div class="translation">
+            "Serán injertadas contigo todas las familias de la tierra".<br />"Serán
+            bendecidas contigo todas las familias de la tierra".
+          </div>
+          <p>
+            Esta promesa es incondicional y eterna. Elohím promete bendecir a
+            las naciones a través de la simiente de Abraham.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2. Profecías de Restauración (Iejezkel 36:24-28):
+          </div>
+          <div class="hebrew">
+            אֲ‍ֽשֶׁר־גֵּרַשְׁתֶּם שָׁם וְקִבַּצְתִּי אֶתְכֶם מִן־הָאֲרָצוֹת
+            וְנָתַתִּי לָכֶם אֶת־אַדְמַתְכֶם
+          </div>
+          <div class="transliteration">
+            (Asher-gerashtem sham vekibatzti etkhem min-ha'aratzot venatati
+            lakhem et-admatkhem)
+          </div>
+          <div class="translation">
+            "Os recogeré de entre las naciones, os reuniré de todos los países y
+            os traeré a vuestra propia tierra."
+          </div>
+          <p>
+            Habla de un retorno físico y espiritual de Israel a su tierra.
+            Elohím promete purificarlos, darles un nuevo corazón y un nuevo
+            Ruaj.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            3. Profecía de Isaías (Ieshayahu 11:11-12):
+          </div>
+          <div class="hebrew">
+            וְהָיָה בַּיּוֹם הַהוּא יוֹסִיף אֲדֹנָי שֵׁנִית...
+          </div>
+          <div class="transliteration">
+            (Vehayah bayom hahu yosif Adonai shenit yado...)
+          </div>
+          <div class="translation">
+            "En aquel día, Adonái extenderá su mano por segunda vez para
+            rescatar al remanente de su pueblo que haya quedado en Asiria,
+            Egipto...".
+          </div>
+          <p>
+            Isaías profetiza que Adonái reunirá a su pueblo de todas las
+            naciones donde hayan sido dispersados.
+          </p>
+        </div>
+      </div>
+
+      <h2>Brit Hadasháh</h2>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. Yeshúa haMashíaj y la Restauración (Hechos 1:6-7):
+          </div>
+          <div class="aramaic">ܫܐܶܠܘܽܗܝ... ܡܰܦ݁ܶܝܢܰܬ݁ ܡܰܠܟܽܘܬܳܐ ܠܺܐܝܣܪܳܝܶܠ</div>
+          <div class="translation">
+            "Entonces los que estaban reunidos le preguntaron: Adon,
+            ¿restaurarás en este tiempo el reino a Israel?"
+          </div>
+          <p>
+            Yeshúa no negó la restauración, solo dijo que no era el tiempo que
+            ellos supieran.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2. Shaúl y la Promesa a Israel (Romanos 11:25-27):
+          </div>
+          <div class="scripture">
+            "Porque no quiero, hermanos, que ignoréis este misterio... y
+            entonces todo Israel será salvo; como está escrito: Vendrá de Tzión
+            el Libertador...".
+          </div>
+          <p>
+            Shaúl enfatiza que el endurecimiento de Israel es parcial y
+            temporal, hasta que la plenitud de los gentiles entre.
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <h2>La Falsa Doctrina del Reemplazo</h2>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Argumentos en contra del reemplazo:</div>
+          <ul>
+            <li>
+              <strong
+                >1. Las Promesas de Elohím son Irrevocables (Romanos
+                11:29):</strong
+              ><br />
+              <span class="scripture"
+                >"Porque irrevocables son los dones y el llamamiento de
+                Elohím."</span
+              >
+            </li>
+            <p>Esto demuestra que Elohím no ha roto su pacto con Israel.</p>
+
+            <li>
+              <strong
+                >2. La Kehiláh se Injerta, No Reemplaza (Romanos
+                11:17-24):</strong
+              ><br />
+              <span class="scripture"
+                >"Tú, siendo olivo silvestre, fuiste injertado... no te jactes
+                contra las ramas."</span
+              >
+            </li>
+            <p>La raíz sigue siendo Israel; la Kehiláh depende de esa raíz.</p>
+          </ul>
+        </div>
+        <div class="content-container">
+          <h1>
+            Romanos 11:17-24 – El Injerto de los Gentiles en el Olivo de Israel
+          </h1>
+
+          <p>
+            Shaul (Pablo) usa aquí la imagen del olivo cultivado, símbolo de
+            Israel, para explicar el lugar de los gentiles creyentes en Mashíaj.
+          </p>
+          <p class="scripture">
+            “Y si algunas de las ramas fueron desgajadas, y tú, siendo olivo
+            silvestre, fuiste injertado en lugar de ellas y hecho participante
+            de la raíz y de la rica savia del olivo…” (v.17)
+          </p>
+          <p>Veamos verso por verso:</p>
+
+          <div class="section-container">
+            <h2>🌿 Verso 17: “Y si algunas de las ramas fueron desgajadas…”</h2>
+            <ul>
+              <li>
+                “<span class="highlight">Ramas</span>” = Israel incrédulo, en
+                especial aquellos que rechazaron a Yeshúa.
+              </li>
+              <li>
+                <span class="highlight">Desgajadas</span> (ἐξεκλάσθησαν,
+                exeklasthēsan): cortadas, quitadas de su propia raíz.
+              </li>
+              <li>
+                Esto no significa que Israel haya sido reemplazado; sólo algunas
+                ramas fueron removidas temporalmente.
+              </li>
+              <li>
+                La raíz permanece viva, es el remanente fiel de Israel más la
+                promesa a los patriarcas.
+              </li>
+            </ul>
+
+            <h3>🌿 “...y tú, siendo olivo silvestre…”</h3>
+            <ul>
+              <li>
+                <span class="highlight">Gentiles</span>: “olivo silvestre”
+                (ἀγριέλαιος, agrielaios), sin cultivo, sin Toráh.
+              </li>
+              <li>
+                En la antigüedad, injertar ramas de olivo silvestre en un olivo
+                cultivado era contrario a la práctica común, porque normalmente
+                se injertaba al revés.
+              </li>
+              <li>
+                Shaul resalta que esto es un milagro del Eterno: que ramas
+                salvajes sean injertadas y den fruto por la raíz santa.
+              </li>
+            </ul>
+
+            <h3>
+              🌿 “...fuiste injertado en lugar de ellas y hecho participante de
+              la raíz y de la rica savia del olivo.”
+            </h3>
+            <ul>
+              <li>
+                “<span class="highlight">Injertado</span>” (ἐνεκεντρίσθης,
+                enekentristhēs): incorporado.
+              </li>
+              <li>
+                Participas de:
+                <ul>
+                  <li>
+                    La <span class="highlight">raíz</span>: Abraham, Yitzjak,
+                    Ya’akov, las promesas y la fe.
+                  </li>
+                  <li>
+                    La <span class="highlight">rica savia</span>: Toráh, Britot
+                    (pactos), presencia del Ruaj Hakodesh, historia, llamado de
+                    Israel como luz a las naciones.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                El creyente gentil no es un segundo árbol, sino que ahora forma
+                parte del mismo Israel redimido.
+              </li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>✡ Verso 18: “No te jactes contra las ramas…”</h2>
+            <p>Shaul advierte contra el orgullo antijudío.</p>
+            <p>
+              Si te jactas, recuerda: “<span class="highlight"
+                >no sustentas tú a la raíz, sino la raíz a ti</span
+              >.”
+            </p>
+            <p>
+              Gentiles no sostienen a Israel; al contrario, Israel sostiene a
+              las naciones porque de Israel provienen:
+            </p>
+            <ul>
+              <li>Toráh</li>
+              <li>Los profetas</li>
+              <li>El Brit Hadasháh</li>
+              <li>Yeshúa haMashíaj mismo</li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>
+              ✡ Verso 19: “Dirás entonces: las ramas fueron desgajadas para que
+              yo fuese injertado.”
+            </h2>
+            <p>
+              Argumento de orgullo: “Ellos fueron quitados para que yo tenga
+              lugar.”
+            </p>
+            <p>
+              Este pensamiento es el origen de la
+              <span class="highlight">teología del reemplazo</span>.
+            </p>
+            <p>Shaul lo va a corregir de inmediato.</p>
+          </div>
+
+          <div class="section-container">
+            <h2>
+              ✡ Verso 20: “Bien; por su incredulidad fueron desgajadas, pero tú
+              por la fe estás en pie.”
+            </h2>
+            <ul>
+              <li>
+                Israel incrédulo fue desgajado por falta de
+                <span class="highlight">emunáh</span> (fe).
+              </li>
+              <li>
+                Gentil creyente está en pie por la emunáh, no por méritos ni por
+                abolir la Toráh.
+              </li>
+            </ul>
+            <p>
+              “<span class="highlight">No te ensoberbezcas, sino teme</span>”:
+            </p>
+            <ul>
+              <li>
+                La posición en el olivo es por gracia y fe, no para jactarse
+                contra Israel.
+              </li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>
+              ✡ Verso 21: “Porque si Elohím no perdonó a las ramas naturales, a
+              ti tampoco te perdonará.”
+            </h2>
+            <ul>
+              <li>
+                Las ramas naturales (judíos) fueron removidas temporalmente por
+                incredulidad.
+              </li>
+              <li>
+                Gentiles injertados pueden ser igualmente removidos si caen en
+                incredulidad y orgullo.
+              </li>
+              <li>
+                Shaul recuerda que la elección de Israel como pueblo permanece,
+                pero el remanente fiel es lo que importa.
+              </li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>
+              ✡ Verso 22: “Mira, pues, la bondad y la severidad de Elohím…”
+            </h2>
+            <ul>
+              <li>
+                <span class="highlight">Severidad</span> para los que cayeron:
+                Israel incrédulo.
+              </li>
+              <li>
+                <span class="highlight">Bondad</span> para ti, si permaneces en
+                Su bondad (en hebreo: jesed).
+              </li>
+            </ul>
+            <p>
+              “<span class="highlight"
+                >De otra manera, tú también serás cortado</span
+              >.”
+            </p>
+            <ul>
+              <li>Gentiles no están exentos de juicio si abandonan la fe.</li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>
+              ✡ Verso 23: “Y aun ellos, si no permanecieren en incredulidad,
+              serán injertados…”
+            </h2>
+            <ul>
+              <li>Israel no está rechazado para siempre.</li>
+              <li>
+                Si Israel vuelve en emunáh a Yeshúa, será nuevamente injertado
+                en su propio olivo.
+              </li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>
+              ✡ Verso 24: “Porque si tú fuiste cortado del que por naturaleza es
+              olivo silvestre…”
+            </h2>
+            <ul>
+              <li>
+                Gentiles eran por naturaleza alejados de los pactos (Efesiyim
+                2:12).
+              </li>
+              <li>
+                Fueron injertados contra naturaleza en el olivo cultivado.
+              </li>
+            </ul>
+            <p>
+              “<span class="highlight"
+                >¿Cuánto más estos, que son las ramas naturales, serán
+                injertados en su propio olivo?</span
+              >”
+            </p>
+            <ul>
+              <li>
+                El regreso de Israel es más natural y profetizado: el Eterno
+                restaurará Su pueblo.
+              </li>
+            </ul>
+          </div>
+
+          <div class="conclusion">
+            <p>🌿 <span class="highlight">Conclusión profunda:</span></p>
+            <ul>
+              <li>No hay dos pueblos ni dos planes.</li>
+              <li>El olivo es Israel redimido.</li>
+              <li>
+                Las naciones entran por fe en Yeshúa, el Mashíaj judío, y se
+                hacen ciudadanos de Israel (Efesiyim 2:12–19).
+              </li>
+              <li>
+                Israel incrédulo será restaurado (Rom 11:26: “y así todo Israel
+                será salvo”).
+              </li>
+            </ul>
+            <p>Esto es el misterio revelado en el Brit Hadasháh:</p>
+            <p>
+              La unidad de judíos y gentiles redimidos, un solo cuerpo, una sola
+              Kehiláh mesiánica, bajo la sangre preciosa de Yeshúa.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="content-container">
+          <h1>📜 "Aját Toráh": Una Misma Instrucción para Todos en el Pacto</h1>
+          <p>
+            Este principio es central en la Toráh, confirmado por los profetas y
+            revelado con toda claridad en el Brit Hadasháh:
+          </p>
+          <p class="hebrew">אחת תורה יהיה לאזרח ולגר הגר בתוככם</p>
+          <p class="transliteration">
+            Aját Toráh yihyéh la'ezraj velager hagar betojjem
+          </p>
+          <p class="scripture">
+            “Una misma Toráh habrá para el natural y para el extranjero que
+            habite entre vosotros.” (Bemidbar / Números 15:16; también Éxodo
+            12:49)
+          </p>
+
+          <div class="section-container">
+            <h2>✡ 1. ¿Qué significa "Aját Toráh"?</h2>
+            <ul>
+              <li>
+                “<span class="highlight">Aját</span>” = una, única, la misma.
+              </li>
+              <li>
+                “<span class="highlight">Toráh</span>” = Instrucción divina dada
+                por Adonái יהוה.
+              </li>
+              <li>
+                Para el <span class="highlight">nativo</span> (אזרח): Israelita
+                nacido.
+              </li>
+              <li>
+                Para el <span class="highlight">ger</span> (גר): extranjero que
+                se une a Israel (proselitismo completo o injerto por fe).
+              </li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>🌿 2. Este mandamiento es eterno</h2>
+            <p>En Bemidbar (Números) 15:15-16:</p>
+            <p class="scripture">
+              “Un estatuto perpetuo será para vuestras generaciones; como
+              vosotros, así será el ger delante de Adonái.”
+            </p>
+            <p class="scripture">
+              “Una misma Toráh y un mismo mishpat (juicio) tendréis.”
+            </p>
+            <p>
+              Adonái no establece una Toráh para Israel y otra para las
+              naciones, sino una sola instrucción para todo aquel que se une a
+              Su pueblo.
+            </p>
+          </div>
+
+          <div class="section-container">
+            <h2>
+              🕊 3. En el Brit Hadasháh: la misma Toráh revelada en el Mashíaj
+            </h2>
+            <p>
+              Efesiyim 2:12–14: los gentiles estaban “alejados de los pactos de
+              la promesa”, pero ahora son “ciudadanos con los kadoshím”.
+            </p>
+            <p>Injertados en el mismo olivo (Romanos 11).</p>
+            <p>
+              No bajo otro pacto ni otra ley; sino participando de los mismos
+              pactos, promesas y Toráh escrita en el corazón (Yirmeyahu
+              31:31–33).
+            </p>
+          </div>
+
+          <div class="section-container">
+            <h2>✡ 4. Profecía mesiánica: la Toráh saldrá de Tsión</h2>
+            <p class="scripture">
+              “Porque de Tsión saldrá la Toráh, y la palabra de Adonái desde
+              Yerushaláyim.” (Yeshayahu 2:3, Mikháh 4:2)
+            </p>
+            <p>Esto incluye a:</p>
+            <ul>
+              <li>Israel.</li>
+              <li>Las naciones que vendrán a aprender de Adonái.</li>
+            </ul>
+          </div>
+
+          <div class="section-container">
+            <h2>🩸 5. A través de la sangre de Yeshúa</h2>
+            <p>
+              El Brit Hadasháh no da “otra Toráh”, sino que renueva la Toráh
+              existente, escribiéndola en el corazón de Israel y de los
+              injertados de las naciones.
+            </p>
+            <p>
+              Yeshúa haMashíaj es la Toráh viviente hecha carne (Yochanán 1:14).
+            </p>
+          </div>
+
+          <div class="section-container">
+            <h2>📜 6. Fundamentos desde la Toráh, Nevim y Brit Hadasháh</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Texto</th>
+                  <th>Principio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Shemot (Éxodo) 12:49</td>
+                  <td>Una Toráh para el natural y el extranjero</td>
+                </tr>
+                <tr>
+                  <td>Bemidbar (Números) 15:15-16</td>
+                  <td>Un mismo estatuto perpetuo</td>
+                </tr>
+                <tr>
+                  <td>Yeshayahu 56:6-7</td>
+                  <td>
+                    “Y a los extranjeros que se unen… los llevaré a Mi monte
+                    santo”
+                  </td>
+                </tr>
+                <tr>
+                  <td>Efesiyim 2:12-14</td>
+                  <td>Gentiles ahora ciudadanos de Israel</td>
+                </tr>
+                <tr>
+                  <td>Romanos 11</td>
+                  <td>Injertados en el mismo olivo</td>
+                </tr>
+                <tr>
+                  <td>Yirmeyahu 31:31–33</td>
+                  <td>Toráh escrita en el corazón</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="conclusion">
+            <p>✅ 7. <span class="highlight">Conclusión mesiánica:</span></p>
+            <ul>
+              <li>
+                Una sola Toráh para Israel y para las naciones que se injertan
+                por la fe en Yeshúa haMashíaj.
+              </li>
+              <li>El Brit Hadasháh confirma, no reemplaza, la Toráh.</li>
+              <li>
+                La misma Toráh, ahora con el Ruaj Hakodesh escribiéndola en
+                nuestros corazones, para vivirla no solo por letras, sino por el
+                poder y la gracia del Mashíaj.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <h2>Restauración Mesiánica</h2>
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Profecía de Zacarías (12:10):</div>
+          <div class="hebrew">
+            וְשָׁפַכְתִּי... וְהִבִּיטוּ אֵלַי אֵת אֲשֶׁר־דָּקָרוּ...
+          </div>
+          <div class="translation">
+            "Derramaré sobre la casa de David... y mirarán a mí, a quien
+            traspasaron...".
+          </div>
+          <p>
+            Describe un tiempo cuando Israel reconocerá a Yeshúa como el
+            traspasado.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2. Reconocimiento de Yeshúa (Mateo 23:39):
+          </div>
+          <div class="translation">
+            "No me veréis hasta que digáis: Bendito el que viene en el nombre de
+            Adonái."
+          </div>
+          <p>
+            Yeshúa anuncia que el reconocimiento mesiánico traerá restauración
+            completa.
+          </p>
+        </div>
+
+        <div class="conclusion">
+          <p>
+            En resumen, la restauración de Israel es central en las Escrituras.
+            La Kehiláh no reemplaza a Israel, sino que se injerta en la promesa
+            dada a Abraham. La restauración completa sucederá cuando Israel
+            reconozca a Yeshúa haMashíaj como su Mashíaj.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h1>
+          La falsa doctrina que enseña que el Eterno tiene un plan con Israel y
+          otro distinto con la “iglesia”
+        </h1>
+        <p>
+          Vamos a analizarlo desde la perspectiva del Ministerio Judío Mesiánico
+          y las Escrituras Hebreas y Brit Hadasháh (Nuevo Pacto) según la Biblia
+          Toráh Viviente y comentarios judío mesiánicos:
+        </p>
+
+        <div class="section-container">
+          <p>
+            📜 <strong>1. Fundamento bíblico del plan único:</strong><br />
+            El Tanakh (Toráh, Nevim, Ketuvim) enseña claramente que el Eterno
+            llamó a Israel para ser luz a las naciones (Or goyim – ישעיהו Isa
+            42:6, 49:6).<br />
+            Yeshúa haMashíaj mismo dijo:
+          </p>
+          <p class="scripture">
+            “No he sido enviado sino a las ovejas perdidas de la casa de Israel”
+            (Matityahu 15:24).
+          </p>
+          <p>
+            El Brit Hadasháh enseña que los gentiles que creen en Yeshúa no
+            forman una “iglesia” separada, sino que son injertados en el olivo
+            natural que es Israel:
+          </p>
+          <p class="scripture">
+            “Tú, siendo olivo silvestre, fuiste injertado en lugar de ellas y
+            hecho participante de la raíz y de la rica savia del olivo” (Romiyim
+            11:17).
+          </p>
+          <p>
+            Aquí Shaul (Pablo) enseña claramente que hay un solo pueblo
+            redimido, un solo cuerpo (Efesiyim 2:14-16), compuesto por judíos y
+            gentiles unidos en Mashíaj.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <p>
+            🌿
+            <strong
+              >2. Error de la teología de los “dos pueblos / dos
+              pactos”:</strong
+            ><br />
+            Esta doctrina afirma que:
+          </p>
+          <ul>
+            <li>Israel sigue bajo el pacto mosaico.</li>
+            <li>La “iglesia” tiene otro pacto separado.</li>
+          </ul>
+          <p>Esto contradice la enseñanza del Brit Hadasháh:</p>
+          <p class="scripture">
+            “Porque Él es nuestra shalom, que de ambos pueblos hizo uno solo,
+            derribando la pared intermedia de separación” (Efesiyim 2:14).
+          </p>
+          <p>
+            El Brit Hadasháh (Nuevo Pacto) fue dado a la casa de Israel y la
+            casa de Yehudáh (Yirmeyahu 31:31-34). Los gentiles entran a
+            participar de este mismo pacto, no de otro distinto.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <p>
+            ✡️
+            <strong
+              >3. Desde la perspectiva mesiánica y los comentarios judío
+              mesiánicos:</strong
+            ><br />
+            Los comentarios de Biblia Torah Viviente enfatizan que:
+          </p>
+          <ul>
+            <li>
+              Yeshúa vino a restaurar y reunir el Israel disperso (las “ovejas
+              perdidas de la casa de Israel”) y a injertar a los gentiles
+              creyentes en ese mismo Israel redimido.
+            </li>
+            <li>No fundó una nueva religión separada de Israel.</li>
+          </ul>
+          <p>
+            “El Brit Hadasháh afirma que Yeshúa no es otro que el prometido
+            Mashíaj por el cual el pueblo judío ha anhelado”.
+          </p>
+          <p>
+            Así, la idea de que el Eterno tiene un plan separado para Israel y
+            otro para la “iglesia” es un error originado siglos después,
+            influenciado por la teología del reemplazo y el divorcio de las
+            raíces judías.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <p>
+            🕊 <strong>4. Israel y la Kehiláh de Yeshúa son Ejad (uno):</strong
+            ><br />
+            El plan del Eterno es restaurar todo Israel (Romiyim 11:26).<br />
+            Gentiles justos que creen en Yeshúa son ciudadanos de Israel
+            (Efesiyim 2:19).
+          </p>
+          <p class="scripture">
+            “Así que ya no sois extranjeros ni advenedizos, sino conciudadanos
+            de los kadoshim y miembros de la familia de Elohím” (Efesiyim 2:19).
+          </p>
+        </div>
+
+        <div class="section-container">
+          <p>
+            ✅ <strong>5. Conclusión desde la Toráh Viviente:</strong><br />
+            El Eterno tiene un solo plan redentor:
+          </p>
+          <ul>
+            <li>Centrado en Yeshúa haMashíaj.</li>
+            <li>
+              Un solo pueblo, un solo cuerpo, bajo un solo pacto Nuevo (Brit
+              Hadasháh) con Israel, en el que los gentiles son injertados.
+            </li>
+          </ul>
+          <p>
+            La doctrina que dice que hay un plan para Israel y otro para la
+            “iglesia” es una distorsión que separa lo que el Mashíaj vino a
+            unir.
+          </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>Diferencia entre la kahal y la iglesia</h2>
+
+        <div class="section-container">
+          <p>
+            📜
+            <strong
+              >1. Kahal / Kehiláh (קהל / קהילה) – Raíz bíblica hebrea:</strong
+            ><br />
+            Viene de la raíz hebrea קהל (qahal): asamblea, congregación, reunión
+            convocada por el Eterno.
+          </p>
+          <p>
+            Usado en el Tanakh para describir al pueblo de Israel reunido
+            delante de Adonái יהוה:
+          </p>
+          <p class="scripture">“En el día de la qahal” (Devarim 9:10).</p>
+          <p>
+            Se relaciona con la palabra Edáh (עֵדָה): comunidad o asamblea de
+            testimonio.<br />
+            Kahal no describe solo una agrupación física, sino una comunidad del
+            pacto, reunida en torno a la Toráh y al Elohím de Israel.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <p>
+            ✡️ <strong>2. Kehiláh mesiánica (קהילה משיחית):</strong><br />
+            En el Brit Hadasháh se conserva el sentido de “Kehiláh” o “Kahal”,
+            refiriéndose a la comunidad de creyentes en Yeshúa haMashíaj, unidos
+            a Israel.
+          </p>
+          <p>
+            En hebreo moderno sigue usándose: Kehiláh Mesiánica = Comunidad
+            Mesiánica.<br />
+            Subraya la continuidad y unidad con Israel y la Toráh.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <p>
+            🏛 <strong>3. “Iglesia” – Traducción tardía y problemática:</strong
+            ><br />
+            La palabra griega usada en los manuscritos es ἐκκλησία (ekklēsía),
+            que literalmente significa “los llamados fuera” o asamblea
+            convocada.
+          </p>
+          <p>
+            En el contexto del siglo I, Ekklēsía era la traducción natural para
+            qahal o kehiláh.<br />
+            Con el tiempo, en latín se tradujo como “ecclesia”, y de ahí pasó a
+            “iglesia”.
+          </p>
+          <p>
+            El problema:<br />En el pensamiento cristiano posterior, "iglesia"
+            se interpretó como algo nuevo, separado y distinto de Israel.<br />Se
+            creó la falsa idea de que Yeshúa fundó una “iglesia” que reemplazó o
+            suplantó a Israel.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <p>
+            🕊 <strong>4. Diferencia espiritual y teológica esencial:</strong>
+          </p>
+          <table>
+            <tr>
+              <th>Kahal / Kehiláh</th>
+              <th>Iglesia (interpretación cristiana tardía)</th>
+            </tr>
+            <tr>
+              <td>Origen</td>
+              <td>Término hebreo del Tanakh</td>
+              <td>Traducción latina</td>
+            </tr>
+            <tr>
+              <td>Sentido</td>
+              <td>
+                Asamblea de Israel, convocada por Adonái יהוה bajo la Toráh
+              </td>
+              <td>Institución religiosa separada de Israel</td>
+            </tr>
+            <tr>
+              <td>Relación con Israel</td>
+              <td>Parte integral del pueblo de Israel</td>
+              <td>Sustituye o reemplaza a Israel</td>
+            </tr>
+            <tr>
+              <td>Fundamento</td>
+              <td>Pacto, Toráh, profecías, Brit Hadasháh</td>
+              <td>Teología cristiana posterior (siglo II en adelante)</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="section-container">
+          <p>
+            📖
+            <strong>5. En el Brit Hadasháh según Biblia Toráh Viviente:</strong
+            ><br />
+            La Kehiláh no es una nueva “iglesia”, sino la restauración y
+            redención del remanente de Israel, abierta también a gentiles
+            justos.
+          </p>
+          <p>Yeshúa dijo:</p>
+          <p class="scripture">
+            “Edificaré mi Kehiláh” – es decir, Su Asamblea convocada, sobre la
+            roca de la fe en Él como Mashíaj.
+          </p>
+          <p>
+            No se trata de una institución romana o griega ajena a Israel, sino
+            de la misma comunidad de Israel redimida, cumpliendo las profecías.
+          </p>
+        </div>
+
+        <div class="conclusion">
+          <p>
+            ✅ <strong>En resumen:</strong><br />
+            Kahal / Kehiláh: término hebreo bíblico que expresa la comunidad
+            redimida de Israel bajo el Eterno.<br />
+            “Iglesia”: traducción latina que se transformó en un concepto
+            institucional separado y ajeno a las raíces hebreas, fomentando la
+            teología del reemplazo.<br />
+            La Biblia Toráh Viviente y el enfoque judío mesiánico restauran el
+            sentido original:<br />
+            Un solo pueblo, una sola Kehiláh, injertados en Israel por medio de
+            Yeshúa haMashíaj.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h1>
+          El Brit Hadasháh: Testimonio y Cumplimiento de la Toráh y los Profetas
+        </h1>
+
+        <p>
+          El Brit Hadasháh (<span class="hebrew-term">ברית חדשה</span>) no es un
+          “libro nuevo” que reemplaza al Tanakh, ni mucho menos algo
+          independiente. Es el testimonio, cumplimiento y revelación de lo que
+          ya estaba profetizado y hablado en la Toráh (Instrucción), los Nevim
+          (Profetas) y los Ketuvim (Escritos).
+        </p>
+
+        <div class="section-container">
+          <h2>✡️ 1. Fundamento en la Toráh y los Profetas:</h2>
+          <p>El Brit Hadasháh es:</p>
+          <ul>
+            <li>
+              <span class="highlight">Testimonio (edut, עדות)</span> del
+              cumplimiento de las promesas dadas a Avraham, Yitzjak, Ya'akov y
+              al pueblo de Israel.
+            </li>
+            <li>
+              <span class="highlight">Confirmación</span> de que Yeshúa
+              haMashíaj es el Mashíaj prometido, el “Profeta como Moshéh”
+              (Devarim 18:15-19).
+            </li>
+            <li>
+              <span class="highlight">Cumplimiento</span> de las profecías
+              mesiánicas del Tanakh: que el Mashíaj nacería de Bet Léjem, sería
+              luz a las naciones, sufriría por los pecados del pueblo, moriría y
+              resucitaría, restaurando el Reino a Israel.
+            </li>
+          </ul>
+          <p class="scripture">
+            “Porque todas las promesas de Elohím son en Él Sí, y en Él Amén”
+            (2Corintiyim 1:20).
+          </p>
+        </div>
+
+        <div class="section-container">
+          <h2>📜 2. Yeshúa mismo lo enseñó:</h2>
+          <p>
+            “Estas son las palabras que os hablé cuando aún estaba con vosotros:
+            que era necesario que se cumpliese todo lo que está escrito de Mí en
+            la Toráh de Moshéh, en los Nevim y en los Tehilim (Salmos).”
+          </p>
+          <p class="scripture">
+            Entonces les abrió el entendimiento para que comprendiesen las
+            Escrituras. (Luqá 24:44-45)
+          </p>
+          <p>
+            Aquí Yeshúa muestra que el Brit Hadasháh es un cumplimiento, no
+            sustituto.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <h2>🕊 3. Testimonio y revelación:</h2>
+          <p>El Brit Hadasháh:</p>
+          <ul>
+            <li>
+              <span class="highlight">Da testimonio</span> (en hebreo “edut”) de
+              que Yeshúa es el Mashíaj.
+            </li>
+            <li>
+              <span class="highlight">Revela la profundidad espiritual</span>,
+              tipologías y misterios que estaban escondidos en la Toráh y los
+              Profetas (sod, <span class="hebrew-term">סוד</span>).
+            </li>
+            <li>
+              Nos muestra cómo las sombras (tzelalim) y los tipos (tipologías)
+              del Tanakh apuntaban a Mashíaj:
+              <ul>
+                <li>El Cordero de Pésaj (Yochanán 1:29).</li>
+                <li>La serpiente de bronce (Yochanán 3:14).</li>
+                <li>El sacrificio de Yitsjak (Hebreyim 11:17-19).</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <h2>🌿 4. El pacto Nuevo anunciado por los profetas:</h2>
+          <p>Yirmeyahu profetizó:</p>
+          <p class="scripture">
+            “He aquí que vienen días, dice Adonái, en que haré con la casa de
+            Israel y con la casa de Yehudáh un Brit Hadasháh” (Yirmeyahu 31:31).
+          </p>
+          <p>Este Brit Hadasháh:</p>
+          <ul>
+            <li>Es dado a Israel (no a una “iglesia” separada).</li>
+            <li>
+              Es un pacto Nuevo, no una anulación de la Toráh, sino su escritura
+              en nuestros corazones:
+            </li>
+          </ul>
+          <p class="scripture">
+            “Daré mi Toráh en su mente, y la escribiré en su corazón” (v.33).
+          </p>
+        </div>
+
+        <div class="section-container">
+          <h2>✅ 5. Conclusión desde la perspectiva de la Toráh Viviente:</h2>
+          <p>
+            El Brit Hadasháh es el testimonio fiel de lo que la Toráh, los Nevim
+            y los Ketuvim hablaron.
+          </p>
+          <p>
+            Revela que todo converge en Yeshúa haMashíaj, quien no vino a
+            abolir, sino a cumplir (Matityahu 5:17).
+          </p>
+          <p>
+            Fortalece el pacto del Eterno con Su pueblo Israel, extendiendo
+            misericordia a las naciones, para que sean injertadas.
+          </p>
+          <p>
+            Así, el Brit Hadasháh es el corazón revelado de la Toráh: la Toráh
+            hecha carne en Mashíaj.
+          </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h1>
+          Cómo se separó la Kehiláh original del Mashíaj de sus raíces hebreas y
+          se transformó en algo distinto que hoy se llama “iglesia”.
+        </h1>
+        <p>Vamos paso a paso:</p>
+
+        <div class="section-container">
+          <h2>📜 1. Cuándo “nació” realmente la Kehiláh del Mashíaj</h2>
+          <p>
+            Según el Brit Hadasháh (Hechos 2), la
+            <span class="highlight">Kehiláh (קהילה)</span> o asamblea de los
+            llamados comenzó en Yerushaláyim durante Shavuot (Pentecostés),
+            aproximadamente en el año 30 d.C., cuando descendió el Ruaj Hakodesh
+            sobre los talmidím.
+          </p>
+          <p>
+            Esta Kehiláh era totalmente judía, observaba Shabat, Moedím y la
+            Toráh, centrada en Yeshúa haMashíaj como cumplimiento de las
+            promesas dadas a Israel.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <h2>⚔ 2. Cuándo y cómo se “desjudaizó”</h2>
+          <p>
+            Con el paso del tiempo, sobre todo después de la destrucción del
+            Segundo Templo en el año 70 d.C., y especialmente tras la rebelión
+            de Bar Kojba (132-135 d.C.), se empezó a romper la relación entre
+            los creyentes en Yeshúa y la sinagoga judía.
+          </p>
+          <p>
+            La gran ruptura ocurrió cuando los líderes gentiles que llegaron a
+            dirigir comunidades comenzaron a rechazar las raíces judías:
+          </p>
+          <ul>
+            <li>
+              <span class="highlight">Ignacio de Antioquía</span> (c. 100-115
+              d.C.) enseñó que no se debía guardar Shabat ni las fiestas, sino
+              celebrar el “día del Señor” (domingo).
+            </li>
+            <li>
+              <span class="highlight">Justino Mártir</span> (c. 150 d.C.) acusó
+              a los judíos de ser “ciegos” por no aceptar a Yeshúa y defendió
+              que los creyentes gentiles eran el “nuevo Israel”.
+            </li>
+          </ul>
+          <p>
+            Esto dio paso a la
+            <span class="highlight">teología del reemplazo</span>: la falsa idea
+            de que la “iglesia” sustituyó a Israel como pueblo del Eterno.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <h2>
+            🏛 3. Cuándo nació el término “iglesia” como institución separada
+          </h2>
+          <p>
+            La palabra griega original del Brit Hadasháh es
+            <span class="highlight">ἐκκλησία (ekklēsía)</span>, que solo
+            significaba asamblea (equivalente a
+            <span class="hebrew-term">קהל</span> o
+            <span class="hebrew-term">קהילה</span>).
+          </p>
+          <p>
+            Con el <span class="highlight">Edicto de Milán (313 d.C.)</span> el
+            emperador romano Constantino oficializó la fe cristiana, y desde
+            entonces se institucionalizó la “iglesia” como organización romana
+            estatal, diferente de la Kehiláh mesiánica judía original.
+          </p>
+          <p>
+            En el <span class="highlight">Concilio de Nicea (325 d.C.)</span>,
+            se prohibieron prácticas claramente judías:
+          </p>
+          <ul>
+            <li>
+              Se cambió la celebración de Pesaj por la “Pascua” calculada según
+              el calendario solar romano.
+            </li>
+            <li>
+              Se consolidó la observancia del domingo en lugar del Shabat
+              bíblico.
+            </li>
+          </ul>
+          <p>
+            Así, nació formalmente una iglesia gentil desarraigada de la Toráh,
+            de Israel y de las raíces hebreas.
+          </p>
+        </div>
+
+        <div class="section-container">
+          <h2>📚 4. Cuándo se estableció la Vulgata Latina</h2>
+          <p>
+            <span class="highlight">Jerónimo</span> tradujo la Biblia al latín
+            entre 382 y 405 d.C. por encargo del Papa Dámaso I.
+          </p>
+          <p>
+            Su traducción se llama <span class="highlight">Vulgata Latina</span>
+            porque era el “latín vulgar” (lengua común de la época).
+          </p>
+          <p>
+            La Vulgata se convirtió en la versión oficial de la iglesia romana
+            durante más de mil años.
+          </p>
+          <p>
+            En ese proceso, muchos términos hebreos y arameos se tradujeron o
+            adaptaron a conceptos latinos y griegos, reforzando la separación de
+            las raíces hebreas:
+          </p>
+          <ul>
+            <li>
+              <span class="highlight">Kehiláh / qahal</span> se tradujo
+              definitivamente como ecclesia
+              <span class="arrow">→</span> “iglesia”.
+            </li>
+            <li>
+              <span class="highlight">Mashíaj</span> se tradujo como Christus
+              <span class="arrow">→</span> “Cristo”.
+            </li>
+            <li>
+              <span class="highlight">Yeshúa</span> como Iesus
+              <span class="arrow">→</span> “Jesús”.
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <h2>✡ 5. Resumen cronológico clave:</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Año / Siglo</th>
+                <th>Suceso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>~30 d.C.</td>
+                <td>
+                  Inicio de la Kehiláh Mesiánica en Yerushaláyim, toda judía
+                </td>
+              </tr>
+              <tr>
+                <td>70 d.C.</td>
+                <td>Destrucción del Templo, inicio de tensiones</td>
+              </tr>
+              <tr>
+                <td>132-135 d.C.</td>
+                <td>Rebelión de Bar Kojba, ruptura más profunda</td>
+              </tr>
+              <tr>
+                <td>100-150 d.C.</td>
+                <td>
+                  Padres de la iglesia (Ignacio, Justino) rechazan Shabat y
+                  Toráh
+                </td>
+              </tr>
+              <tr>
+                <td>313 d.C.</td>
+                <td>
+                  Edicto de Milán: “iglesia” se legaliza como institución romana
+                </td>
+              </tr>
+              <tr>
+                <td>325 d.C.</td>
+                <td>Concilio de Nicea: se prohíben prácticas judías</td>
+              </tr>
+              <tr>
+                <td>382-405 d.C.</td>
+                <td>Jerónimo traduce la Vulgata Latina</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="conclusion">
+          <p>
+            ✅
+            <span class="highlight"
+              >Conclusión desde la perspectiva judío mesiánica:</span
+            >
+          </p>
+          <ul>
+            <li>
+              Yeshúa y sus talmidím nunca fundaron una “iglesia” separada:
+              formaron la restauración del Israel redimido.
+            </li>
+            <li>
+              La palabra “iglesia” surgió por la traducción latina y la teología
+              que se desarrolló después, separada de Israel.
+            </li>
+            <li>
+              El Brit Hadasháh originalmente confirma y revela lo que ya estaba
+              anunciado en la Toráh y los Profetas.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-container prophetic-content">
+        <h1>
+          Recorrido profundo y espiritual por el Brit Hadasháh, mostrando cómo
+          cada parte conecta directamente con las profecías del Tanakh (Toráh,
+          Nevim, Ketuvim) y revela el plan del Eterno de restauración de Israel
+          a través de la sangre preciosa de Yeshúa haMashíaj.
+        </h1>
+
+        <div class="prophetic-section">
+          <h2>🌿 1. Fundamento profético: el Brit Hadasháh prometido</h2>
+          <p>El profeta Yirmeyahu (Jer 31:31-34) anuncia:</p>
+          <p class="scripture">
+            “He aquí que vienen días, dice Adonái, en que haré con la casa de
+            Israel y con la casa de Yehudáh un Brit Hadasháh…”
+          </p>
+          <p class="prophetic-title">Puntos clave:</p>
+          <ul>
+            <li>
+              No se da a un “nuevo pueblo” separado, sino a la casa de Israel y
+              Yehudáh.
+            </li>
+            <li>No anula la Toráh, sino que la escribe en sus corazones.</li>
+          </ul>
+          <p>
+            👉 Este es el origen del Nuevo Pacto: restaurar a Israel, no fundar
+            una religión distinta.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>✡️ 2. El nacimiento del Brit Hadasháh: Shavuot / Hechos 2</h2>
+          <p>En Hechos 2:</p>
+          <ul>
+            <li>
+              En Yerushaláyim, durante Shavuot (fiesta del recibimiento de la
+              Toráh), desciende el Ruaj HaKodesh sobre los talmidím.
+            </li>
+            <li>
+              Cumple la profecía de Yoel 3:1 (2:28):
+              <p class="scripture">
+                “Y después de esto derramaré Mi Ruaj sobre toda carne…”
+              </p>
+            </li>
+          </ul>
+          <p>
+            👉 El pacto se sella con el derramamiento del Ruaj, como promesa de
+            restauración.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>
+            🩸 3. La sangre preciosa del Cordero: cumplimiento de tipos y
+            sombras
+          </h2>
+          <p>Yeshúa es presentado como:</p>
+          <ul>
+            <li>Cordero de Elohím (Seh haElohím) – Yochanán 1:29.</li>
+            <li>El Cordero de Pésaj sin mancha, cumpliendo Shemot 12.</li>
+          </ul>
+          <p class="prophetic-title">Profecías conectadas:</p>
+          <ul>
+            <li>
+              Yeshayahu 53: “herido por nuestras transgresiones… por Su llaga
+              fuimos sanados”.
+            </li>
+            <li>Zejaryah 12:10: “mirarán a Mí, a quien traspasaron…”</li>
+          </ul>
+          <p class="prophetic-title">Su sangre:</p>
+          <ul>
+            <li>No solo redime almas individuales.</li>
+            <li>
+              Limpia y purifica a Israel para restaurarlo como pueblo de
+              sacerdotes (Shemot 19:6).
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>🕊 4. Restauración del Reino a Israel: Hechos 1:6</h2>
+          <p>Los talmidím preguntan:</p>
+          <p class="scripture">
+            “Adon, ¿restaurarás el Reino a Israel en este tiempo?”
+          </p>
+          <p class="prophetic-title">Esto muestra:</p>
+          <ul>
+            <li>Ellos no esperaban fundar una “iglesia gentil” separada.</li>
+            <li>
+              Esperaban la restauración de Israel, prometida por los profetas:
+              Amos, Yeshayahu, Yejezkel.
+            </li>
+          </ul>
+          <p>
+            Mashíaj responde: no les toca saber el tiempo, pero el Ruaj HaKodesh
+            les daría poder para testificar hasta los confines de la tierra
+            <span class="arrow">→</span> injertar a las naciones en Israel
+            redimido.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>🌱 5. Injerto de las naciones: Romanos 11</h2>
+          <p>Shaul explica:</p>
+          <ul>
+            <li>Israel es el olivo natural.</li>
+            <li>
+              Las naciones (gentiles) que creen en Yeshúa son injertadas en ese
+              mismo olivo.
+            </li>
+          </ul>
+          <p class="scripture">“Y así todo Israel será salvo…” (Rom 11:26).</p>
+          <p class="prophetic-title">Profecías:</p>
+          <ul>
+            <li>
+              Yeshayahu 49:6: “Te di como luz a las naciones, para que seas Mi
+              salvación hasta los confines de la tierra.”
+            </li>
+            <li>Hoshea 2:23: “Llamaré pueblo mío al que no era Mi pueblo.”</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>🔥 6. El sacrificio de Yeshúa: expiación y restauración</h2>
+          <p class="prophetic-title">
+            Su muerte cumple el sistema de sacrificios:
+          </p>
+          <ul>
+            <li>
+              Yom Kipur: sangre derramada por la expiación del pecado del
+              pueblo.
+            </li>
+            <li>
+              Hebreos 9:12: “No con sangre de machos cabríos… sino con Su propia
+              sangre, entró una vez para siempre en el Lugar Kadosh, habiendo
+              obtenido redención eterna.”
+            </li>
+          </ul>
+          <p class="prophetic-title">Su sangre preciosa:</p>
+          <ul>
+            <li>
+              Redime no solo a personas, sino a toda la casa de Israel (Heb
+              8:8-12, citando Yirmeyahu).
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>✡ 7. Cumplimiento profético en la reunificación de las tribus</h2>
+          <p>Yejezkel 37: visión de los huesos secos y los dos palos:</p>
+          <ul>
+            <li>
+              Palo de Yehudáh y palo de Efráyim: serán uno en la mano del
+              Eterno.
+            </li>
+            <li>El Mashíaj, “David Mi siervo”, será Rey sobre todos.</li>
+          </ul>
+          <p>
+            Yeshúa es ese Rey que reúne a las ovejas perdidas de la casa de
+            Israel (Matityahu 15:24).
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>🕊 8. Apocalipsis / Jizayón</h2>
+          <p>El fin del Brit Hadasháh muestra:</p>
+          <ul>
+            <li>Una Yerushaláyim renovada descendiendo del Shamáyim.</li>
+            <li>
+              En sus puertas están inscritos los nombres de las 12 tribus de
+              Israel (Rev 21:12).
+            </li>
+            <li>
+              No hay “puertas para la iglesia” y “puertas para Israel”: solo un
+              pueblo restaurado, redimido por la sangre del Cordero.
+            </li>
+          </ul>
+        </div>
+
+        <div class="conclusion">
+          <p>✅ 🔗 <span class="highlight">Resumen:</span></p>
+          <table>
+            <thead>
+              <tr>
+                <th>Paso</th>
+                <th>Profecía</th>
+                <th>Cumplimiento en Brit Hadasháh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nuevo pacto</td>
+                <td>Yirmeyahu 31</td>
+                <td>Heb 8; Brit Hadasháh</td>
+              </tr>
+              <tr>
+                <td>Derramamiento del Ruaj</td>
+                <td>Yoel 3:1</td>
+                <td>Hechos 2</td>
+              </tr>
+              <tr>
+                <td>Cordero expiatorio</td>
+                <td>Yeshayahu 53</td>
+                <td>Yochanán 1:29; Heb 9</td>
+              </tr>
+              <tr>
+                <td>Restauración del Reino</td>
+                <td>Amos 9; Yejezkel 37</td>
+                <td>Hechos 1; Rom 11</td>
+              </tr>
+              <tr>
+                <td>Injerto de naciones</td>
+                <td>Hoshea 2; Yeshayahu 49</td>
+                <td>Rom 11; Efesiyim 2</td>
+              </tr>
+              <tr>
+                <td>Reunificación</td>
+                <td>Yejezkel 37</td>
+                <td>Efesiyim 2; Apoc 21</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            ✅ El Brit Hadasháh es la confirmación y revelación de que el Eterno
+            está restaurando a Israel, no desechándolo, por medio de la sangre
+            preciosa de Yeshúa haMashíaj.
+          </p>
+          <p>
+            Así, todo el plan del Eterno permanece: Israel como luz a las
+            naciones, bajo la soberanía del Rey Mashíaj.
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/">
+            +Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/
+          </a>
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

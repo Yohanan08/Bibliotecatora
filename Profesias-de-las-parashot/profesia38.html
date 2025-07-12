@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        📜 Profecía #31 – El Sacerdocio único y el liderazgo auténtico
+        prefigurando a Yeshúa haMashíaj
+      </h1>
+
+      <div class="content-container">
+        <h2>📖 1. Referencia en el Tanak:</h2>
+        <div class="verse-container">
+          <div class="verse-number">Bamidbar (Números) 16:5</div>
+          <div class="hebrew">
+            וַיְדַבֵּ֣ר אֶל־קֹרַח וְאֶל־כָּל־עֲדָתוֹ לֵאמֹר בֹּקֶר וְיֹדַע
+            יְהוָה אֶת־אֲשֶׁר־לוֹ וְאֶת־הַקָּדוֹשׁ וְהִקְרִיב אֵלָיו וְאֵת
+            אֲשֶׁר יִבְחַר־בּוֹ יַקְרִיב אֵלָיו׃
+          </div>
+          <div class="transliteration">
+            Va-yedabbēr el Qóraḥ ve-el kol adatô lemór: bóqer veyodá‘ Adonái et
+            asher-lô ve-et ha-qadôsh vehikriv elav ve-et asher yivḥar-bo yaqriv
+            elav.
+          </div>
+          <div class="literal-translation">
+            “Y habló a Qóraḥ y a toda su congregación, diciendo: Mañana hará
+            conocer Adonái quién es Suyo, y quién es el santo (apartado); y lo
+            acercará a Él; y al que Él elija, lo acercará a Él.”
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Bamidbar (Números) 17:5</div>
+          <div class="hebrew">
+            וְהָיָה הָאִישׁ אֲשֶׁר אֶבְחָר־בּוֹ מַטֵּהוּ יִפְרָח...
+          </div>
+          <div class="transliteration">
+            Ve-hayah ha-ish asher evḥar-bo mattehû yifraḥ…
+          </div>
+          <div class="literal-translation">
+            “Y será: el hombre que Yo elija en él, su vara florecerá…”
+          </div>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <h2>Claves mesiánicas</h2>
+        <div class="prophetic-section">
+          <div class="prophetic-title">• Revelación del elegido</div>
+          <p>
+            La expresión
+            <span class="hebrew-term">יֹדַע יְהוָה אֶת־אֲשֶׁר־לוֹ</span> (hará
+            conocer Adonái quién es Suyo) prefigura cómo Adonái revelaría
+            públicamente a Su Mashíaj.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">• Títulos mesiánicos</div>
+          <p>
+            <span class="hebrew-term">הַקָּדוֹשׁ</span> (el apartado, el santo)
+            recuerda los títulos mesiánicos: Qadosh Yisra’El (el Santo de
+            Israel).
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">• Elección divina</div>
+          <p>
+            <span class="hebrew-term">וְאֵת אֲשֶׁר יִבְחַר־בּוֹ</span> (al que
+            Él elija) conecta con la elección divina de Yeshúa haMashíaj,
+            confirmado por la resurrección como la vara que floreció.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h2>🕰️ 2. Contexto y significado profético</h2>
+        <p>
+          Koráḥ y 250 hombres se rebelan contra Moshéh y Aharón reclamando el
+          sacerdocio, pero Adonái יהוה muestra que el sacerdocio es por elección
+          divina, no humana.
+        </p>
+        <p>
+          La vara de Aharón que florece prefigura la elección sobrenatural de un
+          mediador perfecto, Yeshúa haMashíaj.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <h2>3. Cumplimiento en Yeshúa haMashíaj</h2>
+        <p>
+          Yeshúa haMashíaj es el Kohén Gadol escogido por Elohím “según el orden
+          de Malki-Tsedeq”. Su resurrección confirma que Él es el mediador
+          verdadero.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <h2>📚 4. Comentarios rabínicos y judío mesiánicos</h2>
+        <ul>
+          <li>
+            Midrash Rabá dice que la vara estaba viva porque representaba la
+            vida del Cielo.
+          </li>
+          <li>
+            Rashi ve el brote de la vara como un acto de shalom para cesar
+            quejas.
+          </li>
+          <li>
+            Comentaristas mesiánicos ven la vara como tipología del Mashíaj
+            resucitado.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <h2>🔍 5. Reflexión práctica</h2>
+        <p>
+          No podemos autoproclamarnos espirituales; Adonái יהוה es quien llama y
+          aparta. La verdadera autoridad se confirma por los frutos
+          espirituales, como la vara que floreció.
+        </p>
+        <p>
+          Yeshúa haMashíaj, escogido por Elohím, es nuestro mediador eterno ante
+          el trono celestial.
+        </p>
+      </div>
+
+      <h1>
+        ❓ Preguntas clave sobre la rebelión de Qóraḥ y el sacerdocio mesiánico
+      </h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <div class="question">
+            1. ¿Por qué Qóraḥ desafió precisamente el sacerdocio y no otro rol?
+          </div>
+          <div class="answer">
+            Qóraḥ, siendo leví, ya tenía un rol sagrado; su rebelión fue
+            teológica: quiso ser mediador directo ante Adonái יהוה. En la
+            perspectiva judío mesiánica, prefigura el rechazo a Yeshúa haMashíaj
+            como Sumo Sacerdote. La rebeldía muestra el deseo humano de acceder
+            por mérito propio, mientras que Yeshúa fue designado por Adonái
+            según el orden de Malkí-Tsedeq (Ivrím/Hebreos 5:4–6).
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            🌿 2. ¿Qué relación tiene la vara que florece con la resurrección?
+          </div>
+          <div class="answer">
+            La vara muerta representa la muerte; florecer simboliza vida dada
+            por Adonái. Yeshúa murió en el madero (etz) y resucitó: así como la
+            vara fue señal pública de elección, la resurrección es prueba divina
+            de que Yeshúa es el Mashíaj. Los comentaristas dicen que el Mashíaj
+            resucitado lleva marcas del madero pero vive con gloria.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            👑 3. ¿Cómo se entiende el sacerdocio de Malkí-Tsedeq en el contexto
+            judío del Segundo Templo?
+          </div>
+          <div class="answer">
+            Era visto como figura celestial (Qumrán 11QMelch). Yeshúa, de
+            Yehudáh, no Leví, es sacerdote según ese orden: eterno, sin
+            genealogía sacerdotal, elegido directamente por Adonái. Esto cumple
+            la unión de rey y sacerdote anunciada (Zekharyáh 6:13) y supera el
+            sacerdocio levítico (Ivrím 7).
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            🕊 4. ¿Qué nos enseña esto sobre el liderazgo espiritual verdadero?
+          </div>
+          <div class="answer">
+            No es por aspiración humana, sino por elección divina, confirmado
+            por frutos (vara que floreció). Yeshúa se humilló y fue exaltado
+            (Filipiyim 2:8–9). Su liderazgo es compasivo (Ivrím 4:15), servicio
+            sacrificial y no dominio.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            ⚡ 5. ¿Por qué la muerte de los rebeldes también tiene dimensión
+            mesiánica?
+          </div>
+          <div class="answer">
+            Rechazar al mediador elegido trae juicio. En el Brit Hadasháh, el
+            rechazo de Mashíaj es rebelión suprema, pero el juicio cayó sobre Él
+            mismo (Yeshayáhu 53:5). La muerte de Qóraḥ es advertencia; la muerte
+            de Yeshúa es provisión de gracia.
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h2>🌿 Pasos proféticos y cumplimiento en el Mashíaj</h2>
+        <ul>
+          <li>
+            <span class="point-letter">Paso 1:</span> Adonái elige, no el hombre
+            (Bamidbar 17:5). Cumple en Hebreos 5:4–6: Yeshúa fue escogido por
+            Adonái, no por linaje levítico.
+          </li>
+          <li>
+            <span class="point-letter">Paso 2:</span> La vara muerta = muerte de
+            Mashíaj en el madero (Ivrím 2:9).
+          </li>
+          <li>
+            <span class="point-letter">Paso 3:</span> Florecimiento público =
+            resurrección vista por muchos (Qorintiyim Alef 15:6).
+          </li>
+          <li>
+            <span class="point-letter">Paso 4:</span> Trae shalom; cesan
+            murmuraciones. En Yeshúa: reconciliación con Elohím y entre pueblos
+            (Efesiyim 2:14–16).
+          </li>
+          <li>
+            <span class="point-letter">Paso 5:</span> Vara ante el Arca =
+            ministerio eterno de intercesión (Ivrím 9:12).
+          </li>
+        </ul>
+
+        <div class="conclusion">
+          <p>
+            <span class="highlight">Conclusión profunda:</span> La vara muerta
+            es la muerte del Mashíaj; florecer, la resurrección que confirma Su
+            elección divina; puesta ante el Arca, Su sacerdocio eterno (Ivrím
+            7:25).
+          </p>
+        </div>
+
+        <div class="prayer-text">
+          <h2>🕯️ Tefiláh</h2>
+          <p>
+            Adonái יהוה Elohím Alef Tav, danos la humildad para reconocer a
+            quien Tú has escogido. Haznos frutos que permanezcan para Tu gloria.
+          </p>
+        </div>
+        <div class="prayer-conclusion">
+          בְּשֵׁם יֵשׁוּעַ הַמָּשִׁיחַ אמן<br />
+          Be-shem Yeshúa haMashíaj, Amén.
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html"
+        >Ir a la siguiente profesia.</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
