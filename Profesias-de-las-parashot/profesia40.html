@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+        <div class="content-container">
+      <h2>🌟 Profecías Mesiánicas en la Parasháh #40 – Balak</h2>
+      <p class="translation">
+        <strong>Tema central:</strong> El intento del rey Balak de maldecir a
+        Israel a través de Bil’am (Balaam), y la profecía sobre el futuro Rey y
+        Redentor.
+      </p>
+
+      <div class="verse-container">
+        <h1>1️⃣ Profecía Mesiánica Central: La estrella que saldrá de Yaakov</h1>
+        <p class="translation"><strong>Referencia en el Tanaj:</strong></p>
+        <p class="translation">Bamidbar / Números 24:17 –</p>
+        <p class="hebrew">
+          “אֶרְאֶנּוּ וְלֹא עַתָּה, אֲשׁוּרֶנּוּ וְלֹא קָרוֹב; דָּרַךְ כּוֹכָב
+          מִיַּעֲקֹב, וְקָם שֵׁבֶט מִיִּשְׂרָאֵל…”
+        </p>
+        <p class="literal-translation">
+          “Lo veo, pero no ahora; lo contemplo, pero no cerca. Saldrá una
+          estrella de Yaakov, y se levantará un cetro de Israel…”
+        </p>
+        <p class="translation">
+          <strong>Contexto histórico:</strong> Bil’am, llamado para maldecir,
+          termina bendiciendo a Israel bajo inspiración de Adonái. Aquí anuncia
+          un rey venidero que aplastará a los enemigos. En su sentido inmediato,
+          apunta al reinado de David, pero su plenitud profética apunta al
+          Mashíaj.
+        </p>
+        <p class="translation"><strong>Conexión en Neviím:</strong></p>
+        <ul>
+          <li>Yeshayahu 9:6-7 – El hijo que nacerá y cuyo dominio no tendrá fin.</li>
+          <li>
+            Mikha 5:2 – Nacimiento en Beit-Lejem del gobernante de Israel.
+          </li>
+        </ul>
+        <p class="translation">
+          <strong>Cumplimiento en Brit Jadasháh:</strong>
+        </p>
+        <ul>
+          <li>
+            Mattityahu 2:1-2 – Los magos (sabios del oriente) ven “Su estrella”
+            y vienen a adorarle, identificando a Yeshúa como el cumplimiento de
+            esta profecía.
+          </li>
+          <li>
+            Hitgalut / Apocalipsis 22:16 – Yeshúa se llama a sí mismo “la
+            estrella resplandeciente de la mañana”.
+          </li>
+        </ul>
+      </div>
+
+      <div class="verse-container">
+        <h1>
+          2️⃣ Profecía Mesiánica Secundaria: La imposibilidad de maldecir al
+          pueblo redimido
+        </h1>
+        <p class="translation">
+          <strong>Referencia en el Tanaj:</strong> Bamidbar 23:20 – “He recibido
+          orden de bendecir; Él bendijo, y no puedo revocarlo.”
+        </p>
+        <p class="translation">
+          <strong>Significado mesiánico:</strong> En el Mashíaj, el pueblo de
+          Elohím está bajo bendición irreversible (Efesios 1:3).
+        </p>
+        <p class="translation">
+          <strong>Conexión con Brit Jadasháh:</strong> Romanos 8:33-34 – “¿Quién
+          acusará a los escogidos de Elohím? Elohím es el que justifica.”
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <h1>3️⃣ Profecía Mesiánica Adicional: Bendición a todas las naciones</h1>
+        <p class="translation">
+          <strong>Referencia en el Tanaj:</strong> Bamidbar 23:9 – Israel es
+          pueblo aparte, diferente de las demás naciones, llamado a ser luz
+          para ellas.
+        </p>
+        <p class="translation">
+          <strong>Cumplimiento en Brit Jadasháh:</strong>
+        </p>
+        <ul>
+          <li>Yojanán 8:12 – Yeshúa: “Yo soy la luz del mundo.”</li>
+          <li>Hechos 13:47 – “Te he puesto por luz a los gentiles.”</li>
+        </ul>
+      </div>
+
+      <div class="verse-container">
+        <h1>4️⃣ Advertencia profética: La seducción de Peor</h1>
+        <p class="translation">
+          <strong>Referencia en el Tanaj:</strong> Bamidbar 25:1-3 – Israel cae
+          en idolatría y fornicación por influencia moabita y madianita.
+        </p>
+        <p class="translation">
+          <strong>Cumplimiento tipológico:</strong> Hitgalut 2:14 – La doctrina
+          de Bil’am, que enseñó a poner tropiezo, aparece como advertencia para
+          la Kehiláh.
+        </p>
+        <p class="translation">
+          <strong>En el Mashíaj:</strong> La victoria final implica resistir la
+          corrupción espiritual y mantenerse fiel al Ungido.
+        </p>
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h2>🔍 Síntesis Teológica</h2>
+      <p>La Parasháh Balak nos muestra tres ejes mesiánicos:</p>
+      <ul>
+        <li>El Mashíaj como estrella y cetro que gobierna con justicia.</li>
+        <li>La bendición irreversible sobre el pueblo que Él redime.</li>
+        <li>
+          El llamado a permanecer santos y apartados de toda contaminación,
+          esperando su reinado.
+        </li>
+      </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>✡ 5 Preguntas para profundizar</h2>
+      <div>
+        <h1>
+          1️⃣ ¿Qué significa que la estrella de Yaakov no es “ahora” sino “no
+          cercana” en la visión profética?
+        </h1>
+        <p class="answer">
+          En Bamidbar 24:17, Bil‘am usa dos expresiones hebreas claves:
+        </p>
+        <ul class="answer">
+          <li>
+            אֶרְאֶנּוּ וְלֹא עַתָּה (Erennu velo ‘atah) – “Lo veo, pero no ahora” →
+            implica que el cumplimiento no será inmediato en el tiempo del
+            profeta.
+          </li>
+          <li>
+            אֲשׁוּרֶנּוּ וְלֹא קָרוֹב (Ashuren·nu velo qarov) – “Lo contemplo, pero
+            no cercano” → señala una promesa a largo plazo, más allá de la
+            generación presente.
+          </li>
+        </ul>
+        <p class="answer">
+          En la primera aplicación, apunta a David haMelej siglos después, pero
+          en su sentido pleno, anuncia la venida futura del Mashíaj en la
+          plenitud de los tiempos (Gálatas 4:4). El retraso aparente enseña que
+          los planes de Adonái tienen un tiempo perfecto y que la esperanza
+          mesiánica requiere paciencia y fidelidad.
+        </p>
+      </div>
+      <div>
+        <h1>
+          2️⃣ ¿Por qué la estrella fue señal para los sabios de oriente en
+          tiempos de Yeshúa?
+        </h1>
+        <p class="answer">
+          En Mattityahu 2:1-2, los Sabios  (sabios caldeos/persas) reconocen
+          una señal astronómica excepcional. Ellos, probablemente descendientes
+          culturales de las escuelas babilónicas donde Daniel había enseñado
+          profecías (Daniel 9), conocían el texto de Bamidbar 24:17.
+        </p>
+        <p class="answer">
+          La “estrella” para ellos no fue solo un fenómeno celeste, sino la
+          confirmación de que el Rey prometido de Israel había nacido. Esto une
+          el Tanaj con el Brit Jadasháh mostrando que la señal no era solo para
+          Israel, sino también para las naciones.
+        </p>
+      </div>
+      <div>
+        <h1>
+          3️⃣ ¿Cómo nos protege Mashíaj de la maldición espiritual en el
+          presente?
+        </h1>
+        <p class="answer">
+          Bil‘am no pudo maldecir a Israel porque Adonái había decidido
+          bendecirlo (Bamidbar 23:20). Esto se cumple en nosotros cuando Yeshúa
+          haMashíaj nos redime de la maldición de la Toráh (Gálatas 3:13).
+        </p>
+        <p class="answer">
+          El poder de maldición, acusación o condena queda anulado porque:
+        </p>
+        <ul class="answer">
+          <li>El Mashíaj tomó sobre sí el castigo (Yesha‘yahu 53).</li>
+          <li>
+            Él intercede constantemente como Kohén Gadol celestial (Hebreos
+            7:25).
+          </li>
+          <li>
+            En Él, ninguna palabra de condena tiene autoridad (Romanos
+            8:33-34).
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h1>
+          4️⃣ ¿De qué manera la seducción de Peor es una advertencia para la
+          Kehiláh actual?
+        </h1>
+        <p class="answer">
+          La idolatría y fornicación de Israel con las hijas de Moav (Bamidbar
+          25) fue un ataque indirecto: cuando no pudieron ser maldecidos,
+          intentaron corromperlos desde dentro.
+        </p>
+        <p class="answer">
+          En el Brit Jadasháh, Yeshúa advierte a la Kehiláh de Pérgamo sobre la
+          doctrina de Bil‘am (Hitgalut 2:14), que mezcla fe con inmoralidad e
+          idolatría.
+        </p>
+        <p class="answer">Para nosotros, es un llamado a:</p>
+        <ul class="answer">
+          <li>Guardar pureza doctrinal y moral.</li>
+          <li>Discernir las sutilezas del compromiso con el mundo.</li>
+          <li>
+            Entender que la verdadera batalla no siempre es externa, sino
+            interna.
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h1>
+          5️⃣ ¿Cómo conecta el cetro de Israel con el título “Rey de reyes”
+          aplicado a Yeshúa?
+        </h1>
+        <p class="answer">
+          El cetro (שֵׁבֶט shevet) es símbolo de autoridad real. En Números
+          24:17, este cetro se levanta de Israel para gobernar y derrotar
+          enemigos.
+        </p>
+        <p class="answer">
+          En el Brit Jadasháh, Yeshúa es presentado como:
+        </p>
+        <ul class="answer">
+          <li>Rey de reyes y Adón de adonim (Hitgalut 19:16).</li>
+          <li>
+            Gobernante cuyo cetro es justicia eterna (Hebreos 1:8 citando
+            Tehilim 45:6).
+          </li>
+        </ul>
+        <p class="answer">
+          Esto significa que su reinado es universal, no limitado a Israel, y
+          que todas las naciones se someterán a su autoridad en el tiempo
+          establecido.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="prophetic-content">
+      <h2>🌟 Profecía Mesiánica #150 — La Estrella y el Cetro de Yaakov</h2>
+      <p class="translation">Texto base: Bamidbar / Números 24:17</p>
+      <p class="hebrew">
+        אֶרְאֶנּוּ וְלֹא עַתָּה אֲשׁוּרֶנּוּ וְלֹא קָרוֹב דָּרַךְ כּוֹכָב מִיַּעֲקֹב
+        וְקָם שֵׁבֶט מִיִּשְׂרָאֵל
+      </p>
+
+      <div class="prophetic-section">
+        <h1>1. Referencia en el Tanaj</h1>
+        <p class="translation">
+          Bamidbar 24:17 (Traducción literal Tiberiana):
+        </p>
+        <p class="scripture">
+          "Le veré, pero no ahora; le contemplaré, pero no cercano. Ha caminado
+          una estrella desde Ya‘aqov, y se ha levantado un cetro desde
+          Yisra’el..."
+        </p>
+        <ul>
+          <li>
+            <strong>
+              <span class="hebrew-term">דָּרַךְ כּוֹכָב</span> (darákh kokhav)
+            </strong>
+            → literalmente, “ha marchado una estrella” o “ha salido en camino
+            una estrella”.
+          </li>
+          <li>
+            <strong>
+              <span class="hebrew-term">וְקָם שֵׁבֶט</span> (ve·qam shevet)
+            </strong>
+            → “y se ha levantado un cetro” como símbolo de autoridad real.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>2. Contexto y significado profético</h1>
+        <p>
+          Este oráculo de Bil‘am es uno de los textos mesiánicos más claros del
+          Toráh que une:
+        </p>
+        <ul>
+          <li>
+            <strong>Reinado davídico inicial:</strong> cumplimiento parcial en
+            David haMelej que derrotó a Moav y Edom (2 Shemuel 8:2,14).
+          </li>
+          <li>
+            <strong>Cumplimiento pleno:</strong> el Mashíaj ben David, que
+            gobernará sobre todas las naciones (Tehilim 2; Yesha‘yahu 9:6-7).
+          </li>
+        </ul>
+        <p>
+          El hecho de que Bil‘am, un profeta gentil, lo anunciara, refuerza que
+          la salvación y el reinado mesiánico tienen alcance universal.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>3. Cumplimiento en Yeshúa haMashíaj</h1>
+        <ul>
+          <li>
+            <strong>Estrella</strong> → Yeshúa se identifica como "la estrella
+            resplandeciente de la mañana" (Hitgalut 22:16).
+            <ul style="padding-left: 20px; margin-top: 5px">
+              <li>Su aparición es señal de un nuevo amanecer espiritual.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Cetro</strong> → Él es el heredero legítimo del trono de
+            David (Luqas 1:32-33), cuyo reino no tendrá fin.
+          </li>
+          <li>
+            <strong>Juicio sobre las naciones</strong> → El pasaje anuncia la
+            victoria sobre Moav y los hijos de Shet, figura del juicio final del
+            Mashíaj sobre el pecado y la rebelión (Hitgalut 19:15).
+          </li>
+        </ul>
+        <p>
+          El Brit Jadasháh conecta directamente este texto con la adoración de
+          los sabios de oriente (Mattityahu 2:1-2), quienes reconocen que la
+          “estrella” había aparecido.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>4. Conexión lingüística y literaria</h1>
+        <ul>
+          <li>
+            <strong>Kokhav (<span class="hebrew-term">כּוֹכָב</span>)</strong>
+            en hebreo bíblico no es solo un astro físico, sino también símbolo
+            de liderazgo y guía (Yesha‘yahu 14:12).
+          </li>
+          <li>
+            <strong>Shevet (<span class="hebrew-term">שֵׁבֶט</span>)</strong>
+            significa cetro y también “tribu”, reforzando que el liderazgo
+            mesiánico está anclado en el linaje tribal de Yehudáh (Bereshit
+            49:10).
+          </li>
+          <li>
+            La construcción
+            <strong><span class="hebrew-term">דָּרַךְ כּוֹכָב</span></strong>
+            implica movimiento, avance, lo que en términos proféticos refleja la
+            entrada progresiva del reino de Elohím en la historia.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>5. Comentarios rabínicos y mesiánicos</h1>
+        <ul>
+          <li>
+            <strong>Tárgum Onquelos:</strong> interpreta “estrella” como “rey” y
+            “cetro” como “gobernante” — aplicado a Melej haMashíaj.
+          </li>
+          <li>
+            <strong>Rashi:</strong> primero a David, luego al Mashíaj en el
+            tiempo final.
+          </li>
+          <li>
+            <strong>Comentaristas mesiánicos:</strong> ven el paralelismo con
+            Yesha‘yahu 60:1-3, donde la luz de Israel atrae a las naciones.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>6. Aplicación práctica para la Kehiláh</h1>
+        <ul>
+          <li>
+            Reconocer que la “estrella” no es un fenómeno aislado, sino la
+            manifestación de la presencia y el gobierno del Mashíaj.
+          </li>
+          <li>
+            Vivir bajo el cetro de Yeshúa implica obediencia, justicia y misión
+            global.
+          </li>
+          <li>
+            Entender que las señales proféticas requieren discernimiento y
+            preparación.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>
+        ✡ Respuestas en Yeshúa haMashíaj a las 5 preguntas de la Profecía #150
+      </h2>
+      <div>
+        <h1>
+          1. ¿Por qué Elohím permitió que un profeta gentil proclamara una de las
+          promesas mesiánicas más claras?
+        </h1>
+        <p class="answer">
+          Elohím quiso mostrar que el plan de redención en Yeshúa no era
+          exclusivo de Israel, sino para todas las naciones. Que un profeta
+          gentil como Bil‘am anunciara la “estrella” y el “cetro” demuestra que
+          hasta los pueblos lejanos serían testigos de Su reino. Esto anticipa
+          lo que Shaúl enseña en Efesios 3:6: que gentiles y judíos serían
+          coherederos en Mashíaj.
+        </p>
+      </div>
+      <div>
+        <h1>
+          2. ¿Qué relación existe entre la estrella de Yaakov y la “estrella de
+          la mañana” de Hitgalut 22:16?
+        </h1>
+        <p class="answer">
+          La “estrella de Yaakov” es la profecía inicial que anuncia el
+          nacimiento y gobierno del Mashíaj; la “estrella de la mañana” es la
+          autoidentificación de Yeshúa como el cumplimiento pleno de esa
+          profecía. En Hitgalut 22:16, Él declara: “Yo soy… la estrella
+          resplandeciente de la mañana”, indicando que la luz mesiánica
+          profetizada por Bil‘am ha llegado a su plenitud en Su persona.
+        </p>
+      </div>
+      <div>
+        <h1>
+          3. ¿Cómo une Bereshit 49:10 con Bamidbar 24:17 el linaje mesiánico?
+        </h1>
+        <p class="answer">
+          En Bereshit 49:10 se anuncia que “el cetro no se apartará de Yehudáh”,
+          y en Bamidbar 24:17 se revela que ese cetro se levantará desde
+          Yisra’el. Unidos, estos pasajes identifican al Mashíaj como
+          descendiente de Yehudáh, heredero legítimo del trono davídico,
+          cumplido en Yeshúa (Luqas 1:32-33). El linaje y la autoridad real
+          convergen en Él.
+        </p>
+      </div>
+      <div>
+        <h1>
+          4. ¿Qué enseñanzas prácticas extrae la Kehiláh del hecho de que el
+          cetro simboliza autoridad inquebrantable?
+        </h1>
+        <p class="answer">
+          El cetro en manos de Yeshúa significa que Su autoridad es absoluta,
+          justa y eterna. La Kehiláh debe vivir bajo Su gobierno, no negociando
+          principios del Reino, sino sometiéndose a Su Palabra. Como dice
+          Mattityahu 28:18, “Toda autoridad me ha sido dada en el cielo y en la
+          tierra”, por lo que nuestro servicio y misión dependen totalmente de
+          Su mandato.
+        </p>
+      </div>
+      <div>
+        <h1>
+          5. ¿De qué manera la profecía de Bil‘am anuncia que la salvación
+          alcanzará a las naciones?
+        </h1>
+        <p class="answer">
+          El hecho de que Bil‘am, un gentil, hable del reinado mesiánico y que
+          la “estrella” sea visible para pueblos lejanos anticipa que la luz del
+          Mashíaj brillará para todas las naciones (Yesha‘yahu 49:6). Esto se
+          cumple en Mattityahu 2:1-2, cuando sabios de oriente reconocen la
+          señal de la estrella y vienen a adorar al Rey de los judíos,
+          demostrando que Su reino es universal.
+        </p>
+      </div>
+    </div>
+
+    <div class="conclusion">
+      <h3>🕯 Tefiláh</h3>
+      <p class="prayer-text">
+        Adonái יהוה, te damos gracias porque revelaste desde antiguo que Tu
+        Mashíaj sería luz para Israel y para las naciones. Reconocemos en Yeshúa
+        haMashíaj la estrella prometida y el cetro eterno. Ayúdanos a vivir
+        bajo Su autoridad, a reflejar Su luz y a llevar Su salvación a todos los
+        pueblos.
+      </p>
+      <p class="prayer-conclusion">Amén.</p>
+    </div>
+ <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html"
+        >Ir a la siguiente profesia.</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
+

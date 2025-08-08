@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+        <div class="content-container">
+      <h1>📜 Profesias Mesianicas Parasháh #42: Matot – “Tribus” 43 Masei Jornadas</h1>
+      <p class="translation">
+        <strong>Texto base:</strong> Bamidbar / Números 30:2 – 32:42
+      </p>
+
+      <div class="verse-container">
+        <p class="verse-number">
+          1️⃣ Profecía Mesiánica Central: El voto inquebrantable y el liderazgo
+          guerrero del Ungido
+        </p>
+        <p class="translation">
+          <strong>Referencia en el Tanaj:</strong>
+        </p>
+        <p class="hebrew">בְּמִדְבַּר 30:2 – “כְּכָל־הַיֹּצֵא מִפִּיו יַעֲשֶׂה”</p>
+        <p class="literal-translation">
+          “Todo lo que salga de su boca hará.”
+        </p>
+        <p class="translation">
+          <strong>Contexto histórico:</strong> El capítulo 30 regula la seriedad
+          de los votos hechos delante de Adonái. En la mentalidad hebrea, la
+          palabra hablada tiene peso eterno, especialmente cuando es declarada
+          por un líder ungido.
+        </p>
+        <p class="translation">
+          <strong>Significado mesiánico:</strong> Apunta a la fidelidad absoluta
+          del Mashíaj, cuyas palabras nunca fallan (Yeshayahu 55:11). Así como
+          Moshé exigió el cumplimiento íntegro de lo prometido, así el Mashíaj
+          será el garante perfecto de todas las promesas del Eterno.
+        </p>
+        <p class="translation">
+          <strong>Conexión en Neviím:</strong>
+        </p>
+        <div class="scripture">
+          <p class="hebrew">Yeshayahu / Isaías 11:4 – “וְשָׁפַט בְּצֶדֶק דַּלִּים”</p>
+          <p class="translation">
+            Mashíaj juzga con justicia, y sus palabras tienen poder para
+            ejecutar lo que declara.
+          </p>
+        </div>
+        <p class="translation">
+          <strong>Cumplimiento en Brit Jadasháh:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>Yojanán / Juan 6:38</strong> – Yeshúa afirma que ha venido no
+            para hacer su voluntad, sino la voluntad del que lo envió,
+            cumpliendo perfectamente lo prometido.
+          </li>
+          <li>
+            <strong>Hitgalut / Apocalipsis 19:13</strong> – “Su nombre es La
+            Palabra de Elohím” – la esencia del voto cumplido en su totalidad.
+          </li>
+        </ul>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">
+          2️⃣ Profecía Mesiánica Secundaria: La victoria sobre Midián y la guerra
+          final contra el mal
+        </p>
+        <p class="translation">
+          <strong>Referencia en el Tanaj:</strong> Bamidbar 31 – La guerra
+          contra Midián es juicio de Adonái contra la corrupción que sedujo a
+          Israel.
+        </p>
+        <p class="translation">
+          <strong>Significado mesiánico:</strong> Es figura del juicio final del
+          Mashíaj contra las fuerzas espirituales de maldad (Yejezqel 38-39, Gog
+          uMagog).
+        </p>
+        <p class="translation">
+          <strong>Cumplimiento en Brit Jadasháh:</strong> Hitgalut 19:11-21,
+          donde el Mashíaj guerrero derrota definitivamente a los enemigos de la
+          santidad.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>📜 Parasháh #43: Maséy – “Viajes”</h1>
+      <p class="translation">
+        <strong>Texto base:</strong> Bamidbar / Números 33:1 – 36:13
+      </p>
+
+      <div class="verse-container">
+        <p class="verse-number">
+          3️⃣ Profecía Mesiánica Central: La tierra prometida como herencia
+          eterna
+        </p>
+        <p class="translation">
+          <strong>Referencia en el Tanaj:</strong>
+        </p>
+        <p class="hebrew">
+          במדבר 33:53 – “וְהוֹרַשְׁתֶּם אֶת־הָאָרֶץ וִישַׁבְתֶּם בָּהּ כִּי לָכֶם
+          נָתַתִּי אֶת־הָאָרֶץ לָרֶשֶׁת אֹתָהּ”
+        </p>
+        <p class="literal-translation">
+          La herencia es un regalo de Adonái.
+        </p>
+        <p class="translation">
+          <strong>Significado mesiánico:</strong> El viaje de Israel prefigura
+          el camino del redimido hacia la herencia eterna en el Reino mesiánico
+          (Tehilím / Salmos 37:29).
+        </p>
+        <p class="translation">
+          <strong>Conexión en Neviím:</strong>
+        </p>
+        <div class="scripture">
+          <strong>Yirmeyahu / Jeremías 23:5-6</strong> – El justo descendiente
+          de David reinará, y su pueblo habitará seguro en la tierra.
+        </div>
+        <p class="translation">
+          <strong>Cumplimiento en Brit Jadasháh:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>Mattityahu / Mateo 5:5</strong> – “Bienaventurados los
+            mansos, porque ellos heredarán la tierra.”
+          </li>
+          <li>
+            <strong>Ivrím / Hebreos 4:8-10</strong> – La herencia no es solo
+            geográfica, sino el reposo eterno en Mashíaj.
+          </li>
+        </ul>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">
+          4️⃣ Profecía Mesiánica Secundaria: Ciudades de refugio – Mashíaj como
+          refugio eterno
+        </p>
+        <p class="translation">
+          <strong>Referencia en el Tanaj:</strong> Bamidbar 35 – Las ciudades de
+          refugio para el homicida involuntario.
+        </p>
+        <p class="translation">
+          <strong>Significado mesiánico:</strong> Prefiguran a Yeshúa como
+          refugio seguro para el pecador arrepentido, protegiéndolo del juicio
+          hasta la reconciliación.
+        </p>
+        <p class="translation">
+          <strong>Conexión en Neviím:</strong>
+        </p>
+        <div class="scripture">
+          <p class="hebrew">Yeshayahu 32:2 – “וְהָיָה אִישׁ כְּמַחֲבֵא־רוּחַ”</p>
+          <p class="translation">
+            El hombre (Mashíaj) será como refugio contra el viento.
+          </p>
+        </div>
+        <p class="translation">
+          <strong>Cumplimiento en Brit Jadasháh:</strong>
+        </p>
+        <div class="scripture">
+          <strong>Ivrím / Hebreos 6:18-20</strong> – Tenemos un refugio seguro
+          en la esperanza que es Yeshúa, el Cohen Gadol que intercede
+          perpetuamente.
+        </div>
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h2>🔍 Síntesis Teológica</h2>
+      <p>
+        Las dos parashot forman una unidad profética:
+      </p>
+      <ul>
+        <li>
+          <strong>Matot</strong> revela al Mashíaj como Guerrero fiel y
+          Cumplidor de la palabra de Adonái.
+        </li>
+        <li>
+          <strong>Maséy</strong> lo presenta como Guía final del pueblo hacia la
+          herencia y Refugio eterno del pecador arrepentido.
+        </li>
+      </ul>
+      <p>
+        Esto conecta directamente con la visión apocalíptica de Hitgalut, donde
+        el Mashíaj cumple la conquista final, establece la herencia prometida y
+        protege para siempre a los suyos.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>📜 La muerte de Aharón – Bamidbar / Números 33:38-39</h2>
+      <p class="scripture">
+        “Y Aharón el Cohen ascendió al monte Hor, por mandato de Adonái, y murió
+        allí… y Aharón tenía ciento veintitrés años cuando murió en el monte
+        Hor.”
+      </p>
+
+      <div class="section-container">
+        <p class="verse-number">1️⃣ Contexto histórico</p>
+        <ul>
+          <li>Este evento ocurre en el año 40 de la travesía por el desierto.</li>
+          <li>
+            La muerte de Aharón marca el fin de una era sacerdotal en la cual él
+            fue el Cohen Gadol que intercedía por Israel.
+          </li>
+          <li>
+            La transición a su hijo Elazar simboliza continuidad y transferencia
+            de autoridad en el servicio sacerdotal.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <p class="verse-number">2️⃣ Significado mesiánico</p>
+        <ul>
+          <li>
+            Aharón representa la figura del Sumo Sacerdote terrenal que intercede
+            continuamente por el pueblo, pero que es mortal y limitado.
+          </li>
+          <li>
+            Su muerte prefigura la necesidad de un Cohen Gadol eterno que no
+            pueda ser interrumpido por la muerte: Yeshúa haMashíaj.
+          </li>
+        </ul>
+        <p class="translation">📖 Referencia en Tehilím / Salmos 110:4</p>
+        <p class="scripture">
+          “Tú eres Cohen para siempre según la orden de Malki-Tzedek.”
+        </p>
+        <p class="translation">📖 Referencia en Yeshayahu 53:12</p>
+        <p class="scripture">
+          El Siervo Justo “intercederá por los transgresores”, implicando un
+          sacerdocio perpetuo.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <p class="verse-number">3️⃣ Cumplimiento en Brit Jadasháh</p>
+        <p class="translation">Ivrím / Hebreos 7:23-25</p>
+        <p class="scripture">
+          “Hubo muchos sacerdotes porque por la muerte no podían continuar; mas
+          éste (Yeshúa), por cuanto permanece para siempre, tiene un sacerdocio
+          inmutable.”
+        </p>
+        <p class="translation">
+          La muerte de Aharón subraya que el sistema sacerdotal levítico era
+          temporal y tipológico; el sacerdocio eterno de Mashíaj es la realidad
+          final.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <p class="verse-number">4️⃣ Conexión con la narrativa profética</p>
+        <ul>
+          <li>
+            <strong>Monte Hor</strong> → Nombre que significa “montaña de la
+            montaña”, una figura de elevación y transición. El lugar alto es
+            donde termina la obra de Aharón y se confirma que el acceso al Eterno
+            necesita una mediación superior.
+          </li>
+          <li>
+            <strong>Neviím</strong> → Malki-Tzedek (Bereshit 14) y las promesas
+            de un sacerdote-rey futuro en Zekaryah 6:13 se cumplen en Mashíaj.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <p class="verse-number">5️⃣ Enseñanza espiritual</p>
+        <ul>
+          <li>
+            La muerte de Aharón nos recuerda que ningún mediador humano puede
+            sostener eternamente la comunión con Elohím.
+          </li>
+          <li>
+            El único Cohen Gadol que no muere y cuya intercesión nunca cesa es
+            Yeshúa haMashíaj, quien ministra en el Santuario celestial (Ivrím
+            9:24).
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>Preguntas y respuestas en el Mashíaj</h2>
+      <div>
+        <p class="question">
+          1️⃣ ¿Cómo el principio del “voto” en Matot nos revela el carácter de la
+          Palabra hecha carne?
+        </p>
+        <p class="answer">
+          En Bamidbar 30:2, el voto debía cumplirse tal cual fue pronunciado.
+          Esto es figura de Yeshúa haMashíaj, la Palabra viva (Yojanán 1:14),
+          que cumple exactamente lo que declara el Padre (Yojanán 6:38). Así
+          como ningún voto ante Adonái puede ser roto sin consecuencias, las
+          promesas del Mashíaj son absolutas y seguras (2 Corintios 1:20).
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          2️⃣ ¿De qué manera la guerra contra Midián es figura del juicio
+          escatológico del Mashíaj?
+        </p>
+        <p class="answer">
+          La batalla contra Midián (Bamidbar 31) fue juicio divino por la
+          corrupción y seducción espiritual de Israel. Esto prefigura la victoria
+          final de Mashíaj sobre Babilonia espiritual y las fuerzas de maldad
+          (Hitgalut 19:11-21). Así como Israel no debía dejar sobrevivir a la
+          raíz del mal, Mashíaj erradicará definitivamente toda injusticia
+          (Yeshayahu 11:4).
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          3️⃣ ¿Qué relación existe entre la entrada a la tierra prometida y el
+          reposo espiritual en Yeshúa?
+        </p>
+        <p class="answer">
+          La entrada a la tierra (Bamidbar 33) es figura del reposo mesiánico
+          prometido a los redimidos. Ivrím 4:8-10 enseña que el reposo verdadero
+          no es solo geográfico sino estar en la presencia y gobierno de Yeshúa.
+          Él es el Josué eterno que nos conduce al reposo completo en el Reino
+          venidero.
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          4️⃣ ¿Cómo las ciudades de refugio tipifican la mediación sacerdotal
+          eterna del Mashíaj?
+        </p>
+        <p class="answer">
+          Las ciudades de refugio (Bamidbar 35) protegían al homicida
+          involuntario hasta la muerte del Sumo Sacerdote. Esto es figura de que
+          nuestra vida está guardada en Mashíaj, el Cohen Gadol eterno (Ivrím
+          6:18-20). Mientras estamos en Él, el acusador no puede ejecutarnos;
+          nuestra libertad plena llega por Su sacrificio y vida eterna.
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          5️⃣ ¿Qué paralelos encuentras entre las 42 estaciones de Maséy y el
+          caminar del discípulo de Yeshúa?
+        </p>
+        <p class="answer">
+          Las 42 estaciones reflejan el proceso de discipulado:
+          <ul>
+            <li><strong>Salida de Mitsrayim</strong> → conversión.</li>
+            <li>
+              <strong>Desierto</strong> → pruebas y formación de carácter.
+            </li>
+            <li><strong>Monte Hor</strong> → entrega total y muerte al yo.</li>
+            <li>
+              <strong>Jordán</strong> → transición a la herencia eterna.
+            </li>
+          </ul>
+          Cada creyente recorre espiritualmente estas etapas, con Mashíaj
+          guiando hasta la Yerushaláyim celestial (Hitgalut 21:2).
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>
+        📜 La muerte de Aharón en el Monte Hor – Preguntas y respuestas en el
+        Mashíaj
+      </h2>
+      <div>
+        <p class="question">
+          6️⃣ ¿Por qué Elohím hizo que la muerte de Aharón ocurriera a la vista
+          del pueblo?
+        </p>
+        <p class="answer">
+          Para enseñar que el sacerdocio levítico era temporal y señalar la
+          necesidad de un sacerdote eterno (Ivrím 7:23-25). Al verlo, Israel
+          entendió que la mediación humana muere, pero la de Mashíaj permanece
+          para siempre.
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          7️⃣ ¿Qué enseñanza hay en la transferencia inmediata de vestiduras a
+          Elazar?
+        </p>
+        <p class="answer">
+          Simboliza que el ministerio sacerdotal no se interrumpe, pero cambia
+          de manos. Esto anticipa la transferencia del sacerdocio de la línea de
+          Aharón al orden de Malki-Tzedek en Yeshúa (Tehilím 110:4).
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          8️⃣ ¿Cómo el monte Hor simboliza la ascensión y glorificación de Yeshúa?
+        </p>
+        <p class="answer">
+          Monte Hor, “montaña de la montaña”, representa el lugar alto de
+          encuentro con Elohím. Así como Aharón subió para morir y ser reunido al
+          pueblo de Elohím, Yeshúa ascendió al cielo (Maaséy Shlijím / Hechos
+          1:9) para ministrar como Cohen Gadol glorificado.
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          9️⃣ ¿Qué diferencia hay entre la intercesión de Aharón y la de Yeshúa?
+        </p>
+        <p class="answer">
+          Aharón intercedía diariamente ofreciendo sacrificios por sus propios
+          pecados y por los del pueblo (Vayikrá 16:6), pero era limitado por su
+          humanidad y mortalidad. Yeshúa, sin pecado, ofreció un solo sacrificio
+          perfecto y vive para interceder perpetuamente (Ivrím 7:27).
+        </p>
+      </div>
+      <div>
+        <p class="question">
+          🔟 ¿Cómo la muerte de Aharón prepara al pueblo para un cambio de pacto?
+        </p>
+        <p class="answer">
+          Muestra que el pacto mosaico, basado en un sacerdocio mortal, no era
+          el pacto definitivo. La muerte de Aharón abre camino a la esperanza de
+          un Nuevo Pacto (Yirmeyahu 31:31-34) en el que Mashíaj es sacerdote,
+          rey y mediador eterno.
+        </p>
+      </div>
+    </div>
+
+    <div class="prophetic-content">
+      <h2>🌟 Profecía Mesiánica #154</h2>
+      <p class="prophetic-title">
+        "El Sacerdocio de Malki-Tzedek como cumplimiento profético de la muerte
+        de Aharón y las ciudades de refugio"
+      </p>
+
+      <div class="prophetic-section">
+        <p class="verse-number">1️⃣ Referencia en el Tanaj</p>
+        <ul>
+          <li>
+            <strong>Bamidbar / Números 33:38-39</strong> – La muerte de Aharón en
+            el Monte Hor.
+          </li>
+          <li>
+            <strong>Bamidbar / Números 35:9-34</strong> – Establecimiento de las
+            ciudades de refugio.
+          </li>
+          <li>
+            <strong
+              >Tehilím / Salmos 110:4 –
+              <span class="hebrew"
+                >“נִשְׁבַּע יְהוָה וְלֹא יִנָּחֵם אַתָּה כֹהֵן לְעוֹלָם
+                עַל־דִּבְרָתִי מַלְכִּי־צֶדֶק”</span
+              ></strong
+            >
+            – “Adonái ha jurado y no se retractará: Tú eres Cohen para siempre
+            según el orden de Malki-Tzedek.”
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">2️⃣ Contexto y significado profético</p>
+        <p>
+          En Maséy, la muerte de Aharón y el traspaso del sumo sacerdocio a
+          Elazar revelan que el sacerdocio levítico estaba sujeto a la muerte y,
+          por lo tanto, no podía garantizar una intercesión eterna.
+          Inmediatamente después, la Toráh detalla las ciudades de refugio,
+          donde el homicida involuntario debía permanecer hasta la muerte del
+          Sumo Sacerdote, momento en el que obtenía su libertad.
+        </p>
+        <p>Esto apunta a que:</p>
+        <ul>
+          <li>La muerte del Sumo Sacerdote era la liberación legal del culpable.</li>
+          <li>
+            Un Sumo Sacerdote eterno traería liberación definitiva a los
+            culpables ante Elohím.
+          </li>
+          <li>
+            El orden de Malki-Tzedek es superior al levítico, sin limitación de
+            mortalidad.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">3️⃣ Cumplimiento en Yeshúa haMashíaj</p>
+        <p class="translation">📖 Ivrím / Hebreos 7:23-25</p>
+        <p class="scripture">
+          “Hubo muchos sacerdotes, porque por la muerte no podían continuar; mas
+          éste, por cuanto permanece para siempre, tiene un sacerdocio
+          inmutable. Por lo cual puede salvar perpetuamente a los que por Él se
+          acercan a Elohím, viviendo siempre para interceder por ellos.”
+        </p>
+        <p class="translation">📖 Ivrím / Hebreos 6:18-20</p>
+        <p class="scripture">
+          “Tenemos un fuerte consuelo, los que hemos huido para asirnos de la
+          esperanza puesta delante de nosotros; la cual tenemos como ancla del
+          alma, segura y firme, y que penetra hasta dentro del velo, donde
+          Yeshúa entró como precursor por nosotros, hecho Cohen Gadol para
+          siempre según el orden de Malki-Tzedek.”
+        </p>
+        <p><strong>Relación directa:</strong></p>
+        <ul>
+          <li>
+            Así como la muerte de Aharón liberaba al homicida, la muerte de
+            Yeshúa libera al pecador arrepentido de la condena eterna.
+          </li>
+          <li>
+            A diferencia de Aharón, Yeshúa vive eternamente, y su sacrificio no
+            necesita repetirse.
+          </li>
+          <li>
+            Él es simultáneamente Refugio (ciudades de refugio) y Sumo Sacerdote
+            eterno (orden de Malki-Tzedek).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">4️⃣ Conexión con Neviím y Brit Jadasháh</p>
+        <ul>
+          <li>
+            <strong>Yeshayahu 32:2</strong> – “Un hombre será como refugio contra
+            el viento…” → Mashíaj como refugio seguro.
+          </li>
+          <li>
+            <strong>Zekaryah 6:13</strong> – “Él llevará gloria, se sentará y
+            reinará en su trono, y será sacerdote en su trono” → la unificación
+            de rey y sacerdote en Mashíaj, imposible en el sistema levítico.
+          </li>
+          <li>
+            <strong>Hitgalut / Apocalipsis 21:3-4</strong> – La presencia eterna
+            de Elohím con su pueblo, sin más muerte ni condena.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">5️⃣ Enseñanza mesiánica</p>
+        <ul>
+          <li>
+            El sistema levítico nos recuerda la necesidad de un mediador, pero la
+            mortalidad de Aharón mostraba sus límites.
+          </li>
+          <li>
+            Las ciudades de refugio son sombra profética del perdón que hallamos
+            en Mashíaj mientras estamos “dentro” de Él.
+          </li>
+          <li>
+            La muerte del Cohen Gadol (Aharón → figura) prefigura la muerte de
+            Mashíaj, que libera para siempre y no necesita repetición.
+          </li>
+          <li>
+            El orden de Malki-Tzedek une trono y sacerdocio: gobierno justo y
+            mediación eterna.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prophetic-content">
+      <h2>🌟 Profecía Mesiánica #155</h2>
+      <p class="prophetic-title">
+        "Las 42 estaciones de Maséy como mapa profético de la vida de Yeshúa,
+        del discipulado y de la historia profética de Israel"
+      </p>
+
+      <div class="prophetic-section">
+        <p class="verse-number">1️⃣ Referencia en el Tanaj</p>
+        <ul>
+          <li>
+            <strong>Bamidbar / Números 33:1-49</strong> – Lista de las 42 paradas
+            de Israel desde Mitsrayim hasta las llanuras de Moav, frente al
+            Yarden.
+          </li>
+          <li>
+            El número 42 en la tradición judía tiene una fuerte connotación
+            espiritual (relacionado con el Shem Mem-Bet, el Nombre de 42 letras
+            que según los sabios sostiene la creación y la redención).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">2️⃣ Contexto y significado profético</p>
+        <p>Las 42 estaciones no son simples datos históricos:</p>
+        <ul>
+          <li>Son un itinerario espiritual que va de la esclavitud a la herencia.</li>
+          <li>
+            En la visión mesiánica, este patrón se refleja en:
+            <ul>
+              <li>La vida de Yeshúa – su recorrido desde el cielo hasta la exaltación.</li>
+              <li>El camino del discípulo – del nuevo nacimiento al reposo eterno.</li>
+              <li>
+                La historia profética de Israel – del éxodo físico a la
+                restauración final en el Reino mesiánico.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">
+          3️⃣ Cumplimiento y paralelos en Yeshúa haMashíaj
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Estación</th>
+              <th>Significado en Israel</th>
+              <th>Cumplimiento en Yeshúa</th>
+              <th>Aplicación al discípulo</th>
+              <th>Historia profética de Israel</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Ramsés</strong></td>
+              <td>Salida de Egipto</td>
+              <td>Encarnación – deja la gloria celestial</td>
+              <td>Nuevo nacimiento, liberación del pecado</td>
+              <td>Éxodo de la esclavitud</td>
+            </tr>
+            <tr>
+              <td><strong>2. Sucot</strong></td>
+              <td>Tiendas</td>
+              <td>Moró entre nosotros (Yojanán 1:14)</td>
+              <td>Aprender a depender de Adonái</td>
+              <td>Tiempo en el desierto</td>
+            </tr>
+            <tr>
+              <td><strong>3. Etam</strong></td>
+              <td>Límite del desierto</td>
+              <td>Tentación en el desierto (Mattityahu 4)</td>
+              <td>Pruebas iniciales de fe</td>
+              <td>Primeras pruebas como nación libre</td>
+            </tr>
+            <tr>
+              <td><strong>………</strong></td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+              <td>...</td>
+            </tr>
+            <tr>
+              <td><strong>42. Abel-Hashitim</strong></td>
+              <td>Antes de cruzar el Jordán</td>
+              <td>Ascensión y promesa de regreso (Maaséy Shlijím 1)</td>
+              <td>Entrada al reposo eterno</td>
+              <td>Restauración final en Eretz Israel</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="conclusion">
+          (Nota: el desarrollo completo de las 42 estaciones requiere un cuadro
+          ampliado, pero aquí resumimos el patrón clave.)
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">4️⃣ Conexión con Neviím y Brit Jadasháh</p>
+        <ul>
+          <li>
+            <strong>Yeshayahu 63:11-14</strong> – Recuerda cómo el Espíritu de
+            Adonái condujo a Israel en su éxodo.
+          </li>
+          <li>
+            <strong>Hoshea 11:1</strong> – “De Egipto llamé a mi hijo” → aplicado
+            a Yeshúa en Mattityahu 2:15.
+          </li>
+          <li>
+            <strong>Ivrím 11:13-16</strong> – Los patriarcas reconocieron que
+            eran peregrinos hacia una patria celestial.
+          </li>
+          <li>
+            <strong>Hitgalut / Apocalipsis 11:2-3; 13:5</strong> – El número 42
+            se asocia proféticamente a períodos de prueba antes de la victoria
+            final (42 meses).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <p class="verse-number">5️⃣ Enseñanza mesiánica</p>
+        <ul>
+          <li>
+            La vida de Yeshúa recapitula el viaje de Israel, pero lo cumple sin
+            pecado.
+          </li>
+          <li>
+            El discípulo está llamado a seguir ese mismo patrón, con estaciones
+            de fe, pruebas, victorias y crecimiento.
+          </li>
+          <li>
+            Israel como nación también pasará por su “Maséy” histórico, hasta la
+            entrada al Reino mesiánico bajo el gobierno de Yeshúa.
+          </li>
+          <li>
+            El número 42 señala que el viaje tiene un fin programado por Adonái:
+            no es infinito, tiene una meta segura.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="conclusion">
+      <h3>Tefiláh</h3>
+      <p class="prayer-text">
+        Adonái יהוה, gracias porque nuestro caminar no es al azar; cada estación
+        está bajo Tu dirección perfecta. Gracias porque en Yeshúa haMashíaj
+        vemos el cumplimiento de este viaje y la garantía de llegar a la meta.
+        Guíanos a no desmayar en el desierto y a mantener la vista en la
+        herencia eterna que nos espera en Tu Reino.
+      </p>
+      <p class="prayer-conclusion">Amén.</p>
+    </div>
+        <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html"
+        >Ir a la siguiente profesia.</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
+

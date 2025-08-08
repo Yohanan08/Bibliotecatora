@@ -1,0 +1,539 @@
+	 <!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+        <div class="content-container">
+    <h1>📜 Profecías Mesiánicas en la Parashá 41 – Pinjás</h1>
+
+    <div class="prophetic-section">
+      <h2 class="prophetic-title">
+        Profecía #151 – El Pacto de Shalom y el Sacerdocio Eterno
+      </h2>
+      <p class="scripture">
+        Referencia en el Tanaj: Bamidbar 25:10-13
+      </p>
+      <p class="literal-translation">
+        “He aquí Yo le otorgo Mi pacto de Shalom… será para él y para su
+        descendencia después de él pacto de sacerdocio eterno…”
+      </p>
+      <p><strong>1. Contexto y significado profético</strong></p>
+      <p>
+        Pinjás recibe de Adonái el “Brit Shalom” y un pacto de kehuna olam
+        (sacerdocio perpetuo) por su celo santo en detener la plaga y purificar
+        al pueblo.
+      </p>
+      <p>
+        Proféticamente, este pacto anuncia un sacerdocio perfecto, eterno, sin
+        corrupción, que no se interrumpiría por muerte ni por pecado.
+      </p>
+      <p>
+        Los profetas posteriores (Tehilim 110:4; Zacarías 6:13) ampliarán que
+        este sacerdocio eterno estaría unido al trono real del Mashíaj.
+      </p>
+      <p><strong>2. Cumplimiento en Yeshúa haMashíaj</strong></p>
+      <p>
+        Yeshúa, como Kohen Gadol le‘olam (Hebreos 7:17), es el cumplimiento de
+        este pacto eterno. Su celo por la casa de Adonái (Yojanán 2:17) y Su
+        entrega en el madero lo convierten en el mediador perfecto del Shalom
+        entre Elohím y el hombre (Efesios 2:14).
+      </p>
+      <p>
+        El pacto de Pinjás fue un tipo, pero Yeshúa es el antitipo perfecto:
+        no solo intercede, sino que también ofrece Su propia vida como
+        sacrificio único y suficiente.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="prophetic-section">
+      <h2 class="prophetic-title">
+        Profecía #152 – La Segunda Distribución de la Tierra y la Herencia del
+        Pueblo
+      </h2>
+      <p class="scripture">
+        Referencia en el Tanaj: Bamidbar 26:52-56
+      </p>
+      <p>
+        La tierra se reparte por sorteo y herencia, prefigurando la asignación
+        final del Reino mesiánico.
+      </p>
+      <p>
+        Yesha‘yahu 65:21-22 y Yejezqel 47-48 conectan la herencia física con la
+        restauración final.
+      </p>
+      <p>
+        <span class="highlight">En Yeshúa:</span> El Brit Hadasháh enseña que
+        nuestra herencia está “reservada en los cielos” (1 Pedro 1:4), y que
+        reinaremos con Él (Hitgalut 20:6).
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="prophetic-section">
+      <h2 class="prophetic-title">
+        Profecía #153 – Yehoshúa hijo de Nun como figura del Líder que
+        Introduce al Pueblo en la Promesa
+      </h2>
+      <p class="scripture">
+        Referencia en el Tanaj: Bamidbar 27:18-23
+      </p>
+      <p>
+        La sucesión de Moshe a Yehoshúa prefigura la transición de la Toráh
+        escrita al cumplimiento vivo en el Mashíaj.
+      </p>
+      <p>
+        Yehoshúa (nombre idéntico a Yeshúa en hebreo) introduce al pueblo en la
+        herencia; Yeshúa haMashíaj introduce a la Kehiláh en el reposo eterno
+        (Hebreos 4:8-10).
+      </p>
+    </div>
+  </div>
+
+  <div class="content-container">
+    <h1>
+      Profecía #154 – La ofrenda diaria, de Shabat y de las Moadim
+    </h1>
+    <p class="scripture">Referencia en el Tanaj: Bamidbar 28-29</p>
+    <p>
+      Estas ofrendas apuntan al sacrificio continuo y suficiente del Mashíaj.
+    </p>
+    <p>
+      Hebreos 10:12 declara que Yeshúa, habiendo ofrecido un solo sacrificio
+      por los pecados, se sentó para siempre a la diestra de Elohím.
+    </p>
+    <p>
+      Las Moadim (Pesaj, Shavuot, Sucot) encuentran su plenitud en Él como
+      Cordero, Primicias y Morada eterna.
+    </p>
+  </div>
+
+  <div class="content-container">
+    <h1>Profecía #155 – Los votos y la Palabra que no se anula</h1>
+    <p class="scripture">Referencia en el Tanaj: Bamidbar 30:1-2</p>
+    <p>
+      La autoridad de la palabra dada y la fidelidad para cumplirla reflejan
+      el carácter de Yeshúa como “el Amén” (2 Corintios 1:20).
+    </p>
+    <p>Toda promesa de Elohím encuentra su sí y amén en Él.</p>
+  </div>
+
+  <div class="content-container">
+    <h1>🔍 Conexiones en los Profetas</h1>
+    <ul>
+      <li>
+        <strong class="highlight">Tehilim 110:4</strong> – Un sacerdote eterno
+        según el orden de Malki-Tzedek (ligado a Pinjás y a Yeshúa).
+      </li>
+      <li>
+        <strong class="highlight">Yesha‘yahu 9:6-7</strong> – Gobierno eterno
+        en justicia y shalom.
+      </li>
+      <li>
+        <strong class="highlight">Zacarías 6:12-13</strong> – El “Tzemaj”
+        (Renuevo) que será rey y sacerdote.
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-container">
+    <h1>📖 Conexiones en el Brit Hadasháh</h1>
+    <ul>
+      <li>
+        <strong class="highlight">Hebreos 4-10</strong> – Yeshúa como Sumo
+        Sacerdote perfecto.
+      </li>
+      <li>
+        <strong class="highlight">Efesios 2:14-16</strong> – Él es nuestra paz
+        (Shalom) derribando el muro de separación.
+      </li>
+      <li>
+        <strong class="highlight">Yojanán 1:29</strong> – El Cordero que quita
+        el pecado del mundo.
+      </li>
+    </ul>
+  </div>
+
+  <div class="content-container">
+    <h1>✡ 5 Preguntas para profundizar ✡ Respuestas en el Mashíaj</h1>
+    <div class="section-container">
+      <p class="question">
+        1. ¿Cómo el celo de Pinjás por la santidad refleja el celo de Yeshúa
+        por la casa de Adonái?
+      </p>
+      <p class="answer">
+        El celo de Pinjás fue un acto decidido para detener la corrupción y
+        restaurar la santidad del campamento. De manera paralela, Yeshúa
+        mostró un celo ardiente por la pureza del culto cuando expulsó a los
+        mercaderes del Templo (Yojanán 2:17, recordando Tehilim 69:9). En
+        ambos casos, el celo no es ira personal, sino amor por la gloria de
+        Adonái y la salvación del pueblo. Pinjás salvó a Israel de una plaga;
+        Yeshúa salva al mundo entero del juicio eterno.
+      </p>
+    </div>
+    <div class="section-container">
+      <p class="question">
+        2. ¿Qué enseña el “pacto de shalom” sobre la reconciliación eterna en
+        Yeshúa?
+      </p>
+      <p class="answer">
+        El “Brit Shalom” dado a Pinjás aseguraba paz continua y sacerdocio
+        perpetuo. En Yeshúa, este pacto encuentra su cumplimiento perfecto,
+        porque Él es “nuestra paz” (Efesios 2:14), reconciliando a judíos y
+        gentiles con Elohím en un solo cuerpo. Su shalom no es temporal, sino
+        eterno, pues su intercesión nunca cesa (Hebreos 7:25).
+      </p>
+    </div>
+    <div class="section-container">
+      <p class="question">
+        3. ¿Por qué la sucesión de Moshe a Yehoshúa es un patrón profético
+        clave?
+      </p>
+      <p class="answer">
+        Moshe representa la Toráh escrita, y Yehoshúa (nombre equivalente a
+        Yeshúa) es quien introduce al pueblo en la herencia prometida.
+        Proféticamente, esto anuncia que la Toráh encuentra su plenitud en el
+        Mashíaj, quien no abroga la Ley, sino que la cumple y nos lleva al
+        reposo final (Hebreos 4:8-10). Así como Yehoshúa guió a Israel a
+        Canaán, Yeshúa nos guía al Reino eterno.
+      </p>
+    </div>
+    <div class="section-container">
+      <p class="question">
+        4. ¿Cómo se cumplen las ofrendas de las Moadim en la obra del
+        Mashíaj?
+      </p>
+      <p class="answer">
+        Cada Moed apunta a un aspecto de la obra redentora de Yeshúa:
+      </p>
+      <ul>
+        <li>Pesaj <span class="arrow">→</span> Él es el Cordero inmolado (Yojanán 1:29).</li>
+        <li>
+          Bikurim (Primicias) <span class="arrow">→</span> Su resurrección como
+          primicia de los que duermen (1 Corintios 15:20).
+        </li>
+        <li>
+          Shavuot <span class="arrow">→</span> Derramamiento del Ruaj Hakodesh
+          (Hechos 2).
+        </li>
+        <li>
+          Yom Teruáh, Yom Kipur, Sucot <span class="arrow">→</span> Esperanza
+          de su regreso, juicio justo y morada eterna con Su pueblo (Hitgalut
+          21:3).
+        </li>
+      </ul>
+      <p class="answer" style="padding-left: 0">
+        En Él, el sistema de sacrificios encuentra un cumplimiento único y
+        suficiente (Hebreos 10:12).
+      </p>
+    </div>
+    <div class="section-container">
+      <p class="question">
+        5. ¿De qué forma la autoridad de la palabra en los votos nos apunta a
+        la fidelidad del Mashíaj?
+      </p>
+      <p class="answer">
+        En Bamidbar 30, la palabra dada debía cumplirse sin falta. Esto
+        refleja la naturaleza fiel de Yeshúa, en quien todas las promesas de
+        Elohím son “sí y amén” (2 Corintios 1:20). Su palabra no puede fallar;
+        lo que Él promete, lo cumple (Hitgalut 19:11 llama a Yeshúa “Fiel y
+        Verdadero”). Esta fidelidad es garantía de nuestra salvación y herencia
+        eterna.
+      </p>
+    </div>
+  </div>
+
+  <div class="explanation">
+    <h1>🕯 Tefiláh</h1>
+    <p class="prayer-text">
+      Adonái יהוה, gracias porque en Yeshúa haMashíaj encontramos celo santo,
+      paz eterna, liderazgo fiel, cumplimiento profético y promesas seguras.
+      Haz que vivamos con ese mismo celo y fidelidad, para que seamos luz y
+      testimonio de Tu Reino. Amén.
+    </p>
+  </div>
+ <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html"
+        >Ir a la siguiente profesia.</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
+
