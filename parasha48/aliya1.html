@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devarim (במדבר) – Deuteronomio 16:18-17:13</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+       48. Parashá Shoftim (שופטים) Aliyáh 1: (Deuteronomio 16:18-17:13) Moshé establece 
+       la necesidad de jueces y el funcionamiento de la justicia, incluyendo 
+       la importancia de escuchar al Sanedrín.
+        <p>
+          Haftaráh: Isaías 51:12-52:12 (El consuelo de Adonái y Su justicia).
+        </p>
+        <p>
+          Brit Hadasháh: Mateo 18:15-20 (El proceso de resolución de conflictos en la comunidad de creyentes).
+        </p>
+      </h1>
+      <h1>Punto 1. Devarim (Deuteronomio) 16:18–17:13</h1>
+
+    <div class="verse-container">
+      <div class="verse-number">דברים טז:יח</div>
+      <p class="hebrew">
+        שֹׁפְטִים וְשֹׁטְרִים תִּתֶּן־לְךָ בְּכָל־שְׁעָרֶיךָ אֲשֶׁר יהוה אֱלֹהֶיךָ נֹתֵן
+        לְךָ לִשְׁבָטֶיךָ וְשָׁפְטוּ אֶת־הָעָם מִשְׁפַּט־צֶדֶק׃
+      </p>
+      <p class="transliteration">
+        Shoftím ve-shotrím titén-lejá bejol-sheareija asher יהוה Eloheija notén
+        lejá lishvateija, ve-shaftú et-haam mishpat-tzedek.
+      </p>
+      <p class="translation">
+        Jueces y oficiales pondrás para ti en todas tus puertas que יהוה tu
+        Elohím te da para tus tribus, y juzgarán al pueblo juicio de justicia.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">טז:יט</div>
+      <p class="hebrew">
+        לֹא־תַטֶּה מִשְׁפָּט לֹא־תַכִּיר פָּנִים וְלֹא־תִקַּח שֹׁחַד כִּי הַשֹּׁחַד
+        יְעַוֵּר עֵינֵי חֲכָמִים וִיסַלֵּף דִּבְרֵי צַדִּיקִים׃
+      </p>
+      <p class="transliteration">
+        Lo-taté mishpat, lo-takir paním, ve-lo-tikaj shójad; ki hashójad yeavér
+        einei jajamím, veysaléf divrei tzadikím.
+      </p>
+      <p class="translation">
+        No torcerás el juicio, no reconocerás rostro (preferencia), y no
+        tomarás soborno; porque el soborno ciega los ojos de sabios y pervierte
+        las palabras de justos.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">טז:כ</div>
+      <p class="hebrew">
+        צֶדֶק צֶדֶק תִּרְדֹּף לְמַעַן תִּחְיֶה וְיָרַשְׁתָּ אֶת־הָאָרֶץ אֲשֶׁר יהוה
+        אֱלֹהֶיךָ נֹתֵן לָךְ׃
+      </p>
+      <p class="transliteration">
+        Tzedek, tzedek tirdof lemaán tijié veyarashtá et-haáretz asher יהוה
+        Eloheija notén laj.
+      </p>
+      <p class="translation">
+        Justicia, justicia perseguirás, para que vivas y poseas la tierra que
+        יהוה tu Elohím te da.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">טז:כא</div>
+      <p class="hebrew">
+        לֹא־תִטַּע לְךָ אֲשֵׁרָה כָּל־עֵץ אֵצֶל מִזְבַּח יהוה אֱלֹהֶיךָ אֲשֶׁר
+        תַּעֲשֶׂה־לָּךְ׃
+      </p>
+      <p class="transliteration">
+        Lo-titá lejá asherá kol-etz étsel mizbaj יהוה Eloheija asher taasé-laj.
+      </p>
+      <p class="translation">
+        No plantarás para ti Aseráh, ningún árbol junto al altar de יהוה tu
+        Elohím que harás para ti.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">טז:כב</div>
+      <p class="hebrew">
+        וְלֹא־תָקִים לְךָ מַצֵּבָה אֲשֶׁר שָׂנֵא יהוה אֱלֹהֶיךָ׃
+      </p>
+      <p class="transliteration">
+        Ve-lo-takím lejá matzevá asher sané יהוה Eloheija.
+      </p>
+      <p class="translation">
+        Y no erigirás para ti pilar sagrado que odia יהוה tu Elohím.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:א</div>
+      <p class="hebrew">
+        לֹא־תִזְבַּח לַיהוה אֱלֹהֶיךָ שׁוֹר וָשֶׂה אֲשֶׁר יִהְיֶה־בוֹ מוּם כֹּל דָּבָר
+        רָע כִּי תוֹעֲבַת יהוה אֱלֹהֶיךָ הוּא׃
+      </p>
+      <p class="transliteration">
+        Lo-tizbaj la-יהוה Eloheija shor vase asher yihié-bo mum kol davar ra, ki
+        toavat יהוה Eloheija hu.
+      </p>
+      <p class="translation">
+        No sacrificarás a יהוה tu Elohím toro o cordero que tenga en él defecto,
+        cualquier cosa mala, porque es abominación a יהוה tu Elohím.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ב</div>
+      <p class="hebrew">
+        כִּי־יִמָּצֵא בְקִרְבְּךָ בְּאַחַד שְׁעָרֶיךָ אֲשֶׁר יהוה אֱלֹהֶיךָ נֹתֵן לָךְ
+        אִישׁ אוֹ אִשָּׁה אֲשֶׁר יַעֲשֶׂה אֶת־הָרַע בְּעֵינֵי יהוה אֱלֹהֶיךָ
+        לַעֲבֹר בְּרִיתוֹ׃
+      </p>
+      <p class="transliteration">
+        Ki-yimatze beqirbeja be-ajád sheareija asher יהוה Eloheija notén laj, ish
+        o ishá asher yaasé et-hara beéinei יהוה Eloheija laavor beritó.
+      </p>
+      <p class="translation">
+        Si se hallare en medio de ti, en una de tus puertas que יהוה tu Elohím te
+        da, hombre o mujer que haga lo malo ante los ojos de יהוה tu Elohím,
+        traspasando su pacto.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ג</div>
+      <p class="hebrew">
+        וַיֵּלֶךְ וַיַּעֲבֹד אֱלֹהִים אֲחֵרִים וַיִּשְׁתַּחֲוֶה לָהֶם וְלַשֶּׁמֶשׁ אוֹ
+        לַיָּרֵחַ אוֹ לְכָל־צְבָא הַשָּׁמַיִם אֲשֶׁר לֹא צִוִּיתִי׃
+      </p>
+      <p class="transliteration">
+        Vayélej vayáavod elohím ajerím vayishtajavé lahem, vela-shémesh o
+        la-yaréaj o le-jol tzevá hashamaim asher lo tzivití.
+      </p>
+      <p class="translation">
+        Y fuere y sirviere a otros dioses y se postrare a ellos, o al sol, o a
+        la luna, o a todo el ejército de los cielos, lo cual no he mandado.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ד</div>
+      <p class="hebrew">
+        וְהֻגַּד לְךָ וְשָׁמַעְתָּ וְדָרַשְׁתָּ הֵיטֵב וְהִנֵּה אֱמֶת נָכוֹן הַדָּבָר
+        נֶעֶשְׂתָה הַתּוֹעֵבָה הַזֹּאת בְּיִשְׂרָאֵל׃
+      </p>
+      <p class="transliteration">
+        Vehuggad lejá veshama’tá vedarashtá heitév vehiné emet najón hadavár,
+        neesetá hatoevá hazot beYisraél.
+      </p>
+      <p class="translation">
+        Y te fuere anunciado, y oyeres, y averiguares bien, y he aquí es
+        verdad, correcto el asunto: hecha ha sido la abominación ésta en
+        Israel.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ה</div>
+      <p class="hebrew">
+        וְהוֹצֵאתָ אֶת־הָאִישׁ הַהוּא אוֹ אֶת־הָאִשָּׁה הַהִוא אֲשֶׁר עָשׂוּ
+        אֶת־הַדָּבָר הָרָע הַזֶּה אֶל־שְׁעָרֶיךָ אֶת־הָאִישׁ אוֹ אֶת־הָאִשָּׁה
+        וּסְקַלְתָּם בָּאֲבָנִים וָמֵתוּ׃
+      </p>
+      <p class="transliteration">
+        Vehotzétá et-haish hahú o et-haishá hahi asher asú et-hadavár hara hazé
+        el-sheareija, et-haish o et-haishá, uskaletám baavaním vametú.
+      </p>
+      <p class="translation">
+        Y sacarás al hombre aquel o a la mujer aquella que hicieron el mal este,
+        a tus puertas, al hombre o a la mujer, y los apedrearás con piedras, y
+        morirán.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ו</div>
+      <p class="hebrew">
+        עַל־פִּי שְׁנַיִם עֵדִים אוֹ שְׁלשָׁה עֵדִים יוּמַת הַמֵּת לֹא יוּמַת
+        עַל־פִּי עֵד אֶחָד׃
+      </p>
+      <p class="transliteration">
+        Al-pí shenáyim edím o sheloshá edím yumat hamet, lo yumat al-pí ed ejád.
+      </p>
+      <p class="translation">
+        Por boca de dos testigos o tres testigos morirá el que muere; no morirá
+        por boca de un testigo.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ז</div>
+      <p class="hebrew">
+        יָד הָעֵדִים תִּהְיֶה־בּוֹ בָרִאשֹׁנָה לַהֲמִיתוֹ וְיַד כָּל־הָעָם
+        בָּאַחֲרוֹנָה וּבִעַרְתָּ הָרָע מִקִּרְבֶּךָ׃
+      </p>
+      <p class="transliteration">
+        Yad haedím tihyé-bo barishoná lahamitó, veyad kol-haam baajaroná, uviartá
+        hara miqirbeja.
+      </p>
+      <p class="translation">
+        La mano de los testigos será contra él primero para matarlo, y la mano
+        de todo el pueblo después, y quitarás lo malo de en medio de ti.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ח</div>
+      <p class="hebrew">
+        כִּי־יִפָּלֵא מִמְּךָ דָבָר לַמִּשְׁפָּט בֵּין דָּם לְדָם בֵּין דִּין לְדִין
+        וּבֵין נֶגַע לָנָגַע דִּבְרֵי רִיבֹת בִּשְׁעָרֶיךָ וְקַמְתָּ וְעָלִיתָ
+        אֶל־הַמָּקוֹם אֲשֶׁר יִבְחַר יהוה אֱלֹהֶיךָ בּוֹ׃
+      </p>
+      <p class="transliteration">
+        Ki-yipale miméja davár lamishpat bein dam ledam, bein din ledin, uvein
+        nega lanaga, divrei rivót bishareija, vekamtá vealítá el-hamaqom asher
+        yivjar יהוה Eloheija bo.
+      </p>
+      <p class="translation">
+        Si es difícil de ti asunto de juicio, entre sangre y sangre, entre causa
+        y causa, y entre plaga y plaga, asuntos de disputas en tus puertas, te
+        levantarás y subirás al lugar que escogiere יהוה tu Elohím.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:ט</div>
+      <p class="hebrew">
+        וּבָאתָ אֶל־הַכֹּהֲנִים הַלְוִיִּם וְאֶל־הַשֹּׁפֵט אֲשֶׁר יִהְיֶה בַּיָּמִים
+        הָהֵם וְדָרַשְׁתָּ וְהִגִּידוּ לְךָ אֵת דְּבַר הַמִּשְׁפָּט׃
+      </p>
+      <p class="transliteration">
+        Uváta el-hakohanim haleviyím ve-el hashofet asher yihié bayamím hahem,
+        vedarashtá vehiggídu lejá et devar hamishpat.
+      </p>
+      <p class="translation">
+        Y vendrás a los sacerdotes levitas y al juez que haya en esos días, y
+        preguntarás, y te declararán la palabra del juicio.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:י</div>
+      <p class="hebrew">
+        וְעָשִׂיתָ עַל־פִּי הַדָּבָר אֲשֶׁר יַגִּידוּ לְךָ מִן־הַמָּקוֹם הַהוּא אֲשֶׁר
+        יִבְחַר יהוה וְשָׁמַרְתָּ לַעֲשׂוֹת כְּכֹל אֲשֶׁר יוֹרוּךָ׃
+      </p>
+      <p class="transliteration">
+        Veasitá al-pí hadavár asher yaguidú lejá min-hamaqom hahu asher yivjar
+        יהוה, veshamartá laasót kekol asher yorujúja.
+      </p>
+      <p class="translation">
+        Y harás conforme a la palabra que te declaren desde el lugar que
+        escogiere יהוה, y cuidarás de hacer según todo lo que te enseñen.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:יא</div>
+      <p class="hebrew">
+        עַל־פִּי הַתּוֹרָה אֲשֶׁר יוֹרוּךָ וְעַל־הַמִּשְׁפָּט אֲשֶׁר יֹאמְרוּ לְךָ
+        תַּעֲשֶׂה לֹא־תָסוּר מִן־הַדָּבָר אֲשֶׁר יַגִּידוּ לְךָ יָמִין וּשְׂמֹאל׃
+      </p>
+      <p class="transliteration">
+        Al-pí hatorá asher yorujúja ve-al hamishpat asher yomrú lejá taasé,
+        lo-tasúr min-hadavár asher yaguidú lejá yamin usmol.
+      </p>
+      <p class="translation">
+        Conforme a la Torá que te enseñen, y al juicio que te digan, harás; no
+        te apartarás de la palabra que te declaren, ni a la derecha ni a la
+        izquierda.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:יב</div>
+      <p class="hebrew">
+        וְהָאִישׁ אֲשֶׁר יַעֲשֶׂה בְזָדוֹן לְבִלְתִּי שְׁמֹעַ אֶל־הַכֹּהֵן הָעֹמֵד
+        לְשָׁרֵת שָׁם אֶת־יהוה אֱלֹהֶיךָ אוֹ אֶל־הַשֹּׁפֵT וּמֵת הָאִישׁ הַהוּא
+        וּבִעַרְתָּ הָרָע מִיִּשְׂרָאֵל׃
+      </p>
+      <p class="transliteration">
+        Vehaish asher yaasé vezadón leviltí shmoa el-hakohén haomed lesharét sham
+        et-יהוה Eloheija, o el-hashofet, umet haish hahú, uviartá hara
+        miYisraél.
+      </p>
+      <p class="translation">
+        Y el hombre que procediere con soberbia, para no escuchar al sacerdote
+        que está allí para ministrar a יהוה tu Elohím, o al juez, morirá ese
+        hombre, y quitarás lo malo de Israel.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">יז:יג</div>
+      <p class="hebrew">
+        וְכָל־הָעָם יִשְׁמְעוּ וְיִרָאוּ וְלֹא־יָזִידוּן עוֹד׃
+      </p>
+      <p class="transliteration">
+        Vekol-haam yishmeú veyiráu, velo-yazidún od.
+      </p>
+      <p class="translation">
+        Y todo el pueblo oirá y temerá, y no procederán con soberbia más.
+      </p>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="prophetic-content">
+      <h1>
+        Cumplimiento profético en el Mashíaj, con la conexión de Devarim
+        (Deuteronomio) 16:18–17:13 hacia los profetas (Neviim) y el Brit
+        Hadasháh, junto con su aplicación espiritual.
+      </h1>
+      <div class="prophetic-section">
+        <p class="prophetic-title">📜 1. Contexto de la porción</p>
+        <p>Este pasaje trata tres ejes temáticos:</p>
+        <ul>
+          <li>Establecer jueces y oficiales para administrar justicia justa (16:18–20).</li>
+          <li>Prohibiciones contra idolatría y culto pagano (16:21–17:7).</li>
+          <li>
+            Procedimiento ante casos difíciles y la autoridad del sacerdocio y
+            los jueces (17:8–13).
+          </li>
+        </ul>
+        <p>
+          Es una sección que articula el principio de gobierno y juicio en
+          Israel, basado en la Torá de יהוה, no en criterios humanos.
+        </p>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">
+          🔍 2. Conexión profética en el Tanaj (Neviim y Ketuvim)
+        </p>
+        <p class="prophetic-title">📌 a. Justicia y liderazgo recto</p>
+        <ul>
+          <li>
+            <strong>Isaías 11:1–5:</strong> El Mesías, retoño de Yishay, juzgará
+            con justicia, no según apariencias, y con la palabra de su boca
+            herirá la tierra. Aquí vemos un eco directo de Devarim 16:18–20,
+            donde el juez ideal no se corrompe.
+          </li>
+          <li>
+            <strong>Jeremías 23:5–6:</strong> Se profetiza un "Renuevo justo"
+            que reinará como rey y hará justicia en la tierra, llamado יהוה
+            justicia nuestra, lo que une la autoridad judicial perfecta con la
+            identidad divina del Mashíaj.
+          </li>
+          <li>
+            <strong>Miqueas 4:2–3:</strong> Desde Sion saldrá la Torá, y Él (el
+            Mashíaj) juzgará entre muchos pueblos. Esto alude al "lugar que יהוה
+            escogerá" (17:8) como centro de autoridad.
+          </li>
+        </ul>
+        <p class="prophetic-title">📌 b. Autoridad sacerdotal y judicial</p>
+        <ul>
+          <li>
+            <strong>Zacarías 6:12–13:</strong> El "Renuevo" se sentará y
+            gobernará en su trono, y será sacerdote en su trono, uniendo realeza
+            y sacerdocio, como lo requiere Devarim 17:9 (consulta a sacerdote y
+            juez).
+          </li>
+          <li>
+            <strong>Salmo 110:</strong> El Rey-Mashíaj es también "Cohen leolam
+            al divrat Malki-Tzedek" (sacerdote eterno según el orden de
+            Melquisedec), prefigurando la figura que reúne ambos oficios.
+          </li>
+        </ul>
+        <p class="prophetic-title">📌 c. Quitar lo malo de en medio</p>
+        <ul>
+          <li>
+            <strong>Ezequiel 34:23–24:</strong> El "Siervo David" (el Mashíaj)
+            apacentará y juzgará, eliminando a los malos pastores y trayendo
+            justicia.
+          </li>
+        </ul>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title"> 3. Cumplimiento en el Brit Hadasháh</p>
+        <p>
+          En el Brit Hadasháh, Yeshúa haMashíaj cumple y trasciende este
+          mandato:
+        </p>
+        <ul>
+          <li>
+            <strong>El Juez Justo</strong><br />
+            Juan 5:22,27: El Padre ha dado todo juicio al Hijo, porque es el Ben
+            Adam (Hijo del Hombre). Apocalipsis 19:11: Yeshúa juzga y pelea con
+            justicia, cumpliendo Devarim 16:20.
+          </li>
+          <li>
+            <strong>El Centro de Autoridad</strong><br />
+            En Devarim 17:8–9, se manda ir al "lugar que יהוה escoja" para
+            decidir casos difíciles. En el Brit Hadasháh, Mateo 28:18 declara
+            que toda autoridad en el cielo y en la tierra ha sido dada a
+            Yeshúa, convirtiéndose Él mismo en el “Lugar” espiritual donde se
+            resuelven todas las causas.
+          </li>
+          <li>
+            <strong>La Torá desde Sion</strong><br />
+            Hebreos 12:22–24 describe que nos hemos acercado a Sion celestial, al
+            Mediador del nuevo pacto, Yeshúa. Esto es un cumplimiento espiritual
+            del concepto de acudir al lugar escogido por יהוה para juicio.
+          </li>
+          <li>
+            <strong>La eliminación del mal</strong><br />
+            1 Corintios 5:13 cita la fórmula de Devarim: “Quita, pues, al
+            malvado de entre vosotros”, aplicando el principio de santidad
+            comunitaria a la Kehiláh bajo el liderazgo de Mashíaj.
+          </li>
+          <li>
+            <strong>Sacerdote y Rey</strong><br />
+            Hebreos 7:1–28 aplica a Yeshúa el rol de Malki-Tzedek, uniendo
+            función sacerdotal y judicial.
+          </li>
+        </ul>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">🌟 4. Cumplimiento mesiánico</p>
+        <p>
+          En la luz del documento de La Divinidad de Yeshúa, el pasaje se
+          ilumina así:
+        </p>
+        <ul>
+          <li>
+            El juez supremo al que Israel debía acudir en casos difíciles es tipo
+            (tavnit) del Mesías, quien es a la vez Cohen (sacerdote) y Shofet
+            (juez).
+          </li>
+          <li>
+            La frase “no te apartes ni a derecha ni a izquierda” (17:11) se
+            cumple perfectamente en Yeshúa, que es la Torá viviente y nunca se
+            desvió de la voluntad del Padre porque Él y el Padre son Ejad.
+          </li>
+          <li>
+            El mandato “oír y temer” (17:13) refleja el llamado a Shema del
+            discípulo: escuchar al Mashíaj y someterse a Su instrucción.
+          </li>
+        </ul>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">🙏 5. Aplicación espiritual para hoy</p>
+        <ul>
+          <li>
+            <strong>Sujeción a la autoridad de Mashíaj</strong><br />
+            Así como Israel debía someterse a la instrucción del sacerdote y juez
+            en Jerusalén, la Kehiláh debe someterse a la Palabra viva de Yeshúa y
+            a Su enseñanza apostólica.
+          </li>
+          <li>
+            <strong>Integridad en el juicio</strong><br />
+            En un mundo corrupto, el llamado “Tzedek, Tzedek tirdof” es un
+            recordatorio de que la justicia del Reino no admite sobornos,
+            favoritismos ni mentiras. Esto incluye nuestras decisiones diarias,
+            no sólo en tribunales.
+          </li>
+          <li>
+            <strong>Erradicar la idolatría</strong><br />
+            Las advertencias contra Aseráh y altares falsos nos recuerdan que la
+            lealtad a Mashíaj es exclusiva, sin mezclar con prácticas religiosas
+            ajenas.
+          </li>
+          <li>
+            <strong>Unidad de función sacerdotal y real</strong><br />
+            Como miembros del Reino, estamos llamados a reflejar el carácter del
+            Rey-Sacerdote: ministrar gracia y ejercer justicia.
+          </li>
+          <li>
+            <strong>Temor santo que preserva</strong><br />
+            El propósito de la disciplina y del juicio justo en la comunidad es
+            que todos “oigan y teman” (17:13), preservando la santidad
+            colectiva.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+     <h1>Punto 2. Haftaráh: Isaías 51:12-52:12 (El consuelo de Adonái y Su justicia).</h1>
+    <div class="verse-container">
+      <p class="verse-number">51:12</p>
+      <p class="hebrew">
+        אָנֹכִי אָנֹכִי הוּא מְנַחֶמְכֶם מִי־אַתְּ וַתִּירְאִי מֵאֱנוֹשׁ יָמוּת
+        וּמִבֶּן־אָדָם חָצִיר יִנָּתֵן׃
+      </p>
+      <p class="transliteration">
+        ʾānōḵî ʾānōḵî hūʾ mĕnaḥemḵem mî ʾaṯ watti·rʾî mēʾĕnōš yāmūṯ ūmibben
+        ʾādām ḥāṣîr yinnāṯên
+      </p>
+      <p class="translation">
+        Yo, yo soy el que os consuela. ¿Quién eres tú que temes al hombre que
+        muere, y al hijo de hombre que como la hierba será entregado?
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">51:13</p>
+      <p class="hebrew">
+        וַתִּשְׁכַּח יְהוה עֹשֶׂךָ נֹטֶה שָׁמַיִם וְיֹסֵד אָרֶץ וַתְּפַחֵד תָּמִיד
+        כָּל־הַיּוֹם מִפְּנֵי חֲמַת הַמֵּצִיק כַּאֲשֶׁר כוֹנֵן לְהַשְׁחִית וְאַיֵּה
+        חֲמַת הַמֵּצִיק׃
+      </p>
+      <p class="transliteration">
+        vattishkaḥ יהוה ʿōśeḵā nōṭeh šāmayim wĕyōsêḏ ʾāreṣ vattepaḥêḏ tāmîḏ
+        kol-hayyôm mippĕnê ḥămaṯ hammēṣîq kaʾăšer kōnên lĕhašḥîṯ wĕʾayyê ḥămaṯ
+        hammēṣîq
+      </p>
+      <p class="translation">
+        Y te olvidaste de יהוה tu Hacedor, que extiende los cielos y funda la
+        tierra; y temiste continuamente cada día por la furia del opresor,
+        cuando se prepara para destruir; ¿y dónde está la furia del opresor?
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">51:14</p>
+      <p class="hebrew">
+        מִהַר צֹעֶה לְהִפָּתֵחַ וְלֹא־יָמוּת לַשַּׁחַת וְלֹא יֶחְסַר לַחְמוֹ׃
+      </p>
+      <p class="transliteration">
+        mihar ṣōʿeh lehippāṯêaḥ wĕlō-yāmūṯ laššaḥaṯ wĕlō yeḥsar laḥmô
+      </p>
+      <p class="translation">
+        El que se inclina será pronto soltado; y no morirá en el hoyo, y no le
+        faltará su pan.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">51:15</p>
+      <p class="hebrew">
+        וְאָנֹכִי יְהוה אֱלֹהֶיךָ רֹגַע הַיָּם וַיֶּהֱמוּ גַּלָּיו יְהוה צְבָאוֹת
+        שְׁמוֹ׃
+      </p>
+      <p class="transliteration">
+        vĕʾānōḵî יהוה ʾĕlōheḵā rōgaʿ hayyām vayyĕhemū gallāw יהוה ṣəḇāʾōṯ šĕmô
+      </p>
+      <p class="translation">
+        Y yo soy יהוה tu Elohím, que calma el mar y braman sus olas; יהוה de los
+        ejércitos es su Nombre.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">51:16</p>
+      <p class="hebrew">
+        וָאָשִׂם דְּבָרַי בְּפִיךָ וּבְצֵל יָדִי כִּסִּיתִיךָ לִנְטֹעַ שָׁמַיִם
+        וְלִיסֹד אָרֶץ וְלֵאמֹר לְצִיּוֹן עַמִּי־אָתָּה׃
+      </p>
+      <p class="transliteration">
+        vāʾāśîm dĕḇāray bĕpîḵā ūḇĕṣēl yādî kissîtîḵā lintōaʿ šāmayim wĕlîsōḏ
+        ʾāreṣ wĕlēmōr ləṣîyôn ʿammî-ʾāttāh
+      </p>
+      <p class="translation">
+        Y pondré mis palabras en tu boca, y con la sombra de mi mano te
+        cubriré, para plantar los cielos y fundar la tierra, y para decir a
+        Sión: Pueblo mío eres tú.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Yeshayahu 52:1–12</h1>
+    <div class="verse-container">
+      <p class="verse-number">52:1</p>
+      <p class="hebrew">
+        עוּרִי עוּרִי לִבְשִׁי עֻזֵּךְ צִיּוֹן לִבְשִׁי בִגְדֵי תִפְאַרְתֵּךְ
+        יְרוּשָׁלִַם עִיר הַקֹּדֶשׁ כִּי לֹא־יוֹסִיף יָבוֹא בָךְ עוֹד עָרֵל
+        וְטָמֵא׃
+      </p>
+      <p class="transliteration">
+        ʿûrî ʿûrî liḇšî ʿuz·zēḵ ṣiyyôn liḇšî biḡ·dê tif·ʾar·tēḵ
+        yə·ru·šā·la·yim ʿîr haq·qō·ḏeš kî lō‑yō·sîp̄ yā·ḇō ḇāḵ ʿōḏ ʿā·rēl
+        wə·ṭā·mê
+      </p>
+      <p class="translation">
+        Despiértate, despiértate, vístete de tu poder, Sión; vístete con los
+        vestidos de tu hermosura, Yerushaláyim, ciudad santa; porque no volverá
+        a entrar en ti más el incircunciso ni el impuro.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:2</p>
+      <p class="hebrew">
+        הִתְנַעֲרִי מֵעָפָר קוּמִי שְׁבִי יְרוּשָׁלִַם הִתְפַּתְּחִי מוֹסְרֵי
+        צַוָּארֵךְ שְׁבִיָּה בַּת צִיּוֹן׃
+      </p>
+      <p class="transliteration">
+        hit·na·ʿă·rî mê·ʿā·fār qū·mî šə·ḇî yə·ru·šā·la·yim hit·pat·tə·ḥî
+        mō·sə·rê ṣaw·wā·rêḵ šə·ḇiy·yā bat ṣiyyôn
+      </p>
+      <p class="translation">
+        Sacúdete del polvo; levántate, siéntate, Yerushaláyim; desata las
+        ataduras de tu cuello, cautiva, hija de Sión.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:3</p>
+      <p class="hebrew">
+        כִּי כֹה אָמַר יְהוה חִנָּם נִמְכַּרְתֶּם וְלֹא בְכֶסֶף תִּגָּאֵלוּ׃
+      </p>
+      <p class="transliteration">
+        kî kōh ʾā·mar יהוה ḥin·nām nim·kar·tem wə·lō ḇə·ḵe·sef tig·gā·ʾê·lū
+      </p>
+      <p class="translation">
+        Porque así dijo יהוה: por nada fuisteis vendidos; y sin plata seréis
+        redimidos.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:4</p>
+      <p class="hebrew">
+        כִּי כֹה אָמַר אֲדֹנָי יְהוה מִצְרַיִם יָרַד עַמִּי בָרִאשֹׁנָה לָגוּר
+        שָׁם וַעֲשּׁוּרוֹ בְּאֶפֶס שָׁקֵּץ׃
+      </p>
+      <p class="transliteration">
+        kî kōh ʾā·mar ʾă·ḏō·nāy יהוה miṣ·ra·yim yā·raḏ ʿam·mî ḇā·rî·šō·nāh
+        lā·gūr šām wa·ʿă·š·šū·rō ḇə·ʾe·p̄es šā·qēṣ
+      </p>
+      <p class="translation">
+        Porque así dijo Adonái יהוה: a Mitsráyim descendió mi pueblo al
+        principio para residir allí; y el asirio sin razón lo oprimió.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:5</p>
+      <p class="hebrew">
+        וְעַתָּה מַה־לִּי פֹה נְאֻם יְהוה כִּי לֻקַּח עַמִּי חִנָּם מֹשְׁלֵיהֶם
+        יְהִילִילוּ נְאֻם יְהוה וְתָמִיד כָּל־הַיּוֹם שְׁמִי מְנֹאָץ׃
+      </p>
+      <p class="transliteration">
+        wə·ʿat·tāh mah‑lî pō nə·ʾum יהוה kî luq·qaḥ ʿam·mî ḥin·nām mō·šə·lê·hem
+        yə·hî·lî·lū nə·ʾum יהוה wə·tā·mîḏ kol‑hay·yōm šə·mî mə·nō·ʾāṣ
+      </p>
+      <p class="translation">
+        Y ahora, ¿qué tengo aquí? dice יהוה, que mi pueblo es tomado por nada,
+        sus gobernantes dan voces, dice יהוה, y continuamente todo el día mi
+        Nombre es despreciado.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:6</p>
+      <p class="hebrew">
+        לָכֵן יֵדַע עַמִּי שְׁמִי לָכֵן בַּיּוֹם הַהוּא כִּי אֲנִי הַמְדַבֵּר
+        הִנְנִי׃
+      </p>
+      <p class="transliteration">
+        lākēn yē·ḏaʿ ʿam·mî šə·mî lākēn bay·yōm hah·hū kî ʾă·nî ham·da·bēr
+        hin·nē·nî
+      </p>
+      <p class="translation">
+        Por tanto, conocerá mi pueblo mi Nombre; por tanto, en aquel día, yo
+        soy el que habla, heme aquí.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:7</p>
+      <p class="hebrew">
+        מַה־נָּאווּ עַל־הֶהָרִים רַגְלֵי מְבַשֵּׂר מַשְׁמִיעַ שָׁלוֹם מְבַשֵּׂר
+        טוֹב מַשְׁמִיעַ יְשׁוּעָה אֹמֵר לְצִיּוֹן מָלַךְ אֱלֹהָיִךְ׃
+      </p>
+      <p class="transliteration">
+        mah‑nā·wū ʿal‑he·hā·rîm raḡ·lê mə·ḇaś·śēr maš·mî·aʿ šā·lōm mə·ḇaś·śēr
+        ṭōḇ maš·mî·aʿ yə·šū·ʿāh ʾō·mêr lə·ṣî·yōn mā·laḵ ʾĕ·lō·hā·yeḵ
+      </p>
+      <p class="translation">
+        ¡Qué hermosos sobre los montes los pies del que trae buenas nuevas, que
+        anuncia la paz, del que trae buenas noticias de bien, que anuncia
+        salvación, que dice a Sión: tu Elohím reina!
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:8</p>
+      <p class="hebrew">
+        קוֹל צֹפַיִךְ נָשְׂאוּ קוֹל יַחְדָּו יְרַנֵּנוּ כִּי עַיִן בְּעַיִן
+        יִרְאוּ בְּשׁוּב יְהוה צִיּוֹן׃
+      </p>
+      <p class="transliteration">
+        qōl ṣō·fa·yiḵ nāś·ʾū qōl yaḥ·dāw yə·ran·nê·nū kî ʿa·yin bə·ʿa·yin
+        yir·ʾū bə·šūḇ יהוה ṣî·yōn
+      </p>
+      <p class="translation">
+        ¡Voz de tus centinelas! Alzaron su voz, juntos cantan de júbilo, porque
+        ojo a ojo verán cuando יהוה retorne a Sión.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:9</p>
+      <p class="hebrew">
+        פִּצְחוּ רְנָנוּ יַחְדָּו חָרְבוֹת יְרוּשָׁלִָם כִּי נִחַם יְהוה עַמּוֹ
+        גָּאַל יְרוּשָׁלִָם׃
+      </p>
+      <p class="transliteration">
+        pitṣ·ḥū rə·nā·nū yaḥ·dāw ḥor·ḇōṯ yə·rū·šā·la·yim kî ni·ḥam יהוה ʿam·mō
+        gā·ʾal yə·rū·šā·la·yim
+      </p>
+      <p class="translation">
+        ¡Estallad, cantad juntas, ruinas de Yerushaláyim! Porque ha consolado
+        יהוה a su pueblo, ha redimido a Yerushaláyim.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:10</p>
+      <p class="hebrew">
+        חָשַׂף יְהוה אֶת־זְרוֹעַ קָדְשׁוֹ לְעֵינֵי כָל־הַגּוֹיִם וְרָאוּ
+        כָל־אַפְסֵי־אָרֶץ אֵת יְשׁוּעַת אֱלֹהֵינוּ׃
+      </p>
+      <p class="transliteration">
+        ḥā·śap̄ יהוה ʾeṯ‑zə·rō·aʿ qod·šō lə·ʿê·nê kol‑hag·gō·yim wə·rā·ʾū
+        kol‑ʾap̄·sê‑ʾā·reṣ ʾeṯ yə·šū·ʿat ʾĕ·lō·hê·nū
+      </p>
+      <p class="translation">
+        Ha desnudado יהוה el brazo de su santidad ante los ojos de todas las
+        naciones; y verán todos los confines de la tierra la salvación de
+        nuestro Elohím.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:11</p>
+      <p class="hebrew">
+        סֻרוּ סֻרוּ צְאוּ מִשָּׁם טָמֵא אַל־תִּגָּעוּ צְאוּ מִתּוֹכָהּ הִבָּרוּ
+        נֹשְׂאֵי כְלֵי יְהוה׃
+      </p>
+      <p class="transliteration">
+        sū·rū sū·rū ṣə·ʾū miš·šām ṭā·mê ʾal‑tig·gā·ʿū ṣə·ʾū mit·tō·ḵāh hib·bārū
+        nō·śə·ʾê kə·lê יהוה
+      </p>
+      <p class="translation">
+        Apartaos, apartaos, salid de allí; no toquéis cosa impura; salid de en
+        medio de ella; limpiaos los que lleváis los utensilios de יהוה.
+      </p>
+    </div>
+    <div class="verse-container">
+      <p class="verse-number">52:12</p>
+      <p class="hebrew">
+        כִּי לֹא בְחִפָּזוֹן תֵּצֵאוּ וּבְמְנוּסָה לֹא תֵלֵכוּ כִּי הוֹלֵךְ
+        לִפְנֵיכֶם יְהוה וּמְאַסִּפְכֶם אֱלֹהֵי יִשְׂרָאֵל׃
+      </p>
+      <p class="transliteration">
+        kî lō ḇə·ḥip·pā·zôn tē·ṣē·ʾū ū·ḇə·mə·nū·sāh lō tē·lê·ḵū kî hō·lēḵ
+        lip̄·nê·ḵem יהוה ū·mə·ʾas·sip̄·ḵem ʾĕ·lō·hê yiś·rā·ʾêl
+      </p>
+      <p class="translation">
+        Porque no saldréis con prisa, ni iréis huyendo; porque va delante de
+        vosotros יהוה, y vuestro recogedor es el Elohím de Israel.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>CUMPLIMIENTO PROFÉTICO EN EL MASHÍAJ – YESHAYAHU 51:12–52:12</h1>
+
+      <div class="prophetic-section">
+        <h3>I. Conexión Profética y Mesiánica: Consolación, Redención y el Siervo</h3>
+        <p>
+          Los capítulos Yeshayahu 51:12–52:12 representan una de las transiciones más profundas del libro de Isaías. El tema dominante es la consolación de Sion, la liberación del cautiverio, y la promesa de redención mesiánica mediante el siervo de יהוה. Esta porción culmina justo antes del famoso capítulo 53, que describe directamente al Mashíaj sufriente. Todo el pasaje está impregnado de elementos proféticos cumplidos en Yeshúa haMashíaj.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3>II. Cumplimiento en el Mashíaj – Yeshúa haNotzrí</h3>
+        
+        <p class="prophetic-title">1. “Yo soy el que os consuela” (51:12) – Consolación en el Mesías</p>
+        <p>Yeshúa es identificado como el Consolador encarnado:</p>
+        <ul>
+            <li><span class="highlight">Lucas 2:25:</span> Shimón esperaba la “consolación de Yisrael”, personificada en el Mesías.</li>
+            <li><span class="highlight">2 Corintios 1:3-5:</span> El Elohím de toda consolación nos consuela en Mashíaj.</li>
+            <li><span class="highlight">Mateo 11:28:</span> “Venid a mí… y yo os haré descansar”.</li>
+        </ul>
+        <p>Yeshúa no solo habla consuelo, Él es el Consolador — una manifestación de la promesa de Yeshayahu 51:12.</p>
+
+        <p class="prophetic-title">2. “No temas al hombre que muere” (51:12–13) – Autoridad sobre la muerte</p>
+        <p>Mashíaj es quien venció al último enemigo: la muerte misma:</p>
+        <ul>
+            <li><span class="highlight">Hebreos 2:14-15:</span> “Para destruir por medio de la muerte al que tenía el imperio de la muerte”.</li>
+            <li><span class="highlight">Juan 11:25:</span> “Yo soy la resurrección y la vida”.</li>
+        </ul>
+        <p>Este mensaje de no temer al mortal se cumple porque Yeshúa quitó el aguijón de la muerte.</p>
+        
+        <p class="prophetic-title">3. “Yo soy יהוה tu Elohím, el que aquieta el mar” (51:15) – Autoridad sobre la creación</p>
+        <p>Este verso encuentra eco literal en el acto mesiánico cuando Yeshúa calma el mar:</p>
+        <ul>
+            <li><span class="highlight">Marcos 4:39-41:</span> “¿Quién es este que aún el viento y el mar le obedecen?”</li>
+        </ul>
+        <p>Salmos 89:9 y Yeshayahu 51:15 se reflejan en esa escena como prueba de su divinidad. Yeshúa manifiesta aquí la identidad de יהוה como el que tiene dominio sobre los elementos.</p>
+        
+        <p class="prophetic-title">4. “Pondré mis palabras en tu boca” (51:16) – El profeta como Moisés</p>
+        <p>Este verso conecta directamente con Devarim 18:18 — “Un profeta como tú levantaré”, cumplido en:</p>
+        <ul>
+            <li><span class="highlight">Juan 12:49-50:</span> Yeshúa dice: “El Padre que me envió me dio mandamiento”.</li>
+            <li><span class="highlight">Juan 14:24:</span> “La palabra que oís no es mía, sino del Padre”.</li>
+        </ul>
+        <p>Yeshúa es el portador de las palabras vivas de יהוה, cumpliendo la función de un profeta y redentor celestial.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3>III. Isaías 52 – El Mensajero que Anuncia Salvación</h3>
+        
+        <p class="prophetic-title">1. “¡Qué hermosos los pies…!” (52:7) – Evangelio del Reino</p>
+        <p>Este pasaje es citado directamente por Rav Shaúl:</p>
+        <ul>
+            <li><span class="highlight">Romanos 10:15:</span> Describe a los emisarios que proclaman la “buena nueva” – en hebreo besoráh.</li>
+            <li><span class="highlight">Lucas 4:18-19:</span> Yeshúa enuncia su misión usando Isaías: “proclamar libertad...”.</li>
+        </ul>
+        <p>Él es el mensajero celestial que anuncia paz, gozo, y salvación (Yeshuáh).</p>
+        
+        <p class="prophetic-title">2. “Verán con sus ojos… el retorno de יהוה a Sion” (52:8) – Presencia divina en el Mesías</p>
+        <p>Yeshúa es la manifestación visible de la Presencia de יהוה:</p>
+        <ul>
+            <li><span class="highlight">Juan 1:14:</span> “El Verbo se hizo carne, y habitó entre nosotros”.</li>
+            <li><span class="highlight">Zacarías 2:10:</span> “He aquí vengo y habitaré en medio de ti, dice יהוה”.</li>
+        </ul>
+        <p>El retorno de יהוה a Tsión ocurre cuando el Mesías entra en Yerushaláyim (Mateo 21).</p>
+        
+        <p class="prophetic-title">3. “Mi pueblo conocerá mi Nombre” (52:6) – Revelación del Nombre a través del Hijo</p>
+        <p>El conocimiento del Nombre está vinculado con reconocer a Yeshúa:</p>
+        <ul>
+            <li><span class="highlight">Juan 17:6:</span> “He manifestado tu Nombre a los hombres…”.</li>
+            <li><span class="highlight">Filipenses 2:9-11:</span> El Nombre dado a Yeshúa es el Nombre sobre todo nombre – una proclamación mesiánica de supremacía.</li>
+        </ul>
+        
+        <p class="prophetic-title">4. “Verán todos… la salvación de nuestro Elohím” (52:10) – Revelación universal</p>
+        <p>Yeshayahu usa “Yeshuat Eloheinu”, y esto se ve cumplido en:</p>
+        <ul>
+            <li><span class="highlight">Lucas 3:6:</span> “Y verá toda carne la salvación de Elohím”.</li>
+            <li><span class="highlight">Hechos 13:47:</span> “Te he puesto por luz de los gentiles”.</li>
+        </ul>
+        <p>Mashíaj revela el brazo de יהוה — Zeroa יהוה — en su encarnación y redención.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3>IV. Aplicación Espiritual para Hoy</h3>
+        <ul>
+          <li><span class="point-letter">1.</span> <strong>No temer al hombre mortal (51:12-13):</strong> La fidelidad al Reino de Mashíaj implica confiar en el poder del Eterno por encima de amenazas humanas.</li>
+          <li><span class="point-letter">2.</span> <strong>Consolación divina presente (51:12; 52:9):</strong> Muchos hoy viven en duelo y exilio espiritual. El mensaje sigue vigente: יהוה ha consolado a su pueblo por medio del Mesías.</li>
+          <li><span class="point-letter">3.</span> <strong>Llamado a pureza y santidad (52:11):</strong> El llamado a “no tocar cosa impura” es vigente: Rav Shaúl lo cita en 2 Corintios 6:17, instando a una vida apartada en pureza para יהוה.</li>
+          <li><span class="point-letter">4.</span> <strong>Proclamación de la buena nueva (52:7):</strong> Hoy, cada creyente está llamado a ser como el mensajero: llevar la besoráh del Reino, paz, y redención a través de Yeshúa haMashíaj.</li>
+          <li><span class="point-letter">5.</span> <strong>Reconocer al “brazo de יהוה” (52:10):</strong> Aceptar a Yeshúa es aceptar la manifestación activa de יהוה — su brazo extendido que trae salvación.</li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <h3>V. Conclusión Mesiánica</h3>
+        <p>Isaías 51:12–52:12 presenta una visión clara del Mashíaj como:</p>
+        <ul>
+            <li>Consolador divino.</li>
+            <li>Revelación del Nombre de יהוה.</li>
+            <li>Profeta mayor que Moshéh.</li>
+            <li>Anunciador de paz y redención.</li>
+            <li>Manifestación del brazo de יהוה.</li>
+        </ul>
+        <p>Todo esto encuentra su cumplimiento perfecto en Yeshúa, quien no solo predicó esta esperanza, sino que la encarnó.</p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Punto 3. Brit Hadasháh: Mateo 18:15-20 (El proceso de resolución de conflictos en la comunidad de creyentes).</h1>
+
+    <div class="verse-container">
+      <div class="verse-number">18:15</div>
+      <p class="aramaic">
+        ܐܢ ܕܝܢ ܢܚܛܐ ܒܟ ܐܚܘܟ ܙܠ ܟܢܐܗ ܒܝܢܟ ܘܒܝܢܗ ܒܠܚܘܕܘܗܝ ܐܢ ܫܡܥܟ ܝܩܢܬ ܠܐܚܘܟ
+      </p>
+      <p class="transliteration">
+        En din neḥṭa bak aḥukh, zal kanéhh beynakh u-veynéh belḥudohí; en shma‘k
+        yaqant le-aḥukh.
+      </p>
+      <p class="translation">
+        Y si tu hermano peca contra ti, ve y repréndelo entre tú y él solo; si
+        te escucha, has ganado a tu hermano.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">18:16</div>
+      <p class="aramaic">
+        ܐܢ ܕܝܢ ܠܐ ܢܫܡܥ ܕܒܪ ܥܡܟ ܚܕ ܐܘ ܬܪܝܢ ܥܠ ܦܘܡܗܘܢ ܕܬܪܝܢ ܐܘ ܬܠܬܐ ܣܗ̈ܕܝܢ ܕܥܠ
+        ܦܘܡܗܘܢ ܩܝܡ ܟܠ ܡܠܬܐ
+      </p>
+      <p class="transliteration">
+        En din la nishma‘, dabber ‘ammakh ḥad o tren, ‘al pummhón d-trein o
+        tlata sahdín, de-‘al pummhón qayem kol melta.
+      </p>
+      <p class="translation">
+        Pero si no escucha, toma contigo a uno o dos, para que por boca de dos o
+        tres testigos se confirme toda palabra.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">18:17</div>
+      <p class="aramaic">
+        ܐܢ ܕܝܢ ܠܐ ܢܫܡܥ ܠܗܘܢ ܐܡܪ ܠܥܕܬܐ ܐܢ ܕܝܢ ܐܦ ܠܥܕܬܐ ܠܐ ܢܫܡܥ ܢܗܘܐ ܠܟ ܐܝܟ ܚܢܦܐ
+        ܘܐܝܟ ܡܟܣܐ
+      </p>
+      <p class="transliteration">
+        En din la nishma‘ lehón, emar la‘edta; en din ap la‘edta la nishma‘,
+        nehweh lakh eyk ḥanpá ve-eyk maksá.
+      </p>
+      <p class="translation">
+        Y si no los escucha a ellos, dilo a la asamblea; y si incluso a la
+        asamblea no escucha, sea para ti como gentil y como recaudador de
+        impuestos.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">18:18</div>
+      <p class="aramaic">
+        ܐܡܝܢ ܐܡܪ ܐܢܐ ܠܟܘܢ ܕܟܠ ܡܕܡ ܕܬܐܣܪܘܢ ܒܐܪܥܐ ܢܗܘܐ ܐܣܝܪ ܒܫܡܝܐ ܘܟܠ ܡܕܡ ܕܬܫܪܘܢ
+        ܒܐܪܥܐ ܢܗܘܐ ܫܪܐ ܒܫܡܝܐ
+      </p>
+      <p class="transliteration">
+        Amín emar aná lakhun, de-kol madam d-te’asrún b-ar‘á nehweh asír
+        b-shmaya, ve-kol madam d-tesharún b-ar‘á nehweh sharé b-shmaya.
+      </p>
+      <p class="translation">
+        Amén, os digo: todo lo que atéis en la tierra será atado en los cielos,
+        y todo lo que desatéis en la tierra será desatado en los cielos.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">18:19</div>
+      <p class="aramaic">
+        ܬܘܒ ܐܡܪ ܐܢܐ ܠܟܘܢ ܕܐܢ ܬܪܝܢ ܡܢܟܘܢ ܢܫܬܘܘܢ ܒܐܪܥܐ ܥܠ ܟܠ ܨܒܘܬܐ ܕܢܫܐܠܘܢ ܢܗܘܐ
+        ܠܗܘܢ ܡܢ ܠܘܬ ܐܒܝ ܕܒܫܡܝܐ
+      </p>
+      <p class="transliteration">
+        Tuv emar aná lakhun, de-en tren menkhun neshtavvún b-ar‘á ‘al kol tzvutá
+        d-nish’alún, nehweh lehón men lut Avi d-b-shmaya.
+      </p>
+      <p class="translation">
+        Otra vez os digo: si dos de vosotros se ponen de acuerdo en la tierra
+        acerca de cualquier cosa que pidan, les será hecho por mi Padre que está
+        en los cielos.
+      </p>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">18:20</div>
+      <p class="aramaic">
+        ܐܝܟܐ ܓܝܪ ܕܬܪܝܢ ܐܘ ܬܠܬܐ ܟܢܝ̈ܫܝܢ ܒܫܡܝ ܬܡܢ ܐܢܐ ܒܝܢܬܗܘܢ
+      </p>
+      <p class="transliteration">
+        Eyka gir d-trein o tlata kanishín b-shmí, tamán aná beyntehón.
+      </p>
+      <p class="translation">
+        Porque donde dos o tres están reunidos en mi Nombre, allí estoy Yo en
+        medio de ellos.
+      </p>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="prophetic-content">
+      <div class="prophetic-section">
+        <h1 class="prophetic-title">📜 1. Contexto en la Toráh: Devarim 16:18–17:13</h1>
+        <p>En Devarim:</p>
+        <ul>
+          <li>Se establecen jueces y oficiales para administrar justicia recta.</li>
+          <li>
+            Se define el procedimiento ante casos difíciles: acudir al sacerdote y
+            juez en el lugar que יהוה escogiere.
+          </li>
+          <li>
+            La comunidad debía oír y temer, y “quitar lo malo de en medio de ti”
+            (17:13).
+          </li>
+        </ul>
+        <p>
+          Estos principios son la base judicial y disciplinaria de Israel como
+          pueblo del pacto.
+        </p>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">✡ 2. Yeshúa como cumplimiento mesiánico</p>
+        <p>
+          En Mateo 18:15–20, Yeshúa toma estos principios y los eleva al nivel
+          de la Kehiláh del Reino:
+        </p>
+        <ul>
+          <li>
+            <strong>Disciplina progresiva (vv. 15–17)</strong><br />
+            Yeshúa establece un proceso casi idéntico al de Devarim: confrontación
+            privada → testigos → comunidad. Esto es la aplicación del principio
+            de "confirmar por boca de dos o tres testigos" (Deut 19:15, eco en
+            17:6). En la Toráh, la autoridad final estaba en el juez y el
+            sacerdote; en el Reino, está en Yeshúa mismo como Cohen Gadol según
+            el orden de Malki-Tzedek (Hebreos 7:17) y Shofet (Juez).
+          </li>
+          <li>
+            <strong>Autoridad para atar y desatar (v. 18)</strong><br />
+            El lenguaje “atar y desatar” refleja las decisiones judiciales de
+            Israel (“asír” = prohibir; “sharí” = permitir). En el Tanaj, sólo
+            el tribunal central tenía esta autoridad (Deut 17:10–11). En el Brit
+            Hadasháh, Yeshúa transfiere esta autoridad a sus emisarios, como
+            representantes de Su gobierno mesiánico (Juan 20:23).
+          </li>
+          <li>
+            <strong>Presencia divina en la asamblea (vv. 19–20)</strong><br />
+            En la Toráh, la presencia de יהוה se manifestaba en el Templo, el
+            “lugar que Él escogiere” (Deut 17:8). Yeshúa afirma que Su presencia
+            está donde dos o tres se reúnen en Su Nombre, haciendo de Él mismo
+            el “Lugar” escogido (Juan 2:19–21). Esto cumple la promesa
+            profética de Isaías 8:14 (“será por santuario”) y Miqueas 4:2 (“de
+            Sion saldrá la Toráh”).
+          </li>
+        </ul>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">📖 3. Conexiones con los Profetas</p>
+        <ul>
+          <li>
+            <strong>Isaías 9:6–7:</strong> El gobierno y el juicio reposan sobre
+            los hombros del Mesías.
+          </li>
+          <li>
+            <strong>Jeremías 23:5–6:</strong> Un Rey justo reinará, llamado יהוה
+            Justicia Nuestra, administrando juicio y salvación.
+          </li>
+          <li>
+            <strong>Ezequiel 34:23–24:</strong> El Siervo David (figura
+            mesiánica) pastoreará y juzgará, eliminando a los falsos pastores.
+          </li>
+          <li>
+            <strong>Zacarías 6:13:</strong> El Renuevo será sacerdote en su
+            trono, uniendo autoridad espiritual y judicial.
+          </li>
+        </ul>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">🌟 4. Cumplimiento en el Brit Hadasháh</p>
+        <ul>
+          <li>
+            <strong>Yeshúa como Juez:</strong> Juan 5:22–27 dice que el Padre ha
+            dado todo juicio al Hijo.
+          </li>
+          <li>
+            <strong>Kehiláh como tribunal del Reino:</strong> 1 Corintios 6:2–3
+            enseña que los santos juzgarán al mundo y a los ángeles.
+          </li>
+          <li>
+            <strong>Confirmación celestial:</strong> Lo que la Kehiláh ata/desata
+            en la tierra tiene respaldo en los cielos, porque es la autoridad de
+            Mashíaj actuando en ella.
+          </li>
+        </ul>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">🙏 5. Aplicación espiritual</p>
+        <ul>
+          <li>
+            <strong>Restauración antes que condena</strong><br />
+            El objetivo de la disciplina no es excluir, sino ganar al hermano
+            (Mat 18:15). Esto refleja el corazón redentor de Elohím en la Toráh
+            y los Profetas (Ezequiel 18:23).
+          </li>
+          <li>
+            <strong>Unidad en autoridad</strong><br />
+            La comunidad debe actuar unida bajo la guía del Ruaj Hakodesh,
+            aplicando las decisiones con justicia y misericordia.
+          </li>
+          <li>
+            <strong>Conciencia de la presencia de Mashíaj</strong><br />
+            Reunirse “en Su Nombre” no es un formalismo, sino un pacto de
+            fidelidad y sumisión a Su señorío.
+          </li>
+          <li>
+            <strong>Temor santo</strong><br />
+            Así como Israel debía “oír y temer” (Deut 17:13), la Kehiláh debe
+            mantener reverencia hacia la autoridad de Mashíaj presente en medio
+            de ella.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <h1>📜 Punto 4 – Contexto Histórico y Cultural</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>1️⃣ Marco histórico</h2>
+        <ul>
+          <li>
+            <strong>Época:</strong> Estas instrucciones fueron dadas por Moshé a
+            Israel en las llanuras de Moav, poco antes de entrar en la Tierra
+            Prometida (alrededor del siglo XIII–XII a.e.c., según la cronología
+            tradicional).
+          </li>
+          <li>
+            <strong>Situación:</strong> Israel estaba a punto de pasar de un
+            liderazgo centralizado bajo Moshé a un modelo tribal con jueces y
+            ancianos hasta que se estableciera la monarquía (que llegaría siglos
+            después).
+          </li>
+          <li>
+            <strong>Necesidad:</strong> En una sociedad tribal, la justicia podía
+            fragmentarse fácilmente. Este mandato aseguraba que el juicio se
+            aplicara con imparcialidad y conforme a la Toráh, evitando
+            corrupción y caos social.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>2️⃣ Cultura y sistema judicial</h2>
+        <ul>
+          <li>
+            <strong>Jueces (שֹׁפְטִים – shoftím):</strong> Eran responsables de
+            interpretar la Toráh y aplicar la ley en casos civiles, criminales y
+            religiosos.
+          </li>
+          <li>
+            <strong>Oficiales (שֹׁטְרִים – shotrím):</strong> Funcionaban como
+            alguaciles, escribas y ejecutores de las decisiones judiciales.
+          </li>
+          <li>
+            <strong>Puertas de la ciudad:</strong> El juicio se llevaba a cabo en
+            la entrada de la ciudad, donde se reunían los ancianos y líderes. Era
+            un lugar público para garantizar transparencia.
+          </li>
+          <li>
+            <strong>Casos difíciles:</strong> Si un tribunal local no podía
+            resolver un asunto, se escalaba al centro religioso y judicial
+            designado por יהוה —en la época premonárquica, el Mishkán; luego, el
+            Templo en Yerushaláyim.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>3️⃣ Prohibición de idolatría en contexto</h2>
+        <ul>
+          <li>
+            <strong>Asheráh:</strong> Árbol o poste sagrado asociado al culto
+            cananeo a Asera, diosa de la fertilidad. Era costumbre plantar estos
+            objetos junto a altares paganos. La Toráh prohíbe expresamente
+            cualquier sincretismo.
+          </li>
+          <li>
+            <strong>Matzévah (pilar):</strong> Monumento de piedra usado en
+            prácticas idolátricas. Aunque patriarcas como Yaakov erigieron
+            pilares a יהוה (Bereshit 28:18), en la época cananea estos habían
+            sido pervertidos hacia cultos falsos.
+          </li>
+          <li>
+            El mandamiento elimina toda conexión física o simbólica con cultos
+            ajenos, asegurando la pureza del servicio a יהוה.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>4️⃣ Contexto del castigo por idolatría</h2>
+        <ul>
+          <li>
+            En el antiguo Cercano Oriente, la religión estaba unida al orden
+            civil. Adorar a otra deidad era traición al pacto nacional.
+          </li>
+          <li>
+            La pena de muerte por idolatría buscaba proteger a la comunidad de la
+            ira divina y preservar la unidad espiritual.
+          </li>
+          <li>
+            El procedimiento requería dos o tres testigos (norma común en el
+            antiguo Israel y otras culturas semíticas), para garantizar justicia
+            y evitar venganzas personales.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>5️⃣ Autoridad central</h2>
+        <ul>
+          <li>
+            <strong>Lugar que יהוה escogiere:</strong> Durante el período del
+            Mishkán, era el Santuario itinerante; en la época monárquica, el
+            Templo de Shlomó en Yerushaláyim.
+          </li>
+          <li>
+            La centralización de la justicia y el culto evitaba la proliferación
+            de sistemas paralelos de adoración y tribunales con leyes locales
+            desviadas.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>6️⃣ Arqueología y hallazgos relevantes</h2>
+        <ul>
+          <li>
+            <strong>Puertas de la ciudad:</strong> Excavaciones en Tel Dan, Gezer
+            y Beersheva han revelado plazas y bancos de piedra en las puertas,
+            confirmando su uso como sede judicial.
+          </li>
+          <li>
+            <strong>Textos comparativos:</strong> El Código de Hammurabi y leyes
+            hititas también exigían múltiples testigos, pero la Toráh introduce un
+            carácter teocéntrico y ético más elevado.
+          </li>
+          <li>
+            <strong>Inscripciones de Asheráh:</strong> Halladas en Kuntillet
+            Ajrud y Khirbet el-Qom, evidencian la infiltración de culto cananeo
+            en Israel, lo que explica la insistencia bíblica en erradicar estas
+            prácticas.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <h1>📜 Punto 5 – Estudio, comentarios y conexiones proféticas</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>1️⃣ Comentarios rabínicos relevantes</h2>
+        <ul>
+          <li>
+            <strong>Rashi (s. XI)</strong>
+            <ul>
+              <li>
+                Interpreta “שֹׁפְטִים וְשֹׁטְרִים” (jueces y oficiales) como la
+                obligación de cada tribu de establecer su propio sistema judicial.
+              </li>
+              <li>
+                En “צֶדֶק צֶדֶק תִּרְדֹּף” (justicia, justicia perseguirás), repite
+                la palabra para enseñar que se debe perseguir la justicia tanto en
+                medios como en fines, incluso si implica viajar a un tribunal más
+                competente.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Rambán (Najmánides, s. XIII)</strong>
+            <ul>
+              <li>
+                Señala que el traslado de casos difíciles al “lugar que יהוה
+                escogerá” es profético, pues anticipa la centralización del culto
+                y de la justicia en Yerushaláyim, donde la Shejiná reposará de
+                forma permanente.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Sifré Devarim</strong>
+            <ul>
+              <li>
+                Comenta que el mandamiento contra la idolatría junto al altar
+                enseña que no basta la pureza del corazón; también se requiere
+                pureza en los símbolos externos del culto.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>2️⃣ Comentario judío mesiánico</h2>
+        <ul>
+          <li>
+            El sistema de jueces y oficiales prefigura la autoridad delegada del
+            Mashíaj sobre Su Kehiláh (Mateo 18:15–20).
+          </li>
+          <li>
+            La prohibición de altares paganos y pilares se cumple en Mashíaj,
+            quien es el único Mediador y el único Lugar de encuentro con Elohím
+            (Juan 4:21–24).
+          </li>
+          <li>
+            La centralización de la justicia en el “lugar escogido” apunta
+            proféticamente a Yeshúa como el Templo viviente (Juan 2:19–21), donde
+            habita toda la plenitud de Elohím (Colosenses 2:9).
+          </li>
+          <li>
+            La frase “no te apartes ni a derecha ni a izquierda” (17:11) se cumple
+            en Él como Toráh viviente (Juan 14:6), el Camino exacto del Padre.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>3️⃣ Notas del tiempo del Segundo Templo</h2>
+        <ul>
+          <li>
+            Durante el Segundo Templo, el Sanedrín cumplía la función descrita
+            aquí: tribunal supremo que decidía sobre asuntos complejos.
+          </li>
+          <li>
+            El Cohén Gadol tenía un papel central en las decisiones nacionales, lo
+            que hace aún más significativa la figura de Yeshúa como Sumo
+            Sacerdote eterno, quien asume esa función de manera perfecta y sin
+            corrupción.
+          </li>
+          <li>
+            En la literatura de Qumrán (Documento de Damasco), encontramos reglas
+            comunitarias que también imitan este principio de escalamiento de
+            casos y la autoridad final de un consejo de ancianos, paralelo al
+            modelo de Devarim.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>4️⃣ Conexiones proféticas</h2>
+        <ul>
+          <li>
+            <strong>Isaías 11:3–5:</strong> El Mesías juzga con justicia y no
+            según la vista de sus ojos, reflejando el ideal de Devarim 16:19.
+          </li>
+          <li>
+            <strong>Jeremías 23:5–6:</strong> El “Renuevo justo” reinará como
+            rey y actuará con justicia, y será llamado יהוה Justicia Nuestra.
+          </li>
+          <li>
+            <strong>Miqueas 4:2–3:</strong> Desde Sion saldrá la Toráh y Él
+            juzgará entre muchos pueblos, cumpliendo la centralización de juicio
+            en el “lugar escogido”.
+          </li>
+          <li>
+            <strong>Zacarías 6:13:</strong> El Mesías se sentará como rey y
+            sacerdote, uniendo autoridad judicial y sacerdotal (Devarim 17:9).
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>5️⃣ Aplicación práctica y espiritual</h2>
+        <ul>
+          <li>
+            <strong>Perseguir la justicia sin concesiones:</strong> No se trata
+            sólo de aplicar la ley, sino de hacerlo sin corrupción ni
+            parcialidad, reflejando el carácter justo de Mashíaj.
+          </li>
+          <li>
+            <strong>Pureza en el culto:</strong> Erradicar de nuestra vida toda
+            forma de sincretismo espiritual, asegurando que nuestra adoración
+            está centrada únicamente en Yeshúa.
+          </li>
+          <li>
+            <strong>Someterse a la autoridad divina:</strong> Reconocer que en la
+            Kehiláh, la autoridad judicial proviene del Mashíaj a través de
+            líderes piadosos guiados por la Toráh y el Ruaj Hakodesh.
+          </li>
+          <li>
+            <strong>Disciplina restauradora:</strong> El fin de la corrección no
+            es expulsar, sino restaurar al hermano y preservar la santidad del
+            cuerpo.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <h1>
+      Punto 6 – Análisis Profundo de la Aliyáh para Devarim (Deuteronomio)
+      16:18–17:13
+    </h1>
+    <div class="content-container">
+      <p style="text-align: center">
+        Con comentario judío y mesiánico verso por verso, integrando el texto
+        hebreo y su proyección en el Brit Hadasháh.
+      </p>
+
+      <h2>📜 Análisis profundo de la Aliyáh</h2>
+
+      <div class="section-container">
+        <h3>16:18 – Establecer jueces y oficiales</h3>
+        <p class="hebrew">שֹׁפְטִים וְשֹׁטְרִים תִּתֵּן לְךָ</p>
+        <p>
+          <strong>Significado:</strong> Moshé ordena que cada tribu y ciudad tenga
+          jueces (shofetím) y oficiales (shotrím).
+        </p>
+        <p>
+          <strong>Comentario judío:</strong> Rashi dice que “shofetím” son
+          quienes dictan sentencia, y “shotrím” quienes hacen cumplir la ley.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> Apunta a la autoridad delegada
+          que Yeshúa otorga a sus discípulos para juzgar rectamente en la Kehiláh
+          (Mateo 18:18; 1 Corintios 6:2).
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>16:19 – Prohibición de corrupción</h3>
+        <p class="hebrew">לֹא־תַכִּיר פָּנִים וְלֹא־תִקַּח שֹׁחַד</p>
+        <p>
+          <strong>Significado:</strong> No se debe mostrar favoritismo ni aceptar
+          soborno.
+        </p>
+        <p>
+          <strong>Comentario judío:</strong> Rambán resalta que incluso el sabio
+          puede distorsionar la verdad si su corazón se inclina por amor u odio.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> Yeshúa refleja este principio
+          en Juan 7:24: “No juzguéis según las apariencias, sino con juicio
+          justo”.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>16:20 – “Justicia, justicia perseguirás”</h3>
+        <p class="hebrew">צֶדֶק צֶדֶק תִּרְדֹּף</p>
+        <p>
+          <strong>Significado:</strong> La repetición enfatiza pureza en medios y
+          fines.
+        </p>
+        <p>
+          <strong>Comentario judío:</strong> Sifré dice que se debe ir incluso
+          a un tribunal más lejano si es más justo.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> El Reino de Elohím demanda
+          justicia que exceda la de los fariseos (Mateo 5:20).
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>16:21–22 – Prohibición de Asheráh y pilares</h3>
+        <p>
+          <strong>Significado:</strong> No plantar árbol sagrado ni erigir pilar
+          junto al altar de יהוה.
+        </p>
+        <p>
+          <strong>Comentario judío:</strong> Radak comenta que la idolatría cerca
+          del altar profana la santidad del lugar.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> Mashíaj es el único altar
+          aceptable (Hebreos 13:10); cualquier mediador o símbolo que lo
+          reemplace es idolatría.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>17:1 – Ofrendas sin defecto</h3>
+        <p>
+          <strong>Significado:</strong> יהוה no acepta sacrificios defectuosos.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> Apunta a la perfección del
+          sacrificio de Yeshúa, Cordero sin mancha (1 Pedro 1:19).
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>17:2–7 – Pena por idolatría</h3>
+        <p>
+          <strong>Significado:</strong> Si alguien sirve a otros dioses, tras
+          investigación y confirmación por dos o tres testigos, debe ser
+          ejecutado.
+        </p>
+        <p>
+          <strong>Comentario judío:</strong> Talmud Sanedrín 40b resalta el peso
+          de los testigos en un caso capital.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> Aplica el principio espiritual
+          de separar al malvado (1 Corintios 5:13) para preservar la pureza de la
+          comunidad.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>17:8–9 – Escalar casos difíciles</h3>
+        <p>
+          <strong>Significado:</strong> Llevar asuntos complejos al lugar que
+          יהוה escogiere, ante sacerdotes y juez.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> En Mateo 18:17, Yeshúa manda
+          acudir a la comunidad; ahora Él mismo es el “lugar escogido” (Juan
+          2:21).
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>17:10–11 – Obedecer la sentencia</h3>
+        <p>
+          <strong>Significado:</strong> Cumplir lo que el tribunal dictamine,
+          sin apartarse a derecha o izquierda.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> El discípulo obedece la
+          enseñanza de Yeshúa como Toráh viviente (Juan 14:15).
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>17:12–13 – Castigo por rebeldía</h3>
+        <p>
+          <strong>Significado:</strong> Quien actúe con arrogancia contra la
+          autoridad designada debe morir, para que todo el pueblo tema.
+        </p>
+        <p>
+          <strong>Comentario mesiánico:</strong> Rechazar la autoridad de
+          Mashíaj y Su instrucción es poner en riesgo la vida eterna (Hebreos
+          10:26–27).
+        </p>
+      </div>
+
+      <hr style="border: none; border-top: 1px dashed #ccc; margin: 20px 0" />
+
+      <h3>🔗 Conexión temática con Brit Hadasháh</h3>
+      <ul>
+        <li>
+          <strong>Mateo 18:15–20:</strong> Yeshúa establece el mismo patrón
+          judicial, adaptado a la Kehiláh.
+        </li>
+        <li>
+          <strong>1 Corintios 6:1–5:</strong> Shaúl enseña que los creyentes
+          deben resolver disputas internamente bajo justicia del Reino.
+        </li>
+        <li>
+          <strong>Hebreos 7–10:</strong> Presenta a Yeshúa como juez supremo y
+          sumo sacerdote, cumpliendo Devarim 17:9.
+        </li>
+      </ul>
+    </div>
+    <h1>📜 Punto 7 – Tema más relevante de la Aliyáh</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>🎯 Tema central</h2>
+        <p><strong>La justicia recta y centralizada bajo la autoridad establecida por יהוה</strong></p>
+        <p>
+          Este pasaje enseña que el pueblo del pacto debe vivir bajo un sistema
+          judicial justo, incorruptible y sujeto a la instrucción divina, con un
+          centro de autoridad único que garantice la unidad y pureza de la
+          comunidad.
+        </p>
+      </div>
+      <div class="section-container">
+        <h2>1️⃣ Importancia en la Toráh</h2>
+        <ul>
+          <li>
+            <strong>Unidad espiritual y legal:</strong> La justicia
+            centralizada impedía que cada tribu inventara su propio sistema moral
+            o jurídico (cf. Jueces 21:25).
+          </li>
+          <li>
+            <strong>Protección contra la idolatría:</strong> Al erradicar cultos
+            falsos y prácticas paganas, se preservaba la identidad de Israel como
+            nación santa.
+          </li>
+          <li>
+            <strong>Santidad del culto:</strong> Solo en el “lugar que יהוה
+            escogiere” se tomaban las decisiones supremas, protegiendo la
+            integridad del pacto.
+          </li>
+          <li>
+            <strong>Prevención de corrupción:</strong> La prohibición de
+            sobornos y favoritismo garantizaba que la justicia reflejara el
+            carácter de Elohím.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>2️⃣ Relación con Yeshúa en el Brit Hadasháh</h2>
+        <ul>
+          <li>
+            <strong>Yeshúa como centro de autoridad:</strong> Así como la Toráh
+            mandaba acudir al lugar escogido por יהוה, ahora los discípulos
+            acuden a Yeshúa mismo como juez supremo y Toráh viviente (Juan 14:6;
+            Mateo 28:18).
+          </li>
+          <li>
+            <strong>Autoridad delegada:</strong> Mateo 18:18 muestra que la
+            autoridad de “atar y desatar” que antes pertenecía al Sanedrín ahora
+            es ejercida en Su Nombre por la Kehiláh fiel.
+          </li>
+          <li>
+            <strong>Erradicación de la idolatría:</strong> Yeshúa es el único
+            mediador (1 Timoteo 2:5) y sustituye todo altar o pilar ajeno,
+            cumpliendo las prohibiciones de 16:21–22.
+          </li>
+          <li>
+            <strong>Justicia perfecta:</strong> A diferencia de jueces humanos,
+            Yeshúa juzga sin error ni parcialidad (Juan 5:22; Apocalipsis 19:11).
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>3️⃣ Conexión con los Moedím de Elohím</h2>
+        <p>
+          Este pasaje se conecta especialmente con Yom HaDin (Día del Juicio),
+          que en el calendario de Elohím corresponde a Yom Teruáh:
+        </p>
+        <ul>
+          <li>
+            La proclamación de justicia recta y el llamado al arrepentimiento
+            anticipan el juicio final de Mashíaj (Hechos 17:31).
+          </li>
+          <li>
+            Así como Israel debía comparecer ante el juez en Jerusalén, toda la
+            humanidad comparecerá ante Yeshúa para rendir cuentas.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>4️⃣ Aplicación espiritual actual</h2>
+        <ul>
+          <li>
+            <strong>Buscar justicia en medios y fines:</strong> “Tzedek, tzedek
+            tirdof” nos recuerda que no basta un objetivo justo; también el
+            proceso debe ser justo.
+          </li>
+          <li>
+            <strong>Unidad bajo el liderazgo de Mashíaj:</strong> Evitar
+            divisiones doctrinales o de autoridad que rompan la unidad de la
+            Kehiláh.
+          </li>
+          <li>
+            <strong>Pureza doctrinal y de culto:</strong> No permitir que
+            costumbres o filosofías humanas corrompan la fe y práctica centradas
+            en Yeshúa.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h1>📜 Punto 8 – Descubriendo a Mashíaj en cada Aliyáh</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>🎯 Propósito</h2>
+        <p>
+          Revelar cómo cada elemento de este pasaje anticipa la persona,
+          autoridad y obra de Yeshúa haMashíaj, uniendo tipología, profecía y
+          cumplimiento.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>1️⃣ Jueces y oficiales (16:18)</h3>
+        <ul>
+          <li><strong>Tipo / Figura:</strong> Autoridad judicial delegada por יהוה.</li>
+          <li>
+            <strong>Profecía relacionada:</strong> Isaías 11:3–4 – El Mesías
+            juzgará con justicia, no según apariencias. Jeremías 23:5–6 – Un
+            “Renuevo justo” reinará y hará juicio y justicia en la tierra.
+          </li>
+          <li>
+            <strong>Cumplimiento en Mashíaj:</strong> Juan 5:22 – El Padre da
+            todo juicio al Hijo. Mateo 28:18 – Toda autoridad en cielo y tierra
+            le ha sido dada.
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> Lo que antes estaba en manos de
+            hombres imperfectos, ahora se concentra en el Juez perfecto.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>2️⃣ No corrupción en juicio (16:19)</h3>
+        <ul>
+          <li><strong>Tipo / Figura:</strong> Justicia incorruptible.</li>
+          <li><strong>Profecía:</strong> Salmo 72:2 – Él juzgará a tu pueblo con justicia.</li>
+          <li>
+            <strong>Cumplimiento:</strong> Apocalipsis 19:11 – Yeshúa juzga y
+            pelea con justicia.
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> La imparcialidad de Yeshúa como
+            Juez es modelo y medida para los líderes de Su Kehiláh.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>3️⃣ “Justicia, justicia perseguirás” (16:20)</h3>
+        <ul>
+          <li><strong>Profecía:</strong> Miqueas 4:2 – De Sion saldrá la Toráh.</li>
+          <li>
+            <strong>Cumplimiento:</strong> Mateo 5:20 – La justicia del Reino
+            excede la de escribas y fariseos. Romanos 3:26 – Mashíaj es “justo y
+            el que justifica”.
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> La justicia del Reino no solo
+            regula conducta externa, sino transforma el corazón.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>4️⃣ Prohibición de Asheráh y pilares (16:21–22)</h3>
+        <ul>
+          <li><strong>Tipo / Figura:</strong> Exclusividad en la adoración.</li>
+          <li>
+            <strong>Profecía:</strong> Oseas 14:8 – “Yo soy como ciprés verde, de
+            mí es hallado tu fruto.”
+          </li>
+          <li>
+            <strong>Cumplimiento:</strong> Juan 4:23–24 – Adoración en espíritu y
+            en verdad centrada en Mashíaj.
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> El único mediador aceptable entre
+            Elohím y el hombre es Yeshúa.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>5️⃣ Sacrificios sin defecto (17:1)</h3>
+        <ul>
+          <li>
+            <strong>Profecía:</strong> Malaquías 1:11 – En todo lugar se ofrecerá
+            sacrificio limpio.
+          </li>
+          <li>
+            <strong>Cumplimiento:</strong> 1 Pedro 1:19 – Mashíaj es Cordero sin
+            mancha ni contaminación.
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> La perfección de Mashíaj como
+            ofrenda contrasta con la corrupción de los sacrificios humanos.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>6️⃣ Pena por idolatría (17:2–7)</h3>
+        <ul>
+          <li><strong>Tipo / Figura:</strong> Pureza de la comunidad.</li>
+          <li><strong>Profecía:</strong> Ezequiel 37:23 – No se contaminarán más con ídolos.</li>
+          <li>
+            <strong>Cumplimiento:</strong> 1 Corintios 5:13 – “Quitad al
+            perverso de entre vosotros.”
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> El juicio de idolatría es ahora
+            espiritual y eterno en el tribunal de Mashíaj.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>7️⃣ Escalar casos difíciles al lugar escogido (17:8–9)</h3>
+        <ul>
+          <li><strong>Tipo / Figura:</strong> Centro de autoridad divina.</li>
+          <li>
+            <strong>Profecía:</strong> Miqueas 4:1–2 – De Sion saldrá la Toráh, y
+            Él juzgará.
+          </li>
+          <li>
+            <strong>Cumplimiento:</strong> Juan 2:21 – El cuerpo de Mashíaj
+            como el Templo verdadero. Mateo 18:20 – Donde dos o tres se reúnen
+            en Su Nombre, Él está en medio.
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> Mashíaj mismo es el “lugar
+            escogido” para resolver toda causa.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>8️⃣ Obedecer al juez supremo (17:10–11)</h3>
+        <ul>
+          <li><strong>Tipo / Figura:</strong> Sometimiento a la autoridad espiritual.</li>
+          <li><strong>Profecía:</strong> Isaías 42:4 – Las islas esperarán su Toráh.</li>
+          <li>
+            <strong>Cumplimiento:</strong> Juan 14:15 – “Si me amáis, guardad mis
+            mandamientos.”
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> La obediencia al juez humano
+            prefiguraba la obediencia al Mashíaj.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h3>9️⃣ Castigo por rebeldía (17:12–13)</h3>
+        <ul>
+          <li>
+            <strong>Profecía:</strong> Salmo 2:9–12 – El Hijo reinará y
+            quebrantará a los rebeldes.
+          </li>
+          <li>
+            <strong>Cumplimiento:</strong> Hebreos 10:26–27 – El que peca
+            voluntariamente enfrenta juicio sin misericordia.
+          </li>
+          <li>
+            <strong>Patrón redentor:</strong> El temor que preserva la pureza
+            comunitaria se cumple en el temor reverente a Mashíaj como Juez
+            eterno.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h1>📜 Punto 9 – Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>1️⃣ Midrashim relevantes</h2>
+        <ul>
+          <li>
+            <strong>Midrash Tanjuma, Shoftim 2:</strong> Explica que la repetición “צֶדֶק צֶדֶק תִּרְדֹּף” (“justicia, justicia perseguirás”) enseña que no se puede alcanzar un fin justo por medios injustos. Aplica también a la necesidad de elegir jueces sabios y temerosos de Elohím, como en Éxodo 18:21.
+          </li>
+          <li>
+            <strong>Midrash Rabbah, Devarim 5:8:</strong> Compara la autoridad de los jueces en Israel con la de un pastor que cuida a su rebaño, asegurando que ninguno se pierda. Mesiánicamente, esto se proyecta en Yeshúa como el Buen Pastor que guía en justicia (Yojanán 10:11).
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>2️⃣ Targumim</h2>
+        <ul>
+          <li>
+            <strong>Targum Onkelos (Devarim 16:18):</strong> Traduce “jueces y oficiales” como “dayyanei” y “parnasin”, resaltando la idea de líderes que no sólo juzgan sino que también cuidan del pueblo. En la visión mesiánica, esto conecta con Efesios 4:11–12, donde Mashíaj da a la Kehiláh líderes para edificar y guiar.
+          </li>
+          <li>
+            <strong>Targum Yonatán (Devarim 17:9):</strong> Añade que el tribunal supremo debe actuar “según la Toráh que fue entregada en el monte Sinaí”, vinculando toda autoridad al pacto original. Para los creyentes en Yeshúa, esto apunta a Él como Toráh viviente (Juan 1:14).
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>3️⃣ Textos de Qumrán</h2>
+        <ul>
+          <li>
+            <strong>Documento de Damasco (CD 10:1–4):</strong> Establece un consejo de la comunidad que decide asuntos difíciles, basado en Devarim 17. También advierte contra líderes que desvían la Toráh para beneficio propio. Esto refleja la advertencia de Yeshúa contra líderes corruptos (Mateo 23:1–4).
+          </li>
+          <li>
+            <strong>Regla de la Comunidad (1QS 8:1–4):</strong> Insiste en que toda decisión debe ser conforme a la Toráh revelada y guiada por el “Maestro de Justicia”. Tipológicamente, el verdadero Maestro de Justicia es Mashíaj.
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>4️⃣ Libros apócrifos y deuterocanónicos</h2>
+        <ul>
+          <li>
+            <strong>Sabiduría de Salomón 9:4–6:</strong> El rey pide sabiduría para juzgar al pueblo con justicia. Esto se cumple en Yeshúa, que recibe del Padre todo juicio (Yojanán 5:22).
+          </li>
+          <li>
+            <strong>Eclesiástico (Sirácida) 45:17:</strong> Describe al Cohen Gadol como juez supremo en cuestiones difíciles, cumpliendo el rol de Devarim 17. En la plenitud mesiánica, Yeshúa es Cohen Gadol eterno (Hebreos 7:24–25).
+          </li>
+        </ul>
+      </div>
+      <div class="section-container">
+        <h2>5️⃣ Proyección mesiánica de las fuentes</h2>
+        <ul>
+          <li><strong>Midrash:</strong> Señala el carácter y responsabilidad moral de los jueces → en Mashíaj, el juicio es perfecto.</li>
+          <li><strong>Targum:</strong> Resalta la conexión directa entre autoridad y Toráh → en Mashíaj, la Toráh se encarna.</li>
+          <li><strong>Qumrán:</strong> Anticipa un líder final de justicia → Yeshúa cumple esa figura.</li>
+          <li><strong>Apócrifos:</strong> La sabiduría para juzgar se considera un don divino → Mashíaj posee toda plenitud de sabiduría y autoridad.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <h1>📜 Punto 10 – Mandamientos (Mitzvot), principios y valores</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>1️⃣ Mitzvot explícitas</h2>
+            <ol>
+                <li>
+                    <strong>Establecer jueces y oficiales en todas las ciudades (16:18) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> Yeshúa establece autoridades espirituales en la Kehiláh para guiar y juzgar (Efesios 4:11; Mateo 18:18).
+                </li>
+                <li>
+                    <strong>Administrar justicia sin corrupción ni favoritismo (16:19) – Prohibición.</strong><br>
+                    <em>Aplicación mesiánica:</em> El juicio del Reino debe reflejar el carácter justo de Mashíaj (Juan 7:24).
+                </li>
+                <li>
+                    <strong>Buscar justicia con integridad de medios y fines (16:20) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> Justicia no sólo externa, sino del corazón (Mateo 5:20).
+                </li>
+                <li>
+                    <strong>Prohibición de plantar Asheráh o erigir pilar junto al altar de יהוה (16:21–22) – Prohibición.</strong><br>
+                    <em>Aplicación mesiánica:</em> Adorar sólo en espíritu y verdad, sin símbolos paganos (Juan 4:23–24).
+                </li>
+                <li>
+                    <strong>No ofrecer sacrificios con defecto (17:1) – Prohibición.</strong><br>
+                    <em>Aplicación mesiánica:</em> Apunta a Yeshúa como Cordero sin mancha (1 Pedro 1:19).
+                </li>
+                <li>
+                    <strong>Investigar cuidadosamente antes de condenar a muerte por idolatría (17:4) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> El juicio espiritual también requiere pruebas y testigos (1 Timoteo 5:19).
+                </li>
+                <li>
+                    <strong>Requerir dos o tres testigos para pena capital (17:6) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> Principio repetido por Yeshúa en Mateo 18:16.
+                </li>
+                <li>
+                    <strong>Los testigos deben iniciar la ejecución (17:7) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> Resalta la responsabilidad de quienes acusan; en Mashíaj, el juicio final será por testimonio veraz.
+                </li>
+                <li>
+                    <strong>Llevar casos difíciles al lugar escogido por יהוה (17:8–9) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> El “lugar escogido” ahora es Mashíaj mismo (Juan 2:21).
+                </li>
+                <li>
+                    <strong>Obedecer las decisiones del tribunal supremo (17:10–11) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> La obediencia a la instrucción del tribunal prefigura la obediencia a Yeshúa como juez supremo (Juan 14:15).
+                </li>
+                <li>
+                    <strong>Castigar la rebeldía contra el tribunal (17:12–13) – Mitzvá positiva.</strong><br>
+                    <em>Aplicación mesiánica:</em> El rechazo a la autoridad de Mashíaj acarrea juicio eterno (Hebreos 10:26–27).
+                </li>
+            </ol>
+        </div>
+        <div class="section-container">
+            <h2>2️⃣ Principios y valores espirituales</h2>
+            <ul>
+                <li><strong>Integridad en el liderazgo</strong> – Líderes deben ser ejemplo en santidad y justicia.</li>
+                <li><strong>Unidad bajo una sola autoridad</strong> – Un solo centro de juicio en Israel, cumplido en Mashíaj como único juez.</li>
+                <li><strong>Pureza en la adoración</strong> – Erradicar toda mezcla de prácticas paganas.</li>
+                <li><strong>Responsabilidad en el testimonio</strong> – El peso del testigo es sagrado; acusar falsamente es pecado grave.</li>
+                <li><strong>Temor reverente</strong> – El juicio justo infunde respeto por la autoridad divina.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h1>📜 Punto 11 – Preguntas de reflexión con respuestas en el Mashíaj</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h3>1️⃣ ¿Por qué Elohím ordena un sistema judicial centralizado y cómo se cumple esto en Yeshúa?</h3>
+            <p><strong>Respuesta en el Mashíaj:</strong> La centralización del juicio aseguraba que Israel tuviera una sola norma de justicia, evitando que cada tribu definiera lo correcto según sus propios criterios. Esto prefiguraba que, en el Reino, toda autoridad y juicio estarían en manos de una sola persona: Yeshúa haMashíaj (Juan 5:22). Él es el “lugar escogido” donde se decide todo asunto, unificando el pueblo bajo Su Toráh viviente.</p>
+        </div>
+        <div class="section-container">
+            <h3>2️⃣ ¿Qué significa “justicia, justicia perseguirás” y cómo lo modela Yeshúa?</h3>
+            <p><strong>Respuesta en el Mashíaj:</strong> La repetición enseña que tanto los medios como los fines deben ser justos. Yeshúa no sólo enseñó justicia, sino que la vivió en su trato con los marginados, pobres y pecadores arrepentidos (Mateo 12:20). En Él, la justicia no se separa de la misericordia (Miqueas 6:8; Mateo 23:23).</p>
+        </div>
+        <div class="section-container">
+            <h3>3️⃣ ¿Por qué la Toráh prohíbe la idolatría junto al altar y cómo se aplica en la Kehiláh de Mashíaj?</h3>
+            <p><strong>Respuesta en el Mashíaj:</strong> Porque la idolatría es traición espiritual y contaminación del culto. En la Kehiláh, cualquier figura, tradición o práctica que suplante la centralidad de Yeshúa es idolatría (Colosenses 2:8–9). Así como Israel debía mantener puro el altar, nosotros debemos mantener pura la adoración en espíritu y verdad (Juan 4:23–24).</p>
+        </div>
+        <div class="section-container">
+            <h3>4️⃣ ¿Qué nos enseña el requisito de dos o tres testigos y cómo lo aplica Yeshúa?</h3>
+            <p><strong>Respuesta en el Mashíaj:</strong> El principio protege contra juicios injustos y falsos testimonios. Yeshúa lo reafirma en Mateo 18:16 para resolver conflictos en la comunidad. En el juicio final, el testimonio del Padre, del Ruaj Hakodesh y de Sus obras mismas confirman Su identidad como Mashíaj (Juan 5:31–37).</p>
+        </div>
+        <div class="section-container">
+            <h3>5️⃣ ¿Cómo debemos responder hoy a la autoridad de Mashíaj según el modelo de obediencia a los jueces en Devarim 17?</h3>
+            <p><strong>Respuesta en el Mashíaj:</strong> Así como Israel debía obedecer al tribunal supremo, nosotros debemos obedecer la enseñanza de Yeshúa y las decisiones que Él confirma a través de líderes piadosos llenos del Ruaj Hakodesh (Hebreos 13:17). Rechazar Su autoridad es rechazar al propio Elohím, trayendo consecuencias eternas (Hebreos 10:26–27).</p>
+        </div>
+    </div>
+
+    <h1>📜 Punto 12 – Resumen de la Aliyáh</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>1️⃣ Contenido clave</h2>
+            <ul>
+                <li><strong>16:18–20</strong> – Moshé ordena establecer jueces y oficiales en todas las ciudades para administrar justicia recta, sin sobornos ni favoritismo, persiguiendo la justicia en todo.</li>
+                <li><strong>16:21–22</strong> – Prohibición de plantar Asheráh o erigir pilares idolátricos junto al altar de יהוה.</li>
+                <li><strong>17:1</strong> – Prohibición de ofrecer animales con defecto.</li>
+                <li><strong>17:2–7</strong> – Procedimiento contra la idolatría: investigación, testigos y ejecución por mano de ellos, para eliminar el mal de Israel.</li>
+                <li><strong>17:8–9</strong> – Casos difíciles deben ser llevados al lugar que יהוה escoja, ante sacerdotes levitas y juez.</li>
+                <li><strong>17:10–11</strong> – Obligación de obedecer el fallo del tribunal supremo sin desviarse.</li>
+                <li><strong>17:12–13</strong> – Pena para el que actúe con arrogancia contra el tribunal, para que todo el pueblo tema.</li>
+            </ul>
+        </div>
+        <div class="section-container">
+            <h2>2️⃣ Tema central</h2>
+            <p><strong>La justicia recta, pura y centralizada bajo la autoridad que יהוה establece.</strong> El pasaje asegura unidad legal y espiritual, protegiendo al pueblo del caos y de la corrupción moral e idolátrica.</p>
+        </div>
+        <div class="section-container">
+            <h2>3️⃣ Aplicación en el Mashíaj</h2>
+            <ul>
+                <li><strong>Yeshúa como juez supremo:</strong> Lo que en la Toráh era función de jueces y sacerdotes, ahora se cumple en Él como Cohen Gadol y Shofet eterno (Juan 5:22; Hebreos 7:24–25).</li>
+                <li><strong>Kehiláh como comunidad justa:</strong> La disciplina y resolución de conflictos en Mateo 18:15–20 sigue el mismo patrón de este pasaje.</li>
+                <li><strong>Pureza en adoración:</strong> La exclusión de símbolos paganos apunta a la centralidad de Yeshúa como único mediador (1 Timoteo 2:5).</li>
+                <li><strong>Obediencia al fallo divino:</strong> Así como Israel debía acatar la decisión del tribunal, hoy debemos someternos a la enseñanza de Mashíaj como Toráh viviente (Juan 14:15).</li>
+            </ul>
+        </div>
+        <div class="section-container">
+            <h2>4️⃣ Enfoque espiritual</h2>
+            <p>Esta Aliyáh enseña que la verdadera justicia y la autoridad legítima provienen de Elohím y que la comunidad del pacto debe reflejar ese orden. En Mashíaj, se nos llama a vivir bajo Su gobierno, donde la justicia es inseparable de la misericordia y la verdad.</p>
+        </div>
+    </div>
+
+    <h1>📜 Punto 13 – Tefiláh de la Aliyáh</h1>
+    <div class="content-container">
+        <div class="prayer-text">
+            <p>Avinu Malkeinu, Rey de justicia y verdad,</p>
+            <p>Tú has establecido desde el principio que tu pueblo viva bajo un orden santo, donde la justicia no se corrompe y la verdad no se vende.</p>
+            <p>Has ordenado jueces y oficiales para guardar tu Toráh, y has mandado que no seamos parciales ni recibamos sobornos.</p>
+            <p>Hoy venimos ante Ti, reconociendo que Yeshúa haMashíaj es nuestro Juez supremo, el Cohen Gadol que no puede ser comprado ni manipulado, el que juzga con justicia y defiende al humilde.</p>
+            <p>Líbranos de todo favoritismo y de toda mentira, y purifica nuestra adoración para que esté libre de todo ídolo y tradición humana.</p>
+            <p>Enséñanos a llevar nuestros asuntos y disputas ante Ti, el “Lugar Escogido” que es Mashíaj, y a someternos a Tu decisión con un corazón obediente.</p>
+            <p>Haz que nuestra Kehiláh sea un testimonio vivo de unidad, pureza y amor a la verdad.</p>
+            <p>Y cuando llegue el gran Yom HaDin, que podamos ser hallados justos delante de Ti, no por nuestras obras, sino por la justicia perfecta de Yeshúa, en quien confiamos como único mediador y redentor.</p>
+        </div>
+        <p class="prayer-conclusion">
+            Baruj Atá יהוה, que juzgas a tu pueblo con justicia y misericordia, y que has dado a Yeshúa haMashíaj como nuestra Toráh viviente.<br>Amén.
+        </p>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya2.html">Continuar con la Aliyá 2</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
