@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+        <div class="content-container">
+        <h1>Profecía Mesiánica – Parashá 44 (Devarím 1:1 – 3:22)</h1>
+        <h2>Título: "El Último Discurso de Moshéh y la Sombra del Líder Perfecto"</h2>
+        
+        <div class="section-container">
+            <h3>1. Referencia en el Tanaj</h3>
+            <div class="verse-container">
+                <div class="verse-number">Devarím 1:38</div>
+                <div class="scripture">"Yehoshúa bin Nun, el cual está delante de ti, él entrará allá; fortalécelo, porque él hará que Israel herede la tierra."</div>
+            </div>
+            
+            <div class="verse-container">
+                <div class="verse-number">Devarím 3:21–22</div>
+                <div class="scripture">"Y mandé a Yehoshúa en aquel tiempo, diciendo: Tus ojos han visto todo lo que Adonái vuestro Elohím ha hecho a estos dos reyes; así hará Adonái a todos los reinos por los cuales pasarás. No temáis, porque Adonái vuestro Elohím, él es el que pelea por vosotros."</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>2. Contexto y significado profético</h3>
+            <div class="prophetic-content">
+                <p>En esta Parashá, Moshéh no entra a la Tierra Prometida, sino que transfiere la autoridad y liderazgo a <strong>Yehoshúa bin Nun</strong>. Este evento es fundamental en la teología mesiánica porque establece un patrón profético:</p>
+                
+                <ul>
+                    <li>Moshéh, como dador de la Toráh, representa la revelación y la justicia de Elohím.</li>
+                    <li>Yehoshúa, su sucesor, introduce al pueblo en la herencia prometida, cumpliendo la palabra de Elohím.</li>
+                </ul>
+
+                <p>En la tradición judía y mesiánica, este relevo es una <strong>sombra profética</strong> del Mashíaj, quien no solo trae la Toráh (como Moshéh), sino que <strong>conduce al pueblo al reposo y herencia eterna</strong>.</p>
+
+                <p>El nombre Yehoshúa <span class="hebrew-term">(יְהוֹשֻׁעַ)</span> en fonética tiberiana significa "Adonái es salvación" y es el mismo nombre que <strong>Yeshúa haMashíaj</strong> (forma aramea <span class="aramaic">ܝܫܘܥ</span>). Esto no es casualidad, pues la figura de Yehoshúa bin Nun anticipa al Mashíaj como el Capitán de nuestra salvación (cf. Hebreos 4:8-10).</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>3. Cumplimiento en Yeshúa haMashíaj</h3>
+            <div class="prophetic-content">
+                <p>En el <strong>Brit Hadasháh</strong>, Yeshúa cumple este patrón de varias maneras:</p>
+                
+                <ul>
+                    <li><strong>Como nuevo Moshéh</strong>: Enseña la Toráh con autoridad divina (Matityahu 5–7).</li>
+                    <li><strong>Como nuevo Yehoshúa</strong>: Nos introduce en la herencia eterna (Juan 14:2-3), venciendo a los enemigos espirituales (Colosenses 2:15).</li>
+                    <li>El mandato "fortalécelo" dado a Moshéh sobre Yehoshúa se refleja cuando el Padre celestial fortalece a Yeshúa en su misión (Lucas 22:43).</li>
+                </ul>
+
+                <p>En Qumrán y en escritos rabínicos como <strong>Sifré Devarím</strong>, este pasaje es interpretado como una transición histórica que apunta a un liderazgo definitivo bajo el Mashíaj ben David, quien no falla ni muere antes de completar la misión, sino que reina eternamente.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>4. Elementos Mesiánicos en la Parashá 44</h3>
+            <div class="prophetic-content">
+                <ol>
+                    <li><strong>Yehoshúa como figura profética</strong> del Mashíaj que introduce al pueblo en la promesa.</li>
+                    <li><strong>La imposibilidad de Moshéh de entrar</strong> tipifica que la justicia de la Toráh sola no da la herencia; se necesita el mediador de salvación.</li>
+                    <li><strong>La exhortación "No temáis"</strong> apunta al reposo y confianza en la victoria mesiánica final.</li>
+                    <li><strong>La guerra contra Sijón y Og</strong> es figura del juicio final sobre las fuerzas hostiles antes de entrar en la herencia.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>5. Comentarios Rabínicos y Mesiánicos</h3>
+            <div class="prophetic-content">
+                <ul>
+                    <li><strong>Rashi</strong> ve en Yehoshúa la confirmación de la fidelidad de Adonái, pero no hace conexión mesiánica explícita.</li>
+                    <li><strong>Midrash Tanjumá</strong> vincula el cambio de liderazgo con el principio de que Elohím siempre prepara un redentor para cada generación.</li>
+                    <li><strong>Comentaristas mesiánicos</strong> ven aquí un paralelismo directo con Yeshúa: la salvación y el reposo eterno no se logran por la obra de Moshéh sino por el liderazgo de Yeshúa haMashíaj, el verdadero Capitán de nuestra herencia.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Respuestas en la perspectiva del Mashíaj</h2>
+            
+            <div class="prophetic-content">
+                <div class="question">1. ¿Por qué Elohím permitió que solo Yehoshúa, y no Moshéh, guiara a Israel a la tierra?</div>
+                <div class="answer">
+                    Moshéh, aunque fiel como siervo, representaba <strong>la Toráh escrita y el pacto mosaico</strong>, que señala la justicia perfecta de Adonái pero también la realidad de que el hombre, por sí mismo, no puede cumplirla totalmente. El hecho de que Moshéh no entrara simboliza que <strong>la justicia de la Toráh por sí sola no nos introduce en la herencia eterna</strong>. Yehoshúa bin Nun —cuyo nombre es proféticamente el mismo que Yeshúa— representa <strong>la gracia salvadora y el cumplimiento del propósito de Adonái</strong>. Así como Yehoshúa introdujo al pueblo en Canaán, <strong>Yeshúa haMashíaj nos introduce en el reposo y la herencia eterna</strong> (Ivrím/Hebreos 4:8-10).
+                </div>
+
+                <div class="question">2. ¿Qué implicaciones proféticas tiene el nombre Yehoshúa en el contexto del Tanák y el Brit Hadasháh?</div>
+                <div class="answer">
+                    <strong>Yehoshúa <span class="hebrew-term">(יְהוֹשֻׁעַ)</span></strong> significa "Adonái es salvación" y es idéntico, en arameo y griego, al nombre de <strong>Yeshúa <span class="aramaic">(ܝܫܘܥ / Ἰησοῦς)</span></strong>. En el Tanák, Yehoshúa es el conquistador que hereda la promesa; en el Brit Hadasháh, <strong>Yeshúa es el Salvador que cumple la promesa eterna</strong>. El paralelo es profético:
+                    <ul>
+                        <li>Ambos son designados por Elohím.</li>
+                        <li>Ambos vencen a los enemigos antes de entrar en la herencia.</li>
+                        <li>Ambos llevan al pueblo a <strong>un reposo real</strong>: uno físico (tierra), otro eterno (reino de Elohím).</li>
+                    </ul>
+                </div>
+
+                <div class="question">3. ¿Cómo se reflejan las batallas contra Sijón y Og en la guerra espiritual del creyente?</div>
+                <div class="answer">
+                    Sijón y Og eran reyes poderosos al este del Yardén, símbolos de <strong>obstáculos gigantescos</strong> antes de entrar en la promesa. En la perspectiva mesiánica, representan <strong>las fuerzas espirituales de maldad</strong> (Efesios 6:12) que se oponen a la herencia del creyente. En Yeshúa haMashíaj, esas batallas ya están ganadas:
+                    <ul>
+                        <li><strong>Colosenses 2:15</strong> dice que Él despojó a los principados y potestades, exhibiéndolos públicamente.</li>
+                        <li>El creyente no pelea para obtener la victoria, sino <strong>desde la victoria del Mashíaj</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="question">4. ¿Qué enseñanzas extrae la tradición rabínica sobre la transición de liderazgo?</div>
+                <div class="answer">
+                    El Midrash enseña que cuando un líder termina su misión, Adonái ya tiene preparado al siguiente. Rashi comenta que Moshéh debía <strong>fortalecer</strong> a Yehoshúa públicamente para que Israel aceptara su liderazgo sin temor. En la interpretación mesiánica, esto apunta a <strong>Yojanán HaMatbil (Juan el Bautista)</strong> preparando el camino para Yeshúa, transfiriendo el foco del pueblo al <strong>Mashíaj prometido</strong>. La transición enseña que <strong>el plan de Adonái es continuo y perfecto</strong>, y que todo liderazgo humano apunta al <strong>Líder eterno</strong>: Yeshúa haMashíaj.
+                </div>
+
+                <div class="question">5. ¿Cómo se aplica este patrón en la esperanza mesiánica futura?</div>
+                <div class="answer">
+                    Así como Yehoshúa llevó a Israel a Canaán después de derrotar a los enemigos, <strong>Yeshúa volverá para introducirnos al reposo eterno</strong> después de la victoria final sobre toda fuerza del mal (Apocalipsis 19–21). La esperanza mesiánica futura descansa en que:
+                    <ul>
+                        <li>El Mashíaj <strong>ya ha vencido</strong> en su primera venida.</li>
+                        <li><strong>Volverá</strong> para consumar la herencia prometida.</li>
+                        <li><strong>Guiará personalmente</strong> a su pueblo al Reino restaurado, tal como Yehoshúa guiaba al campamento de Israel.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>Tefiláh</h1>
+        
+        <div class="prayer-text">
+            Adonái <span class="hebrew">יהוה</span>, Rey eterno, te reconocemos revelado en Yeshúa haMashíaj: <strong>Pele' Yo'êts, 'El Guibbór, 'Avi-'ad, Sar Shalóm</strong>. Abre nuestros ojos para contemplar tu <strong>Ejad</strong> resplandeciendo en el rostro del Mashíaj; somete nuestro corazón a su reino sin fin. Danos Ruaj HaQódesh para adorar, obedecer y reflejar tu santidad. Amén.
+        </div>
+    </div>
+        <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html"
+        >Ir a la siguiente profesia.</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
