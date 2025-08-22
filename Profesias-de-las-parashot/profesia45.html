@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vayikrá / Levítico 26:3-27:34</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+        <div class="content-container">
+        <h1>Profecías Mesiánicas en la Parashá Vaetjanán</h1>
+        
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. <strong>Profecía #19 – El Profeta como Moshéh</strong></div>
+                <p><strong>📖 Referencia en el Tanak:</strong> Devarím / Deuteronomio 18:15</p>
+                <div class="hebrew">נָבִיא מִקִּרְבְּךָ מֵאַחֶיךָ כָּמֹנִי יָקִים לְךָ יְהוָה אֱלֹהֶיךָ אֵלָיו תִּשְׁמָעוּן</div>
+                <div class="translation"><em>"Un profeta de en medio de ti, de tus hermanos, como yo, te levantará Adonái tu Elohím; a él escucharéis."</em></div>
+                
+                <p><strong>📜 Contexto y significado profético:</strong> Moshéh, en sus últimas palabras al pueblo antes de entrar en la Tierra Prometida, anuncia que Elohím levantará un "Naví como él" de entre Israel. Esto no se refiere a Yehoshúa bin Nun, pues él ya estaba presente y no era "como Moshéh" en el sentido de mediador del pacto, dador de Torah, y revelador del rostro de Elohím. El texto es mesiánico en esencia, porque plantea la expectativa de un mediador supremo que revelará la voz de Adonái y tendrá autoridad divina.</p>
+                
+                <p><strong>✡️ Cumplimiento en Yeshúa haMashíaj:</strong> En el <strong>Brit Hadasháh</strong>, Kefa (Pedro) afirma en <strong>Maasei HaShlichím (Hechos) 3:22–23</strong> que Yeshúa es precisamente el cumplimiento de esta profecía. Así como Moshéh intercedió, dio Torah y sirvió de mediador entre Israel y Elohím, Yeshúa revela la plenitud de la Torah, se convierte en el Mediador del Nuevo Pacto (<span class="hebrew-term">בְּרִית חֲדָשָׁה</span> – Brit Hadasháh) y habla con autoridad directa como <strong>Ejad con Adonái</strong>.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. <strong>Profecía #20 – La revelación en el monte y el Mediador futuro</strong></div>
+                <p><strong>📖 Referencia en el Tanak:</strong> Devarím / Deuteronomio 5:23–27. El pueblo pide no escuchar directamente la voz de Adonái por temor a morir, sino que Elohím hable a través de un mediador.</p>
+                
+                <p><strong>📜 Contexto y significado profético:</strong> El pueblo reconoció la necesidad de un mediador entre ellos y Elohím. Esta experiencia del Monte Jorev es un patrón profético del Mashíaj: Israel no puede resistir la voz directa de la santidad divina sin morir. Por tanto, Elohím promete un mediador permanente.</p>
+                
+                <p><strong>✡️ Cumplimiento en Yeshúa haMashíaj:</strong> En el Brit Hadasháh, Shaúl (Pablo) enseña en <strong>1 Timoteo 2:5</strong>:</p>
+                <div class="scripture">
+                    <div class="hebrew">כִּי אֶחָד הוּא הָאֱלֹהִים וְאֶחָד הוּא הַמְתוֹוֵךְ בֵּין הָאֱלֹהִים וּבֵין בְּנֵי אָדָם הָאָדָם יֵשׁוּעַ הַמָּשִׁיחַ</div>
+                    <em>"Porque uno es Elohím, y uno también el mediador entre Elohím y los hombres: el hombre, Yeshúa haMashíaj."</em>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. <strong>Profecía #21 – El amor a Elohím con todo el corazón</strong></div>
+                <p><strong>📖 Referencia en el Tanak:</strong> Devarím / Deuteronomio 6:4–5</p>
+                <div class="hebrew">שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד. וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל לְבָבְךָ וּבְכָל נַפְשְׁךָ וּבְכָל מְאֹדֶךָ</div>
+                
+                <p><strong>📜 Contexto y significado profético:</strong> El Shemá es el centro de la fe de Israel: la unicidad de Elohím (Ejad) y el llamado al amor total. Esto no solo es un mandamiento, sino una profecía mesiánica, pues anuncia que llegará un tiempo en el que Israel podrá amar a Adonái sin obstáculo de pecado, a través de la redención provista por el Mashíaj.</p>
+                
+                <p><strong>✡️ Cumplimiento en Yeshúa haMashíaj:</strong> En los Evangelios, Yeshúa cita este pasaje como <em>el más grande de los mandamientos</em> (Marcos 12:29–30). En Él se revela la unión perfecta de Elohím y Su pueblo. Por medio de la obra de Yeshúa y la morada de la <strong>Ruaj Hakodesh</strong>, se cumple la posibilidad de amar a Elohím con toda la vida.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">🌿 Profecía #22 – La obediencia como señal del pacto eterno</div>
+                
+                <h3>1. Referencia en el Tanak</h3>
+                <p><strong>📖 Devarím / Deuteronomio 7:9</strong></p>
+                <div class="hebrew">וְיָדַעְתָּ כִּי יְהוָה אֱלֹהֶיךָ הוּא הָאֱלֹהִים הָאֵל הַנֶּאֱמָן שֹׁמֵר הַבְּרִית וְהַחֶסֶד לְאֹהֲבָיו וּלְשֹׁמְרֵי מִצְוֺתָיו לְאֶלֶף דּוֹר</div>
+                <div class="translation"><em>"Reconoce, pues, que Adonái tu Elohím, Él es Elohím, el Elohím fiel, que guarda el pacto y el hesed (misericordia, gracia leal) con los que le aman y guardan Sus mitzvot hasta mil generaciones."</em></div>
+
+                <h3>2. Contexto y significado profético</h3>
+                <p>En esta declaración Moshéh reafirma a Israel que el pacto con Elohím no se basa en méritos humanos sino en Su <strong>fidelidad y hesed</strong>. Este pasaje apunta a un futuro en el que el pacto sería confirmado de forma eterna, no dependiente de las fallas del pueblo, sino sustentado en la fidelidad divina.</p>
+                
+                <p>Este verso contiene tres claves proféticas:</p>
+                <ul>
+                    <li><strong>"HaEl HaNeeman" – El Elohím fiel</strong>: señala que Elohím cumpliría Su promesa mesiánica de redención, sin fallar jamás.</li>
+                    <li><strong>"Shomer haBrit" – Guardián del pacto</strong>: anuncia que habría un cumplimiento pleno del pacto en el Mashíaj.</li>
+                    <li><strong>"Le'ohavav ul'shomrei mitzvotav" – A los que le aman y guardan Sus mandamientos</strong>: conecta con la revelación mesiánica del amor como cumplimiento de la Torah.</li>
+                </ul>
+
+                <h3>3. Cumplimiento en Yeshúa haMashíaj</h3>
+                <p>En el <strong>Brit Hadasháh</strong>, se nos revela que la fidelidad de Elohím se manifestó plenamente en Yeshúa:</p>
+                <ul>
+                    <li><strong>2 Corintios 1:20</strong> – <div class="hebrew">כִּי כָּל הַהַבְטָחוֹת שֶׁל הָאֱלֹהִים בּוֹ נִהְיוּ הֵן</div> – "Porque todas las promesas de Elohím son en Él Sí y en Él Amén."</li>
+                    <li><strong>Hebreos 8:6</strong> – Yeshúa es el Mediador de un pacto superior, establecido sobre mejores promesas.</li>
+                    <li><strong>Juan 14:15</strong> – <div class="hebrew">אִם אַתֶּם אֹהֲבִים אֹתִי שִׁמְרוּ אֶת מִצְוֹתַי</div> – "Si me amáis, guardad mis mitzvot."</li>
+                </ul>
+                
+                <p>Así, Yeshúa revela que el verdadero amor a Elohím se cumple en obediencia al pacto Nuevo en Su sangre, un pacto que manifiesta el hesed eterno de Adonái.</p>
+                
+                <p>En Yeshúa, Elohím muestra que es <strong>HaEl HaNeeman</strong> – el Elohím fiel que guarda Su brit leolam va'ed (pacto eterno).</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-content">
+                <h2>🔹 Preguntas de la Profecía #19–21</h2>
+                <div class="prophetic-title">(Devarím 18, 5, 6 – Profeta como Moshéh, Mediador y Shemá):</div>
+                
+                <div class="question">1. ¿Cómo se entiende la expresión "profeta como Moshéh" en la exégesis rabínica tradicional y en la judía mesiánica?</div>
+                <div class="answer">
+                    <p><strong>Rabínica tradicional:</strong> Muchos sabios (como Rashi) vieron aquí una referencia a una sucesión de profetas, cada uno transmitiendo la voluntad de Elohím al pueblo, culminando en el Mashíaj. El Rambam (Maimónides) enseña en su Mishné Toráh que el Mashíaj sería un profeta aún mayor en revelación práctica que Moshéh, restaurando Israel en justicia.</p>
+                    
+                    <p><strong>Judía mesiánica:</strong> Vemos esta promesa cumplida en Yeshúa, quien no sólo es un profeta, sino el Profeta Supremo que revela al Padre (Juan 1:18). Como Moshéh, Yeshúa sacó a Su pueblo de la esclavitud (del pecado), dio una Torah renovada en el corazón (Mateo 5–7), intercedió por Israel, y estableció un Pacto eterno.</p>
+                </div>
+
+                <div class="question">2. ¿Qué paralelismos concretos hay entre la vida de Moshéh y la de Yeshúa?</div>
+                <div class="answer">
+                    <ul>
+                        <li>Moshéh fue salvado de un decreto de muerte en su infancia; Yeshúa también (Herodes y el edicto contra los niños en Betléjem).</li>
+                        <li>Moshéh ayunó 40 días; Yeshúa ayunó 40 días.</li>
+                        <li>Moshéh intercedió por Israel tras el pecado del becerro de oro; Yeshúa intercede continuamente por Su pueblo ante el Padre.</li>
+                        <li>Moshéh dio la Torah en el monte; Yeshúa dio la plenitud de la Torah en el Sermón del Monte.</li>
+                        <li>Moshéh levantó una serpiente de bronce para sanidad; Yeshúa fue levantado en el madero para salvación eterna (Juan 3:14–15).</li>
+                    </ul>
+                </div>
+
+                <div class="question">3. ¿Cómo se conecta el Shemá con la identidad de Yeshúa haMashíaj como Ejad con el Padre?</div>
+                <div class="answer">
+                    <p>El Shemá proclama: "Adonái Ejad". Yeshúa confirma este mandamiento como el mayor. Sin embargo, Él se presenta como uno con el Padre (Juan 10:30), revelando que el Ejad no significa división, sino unidad perfecta. La fe judía mesiánica afirma que Yeshúa no es un "otro Elohím", sino la manifestación de Adonái en carne (Elohím Alef Tav). El Shemá cobra su plenitud en reconocer a Yeshúa como la encarnación del Ejad.</p>
+                </div>
+
+                <div class="question">4. ¿Por qué Israel no podía soportar la voz directa de Elohím y qué enseña esto sobre la necesidad del Mashíaj?</div>
+                <div class="answer">
+                    <p>La santidad de Elohím es tan absoluta que el pueblo, en su condición pecaminosa, no podía resistir Su voz. Esto anticipa la necesidad de un mediador eterno. Yeshúa cumple ese rol: Él, siendo Ejad con el Padre, habla con la voz de Elohím en forma humana para que podamos oír sin morir, y Su sacrificio nos purifica para poder estar en la presencia divina (Hebreos 12:24).</p>
+                </div>
+
+                <div class="question">5. ¿Cómo la Parashá Vaetjanán anticipa el papel de Yeshúa como Mediador del Nuevo Pacto?</div>
+                <div class="answer">
+                    <p>La petición de un mediador en Devarím 5 se cumple en Yeshúa, el único Mediador entre Elohím y los hombres (1 Timoteo 2:5). Vaetjanán revela el patrón: Israel pide un intermediario, Elohím promete levantarlo, y el Brit Hadasháh declara que Yeshúa es ese Mediador, asegurando acceso directo al Padre.</p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-content">
+                <h2>🔹 Preguntas de la Profecía #22</h2>
+                <div class="prophetic-title">(Devarím 7:9 – Elohím fiel al pacto):</div>
+                
+                <div class="question">6. ¿Cómo se diferencia la fidelidad del hombre de la fidelidad de Elohím según este verso?</div>
+                <div class="answer">
+                    <p>El hombre falla, rompe pactos y es inconstante. Elohím, en cambio, es HaEl HaNeeman – el Elohím Fiel. En Yeshúa, vemos esa fidelidad cumplida: aunque Israel y la humanidad fallamos, Elohím no falla, sino que da a Su Hijo como garantía del pacto eterno (Romanos 3:3–4).</p>
+                </div>
+
+                <div class="question">7. ¿Qué significa que Elohím "guarda el pacto hasta mil generaciones" y cómo se interpreta en la tradición mesiánica?</div>
+                <div class="answer">
+                    <p>La expresión "mil generaciones" es una forma semítica de decir para siempre. En la fe mesiánica entendemos que el cumplimiento de ese brit se revela en Yeshúa: Su sangre establece el pacto eterno (Hebreos 13:20). El Mashíaj es la prenda visible de que Elohím no abandona nunca Su palabra.</p>
+                </div>
+
+                <div class="question">8. ¿Cómo se conecta este pasaje con la promesa de un Brit Jadasháh en Yirmeyahu (Jeremías) 31:31–34?</div>
+                <div class="answer">
+                    <p>Yirmeyahu profetiza un nuevo pacto escrito en el corazón. Devarím 7:9 habla de Elohím como Guardián del pacto. Ambos se encuentran en Yeshúa: en Él, el pacto no está en tablas de piedra sino en el corazón por la Ruaj HaKodesh (2 Corintios 3:3).</p>
+                </div>
+
+                <div class="question">9. ¿De qué manera Yeshúa demuestra ser la encarnación del "Elohim Neeman – Elohím fiel"?</div>
+                <div class="answer">
+                    <p>En Yeshúa vemos la fidelidad de Elohím encarnada:</p>
+                    <ul>
+                        <li>Cumple todas las promesas dadas a Abraham, Yitsjaq y Yaakov.</li>
+                        <li>No abandona al hombre, sino que se entrega en el madero por amor.</li>
+                        <li>Su resurrección confirma que Elohím no miente, sino que cumple Su palabra.</li>
+                    </ul>
+                </div>
+
+                <div class="question">10. ¿Cómo se entiende el vínculo entre amor (ahaváh) y obediencia a la Torah en la vida de los creyentes mesiánicos?</div>
+                <div class="answer">
+                    <p>Amar a Elohím significa guardar Sus mitzvot (Juan 14:15). Yeshúa no abolió la Torah, sino que la cumplió y nos dio Su Ruaj para vivirla con amor. En la vida mesiánica, la Torah no es carga, sino expresión de ahaváh: obedecemos porque amamos al Elohím fiel que nos amó primero en Yeshúa (1 Juan 4:19).</p>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="conclusion">
+                <h2>🙏 Tefiláh Final</h2>
+                <div class="prayer-text">
+                    Adonái Elohím Neeman, gracias porque en Yeshúa haMashíaj revelaste Tu fidelidad perfecta y nos mostraste que eres el Guardián del Pacto. Ayúdanos a escuchar al Profeta como Moshéh, a vivir el Shemá en nuestras vidas, y a reflejar en obediencia el amor con que nos has amado. Haznos testigos vivos de que Tú cumples Tu palabra hasta mil generaciones. Amén.
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+        <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../Profesias-de-las-parashot/profesias-de-las-parashot.html"
+        >Ir a la siguiente profesia.</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
+
