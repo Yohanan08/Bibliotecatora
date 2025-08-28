@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Devarim (במדבר) – Deuteronomio 29:9-12</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+       51. Parashá Nitzavim (נצבים) Aliyáh 1: (Deuteronomio 29:9-12) Moshé convoca a 
+       todo Israel para renovar el pacto con Elohím.
+        <p>
+        Haftaráh: Isaías 61:10-63:9 (La redención y el pacto de paz con el pueblo).
+        </p>
+        <p>
+        Brit Hadasháh: Hebreos 8:10 (El nuevo pacto escrito en los corazones).
+        </p>
+      </h1>
+      <div class="content-container">
+      <h1>Punto 1.Devarim (Deuteronomio) 29:9-12</h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 9 (29:8)</div>
+        <div class="hebrew">
+          וּשְׁמַרְתֶּם אֵת דִּבְרֵי הַבְּרִית הַזֹּאת וַעֲשִׂיתֶם אֹתָם לְמַעַן
+          תַּשְׂכִּילוּ אֵת כָּל אֲשֶׁר תַּעֲשׂוּן׃
+        </div>
+        <div class="transliteration">
+          Ushmartem et divrei habberit hazot, va’asitem otam lema‘an tashkilu et
+          kol asher ta‘asun.
+        </div>
+        <div class="translation">
+          Y guardaréis
+          <span class="hebrew-term">וּשְׁמַרְתֶּם</span> las palabras
+          <span class="hebrew-term">דִּבְרֵי</span> del pacto
+          <span class="hebrew-term">הַבְּרִית</span> este
+          <span class="hebrew-term">הַזֹּאת</span>, y las haréis
+          <span class="hebrew-term">וַעֲשִׂיתֶם אֹתָם</span>, para que prosperéis
+          <span class="hebrew-term">לְמַעַן תַּשְׂכִּילוּ</span> en todo
+          <span class="hebrew-term">אֵת כָּל</span> lo que hiciereis
+          <span class="hebrew-term">אֲשֶׁר תַּעֲשׂוּן</span>.
+        </div>
+        <div class="literal-translation">
+          <strong>Traducción Literal:</strong><br />
+          “Guardaréis las palabras de este pacto y las haréis, para que tengáis
+          entendimiento y prosperidad en todo lo que hacéis.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 10 (29:9)</div>
+        <div class="hebrew">
+          אַתֶּם נִצָּבִים הַיּוֹם כֻּלְּכֶם לִפְנֵי יהוה אֱלֹהֵיכֶם רָאשֵׁיכֶם
+          שִׁבְטֵיכֶם זִקְנֵיכֶם וְשֹׁטְרֵיכֶם כֹּל אִישׁ יִשְׂרָאֵל׃
+        </div>
+        <div class="transliteration">
+          Atem nitzavim hayom kuljem lifnei יהוה Eloheijem, rosheijem shivteijem,
+          zikneijem veshotereijem, kol ish Yisra’el.
+        </div>
+        <div class="translation">
+          Vosotros estáis de pie
+          <span class="hebrew-term">אַתֶּם נִצָּבִים</span> hoy
+          <span class="hebrew-term">הַיּוֹם</span> todos vosotros
+          <span class="hebrew-term">כֻּלְּכֶם</span>, delante
+          <span class="hebrew-term">לִפְנֵי</span> יהוה vuestro Elohím
+          <span class="hebrew-term">יהוה אֱלֹהֵיכֶם</span>, vuestros jefes
+          <span class="hebrew-term">רָאשֵׁיכֶם</span>, vuestras tribus
+          <span class="hebrew-term">שִׁבְטֵיכֶם</span>, vuestros ancianos
+          <span class="hebrew-term">זִקְנֵיכֶם</span>, y vuestros oficiales
+          <span class="hebrew-term">וְשֹׁטְרֵיכֶם</span>, todo hombre de Israel
+          <span class="hebrew-term">כֹּל אִישׁ יִשְׂרָאֵל</span>.
+        </div>
+        <div class="literal-translation">
+          <strong>Traducción Literal:</strong><br />
+          “Vosotros estáis hoy todos firmes delante de יהוה vuestro Elohím:
+          vuestros jefes, vuestras tribus, vuestros ancianos y vuestros
+          oficiales, todo hombre de Israel.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 11 (29:10)</div>
+        <div class="hebrew">
+          טַפְּכֶם נְשֵׁיכֶם וְגֵרְךָ אֲשֶׁר בְּקֶרֶב מַחֲנֶיךָ מֵחֹטֵב עֵצֶיךָ
+          עַד שֹׁאֵב מֵימֶיךָ׃
+        </div>
+        <div class="transliteration">
+          Tapkhem, nesheikhem, vegerkha asher beqerev maḥaneikha, meḥotev
+          ‘etseikha ‘ad sho’ev meimeikha.
+        </div>
+        <div class="translation">
+          Vuestros pequeños <span class="hebrew-term">טַפְּכֶם</span>, vuestras
+          mujeres <span class="hebrew-term">נְשֵׁיכֶם</span>, y tu extranjero
+          <span class="hebrew-term">וְגֵרְךָ</span> que está dentro de tu
+          campamento <span class="hebrew-term">אֲשֶׁר בְּקֶרֶב מַחֲנֶיךָ</span>,
+          desde el cortador de tu leña
+          <span class="hebrew-term">מֵחֹטֵב עֵצֶיךָ</span> hasta el sacador de tu
+          agua <span class="hebrew-term">עַד שֹׁאֵב מֵימֶיךָ</span>.
+        </div>
+        <div class="literal-translation">
+          <strong>Traducción Literal:</strong><br />
+          “Vuestros niños, vuestras mujeres, y el extranjero que está en medio
+          de tu campamento, desde el que corta tu leña hasta el que saca tu
+          agua.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 12 (29:11)</div>
+        <div class="hebrew">
+          לְעָבְרְךָ בִּבְרִית יהוה אֱלֹהֶיךָ וּבְאָלָתוֹ אֲשֶׁר יהוה אֱלֹהֶיךָ
+          כֹּרֵת עִמְּךָ הַיּוֹם׃
+        </div>
+        <div class="transliteration">
+          Le‘avrekha biberit יהוה Elohekha, uvealato asher יהוה Elohekha koret
+          ‘immekha hayom.
+        </div>
+        <div class="translation">
+          Para que pases <span class="hebrew-term">לְעָבְרְךָ</span> en el pacto
+          <span class="hebrew-term">בִּבְרִית</span> de יהוה tu Elohím
+          <span class="hebrew-term">יהוה אֱלֹהֶיךָ</span>, y en su juramento
+          <span class="hebrew-term">וּבְאָלָתוֹ</span>, que יהוה tu Elohím
+          <span class="hebrew-term">אֲשֶׁר יהוה אֱלֹהֶיךָ</span> corta contigo
+          <span class="hebrew-term">כֹּרֵת עִמְּךָ</span>, hoy
+          <span class="hebrew-term">הַיּוֹם</span>.
+        </div>
+        <div class="literal-translation">
+          <strong>Traducción Literal:</strong><br />
+          “Para que entres en el pacto de יהוה tu Elohím, y en su juramento que
+          יהוה tu Elohím hace contigo hoy.”
+        </div>
+      </div>
+    </div>
+
+    <div class="prophetic-content">
+      <h1>
+        Cumplimiento profético en el Mashíaj de Devarim (Deuteronomio) 29:9-12
+      </h1>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Cumplimiento Profético en el Mashíaj</div>
+        <p>
+          En Devarim 29:9-12, Israel es convocado a estar firmes delante de יהוה
+          en pacto, desde los líderes hasta los más pequeños, incluyendo al
+          extranjero. Este acto profético señala:
+        </p>
+        <ul>
+          <li>
+            <strong>El Pacto Nuevo y Universal:</strong> No solo Israel
+            étnico, sino también el “extranjero en el campamento” participa del
+            pacto (v.11). Esto anticipa la inclusión de las naciones en el plan
+            de redención.
+          </li>
+          <li>
+            <strong>La ratificación del pacto en Mashíaj:</strong> El texto
+            habla de “entrar en el pacto de יהוה tu Elohím y en Su juramento”
+            (v.12). Esto apunta al Nuevo Pacto prometido en Yirmiyahu ירמיהו
+            31:31-33, cumplido en Yeshúa haMashíaj, quien sella el pacto con Su
+            sangre (cf. Lucas 22:20).
+          </li>
+          <li>
+            <strong>El Día de Reunión Escatológica:</strong> La escena de todo
+            Israel “de pie hoy” delante de יהוה es un tipo profético del gran
+            día en que toda la humanidad se presentará ante el Trono del Mashíaj
+            (cf. Daniel 12:1-2; Apocalipsis 20:12).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Conexión con los Profetas</div>
+        <ul>
+          <li>
+            <strong>Yeshayahu ישעיהו 56:6-7:</strong>
+            <span class="scripture"
+              >“Y a los extranjeros que se alleguen a יהוה… los traeré a Mi
+              monte santo y los alegraré en Mi casa de oración.”</span
+            >
+            Esto refleja la misma idea de Deuteronomio 29:11, donde incluso el
+            extranjero está dentro del pacto.
+          </li>
+          <li>
+            <strong>Yirmiyahu ירמיהו 31:31-33:</strong> Elohím promete un pacto
+            nuevo “con la casa de Israel y con la casa de Judá”, escrito en el
+            corazón. La expresión de Devarim “entrar en el pacto” se proyecta
+            hacia esta renovación en el Mashíaj.
+          </li>
+          <li>
+            <strong>Yejezqel יחזקאל 36:26-27:</strong> La promesa del nuevo
+            corazón y el Espíritu dentro de vosotros es la consumación de la
+            exhortación de “guardar y hacer” el pacto (Deut 29:9), algo que solo
+            el Ruaj HaKodesh trae a cumplimiento.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Conexión con el Brit Hadasháh</div>
+        <ul>
+          <li>
+            <strong>Hebreos 8:6-10:</strong> Declara que Yeshúa es el mediador de
+            un pacto superior, que cumple la promesa de Yirmiyahu 31, y
+            establece la Toráh en el corazón.
+          </li>
+          <li>
+            <strong>Efesios 2:11-13,19:</strong> Shaúl enseña que los gentiles
+            (antes extranjeros) han sido hechos conciudadanos y miembros del
+            mismo pacto por la sangre de Mashíaj. Esto conecta directamente con
+            Deut. 29:11.
+          </li>
+          <li>
+            <strong>Apocalipsis 7:9-10:</strong> La visión de una multitud de
+            toda nación y lengua delante del Cordero repite la imagen de “todos
+            firmes hoy delante de יהוה”, ahora revelada en Yeshúa.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">
+          🔹 Aplicación Espiritual (Aliyáh Devarim 29:9-12)
+        </div>
+        <ul>
+          <li>
+            <strong>Unidad en el Pacto:</strong> Todos, desde los más grandes
+            hasta los más pequeños, son llamados a estar firmes delante de יהוה.
+            En Yeshúa, no hay distinción de rango (Gálatas 3:28).
+          </li>
+          <li>
+            <strong>Responsabilidad Comunitaria:</strong> El texto subraya que
+            la relación con Elohím no es solo individual, sino corporativa. En
+            la Kehiláh Mesiánica, somos un cuerpo en Mashíaj.
+          </li>
+          <li>
+            <strong>Incorporación del Extranjero:</strong> Así como el “ger”
+            (extranjero) fue incluido en el pacto, hoy las naciones son
+            injertadas en el Olivo de Israel (Romanos 11:17-24).
+          </li>
+          <li>
+            <strong>Fidelidad al Pacto:</strong> La exhortación a “guardar y
+            hacer” apunta a vivir en obediencia práctica a la Toráh, pero ahora
+            bajo la guía del Ruaj HaKodesh que la escribe en nuestros corazones.
+          </li>
+          <li>
+            <strong>Esperanza Escatológica:</strong> La visión de todos en
+            asamblea delante de יהוה anticipa la redención final, cuando el
+            Mashíaj reúna a Su pueblo y a las naciones bajo un solo pacto
+            eterno.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen Mesiánico:</strong>
+        <p>
+          Deuteronomio 29:9-12 profetiza la unidad del pueblo de Elohím bajo un
+          solo pacto que incluye a Israel y a las naciones. Su cumplimiento se
+          revela en Yeshúa haMashíaj, quien sella el Nuevo Pacto con Su sangre,
+          trae al extranjero a la familia de Israel, y prepara a todos para
+          estar firmes en el día final delante de יהוה.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>Punto 2. Haftaráh: Isaías 61:10-63:9 (La redención y el pacto de paz con el pueblo).</h1>
+      <div class="verse-container">
+        <div class="verse-number">Yeshayahu 61:10</div>
+        <div class="hebrew">
+          שׂוֹשׂ אָשִׂישׂ בַּיהוה תָּגֵל נַפְשִׁי בֵּאלֹהַי כִּי הִלְבִּישַׁנִי
+          בִּגְדֵי יֶשַׁע מְעִיל צְדָקָה יְעָטָנִי כֶּחָתָן יְכַהֵן פְּאֵר
+          וְכַכַּלָּה תַּעְדֶּה כֵלֶיהָ׃
+        </div>
+        <div class="transliteration">
+          Sos asis ba־יהוה, tagel nafshi beElohai, ki hilbishani bigdei yésha‘,
+          me‘il tzedakah ya‘atani, kechatán yekahen pe’er, vechakalá ta‘adeh
+          keleha.
+        </div>
+        <div class="translation">
+          Con gran gozo me regocijo en יהוה, se alegra mi alma en mi Elohai,
+          porque me vistió con vestiduras de salvación, con manto de justicia me
+          cubrió, como novio que se adorna con ornamento sacerdotal, y como
+          novia que se adorna con sus joyas.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:1</div>
+        <div class="hebrew">
+          לְמַעַן צִיּוֹן לֹא אֶחֱשֶׁה וּלְמַעַן יְרוּשָׁלִַם לֹא אֶשְׁקוֹט
+          עַד־יֵצֵא כַנֹּגַהּ צִדְקָהּ וִישׁוּעָתָהּ כְּלַפִּיד יִבְעָר׃
+        </div>
+        <div class="transliteration">
+          Lema‘an Tzión lo eḥesheh, ulema‘an Yerushaláyim lo eshkot, ‘ad yetzé
+          kanóga tzidkah, veyeshu‘atah kelapid yiv‘ar.
+        </div>
+        <div class="translation">
+          Por amor de Tzión no callaré, y por amor de Yerushaláyim no
+          descansaré, hasta que salga como resplandor su justicia, y su
+          salvación arda como antorcha.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:2</div>
+        <div class="hebrew">
+          וְרָאוּ גוֹיִם צִדְקֵךְ וְכָל־מְלָכִים כְּבוֹדֵךְ וְקֹרָא לָךְ שֵׁם
+          חָדָשׁ אֲשֶׁר פִּי־יהוה יִקֳּבֶנּוּ׃
+        </div>
+        <div class="transliteration">
+          Vera’u goyim tzidkeh, vekhol melakhim kevodekh, vekorá lakh shem
+          ḥadash, asher pi־יהוה yiqovennu.
+        </div>
+        <div class="translation">
+          Y verán naciones tu justicia, y todos los reyes tu gloria, y se te
+          llamará con un nombre nuevo, que la boca de יהוה designará.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:3</div>
+        <div class="hebrew">
+          וְהָיִיתְ עֲטֶרֶת תִּפְאֶרֶת בְּיַד־יהוה וּצְנִיף מְלוּכָה בְּכַף
+          אֱלֹהָיִךְ׃
+        </div>
+        <div class="transliteration">
+          Vehayit ateret tif’eret beyad־יהוה, u’tzenif melukhah bekhaf Elohayikh.
+        </div>
+        <div class="translation">
+          Y serás corona de hermosura en la mano de יהוה, y diadema real en la
+          palma de tu Elohím.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:4</div>
+        <div class="hebrew">
+          לֹא־יֵאָמֵר לָךְ עוֹד עֲזוּבָה וּלְאַרְצֵךְ לֹא־יֵאָמֵר עוֹד שְׁמָמָה
+          כִּי־לָךְ יִקָּרֵא חֶפְצִי־בָהּ וּלְאַרְצֵךְ בְּעוּלָה כִּי־חָפֵץ יהוה
+          בָּךְ וְאַרְצֵךְ תִּבָּעֵל׃
+        </div>
+        <div class="transliteration">
+          Lo ye’amer lakh ‘od azuvah, ulear’tzekh lo ye’amer ‘od shemamah, ki
+          lakh yiqare Ḥeftzi-bah, ulear’tzekh Be‘ulah; ki ḥafetz יהוה bakh,
+          ve’artzekh tibba‘el.
+        </div>
+        <div class="translation">
+          Nunca más se dirá de ti “Abandonada”, ni de tu tierra se dirá
+          “Desolada”; sino que a ti se te llamará “Mi deleite está en ella”, y a
+          tu tierra “Desposada”, porque יהוה se deleita en ti, y tu tierra será
+          desposada.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:5</div>
+        <div class="hebrew">
+          כִּי יִבְעַל בָּחוּר בְּתוּלָה יִבְעָלוּךְ בָּנָיִךְ וּמְשׂוֹשׂ חָתָן
+          עַל כַּלָּה יָשִׂישׂ עָלַיִךְ אֱלֹהָיִךְ׃
+        </div>
+        <div class="transliteration">
+          Ki yiv‘al bachur betulah, yib‘alukh banayikh, umesos chatán ‘al kalah,
+          yasis ‘alayikh Elohayikh.
+        </div>
+        <div class="translation">
+          Porque como el joven desposa a la virgen, así te desposarán tus
+          hijos; y como el gozo del novio con la novia, así se gozará contigo tu
+          Elohím.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:6</div>
+        <div class="hebrew">
+          עַל חוֹמֹתַיִךְ יְרוּשָׁלִַם הִפְקַדְתִּי שֹׁמְרִים כָּל־הַיּוֹם
+          וְכָל־הַלַּיְלָה תָּמִיד לֹא יֶחֱשׁוּ הַמַּזְכִּירִים אֶת־יהוה אַל־דֳּמִי
+          לָכֶם׃
+        </div>
+        <div class="transliteration">
+          ‘Al chomotayikh Yerushaláyim, hifqadti shomrim, kol hayom vekhol
+          halaylah tamid lo yeḥeshu; hamazkirim et־יהוה, al domi lakhem.
+        </div>
+        <div class="translation">
+          Sobre tus muros, Yerushaláyim, he puesto atalayas; todo el día y toda
+          la noche jamás callarán. Los que hacen memoria de יהוה, no os deis
+          reposo.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:7</div>
+        <div class="hebrew">
+          וְאַל־תִּתְּנוּ דֳמִי לוֹ עַד יְכוֹנֵן וְעַד יָשִׂים אֶת־יְרוּשָׁלִַם
+          תְּהִלָּה בָאָרֶץ׃
+        </div>
+        <div class="transliteration">
+          Ve’al tittenu domi lo, ‘ad yekonen, ve‘ad yasim et Yerushaláyim tehilah
+          ba’áretz.
+        </div>
+        <div class="translation">
+          Ni le deis a Él reposo, hasta que confirme y hasta que ponga a
+          Yerushaláyim por alabanza en la tierra.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:8</div>
+        <div class="hebrew">
+          נִשְׁבַּע יהוה בִּימִינוֹ וּבִזְרוֹעַ עֻזּוֹ אִם־אֶתֵּן עוֹד
+          אֶת־דְּגָנֵךְ מַאֲכָל אֹיְבַיִךְ וְאִם־יִשְׁתּוּ בְנֵי־נֵכָר תִּירוֹשֵׁךְ
+          אֲשֶׁר יָגַעְתָּ בוֹ׃
+        </div>
+        <div class="transliteration">
+          Nishba‘ יהוה biyemino, uvizro‘a ‘uzzo: im etten ‘od et deganekha
+          ma’akhal oyeveikha; ve’im yishtu bnei nekar tiroshkha asher yaga‘ta bo.
+        </div>
+        <div class="translation">
+          Juró יהוה por su diestra y por su brazo de poder: no daré jamás tu
+          grano por alimento a tus enemigos, ni beberán extraños tu vino por el
+          cual trabajaste.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:9</div>
+        <div class="hebrew">
+          כִּי מְאַסְפָיו יֹאכְלֻהוּ וְהִלְלוּ אֶת־יהוה וּמְקַבְּצָיו יִשְׁתּוּהוּ
+          בְּחַצְרוֹת קָדְשִׁי׃
+        </div>
+        <div class="transliteration">
+          Ki me’asfayó yokhluhu vehilelu et־יהוה, umekabtzaiv yishtuhu bechatzrot
+          qodshi.
+        </div>
+        <div class="translation">
+          Sino que los que lo cosechen lo comerán, y alabarán a יהוה; y los que
+          lo recojan lo beberán en los atrios de Mi santuario.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:10</div>
+        <div class="hebrew">
+          עִבְרוּ עִבְרוּ בַשְּׁעָרִים פַּנּוּ דֶרֶךְ הָעָם סֹלּוּ סֹלּוּ
+          הַמְסִלָּה סַקְּלוּ מֵאֶבֶן הָרִימוּ נֵס עַל־הָעַמִּים׃
+        </div>
+        <div class="transliteration">
+          ‘Ivru, ‘ivru bashshe‘arim, pannu derekh ha‘am; sollu, sollu hamessilah,
+          saqqelu me’even, harimu nes ‘al ha‘amim.
+        </div>
+        <div class="translation">
+          Pasad, pasad por las puertas, preparad camino al pueblo; allanad la
+          calzada, quitad las piedras, alzad bandera sobre los pueblos.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:11</div>
+        <div class="hebrew">
+          הִנֵּה יהוה הִשְׁמִיעַ אֶל־קְצֵה הָאָרֶץ אִמְרוּ לְבַת־צִיּוֹן הִנֵּה
+          יִשְׁעֵךְ בָּא הִנֵּה שְׂכָרוֹ אִתּוֹ וּפְעֻלָתוֹ לְפָנָיו׃
+        </div>
+        <div class="transliteration">
+          Hinéh יהוה hishmia el-qtze ha’áretz: imru levat Tzión, hinéh yishekh ba,
+          hinéh secharó ito, ufe‘ulató lefanav.
+        </div>
+        <div class="translation">
+          He aquí, יהוה proclamó hasta lo último de la tierra: decid a la hija
+          de Tzión, he aquí viene tu salvación, he aquí su galardón con Él, y su
+          obra delante de Él.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">62:12</div>
+        <div class="hebrew">
+          וְקָרְאוּ לָהֶם עַם־הַקֹּדֶשׁ גְּאוּלֵי יהוה וְלָךְ יִקָּרֵא דְרוּשָׁה
+          עִיר לֹא נֶעֱזָבָה׃
+        </div>
+        <div class="transliteration">
+          Veqare’u lahem: ‘am haqodesh, ge’ulei יהוה; velakh yiqqare Drushah, ‘ir
+          lo ne‘ezavah.
+        </div>
+        <div class="translation">
+          Y se les llamará: pueblo santo, redimidos de יהוה; y a ti se te
+          llamará: “Buscada”, ciudad no abandonada.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:1</div>
+        <div class="hebrew">
+          מִי־זֶה בָּא מֵאֱדוֹם חֲמוּץ בְּגָדִים מִבָּצְרָה זֶה הָדוּר בִּלְבוּשׁוֹ
+          צֹעֶה בְּרֹב כֹּחוֹ אֲנִי מְדַבֵּר בִּצְדָקָה רַב לְהוֹשִׁיעַ׃
+        </div>
+        <div class="transliteration">
+          Mi zeh va meEdom, ḥamutz begadim mibotzrah; zeh hadur bilvushó, tzo‘eh
+          berov koḥó? Ani medabber bitzdakah, rav lehoshia‘.
+        </div>
+        <div class="translation">
+          ¿Quién es este que viene de Edom, de Bozrah con vestiduras rojas?
+          Este, majestuoso en su vestidura, que marcha en la grandeza de su
+          poder: Yo, que hablo en justicia, poderoso para salvar.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:2</div>
+        <div class="hebrew">
+          מַדּוּעַ אָדוֹם לִלְבוּשֶׁךָ וּבְגָדֶיךָ כְּדֹרֵךְ בְּגַת׃
+        </div>
+        <div class="transliteration">
+          Madua adom lilvushkha, uvegadékha kedorékh begat?
+        </div>
+        <div class="translation">
+          ¿Por qué es roja tu vestidura, y tus ropas como las del que pisa en el
+          lagar?
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:3</div>
+        <div class="hebrew">
+          פֻּרָה דָרַכְתִּי לְבַדִּי וּמֵעַמִּים אֵין אִישׁ אִתִּי וְאֶדְרְכֵם
+          בְּאַפִּי וְאַרְמְסֵם בַּחֲמָתִי וַיֵּז נִצְחָם עַל־בִּגְדַי וְכָל־מַלְבּוּשַׁי
+          אֲגָאַלְתִּי׃
+        </div>
+        <div class="transliteration">
+          Purah darakhti levaddi, ume‘amim ein ish itti; ve’erdrekhem be’api,
+          ve’armesem bachamati; vayeiz nitzcham ‘al bigdai, vekhol malbushai
+          g’alti.
+        </div>
+        <div class="translation">
+          El lagar he pisado yo solo, y de los pueblos nadie estuvo conmigo; los
+          pisé con mi ira, y los hollé con mi furor; y su sangre salpicó mis
+          vestidos, y manché todas mis ropas.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:4</div>
+        <div class="hebrew">
+          כִּי יוֹם נָקָם בְּלִבִּי וּשְׁנַת גְּאוּלַי בָּאָה׃
+        </div>
+        <div class="transliteration">
+          Ki yom naqám belibbi, ushnat ge’ulai ba’ah.
+        </div>
+        <div class="translation">
+          Porque día de venganza estaba en mi corazón, y año de mis redimidos
+          había llegado.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:5</div>
+        <div class="hebrew">
+          וְאַבִּיט וְאֵין עוֹזֵר וְאֶשְׁתּוֹמֵם וְאֵין סֹמֵךְ וַתּוֹשַׁע לִי זְרוֹעִי
+          וַחֲמָתִי הִיא סְמָכָתְנִי׃
+        </div>
+        <div class="transliteration">
+          Ve’abbit ve’ain ‘ozer, ve’eshtomem ve’ain somekh; vattosha‘ li zero‘i,
+          vachamati hi semachatni.
+        </div>
+        <div class="translation">
+          Miré, y no había quien ayudara; me asombré, y no había quien
+          sustentara; y me salvó mi propio brazo, y mi furor me sostuvo.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:6</div>
+        <div class="hebrew">
+          וְאָבוּס עַמִּים בְּאַפִּי וַאֲשַׁכְּרֵם בַּחֲמָתִי וְאוֹרִיד לָאָרֶץ
+          נִצְחָם׃
+        </div>
+        <div class="transliteration">
+          Ve’avus ‘amim be’api, va’ashakrem bachamati, ve’orid la’áretz nitzcham.
+        </div>
+        <div class="translation">
+          Y hollé pueblos con mi ira, los embriagué con mi furor, y derramé en
+          tierra su sangre.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:7</div>
+        <div class="hebrew">
+          חַסְדֵי יהוה אַזְכִּיר תְּהִלֹּת יהוה כְּעַל כֹּל אֲשֶׁר גְּמָלָנוּ יהוה
+          וְרַב־טוּב לְבֵית יִשְׂרָאֵל אֲשֶׁר גְּמָלָם כְּרַחֲמָיו וּכְרֹב
+          חֲסָדָיו׃
+        </div>
+        <div class="transliteration">
+          Chasdei יהוה azkir, tehillot יהוה, ke‘al kol asher gemalanu יהוה; verav
+          tuv leveit Yisra’el asher gemalam kerachamav ukerov chasadav.
+        </div>
+        <div class="translation">
+          De las misericordias de יהוה haré memoria, de las alabanzas de יהוה,
+          conforme a todo lo que nos dio יהוה, y la gran bondad hacia la casa de
+          Israel, que les otorgó según su compasión y la abundancia de sus
+          misericordias.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:8</div>
+        <div class="hebrew">
+          וַיֹּאמֶר אַךְ עַמִּי הֵמָּה בָּנִים לֹא יְשַׁקֵּרוּ וַיְהִי לָהֶם
+          לְמוֹשִׁיעַ׃
+        </div>
+        <div class="transliteration">
+          Vayomer: akh ‘ammi hemah, banim lo yeshakeru; vayehi lahem lemoshia‘.
+        </div>
+        <div class="translation">
+          Y dijo: ciertamente ellos son Mi pueblo, hijos que no mentirán; y fue
+          para ellos por Salvador.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">63:9</div>
+        <div class="hebrew">
+          בְּכָל־צָרָתָם לֹא צָר וּמַלְאַךְ פָּנָיו הוֹשִׁיעָם בְּאַהֲבָתוֹ
+          וּבְחֶמְלָתוֹ הוּא גְאָלָם וַיְנַטְּלֵם וַיְנַשְּׂאֵם כָּל־יְמֵי עוֹלָם׃
+        </div>
+        <div class="transliteration">
+          Bekhol tzaratam lo tzar, umal’akh panav hoshia‘am; be’ahavato
+          uvechemlato hu ge’alam, vayenatlem vayyinsa’em kol yemei ‘olam.
+        </div>
+        <div class="translation">
+          En toda angustia de ellos, no fue adversario, sino el Malaj de Su
+          rostro los salvó; en Su amor y Su compasión Él los redimió, los
+          levantó y los llevó todos los días de la antigüedad.
+        </div>
+      </div>
+    </div>
+
+    <div class="prophetic-content">
+      <h1>
+        Cumplimiento profético en el Mashíaj de Yeshayahu (Isaías) 61:10–63:9
+      </h1>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Cumplimiento Profético en el Mashíaj</div>
+        <ul>
+          <li>
+            <strong>Vestiduras de Salvación y Manto de Justicia (61:10):</strong>
+            El gozo por ser vestido con salvación y justicia apunta a la obra de
+            Yeshúa haMashíaj, quien nos reviste con Su justicia (2 Corintios
+            5:21). El lenguaje de “novio y novia” señala la relación del Mesías
+            con Su Kehiláh (Apocalipsis 19:7-8).
+          </li>
+          <li>
+            <strong
+              >La Redención de Tzión y Yerushaláyim (62:1-12):</strong
+            >
+            Se anuncia la restauración y el nuevo nombre dado por יהוה a
+            Jerusalén, lo que refleja el cumplimiento escatológico en el Reino
+            Mesiánico. Yeshúa aplica el inicio de Isaías 61 a Sí mismo en Lucas
+            4:16-21, declarando que Él es quien inaugura el tiempo de redención.
+          </li>
+          <li>
+            <strong>El Guerrero de Edom (63:1-6):</strong> La visión del que
+            viene de Edom con vestiduras rojas es un retrato profético del
+            Mashíaj como Juez y Guerrero escatológico (Apocalipsis 19:11-16). Su
+            vestidura manchada de sangre simboliza el juicio contra las naciones
+            enemigas, pero también refleja Su entrega en el madero, donde
+            derramó Su propia sangre por la redención.
+          </li>
+          <li>
+            <strong>El Malaj del Rostro (63:9):</strong> El texto habla del
+            “Malaj de Su rostro” que salva a Israel. La tradición mesiánica
+            identifica este Malaj con Yeshúa, la manifestación visible de יהוה
+            (cf. Éxodo 23:20-21; 1 Corintios 10:4). Él es quien redime, levanta y
+            lleva a Su pueblo “todos los días de la antigüedad”.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Conexión con los Profetas</div>
+        <ul>
+          <li>
+            <strong>Isaías 49:6:</strong> El Siervo de יהוה es “luz de las
+            naciones” y trae salvación hasta los confines de la tierra, paralelo
+            a Isaías 62:11 (“he aquí tu salvación viene”).
+          </li>
+          <li>
+            <strong>Zacarías 9:9-10:</strong> La llegada del Rey justo y
+            victorioso, que trae salvación, refleja la proclamación mesiánica de
+            Isaías 62:11.
+          </li>
+          <li>
+            <strong>Joel 3:12-14:</strong> El juicio sobre las naciones en el
+            valle de Josafat se conecta con Isaías 63:1-6, donde el Mesías
+            aparece como Juez.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Conexión con el Brit Hadasháh</div>
+        <ul>
+          <li>
+            <strong>Lucas 4:18-21:</strong> Yeshúa lee Isaías 61 y declara: “Hoy
+            se ha cumplido esta Escritura delante de vosotros.”
+          </li>
+          <li>
+            <strong>Apocalipsis 19:13-15:</strong> Yeshúa aparece con vestiduras
+            teñidas en sangre, cumpliendo Isaías 63:2-3.
+          </li>
+          <li>
+            <strong>2 Corintios 11:2 y Efesios 5:25-27:</strong> La imagen de la
+            novia adornada en Isaías 61:10 se conecta con la Kehiláh purificada
+            y desposada con el Mashíaj.
+          </li>
+          <li>
+            <strong>Hebreos 9:12:</strong> El Redentor entra al Lugar Santísimo
+            con Su propia sangre, cumpliendo Isaías 63:9 donde se habla de
+            redención por Su amor.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Aplicación Espiritual</div>
+        <ul>
+          <li>
+            <strong>Revestidos en el Mashíaj:</strong> Así como el profeta se
+            regocija por estar vestido de salvación, los creyentes somos
+            llamados a vestirnos de Mashíaj (Romanos 13:14).
+          </li>
+          <li>
+            <strong>Atalayas Espirituales (62:6-7):</strong> Somos llamados a
+            ser intercesores constantes por Israel y por la restauración del
+            Reino, sin guardar silencio hasta que יהוה cumpla Su promesa.
+          </li>
+          <li>
+            <strong>Esperanza en la Restauración de Yerushaláyim:</strong> La
+            promesa de una “ciudad no abandonada” nos recuerda que יהוה no ha
+            desechado a Su pueblo. La Kehiláh participa de esta esperanza al ser
+            injertada en Israel (Romanos 11).
+          </li>
+          <li>
+            <strong>El Juicio y la Redención:</strong> Isaías 63 nos enseña que
+            el Mashíaj es tanto Redentor como Juez. Quienes aceptan Su sangre
+            reciben vida; quienes lo rechazan enfrentarán el lagar de Su ira.
+          </li>
+          <li>
+            <strong>El Amor que Redime (63:9):</strong> La Haftaráh termina
+            resaltando que, a pesar de la ira contra las naciones, el motor de
+            la redención de Israel es el amor eterno de יהוה manifestado en
+            Yeshúa.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen Mesiánico:</strong>
+        <p>
+          Isaías 61:10–63:9 revela al Mashíaj como el Novio que adorna a Su
+          novia, el Guerrero que derrota a las naciones, el Redentor que salva
+          por Su amor eterno, y el Malaj del Rostro de יהוה que acompaña a Su
+          pueblo desde la antigüedad. En el Brit Hadasháh, Yeshúa haMashíaj
+          encarna cada una de estas facetas: Él es quien inaugura la redención,
+          quien vendrá a juzgar a las naciones, y quien sostiene a Su pueblo con
+          misericordia hasta el fin.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>Punto 3. Brit Hadasháh: Hebreos 8:10 (El nuevo pacto escrito en los corazones).</h1>
+      <div class="verse-container">
+        <div class="verse-number">Texto Arameo Peshitta – Hebreos 8:10</div>
+        <div class="aramaic">
+          ܗܳܕܶܐ ܗ̱ܝ ܕܝܰܬܝܩܳܐ ܕܰܐܩܽܘܡ ܠܰܒܰܬ݂ ܒܰܝܬ݂ ܝܶܣܪܳܝܶܠ ܡܶܢ ܒܰܬ݂ܪ
+          ܝܰܘ̈ܡܶܐ ܗܳܢܶܝܢ ܐܳܡܰܪ ܝܰܗܘܳܐ ܐܶܬ݂ܠܶܝܗ ܢܰܡܘܣܝ ܒܰܕܰܥܬ݂ܗܽܘܢ ܘܥܰܠ
+          ܠܶܒܰܗܽܘܢ ܐܶܟܬ݂ܽܘܒܶܝܗ ܘܐܶܗܘܶܐ ܠܗܽܘܢ ܠܰܐܠܳܗܳܐ ܘܗܽܘܢ ܢܶܗܘܽܘܢ ܠܝ
+          ܠܥܰܡܳܐ.
+        </div>
+        <div class="transliteration">
+          <strong>Fonética (siríaco oriental):</strong><br />
+          Hodé hi dyatiqá d’aqum labat bayt Yisra’el men bathar yawme hanein,
+          amar יהוה: atleih namusi b’da‘thun, wa‘al lebahun ektubeyh; wa’ehweh
+          lehun le’Eloha, w’hon nehwon li le‘am.
+        </div>
+        <div class="literal-translation">
+          <strong>Traducción Literal:</strong><br />
+          “Porque este es el pacto que estableceré con la casa de Israel después
+          de aquellos días, dice יהוה: Daré mi Toráh en su mente y sobre sus
+          corazones la escribiré, y seré para ellos por Elohím, y ellos serán
+          para Mí por pueblo.”
+        </div>
+        <p>
+          👉 Aquí el texto arameo mantiene la continuidad con Yirmiyahu
+          31:31-33, mostrando que el Nuevo Pacto no anula la Toráh, sino que la
+          escribe en el corazón por el Ruaj Hakodesh, cumpliéndose en Yeshúa
+          haMashíaj.
+        </p>
+      </div>
+    </div>
+
+    <div class="prophetic-content">
+      <h1>Comentario Mesiánico Profundo de Hebreos 8:10</h1>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Hebreos 8:10 en el Mashíaj Yeshúa</div>
+        <p>El verso declara:</p>
+        <blockquote class="scripture">
+          “Este es el pacto que estableceré con la casa de Israel después de
+          aquellos días, dice יהוה: Daré mi Toráh en su mente, y sobre sus
+          corazones la escribiré; y seré para ellos por Elohím, y ellos serán
+          para Mí por pueblo.”
+        </blockquote>
+        <p>
+          En el Brit Hadasháh arameo se muestra que el pacto no es abolición de
+          la Toráh, sino su internalización. En Yeshúa haMashíaj, la Toráh deja
+          de estar solamente en tablas de piedra y pasa a ser escrita en
+          corazones por el Ruaj HaKodesh (2 Corintios 3:3).
+        </p>
+        <p>
+          Yeshúa, como mediador del Nuevo Pacto (Hebreos 8:6), ratifica la
+          promesa de Yirmiyahu ירמיהו 31:31-33. Él es el Cordero del pacto (cf.
+          Lucas 22:20), y Su sangre inaugura el tiempo de una obediencia que
+          surge del corazón renovado, no solo de la letra externa.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Conexión con los Profetas</div>
+        <ul>
+          <li>
+            <strong>Yirmiyahu 31:31-33 – Profecía del Nuevo Pacto:</strong> no
+            como el de Sinaí que fue quebrantado, sino uno donde la Toráh está
+            escrita en el corazón. Hebreos 8:10 cita exactamente esta promesa y
+            la aplica a la obra del Mashíaj.
+          </li>
+          <li>
+            <strong>Yejezqel 36:26-27 –</strong> Elohím promete dar un nuevo
+            corazón y un nuevo espíritu, poniendo Su Espíritu dentro del pueblo
+            para que anden en Sus estatutos. Yeshúa cumple esto al enviar el
+            Ruaj HaKodesh (Juan 14:16-17).
+          </li>
+          <li>
+            <strong>Yeshayahu 61:10 –</strong> Habla de ser revestidos con
+            vestiduras de salvación y manto de justicia. Hebreos 8:10 conecta
+            esto porque el pacto interior transforma la naturaleza del hombre
+            para vivir en justicia.
+          </li>
+          <li>
+            <strong>Devarim 29:9-12 –</strong> Israel debía “estar firme en el
+            pacto” delante de יהוה, incluyendo a líderes, niños y extranjeros.
+            Hebreos 8:10 muestra que ese pacto encuentra su plenitud en el
+            Mashíaj, donde tanto Israel como las naciones participan.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Conexión con la Aliyáh</div>
+        <ul>
+          <li>
+            <strong>Devarim 29:9-12:</strong> El pueblo debía entrar en el pacto
+            de יהוה. Esto era una sombra del momento mesiánico, en que todos
+            —Israel y los extranjeros injertados— serían invitados a estar de
+            pie delante de Yeshúa en el Nuevo Pacto.
+          </li>
+          <li>
+            <strong>Isaías 61:10–63:9:</strong> Presenta la imagen del gozo de
+            estar vestido con salvación y del Malaj del Rostro de יהוה que salva
+            y redime a Su pueblo. Hebreos 8:10 se conecta al mostrar que este
+            mismo Redentor escribe Su Toráh en los corazones, sellando el pacto
+            eterno.
+          </li>
+        </ul>
+        <p>El hilo profético:</p>
+        <ul>
+          <li>Devarim: “entrar en el pacto”</li>
+          <li>Isaías: “vestidos con salvación”</li>
+          <li>Hebreos: “Toráh escrita en el corazón”</li>
+        </ul>
+        <p>👉 Todo converge en Yeshúa, el mediador y cumplimiento del Pacto.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔹 Aplicación Espiritual</div>
+        <ul>
+          <li>
+            <strong>Identidad como Pueblo del Pacto:</strong> Hebreos 8:10 nos
+            recuerda que nuestra identidad como Kehiláh mesiánica no depende de
+            símbolos externos, sino de la Toráh escrita en nuestros corazones
+            por el Mashíaj.
+          </li>
+          <li>
+            <strong>Obediencia Transformada:</strong> Ya no obedecemos solo por
+            mandamiento externo, sino porque el Ruaj Hakodesh nos capacita para
+            amar la voluntad de יהוה.
+          </li>
+          <li>
+            <strong>Unidad del Pueblo de Elohím:</strong> Así como en Devarim
+            todo Israel estaba presente en el pacto, y en Isaías la salvación se
+            extiende incluso al extranjero, Hebreos confirma que el Nuevo Pacto
+            une a Israel y a las naciones en un solo cuerpo en el Mashíaj.
+          </li>
+          <li>
+            <strong>Esperanza Escatológica:</strong> El pacto escrito en el
+            corazón anticipa la redención final, cuando toda la creación será
+            restaurada bajo el reinado de Yeshúa, cumpliendo la visión de Isaías
+            62 de una Jerusalén glorificada.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen Mesiánico:</strong>
+        <p>
+          Hebreos 8:10 revela que en Yeshúa haMashíaj se cumple la promesa de un
+          Nuevo Pacto, en el cual la Toráh es escrita en el corazón por el Ruaj
+          HaKodesh. Esto conecta con Devarim 29, donde Israel entra en el pacto,
+          y con Isaías 61–63, donde el Redentor salva a Su pueblo y lo reviste
+          de justicia. La Aliyáh nos enseña que este pacto es tanto para Israel
+          como para las naciones, y que nuestra verdadera identidad está en ser
+          un pueblo redimido y transformado en el Mashíaj.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 4: Contexto Histórico y Cultural sobre la Aliyáh de Devarim
+        (Deuteronomio) 29:9-12, según el Plan de Estudio de la Toráh 2025.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto base: Devarim 29:9-12</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Contexto Histórico</div>
+        <strong>Momento en la historia de Israel</strong>
+        <ul>
+          <li>
+            Este pasaje ocurre en los llanos de Moav, antes de que Israel
+            cruzara el río Yardén (Jordán) para entrar en la tierra prometida.
+          </li>
+          <li>
+            Moshé, en sus últimos discursos, reafirma la Toráh y el pacto a una
+            nueva generación, ya que la primera había muerto en el desierto
+            (Números 14).
+          </li>
+          <li>
+            Es una renovación del pacto sinaítico, extendido ahora no solo a
+            quienes lo vivieron en Sinaí, sino a toda la generación actual y
+            futura de Israel.
+          </li>
+        </ul>
+        <strong>El acto de “estar en pie”</strong>
+        <ul>
+          <li>
+            La expresión “atém nitzavím hayom” (vosotros estáis firmes hoy)
+            implica una asamblea solemne similar a una ceremonia legal de
+            tratado entre rey y vasallos en el antiguo Cercano Oriente.
+          </li>
+          <li>
+            En contextos del segundo milenio a.C., los tratados hititas y
+            asirios incluían la ratificación del pacto delante de los dioses,
+            con juramentos y maldiciones. Aquí, Israel está delante de יהוה, no
+            de ídolos.
+          </li>
+        </ul>
+        <strong>Participación de toda la comunidad</strong>
+        <ul>
+          <li>
+            La mención de líderes, ancianos, niños, mujeres y extranjeros (“el
+            que corta tu leña y el que saca tu agua”) muestra que el pacto era
+            totalmente inclusivo.
+          </li>
+          <li>
+            Este elemento cultural era radical en la antigüedad, donde
+            usualmente solo los reyes o sacerdotes entraban en tratados. En
+            Israel, todos debían participar, pues todos estaban bajo la
+            autoridad de la Toráh.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Contexto Cultural y Arqueológico</div>
+        <strong>Influencia de los pactos del Antiguo Cercano Oriente</strong>
+        <ul>
+          <li>
+            Los tratados políticos incluían cláusulas de fidelidad, bendiciones
+            y maldiciones.
+          </li>
+          <li>
+            El pacto de Moav se parece a un suzerain-vassal treaty (tratado de
+            soberano y vasallo), pero con una diferencia esencial: יהוה es el
+            único soberano, y Su pueblo entero es el vasallo.
+          </li>
+        </ul>
+        <strong>Prácticas comunitarias en la época</strong>
+        <ul>
+          <li>
+            La ceremonia pública, donde todos escuchaban y respondían “Amén”,
+            reforzaba la responsabilidad colectiva.
+          </li>
+          <li>
+            Hallazgos en Qumrán muestran que la comunidad esenia seguía este
+            modelo, renovando el pacto anualmente en asamblea (Documento de
+            Damasco, 1QS).
+          </li>
+        </ul>
+        <strong>Dimensión mesiánica en la cultura judía</strong>
+        <ul>
+          <li>
+            En la tradición del Segundo Templo, este pasaje se interpretó como
+            profecía de la inclusión de los gentiles en el pacto de Israel (ej.
+            Targumim y Midrashim sobre Devarim).
+          </li>
+          <li>
+            El hecho de que “el extranjero” está incluido en el campamento
+            anticipa el llamado universal de los profetas (Isaías 56:6-7).
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Conexión con la Aliyáh</div>
+        <ul>
+          <li>
+            El contexto histórico muestra que la renovación del pacto en Moav
+            era más amplia que la del Sinaí, porque incluía no solo a Israel,
+            sino también a los extranjeros dentro del campamento.
+          </li>
+          <li>
+            Culturalmente, esto prepara la visión profética de que el Nuevo
+            Pacto (Jeremías 31, Hebreos 8:10) sería escrito en el corazón de
+            Israel y de las naciones.
+          </li>
+          <li>
+            La Aliyáh de Devarim 29:9-12 es, en términos culturales, la antesala
+            de la universalización mesiánica del pacto en Yeshúa haMashíaj.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen del Punto 4:</strong>
+        <p>
+          Históricamente, Devarim 29:9-12 ubica a Israel en Moav, renovando el
+          pacto antes de entrar en la Tierra Prometida. Culturalmente, refleja
+          los tratados antiguos, pero con un énfasis único: toda la comunidad,
+          incluso extranjeros, debía participar. Esto se convierte en una
+          profecía viviente que anticipa el Nuevo Pacto en Yeshúa, donde Israel
+          y las naciones entran juntos en la presencia de יהוה bajo un mismo
+          pacto eterno.
+        </p>
+      </div>
+    </div>
+    <div class="explanation">
+      <h1>
+        Punto 5: Estudio, comentarios y conexiones proféticas sobre la Aliyáh
+        de Devarim (Deuteronomio) 29:9-12, de acuerdo con el Plan de Estudio de
+        la Toráh 2025.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto central: Devarim 29:9-12</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Comentarios Rabínicos Clásicos</div>
+        <strong>Rashi</strong>
+        <ul>
+          <li>
+            Destaca la frase “vosotros estáis hoy firmes”, interpretándola como
+            la preparación de Israel para escuchar advertencias y maldiciones,
+            pero asegurando que יהוה los sostiene en su existencia.
+          </li>
+          <li>
+            Afirma que incluso los extranjeros y siervos debían escuchar y
+            aceptar la Toráh.
+          </li>
+        </ul>
+        <strong>Rambán (Najmánides)</strong>
+        <ul>
+          <li>
+            Subraya que esta renovación del pacto no era solo para la generación
+            presente, sino también para todas las generaciones futuras de
+            Israel.
+          </li>
+          <li>
+            Esto conecta con la idea de que la Toráh tiene eternidad y validez
+            perpetua.
+          </li>
+        </ul>
+        <strong>Sforno</strong>
+        <ul>
+          <li>
+            Señala que la mención de todas las clases sociales indica que cada
+            individuo en Israel tiene responsabilidad espiritual, no solo los
+            líderes.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Comentario Judío Mesiánico</div>
+        <strong>Universalidad del Pacto</strong>
+        <ul>
+          <li>
+            La inclusión de niños, mujeres y extranjeros anticipa la extensión
+            del pacto a las naciones, que se cumple en Yeshúa haMashíaj.
+          </li>
+          <li>
+            Rav Shaúl (Pablo) afirma que en el Mashíaj no hay distinción entre
+            judío y gentil, varón o mujer, sino que todos son uno (Gálatas
+            3:28).
+          </li>
+        </ul>
+        <strong>La postura de estar “firmes delante de יהוה”</strong>
+        <ul>
+          <li>
+            Proféticamente apunta al gran día escatológico, cuando toda la
+            humanidad comparecerá ante el trono del Mashíaj (Apocalipsis 20:12).
+          </li>
+          <li>
+            Así como Israel se presenta en Moav para renovar el pacto, también
+            la Kehiláh mesiánica se presenta ante el Mashíaj como Su novia en
+            Apocalipsis 19:7-8.
+          </li>
+        </ul>
+        <strong>El Pacto y el Nuevo Corazón</strong>
+        <ul>
+          <li>
+            Jeremías 31:31-33 y Hebreos 8:10 explican que este pacto anunciado en
+            Devarim encuentra su plenitud cuando la Toráh es escrita en el
+            corazón.
+          </li>
+          <li>
+            Isaías 61:10 (Haftaráh de esta sección) habla de ser vestidos con
+            vestiduras de salvación y manto de justicia, lo cual refleja la
+            transformación interior del Nuevo Pacto.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Conexiones Proféticas</div>
+        <strong>Con los Profetas</strong>
+        <ul>
+          <li>
+            <strong>Yirmiyahu 31:31-33:</strong> La promesa de un pacto nuevo y
+            eterno con la casa de Israel.
+          </li>
+          <li>
+            <strong>Yejezqel 36:26-27:</strong> Nuevo corazón y nuevo espíritu,
+            capacitados para obedecer la Toráh.
+          </li>
+          <li>
+            <strong>Isaías 56:6-7:</strong> Los extranjeros que se unen a יהוה
+            serán parte de Su pacto, cumpliendo la inclusión de Devarim 29.
+          </li>
+        </ul>
+        <strong>Con el Brit Hadasháh</strong>
+        <ul>
+          <li>
+            <strong>Hebreos 8:10:</strong> Cita directamente a Yirmiyahu y
+            conecta el pacto Nuevo con la obra de Yeshúa.
+          </li>
+          <li>
+            <strong>Efesios 2:12-14:</strong> Los gentiles, antes “extranjeros a
+            los pactos”, ahora son parte del pueblo de Elohím por la sangre del
+            Mashíaj.
+          </li>
+          <li>
+            <strong>Apocalipsis 7:9:</strong> Una gran multitud de todas las
+            naciones y lenguas, firmes delante del trono, en cumplimiento de la
+            visión de Devarim 29:10.
+          </li>
+        </ul>
+        <strong>Con la Aliyáh misma</strong>
+        <ul>
+          <li>
+            El llamado de Moav no es solo histórico: es un tipo profético de la
+            congregación de los redimidos en el Reino mesiánico.
+          </li>
+          <li>
+            <strong>Devarim 29:12</strong> — “para que entres en el pacto de
+            יהוה” — encuentra su eco en las palabras de Yeshúa: “Esta copa es el
+            nuevo pacto en mi sangre” (Lucas 22:20).
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Aplicación Espiritual</div>
+        <ul>
+          <li>
+            <strong>Responsabilidad Colectiva:</strong> No hay lugar para la
+            pasividad. Cada individuo, desde el más grande hasta el más pequeño,
+            está llamado a renovar su compromiso con la Toráh en el Mashíaj.
+          </li>
+          <li>
+            <strong>Unidad en la Diversidad:</strong> Así como Israel incluía
+            extranjeros y sirvientes, la Kehiláh mesiánica es una familia de
+            múltiples pueblos que comparten una sola fe.
+          </li>
+          <li>
+            <strong>Renovación Continua:</strong> Así como Israel renovó el
+            pacto en Moav, nosotros renovamos nuestro compromiso con Yeshúa
+            diariamente, viviendo en obediencia y fidelidad.
+          </li>
+          <li>
+            <strong>Profecía Viva:</strong> El estar “firmes delante de יהוה”
+            apunta al gran día del juicio y de bodas del Cordero, donde el pacto
+            será consumado plenamente.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen del Punto 5:</strong>
+        <p>
+          Los comentarios rabínicos destacan la universalidad y la eternidad del
+          pacto. El enfoque mesiánico revela que esta Aliyáh es un anuncio
+          profético de la obra de Yeshúa haMashíaj, quien trae el pacto eterno
+          escrito en el corazón. La conexión con los profetas y el Brit
+          Hadasháh muestra que lo ocurrido en Moav fue un tipo redentor que
+          culmina en el Nuevo Pacto, donde Israel y las naciones se presentan
+          juntos delante de יהוה.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 6: Análisis profundo de la Aliyáh sobre Devarim (Deuteronomio)
+        29:9-12, relacionándola con su Haftaráh (Isaías 61:10–63:9) y su Brit
+        Hadasháh (Hebreos 8:10), tanto desde el comentario judío como mesiánico.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto base: Devarim 29:9-12</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Análisis Judío</div>
+        <strong>Unidad de Israel delante de יהוה</strong>
+        <ul>
+          <li>
+            El texto enfatiza que toda la nación está de pie delante de Elohím,
+            sin exclusión social o de estatus.
+          </li>
+          <li>
+            La tradición judía interpreta que cada alma de Israel, incluso las
+            futuras generaciones, estuvieron espiritualmente presentes en este
+            pacto (cf. Talmud, Shavuot 39a).
+          </li>
+        </ul>
+        <strong>La solemnidad de “hoy” (hayom)</strong>
+        <ul>
+          <li>
+            Rashi comenta que “hoy” no es solo aquel día histórico, sino un
+            recordatorio eterno de que Israel debe renovar diariamente su pacto
+            con Elohím.
+          </li>
+        </ul>
+        <strong>Inclusión del extranjero</strong>
+        <ul>
+          <li>
+            Los rabinos destacan que incluso el ger toshav (extranjero
+            residente) estaba obligado a respetar el pacto básico con Israel, lo
+            cual muestra la amplitud de la Toráh como instrucción para toda la
+            humanidad.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Análisis Mesiánico</div>
+        <strong>Profecía de Inclusión Universal</strong>
+        <ul>
+          <li>
+            El hecho de que todos —desde líderes hasta extranjeros— estén
+            presentes apunta proféticamente a la inclusión de las naciones en el
+            pacto mesiánico.
+          </li>
+          <li>
+            Rav Shaúl en Efesios 2:12-14 enseña que los gentiles, antes ajenos a
+            los pactos, son hechos parte por la sangre del Mashíaj.
+          </li>
+        </ul>
+        <strong>El estar “firmes delante de יהוה”</strong>
+        <ul>
+          <li>
+            Anticipa el gran juicio y la congregación final de redimidos
+            (Apocalipsis 7:9-10).
+          </li>
+          <li>
+            En el Brit Hadasháh, Yeshúa es el mediador que nos presenta sin
+            mancha delante de Elohím (Judas 24).
+          </li>
+        </ul>
+        <strong>El Pacto Nuevo en Yeshúa</strong>
+        <ul>
+          <li>Devarim 29:12 habla de “entrar en el pacto de יהוה”.</li>
+          <li>
+            Hebreos 8:10 revela que este pacto se cumple cuando la Toráh es
+            escrita en el corazón, hecho posible por la obra del Mashíaj y el
+            Ruaj HaKodesh.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Conexión con la Haftaráh (Isaías 61:10–63:9)
+        </div>
+        <strong>Vestiduras de salvación (Isaías 61:10)</strong>
+        <ul>
+          <li>
+            Así como Israel entra en el pacto y debe vivirlo, el profeta habla
+            de estar “vestido con ropas de salvación y manto de justicia”.
+          </li>
+          <li>
+            Esto simboliza que el pacto no es solo legal, sino transformador,
+            preparando a Israel como la novia del Mashíaj.
+          </li>
+        </ul>
+        <strong>Atalayas en Yerushaláyim (Isaías 62:6-7)</strong>
+        <ul>
+          <li>
+            La responsabilidad de velar por el cumplimiento del pacto no recae
+            solo en líderes, sino en toda la comunidad, reflejando la
+            universalidad de Devarim 29.
+          </li>
+        </ul>
+        <strong>El Malaj del Rostro (Isaías 63:9)</strong>
+        <ul>
+          <li>
+            El ángel de Su presencia que salva conecta con la promesa de pacto
+            en Devarim 29, mostrando que יהוה mismo, manifestado en el Mashíaj,
+            sostiene y redime a Su pueblo.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Conexión con el Brit Hadasháh (Hebreos 8:10)
+        </div>
+        <strong>Toráh interiorizada</strong>
+        <ul>
+          <li>
+            En Devarim, Israel recibe la Toráh escrita en tablas de piedra y
+            renovada en Moav.
+          </li>
+          <li>
+            En Hebreos 8:10, esta Toráh se escribe en el corazón, gracias a la
+            mediación de Yeshúa.
+          </li>
+        </ul>
+        <strong>El Pacto Universal</strong>
+        <ul>
+          <li>
+            Lo que en Moav incluía al extranjero residente, en Hebreos se
+            expande a todas las naciones, cumpliendo la visión profética de
+            Isaías 56:6-7.
+          </li>
+        </ul>
+        <strong>La meta escatológica</strong>
+        <ul>
+          <li>
+            Hebreos muestra que la plenitud del pacto es una comunidad
+            transformada, que ya no depende de sacrificios repetidos, sino de la
+            obra perfecta del Mashíaj (Hebreos 9:12).
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong>🔹 Conclusión del Punto 6</strong>
+        <p>La Aliyáh de Devarim 29:9-12 nos enseña que:</p>
+        <ul>
+          <li>
+            <strong>Históricamente,</strong> Israel renovó el pacto en Moav,
+            reafirmando su identidad delante de יהוה.
+          </li>
+          <li>
+            <strong>Proféticamente,</strong> esta reunión universal anticipa la
+            inclusión de las naciones en el pacto.
+          </li>
+          <li>
+            <strong>Mesiánicamente,</strong> Yeshúa haMashíaj es el mediador de
+            este pacto, que ahora está escrito en el corazón por el Ruaj
+            Hakodesh.
+          </li>
+          <li>
+            <strong>Exegéticamente,</strong> la Haftaráh e Isaías muestra el
+            aspecto de salvación y juicio del pacto, mientras Hebreos 8:10 lo
+            coloca en la dimensión final del Nuevo Pacto.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 7: Tema más relevante de la Aliyáh en Devarim (Deuteronomio)
+        29:9-12, dentro del marco del Plan de Estudio de la Toráh 2025.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto central</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Tema central de la Aliyáh</div>
+        <p>El tema más relevante es:</p>
+        <p>
+          <strong>
+            La renovación y universalidad del pacto de יהוה, que incluye a todo
+            Israel y también a los extranjeros, como anticipo del Nuevo Pacto en
+            Yeshúa haMashíaj.
+          </strong>
+        </p>
+        <p>
+          Este pasaje no se limita a recordar el pacto sinaítico, sino que lo
+          expande y actualiza para una nueva generación. Enfatiza que todos
+          están de pie delante de יהוה, mostrando la igualdad de
+          responsabilidades y bendiciones en el pacto.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Importancia en el contexto de la Toráh
+        </div>
+        <strong>Ratificación del pacto antes de entrar a la Tierra Prometida</strong
+        >
+        <ul>
+          <li>
+            El pueblo necesitaba renovar su fidelidad antes de heredar la
+            tierra, recordando que la prosperidad dependía de guardar la Toráh.
+          </li>
+        </ul>
+        <strong>Responsabilidad colectiva</strong>
+        <ul>
+          <li>
+            La Toráh no es solo para líderes o sacerdotes, sino para cada
+            persona del pueblo, incluyendo extranjeros residentes.
+          </li>
+        </ul>
+        <strong>Visión intergeneracional y universal</strong>
+        <ul>
+          <li>
+            Este pacto abarca a todos los presentes y a las generaciones
+            futuras, revelando la eternidad de la Toráh.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Conexión con Yeshúa haMashíaj</div>
+        <strong>Yeshúa como Mediador del Pacto</strong>
+        <ul>
+          <li>
+            Así como Israel entró en el pacto en Moav, Yeshúa inaugura el Nuevo
+            Pacto en Su sangre (Lucas 22:20).
+          </li>
+          <li>
+            Hebreos 8:10 conecta directamente con esta Aliyáh: la Toráh escrita
+            en el corazón.
+          </li>
+        </ul>
+        <strong>Incorporación de las naciones</strong>
+        <ul>
+          <li>
+            El extranjero incluido en el campamento anuncia la inclusión de los
+            gentiles en el Mashíaj (Efesios 2:12-19).
+          </li>
+          <li>
+            Esto es la realización del plan de יהוה: un solo pueblo bajo un solo
+            pacto.
+          </li>
+        </ul>
+        <strong>La Asamblea Escatológica</strong>
+        <ul>
+          <li>
+            “Todos firmes delante de יהוה” es una figura del gran día cuando toda
+            nación comparezca delante del Trono del Mashíaj (Apocalipsis 7:9-10).
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Relación con los Moedim de Elohím
+        </div>
+        <strong>Yom Teruáh (Día de las Trompetas):</strong>
+        <ul>
+          <li>
+            La expresión “estar firmes hoy delante de יהוה” tiene eco en la imagen
+            profética de Yom Teruáh, donde el pueblo se congrega en asamblea
+            solemne esperando el juicio y proclamación del Rey.
+          </li>
+        </ul>
+        <strong>Yom Kippur (Día de Expiación):</strong>
+        <ul>
+          <li>
+            El pacto renovado apunta a la reconciliación plena de Israel con
+            יהוה, que se cumplirá en el Yom Kippur profético final, cuando
+            “mirarán al que traspasaron” (Zacarías 12:10).
+          </li>
+        </ul>
+        <strong>Sukkot (Fiesta de las Cabañas):</strong>
+        <ul>
+          <li>
+            La presencia del extranjero en el pacto conecta con Sukkot, fiesta
+            universal donde las naciones subirán a Jerusalén para adorar al Rey
+            (Zacarías 14:16).
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen del Punto 7</strong>
+        <p>
+          El tema central de Devarim 29:9-12 es la universalidad y renovación del
+          pacto de יהוה, donde toda la comunidad de Israel y los extranjeros son
+          incluidos en una relación viva con Elohím. En Yeshúa haMashíaj, este
+          tema alcanza su plenitud: Él es el mediador del pacto eterno, quien
+          escribe la Toráh en los corazones y reúne a Israel y a las naciones en
+          un solo pueblo redimido.
+        </p>
+        <p>
+          Los Moedim de Elohím confirman este mensaje: Yom Teruáh proclama la
+          asamblea del pacto, Yom Kippur anticipa la expiación plena en el
+          Mashíaj, y Sukkot anuncia la inclusión de todas las naciones en la
+          adoración universal del Rey.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 8: Descubriendo a Mashíaj en cada Aliyáh, aplicado a Devarim
+        (Deuteronomio) 29:9-12, de acuerdo al Plan de Estudio de la Toráh 2025.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto base</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Profecías y Sombras Mesiánicas</div>
+        <strong>“Todos estáis hoy firmes delante de יהוה”</strong>
+        <ul>
+          <li>
+            <strong>Tipología:</strong> Anticipa la asamblea final delante del
+            trono del Mashíaj (Apocalipsis 7:9-10), donde toda nación y lengua se
+            presentará ante Él.
+          </li>
+          <li>
+            <strong>Sombra mesiánica:</strong> Así como Israel renovó el pacto
+            en Moav, la Kehiláh mesiánica se presenta en Yeshúa para entrar en el
+            Nuevo Pacto (Hebreos 8:10).
+          </li>
+        </ul>
+        <strong>Incluir al extranjero en el pacto</strong>
+        <ul>
+          <li>
+            <strong>Profecía:</strong> Prefigura la incorporación de las
+            naciones en el pueblo de Elohím.
+          </li>
+          <li>
+            <strong>Cumplimiento en Yeshúa:</strong> Rav Shaúl (Pablo) explica
+            que los gentiles, antes ajenos a los pactos, han sido hechos
+            conciudadanos de Israel por la sangre del Mashíaj (Efesios 2:12-19).
+          </li>
+        </ul>
+        <strong>“Guardar y hacer las palabras del pacto”</strong>
+        <ul>
+          <li>
+            <strong>Figura mesiánica:</strong> Solo el Mashíaj cumplió
+            perfectamente la Toráh (Mateo 5:17).
+          </li>
+          <li>
+            <strong>Aplicación:</strong> En Yeshúa, la Toráh es escrita en
+            nuestros corazones, capacitándonos para vivirla con fidelidad
+            (Romanos 8:3-4).
+          </li>
+        </ul>
+        <strong>El juramento de יהוה</strong>
+        <ul>
+          <li>
+            <strong>Patrón redentor:</strong> La fidelidad del pacto no depende
+            del hombre, sino del juramento de יהוה mismo.
+          </li>
+          <li>
+            <strong>Cumplimiento:</strong> En Yeshúa, las promesas de יהוה son
+            “sí y amén” (2 Corintios 1:20), garantizando la permanencia del
+            pacto.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Paralelismos con la Haftaráh (Isaías 61:10–63:9)
+        </div>
+        <ul>
+          <li>
+            <strong>Isaías 61:10:</strong> “Me vistió con ropas de salvación, me
+            cubrió con manto de justicia.” →
+            <strong>Paralelo:</strong> Así como Israel entró en el pacto en Moav,
+            Yeshúa nos reviste con Su justicia para entrar en el pacto eterno.
+          </li>
+          <li>
+            <strong>Isaías 62:11:</strong> “He aquí tu salvación viene.” → La
+            salvación misma, personificada en el Mashíaj, es la realización del
+            pacto de Devarim 29.
+          </li>
+          <li>
+            <strong>Isaías 63:9:</strong> “El Malaj de Su rostro los salvó.” →
+            El mismo que renovó el pacto en Moav es el que lo cumple en el
+            Mashíaj, el Redentor visible de יהוה.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Paralelismos con el Brit Hadasháh (Hebreos 8:10)
+        </div>
+        <ul>
+          <li>
+            <strong>Devarim 29:</strong> Israel entra en el pacto, incluyendo
+            al extranjero.
+          </li>
+          <li>
+            <strong>Hebreos 8:10:</strong> El Nuevo Pacto es escrito en el
+            corazón, universal y eterno.
+          </li>
+          <li>
+            <strong>Conexión mesiánica:</strong> Yeshúa es el mediador del pacto
+            (Hebreos 9:15), cumpliendo lo que Moav solo anticipaba.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Métodos Mesiánicos</div>
+        <ul>
+          <li>
+            <strong>Tipos (Tipologías):</strong> Moav → Prefiguración del Monte
+            del Mashíaj (donde la Kehiláh se congrega en el Nuevo Pacto).
+          </li>
+          <li>
+            <strong>Sombras (Tzelalim):</strong> La Toráh en tablas de piedra →
+            La Toráh en el corazón por Yeshúa.
+          </li>
+          <li>
+            <strong>Figuras proféticas:</strong> El extranjero incluido →
+            Gentiles injertados en el olivo de Israel (Romanos 11).
+          </li>
+          <li>
+            <strong>Patrones redentores (Tavnitot):</strong> Renovación del
+            pacto en cada generación → Renovación eterna en Yeshúa.
+          </li>
+          <li>
+            <strong>Nombres y títulos:</strong> “Pueblo de יהוה” → “Novia del
+            Cordero” (Apocalipsis 19:7).
+          </li>
+          <li>
+            <strong>Paralelismos temáticos:</strong> Entrada en el pacto → Cena
+            del pacto en el Mashíaj (Lucas 22:20).
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen del Punto 8</strong>
+        <p>En Devarim 29:9-12, Mashíaj se revela como:</p>
+        <ul>
+          <li>
+            <strong>El Mediador del Pacto,</strong> que asegura la fidelidad de
+            las promesas de יהוה.
+          </li>
+          <li>
+            <strong>El Redentor universal,</strong> que incluye a Israel y a los
+            extranjeros en un solo pueblo.
+          </li>
+          <li>
+            <strong>El que escribe la Toráh en el corazón,</strong> cumpliendo
+            lo que Moav solo prefiguraba.
+          </li>
+          <li>
+            <strong>El Novio,</strong> que reviste a Su pueblo con vestiduras de
+            justicia para la boda escatológica.
+          </li>
+        </ul>
+        <p>
+          La Aliyáh de Moav no es solo un hecho histórico, sino un modelo
+          profético que apunta directamente a la obra eterna de Yeshúa
+          haMashíaj.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 9: Midrashim, Targumim, Textos fuentes y Apócrifos relacionados
+        con la Aliyáh de Devarim (Deuteronomio) 29:9-12, siguiendo la estructura
+        del Plan de Estudio de la Toráh 2025.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto base</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Midrashim</div>
+        <strong>Midrash Tanjuma, Nitzavim 3</strong>
+        <ul>
+          <li>
+            Explica que Israel estaba “de pie” (nitzavím) como testigos del
+            pacto, mostrando firmeza y unidad delante de יהוה.
+          </li>
+          <li>
+            Enseña que las futuras generaciones también estaban presentes
+            mística y espiritualmente en este momento.
+          </li>
+        </ul>
+        <strong>Midrash Rabá, Devarim 7:8</strong>
+        <ul>
+          <li>
+            Resalta que tanto los líderes como los más humildes son igualmente
+            responsables de guardar la Toráh.
+          </li>
+          <li>
+            El extranjero, el leñador y el aguador son mencionados para
+            enfatizar que nadie queda fuera de la Alianza.
+          </li>
+        </ul>
+        <strong>Midrash sobre “Hayom” (hoy)</strong>
+        <ul>
+          <li>
+            Los sabios interpretan “hoy” como renovación constante, es decir,
+            que Israel debe vivir cada día como si estuviera entrando de nuevo
+            en el pacto.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Targumim</div>
+        <strong>Targum Onkelos</strong>
+        <ul>
+          <li>
+            Traduce la escena con el énfasis en la solemnidad del pacto: Israel
+            está de pie “para aceptar sobre vosotros la palabra de la Ley de
+            יהוה”.
+          </li>
+          <li>
+            Añade el matiz de responsabilidad comunitaria: todo Israel entra
+            bajo el yugo de la Toráh.
+          </li>
+        </ul>
+        <strong>Targum Yonatán</strong>
+        <ul>
+          <li>
+            Amplía la idea del “extranjero en tu campamento”, diciendo que
+            incluso los prosélitos y los convertidos estaban incluidos en la
+            Alianza.
+          </li>
+          <li>
+            Esto resuena con la visión profética de Isaías 56:6-7: “Mi casa será
+            llamada casa de oración para todos los pueblos.”
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Textos fuentes del Judaísmo del Segundo Templo
+        </div>
+        <strong>Qumrán – Documento de Damasco (CD 15:7-13)</strong>
+        <ul>
+          <li>
+            Los esenios renovaban el pacto cada año, basados en pasajes como
+            Devarim 29.
+          </li>
+          <li>
+            La idea de una renovación comunitaria del pacto está directamente
+            inspirada en Moav.
+          </li>
+        </ul>
+        <strong>Qumrán – Regla de la Comunidad (1QS 1:16-20)</strong>
+        <ul>
+          <li>
+            Habla de entrar en la comunidad como en un pacto con Elohím, con
+            bendiciones para los fieles y maldiciones para los rebeldes, eco
+            claro de Devarim 29–30.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Textos Apócrifos</div>
+        <strong>Libro de los Jubileos (cap. 15)</strong>
+        <ul>
+          <li>
+            Describe la importancia de que toda la comunidad de Israel guarde la
+            alianza, reafirmando la obligación de las generaciones futuras.
+          </li>
+        </ul>
+        <strong>Sirácida / Ben Sira (44:12-15)</strong>
+        <ul>
+          <li>
+            Habla de los pactos eternos con los patriarcas, que permanecen como
+            herencia para su descendencia.
+          </li>
+          <li>Refuerza la noción de continuidad de la Alianza de Moav.</li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Conexión Mesiánica</div>
+        <strong>Midrash y Brit Hadasháh</strong>
+        <ul>
+          <li>
+            Así como los Midrashim interpretan que todas las generaciones
+            estaban presentes en Moav, el Brit Hadasháh enseña que en Yeshúa
+            haMashíaj toda la humanidad es convocada a estar en pie delante de
+            יהוה (Apocalipsis 7:9).
+          </li>
+        </ul>
+        <strong>Targumim y cumplimiento en Yeshúa</strong>
+        <ul>
+          <li>
+            El Targum Yonatán, al incluir prosélitos en la Alianza, anticipa la
+            visión mesiánica: Yeshúa injerta a los gentiles en el olivo de Israel
+            (Romanos 11:17-24).
+          </li>
+        </ul>
+        <strong>Qumrán y la Nueva Comunidad</strong>
+        <ul>
+          <li>
+            Así como los esenios renovaban su pacto en comunidad, en Yeshúa la
+            Kehiláh mesiánica vive en renovación continua del pacto, pero no
+            basado en rituales externos, sino en el corazón transformado por el
+            Ruaj Hakodesh (Hebreos 8:10).
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen del Punto 9</strong>
+        <ul>
+          <li>
+            <strong>Midrashim:</strong> Afirman la unidad y responsabilidad de
+            todo Israel, incluyendo extranjeros y futuras generaciones.
+          </li>
+          <li>
+            <strong>Targumim:</strong> Recalcan la aceptación comunitaria del
+            pacto y la inclusión de prosélitos.
+          </li>
+          <li>
+            <strong>Qumrán:</strong> Refleja la práctica de renovación del pacto
+            como eco de Moav.
+          </li>
+          <li>
+            <strong>Apócrifos:</strong> Subrayan la continuidad de la Alianza en
+            la historia.
+          </li>
+          <li>
+            <strong>Mesiánicamente:</strong> Todo esto anticipa el Nuevo Pacto
+            en Yeshúa haMashíaj, que reúne a Israel y las naciones en una
+            comunidad redimida y transformada.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 10: Mandamientos encontrados, principios y valores en la Aliyáh
+        de Devarim (Deuteronomio) 29:9-12, siguiendo el Plan de Estudio de la
+        Toráh 2025.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto base</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Mandamientos (Mitzvot) identificados</div>
+        <strong>Guardar el pacto</strong>
+        <ul>
+          <li>
+            <strong>Mitzvá:</strong> La obligación de custodiar y preservar las
+            palabras del pacto de יהוה.
+          </li>
+          <li>
+            <strong>Valor:</strong> Fidelidad constante a la Toráh, no como algo
+            teórico, sino vivido en la práctica.
+          </li>
+        </ul>
+        <strong>Hacer las palabras del pacto</strong>
+        <ul>
+          <li>
+            <strong>Mitzvá:</strong> No solo escuchar o aprender, sino actuar
+            conforme a la Toráh.
+          </li>
+          <li>
+            <strong>Valor:</strong> Obediencia activa, reflejando la unión entre
+            fe y obras.
+          </li>
+        </ul>
+        <strong>Estar firmes delante de יהוה</strong>
+        <ul>
+          <li>
+            <strong>Mitzvá implícita:</strong> La disposición de presentarse en
+            santidad y unidad delante de Elohím.
+          </li>
+          <li>
+            <strong>Valor:</strong> Responsabilidad comunitaria y santificación
+            personal.
+          </li>
+        </ul>
+        <strong>Participación inclusiva en el pacto</strong>
+        <ul>
+          <li>
+            <strong>Mitzvá implícita:</strong> Todos, sin excepción, deben
+            entrar en el pacto: líderes, ancianos, mujeres, niños y extranjeros.
+          </li>
+          <li>
+            <strong>Valor:</strong> Igualdad espiritual y responsabilidad
+            compartida.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Principios y Valores</div>
+        <strong>Unidad del Pueblo</strong>
+        <ul>
+          <li>
+            Todos, desde los líderes hasta los más humildes, forman parte del
+            mismo pacto.
+          </li>
+          <li>
+            <strong>Principio mesiánico:</strong> en Yeshúa, no hay distinción
+            entre judío o gentil, varón o mujer (Gálatas 3:28).
+          </li>
+        </ul>
+        <strong>Renovación continua</strong>
+        <ul>
+          <li>
+            La palabra “hoy” (hayom) enseña que el pacto debe ser renovado
+            diariamente.
+          </li>
+          <li>
+            <strong>Valor:</strong> vivir cada día como si estuviéramos entrando
+            nuevamente en la presencia de יהוה.
+          </li>
+        </ul>
+        <strong>Incorporación del extranjero</strong>
+        <ul>
+          <li>
+            La inclusión de los que “cortan la leña y sacan el agua” muestra que
+            nadie queda fuera del alcance del pacto.
+          </li>
+          <li>
+            <strong>Principio mesiánico:</strong> anticipa la participación de
+            las naciones en el Nuevo Pacto en Yeshúa.
+          </li>
+        </ul>
+        <strong>Responsabilidad generacional</strong>
+        <ul>
+          <li>
+            No solo quienes estuvieron presentes, sino también las generaciones
+            futuras quedan comprometidas en el pacto (cf. Devarim 29:14-15).
+          </li>
+          <li>
+            <strong>Valor:</strong> transmisión de la fe, la Toráh y el pacto a
+            hijos y nietos.
+          </li>
+        </ul>
+        <strong>Prosperidad ligada a la obediencia</strong>
+        <ul>
+          <li>
+            La prosperidad no se presenta como riqueza material únicamente, sino
+            como plenitud en la vida bajo la bendición de יהוה.
+          </li>
+          <li>
+            <strong>Principio espiritual:</strong> obediencia → vida, rebeldía →
+            maldición.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Conexión Mesiánica</div>
+        <p>En Yeshúa haMashíaj, estos mandamientos encuentran plenitud:</p>
+        <ul>
+          <li>
+            Él es el único que guardó y cumplió perfectamente el pacto (Mateo
+            5:17).
+          </li>
+          <li>
+            Nos invita a estar firmes delante de Elohím como pueblo redimido
+            (Efesios 6:13-14).
+          </li>
+          <li>
+            Su obra hace posible que la Toráh sea escrita en el corazón (Hebreos
+            8:10), capacititando a Israel y a las naciones para guardar el
+            pacto.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen del Punto 10</strong>
+        <p>
+          Los mandamientos principales de esta Aliyáh son guardar el pacto,
+          cumplirlo, y presentarse firmes delante de יהוה. Los valores que
+          emergen son la unidad, inclusión, renovación diaria, responsabilidad
+          generacional y obediencia como camino a la vida plena.
+        </p>
+        <p>
+          En el Mashíaj, estos principios se elevan al nivel más alto: Yeshúa nos
+          da un corazón nuevo para vivir en fidelidad, une a Israel con las
+          naciones, y garantiza la permanencia del pacto eterno.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 11: Preguntas de Reflexión sobre la Aliyáh de Devarim
+        (Deuteronomio) 29:9-12, con respuestas en el Mashíaj Yeshúa, de acuerdo
+        con el Plan de Estudio de la Toráh 2025.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto central</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">
+          🔹 Preguntas de Reflexión y Respuestas en el Mashíaj
+        </div>
+        <div class="question">
+          1. ¿Qué significa “guardar y hacer las palabras de este pacto” en
+          nuestra vida actual?
+        </div>
+        <div class="answer">
+          <strong>Respuesta en el Mashíaj:</strong> Guardar y hacer la Toráh es
+          vivir en fidelidad al pacto, y en Yeshúa esto se cumple porque Él
+          escribió la Toráh en nuestros corazones por el Ruaj HaKodesh (Hebreos
+          8:10). Nuestra obediencia ya no es solo externa, sino fruto de una
+          transformación interna.
+        </div>
+        <div class="question">
+          2. ¿Por qué es importante que toda la comunidad, desde los líderes
+          hasta los más humildes, estuviera “de pie” delante de יהוה?
+        </div>
+        <div class="answer">
+          <strong>Respuesta en el Mashíaj:</strong> Esto muestra que todos son
+          iguales delante de Elohím. En el Mashíaj, no hay distinción entre judío
+          o gentil, esclavo o libre, hombre o mujer (Gálatas 3:28). Todos somos
+          uno en Él, y todos seremos presentados “firmes e irreprensibles”
+          delante de Su presencia (Judas 24).
+        </div>
+        <div class="question">
+          3. ¿Qué nos enseña la inclusión del extranjero en el pacto de Moav?
+        </div>
+        <div class="answer">
+          <strong>Respuesta en el Mashíaj:</strong> Proféticamente apunta a que
+          las naciones serían injertadas en el olivo de Israel (Romanos
+          11:17-24). En Yeshúa, los gentiles, que estaban alejados de los pactos,
+          ahora son parte del pueblo de Elohím (Efesios 2:12-13).
+        </div>
+        <div class="question">
+          4. ¿Cómo se conecta el “estar firmes hoy delante de יהוה” con nuestra
+          esperanza en el futuro?
+        </div>
+        <div class="answer">
+          <strong>Respuesta en el Mashíaj:</strong> Así como Israel estuvo en
+          pie en Moav para renovar el pacto, nosotros esperamos el día en que
+          toda nación estará en pie delante del Trono del Cordero (Apocalipsis
+          7:9-10). Estar “firmes hoy” nos prepara para estar firmes en aquel día
+          final.
+        </div>
+        <div class="question">
+          5. ¿De qué manera podemos renovar diariamente nuestro pacto con Elohím
+          en Yeshúa?
+        </div>
+        <div class="answer">
+          <strong>Respuesta en el Mashíaj:</strong> Cada día al orar, obedecer y
+          vivir en la fe de Yeshúa, renovamos nuestro pacto. Como dijo Rav
+          Shaúl: “Ya no vivo yo, mas vive el Mashíaj en mí” (Gálatas 2:20).
+          Nuestra vida diaria se convierte en un testimonio vivo del pacto
+          eterno.
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen del Punto 11</strong>
+        <p>
+          Las preguntas de reflexión de Devarim 29:9-12 nos llevan a reconocer
+          que:
+        </p>
+        <ul>
+          <li>
+            Guardar el pacto es vivir en Yeshúa con la Toráh escrita en el
+            corazón.
+          </li>
+          <li>
+            Todos somos iguales delante de Elohím, unidos en el Mashíaj.
+          </li>
+          <li>
+            El extranjero incluido profetiza la unión de las naciones en Israel
+            por Yeshúa.
+          </li>
+          <li>
+            Estar firmes delante de יהוה en Moav anticipa la asamblea final ante
+            el Trono del Cordero.
+          </li>
+          <li>
+            El pacto se renueva cada día en nuestra vida cuando obedecemos y
+            permanecemos en Él.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h1>
+        Punto 12: Resumen de la Aliyáh en Devarim (Deuteronomio) 29:9-12,
+        siguiendo el Plan de Estudio de la Toráh 2025, y mostrando su
+        cumplimiento y aplicación en Yeshúa haMashíaj.
+      </h1>
+
+      <div class="section-container">
+        <p>📖 <strong>Texto central</strong></p>
+        <blockquote class="scripture">
+          “Guardad, pues, las palabras de este pacto y hacedlas, para que
+          prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie
+          delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros
+          ancianos y vuestros oficiales, todos los varones de Israel; vuestros
+          niños, vuestras mujeres, y tu extranjero que habita en medio de tu
+          campamento, desde el que corta tu leña hasta el que saca tu agua; para
+          que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu
+          Elohím concierta hoy contigo.”
+        </blockquote>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Resumen de la Aliyáh</div>
+        <strong>Renovación del pacto</strong>
+        <ul>
+          <li>
+            Israel, a punto de entrar en la Tierra Prometida, renueva el pacto
+            con יהוה en los campos de Moav.
+          </li>
+          <li>
+            Este acto asegura la continuidad de la Toráh y el compromiso de
+            obedecerla.
+          </li>
+        </ul>
+        <strong>Unidad del pueblo</strong>
+        <ul>
+          <li>
+            Toda la comunidad, sin distinción de edad, género, posición social o
+            nacionalidad, está presente en esta renovación del pacto.
+          </li>
+          <li>
+            El mensaje es claro: el pacto abarca a todos los que se someten a la
+            autoridad de יהוה.
+          </li>
+        </ul>
+        <strong>Inclusión del extranjero</strong>
+        <ul>
+          <li>
+            La mención del extranjero en el campamento es un indicio profético
+            de la futura inclusión de las naciones en el plan de redención.
+          </li>
+        </ul>
+        <strong>Prosperidad condicionada a la obediencia</strong>
+        <ul>
+          <li>
+            El bienestar de Israel depende de guardar y hacer las palabras del
+            pacto.
+          </li>
+          <li>
+            No se trata solo de prosperidad material, sino de plenitud en la
+            vida bajo la bendición de יהוה.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <div class="prophetic-title">🔹 Conexión con Yeshúa haMashíaj</div>
+        <strong>El Mediador del Pacto</strong>
+        <ul>
+          <li>
+            Yeshúa cumple lo que Moav anticipa: ser el mediador de un pacto
+            Nuevo y eterno (Hebreos 8:10, 9:15).
+          </li>
+          <li>
+            En Él, la Toráh pasa de estar en tablas de piedra a estar escrita en
+            los corazones.
+          </li>
+        </ul>
+        <strong>Unidad en el Mashíaj</strong>
+        <ul>
+          <li>
+            Así como Israel entero estuvo presente, en Yeshúa toda la humanidad
+            es convocada a presentarse delante de Elohím (Apocalipsis 7:9).
+          </li>
+          <li>
+            La división entre Israel y las naciones es derribada en Él (Efesios
+            2:14-16).
+          </li>
+        </ul>
+        <strong>Inclusión universal</strong>
+        <ul>
+          <li>
+            El extranjero en el campamento es figura de los gentiles injertados
+            en el olivo de Israel (Romanos 11).
+          </li>
+          <li>
+            Yeshúa es la puerta de entrada al pacto eterno para toda nación.
+          </li>
+        </ul>
+        <strong>Prosperidad verdadera en el Mashíaj</strong>
+        <ul>
+          <li>
+            La promesa de prosperidad se cumple en el Mashíaj como plenitud de
+            vida, paz y redención (Juan 10:10).
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <strong> Resumen final del Punto 12</strong>
+        <p>
+          La Aliyáh de Devarim 29:9-12 enseña que el pacto de יהוה es inclusivo,
+          renovador y eterno. Israel se presentó unido en Moav, renovando su
+          compromiso, y esa misma unidad profetiza la redención mesiánica.
+        </p>
+        <p>
+          En Yeshúa haMashíaj, este pacto alcanza su máxima expresión:
+        </p>
+        <ul>
+          <li>La Toráh escrita en el corazón.</li>
+          <li>Israel y las naciones unidos en un solo pueblo.</li>
+          <li>El Mashíaj como mediador del pacto eterno.</li>
+          <li>
+            Una prosperidad que no se limita a lo material, sino que es vida
+            abundante en la presencia de יהוה.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="content-container">
+        <h1>Punto 13: Tefiláh (oración) de la Aliyáh</h1>
+        
+        <div class="section-container">
+            <p><strong>Correspondiente a Devarim (Deuteronomio) 29:9-12</strong>, dentro del <strong>Plan de Estudio de la Toráh 2025</strong>, con aplicación en <strong>Yeshúa haMashíaj</strong>.</p>
+        </div>
+
+        <div class="verse-container">
+            <h2>📖 Texto central</h2>
+            <div class="scripture">
+                "Guardad, pues, las palabras de este pacto y hacedlas, para que prosperéis en todo lo que hiciereis. Vosotros estáis hoy todos en pie delante de יהוה vuestro Elohím; los jefes de vuestras tribus, vuestros ancianos y vuestros oficiales, todos los varones de Israel; vuestros niños, vuestras mujeres, y tu extranjero que habita en medio de tu campamento, desde el que corta tu leña hasta el que saca tu agua; para que entres en el pacto de יהוה tu Elohím y en su juramento, que יהוה tu Elohím concierta hoy contigo."
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <h2>🙏 Tefiláh de la Aliyáh</h2>
+            
+            <div class="prayer-text">
+                Adonái יהוה, Elohím de Israel, te damos gracias porque nos llamaste a estar <strong>firmes delante de Ti</strong>, unidos como un solo pueblo. Así como nuestros padres renovaron el pacto en Moav, hoy también nosotros lo renovamos en el <strong>Mashíaj Yeshúa</strong>, quien nos abrió el acceso al <strong>pacto eterno</strong> escrito en nuestros corazones.
+            </div>
+
+            <div class="prayer-text">
+                Te bendecimos porque no haces distinción de personas: incluiste a líderes, ancianos, mujeres, niños y extranjeros, y en el Mashíaj uniste a Israel y a las naciones en una sola familia redimida.
+            </div>
+
+            <div class="prayer-text">
+                Ayúdanos a <strong>guardar y hacer las palabras de Tu Toráh</strong>, no como letra muerta, sino como vida activa por el poder del <strong>Ruaj HaKodesh</strong>. Que cada día sea "hoy", un día de renovación del pacto, un día para caminar en fidelidad, obediencia y amor.
+            </div>
+
+            <div class="prayer-text">
+                Te pedimos que nos mantengas firmes hasta el día en que toda nación se presente delante del Trono del Cordero, para proclamar juntos: <strong>"Tuyo es el reino, la justicia y la redención eterna en Yeshúa haMashíaj, nuestro Pacto vivo".</strong>
+            </div>
+
+            <div class="prayer-conclusion">
+                <strong>Amén.</strong>
+            </div>
+        </div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya2.html">Continuar con la Aliyá 2</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
