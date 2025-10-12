@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bereshit (בראשית) – Génesis 4:23-5:24</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        1. Parashá Bereshit (בראשית) Aliyáh 6: (Génesis 4:23-5:24) Genealogía de los descendientes de Adán hasta Noé.
+        <p>Haftaráh: Isaías 44:6-23 (Recordar la creación).</p>
+        <p>Brit Hadasháh: Hebreos 11:5 (Enoc caminó con Elohím).</p>
+      </h1>
+      <div class="content-container">
+        <h1>Punto 1. Génesis 4:23–5:24 בראשית</h1>
+        
+        <h3>Génesis 4:23–24</h3>
+        <div class="verse-container">
+            <div class="verse-number">כ״ג)</div>
+            <p class="hebrew">וַיֹּאמֶר לֶמֶךְ לְנָשָׁיו עָדָה וְצִלָּה שְׁמַעַן קוֹלִי נְשֵׁי לֶמֶךְ הַאְזֵנָּה אִמְרָתִי כִּי אִישׁ הָרַגְתִּי לְפִצְעִי וְיֶלֶד לְחַבֻּרָתִי׃</p>
+            <p class="transliteration">Va-yómer Lémej le-nasháv Adáh ve-Tziláh, shema‘an qolí, neshéi Lémej, ha’azenáh imratí, ki ísh haragtí lefitz‘í, ve-yeled le-jaburatí.</p>
+            <p class="translation">Y dijo Lémec a sus mujeres Adáh y Tziláh: oíd mi voz, mujeres de Lémec, escuchad mi palabra; porque un hombre he matado por mi herida, y a un joven por mi golpe.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">כ״ד)</div>
+            <p class="hebrew">כִּי שִׁבְעָתַיִם יֻקַּם קָיִן וְלֶמֶךְ שִׁבְעִים וְשִׁבְעָה׃</p>
+            <p class="transliteration">Ki shiv‘atáyim yukkám Qayin, ve-Lémej shiv‘ím ve-shiv‘áh.</p>
+            <p class="translation">Porque siete veces será vengado Caín, y Lémec setenta veces siete.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h3>Génesis 4:25–26</h3>
+        <div class="verse-container">
+            <div class="verse-number">כ״ה)</div>
+            <p class="hebrew">וַיֵּדַע אָדָם עוֹד אֶת אִשְׁתּוֹ וַתֵּלֶד בֵּן וַתִּקְרָא אֶת שְׁמוֹ שֵׁת כִּי שָׁת לִי אֱלֹהִים זֶרַע אַחֵר תַּחַת הֶבֶל כִּי הֲרָגוֹ קָיִן׃</p>
+            <p class="transliteration">Va-yéda‘ Adam ‘od et ishtó, va-téled ben, va-ti-qra et shemó Shét, ki shát lí Elohím zéra‘ ajér taját Hével, ki haragó Qayin.</p>
+            <p class="translation">Y conoció Adám otra vez a su mujer, y dio a luz un hijo, y llamó su nombre Shét (Set), porque Elohím me ha puesto otra simiente en lugar de Hével (Abel), a quien mató Qayin (Caín).</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">כ״ו)</div>
+            <p class="hebrew">וּלְשֵׁת גַּם־הוּא יֻלַּד בֵּן וַיִּקְרָא אֶת־שְׁמוֹ אֱנוֹשׁ אָז הוּחַל לִקְרֹא בְּשֵׁם יהוה׃</p>
+            <p class="transliteration">Ul-Shét gam-hú yullád ben, va-yiqrà et-shemó Enósh; az huchál liqró beshém יהוה.</p>
+            <p class="translation">Y a Shét también le nació un hijo, y llamó su nombre Enósh; entonces comenzó a invocarse el Nombre de יהוה.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h3>Génesis 5:1–24 — Sefer Toledot Adam (Libro de las generaciones de Adán)</h3>
+        <div class="verse-container">
+            <div class="verse-number">א)</div>
+            <p class="hebrew">זֶה סֵפֶר תּוֹלְדֹת אָדָם בְּיוֹם בְּרֹא אֱלֹהִים אָדָם בִּדְמוּת אֱלֹהִים עָשָׂה אֹתוֹ׃</p>
+            <p class="transliteration">Zé séfer toledót Adam; beyóm beró Elohím Adam, bidmut Elohím ‘asáh otó.</p>
+            <p class="translation">Este es el libro de las generaciones de Adám. El día en que Elohím creó al hombre, a semejanza de Elohím lo hizo.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">ב)</div>
+            <p class="hebrew">זָכָר וּנְקֵבָה בְּרָאָם וַיְבָרֶךְ אֹתָם וַיִּקְרָא אֶת־שְׁמָם אָדָם בְּיוֹם הִבָּרְאָם׃</p>
+            <p class="transliteration">Zajár unqeiváh beráam, va-yevaréj otám, va-yiqrà et-shemám Adam, beyóm hibbar’am.</p>
+            <p class="translation">Varón y hembra los creó, y los bendijo, y llamó su nombre Adám en el día en que fueron creados.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">ג)</div>
+            <p class="hebrew">וַיְחִי אָדָם שְׁלֹשִים וּמְאַת שָׁנָה וַיּוֹלֶד בִּדְמוּתוֹ כְּצַלְמוֹ וַיִּקְרָא אֶת־שְׁמוֹ שֵׁת׃</p>
+            <p class="transliteration">Va-yejí Adam shloshím ume’at shanáh, va-yoled bidmutó ketsalmó, va-yiqrà et-shemó Shét.</p>
+            <p class="translation">Y vivió Adám ciento treinta años, y engendró un hijo a su semejanza, conforme a su imagen, y llamó su nombre Shét.</p>
+        </div>
+        
+        <h1>4. Enósh</h1>
+        <div class="verse-container">
+            <div class="verse-number">ד)</div>
+            <p class="hebrew">וַיִּהְיוּ יְמֵי אָדָם אַחֲרֵי הוֹלִידוֹ אֶת־שֵׁת שְׁמֹנֶה מֵאוֹת שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yihyú yeméi Adam ajaréi holidó et-Shét, shemóneh méot shanáh, va-yoled baním u-banót.</p>
+            <p class="translation">Y fueron los días de Adám después que engendró a Shét ochocientos años, y engendró hijos e hijas.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">ה)</div>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי אָדָם אֲשֶר־חַי תְּשַׁע מֵאוֹת שָׁנָה וּשְׁלֹשִים שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol-yeméi Adam asher-jai, teshá‘ me’ót shanáh ushlo’shím shanáh, va-yámot.</p>
+            <p class="translation">Y fueron todos los días que vivió Adám novecientos treinta años, y murió.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">ו)</div>
+            <p class="hebrew">וַיְחִי שֵׁת חָמֵשׁ שָׁנִים וּמְאַת שָׁנָה וַיּוֹלֶד אֶת־אֱנוֹשׁ׃</p>
+            <p class="transliteration">Va-yejí Shét jamésh shaním ume’at shanáh, va-yoled et-Enósh.</p>
+            <p class="translation">Y vivió Shét ciento cinco años, y engendró a Enósh.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">ז)</div>
+            <p class="hebrew">וַיְחִי שֵׁת אַחֲרֵי הוֹלִידוֹ אֶת־אֱנוֹשׁ שֶׁבַע שָׁנִים וּשְׁמֹנֶה מֵאוֹת שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yejí Shét ajaréi holidó et-Enósh, sheva‘ shaním ushmonéh me’ót shanáh, va-yoled baním u-banót.</p>
+            <p class="translation">Y vivió Shét después que engendró a Enósh ochocientos siete años, y engendró hijos e hijas.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">ח)</div>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי שֵׁת שְׁתֵּים עֶשְׂרֵה שָׁנָה וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol-yeméi Shét, sh’téim esréh shanáh utsha‘ me’ót shanáh, va-yámot.</p>
+            <p class="translation">Y fueron todos los días de Shét novecientos doce años, y murió.</p>
+        </div>
+
+        <h1>5. Qeinán (Kenán)</h1>
+        <div class="verse-container">
+            <div class="verse-number">ט)</div>
+            <p class="hebrew">וַיְחִי אֱנוֹשׁ תִּשְׁעִים שָׁנָה וַיּוֹלֶד אֶת־קֵינָן׃</p>
+            <p class="transliteration">Va-yejí Enósh tish‘ím shanáh, va-yoled et-Qeinán.</p>
+            <p class="translation">Y vivió Enósh noventa años, y engendró a Qeinán (Kenán).</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">י)</div>
+            <p class="hebrew">וַיְחִי אֱנוֹשׁ אַחֲרֵי הוֹלִידוֹ אֶת־קֵינָן שְׁמֹנֶה עֶשְׂרֵה שָׁנָה וּשְׁמֹנֶה מֵאוֹת שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yejí Enósh ajaréi holidó et-Qeinán, shmóneh esréh shanáh ushmonéh me’ót shanáh, va-yoled baním u-banót.</p>
+            <p class="translation">Y vivió Enósh después que engendró a Qeinán ochocientos quince años, y engendró hijos e hijas.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">י״א)</div>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי אֱנוֹשׁ חָמֵשׁ שָׁנִים וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol-yeméi Enósh, jamésh shaním utsha‘ me’ót shanáh, va-yámot.</p>
+            <p class="translation">Y fueron todos los días de Enósh novecientos cinco años, y murió.</p>
+        </div>
+        
+        <h1>6. Mahalalél</h1>
+         <div class="verse-container">
+            <div class="verse-number">י״ב)</div>
+            <p class="hebrew">וַיְחִי קֵינָן שִׁבְעִים שָׁנָה וַיּוֹלֶד אֶת־מַהֲלַלְאֵל׃</p>
+            <p class="transliteration">Va-yejí Qeinán shiv‘ím shanáh, va-yoled et-Mahalalél.</p>
+            <p class="translation">Y vivió Qeinán setenta años, y engendró a Mahalalél.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">י״ג)</div>
+            <p class="hebrew">וַיְחִי קֵינָן אַחֲרֵי הוֹלִידוֹ אֶת־מַהֲלַלְאֵל אַרְבָּעִים שָׁנָה וּשְׁמֹנֶה מֵאוֹת שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yejí Qeinán ajaréi holidó et-Mahalalél, arba‘ím shanáh ushmonéh me’ót shanáh, va-yoled baním u-banót.</p>
+            <p class="translation">Y vivió Qeinán después que engendró a Mahalalél ochocientos cuarenta años, y engendró hijos e hijas.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">י״ד)</div>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי קֵינָן עֶשֶׂר שָׁנִים וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol-yeméi Qeinán, éser shaním utsha‘ me’ót shanáh, va-yámot.</p>
+            <p class="translation">Y fueron todos los días de Qeinán novecientos diez años, y murió.</p>
+        </div>
+        
+        <h1>7. Yéred</h1>
+        <div class="verse-container">
+            <div class="verse-number">ט״ו)</div>
+            <p class="hebrew">וַיְחִי מַהֲלַלְאֵל חָמֵשׁ שָׁנִים וּשְׁשִׁים שָׁנָה וַיּוֹלֶד אֶת־יָרֶד׃</p>
+            <p class="transliteration">Va-yejí Mahalalél jamésh shaním ushishím shanáh, va-yoled et-Yéred.</p>
+            <p class="translation">Y vivió Mahalalél sesenta y cinco años, y engendró a Yéred.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">ט״ז)</div>
+            <p class="hebrew">וַיְחִי מַהֲלַלְאֵל אַחֲרֵי הוֹלִידוֹ אֶת־יָרֶד שְׁמֹנֶה מֵאוֹת שָׁנָה וּשְׁלֹשִים שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yejí Mahalalél ajaréi holidó et-Yéred, shmóneh me’ót shanáh ushloshím shanáh, va-yoled baním u-banót.</p>
+            <p class="translation">Y vivió Mahalalél después que engendró a Yéred ochocientos treinta años, y engendró hijos e hijas.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">י״ז)</div>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי מַהֲלַלְאֵל חָמֵשׁ וְתִשְׁעִים שָׁנָה וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol-yeméi Mahalalél, jamésh vetish‘ím shanáh utsha‘ me’ót shanáh, va-yámot.</p>
+            <p class="translation">Y fueron todos los días de Mahalalél ochocientos noventa y cinco años, y murió.</p>
+        </div>
+        
+        <h1>8. Janókh (Enoc)</h1>
+        <div class="verse-container">
+            <div class="verse-number">י״ח)</div>
+            <p class="hebrew">וַיְחִי יָרֶד שְׁתַּיִם וּשְׁשִׁים שָׁנָה וּמְאַת שָׁנָה וַיּוֹלֶד אֶת־חֲנוֹךְ׃</p>
+            <p class="transliteration">Va-yejí Yéred sh’táyim ushishím shanáh ume’at shanáh, va-yoled et-Janókh.</p>
+            <p class="translation">Y vivió Yéred ciento sesenta y dos años, y engendró a Janókh (Enoc).</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">י״ט)</div>
+            <p class="hebrew">וַיְחִי יָרֶד אַחֲרֵי הוֹלִידוֹ אֶת־חֲנוֹךְ שְׁמֹנֶה מֵאוֹת שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yejí Yéred ajaréi holidó et-Janókh, shmóneh me’ót shanáh, va-yoled baním u-banót.</p>
+            <p class="translation">Y vivió Yéred después que engendró a Janókh ochocientos años, y engendró hijos e hijas.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">כ)</div>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי יָרֶד שְׁתַּיִם וְשִׁשִׁים שָׁנָה וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol-yeméi Yéred, sh’táyim veshishím shanáh utsha‘ me’ót shanáh, va-yámot.</p>
+            <p class="translation">Y fueron todos los días de Yéred novecientos sesenta y dos años, y murió.</p>
+        </div>
+        
+        <h1>9. Metushélaj (Matusalén)</h1>
+        <div class="verse-container">
+            <div class="verse-number">כ״א)</div>
+            <p class="hebrew">וַיְחִי חֲנוֹךְ חָמֵשׁ וְשִׁשִׁים שָׁנָה וַיּוֹלֶד אֶת־מְתוּשֶׁלַח׃</p>
+            <p class="transliteration">Va-yejí Janókh jamésh veshishím shanáh, va-yoled et-Metushélaj.</p>
+            <p class="translation">Y vivió Janókh sesenta y cinco años, y engendró a Metushélaj (Matusalén).</p>
+        </div>
+        
+        <h1>10. Lémec (en comentario)</h1>
+        
+        <div class="verse-container">
+            <div class="verse-number">כ״ב)</div>
+            <p class="hebrew">וַיִּתְהַלֵּךְ חֲנוֹךְ אֶת־הָאֱלֹהִים אַחֲרֵי הוֹלִידוֹ אֶת־מְתוּשֶׁלַח שְׁלֹשׁ מֵאוֹת שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yithalékh Janókh et-haElohím ajaréi holidó et-Metushélaj, shlósh me’ót shanáh, va-yoled baním u-banót.</p>
+            <p class="translation">Y caminó Janókh con Elohím, después que engendró a Metushélaj, trescientos años, y engendró hijos e hijas.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">כ״ג)</div>
+            <p class="hebrew">וַיְהִי כָּל־יְמֵי חֲנוֹךְ חָמֵשׁ וְשִׁשִׁים שָׁנָה וּשְׁלֹשׁ מֵאוֹת שָׁנָה׃</p>
+            <p class="transliteration">Va-yehí kol-yeméi Janókh, jamésh veshishím shanáh ushlósh me’ót shanáh.</p>
+            <p class="translation">Y fueron todos los días de Janókh trescientos sesenta y cinco años.</p>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">כ״ד)</div>
+            <p class="hebrew">וַיִּתְהַלֵּךְ חֲנוֹךְ אֶת־הָאֱלֹהִים וְאֵינֶנּוּ כִּי־לָקַח אֹתוֹ אֱלֹהִים׃</p>
+            <p class="transliteration">Va-yithalékh Janókh et-haElohím, ve-einénu, ki láqaj otó Elohím.</p>
+            <p class="translation">Y caminó Janókh con Elohím, y desapareció, porque Elohím lo tomó.</p>
+        </div>
+    </div>
+
+    <div class="prophetic-content">
+        <h2>🌿 Comentario mesiánico y profético</h2>
+        <p>El texto culmina en Janókh <span class="hebrew-term">חֲנוֹךְ</span>, figura profundamente profética del Mashíaj.</p>
+        <p>La expresión “va-yithalékh Janókh et-haElohím” — “y caminó Enoc con Elohím” — aparece dos veces (vv. 22 y 24), subrayando una comunión continua, íntima, una halajáh perfecta delante del Creador.</p>
+        <p>El verbo <span class="hebrew-term">התהלך</span> / hithalékh implica caminar de un modo constante, no momentáneo; describe una vida diaria de intimidad y obediencia.</p>
+        <p>En la Peshitta aramea de Hebreos 11:5, leemos:</p>
+        <p class="aramaic">“Beheymánútéh ʼethnetel Ḥanók la-motá, we-lá ashkḥūth, metul d-shaqleh MarYah, we-qadém d-nethneṭel, mshaḥḥed hawá d-ʿelaw šapír šaphir d-shaphrat le-MarYah.”</p>
+        <p class="literal-translation">“Por la fe fue trasladado Janókh para no ver la muerte, y no fue hallado, porque MarYah lo tomó; pues antes de ser tomado tuvo testimonio de haber agradado a MarYah.”</p>
+        <p>Aquí, el arameo MarYah <span class="hebrew-term">מריא</span>, equivalente directo al Tetragrámaton, identifica al que “tomó” a Janókh como Adonái יהוה mismo — es decir, el Mashíaj preencarnado.</p>
+        <p>La tradición mesiánica entiende este acto como una figura de la resurrección y ascensión de Yeshúa, quien, al igual que Janókh, “fue tomado” al cielo y no experimentó la corrupción del sepulcro.</p>
+        
+        <div class="prophetic-section">
+            <h3 class="prophetic-title">🔥 Significado espiritual</h3>
+            <p><strong class="highlight">Janókh como figura del justo transformado:</strong></p>
+            <p class="scripture">Así como Janókh fue trasladado sin ver muerte, los fieles del Mashíaj serán transformados “en un abrir y cerrar de ojos” (1 Cor 15:51).</p>
+            <p>La halajáh de Janókh es la emunah (fe activa) del discípulo mesiánico.</p>
+            <p><strong class="highlight">El número 365:</strong></p>
+            <p>Representa los días del año solar. Janókh simboliza la completitud del ciclo, el testimonio del justo que alumbra cada día de su vida con la presencia divina.</p>
+            <p><strong class="highlight">“Y desapareció, porque Elohím lo tomó”:</strong></p>
+            <p>En hebreo, ve-einénu (“y no estaba”) indica una ausencia física, pero no una muerte. El verbo laqaj (<span class="hebrew-term">לקח</span>) “tomar” es el mismo usado cuando Elías fue arrebatado (2 Reyes 2:3–11), otro tipo del Mashíaj.</p>
+        </div>
+        
+        <div class="prophetic-section">
+            <h3 class="prophetic-title">Profecía mesiánica implícita:</h3>
+            <p>El nombre Mahalalél (<span class="hebrew-term">מַהֲלַלְאֵל</span>) significa “alabanza de Elohím”, y Janókh significa “instruido / dedicado”. La genealogía muestra un movimiento espiritual:</p>
+            <p>Adám (“hombre”) <span class="arrow">→</span> Shét (“sustituto”) <span class="arrow">→</span> Enósh (“mortal”) <span class="arrow">→</span> Qeinán (“posesión”) <span class="arrow">→</span> Mahalalél (“alabanza de Elohím”) <span class="arrow">→</span> Yéred (“descenso”) <span class="arrow">→</span> Janókh (“dedicado”) <span class="arrow">→</span> Metushélaj (“su muerte traerá”) <span class="arrow">→</span> Lémec (“desesperación”) <span class="arrow">→</span> Noaj (“descanso”).</p>
+            <p>En conjunto, esta línea profética anuncia el plan redentor:</p>
+            <p class="scripture">“El hombre (Adám) fue sustituido (Shét) en su mortalidad (Enósh) con una posesión divina (Qeinán), una alabanza a Elohím (Mahalalél); en su descenso (Yéred) fue dedicado (Janókh), cuya muerte traerá (Metushélaj) la desesperación (Lémec), pero finalmente vendrá el descanso (Noaj).”</p>
+            <p><span class="arrow">→</span> Esta cadena oculta en los nombres revela el Evangelio mesiánico anticipado: el Mashíaj que descendería para traer reposo eterno.</p>
+        </div>
+    </div>
+    
+    <div class="explanation">
+        <h3>🌅 Aplicación espiritual</h3>
+        <p>Caminar “con Elohím” implica unión (devekut <span class="hebrew-term">דבקות</span>), una vida continua en Su presencia.</p>
+        <p>Así como Janókh vivió en medio de una generación corrupta —los días previos al diluvio—, el creyente mesiánico está llamado hoy a reflejar esa pureza y comunión antes del juicio final.</p>
+        <p>En la tradición mesiánica, Janókh representa a los natsarim (los guardadores), quienes serán preservados en el tiempo de prueba.</p>
+    </div>
+
+    <div class="section-divider"></div>
+    
+    <div class="content-container">
+        <h2>🔯 Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+        <p>La Aliyáh 6 — desde el canto de Lémec hasta la ascensión de Janókh (Enoc) — es una poderosa prefiguración del proceso redentor mesiánico:</p>
+        <ul>
+            <li><strong>Caín y Lémec representan la humanidad herida por el pecado.</strong><br>Caín asesinó a su hermano; Lémec, descendiente suyo, repite el ciclo de violencia.<br>Este patrón refleja el dominio del pecado sobre el hombre sin redención, cumpliendo lo dicho:<br><em class="scripture">“El pecado está a la puerta, pero tú debes dominarlo.” (Bereshit 4:7)</em><br>Yeshúa, el Zeráh haIshah (la simiente de la mujer, 3:15), es quien rompe ese ciclo, derramando Su propia sangre en lugar de la de su hermano.</li>
+            <li><strong>El nacimiento de Shét <span class="hebrew-term">שֵׁת</span> (Set) anuncia el principio del linaje redentor:</strong><br><span class="arrow">→</span> “Elohím me ha puesto (<span class="hebrew-term">שָׁת</span> / shat) otra simiente en lugar de Hével.”<br>En hebreo, shat (“ha puesto”) conecta con el verbo yasat (“fundar”).<br>Por eso, Shét representa el fundamento del linaje mesiánico, de donde nacerá finalmente Noaj <span class="arrow">→</span> Shem <span class="arrow">→</span> Abraham <span class="arrow">→</span> David <span class="arrow">→</span> Yeshúa (Lucas 3:36–38).<br>Así, Elohím mismo “pone” la semilla mesiánica:<br><em class="scripture">“La virgen concebirá y dará a luz un hijo, y llamará su nombre Immanu-El.” (Yesha‘yahu 7:14)</em></li>
+            <li><strong>“Entonces se comenzó a invocar el Nombre de יהוה” (Bereshit 4:26):</strong><br>En el texto arameo del Targum Onkelos se traduce:<br><em class="scripture">“En aquellos días, los hombres comenzaron a invocar en oración el Nombre de MarYah.”</em><br>Esto revela el despertar espiritual que prefigura la revelación del Nombre en el Mashíaj, quien es llamado MarYah (יהוה manifestado en carne).<br><span class="arrow">→</span> En Yojanán 17:6, Yeshúa dice:<br><em class="scripture">“He manifestado Tu Nombre a los hombres que me diste del mundo.”</em><br>El verbo “manifestar” (galah, revelar) conecta con este pasaje: la humanidad que antes invocaba confusamente, ahora puede clamar al Nombre revelado en Yeshúa.</li>
+            <li><strong>La línea de Adám a Janókh es una profecía progresiva del Mashíaj:</strong><br>Cada nombre revela un mensaje redentor (como vimos):<br>Adám <span class="arrow">→</span> Shét <span class="arrow">→</span> Enósh <span class="arrow">→</span> Qeinán <span class="arrow">→</span> Mahalalél <span class="arrow">→</span> Yéred <span class="arrow">→</span> Janókh <span class="arrow">→</span> Metushélaj <span class="arrow">→</span> Lémec <span class="arrow">→</span> Noaj<br>En conjunto, el mensaje oculto es:<br><em class="scripture">“El hombre fue designado un sustituto (Shét), mortal (Enósh), pero poseído de la alabanza de Elohím (Mahalalél); Él descenderá (Yéred), será dedicado (Janókh), y su muerte traerá (Metushélaj) la desesperación (Lémec), pero dará descanso (Noaj).”</em><br>Esta línea codifica el Evangelio del Mashíaj, quien descendió, fue dedicado (hanuk), murió, y trajo reposo (menújáh) al mundo.</li>
+            <li><strong>Janókh (<span class="hebrew-term">חֲנוֹךְ</span>) — “El dedicado / iniciado” prefigura a Yeshúa en su caminata perfecta con Elohím.</strong><br>En la Toráh:<br><em class="scripture">“Y caminó Janókh con Elohím, y desapareció, porque Elohím lo tomó.” (5:24)</em><br>En el Brit Hadashá (Peshitta Heb 11:5):<br><em class="scripture">“Por la fe, Janókh fue trasladado para no ver la muerte, porque fue hallado agradable ante MarYah.”</em><br>Yeshúa también fue “tomado” (laqaj) en Su ascensión (Hechos 1:9–11), cumpliendo la imagen del justo que no ve corrupción (Tehilím 16:10).<br>Así como Janókh fue trasladado sin morir, Yeshúa fue exaltado sin permanecer en la tumba.<br>Janókh = figura del Mashíaj resucitado y ascendido.</li>
+        </ul>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>📜 Conexión con los Profetas (Nevi’ím)</h2>
+        <p>Isaías 44:6–23 (Haftaráh de la Aliyáh) proclama:</p>
+        <p class="scripture">“Así dice יהוה, Rey de Israel, y su Redentor, יהוה de los Ejércitos: Yo soy el primero y Yo soy el último, y fuera de Mí no hay Elohím.”</p>
+        <p>Aquí, el “Redentor” es יהוה mismo — el mismo que en el Brit Hadashá se revela en Yeshúa, quien dice:</p>
+        <p class="scripture">“Yo soy el Primero y el Último.” (Hitgalút/Apocalipsis 1:17).</p>
+        <p>Isaías 44:21–22 declara también:</p>
+        <p class="scripture">“No me olvides, Israel; Yo te redimí.”</p>
+        <p><span class="arrow">→</span> Cumplimiento mesiánico: Yeshúa es el Redentor que Elohím prometió ser.</p>
+        
+        <p><strong class="highlight">Janókh es paralelo a Eliyahu (Elías):</strong></p>
+        <p>Ambos “fueron tomados” y ninguno vio la muerte. Los profetas consideraban a Janókh un testigo del poder de resurrección.</p>
+        <p><span class="arrow">→</span> En Malají 4:5, Elohím promete:</p>
+        <p class="scripture">“He aquí, Yo envío a Eliyahu el profeta antes del día grande y terrible.”</p>
+        <p>Ambos simbolizan la victoria sobre la muerte — un anticipo del Mashíaj vencedor del Sheol.</p>
+        
+        <p><strong class="highlight">El tema del caminar con Elohím reaparece en Mijá 6:8:</strong></p>
+        <p class="scripture">“Se te ha mostrado, oh hombre, lo que es bueno: hacer justicia, amar misericordia y caminar humildemente con tu Elohím.”</p>
+        <p>Este “caminar” (<span class="hebrew-term">הִצְנֵעַ לֶכֶת</span>) es la vida de santidad mesiánica que Yeshúa modela.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>✡️ Conexión con el Brit Hadashá (Nuevo Pacto arameo)</h2>
+        <ul>
+            <li><strong>Hebreos 11:5–6 (Peshitta):</strong><br><em class="scripture">“Por la fe fue trasladado Janókh para no ver la muerte... y antes de ser trasladado, tuvo testimonio de haber agradado a MarYah. Sin la fe es imposible agradarle.”</em><br>— La raíz del verbo ethnetel (trasladado) es la misma idea de laqaj (“tomado”) en Bereshit, mostrando la acción directa del mismo Elohím, identificado como MarYah (יהוה).</li>
+            <li><strong>Lucas 3:36–38 enlaza directamente el linaje de Yeshúa con Shét y Adám.</strong><br><span class="arrow">→</span> El evangelista muestra que el Mashíaj es el segundo Adám, la “nueva humanidad” de quienes caminan con Elohím, como Janókh.</li>
+            <li><strong>Yojanán (Juan) 8:12:</strong><br><em class="scripture">“Yo soy la luz del mundo; el que me sigue no andará en tinieblas.”</em><br>El verbo andar (<span class="hebrew-term">לָלֶכֶת</span>) vuelve a conectar con hit’halékh (“caminar”).<br>Quien sigue a Yeshúa camina con Elohím, como Janókh lo hizo.</li>
+            <li><strong>Efesios 5:1–2:</strong><br><em class="scripture">“Sed imitadores de Elohím como hijos amados, y caminad en amor, como también el Mashíaj nos amó.”</em><br><span class="arrow">→</span> El caminar de Janókh se cumple en el caminar en amor de Yeshúa y Sus discípulos.</li>
+            <li><strong>Hechos 1:9–11:</strong><br><em class="scripture">“Mientras ellos miraban, fue alzado, y una nube lo ocultó de sus ojos.”</em><br>Exactamente como Elohím tomó a Janókh, así Elohím tomó a Yeshúa, quien subió en gloria.</li>
+        </ul>
+    </div>
+    
+    <div class="conclusion">
+        <h2>🌾 Aplicación Espiritual de la Aliyáh (Génesis 4:23–5:24)</h2>
+        <ul>
+            <li><strong>De la violencia a la restauración:</strong><br>Lémec representa el clímax de la violencia humana. Pero Shét representa el reinicio, el nacimiento del linaje espiritual.<br><span class="arrow">→</span> Aplicación: Solo el nuevo nacimiento en Yeshúa rompe la herencia del pecado de Caín.</li>
+            <li><strong>Invocar el Nombre de יהוה:</strong><br>En una generación corrompida, unos pocos comenzaron a invocar Su Nombre.<br><span class="arrow">→</span> Así también hoy, los verdaderos creyentes invocan el Nombre revelado en Yeshúa haMashíaj — MarYah manifestado.<br><em class="scripture">“Todo aquel que invoque el Nombre de MarYah será salvo” (Yoel 2:32; Hechos 2:21, Peshitta).</em></li>
+            <li><strong>Caminar con Elohím en medio de un mundo caído:</strong><br>Janókh caminó fielmente entre generaciones rebeldes. Su vida enseña que la comunión supera la cultura.<br><span class="arrow">→</span> El creyente mesiánico está llamado a vivir en devekut (adhesión espiritual) con el Mashíaj, siendo un testimonio antes del juicio final, como Janókh antes del diluvio.</li>
+            <li><strong>Esperanza del arrebatamiento y resurrección:</strong><br>Janókh no vio muerte, figura del arrebatamiento de los fieles (1 Tes 4:17).<br><span class="arrow">→</span> “Seremos transformados” (nitḥaléf) como él.<br>En el plan profético, Janókh tipifica a la Kehiláh fiel, y Noaj al remanente preservado en medio del juicio.</li>
+        </ul>
+        <h3>El llamado actual:</h3>
+        <ul>
+            <li>Invocar Su Nombre con pureza.</li>
+            <li>Caminar en fidelidad continua.</li>
+            <li>Esperar el traslado glorioso del justo.</li>
+            <li>Ser testigos en una generación de violencia, como lo fue Lémec.</li>
+        </ul>
+    </div>
+    
+    <div class="prophetic-content">
+        <h2>🕊️ Resumen Profético</h2>
+        <table style="width:100%; border-collapse: collapse; text-align: left;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Figura</th>
+                <th style="padding: 8px;">Significado</th>
+                <th style="padding: 8px;">Cumplimiento en el Mashíaj</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Lémec</td>
+                <td style="padding: 8px;">Violencia del pecado humano</td>
+                <td style="padding: 8px;">El mundo antes del retorno del Mashíaj</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Shét</td>
+                <td style="padding: 8px;">“Sustituto” / semilla nueva</td>
+                <td style="padding: 8px;">Yeshúa, la Simiente prometida</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Enósh</td>
+                <td style="padding: 8px;">“Mortalidad”</td>
+                <td style="padding: 8px;">La encarnación: Elohím hecho carne</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Janókh</td>
+                <td style="padding: 8px;">“Dedicado / instruido”</td>
+                <td style="padding: 8px;">El Mashíaj consagrado y ascendido</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Elohím toma a Janókh</td>
+                <td style="padding: 8px;">Redención sin muerte</td>
+                <td style="padding: 8px;">Resurrección y ascensión de Yeshúa</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+      <div class="content-container">
+        <h1>
+          Punto 2. Haftaráh: Isaías 44:6-23 (La creación de Israel como
+          testigo).
+        </h1>
+        <p>
+          Este pasaje profético proclama la unicidad del Creador, la vanidad de
+          los ídolos y la redención de Israel. Se conecta directamente con
+          Bereshit 4:19–22, donde los hombres comienzan a crear sin dirección
+          divina. Isaías revela al único Elohím Verdadero, quien formó todo y
+          redime con poder.
+        </p>
+
+        <div class="verse-container">
+          <div class="verse-number">Verso 6</div>
+          <div class="hebrew">
+            כֹּה אָמַר יְהוָה מֶלֶךְ יִשְׂרָאֵל וְגֹאֲלוֹ יְהוָה צְבָאוֹת אֲנִי
+            רִאשׁוֹן וַאֲנִי אַחֲרוֹן וּמִבַּלְעָדַי אֵין אֱלֹהִים׃
+          </div>
+          <div class="transliteration">
+            Fonética: Kóh amár Adonái Melej Yisra’él, ve’go’alo Adonái Tseva’ot:
+            aní rishón va’aní ajarón, u’mibal’adái ein Elohím.
+          </div>
+          <div class="translation">
+            <strong>Traducción literal:</strong> Así dice Adonái, Rey de Israel,
+            y su Redentor, Adonái de los Ejércitos: Yo soy el primero y Yo soy
+            el último, y fuera de Mí no hay Elohím.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Verso 7</div>
+          <div class="hebrew">
+            וּמִי כָמֹנִי יִקְרָא וְיַגִּידֶהָ וְיַעֲרְכֶהָ לִי מִשּׂוּמִי עַם
+            עוֹלָם וְאֹתוֹת וַאֲשֶׁר יָבֹאוּ יַגִּידוּ לָהֶם׃
+          </div>
+          <div class="transliteration">
+            Fonética: Umi kamoni yiqrà ve’yaggidéh, ve’ya‘arjéh li mishumí ‘am
+            ‘olam, ve’otot va’asher yavo’u yaggídu lahem.
+          </div>
+          <div class="translation">
+            <strong>Traducción literal:</strong> ¿Y quién como Yo proclamará,
+            declarará y pondrá todo en orden delante de Mí, desde que establecí
+            al pueblo eterno? Que anuncien las señales y lo que está por venir.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Verso 8</div>
+          <div class="hebrew">
+            אַל־תִּפְחֲדוּ וְאַל־תִּרְהוּ הֲלוֹא מֵאָז הִשְׁמַעְתִּיךָ
+            וְהִגַּדְתִּי וְאַתֶּם עֵדָי הֲיֵשׁ אֱלֹהָ מִבַּלְעָדַי וְאֵין צוּר
+            בַּל־יָדָעְתִּי׃
+          </div>
+          <div class="transliteration">
+            Fonética: Al tifjadu ve’al tirhu; halo me’az hishma‘tijá
+            ve’higgad’ti, ve’atem ‘edái; hayesh Elohá mibal‘adái? Ve’én tzur bal
+            yadá‘tí.
+          </div>
+          <div class="translation">
+            <strong>Traducción literal:</strong> No temáis ni os espantéis; ¿no
+            te lo hice oír y declarar desde antiguo? Vosotros sois Mis testigos.
+            ¿Hay Elohím fuera de Mí? No hay roca, no conozco ninguna.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Verso 9</div>
+          <div class="hebrew">
+            יֹצְרֵי־פֶסֶל כֻּלָּם תֹּהוּ וַחֲמוּדֵיהֶם בַּל־יוֹעִילוּ וְעֵדֵיהֶם
+            הֵמָּה בַּל־יִרְאוּ וּבַל־יֵדְעוּ לְמַעַן יֵבֹשׁוּ׃
+          </div>
+          <div class="transliteration">
+            Fonética: Yotzré fésel kullám tohu, va’jamudeihem bal yo‘ilu;
+            ve‘edeihem hemá bal yir’u u’bal yed‘u lema‘an yevóshu.
+          </div>
+          <div class="translation">
+            <strong>Traducción literal:</strong> Los formadores de ídolos son
+            todos vanidad, y sus obras queridas no sirven; sus testigos nada ven
+            ni entienden, para que sean avergonzados.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Verso 10</div>
+          <div class="hebrew">
+            מִי־יָצַר אֵל וּפֶסֶל נָסַךְ לְבִלְתִּי הוֹעִיל׃
+          </div>
+          <div class="transliteration">
+            Fonética: Mi yatzar él u’fésel nasaj le’biltí ho‘íl?
+          </div>
+          <div class="translation">
+            <strong>Traducción literal:</strong> ¿Quién formó un dios, o fundió
+            un ídolo que de nada sirve?
+          </div>
+        </div>
+
+        <div class="explanation">
+          <h2>Comentario Mesiánico y Conexión Profética</h2>
+          <p>
+            Este pasaje es una respuesta profética a la línea de Caín en
+            Bereshit 4:19–22.
+          </p>
+          <p>
+            Mientras los descendientes de Caín fabricaban herramientas y música
+            para la gloria humana, Isaías revela que el verdadero Creador forma,
+            redime y da propósito a Su pueblo.
+          </p>
+          <ul>
+            <li>
+              <strong>"Yo soy el primero y el último" (v.6)</strong> – Título
+              divino aplicado directamente a Yeshúa haMashíaj en Hitgalut /
+              Apocalipsis 1:17–18:
+              <p class="scripture">
+                “Yo soy el Primero y el Último, y el Viviente.”
+              </p>
+              <span class="arrow">→</span> Cumplimiento mesiánico: el mismo
+              Adonái יהוה de Isaías es revelado en Yeshúa, quien redime a
+              Israel.
+            </li>
+            <li>
+              <strong>La denuncia contra los ídolos (vv.9–20)</strong> – Es una
+              restauración espiritual del error de Caín: fabricar y adorar la
+              obra de sus manos. Yeshúa, como “la Imagen del Elohím invisible”
+              (Colosenses 1:15), reemplaza las imágenes humanas con Su presencia
+              viva.
+            </li>
+            <li>
+              <strong>“He borrado tus pecados” (v.22)</strong> – Profecía
+              cumplida en el Brit Hadasháh:
+              <p class="scripture">
+                “En Él tenemos redención por Su sangre, el perdón de los
+                pecados.” (Efesios 1:7)
+              </p>
+              <span class="arrow">→</span> Yeshúa cumple el llamado: “Vuélvete a
+              Mí, porque te he redimido.”
+            </li>
+            <li>
+              <strong>“Canten, cielos…” (v.23)</strong> – Prefigura el cántico
+              mesiánico de los redimidos (Apocalipsis 5:9):
+              <p class="scripture">
+                “Porque fuiste inmolado y con tu sangre compraste para Elohím
+                gentes de toda nación.”
+              </p>
+            </li>
+          </ul>
+          <h3>Aplicación Espiritual</h3>
+          <p>
+            El hombre de la línea de Caín fabricó ídolos y herramientas para su
+            gloria; el creyente redimido en el Mashíaj fabrica instrumentos de
+            alabanza y justicia.
+          </p>
+          <p class="prophetic-title">Llamado espiritual:</p>
+          <ul>
+            <li>
+              Renunciar a toda obra del ego y reconocer que solo Adonái יהוה en
+              Yeshúa es nuestro Creador y Redentor.
+            </li>
+            <li>
+              Consagrar nuestras manos, talentos y tecnología al servicio del
+              Reino.
+            </li>
+            <li>
+              Recordar que solo el Ruaj HaKodesh puede transformar el hierro del
+              pecado en el oro de santidad.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h1>
+          Cumplimiento Profético en el Mashíaj – Yeshayahu (Isaías) 44:6–23
+        </h1>
+        <h2>
+          Haftaráh de la Parashá Bereshit (בראשית) – Conexión con la Aliyáh de
+          Génesis 4:19–22
+        </h2>
+
+        <h1>1. Introducción Profética: El Creador y Redentor de Israel</h1>
+        <p>
+          El pasaje de Yeshayahu 44:6–23 es una proclamación divina donde Adonái
+          יהוה se presenta como el Único Elohím Verdadero, el Creador de todas
+          las cosas y el Redentor de Israel. Este mensaje se revela como
+          contraste directo con el espíritu de la humanidad caída representado
+          en Bereshit 4:19–22.
+        </p>
+
+        <h1>2. Conexión Profética con Bereshit 4:19–22</h1>
+        <table style="width: 100%; border-collapse: collapse; text-align: left">
+          <thead>
+            <tr>
+              <th style="padding: 8px; border: 1px solid #ddd">En Bereshit</th>
+              <th style="padding: 8px; border: 1px solid #ddd">
+                En Yeshayahu 44
+              </th>
+              <th style="padding: 8px; border: 1px solid #ddd">
+                Cumplimiento en el Mashíaj
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                <strong>Yavál:</strong> padre de los que habitan en tiendas →
+                símbolo del progreso material.
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Adonái declara: “Yo soy el primero y el último” (v.6).
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Yeshúa es el “Mishkán” viviente (Juan 1:14), la morada de Elohím
+                entre los hombres.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                <strong>Yuvál:</strong> padre de los músicos → símbolo de la
+                creatividad sin consagración.
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Adonái llama a los cielos a cantar y exultar (v.23).
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                En el Reino del Mashíaj la música es restaurada: “Cantan el
+                cántico del Cordero” (Ap. 15:3).
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                <strong>Tuvál-Qayin:</strong> forjador de metales → símbolo de
+                la fuerza humana y la idolatría.
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Isaías denuncia al artesano que forja ídolos (vv.12–17).
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                En Yeshúa se cumple la profecía: Él transforma la obra humana en
+                instrumento de justicia (Miqueas 4:3, Efesios 2:10).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h1>3. Cumplimiento Profético en el Mashíaj (Yeshúa haMashíaj)</h1>
+        <p>
+          <span class="point-letter">A.</span>
+          <strong>“Yo soy el Primero y el Último” (v.6)</strong>
+          <br />Esta declaración identifica a Adonái יהוה con Yeshúa haMashíaj,
+          quien dice en el Brit Hadasháh: “Yo soy el Primero y el Último, y el
+          Viviente.” (Hitgalut / Apocalipsis 1:17; 22:13).
+        </p>
+        <p>
+          <span class="point-letter">B.</span>
+          <strong>“Fuera de Mí no hay Elohím” (v.6b)</strong>
+          <br />Yeshúa declara en Yojanán / Juan 14:6: “Nadie viene al Padre
+          sino por Mí.” El Mesías no es otro ser junto a Elohím, sino la
+          manifestación visible del Único.
+        </p>
+        <p>
+          <span class="point-letter">C.</span>
+          <strong>“Yo te formé, siervo mío eres tú” (v.21)</strong>
+          <br />El pueblo de Israel, siervo del Eterno, prefigura al Siervo
+          Perfecto, Yeshúa, quien cumple el modelo del Siervo Redentor anunciado
+          en Isaías 42–53.
+        </p>
+
+        <h1>4. Conexiones con los Profetas</h1>
+        <ul>
+          <li>
+            <strong>Yirmeyahu (Jeremías) 10:3–6:</strong> Los ídolos son obras
+            de manos de hombres; “No hay nadie como Tú, oh Adonái.”
+          </li>
+          <li>
+            <strong>Yejezkel (Ezequiel) 36:25–27:</strong> Promesa de
+            restauración y nuevo corazón.
+          </li>
+          <li>
+            <strong>Zejaryah (Zacarías) 12:10:</strong> “Mirarán a Mí, a quien
+            traspasaron.”
+          </li>
+        </ul>
+
+        <h1>5. Cumplimiento en el Brit Hadasháh</h1>
+        <table style="width: 100%; border-collapse: collapse; text-align: left">
+          <thead>
+            <tr>
+              <th style="padding: 8px; border: 1px solid #ddd">
+                Profecía en Isaías 44
+              </th>
+              <th style="padding: 8px; border: 1px solid #ddd">
+                Cumplimiento en el Brit Hadasháh
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                v.6 “Yo soy el primero y el último.”
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Ap. 1:17–18; 22:13 – Yeshúa usa el mismo título divino.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                v.8 “Vosotros sois Mis testigos.”
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Hechos 1:8 – Los talmidim son testigos del Mashíaj resucitado.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                v.22 “He borrado tus pecados.”
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Colosenses 2:14, Efesios 1:7 – En el Mashíaj se cumple el perdón
+                por Su sangre.
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                v.23 “Canten, cielos… porque Adonái ha redimido a Yaakov.”
+              </td>
+              <td style="padding: 8px; border: 1px solid #ddd">
+                Lucas 2:14 – Los ángeles cantan al nacer el Redentor; Ap. 5:9 –
+                Los redimidos cantan el cántico del Cordero.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h1>6. Profundidad Teológica y Mesiánica</h1>
+        <p>
+          El mensaje central de Isaías 44 es la soberanía absoluta de Adonái
+          יהוה sobre la creación y la redención. En Yeshúa, esta soberanía se
+          hace carne.
+        </p>
+
+        <h1>7. Aplicación Espiritual – Restauración de la Obra Humana</h1>
+        <p>
+          Isaías 44 enseña que el hombre natural —como Caín y sus descendientes—
+          fabrica su propio mundo, su seguridad y sus ídolos. El redimido en
+          Yeshúa, en cambio, consagra su obra al Reino.
+        </p>
+
+        <h1>8. Conclusión Mesiánica</h1>
+        <p>
+          Isaías 44:6–23 anuncia la victoria del Creador-Redentor sobre la
+          idolatría y la vanagloria humana. El mismo que habló por medio de los
+          profetas se manifestó en Yeshúa haMashíaj, el Único Elohím hecho
+          visible.
+        </p>
+      </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>Punto 3. Brit Hadasháh: Hebreos 11:5 (Enoc caminó con Elohím).</h1>
+        <h2>Hebreos 11:5 📜 ܥܒܪܝ̈ܐ 11:5 — ʿEvrayyé (Hebreos) 11:5</h2>
+        <p class="aramaic">ܒܗܝܡܢܘܬܗ ܐܬܢܬܠ ܚܢܘܟ ܕܠܐ ܢܚܙܐ ܡܘܬܐ ܘܠܐ ܐܫܬܟܚ ܡܛܠ ܕܫܩܠܗ ܡܪܝܐ ܘܩܕܡ ܕܢܫܬܩܠ ܐܣܗܕ ܥܠܘܗܝ ܕܫܦܪ ܫܦܪ ܫܦܪ ܠܡܪܝܐ.</p>
+        <p class="transliteration">Beheymanutéh ethnetel Ḥanókh d-lá neḥzé motá, w-lá eshtkḥ, metul d-shaqleh MarYah, w-qadám d-nethneṭel, eshhed ‘alaw d-shapír shapír shapir le-MarYah.</p>
+        <p class="prayer-text">Por su fe fue trasladado Janókh para que no viera la muerte,<br>y no fue hallado, porque MarYah lo había tomado;<br>y antes de ser trasladado tuvo testimonio de que agradó plenamente a MarYah.</p>
+    </div>
+    
+    <div class="explanation">
+        <h3>✡️ Análisis interlineal y sentido espiritual</h3>
+        <ul>
+            <li><strong class="point-letter">ܒܗܝܡܢܘܬܗ / beheymanutéh</strong> → “por su fe”, raíz <span class="hebrew-term">ܗܝܡܢܘܬܐ</span> / heymanuta, fe activa, confianza obediente.</li>
+            <li><strong class="point-letter">ܐܬܢܬܠ / ethnetel</strong> → “fue trasladado”, del verbo <span class="hebrew-term">ܢܬܠ</span> / netel, “tomar, elevar, trasladar”; mismo concepto que el hebreo <span class="hebrew-term">לָקַח</span> (laqaj).</li>
+            <li><strong class="point-letter">ܕܠܐ ܢܚܙܐ ܡܘܬܐ / d-lá neḥzé motá</strong> → “para que no viera la muerte”.<br><span class="arrow">→</span> Neḥzé (“ver”) aquí implica experimentar, probar la muerte.</li>
+            <li><strong class="point-letter">ܘܠܐ ܐܫܬܟܚ / w-lá eshtkḥ</strong> → “y no fue hallado”, eco directo de <span class="hebrew-term">וְאֵינֶנּוּ</span> / ve-einénu (“y no estaba”) en Bereshit 5:24.</li>
+            <li><strong class="point-letter">ܡܛܠ ܕܫܩܠܗ ܡܪܝܐ / metul d-shaqleh MarYah</strong> → “porque lo tomó MarYah”.<br><span class="arrow">→</span> El verbo <span class="hebrew-term">ܫܩܠ</span> / shaqal (“tomar, recoger, llevar consigo”) es el mismo usado en la Peshitta para describir cómo Yeshúa fue tomado al cielo (Hechos 1:9).<br><span class="arrow">→</span> MarYah <span class="hebrew-term">מריא</span>, Tetragrámaton arameo, equivalente exacto de יהוה, usado solo para referirse a la Deidad suprema.</li>
+            <li><strong class="point-letter">ܘܩܕܡ ܕܢܫܬܩܠ / w-qadám d-nethneṭel</strong> → “y antes de ser tomado”.</li>
+            <li><strong class="point-letter">ܐܣܗܕ ܥܠܘܗܝ / eshhed ‘alaw</strong> → “tuvo testimonio acerca de él”.</li>
+            <li><strong class="point-letter">ܕܫܦܪ ܫܦܪ ܠܡܪܝܐ / d-shapír shapír le-MarYah</strong> → literalmente, “que hermosamente agradó a MarYah”, intensivo arameo (shapír shapír) — denota placer completo, satisfacción divina.</li>
+        </ul>
+    </div>
+
+    <div class="prophetic-content">
+        <h3>🌿 Comentario mesiánico</h3>
+        <p>El escritor arameo de Hebreos no cita una traducción griega de la Toráh, sino que retoma directamente la estructura hebrea de Bereshit 5:24, donde dice:</p>
+        <p class="scripture">“Y caminó Janókh con Elohím, y no fue, porque Elohím lo tomó.”</p>
+        <p>Aquí, el verbo ethnetel (fue trasladado) reemplaza al hebreo laqaj (“tomar”), mostrando que el autor identifica a Elohím con MarYah, es decir, el mismo que tomó a Janókh es el mismo que levantó y tomó al Mashíaj Yeshúa (Hechos 1:9–11).</p>
+        <p>En la tradición mesiánica, Janókh representa el justo que es tomado por la fe antes del juicio, y Yeshúa es el cumplimiento supremo de esa figura:</p>
+        <ul>
+            <li>Janókh fue trasladado porque agradó a Elohím.</li>
+            <li>Yeshúa fue exaltado porque cumplió perfectamente la voluntad de Elohím.</li>
+        </ul>
+        <p>Ambos son “tomados”, no por obra humana, sino por la acción directa del Eterno יהוה (MarYah).</p>
+    </div>
+
+    <div class="prophetic-content">
+        <h3>🔥 Cumplimiento profético en Yeshúa haMashíaj</h3>
+        <ul>
+            <li><strong class="highlight">Traslación sin ver muerte:</strong><br>Janókh es figura del justo resucitado; Yeshúa fue el primero que venció la muerte y fue tomado a la gloria.<br><em class="scripture">→ “El Mashíaj fue exaltado por la diestra de Elohím” (Hechos 2:33).</em></li>
+            <li><strong class="highlight">Agradó a Elohím:</strong><br>La raíz aramea shapír shapír refleja una belleza moral perfecta.<br><em class="scripture">→ En Mattai 3:17 (Peshitta):<br>“Huno qolá min shemayá, den haw den habíbá bēh isṭabayt.”<br>(“Este es Mi Hijo amado, en quien tengo complacencia.”)</em><br>— Exactamente el mismo testimonio que Elohím dio sobre Janókh.</li>
+            <li><strong class="highlight">“No fue hallado” / “no fue visto más”:</strong><br>El mundo perdió de vista a Janókh como el mundo dejó de ver a Yeshúa tras Su ascensión.<br><em class="scripture">→ “Un poco más y el mundo no me verá.” (Yojanán 16:16)</em></li>
+            <li><strong class="highlight">Caminar con Elohím:</strong><br>Janókh caminó con Elohím; Yeshúa dijo:<br><em class="scripture">“El Hijo no puede hacer nada por sí mismo, sino lo que ve hacer al Padre.” (Yojanán 5:19)</em><br>— Una comunión perfecta, idéntica a la que el creyente mesiánico está llamado a vivir.</li>
+        </ul>
+    </div>
+
+    <div class="explanation">
+        <h3> Aplicación espiritual</h3>
+        <ul>
+            <li><strong>La fe que agrada:</strong><br>El texto enseña que la fe (heymanuta) no es mera creencia intelectual, sino comunión viva con Elohím, una “caminata constante” en Su presencia.</li>
+            <li><strong>La esperanza del justo:</strong><br>Como Janókh, el creyente mesiánico tiene promesa de ser trasladado (ethnetel) sin ver corrupción.<br><em class="scripture">→ “Seremos transformados” (1 Cor 15:52).</em></li>
+            <li><strong>Caminar con el Mashíaj:</strong><br>Caminar con Elohím no es solo obedecer, sino compartir Su dirección, Su tiempo y Su deseo.<br><em class="scripture">→ “Permaneced en mí, y Yo en vosotros.” (Yojanán 15:4)</em></li>
+            <li><strong>Testimonio del justo:</strong><br>El verbo eshhed ‘alaw (“tuvo testimonio acerca de él”) se aplica al discípulo fiel: el que agrada a Elohím por la fe será también testigo de Su gloria.</li>
+            <li><strong>El ejemplo de Janókh como profecía de la Kehiláh:</strong><br>Antes del diluvio, Janókh fue tomado; antes del juicio final, la Kehiláh fiel será levantada con el Mashíaj.<br><em class="scripture">→ “Nos encontraremos con el Adón en el aire, y así estaremos siempre con Él.” (1 Tes 4:17, Peshitta: Maran Yeshúa).</em></li>
+        </ul>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <div class="content-container">
+        <h2>✡️ I. Estructura espiritual de Hebreos 11:5</h2>
+        <p class="scripture">“Por la fe, Janókh fue trasladado para no ver la muerte,<br>y no fue hallado, porque lo tomó MarYah;<br>y antes de ser trasladado tuvo testimonio de haber agradado a MarYah.”</p>
+        <p>Este pasaje encierra tres niveles de revelación:</p>
+        <ul>
+            <li><strong>Fe (<span class="hebrew-term">אֱמוּנָה</span> / <span class="hebrew-term">ܗܝܡܢܘܬܐ</span> heymanuta):</strong><br>No solo “creer”, sino andar con fidelidad (halajáh ne’emánáh).<br>Es la fe activa que transforma la existencia, que une al creyente con Elohím.</li>
+            <li><strong>Traslación (<span class="hebrew-term">לקח</span> / <span class="hebrew-term">ܫܩܠ</span> shaqal):</strong><br>Acción soberana del Eterno: el justo es tomado, arrebatado, elevado.<br><span class="arrow">→</span> Representa la victoria sobre la muerte, y profetiza la resurrección mesiánica.</li>
+            <li><strong>Agradar a Elohím (<span class="hebrew-term">רָצָה</span> / <span class="hebrew-term">ܫܦܪ</span> shapír):</strong><br>Indica una relación de deleite mutuo, donde Elohím se complace en Su siervo fiel.<br><span class="arrow">→</span> Aquí se revela el corazón del plan redentor: Yeshúa es el único que agradó perfectamente a Elohím.</li>
+        </ul>
+    </div>
+    
+    <div class="prophetic-content">
+        <h3>🔥 II. Janókh como sombra (<span class="hebrew-term">צל</span> / tzel) del Mashíaj</h3>
+        <p>En la Aliyáh de Bereshit 5:22–24, leemos dos veces:</p>
+        <p class="scripture">“Y caminó Janókh con Elohím… y no fue, porque Elohím lo tomó.”</p>
+        <p>Esta repetición enfatiza una comunión ininterrumpida, un caminar continuo sin interrupción entre cielo y tierra.</p>
+        <p>Janókh representa al hombre que, por su comunión, es absorbido por la Gloria.</p>
+        <p>Yeshúa haMashíaj es el cumplimiento perfecto de esa figura:</p>
+        <table style="width:100%; border-collapse: collapse; text-align: left;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Elemento</th>
+                <th style="padding: 8px;">Janókh</th>
+                <th style="padding: 8px;">Yeshúa haMashíaj</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Camina con Elohím</td>
+                <td style="padding: 8px;">En fidelidad y pureza</td>
+                <td style="padding: 8px;">“Yo y el Padre somos Ejad (Uno)” (Yojanán 10:30)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Agradó a Elohím</td>
+                <td style="padding: 8px;">Testimonio de justicia</td>
+                <td style="padding: 8px;">“Este es Mi Hijo amado, en quien me complazco” (Mattai 3:17)</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Fue tomado sin ver muerte</td>
+                <td style="padding: 8px;">Traslación celestial</td>
+                <td style="padding: 8px;">Ascensión gloriosa (Hechos 1:9–11)</td>
+            </tr>
+             <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Figura del justo antes del juicio del diluvio</td>
+                <td style="padding: 8px;">Anuncia preservación antes del juicio</td>
+                <td style="padding: 8px;">Mashíaj viene a tomar a Su Kehiláh antes del fuego final (1 Tes 4:17)</td>
+            </tr>
+        </table>
+        <p>El traslado de Janókh es una profecía del traslado y exaltación del Mashíaj, y también del traslado de Su Kehiláh ne’emánáh (Comunidad fiel).</p>
+    </div>
+    
+    <div class="content-container">
+        <h3>🌿 III. Conexión con los Profetas (Nevi’ím)</h3>
+        <div class="section-container">
+            <h4>🔹 Yesha‘yahu (Isaías) 44:6–23 — Haftaráh de la Aliyáh</h4>
+            <p class="scripture">“Así dice יהוה, Rey de Israel, y su Redentor, יהוה de los Ejércitos:<br>Yo soy el primero y Yo soy el último; fuera de Mí no hay Elohím.” (v.6)</p>
+            <p>Aquí, el mismo que es Redentor es יהוה mismo.<br>Este título — Go’el Yisra’el — apunta al Mashíaj, que en el Brit Hadashá se revela como<br>“Yo soy el Primero y el Último” (Hitgalút 1:17).</p>
+            <p>La conexión es clara:</p>
+            <ul>
+                <li>En Bereshit, Elohím toma a Janókh.</li>
+                <li>En Yesha‘yahu, יהוה redime a Su pueblo.</li>
+                <li>En el Brit Hadashá, Yeshúa, identificado como MarYah, toma y redime a los suyos.</li>
+            </ul>
+            <p>Así, el acto de “tomar” (laqaj / shaqal) en Janókh se cumple proféticamente en el Redentor que toma para Sí un pueblo santo (Tito 2:14).</p>
+        </div>
+        <div class="section-container">
+            <h4>🔹 Mijá 6:8 — “Caminar humildemente con tu Elohím”</h4>
+            <p>La profecía de Mijá recoge la esencia de Janókh:</p>
+            <p class="scripture">“Se te ha mostrado, oh hombre, lo que es bueno: hacer justicia, amar misericordia y caminar humildemente con tu Elohím.”</p>
+            <p>Janókh vivió este mandato siglos antes de que se pronunciara.<br>Yeshúa lo cumplió perfectamente:<br><em class="scripture">“Aprended de mí, que soy manso y humilde de corazón.” (Mattai 11:29)</em></p>
+            <p>El caminar con Elohím en Janókh es una prefiguración del caminar en el Espíritu que Yeshúa impartió a sus discípulos (Gálatas 5:25).</p>
+        </div>
+        <div class="section-container">
+            <h4>🔹 Malají 3:1 y 4:5 — La Visitación del Mashíaj</h4>
+            <p>Malají profetiza la venida del mensajero que preparará el camino del Adón y del Eliyahu que vendrá antes del juicio.</p>
+            <p>Ambas figuras — Janókh y Eliyahu — comparten la misma característica: no vieron la muerte.</p>
+            <p>En la tradición mesiánica, representan a los dos testigos (Hitgalút 11:3–12) que proclaman el retorno del Mashíaj antes del juicio final.</p>
+            <p>Así, el traslado de Janókh profetiza la traslación del testimonio fiel que no muere, sino que permanece para anunciar la victoria de Yeshúa.</p>
+        </div>
+    </div>
+    
+    <div class="prophetic-content">
+        <h3>🌟 IV. Conexión directa entre la Aliyáh y Hebreos 11:5</h3>
+        <p>La Aliyáh de Bereshit 4:23–5:24 y Hebreos 11:5 son reflejos espejo:<br>lo que comenzó como historia, en Hebreos se revela como profecía cumplida en el Mashíaj.</p>
+        <table style="width:100%; border-collapse: collapse; text-align: left;">
+             <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Tema</th>
+                <th style="padding: 8px;">Bereshit 4–5</th>
+                <th style="padding: 8px;">Hebreos 11:5</th>
+                <th style="padding: 8px;">Cumplimiento Mesiánico</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Corrupción y violencia (Lémec)</td>
+                <td style="padding: 8px;">Caída de la humanidad</td>
+                <td style="padding: 8px;">Mundo sin fe</td>
+                <td style="padding: 8px;">Condición previa a la redención</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Nacimiento de Shét (simiente)</td>
+                <td style="padding: 8px;">Elohím pone una nueva simiente</td>
+                <td style="padding: 8px;">Fe establecida</td>
+                <td style="padding: 8px;">Yeshúa es la Simiente prometida</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Invocar el Nombre de יהוה</td>
+                <td style="padding: 8px;">Restauración de adoración</td>
+                <td style="padding: 8px;">Fe activa</td>
+                <td style="padding: 8px;">Revelación del Nombre en Yeshúa</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Caminata de Janókh</td>
+                <td style="padding: 8px;">Relación íntima con Elohím</td>
+                <td style="padding: 8px;">Fe que agrada</td>
+                <td style="padding: 8px;">Comunión perfecta del Mashíaj con el Padre</td>
+            </tr>
+             <tr>
+                <td style="padding: 8px;">Ser “tomado” por Elohím</td>
+                <td style="padding: 8px;">Traslación sin muerte</td>
+                <td style="padding: 8px;">Fe que vence la muerte</td>
+                <td style="padding: 8px;">Resurrección y ascensión del Mashíaj</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="explanation">
+        <h3>🕊️ V. Aplicación Espiritual en el creyente mesiánico</h3>
+        <ul>
+            <li><strong>Caminar con Yeshúa como Janókh caminó con Elohím.</strong><br>La halajáh de Janókh se cumple en quienes caminan con el Mashíaj día a día.<br><em class="scripture">→ “El que me sigue no andará en tinieblas, sino que tendrá la luz de la vida.” (Yojanán 8:12)</em></li>
+            <li><strong>Agradar al Eterno por medio de la fe obediente.</strong><br>Janókh no agradó a Elohím por ritos, sino por fidelidad.<br>Así también el discípulo mesiánico agrada a Yeshúa viviendo Su Palabra.<br><em class="scripture">→ “El Padre busca adoradores en espíritu y en verdad.” (Yojanán 4:23)</em></li>
+            <li><strong>Vivir esperando ser “tomados” por el Mashíaj.</strong><br>La traslación de Janókh profetiza el arrebatamiento espiritual:<br><em class="scripture">→ “Nos encontraremos con el Adón en el aire.” (1 Tes 4:17)</em><br>Es la esperanza viva de la Kehiláh fiel — no ver la muerte, sino ver Su rostro.</li>
+            <li><strong>Reflejar la pureza del linaje de Shét.</strong><br>Shét fue “puesto” por Elohím como una semilla nueva: símbolo de regeneración.<br>Cada creyente nacido del Ruaj haKodesh participa de esa zera‘ ajér (nueva simiente).<br><em class="scripture">→ “Si alguno está en el Mashíaj, nueva creación es.” (2 Cor 5:17)</em></li>
+            <li><strong>Ser testigos antes del juicio.</strong><br>Janókh vivió antes del diluvio como voz profética de justicia (Judas 1:14–15).<br>Así también la Kehiláh de Yeshúa es llamada a testificar antes del juicio final.</li>
+        </ul>
+    </div>
+
+    <div class="conclusion">
+        <h3>🔯 VI. Conclusión Mesiánica</h3>
+        <p>Hebreos 11:5 no es solo un elogio de Janókh, sino una profecía del Mashíaj Yeshúa, el Hijo del Hombre que:</p>
+        <ul>
+            <li>Caminó con Elohím (Juan 5:19)</li>
+            <li>Agradó al Padre (Mateo 3:17)</li>
+            <li>Fue tomado al cielo (Hechos 1:9)</li>
+            <li>Y que pronto tomará a los suyos para sí (Juan 14:3)</li>
+        </ul>
+        <p>Así, Janókh es el modelo del creyente redimido, y Yeshúa es el cumplimiento perfecto de ese modelo — el “Camino” mismo por donde el justo camina con Elohím.</p>
+        <p>Como Janókh fue tomado por Elohím, así la Kehiláh será tomada por Yeshúa haMashíaj — no por huir del mundo, sino por unirse al cielo. 🌤️</p>
+    </div>
+    <div class="content-container">
+        <h2>🕎 PUNTO 4 — CONTEXTO HISTÓRICO Y CULTURAL</h2>
+
+        <h3>✡️ I. Contexto General del Periodo Antediluviano</h3>
+        <p>El pasaje de Bereshit (Génesis) 4:23–5:24 se sitúa antes del Diluvio, en la época llamada antediluviana (mibol), la más antigua de la historia humana.</p>
+        <p>En este periodo, la humanidad vive las consecuencias inmediatas de la caída de Adám y Javáh: separación espiritual, muerte, corrupción y violencia.</p>
+        <p>El texto marca el contraste entre dos linajes espirituales:</p>
+        <ul>
+            <li>El linaje de Caín (<span class="hebrew-term">קַיִן</span> Qayin) — simboliza la línea de la autonomía humana, fundada en la violencia y el orgullo.</li>
+            <li>El linaje de Shét (<span class="hebrew-term">שֵׁת</span>) — representa la línea de la promesa mesiánica, fundada en la fe, la justicia y la adoración al Nombre de יהוה.</li>
+        </ul>
+        <p>Este contexto prepara el escenario teológico y profético que culminará con Noaj (<span class="hebrew-term">נֹחַ</span>) y el Diluvio.</p>
+
+        <h3>🕯️ II. Marco Cultural y Social</h3>
+        <h4>🔹 1. La Civilización Cainita</h4>
+        <p>Después del asesinato de Hével, Caín es expulsado “de la presencia de יהוה” (4:16) y se asienta “en la tierra de Nod, al oriente de Edén”.</p>
+        <p>Desde allí, Caín funda la primera ciudad — Ḥanokh (Enoc) — y da origen a una civilización caracterizada por el progreso técnico, artístico y bélico, pero espiritualmente alejada del Eterno.</p>
+        <p>Los descendientes de Caín (4:17–22) se especializan en tres áreas:</p>
+        <ul>
+            <li><strong>Yaval</strong> — padre de los que habitan en tiendas y crían ganado (vida nómada, economía).</li>
+            <li><strong>Yuval</strong> — padre de todos los que tocan el kinnor (arpa) y el ugav (flauta): arte y cultura.</li>
+            <li><strong>Tuval-Qayin</strong> — forjador de cobre y hierro: tecnología, guerra y poder material.</li>
+        </ul>
+        <p><span class="arrow">➡️</span> Simbolismo: una civilización avanzada externamente, pero espiritualmente vacía, basada en la violencia, el orgullo y el olvido del Creador.</p>
+
+        <h4>🔹 2. El canto de Lémec (4:23–24)</h4>
+        <p>Lémec, séptimo desde Caín, representa la culminación del espíritu de rebelión.</p>
+        <p>Su poesía arrogante se considera el primer poema humano registrado:</p>
+        <p class="scripture">“He matado a un hombre por mi herida, y a un joven por mi golpe.”</p>
+        <p>El número siete (7) marca plenitud o culminación: la plenitud del pecado.</p>
+        <p>Su jactancia profetiza la corrupción final antes del Diluvio, donde “la tierra se llenó de violencia” (6:11).</p>
+        
+        <h4>🔹 3. La línea de Shét</h4>
+        <p>En contraste, Adám engendra otro hijo: Shét, “porque Elohím me ha puesto (<span class="hebrew-term">שָׁת</span>) otra simiente en lugar de Hével”.</p>
+        <p>Este “poner” (shát) expresa un acto soberano de Elohím: Él mismo establece la simiente redentora.</p>
+        <p>Desde Shét nace Enósh, y en su generación “se comenzó a invocar el Nombre de יהוה” (4:26).</p>
+        <p>Este versículo señala el primer despertar espiritual colectivo después de la caída.</p>
+        <p>El texto arameo (Targum Onkelos) dice:</p>
+        <p class="scripture">“En esos días comenzaron a orar en el Nombre de MarYah.”</p>
+        <p>Lo cual implica que la humanidad empieza a reconocer nuevamente la autoridad del Creador, aunque en forma incipiente.</p>
+
+        <h3>🌄 III. Contexto Lingüístico y Teológico</h3>
+        <h4>🔹 1. El Nombre de Elohím</h4>
+        <p>En la sección de la genealogía (capítulo 5), se usa principalmente el título Elohím <span class="hebrew-term">אֱלֹהִים</span>, no el Nombre del pacto (יהוה).</p>
+        <p>Esto resalta que la relación entre el hombre y el Creador todavía no ha sido restaurada plenamente: hay distancia, pero también la promesa de acercamiento a través de la zera‘ ajér (otra simiente).</p>
+        
+        <h4>🔹 2. “Caminó con Elohím” (<span class="hebrew-term">וַיִּתְהַלֵּךְ חֲנוֹךְ אֶת־הָאֱלֹהִים</span>)</h4>
+        <p>El verbo hithalékh implica un andar constante, una vida de comunión ininterrumpida.</p>
+        <p>En el pensamiento hebreo, “caminar con Elohím” (halaj et haElohím) equivale a vivir en santidad y dependencia total del Espíritu.</p>
+        <p>Esto anticipa la instrucción profética posterior:</p>
+        <p class="scripture">“Camina delante de Mí y sé perfecto.” (Bereshit 17:1)</p>
+
+        <h3>🪔 IV. Contexto Arqueológico y Tradiciones Antiguas</h3>
+        <h4>🔹 1. Tradiciones del Cercano Oriente</h4>
+        <p>Varias culturas antiguas — sumerias, babilonias, acadias — conservan tradiciones de hombres justos trasladados por los dioses sin morir.</p>
+        <p>En particular, el sabio babilonio Enmeduranki (predecesor de Enoj en listas reales) fue “tomado al cielo y hecho consejero de los dioses”.</p>
+        <p>Estas versiones distorsionadas probablemente derivan de la memoria ancestral de Janókh, transmitida por la humanidad antediluviana.</p>
+
+        <h4>🔹 2. Qumrán y los textos del Segundo Templo</h4>
+        <p>Los manuscritos del Mar Muerto (1 Enoc, 2 Enoc, Jubileos) exaltan a Janókh como modelo de revelación celestial y justicia divina.</p>
+        <p>El libro de 1 Enoc lo describe ascendiendo al cielo y recibiendo visiones del “Hijo del Hombre sentado en trono de gloria”.</p>
+        <p><span class="arrow">→</span> Este detalle es profundamente mesiánico, pues anticipa la visión de Daniel 7:13–14, cumplida en Yeshúa haMashíaj como el “Bar Enash” (Hijo del Hombre).</p>
+
+        <h3>🕊️ V. Contexto Profético y Espiritual</h3>
+        <h4>🔹 1. El patrón de siete generaciones</h4>
+        <p>Desde Adám a Janókh hay siete generaciones por la línea de Caín, y siete por la línea de Shét.</p>
+        <ul>
+            <li>En Caín: el séptimo (Lémec) encarna el pecado consumado.</li>
+            <li>En Shét: el séptimo (Janókh) encarna la comunión perfecta.</li>
+        </ul>
+        <p><span class="arrow">➡️</span> Esto muestra dos caminos: el de la muerte y el de la vida eterna.</p>
+
+        <h4>🔹 2. El traslado de Janókh como profecía mesiánica</h4>
+        <p>La acción “Elohím lo tomó” (<span class="hebrew-term">לקח אותו אלהים</span>) profetiza la ascensión de Yeshúa:</p>
+        <p>así como Janókh fue elevado para no ver muerte, Yeshúa fue tomado en gloria después de vencer la muerte.</p>
+        <p>Ambos anticipan la futura redención corporal de los justos.</p>
+        
+        <h4>🔹 3. La restauración del Nombre</h4>
+        <p>“Entonces comenzaron a invocar el Nombre de יהוה” (4:26) señala el inicio del proceso que culminará en la revelación del Nombre en el Mashíaj:</p>
+        <p class="scripture">“He manifestado Tu Nombre a los hombres.” (Yojanán 17:6)</p>
+        <p>El Nombre que fue invocado en los días de Enósh, ahora se revela plenamente en Yeshúa — יהוה Salvador.</p>
+
+        <h3>🕎 VI. Conexión con la Historia del Mishkán y el Culto Posterior</h3>
+        <p>El patrón de “caminar con Elohím” reaparece en la estructura del Mishkán (Tabernáculo):</p>
+        <p>cada sección simboliza un grado de acercamiento al Creador.</p>
+        <p>Así como Janókh fue elevado al ámbito celestial, el Kohén Gadol (sumo sacerdote) penetraba al Kodesh haKodashím una vez al año, figura del acceso espiritual del justo.</p>
+        <p>En la era mesiánica, este acceso se hace permanente por la sangre de Yeshúa, el Kohén Gadol celestial (Hebreos 9:11–12).</p>
+        
+        <h3>✡️ VII. Síntesis Histórico-Espiritual</h3>
+        <table style="width:100%; border-collapse: collapse; text-align: left; margin-top: 20px;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Línea</th>
+                <th style="padding: 8px;">Séptima generación</th>
+                <th style="padding: 8px;">Resultado</th>
+                <th style="padding: 8px;">Significado espiritual</th>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Caín</td>
+                <td style="padding: 8px;">Lémec</td>
+                <td style="padding: 8px;">Violencia, muerte</td>
+                <td style="padding: 8px;">El hombre sin Elohím</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Shét</td>
+                <td style="padding: 8px;">Janókh</td>
+                <td style="padding: 8px;">Comunión, traslación</td>
+                <td style="padding: 8px;">El hombre restaurado en el Mashíaj</td>
+            </tr>
+        </table>
+        <p>El contraste entre Lémec y Janókh resume toda la historia de la humanidad:</p>
+        <ul>
+            <li>Un camino de autosuficiencia (Caín-Lémec)</li>
+            <li>Un camino de dependencia y comunión (Shét-Janókh)</li>
+        </ul>
+        <p>Este patrón se repite en cada generación: dos caminos, dos naturalezas, dos destinos.</p>
+        <p>La línea de la fe prevalece porque Elohím “pone” Su semilla (Shét) en medio de la corrupción.</p>
+
+        <h3>🔯 VIII. Conexión con el Brit Hadashá</h3>
+        <ul>
+            <li><strong>Hebreos 11:5–6:</strong> El escritor arameo conecta directamente el caminar de Janókh con la fe que agrada a MarYah.<br><span class="arrow">→</span> La fe es la restauración de la comunión que Adám perdió.</li>
+            <li><strong>Yojanán 14:3:</strong> “Y os tomaré a Mí mismo.”<br><span class="arrow">→</span> El mismo verbo conceptual de Bereshit 5:24: Elohím “tomó” a Janókh; el Mashíaj “tomará” a los suyos.</li>
+            <li><strong>Efesios 5:2:</strong> “Caminad en amor, como el Mashíaj nos amó.”<br><span class="arrow">→</span> La halajáh de Janókh se convierte en la halajáh mesiánica del amor perfecto.</li>
+            <li><strong>Hitgalút (Apocalipsis) 3:4:</strong> “Caminarán conmigo en vestiduras blancas, porque son dignos.”<br><span class="arrow">→</span> El caminar con Elohím encuentra su consumación escatológica.</li>
+        </ul>
+
+        <h3>🕊️ IX. Reflexión Espiritual</h3>
+        <p>El contexto histórico de esta Aliyáh nos enseña que:</p>
+        <ul>
+            <li>La verdadera civilización no se mide por el hierro o la música, sino por la santidad.</li>
+            <li>En medio del progreso material, Elohím busca a quienes caminan con Él.</li>
+            <li>La fe de Janókh no fue una emoción, sino una vida diaria de comunión.</li>
+            <li>La historia antediluviana anuncia la realidad de nuestra era: avance exterior, decadencia moral, pero un remanente que invoca el Nombre.</li>
+            <li>El creyente mesiánico es llamado a ser como Janókh — vivir en el mundo, pero caminar con Elohím.</li>
+        </ul>
+
+        <div class="conclusion">
+            <h4>🌿 Conclusión del Punto 4:</h4>
+            <p>El contexto histórico, cultural y profético de Génesis 4:23–5:24 revela el origen del linaje mesiánico, el despertar del culto verdadero, y la primera figura de la redención celestial en Janókh.</p>
+            <p>Este caminar con Elohím se cumple plenamente en Yeshúa haMashíaj, el Hijo del Hombre que fue tomado en gloria y que abrirá el camino eterno para los que caminen con Él.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>✡️ PUNTO 5 — ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS</h2>
+        <h3>I. Introducción Profética de la Aliyáh</h3>
+        <p>El texto de Génesis 4:23–5:24 une tres ejes:</p>
+        <ol>
+            <li>La decadencia moral (linaje de Caín).</li>
+            <li>El inicio de la línea redentora (Shét).</li>
+            <li>El traslado del justo (Janókh).</li>
+        </ol>
+        <p>Estos tres aspectos prefiguran toda la historia de la humanidad, desde la caída hasta la redención final en el Mashíaj Yeshúa.</p>
+        <p>La estructura de esta Aliyáh muestra el patrón profético de Elohím:</p>
+        <p>Caín y Lémec <span class="arrow">→</span> corrupción del mundo.<br>
+           Shét y Enósh <span class="arrow">→</span> restauración del culto.<br>
+           Janókh <span class="arrow">→</span> ascensión del justo.</p>
+        <p>Cada etapa es una sombra (tzel) del plan de redención manifestado en el Mashíaj.</p>
+        
+        <h3>II. Comentarios Rabínicos Clásicos</h3>
+        <h4>🔹 Rashí (R. Shelomó Yitzjaqí, s. XI):</h4>
+        <p>Rashí comenta sobre 4:26:</p>
+        <p class="scripture">“<span class="hebrew-term">אז הוחל לקרוא בשם יהוה</span> – entonces se comenzó a profanar el Nombre.”</p>
+        <p>Rashí ve en este verso una degeneración espiritual: los hombres comenzaron a llamar ídolos por el Nombre de יהוה.</p>
+        <p><span class="arrow">→</span> En esta lectura, Enósh marca la pérdida del conocimiento puro del Nombre.</p>
+        <p>Sin embargo, la tradición mesiánica interpreta este mismo verso en sentido opuesto: el inicio de la restauración del Nombre, que alcanzará su plenitud en el Mashíaj.</p>
+        <p>La aparente contradicción refleja la tensión entre apostasía y revelación: donde abunda la confusión, Elohím restaura Su Nombre en los corazones fieles.</p>
+        
+        <h4>🔹 Rambán (Najmánides, s. XIII):</h4>
+        <p>Sobre Janókh, Rambán escribe:</p>
+        <p class="scripture">“Fue un hombre que buscó la verdad, se apartó del mundo, y caminó con Elohím hasta que fue llevado a lo alto.”</p>
+        <p>Rambán percibe en Janókh una elevación espiritual progresiva, no un acto instantáneo.</p>
+        <p>Este concepto es clave en la interpretación mesiánica: la ascensión del justo es el resultado de una vida de comunión, no de un mérito repentino.</p>
+        
+        <h4>🔹 Midrash Bereshit Rabbá (25:1):</h4>
+        <p class="scripture">“Elohím tomó a Janókh para que no se corrompiera su corazón en las generaciones del Diluvio.”</p>
+        <p>El Midrash ve la traslación como un acto de misericordia preventiva: Elohím lo “sustrae” antes de que el mundo caiga completamente.</p>
+        <p><span class="arrow">→</span> En el mismo sentido, Yeshúa fue “tomado” (Hechos 1:9) antes de la ruina de Jerusalén (año 70), y su Kehiláh será tomada antes del juicio final.</p>
+        
+        <h4>🔹 Targum Yonatán sobre Génesis 5:24:</h4>
+        <p class="scripture">“Y caminó Janókh en el temor de יהוה, y no murió, porque fue tomado y subió a las alturas del cielo, y el Verbo de יהוה lo hizo ascender.”</p>
+        <p>Aquí aparece por primera vez el concepto del Memrá de יהוה (Palabra de Elohím), que en la teología aramea es la manifestación visible del Eterno, anticipando el Logos / Dabar revelado en Yeshúa haMashíaj (Yojanán 1:1,14).</p>
+        <p><span class="arrow">➡️</span> Así, el Memrá que tomó a Janókh es el mismo que se manifestó como Yeshúa, el Verbo hecho carne.</p>
+        
+        <h3>III. Comentarios Mesiánicos</h3>
+        <h4>🔹 Janókh como tipo del Mashíaj</h4>
+        <p>Janókh (<span class="hebrew-term">חֲנוֹךְ</span> “dedicado, consagrado”) representa al Hombre perfecto que vive en completa comunión con Elohím.</p>
+        <p>En su vida se cumplen los atributos mesiánicos:</p>
+        <table style="width:100%; border-collapse: collapse; text-align: left; margin: 20px 0;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Aspecto</th>
+                <th style="padding: 8px;">Janókh</th>
+                <th style="padding: 8px;">Yeshúa haMashíaj</th>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Caminó con Elohím</td>
+                <td style="padding: 8px;">Comunión diaria</td>
+                <td style="padding: 8px;">“Yo hago siempre lo que agrada al Padre” (Yojanán 8:29)</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Fue tomado sin ver muerte</td>
+                <td style="padding: 8px;">Traslación celestial</td>
+                <td style="padding: 8px;">Ascensión gloriosa (Hechos 1:9)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Testimonio de justicia</td>
+                <td style="padding: 8px;">Agradó a Elohím</td>
+                <td style="padding: 8px;">“Este es mi Hijo amado” (Mattai 3:17)</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Profeta antes del juicio</td>
+                <td style="padding: 8px;">Anuncia el Diluvio</td>
+                <td style="padding: 8px;">Anuncia el fin y la redención final</td>
+            </tr>
+        </table>
+        <p>El mismo Ruaj Elohím que trasladó a Janókh es el que resucitó a Yeshúa (Rom 8:11).</p>
+        
+        <h4>🔹 Shét — la “otra simiente”</h4>
+        <p>El nacimiento de Shét (<span class="hebrew-term">שֵׁת</span> “poner, establecer”) es un acto profético:</p>
+        <p class="scripture">“Elohím me ha puesto otra simiente.” (4:25)</p>
+        <p>La zera‘ ajér (otra simiente) apunta a la simiente prometida en Génesis 3:15 — la que aplastará la cabeza de la serpiente.</p>
+        <p>Por tanto, Shét es el inicio visible del linaje mesiánico, que llega hasta Yeshúa (Lucas 3:38).</p>
+        <p>El mismo verbo shát (“poner”) aparece en pasajes mesiánicos:</p>
+        <p class="scripture">“He puesto Mi Espíritu sobre Él.” (Yesha‘yahu 42:1)</p>
+        <p><span class="arrow">→</span> Elohím pone Su Espíritu sobre Su Siervo, como puso Su simiente redentora en Shét.</p>
+        
+        <h4>🔹 Lémec — el anti-Janókh</h4>
+        <p>Lémec, descendiente de Caín, representa la exaltación del ego humano.</p>
+        <p>Su “poema de venganza” (4:23–24) es la primera parodia de justicia.</p>
+        <p>Mientras Lémec se gloría en la violencia, Janókh se gloría en caminar con Elohím.</p>
+        <p><span class="arrow">→</span> Dos tipos de humanidad: la del orgullo (Caín-Lémec) y la de la comunión (Shét-Janókh).</p>
+        <p>El Mashíaj desciende de la segunda, la línea de la fe.</p>
+        
+        <h3>IV. Comentarios del Segundo Templo</h3>
+        <h4>🔹 1 Enoc (Libro Etiópico, cap. 39–71)</h4>
+        <p>Describe a Janókh siendo llevado al cielo, donde contempla “al Hijo del Hombre” sobre el trono de gloria.</p>
+        <p><span class="arrow">→</span> Este pasaje anticipa Daniel 7:13–14, donde el Bar Enash recibe dominio eterno.</p>
+        <p>En la visión de Enoc, el Hijo del Hombre es preexistente y divino, lo cual concuerda con la revelación mesiánica:</p>
+        <p class="scripture">“Antes que Abraham fuese, Yo Soy.” (Yojanán 8:58)</p>
+        
+        <h4>🔹 Jubileos 4:22–23</h4>
+        <p>Afirma que Janókh “fue el primero de los hijos de los hombres que aprendió la escritura, la sabiduría y el conocimiento de las cosas celestiales”.</p>
+        <p>Esto lo presenta como un mediador entre el cielo y la tierra, figura del Mashíaj Mediador (1 Tim 2:5).</p>
+        
+        <h3>V. Conexiones Proféticas</h3>
+        <ul>
+            <li><strong>1. Dos civilizaciones, dos espíritus:</strong> El linaje de Caín representa el espíritu del mundo, mientras que el linaje de Shét representa el espíritu del Mashíaj. Esta oposición continúa hasta nuestros días: <p class="scripture">“Lo que es nacido de la carne, carne es; y lo que es nacido del Ruaj, ruaj es.” (Yojanán 3:6)</p></li>
+            <li><strong>2. Profecía de la traslación:</strong> La traslación de Janókh es el prototipo del arrebatamiento de la Kehiláh fiel. <p class="scripture">“Seremos arrebatados... para recibir al Adón en el aire.” (1 Tes 4:17)</p> Ambos son tomados antes del juicio: Janókh antes del Diluvio, la Kehiláh antes de la Gran Tribulación.</li>
+            <li><strong>3. La fe que agrada:</strong> Hebreos 11:5–6 enseña que sin fe es imposible agradar a Elohím. El testimonio de Janókh es el mismo que Yeshúa dio: “Yo siempre hago lo que le agrada.” Por eso, en el discípulo del Mashíaj, la fe y la obediencia se convierten en una sola cosa: caminar en comunión.</li>
+        </ul>
+
+        <h3>VII. Aplicación Profética y Espiritual</h3>
+        <ul>
+            <li>Restaurar el “caminar” con Elohím en medio de una cultura materialista como la de Caín.</li>
+            <li>Invocar el Nombre verdadero en espíritu y verdad, como en los días de Enósh.</li>
+            <li>Ser trasladados en espíritu a niveles celestiales, viviendo ya en comunión con el Mashíaj.</li>
+            <li>Mantener la esperanza del regreso del Justo, el mismo que fue “tomado” y volverá.</li>
+            <li>Ser semilla santa (zera‘ kodesh) que preserve la fe antes del juicio del mundo.</li>
+        </ul>
+        
+        <div class="conclusion">
+            <h4>🕊️ Conclusión del Punto 5</h4>
+            <p>La Aliyáh de Bereshit 4:23–5:24 revela los fundamentos del plan redentor: Elohím pone Su semilla (Shét) en medio de la corrupción. El hombre comienza a invocar Su Nombre (Enósh). El justo camina con Elohím y es tomado en gloria (Janókh).</p>
+            <p>Estos tres actos anticipan el Evangelio del Mashíaj: Encarnación, Reconciliación, y Ascensión.</p>
+            <p>Así, Janókh es la profecía viva del Mashíaj Yeshúa, y su caminar anuncia el destino de los que son hallados fieles: ser tomados por Elohím, no para escapar del mundo, sino para habitar en Su presencia por la eternidad. 🌿</p>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>✡️ PUNTO 6 — ANÁLISIS PROFUNDO DE LA ALIYÁH</h2>
+        <p><strong>Texto:</strong> Bereshit / Génesis 4:23–5:24<br>
+        <strong>Tema:</strong> Del linaje de Caín al caminar celestial de Janókh — el contraste entre la violencia del hombre y la comunión del justo.<br>
+        <strong>Eje mesiánico:</strong> Yeshúa haMashíaj, el Justo perfecto que camina con Elohím y es exaltado en gloria.</p>
+        
+        <h3>I. Estructura literaria y espiritual de la Aliyáh</h3>
+        <p>El pasaje se divide naturalmente en tres secciones proféticas:</p>
+        <ol>
+            <li>4:23–24 — El canto de Lémec: culminación de la violencia humana.</li>
+            <li>4:25–26 — Nacimiento de Shét y restauración del Nombre de יהוה.</li>
+            <li>5:1–24 — Las generaciones de Adám hasta Janókh, el hombre que caminó con Elohím.</li>
+        </ol>
+        <p>Estas tres secciones forman un arco narrativo de corrupción <span class="arrow">→</span> restauración <span class="arrow">→</span> comunión, que se cumple en el plan de redención del Mashíaj Yeshúa.</p>
+
+        <h3>II. Análisis Exegético Hebreo</h3>
+        <h4>🔹 1. El poema de Lémec (4:23–24)</h4>
+        <p class="scripture">“Porque un hombre he matado por mi herida, y un joven por mi golpe.”</p>
+        <p>El hebreo revela una estructura poética paralela:<br>
+        Ish haragtí lefitz‘í — “he matado a un hombre por mi herida”<br>
+        Yeled lechaburatí — “y un joven por mi golpe”</p>
+        <p>El paralelismo enfatiza la violencia que se justifica a sí misma. Lémec interpreta el asesinato como defensa personal y convierte la violencia en arte. El número simbólico setenta y siete (<span class="hebrew-term">שִׁבְעִים וְשִׁבְעָה</span>) expresa la plenitud del pecado.</p>
+        <p>🔸 En contraste, Yeshúa responde a Pedro:</p>
+        <p class="scripture">“No te digo hasta siete, sino hasta setenta veces siete.” (Mattai 18:22)</p>
+        <p>🕊️ Donde Lémec multiplica la venganza, Yeshúa multiplica la misericordia.</p>
+        
+        <h4>🔹 2. El nacimiento de Shét (4:25)</h4>
+        <p class="scripture">“Elohím me ha puesto otra simiente (<span class="hebrew-term">זֶרַע אַחֵר</span>) en lugar de Hével.”</p>
+        <p>El verbo <span class="hebrew-term">שָׁת</span> / shát (“poner, establecer”) indica un acto soberano de Elohím. No es simple reemplazo biológico, sino fundación divina. Shét representa el inicio del linaje mesiánico — la simiente que producirá al Redentor.</p>
+        <p>📜 En hebreo, zera‘ ajér (“otra simiente”) eco de Génesis 3:15: “Pondré enemistad entre tu simiente y la simiente de ella.”</p>
+        <p><span class="arrow">→</span> Yeshúa es la simiente puesta por Elohím en medio de la muerte para traer vida.</p>
+        
+        <h4>🔹 3. “Entonces se comenzó a invocar el Nombre de יהוה” (4:26)</h4>
+        <p>El verbo huchál (<span class="hebrew-term">הוּחַל</span>) puede traducirse como “comenzó” o “fue profanado”. En la tradición mesiánica, el contexto de Shét y Enósh sugiere el inicio de la adoración verdadera. Los hombres vuelven a pronunciar el Nombre, símbolo del retorno a la comunión.</p>
+        <p>💡 En el Targum Onkelos: “En esos días comenzaron a orar en el Nombre de MarYah.”</p>
+        <p>Así, el acto de invocar el Nombre se convierte en el primer paso hacia la redención. <span class="arrow">→</span> Este versículo es la raíz del Shem Tov, la restauración del Nombre de יהוה, que en el Brit Hadashá se revela en Yeshúa (<span class="hebrew-term">יהושע</span>) — “יהוה salva.”</p>
+        
+        <h4>🔹 4. El libro de las generaciones de Adám (5:1–24)</h4>
+        <p>El texto repite: “Y vivió... y engendró... y murió.” excepto en un solo caso: Janókh, quien no muere.</p>
+        <p>📜 Estructura: Adám <span class="arrow">→</span> Shét <span class="arrow">→</span> Enósh <span class="arrow">→</span> Qeinán <span class="arrow">→</span> Mahalalél <span class="arrow">→</span> Yéred <span class="arrow">→</span> Janókh <span class="arrow">→</span> Metushélaj <span class="arrow">→</span> Lémec <span class="arrow">→</span> Noaj.</p>
+        <p>Cada nombre es una palabra profética que, leída en secuencia, anuncia el plan de redención:</p>
+        <p class="scripture">“El hombre (Adám) fue puesto (Shét), mortal (Enósh), poseído (Qeinán), de la alabanza de Elohím (Mahalalél); en su descenso (Yéred) será dedicado (Janókh), y su muerte traerá (Metushélaj) la desesperación (Lémec), pero finalmente vendrá el descanso (Noaj).”</p>
+        <p>💎 Este mensaje oculto revela el Evangelio codificado en los nombres: la historia humana es la profecía del Mashíaj redentor.</p>
+        
+        <h4>🔹 5. Janókh caminó con Elohím (5:22,24)</h4>
+        <p class="hebrew">“וַיִּתְהַלֵּךְ חֲנוֹךְ אֶת־הָאֱלֹהִים”</p>
+        <p>El verbo hithalékh implica un caminar continuo y relacional. Janókh no solo creyó, vivió en comunión diaria con Elohím. En hebreo, la expresión “et haElohím” denota cercanía íntima. Janókh no caminó delante ni detrás de Elohím, sino con Él — figura de la unión perfecta del Mashíaj con el Padre: “Yo y el Padre somos Ejad (Uno).” (Yojanán 10:30)</p>
+        <p>El resultado: <span class="hebrew-term">“וְאֵינֶנּוּ כִּי לָקַח אֹתוֹ אֱלֹהִים”</span> — “Y no fue, porque Elohím lo tomó.”</p>
+        <p>El verbo laqaj (“tomar”) expresa traslación divina. El mismo verbo se usa en 2 Reyes 2:3 para Eliyahu, y en arameo Peshitta para Yeshúa: “Fue tomado (<span class="hebrew-term">ܫܩܠ</span> / shaqal) al cielo.” (Hechos 1:9)</p>
+
+        <h3>III. Análisis Mesiánico</h3>
+        <ul>
+            <li><strong>Janókh como prototipo del Mashíaj:</strong> Janókh caminó con Elohím <span class="arrow">→</span> Yeshúa vivió en unidad con el Padre. Janókh fue tomado sin ver muerte <span class="arrow">→</span> Yeshúa venció la muerte y ascendió. Janókh tuvo testimonio de agradar a Elohím <span class="arrow">→</span> Yeshúa fue declarado “Hijo amado”.</li>
+            <li><strong>Shét — semilla del Mashíaj:</strong> La línea de Shét representa la restauración de la imagen divina. Adám engendra “a su semejanza”, pero Yeshúa viene a restaurar la imagen de Elohím perdida. “Él es la imagen visible del Elohím invisible.” (Col 1:15).</li>
+            <li><strong>Lémec y Yeshúa — dos paradigmas opuestos:</strong> Lémec se exalta por matar. Yeshúa se exalta al morir por amor. El “canto de Lémec” se invierte en el cántico del Cordero (Hitgalút 15:3).</li>
+        </ul>
+        
+        <h3>VII. Aplicación Espiritual Contemporánea</h3>
+        <ul>
+            <li>Caminar con Elohím es posible en un mundo corrupto. Janókh lo logró; tú puedes lograrlo en Yeshúa.</li>
+            <li>Invocar el Nombre verdadero restaura la comunión. La adoración pura — no religión, sino relación — abre el cielo sobre nosotros.</li>
+            <li>La fe que agrada produce transformación, no solo creencia. Como Janókh, el creyente mesiánico es llamado a ser trasladado en espíritu, a vivir desde ahora como ciudadano celestial.</li>
+            <li>Yeshúa es el Camino de Janókh. No hay otro modo de “caminar con Elohím” sino a través del Mashíaj.</li>
+            <li>El tiempo del fin será como en los días de Lémec: Violencia, confusión, orgullo. Pero habrá también una generación de Janókh — los que caminan en santidad esperando ser tomados.</li>
+        </ul>
+
+        <div class="conclusion">
+            <h3>VIII. Conclusión del Punto 6</h3>
+            <p>La Aliyáh de Bereshit 4:23–5:24 revela el ciclo completo de la humanidad: Caída (Caín y Lémec), Restauración (Shét y Enósh), y Comunión (Janókh).</p>
+            <p>Cada paso es un reflejo del plan mesiánico: El Mashíaj pone Su simiente, restaura el culto al Nombre, y camina con los suyos hasta llevarlos en gloria.</p>
+            <p>El mensaje final de esta Aliyáh es una invitación al discipulado celestial: “Camina conmigo — y serás tomado.”</p>
+            <p>En Yeshúa haMashíaj, el caminar de Janókh se hace vida presente, y el ser tomado por Elohím se convierte en nuestra esperanza eterna. 🌿</p>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>✡️ PUNTO 7 — TEMA MÁS RELEVANTE DE LA ALIYÁH</h1>
+
+        <h3>I. Tema Central: “Caminar con Elohím en medio de la corrupción”</h3>
+        <p>La Aliyáh presenta dos líneas espirituales que definen el destino de toda la humanidad:</p>
+        <ul>
+            <li>La línea de Caín — el camino de la violencia, la autonomía y la rebelión.</li>
+            <li>La línea de Shét — el camino de la fe, la adoración y la comunión.</li>
+        </ul>
+        <p>Y dentro de esta segunda línea surge Janókh (<span class="hebrew-term">חֲנוֹךְ</span>), el séptimo desde Adám, símbolo del hombre que logra restaurar la comunión perfecta con su Creador.</p>
+        <p class="scripture">“Janókh caminó con Elohím, y no fue, porque Elohím lo tomó.” (Bereshit 5:24)</p>
+        <p>Este caminar es el corazón espiritual de la Aliyáh: la vida humana como una halajáh (camino de fe) que conduce a la unión eterna con Elohím.</p>
+
+        <h3>II. Significado Espiritual del “Caminar con Elohím”</h3>
+        <p>En hebreo, el verbo <span class="hebrew-term">וַיִּתְהַלֵּךְ</span> – vayithalékh (de halaj, caminar) implica una acción reflexiva y continua: caminarse a sí mismo delante de Elohím; es decir, vivir una relación constante, no ocasional.</p>
+        <p>Este “caminar” no es un recorrido físico, sino espiritual: una vida alineada con la voluntad de Elohím.</p>
+        <p>📜 En la Escritura, el mismo verbo describe:</p>
+        <ul>
+            <li>“Camina delante de Mí y sé perfecto” (Bereshit 17:1, dicho a Avraham).</li>
+            <li>“Caminaré en medio de vosotros” (Vayiqrá 26:12).</li>
+            <li>“Caminaré en verdad contigo” (3 Yojanán 1:4).</li>
+        </ul>
+        <p><span class="arrow">➡️</span> Por tanto, “caminar con Elohím” es la definición de la vida espiritual redimida, tanto en la Toráh como en el Brit Hadasháh.</p>
+
+        <h3>III. Tema Teológico: El retorno a la comunión perdida en Edén</h3>
+        <p>El caminar de Janókh representa la restauración del propósito original del hombre.</p>
+        <p>Adám caminaba con Elohím en el Gan-Éden antes del pecado; Janókh vuelve a hacerlo después de la caída.</p>
+        <p>Esto anuncia proféticamente el propósito del Mashíaj: restaurar la comunión entre Elohím y el hombre.</p>
+        <p>Así como Janókh “fue tomado”, el Mashíaj “fue exaltado”; y así como Janókh fue el primer hombre trasladado, Yeshúa es las primicias de los glorificados.</p>
+
+        <h3>IV. La Dualidad Profética: Dos Caminos, Dos Destinos</h3>
+        <table style="width:100%; border-collapse: collapse; text-align: left;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Línea</th>
+                <th style="padding: 8px;">Símbolo</th>
+                <th style="padding: 8px;">Resultado</th>
+                <th style="padding: 8px;">Sentido espiritual</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Caín</td>
+                <td style="padding: 8px;">Violencia, Lémec</td>
+                <td style="padding: 8px;">Muerte</td>
+                <td style="padding: 8px;">El hombre sin Elohím</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Shét</td>
+                <td style="padding: 8px;">Fe, Janókh</td>
+                <td style="padding: 8px;">Vida y traslado</td>
+                <td style="padding: 8px;">El hombre en comunión</td>
+            </tr>
+        </table>
+        <p>Esta dualidad se proyecta en toda la Escritura:</p>
+        <ul>
+            <li>En la Toráh: Bendición o maldición (Devarim 30:19).</li>
+            <li>En los Profetas: Camino de vida o de muerte (Yirmeyahu 21:8).</li>
+            <li>En el Mashíaj: Camino ancho o angosto (Mattai 7:13–14).</li>
+        </ul>
+        <p>Janókh camina por el camino angosto: la senda de la fe pura.</p>
+        <p>Yeshúa declara ser ese mismo Camino (Derej).</p>
+
+        <h3>V. Cumplimiento en el Mashíaj Yeshúa</h3>
+        <h4>🔹 1. Yeshúa es el Janókh perfecto</h4>
+        <p>Janókh caminó con Elohím; Yeshúa caminó como Elohím manifestado entre los hombres.</p>
+        <p>El caminar de Janókh anticipa la unión entre la naturaleza humana y la divina, realizada plenamente en el Mashíaj.</p>
+        <p class="scripture">“Yo y el Padre somos Ejad (Uno).” (Yojanán 10:30)</p>
+        <p>Así, el caminar con Elohím se convierte, en el Mashíaj, en caminar en Él:</p>
+        <p class="scripture">“El que permanece en Mí, como Yo en él, este lleva mucho fruto.” (Yojanán 15:5)</p>
+
+        <h4>🔹 2. El traslado de Janókh profetiza la ascensión de Yeshúa</h4>
+        <p class="scripture">“Elohím lo tomó.” (Bereshit 5:24)</p>
+        <p class="scripture">“Y fue alzado, y una nube lo ocultó de sus ojos.” (Hechos 1:9)</p>
+        <p>Ambos verbos hebreo y arameo (laqaj / shaqal) describen una acción divina soberana, en la que el Justo es tomado hacia la gloria.</p>
+        <p>Así como Janókh fue “tomado” antes del Diluvio, Yeshúa fue tomado antes del juicio sobre Jerusalén. Y del mismo modo, los que están en Él serán tomados antes del juicio final (1 Tes 4:17).</p>
+        
+        <div class="conclusion">
+            <h3>X. Conclusión del Punto 7</h3>
+            <p>El tema más relevante de Génesis 4:23–5:24 es el “Caminar con Elohím”.</p>
+            <p>Este tema recorre toda la Escritura y culmina en el Mashíaj Yeshúa, quien no solo caminó con Elohím, sino reveló al mismo Elohím caminando entre los hombres.</p>
+            <p>Janókh representa el ideal del creyente redimido: Camina con Elohím. Agradó a Elohím. Fue tomado por Elohím.</p>
+            <p>Yeshúa es el cumplimiento perfecto de esta tipología: Caminó en obediencia. Agradó al Padre. Fue exaltado a las alturas.</p>
+            <p>El caminar de Janókh no es un mito antiguo, sino una profecía viva del destino mesiánico: que los hijos de Elohím serán trasladados de gloria en gloria, hasta morar eternamente en la presencia del Eterno. 🌿</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>✡️ PUNTO 8 — DESCUBRIENDO AL MASHÍAJ EN CADA ALIYÁH</h1>
+        <h3>I. Revelación del Mashíaj en la Aliyáh</h3>
+        <p>El pasaje de Bereshit 4:23–5:24 es una de las primeras secciones proféticamente mesiánicas del Sefer Bereshit, porque introduce la “otra simiente” (<span class="hebrew-term">זֶרַע אַחֵר</span>), el caminar con Elohím, y la traslación del justo — tres temas que solo encuentran su plenitud en Yeshúa haMashíaj.</p>
+        <p class="scripture">“Elohím me ha puesto otra simiente en lugar de Hével.” (4:25)</p>
+        <p class="scripture">“Y caminó Janókh con Elohím.” (5:24)</p>
+        <p>Desde el principio, el texto enseña que la línea de la redención — la línea de Shét — es la simiente mesiánica, en la cual el Mashíaj se manifestará como la restauración del hombre a la comunión perdida con Elohím.</p>
+
+        <h3>II. Profecías Mesiánicas Implícitas</h3>
+        <h4>🔹 1. La “Otra Simiente” (<span class="hebrew-term">זֶרַע אַחֵר</span>) — Génesis 4:25</h4>
+        <p>Este versículo es el eco directo de la primera promesa mesiánica:</p>
+        <p class="scripture">“Pondré enemistad entre tu simiente y la simiente de ella.” (Bereshit 3:15)</p>
+        <p>La “otra simiente” no es una línea humana cualquiera: es la simiente espiritual puesta por Elohím mismo, que llegará a su cumplimiento en Yeshúa.</p>
+        <p>📜 Zera‘ ajér es la primera alusión directa al linaje mesiánico que llevará la bendición de Adám a toda la humanidad.</p>
+        <p><span class="arrow">→</span> Shét (<span class="hebrew-term">שֵׁת</span> “puesto, establecido”) tipifica al Mashíaj puesto por Elohím como base de la redención.</p>
+        <p class="scripture">“He puesto (<span class="hebrew-term">שַׁתִּי</span>) a Mi Rey sobre Sión.” (Tehilím 2:6)</p>
+        <p>Así, el nacimiento de Shét prefigura la encarnación del Mashíaj: Elohím mismo “pone” Su semilla santa en la historia humana.</p>
+
+        <h3>III. Tipologías (Tipos Proféticos del Mashíaj)</h3>
+        <table style="width:100%; border-collapse: collapse; text-align: left;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Figura</th>
+                <th style="padding: 8px;">Significado profético</th>
+                <th style="padding: 8px;">Cumplimiento en el Mashíaj</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Shét (<span class="hebrew-term">שֵׁת</span>)</td>
+                <td style="padding: 8px;">“Puesto, establecido” — Elohím pone Su semilla santa</td>
+                <td style="padding: 8px;">Yeshúa es el Ben Elohím puesto como fundamento eterno (Isa 28:16)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Enósh (<span class="hebrew-term">אֱנוֹשׁ</span>)</td>
+                <td style="padding: 8px;">“Hombre frágil” — conciencia del pecado</td>
+                <td style="padding: 8px;">El Mashíaj toma forma de hombre y lleva la debilidad humana (Fil 2:7)</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Janókh (<span class="hebrew-term">חֲנוֹךְ</span>)</td>
+                <td style="padding: 8px;">“Dedicado” — consagración perfecta</td>
+                <td style="padding: 8px;">Yeshúa, consagrado desde antes de la fundación del mundo (Yoj 17:19)</td>
+            </tr>
+             <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Tomado (<span class="hebrew-term">לקח</span>)</td>
+                <td style="padding: 8px;">Traslado celestial del justo</td>
+                <td style="padding: 8px;">Ascensión y glorificación del Mashíaj (Hech 1:9; Heb 9:24)</td>
+            </tr>
+        </table>
+        <p>Cada nombre en la genealogía revela una secuencia profética: la historia de la humanidad desde el pecado hasta la restauración en el Mashíaj.</p>
+        <p class="scripture">“El hombre fue puesto mortal, pero Elohím descenderá, será dedicado, su muerte traerá consuelo.”</p>
+        <p><span class="arrow">→</span> Es el mensaje oculto de los nombres desde Adám hasta Noaj, el anuncio codificado del Evangelio mesiánico.</p>
+
+        <h3>VI. Descubriendo al Mashíaj en los Nombres de Génesis 5</h3>
+        <p>Cada nombre hasta Janókh revela un aspecto mesiánico:</p>
+        <table style="width:100%; border-collapse: collapse; text-align: left;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Nombre</th>
+                <th style="padding: 8px;">Significado</th>
+                <th style="padding: 8px;">Conexión Mesiánica</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Adám – Hombre</td>
+                <td style="padding: 8px;">Representante de la humanidad caída</td>
+                <td style="padding: 8px;">Mashíaj como segundo Adám (1 Cor 15:45)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Shét – Puesto</td>
+                <td style="padding: 8px;">Elohím establece Su plan redentor</td>
+                <td style="padding: 8px;">Mashíaj, fundamento del Reino</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Enósh – Mortal</td>
+                <td style="padding: 8px;">Condición humana</td>
+                <td style="padding: 8px;">Encarnación del Mashíaj</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Qeinán – Posesión</td>
+                <td style="padding: 8px;">Pertenencia a Elohím</td>
+                <td style="padding: 8px;">Redención por compra (1 Cor 6:20)</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Mahalalél – Alabanza de Elohím</td>
+                <td style="padding: 8px;">Adoración verdadera</td>
+                <td style="padding: 8px;">Mashíaj, reflejo de la gloria divina</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Yéred – Descenso</td>
+                <td style="padding: 8px;">Elohím desciende</td>
+                <td style="padding: 8px;">Encarnación: “descendí del cielo” (Yoj 6:38)</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Janókh – Dedicado</td>
+                <td style="padding: 8px;">Santificación</td>
+                <td style="padding: 8px;">Mashíaj consagrado (Yoj 17:19)</td>
+            </tr>
+        </table>
+        <p>Esta secuencia profética declara:</p>
+        <p class="scripture">“El Hombre (Adám) fue puesto (Shét) mortal (Enósh), poseído (Qeinán), de la alabanza de Elohím (Mahalalél); en su descenso (Yéred) será dedicado (Janókh).”</p>
+        <p>💎 El mensaje oculto: Yeshúa, el Hombre Divino, desciende, se consagra y redime.</p>
+
+        <div class="conclusion">
+            <h3>X. Conclusión del Punto 8</h3>
+            <p>El Mashíaj está revelado en cada detalle de esta Aliyáh: En Shét, como la Simiente puesta. En Enósh, como la Encarnación divina. En Janókh, como la Comunión perfecta y la traslación gloriosa.</p>
+            <p>El mensaje mesiánico de Génesis 4:23–5:24 es claro: Donde el hombre cayó, Elohím puso Su semilla; donde hubo corrupción, Él restauró la adoración; y donde hubo muerte, Él tomó al justo hacia la vida eterna.</p>
+            <p>Yeshúa haMashíaj es el cumplimiento total de esta revelación: La Simiente puesta, el Camino de comunión y el Justo exaltado.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>✡️ PUNTO 9 — MIDRASHIM, TARGUMIM, TEXTOS FUENTES Y APÓCRIFOS</h1>
+        <h3>I. Introducción General</h3>
+        <p>Desde los tiempos más antiguos, la figura de Janókh (<span class="hebrew-term">חֲנוֹךְ</span>) ha sido símbolo del justo perfecto, el sabio celestial y el hombre que caminó con Elohím hasta ser tomado a los cielos.</p>
+        <p>Las tradiciones rabínicas, targúmicas y apocalípticas desarrollaron ampliamente su papel, viéndolo como modelo de santidad, profecía y revelación celestial.</p>
+        <p>Estas fuentes no solo preservan ecos del texto hebreo original, sino que también profetizan la revelación mesiánica futura.</p>
+        <p>La teología mesiánica reconoce que en esas voces antiguas se encuentran sombras proféticas del Mashíaj Yeshúa, el Justo que fue tomado en gloria.</p>
+        
+        <h3>II. Midrashim (Tradición Oral Rabínica)</h3>
+        <h4>🔹 Midrash Bereshit Rabbá 23:6–25:1</h4>
+        <p>Este midrash comenta sobre Janókh y su caminar con Elohím:</p>
+        <p class="scripture">“Janókh era un hombre justo y caminaba con Elohím. Pero cada vez que iba al mercado, su corazón se turbaba. Entonces Elohím lo tomó para que no se corrompiera su mente en la generación del Diluvio.”</p>
+        <p>🕯️ Comentario mesiánico: El midrash ve la “traslación” de Janókh como un acto de misericordia preventiva: Elohím lo aparta del mal venidero. Esto se cumple proféticamente en Yeshúa, quien dijo: “Os voy a preparar lugar.” (Yojanán 14:2–3). El Justo es tomado antes del juicio, del mismo modo que la Kehiláh fiel será preservada antes del tiempo de ira (1 Tes 1:10).</p>
+
+        <h3>III. Targumim (Traducciones Arameas Antiguas)</h3>
+        <h4>🔹 Targum Onkelos sobre Génesis 5:24</h4>
+        <p class="scripture">“Y caminó Janókh en el temor de יהוה, y no fue más, porque el Memrá de יהוה lo tomó.”</p>
+        <p>💎 Aquí aparece el término <span class="hebrew-term">מֵימְרָא</span> / Memrá, que significa “la Palabra” o “la Manifestación activa de Elohím”. Este es un concepto fundamental para la teología mesiánica: la Memrá de יהוה es la Palabra viviente, el Dabar que se hizo carne en Yeshúa.</p>
+        <p>📖 Por tanto, el mismo “Memrá” que tomó a Janókh es el Mashíaj preexistente, el Verbo que se manifestará en el tiempo como Yeshúa haMashíaj (Yojanán 1:1–14).</p>
+
+        <h3>IV. Textos del Segundo Templo y Apócrifos</h3>
+        <h4>🔹 1 Enoc (Libro Etiópico de Enoc)</h4>
+        <p>Este texto, preservado en Qumrán y Etiopía, amplía el relato bíblico. El autor describe cómo Janókh fue llevado por Elohím y se convirtió en testigo celestial. Allí contempla al Hijo del Hombre sentado en trono de gloria (1 Enoc 46–48).</p>
+        <p class="scripture">“Vi a uno semejante a Hijo de Hombre, y Su rostro era lleno de gracia, y los justos dependían de Él.”</p>
+        <p>💎 Interpretación mesiánica: Esta es una profecía directa de Yeshúa haMashíaj como el “Bar Enash” (Daniel 7:13–14). El Hijo del Hombre que Janókh vio es el mismo que se manifestó en carne y ascendió en gloria.</p>
+        
+        <div class="conclusion">
+            <h3>IX. Conclusión del Punto 9</h3>
+            <table style="width:100%; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <th style="padding: 8px;">Fuente</th>
+                    <th style="padding: 8px;">Concepto</th>
+                    <th style="padding: 8px;">Cumplimiento en el Mashíaj</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">Midrash Bereshit Rabbá</td>
+                    <td style="padding: 8px;">El justo apartado antes del juicio</td>
+                    <td style="padding: 8px;">Yeshúa y la Kehiláh guardada del día de ira</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 8px;">Targum Onkelos</td>
+                    <td style="padding: 8px;">El Memrá toma a Janókh</td>
+                    <td style="padding: 8px;">El Verbo (Dabar) toma a los suyos</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">1 Enoc</td>
+                    <td style="padding: 8px;">El Hijo del Hombre glorificado</td>
+                    <td style="padding: 8px;">Yeshúa como Bar Enash entronizado</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 8px;">Jubileos</td>
+                    <td style="padding: 8px;">Janókh: sabio celestial y profeta</td>
+                    <td style="padding: 8px;">Yeshúa: Maestro y Profeta eterno</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">Qumrán</td>
+                    <td style="padding: 8px;">Escriba de Justicia</td>
+                    <td style="padding: 8px;">Mashíaj: Maestro de Justicia celestial</td>
+                </tr>
+            </table>
+            <p>💎 En resumen: Todas las tradiciones antiguas reconocen en Janókh una figura mesiánica. En Yeshúa haMashíaj, estas figuras encuentran su cumplimiento perfecto. Él es la Memrá que toma, el Bar Enash que reina, y el Justo que camina con Elohím.</p>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>✡️ PUNTO 10 — MANDAMIENTOS, PRINCIPIOS Y VALORES ENCONTRADOS</h1>
+        <h3>I. Introducción</h3>
+        <p>Aunque la Toráh escrita en esta etapa temprana (antediluviana) aún no había sido entregada en el Sinaí, la Toráh oral y espiritual ya estaba en acción:</p>
+        <p>Elohím reveló principios divinos al hombre desde el principio.</p>
+        <p>Estos principios, más que preceptos rituales, son leyes universales grabadas en la conciencia y en la relación del ser humano con su Creador.</p>
+        <p>La Aliyáh de Génesis 4:23–5:24 muestra la transición de la violencia de Caín al caminar santo de Janókh; por tanto, los mandamientos y valores que emergen aquí son la esencia del código moral del Reino Mesiánico.</p>
+
+        <h3>II. Mitzvot Espirituales Reveladas en la Aliyáh</h3>
+        <h4>🔹 1. No derramar sangre inocente — (Bereshit 4:23)</h4>
+        <p class="scripture">“He matado a un hombre por mi herida…”</p>
+        <p>Lémec glorifica el asesinato y la venganza.</p>
+        <p>Aquí nace la necesidad de la prohibición del homicidio, principio que luego será explícito en Éxodo 20:13: “No matarás (<span class="hebrew-term">לֹא תִּרְצָח</span>).”</p>
+        <p>🕎 Valor eterno: La vida humana pertenece a Elohím. Cada ser humano es imagen de Él (tzelem Elohím). El que desprecia la vida, desprecia al Creador.</p>
+        <p>📖 Cumplimiento mesiánico: Yeshúa enseñó la interpretación espiritual de este mandamiento: <span class="scripture">“Oísteis que fue dicho: No matarás… pero yo os digo: cualquiera que se enoje contra su hermano será culpable de juicio.” (Mattai 5:21–22)</span></p>
+        <p><span class="arrow">➡️</span> En el Reino del Mashíaj, la violencia es reemplazada por el perdón, rompiendo el ciclo de Lémec.</p>
+        
+        <h4>🔹 2. Reconocer que Elohím es el Dador de la vida — (4:25)</h4>
+        <p class="scripture">“Elohím me ha puesto otra simiente (שֵׁת) en lugar de Hével.”</p>
+        <p>Aquí se revela el principio de emunáh (fe) en la soberanía divina. Adám y Javáh reconocen que solo Elohím puede restaurar lo perdido.</p>
+        <p>🕯️ Valor: Aceptar la voluntad de Elohím y confiar en Su propósito redentor.</p>
+        <p>📖 Aplicación en el Mashíaj: Así como Elohím “puso” una simiente nueva (Shét), Él “puso” a Yeshúa como la Simiente Eterna. <span class="scripture">“He aquí que pongo en Sión una piedra probada, preciosa, fundamento firme.” (Yesha‘yahu 28:16)</span></p>
+        <p><span class="arrow">➡️</span> Mandamiento espiritual: Aceptar la provisión divina como medio de redención.</p>
+
+        <h3>IV. Valores Espirituales Eternos</h3>
+        <table style="width:100%; border-collapse: collapse; text-align: left;">
+            <tr style="border-bottom: 1px solid #ddd;">
+                <th style="padding: 8px;">Valor</th>
+                <th style="padding: 8px;">Representación en la Aliyáh</th>
+                <th style="padding: 8px;">Cumplimiento en Yeshúa</th>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Fe (<span class="hebrew-term">אמונה</span>)</td>
+                <td style="padding: 8px;">Janókh agrada a Elohím</td>
+                <td style="padding: 8px;">Yeshúa es el Autor de la fe (Heb 12:2)</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Santidad (<span class="hebrew-term">קדושה</span>)</td>
+                <td style="padding: 8px;">“Caminó con Elohím”</td>
+                <td style="padding: 8px;">“Sed santos, porque Yo soy santo.”</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Esperanza (<span class="hebrew-term">תקוה</span>)</td>
+                <td style="padding: 8px;">Traslado sin ver muerte</td>
+                <td style="padding: 8px;">Promesa de resurrección</td>
+            </tr>
+            <tr style="background-color: #f9f9f9;">
+                <td style="padding: 8px;">Perdón (<span class="hebrew-term">סליחה</span>)</td>
+                <td style="padding: 8px;">Contraste con la venganza de Lémec</td>
+                <td style="padding: 8px;">“Padre, perdónalos.”</td>
+            </tr>
+            <tr>
+                <td style="padding: 8px;">Adoración (<span class="hebrew-term">עֲבוֹדָה</span>)</td>
+                <td style="padding: 8px;">Invocar el Nombre de יהוה</td>
+                <td style="padding: 8px;">Adoración en Ruaj y verdad</td>
+            </tr>
+        </table>
+
+        <div class="conclusion">
+            <h3>VII. Conclusión del Punto 10</h3>
+            <p>La Aliyáh de Génesis 4:23–5:24 nos enseña que la Torah del corazón existía desde el principio. Antes del Sinaí, la fe, la santidad y la obediencia ya eran el fundamento de la relación con Elohím.</p>
+            <p>Janókh encarna la obediencia perfecta, el caminar en fe y la comunión sin interrupción. Estos valores son el modelo mesiánico de vida: No la religión del miedo, sino la relación del amor. No la obediencia externa, sino la transformación interna. No la justicia del hombre, sino la justicia del Mashíaj.</p>
+            <p>💎 Resumen: Caín y Lémec representan la ruptura de los mandamientos. Shét y Janókh representan su restauración en la fe. En Yeshúa haMashíaj, los principios eternos se cumplen y se viven por el Ruaj HaKodesh.</p>
+            <p class="scripture">“Caminar con Elohím es cumplir Su Torah desde el corazón.” (Jeremías 31:33 / Hebreos 8:10)</p>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>✡️ PUNTO 11 — PREGUNTAS DE REFLEXIÓN Y RESPUESTAS EN EL MASHÍAJ</h1>
+        <h3>🕯️ Introducción</h3>
+        <p>La Aliyáh presenta dos caminos: el de la violencia y autosuficiencia (Caín y Lémec), y el de la comunión y fe (Shét y Janókh). Cada pregunta aquí busca llevar al creyente a una reflexión profunda sobre cómo el Mashíaj Yeshúa restaura el propósito original del hombre: caminar con Elohím. Las respuestas se fundamentan en la Toráh, los Profetas y el Brit Hadasháh, mostrando el cumplimiento mesiánico del texto.</p>
+
+        <div class="section-container">
+            <h4 class="question">❓ 1. ¿Qué enseña el contraste entre Lémec y Janókh sobre la naturaleza humana y la redención en Yeshúa?</h4>
+            <div class="answer">
+                <p><strong>Reflexión:</strong> Lémec representa el orgullo, la violencia y la autosuficiencia del hombre separado de Elohím. Janókh representa la humildad, la obediencia y la comunión con Elohím.</p>
+                <p><strong>Respuesta en el Mashíaj:</strong> El contraste revela las dos naturalezas que habitan en la humanidad — la carnal y la espiritual. Solo Yeshúa, el Hombre Perfecto, puede transformar al “Lémec” que hay en cada ser humano en un “Janókh” que camina con Elohím.</p>
+                <p class="scripture">Romanos 8:1–2: “La Toráh del Ruaj de vida en el Mashíaj Yeshúa me ha librado de la Toráh del pecado y de la muerte.”</p>
+                <p>💎 <strong>Aplicación:</strong> Cuando vivimos en Yeshúa, el espíritu de venganza (como el de Lémec) es reemplazado por el Ruaj del perdón, del amor y de la justicia divina.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h4 class="question">❓ 2. ¿Qué significa que Adám y Javáh dijeran: “Elohím me ha puesto otra simiente”? (Génesis 4:25)</h4>
+            <div class="answer">
+                <p><strong>Reflexión:</strong> La frase hebrea “<span class="hebrew-term">שָׁת־לִי אֱלֹהִים זֶרַע אַחֵר</span> – Elohím me ha puesto otra simiente” contiene la promesa de restauración. Elohím provee lo que el pecado destruyó.</p>
+                <p><strong>Respuesta en el Mashíaj:</strong> Yeshúa es la Simiente puesta por Elohím en medio de la humanidad caída. Así como Shét fue “puesto” para continuar el linaje de justicia, Yeshúa fue “puesto” como el fundamento de salvación eterna.</p>
+                <p class="scripture">Yesha‘yahu 28:16: “He aquí que Yo pongo en Sión una piedra probada, preciosa, fundamento firme.”</p>
+                <p>💎 <strong>Aplicación:</strong> Cada vez que confiamos en el Mashíaj en medio de la pérdida, Elohím “pone” en nosotros nueva esperanza. La semilla de la redención crece donde hubo muerte.</p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>🌿 Conclusión General del Punto 11</h3>
+            <p>Las preguntas de esta Aliyáh nos conducen al centro de la fe: Caín nos muestra lo que ocurre cuando el hombre vive sin comunión. Lémec nos muestra el resultado del orgullo humano. Shét nos muestra el inicio del plan redentor. Janókh nos muestra el destino glorioso del justo.</p>
+            <p>💎 En Yeshúa haMashíaj todo se cumple: Él es la Simiente puesta (Shét), el Nombre invocado (Enósh), el Camino de comunión (Janókh), y el Justo tomado en gloria.</p>
+            <p>Caminar con Elohím en Yeshúa significa vivir cada día como Janókh: en fe, en amor, y en expectación de la gloria venidera.</p>
+            <p class="scripture">“Y no fue, porque Elohím lo tomó.” (Génesis 5:24)</p>
+            <p>Así también, el Mashíaj nos tomará para sí. 🌿</p>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+    
+    <div class="content-container">
+        <h1>✡️ PUNTO 12 — RESUMEN DE LA ALIYÁH: BERESHIT 4:23–5:24</h1>
+        <h3>I. Resumen Narrativo y Espiritual</h3>
+        <p>La Aliyáh nos lleva desde la corrupción creciente de la descendencia de Caín hasta la restauración de la línea justa de Shét (<span class="hebrew-term">שֵׁת</span>), culminando en la figura celestial de Janókh (<span class="hebrew-term">חֲנוֹךְ</span>), el justo que “caminó con Elohím y no fue, porque Elohím lo tomó.”</p>
+        <p>Es un tramo donde la humanidad comienza a dividirse entre dos caminos: el camino de la autonomía y violencia, y el camino de la fe y comunión.</p>
+        
+        <h3>III. Tema Central</h3>
+        <p>El caminar con Elohím como vía de redención y comunión eterna. Esta Aliyáh no es solo un registro genealógico, sino una profecía del caminar mesiánico.</p>
+        <p>💎 Janókh es el primer “tipo profético” de Yeshúa haMashíaj: Caminó con Elohím. Agradó a Elohím. Fue tomado sin ver la muerte.</p>
+
+        <h3>IV. Conexión Mesiánica</h3>
+        <h4>🔹 Shét (<span class="hebrew-term">שֵׁת</span>): La Simiente Prometida</h4>
+        <p>El nombre Shét viene de la raíz shat (<span class="hebrew-term">שִׁית</span>), “poner” o “establecer”. Adám declara: “Elohím me ha puesto otra simiente.” Esta simiente prefigura a Yeshúa haMashíaj, la Simiente puesta por Elohím para traer redención al linaje caído.</p>
+
+        <div class="conclusion">
+            <h3>VIII. Conclusión Profética</h3>
+            <p>La Aliyáh de Bereshit 4:23–5:24 es más que una genealogía: es una profecía de restauración y una sombra mesiánica del plan eterno de Elohím.</p>
+            <table style="width:100%; border-collapse: collapse; text-align: left;">
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <th style="padding: 8px;">Figura</th>
+                    <th style="padding: 8px;">Significado</th>
+                    <th style="padding: 8px;">Cumplimiento en el Mashíaj</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">Lémec</td>
+                    <td style="padding: 8px;">Corrupción, violencia, autosuficiencia</td>
+                    <td style="padding: 8px;">El hombre carnal sin redención</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 8px;">Shét</td>
+                    <td style="padding: 8px;">Simiente puesta por Elohím</td>
+                    <td style="padding: 8px;">Mashíaj como la Simiente prometida</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px;">Enósh</td>
+                    <td style="padding: 8px;">Invocación del Nombre de יהוה</td>
+                    <td style="padding: 8px;">Restauración del culto verdadero en Yeshúa</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 8px;">Janókh</td>
+                    <td style="padding: 8px;">Comunión y traslación</td>
+                    <td style="padding: 8px;">Mashíaj glorificado y la esperanza de Su Kehiláh</td>
+                </tr>
+            </table>
+            <p>💎 Conclusión espiritual: El propósito de Elohím no es solo que el hombre exista, sino que camine con Él. El caminar de Janókh es la senda del Mashíaj — comunión, testimonio y gloria. Yeshúa es el Camino, el que nos toma de la muerte a la vida.</p>
+            <p class="scripture">“Caminar con Elohím es caminar en Yeshúa; y caminar en Yeshúa es ser tomado en Su gloria.” 🌿</p>
+        </div>
+    </div>
+    
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>✡️ PUNTO 13 — TEFILÁH DE LA ALIYÁH: BERESHIT 4:23–5:24</h1>
+        <h3>🕯️ Oración: “Caminar con Elohím en el Mashíaj”</h3>
+        <div class="prayer-text">
+            <p>Avinu Malkeinu (<span class="hebrew-term">אבינו מלכנו</span>), nuestro Padre y nuestro Rey,</p>
+            <p>Tú que eres el Primero y el Último, el que vive para siempre, el que da la vida y la restaura, te damos gracias por la palabra eterna que nos enseña el camino de la comunión contigo.</p>
+            <p>Desde los días antiguos, cuando los hombres se llenaron de violencia, Tu Ruaj despertó en los corazones de los justos el deseo de invocar Tu Nombre. Tú pusiste una simiente nueva — Shét <span class="hebrew-term">שֵׁת</span>, símbolo de Tu misericordia— para recordarnos que ninguna corrupción humana puede anular Tu plan redentor.</p>
+            <p>Adonái יהוה, así como Adám y Javáh reconocieron que solo Tú puedes “poner” nueva vida, te pedimos hoy que pongas en nosotros esa zera‘ ajér (simiente nueva): el corazón nuevo que prometiste por medio del profeta Yejezkel: <span class="scripture">“Y os daré un corazón nuevo, y pondré dentro de vosotros un Ruaj nuevo.”</span></p>
+            <p>Mashíaj Yeshúa, Justo glorificado, tú que fuiste “tomado” en gloria después de vencer la muerte, te esperamos con el mismo anhelo con que Janókh caminó hacia Ti. Tú eres la esperanza de los redimidos, la promesa de la traslación de los que creen, el que nos tomará para estar donde Tú estás.</p>
+            <p class="scripture">“Y no fue, porque Elohím lo tomó.”</p>
+            <p>Así también, que llegue el día en que digas de nosotros: “Ven, siervo fiel, entra en el gozo de tu Adón.”</p>
+            <p>Baruj Atá יהוה — Bendito eres Tú, porque en Yeshúa haMashíaj nos has dado el Camino, la Simiente, el Nombre y la Vida.</p>
+            <p>Que cada paso de nuestra halajáh sea un reflejo de Su gloria, hasta que el caminar terrenal se una con el celestial.</p>
+        </div>
+        <div class="prayer-conclusion">
+            <p>Ken yehi ratzón (<span class="hebrew-term">כן יהי רצון</span>) — Así sea Tu voluntad, יהוה.</p>
+            <p>Amén ve-Amén.</p>
+        </div>
+
+        <div class="conclusion">
+            <h3>🌿 Aplicación Final Espiritual</h3>
+            <p>Esta Tefiláh nos enseña que el caminar con Elohím no es solo el destino de Janókh, sino la vocación de todo creyente en el Mashíaj.</p>
+            <ul>
+                <li>El Shét interior — la simiente que Elohím pone — es el nuevo nacimiento en Yeshúa.</li>
+                <li>El clamor de Enósh es el despertar de la oración verdadera.</li>
+                <li>El caminar de Janókh es el discipulado constante con el Mashíaj.</li>
+                <li>El “ser tomado” es la meta del redimido: unión eterna con Elohím.</li>
+            </ul>
+            <p class="scripture">“Caminar con Elohím en Yeshúa es vivir cada día como si ya estuviéramos en Su presencia.” 🌿</p>
+        </div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya7.html">Continuar con la Aliyá 7</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,3907 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bereshit (בראשית) – Génesis 1:1-6:8</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        1. Parashá Bereshit (בראשית) – Génesis 1:1-6:8 Aliyáh 4: (Génesis
+        3:22-4:18) Expulsión del Edén, Caín y Abel.
+        <p>Haftaráh: Isaías 43:14-21 (Nuevo camino en el desierto).</p>
+        <p>Brit Hadasháh: Hebreos 11:4 (El sacrificio de Abel).</p>
+      </h1>
+      <div class="content-container">
+        <h1>Punto 1. 📖 Bereshit בְּרֵאשִׁית 4:1–18</h1>
+      <h1>📖 Bereshit בְּרֵאשִׁית 3:22–24</h1>
+
+      <div class="verse-container">
+        <p class="verse-number">3:22</p>
+        <p class="hebrew">
+          וַיֹּאמֶר יְהוָה אֱלֹהִים הֵן הָאָדָם הָיָה כְּאַחַד מִמֶּנּוּ לָדַעַת טוֹב
+          וָרָע
+        </p>
+        <p class="transliteration">
+          Va-yómer יהוה Elohím, hén ha-Adam hayá ke-ajád miménu la-da‘at tov
+          va-ra‘.
+        </p>
+        <p class="translation">
+          Y dijo יהוה Elohím: “He aquí, el hombre ha venido a ser como uno de
+          Nosotros, para conocer el bien y el mal.”
+        </p>
+        <p class="hebrew">
+          וְעַתָּה פֶּן־יִשְׁלַח יָדוֹ וְלָקַח גַּם מֵעֵץ הַחַיִּים וְאָכַל וָחַי
+          לְעֹלָם׃
+        </p>
+        <p class="transliteration">
+          Ve-‘attá pen yishlaj yadó, ve-lakáj gam me-‘ets ha-jayím, ve-ajál
+          va-jái le-‘olam.
+        </p>
+        <p class="translation">
+          Y ahora, no sea que extienda su mano, y tome también del árbol de la
+          vida, y coma, y viva para siempre.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">3:23</p>
+        <p class="hebrew">
+          וַיְשַׁלְּחֵהוּ יְהוָה אֱלֹהִים מִגַּן־עֵדֶן לַעֲבֹד אֶת־הָאֲדָמָה אֲשֶׁר
+          לֻקַּח מִשָּׁם׃
+        </p>
+        <p class="transliteration">
+          Va-yeshaljehu יהוה Elohím mi-gan ‘Éden, la‘avód et ha-adamá asher
+          luqqaj mi-shám.
+        </p>
+        <p class="translation">
+          Y lo expulsó יהוה Elohím del jardín de Edén, para que trabajara la
+          tierra de donde fue tomado.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">3:24</p>
+        <p class="hebrew">
+          וַיְגָרֶשׁ אֶת־הָאָדָם וַיַּשְׁכֵּן מִקֶּדֶם לְגַן־עֵדֶן אֶת־הַכְּרוּבִים
+          וְאֵת לַהַט הַחֶרֶב הַמִּתְהַפֶּכֶת לִשְׁמֹר אֶת־דֶּרֶךְ עֵץ הַחַיִּים׃
+        </p>
+        <p class="transliteration">
+          Va-yegarésh et ha-Adam, va-yashkén mi-qédem le-gan ‘Éden et
+          ha-keruvím, ve-et lahat ha-jérev ha-mit’hapéjet, lishmór et dérej ‘ets
+          ha-jayím.
+        </p>
+        <p class="translation">
+          Y expulsó al hombre, y colocó al oriente del Jardín de Edén a los
+          queruvím y la llama de la espada que giraba, para guardar el camino
+          al árbol de la vida.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="verse-container">
+        <p class="verse-number">4:1</p>
+        <p class="hebrew">
+          וְהָאָדָם יָדַע אֶת־חַוָּה אִשְׁתּוֹ וַתַּהַר וַתֵּלֶד אֶת־קַיִן וַתֹּאמֶר
+          קָנִיתִי אִישׁ אֶת־יְהוָה׃
+        </p>
+        <p class="transliteration">
+          Ve-ha-Adam yadá et Javá ishtó, va-tahar va-téled et Qayin, va-tómer:
+          qanití ish et יהוה.
+        </p>
+        <p class="translation">
+          Y el hombre conoció a Javá su mujer; y concibió y dio a luz a Qayin,
+          y dijo: “He adquirido un varón con (la ayuda de) יהוה.”
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:2</p>
+        <p class="hebrew">
+          וַתֹּסֶף לָלֶדֶת אֶת־אָחִיו אֶת־הָבֶל וַיְהִי־הֶבֶל רֹעֵה צֹאן וְקַיִן
+          הָיָה עֹבֵד אֲדָמָה׃
+        </p>
+        <p class="transliteration">
+          Va-tósef laledét et ajív et Hével; va-yhí Hével ro‘éh tson, ve-Qayin
+          hayá ‘oved adamá.
+        </p>
+        <p class="translation">
+          Y volvió a dar a luz a su hermano Hével; y Hével fue pastor de
+          ovejas, y Qayin fue labrador de la tierra.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:3</p>
+        <p class="hebrew">
+          וַיְהִי מִקֵּץ יָמִים וַיָּבֵא קַיִן מִפְּרִי הָאֲדָמָה מִנְחָה לַיהוה׃
+        </p>
+        <p class="transliteration">
+          Va-yhí mi-qets yamím, va-yavé Qayin miprí ha-adamá minjá la-יהוה.
+        </p>
+        <p class="translation">
+          Y aconteció al cabo de los días, que Qayin trajo del fruto de la
+          tierra una ofrenda a יהוה.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:4</p>
+        <p class="hebrew">
+          וְהֶבֶל הֵבִיא גַם־הוּא מִבְּכֹרוֹת צֹאנֹו וּמֵחֶלְבֵהֶן וַיִּשַׁע יהוה
+          אֶל־הֶבֶל וְאֶל־מִנְחָתוֹ׃
+        </p>
+        <p class="transliteration">
+          Ve-Hével héví gam-hú mibekhorót tsonó u-mejélvehén; va-yishá יהוה
+          el-Hével ve-el minjató.
+        </p>
+        <p class="translation">
+          Y Hével también trajo de los primogénitos de su rebaño y de su
+          gordura; y יהוה miró con agrado a Hével y a su ofrenda.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:5</p>
+        <p class="hebrew">
+          וְאֶל־קַיִן וְאֶל־מִנְחָתוֹ לֹא שָׁעָה וַיִּחַר לְקַיִן מְאֹד וַיִּפְּלוּ
+          פָנָיו׃
+        </p>
+        <p class="transliteration">
+          Ve-el Qayin ve-el minjató lo sha‘á; va-yijar le-Qayin me’od, va-yiplu
+          fanáv.
+        </p>
+        <p class="translation">
+          Pero a Qayin y a su ofrenda no miró con agrado; y se encendió la ira
+          de Qayin, y su semblante decayó.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:6–7</p>
+        <p class="hebrew">
+          וַיֹּאמֶר יהוה אֶל־קָיִן לָמָה חָרָה לָךְ וְלָמָה נָפְלוּ פָנֶיךָ׃
+        </p>
+        <p class="transliteration">
+          Va-yómer יהוה el-Qayin: lamá jarah lakh, ve-lamá naflú fanéyja?
+        </p>
+        <p class="translation">
+          Y dijo יהוה a Qayin: “¿Por qué te has enojado, y por qué ha decaído
+          tu rostro?
+        </p>
+        <p class="hebrew">
+          הֲלוֹא אִם־תֵּיטִיב שְׂאֵת וְאִם לֹא תֵיטִיב לַפֶּתַח חַטָּאת רֹבֵץ
+          וְאֵלֶיךָ תְּשׁוּקָתוֹ וְאַתָּה תִּמְשָׁל־בּוֹ׃
+        </p>
+        <p class="transliteration">
+          Halo im teitív se’et, ve-im lo teitív la-pétaj jatát rovêts, ve-éleja
+          teshukató, ve-attá timshol-bo.
+        </p>
+        <p class="translation">
+          ¿No es cierto que si haces bien serás aceptado? y si no haces bien,
+          el pecado está a la puerta; hacia ti es su deseo, pero tú debes
+          dominarlo.”
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:8</p>
+        <p class="hebrew">
+          וַיֹּאמֶר קַיִן אֶל־הֶבֶל אָחִיו וַיְהִי בִּהְיוֹתָם בַּשָּׂדֶה וַיָּקָם
+          קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
+        </p>
+        <p class="transliteration">
+          Va-yómer Qayin el-Hével ajív; va-yhí biheyotám ba-sadé, va-yakám Qayin
+          el-Hével ajív va-yahargéhu.
+        </p>
+        <p class="translation">
+          Y dijo Qayin a su hermano Hével; y estando ellos en el campo, se
+          levantó Qayin contra Hével su hermano, y lo mató.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:9–10</p>
+        <p class="hebrew">
+          וַיֹּאמֶר יהוה אֶל־קַיִן אֵי הֶבֶל אָחִיךָ וַיֹּאמֶר לֹא יָדַעְתִּי
+          הֲשֹׁמֵר אָחִי אָנֹכִי׃
+        </p>
+        <p class="transliteration">
+          Va-yómer יהוה el-Qayin: ei Hével ajíja? va-yómer: lo yadá‘ti;
+          ha-shomér ají anojí?
+        </p>
+        <p class="translation">
+          Y dijo יהוה a Qayin: “¿Dónde está Hével tu hermano?” Y él respondió:
+          “No sé; ¿soy yo guardián de mi hermano?”
+        </p>
+        <p class="hebrew">
+          וַיֹּאמֶר מֶה עָשִׂיתָ קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
+        </p>
+        <p class="transliteration">
+          Va-yómer: meh ‘asíta? qol demei ajíja tso‘aqím elái min ha-adamá.
+        </p>
+        <p class="translation">
+          Y Él dijo: “¿Qué has hecho? La voz de la sangre de tu hermano clama a
+          Mí desde la tierra.”
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:11–12</p>
+        <p class="hebrew">
+          וְעַתָּה אָרוּר אָתָּה מִן־הָאֲדָמָה אֲשֶׁר פָּצְתָה אֶת־פִּיהָ לָקַחַת
+          אֶת־דְּמֵי אָחִיךָ מִיָּדֶךָ׃
+        </p>
+        <p class="transliteration">
+          Ve-‘attá arúr attá min ha-adamá, asher pats’tá et piha laqaját et
+          demei ajíja mi-yadéja.
+        </p>
+        <p class="translation">
+          Y ahora, maldito eres de la tierra que abrió su boca para recibir la
+          sangre de tu hermano de tu mano.
+        </p>
+        <p class="hebrew">
+          כִּי תַעֲבֹד אֶת־הָאֲדָמָה לֹא־תוֹסֵף תֵּת־כֹּחָהּ לָךְ נָע וָנָד
+          תִּהְיֶה בָאָרֶץ׃
+        </p>
+        <p class="transliteration">
+          Ki ta‘avód et ha-adamá, lo-toséf tét-kojá lakh; na va-nad tihyéh
+          ba-árets.
+        </p>
+        <p class="translation">
+          Cuando labres la tierra, no te dará más su fuerza; fugitivo y
+          errante serás en la tierra.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:13–15</p>
+        <p class="hebrew">וַיֹּאמֶר קַיִן אֶל־יהוה גָּדוֹל עֲו‍ֹנִי מִנְּשֹׂא׃</p>
+        <p class="transliteration">
+          Va-yómer Qayin el-יהוה: gadól ‘avoní min-nesó.
+        </p>
+        <p class="translation">
+          Y dijo Qayin a יהוה: “Grande es mi castigo para soportarlo.”
+        </p>
+        <p class="hebrew">
+          הֵן גֵּרַשְׁתָּ אֹתִי הַיּוֹם מֵעַל פְּנֵי הָאֲדָמָה וּמִפָּנֶיךָ אֶסָּתֵר
+          וְהָיִיתִי נָע וָנָד בָּאָרֶץ וְהָיָה כָּל־מֹצְאִי יַהַרְגֵנִי׃
+        </p>
+        <p class="transliteration">
+          Hén geráshtá otí ha-yóm me-‘al penéi ha-adamá; u-mipanéja essatér,
+          ve-hayíti na va-nad ba-árets, ve-hayá kol mots’í yaharghéni.
+        </p>
+        <p class="translation">
+          “He aquí, hoy me echas de la faz de la tierra, y de Tu presencia me
+          esconderé; y seré fugitivo y errante, y cualquiera que me halle me
+          matará.”
+        </p>
+        <p class="hebrew">
+          וַיֹּאמֶר לוֹ יהוה לָכֵן כָּל־הֹרֵג קַיִן שִׁבְעָתָיִם יֻקָּם וַיָּשֶׂם
+          יהוה לְקַיִן אוֹת לְבִלְתִּי הַכּוֹת־אֹתוֹ כָּל־מֹצְאוֹ׃
+        </p>
+        <p class="transliteration">
+          Va-yómer ló יהוה: lajén kol hóreg Qayin shiv‘atayim yuqqám; va-yásem
+          יהוה le-Qayin ot, le-viltí hakót oto kol mots’ó.
+        </p>
+        <p class="translation">
+          Y le dijo יהוה: “Cualquiera que mate a Qayin, siete veces será
+          castigado.” Y puso יהוה una señal sobre Qayin, para que no lo
+          hiriera quien lo encontrara.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">4:16–18</p>
+        <p class="hebrew">
+          וַיֵּצֵא קַיִן מִלִּפְנֵי יהוה וַיֵּשֶׁב בְּאֶרֶץ־נוֹד קִדְמַת־עֵדֶן׃
+        </p>
+        <p class="transliteration">
+          Va-yétse Qayin milifnéi יהוה, va-yéshev be-érets Nód, qidmat ‘Éden.
+        </p>
+        <p class="translation">
+          Y salió Qayin de delante de יהוה, y habitó en la tierra de Nód, al
+          oriente del Edén.
+        </p>
+        <p class="hebrew">
+          וַיֵּדַע קַיִן אֶת־אִשְׁתּוֹ וַתַּהַר וַתֵּלֶד אֶת־חֲנוֹךְ וַיְהִי בֹנֶה
+          עִיר וַיִּקְרָא שֵׁם הָעִיר כְּשֵׁם בְּנוֹ חֲנוֹךְ׃
+        </p>
+        <p class="transliteration">
+          Va-yedá Qayin et ishtó, va-tahar va-téled et Janókh; va-yhí boné ‘ír,
+          va-yiqrá shém ha-‘ír ke-shém benó Janókh.
+        </p>
+        <p class="translation">
+          Y conoció Qayin a su mujer; y concibió y dio a luz a Janókh; y él
+          edificó una ciudad, y llamó el nombre de la ciudad como el nombre de
+          su hijo, Janókh.
+        </p>
+        <p class="hebrew">
+          וַיִּוָּלֵד לַחֲנוֹךְ אֶת־עִירָד וְעִירָד יָלַד אֶת־מְחוּיָאֵל וּמְחוּיָאֵל
+          יָלַד אֶת־מְתוּשָׁאֵל וּמְתוּשָׁאֵל יָלַד אֶת־לֶמֶךְ׃
+        </p>
+        <p class="transliteration">
+          Va-yivvaléd la-Janókh et ‘Írad; ve-‘Írad yalad et Mejúyaél;
+          u-Mejúyaél yalad et Metusháel; u-Metusháel yalad et Lémej.
+        </p>
+        <p class="translation">
+          Y a Janókh le nació ‘Írad; e ‘Írad engendró a Mejúyaél; y Mejúyaél
+          engendró a Metusháel; y Metusháel engendró a Lémej.
+        </p>
+      </div>
+    </div>
+
+    <div class="conclusion">
+      <h2>✡️ Conclusión Espiritual</h2>
+      <p>
+        En este pasaje se observa la expulsión del Edén, la pérdida del acceso
+        al Árbol de la Vida, pero también la continuidad de la misericordia
+        divina:
+      </p>
+      <ul>
+        <li>
+          יהוה marca a Qayin no para destruirlo, sino para preservarlo,
+          mostrando que la justicia divina nunca está separada de Su compasión.
+        </li>
+      </ul>
+      <p>
+        La historia anticipa el papel redentor del Mashíaj —quien derrama Su
+        sangre justa para responder al clamor de la sangre inocente de Hével—
+        y abre nuevamente el camino hacia el ‘Éts HaJayím (Árbol de la Vida),
+        restaurando lo que Adam perdió.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="prophetic-content">
+      <h1>
+        🕎 Cumplimiento Profético en el Mashíaj Yeshúa ישוע המשיח
+      </h1>
+      <h2>
+        Conexión con los Profetas, el Brit Hadasháh, y Aplicación Espiritual
+      </h2>
+      <h3>Aliyáh: Génesis 3:22–4:18 – Parashá Bereshit בְּרֵאשִׁית</h3>
+
+      <div class="prophetic-section">
+        <h1>🌿 1. Panorama Profético del Texto</h1>
+        <p>
+          En Bereshit 3:22–4:18 culmina el drama del Edén y comienza la historia
+          del exilio humano.
+        </p>
+        <p>
+          El hombre, expulsado del Jardín, es separado del Árbol de la Vida; el
+          acceso al paraíso se cierra, y el camino hacia la redención se abre
+          por medio de una promesa profética que ya apuntaba al Mashíaj.
+        </p>
+        <p>
+          La simiente justa prometida en 3:15 ahora comienza su desarrollo
+          histórico, y su cumplimiento alcanza plenitud en Yeshúa haMashíaj
+          ישוע המשיח, quien reabre el camino al Árbol de la Vida con Su
+          sacrificio.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>✡️ 2. Conexión Profética con los Nevi’im (Profetas)</h1>
+        <p class="prophetic-title">
+          🕯️ a. El Jardín Cerrado y el Camino al Árbol de la Vida
+        </p>
+        <p class="scripture">
+          Génesis 3:24 – “Colocó querubines y la espada flameante para guardar
+          el camino al Árbol de la Vida.”
+        </p>
+        <p>
+          Este verso anticipa la separación entre lo santo y lo profano,
+          prefigurando el velo del Mishkán y luego el del Templo, que ocultaban
+          la presencia de יהוה.
+        </p>
+        <p>
+          Los profetas declararon que ese velo sería quitado cuando la
+          redención llegara:
+        </p>
+        <p class="scripture">
+          Isaías 35:8–10 – “Habrá allí una calzada, y será llamada Camino de
+          Santidad; los redimidos caminarán por él.”
+        </p>
+        <p class="scripture">
+          Ezequiel 44:1–3 – “Esta puerta estará cerrada… solo el Príncipe se
+          sentará en ella.”
+        </p>
+        <p>
+          El “Príncipe” (<span class="hebrew-term">נָשִׂיא</span> – Nasi) de
+          Ezequiel es una figura mesiánica; Yeshúa es quien abre ese camino
+          cerrado desde el Edén.
+        </p>
+        <p>
+          En Su muerte, el velo del Templo se rasgó (Matityahu 27:51),
+          cumpliendo literalmente el restablecimiento del acceso al Árbol de la
+          Vida.
+        </p>
+        <p class="prophetic-title">
+          🔥 b. El Clamor de la Sangre de Hével y la Justicia Redentora
+        </p>
+        <p class="scripture">
+          Génesis 4:10 – “La voz de la sangre de tu hermano clama a Mí desde la
+          tierra.”
+        </p>
+        <p>Los profetas retoman este principio:</p>
+        <p class="scripture">Isaías 1:15 – “Vuestras manos están llenas de sangre.”</p>
+        <p class="scripture">Ezequiel 24:7 – “Su sangre está en medio de ella.”</p>
+        <p>
+          La sangre inocente se convierte en símbolo de justicia pendiente.
+        </p>
+        <p>Yeshúa es la respuesta definitiva a ese clamor:</p>
+        <p class="scripture">
+          Hebreos 12:24 – “Y a Yeshúa, el mediador del nuevo pacto, y a la
+          sangre rociada que habla mejor que la de Hével.”
+        </p>
+        <p>
+          Así, el sacrificio del Mashíaj no clama venganza sino perdón,
+          transformando el juicio en redención.
+        </p>
+        <p class="prophetic-title">
+          🌹 c. Qayin y el Exilio: El Hombre Errante
+        </p>
+        <p class="scripture">
+          Génesis 4:12 – “Serás fugitivo y errante en la tierra.”
+        </p>
+        <p>
+          Los profetas usaron esta figura para describir el estado espiritual de
+          Israel en el exilio:
+        </p>
+        <p class="scripture">
+          Amós 8:11–12 – “Andarán errantes de mar a mar… buscando la palabra de
+          יהוה, y no la hallarán.”
+        </p>
+        <p>
+          El castigo de Qayin es símbolo de la humanidad separada de la
+          presencia divina.
+        </p>
+        <p>Pero Elohím promete una señal de preservación (4:15):</p>
+        <p class="scripture">“Y puso יהוה una señal sobre Qayin…”</p>
+        <p>
+          Esa señal anticipa la gracia que detiene el juicio total,
+          cumpliéndose en el Mashíaj, quien toma sobre sí la marca del pecado
+          para librar a los errantes.
+        </p>
+        <p class="scripture">
+          Isaías 53:5 – “Herido fue por nuestras rebeliones… y por Su llaga
+          fuimos sanados.”
+        </p>
+        <p>
+          La “marca de Qayin” —símbolo del juicio— se invierte en la “marca del
+          Cordero” —símbolo de redención— (Apocalipsis 7:3).
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>✡️ 3. Cumplimiento en el Brit Hadasháh</h1>
+        <p class="prophetic-title">✡️ a. Yeshúa, el Segundo Adam</p>
+        <p>
+          Así como el primer Adam fue expulsado del Edén por la desobediencia,
+          Yeshúa, el segundo Adam, entra en el Getsemaní (otro jardín) para
+          comenzar la restauración.
+        </p>
+        <p class="scripture">
+          1 Corintios 15:45 – “El primer Adam fue hecho alma viviente; el último
+          Adam, espíritu vivificante.”
+        </p>
+        <p>
+          En el Edén, la espada de fuego guardaba el camino; en el Getsemaní,
+          la espada se despierta contra el Pastor (Zacarías 13:7).
+        </p>
+        <p>El madero se convierte en la puerta abierta al Árbol de la Vida.</p>
+
+        <p class="prophetic-title">
+          ✡️ b. La Sangre que Habla Mejor que la de Hével
+        </p>
+        <p>
+          Hebreos 12:24 conecta directamente Génesis 4 con la obra del Mashíaj.
+        </p>
+        <p>
+          La sangre de Hével clama justicia; la sangre de Yeshúa proclama
+          misericordia y reconciliación.
+        </p>
+        <p>
+          La tierra que tragó la sangre del justo se convierte ahora en altar
+          redentor:
+        </p>
+        <p class="scripture">
+          “Y al instante, la tierra tembló” (Matityahu 27:51) —el mundo
+          material responde al derramamiento del Justo perfecto.
+        </p>
+
+        <p class="prophetic-title">✡️ c. El Retorno al Árbol de la Vida</p>
+        <p>El cierre de Génesis 3:24 encuentra su apertura en:</p>
+        <p class="scripture">
+          Apocalipsis 22:14 – “Bienaventurados los que lavan sus vestiduras,
+          para tener derecho al Árbol de la Vida.”
+        </p>
+        <p>
+          En Yeshúa, el camino cerrado por el pecado se abre por Su justicia.
+        </p>
+        <p>Él mismo declara:</p>
+        <p class="scripture">
+          “Yo soy el Camino, la Verdad y la Vida.” (Yojanán 14:6)
+        </p>
+        <p>El Camino al Árbol de la Vida es el mismo Mashíaj.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>🌄 4. Conexión con la Aliyáh Previa (Génesis 3:20–21)</h1>
+        <p>
+          En la aliáh anterior, יהוה cubre la desnudez de Adam y Javá con
+          túnicas de pieles —un acto redentor mediante sacrificio—.
+        </p>
+        <p>Ahora, en Génesis 3:22–4:18, se ve el desarrollo de esa redención:</p>
+        <ul>
+          <li>El acceso al Árbol de la Vida se restringe temporalmente,</li>
+          <li>
+            La humanidad comienza a experimentar las consecuencias del pecado,
+          </li>
+          <li>
+            Pero Elohím sigue revelando Su misericordia y propósito mesiánico a
+            través del linaje.
+          </li>
+        </ul>
+        <p>
+          Así, la historia de Qayin y Hével introduce el principio de adoración
+          y sangre inocente que culminará en el sacrificio de Yeshúa, el
+          Cordero perfecto.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>🔯 5. Tipología Mesiánica y Profética</h1>
+        <table style="width: 100%; border-collapse: collapse">
+          <tr style="background-color: #f2f2f2">
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Figura o Evento
+            </th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Tipo Profético
+            </th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Cumplimiento en el Mashíaj
+            </th>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Árbol de la Vida
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Fuente de vida eterna
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Yeshúa, “la Vida” (Yojanán 14:6)
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Querubines y espada
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Separación del hombre y Elohím
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              El velo del Templo rasgado (Matityahu 27:51)
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Sacrificio de Hével
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Justicia por sangre inocente
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Sangre del Mashíaj (Hebreos 9:14)
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">Qayin errante</td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Humanidad exiliada
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Redención en el retorno mesiánico
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">Marca de Qayin</td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Juicio detenido
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Sello de redención del Cordero (Apocalipsis 7:3)
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>🕊️ 6. Aplicación Espiritual para la Kehiláh Mesiánica</h1>
+        <p class="prophetic-title">✡️ a. Restaurar el Edén Interior</p>
+        <p>
+          Cada creyente es llamado a permitir que la Ruaj HaKodesh restaure el
+          jardín interior:
+        </p>
+        <ul>
+          <li>
+            El acceso al Árbol de la Vida está en la intimidad con el Mashíaj.
+          </li>
+          <li>
+            El creyente, redimido por la sangre del Justo, vuelve a caminar en
+            la presencia divina.
+          </li>
+        </ul>
+        <p class="prophetic-title">✡️ b. Vencer el Pecado que Acecha</p>
+        <p>
+          Así como יהוה advirtió a Qayin: “El pecado está a la puerta, pero tú
+          puedes dominarlo”, el discípulo mesiánico tiene autoridad para
+          vencerlo por el poder del Espíritu (Romanos 8:13).
+        </p>
+        <p>
+          El dominio que Adam perdió, Yeshúa lo restaura a los suyos:
+          <span class="scripture">“He aquí, os doy autoridad…” (Luqas 10:19).</span>
+        </p>
+        <p class="prophetic-title">✡️ c. Ser Guardianes del Hermano</p>
+        <p>Qayin dijo: “¿Soy yo guardián de mi hermano?”</p>
+        <p>El creyente en el Mashíaj responde: sí, lo soy.</p>
+        <p>
+          Somos llamados a cuidar, restaurar y amar a los demás como expresión
+          del Reino.
+          <span class="scripture">“En esto conocerán que sois mis discípulos…” (Yojanán 13:35).</span>
+        </p>
+        <p class="prophetic-title">
+          ✡️ d. Vivir Marcados por Gracia, No por Culpa
+        </p>
+        <p>
+          La marca de Qayin fue símbolo de juicio mitigado; en el Mashíaj, la
+          señal se convierte en marca de redención:
+        </p>
+        <ul>
+          <li>
+            El sello del Ruaj HaKodesh garantiza nuestra restauración (Efesios
+            1:13).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>🌹 7. Reflexión Final</h1>
+        <p>
+          El cierre del Edén no fue el fin, sino el principio de la historia
+          mesiánica.
+        </p>
+        <p>
+          Lo que Adonái יהוה selló con querubines y fuego, Yeshúa lo abrió con
+          Su sangre y Su Espíritu.
+        </p>
+        <p>Donde hubo muerte, ahora hay vida; donde hubo exilio, hay retorno.</p>
+        <p class="scripture">
+          “Y vio el ladrón el Árbol de la Vida colgado del madero,<br />
+          y lo reconoció, diciendo: ‘Acuérdate de mí cuando vengas en Tu
+          Reino.’”<br />
+          (Luqas 23:42 – interpretación mesiánica)
+        </p>
+        <p>
+          Así el Edén es restaurado en cada corazón que se une al Mashíaj,
+        </p>
+        <p>
+          y la humanidad vuelve a escuchar el susurro de יהוה caminando en el
+          Jardín de Su presencia.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>📖 Punto 2. Haftaráh: Isaías 43:14-21 (Nuevo camino en el desierto).</h1>
+
+      <div class="verse-container">
+        <p class="verse-number">43:14</p>
+        <p class="hebrew">
+          כֹּה אָמַר יְהוָה גֹּאַלְכֶם קְדוֹשׁ יִשְׂרָאֵל לְמַעַנְכֶם שִׁלַּחְתִּי
+          בָבֶלָה וְהוֹרַדְתִּי בָרִיחִים כֻּלָּם וְכַשְׂדִּים בָּאֳנִיּוֹת רִנָּתָם׃
+        </p>
+        <p class="transliteration">
+          Kóh amar יהוה go‘aljém, qedósh Yisra’él: lema‘ankhém shilajtí Baveláh,
+          ve-horadtí baríjim kullám, ve-Kasdím ba-‘oniyot rinatám.
+        </p>
+        <p class="translation">
+          Así dice יהוה, vuestro redentor, el Santo de Israel: “Por vosotros
+          envié a Babilonia, y haré descender a todos como fugitivos, aun a los
+          caldeos en las naves de su júbilo.”
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">43:15</p>
+        <p class="hebrew">
+          אֲנִי יְהוָה קְדוֹשְׁכֶם בּוֹרֵא יִשְׂרָאֵל מַלְכְּכֶם׃
+        </p>
+        <p class="transliteration">
+          Aní יהוה qedoshjém, boré Yisra’él, malkéjem.
+        </p>
+        <p class="translation">
+          Yo soy יהוה, vuestro Santo, el Creador de Israel, vuestro Rey.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">43:16</p>
+        <p class="hebrew">
+          כֹּה אָמַר יְהוָה הַנּוֹתֵן בַּיָּם דָּרֶךְ וּבְמַיִם עַזִּים נְתִיבָה׃
+        </p>
+        <p class="transliteration">
+          Kóh amar יהוה, ha-notén ba-yam dérej, u-ve-mayim ‘azzím netiváh.
+        </p>
+        <p class="translation">
+          Así dice יהוה, el que da en el mar camino, y en las aguas poderosas
+          senda.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">43:17</p>
+        <p class="hebrew">
+          הַמּוֹצִיא רֶכֶב וָסוּס חַיִל וְעִזּוּז יַחְדָּו יִשְׁכְּבוּ
+          בַל־יָקוּמוּ דָּעֲכוּ כַּפִּשְׁתָּה כָּבוּ׃
+        </p>
+        <p class="transliteration">
+          Ha-motsí réjev va-sús, jail ve-‘izzúz; yajdáv yishkevú, bal yaqúmu;
+          da‘ajú ka-pishtá, kavú.
+        </p>
+        <p class="translation">
+          El que saca carro y caballo, ejército y fuerza; juntos yacen, no se
+          levantarán; se extinguieron, se apagaron como mecha.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">43:18</p>
+        <p class="hebrew">
+          אַל־תִּזְכְּרוּ רִאשֹׁנוֹת וְקַדְמֹנִיּוֹת אַל־תִּתְבּוֹנָנוּ׃
+        </p>
+        <p class="transliteration">
+          Al tizkerú rishonót, ve-qadmoniyot al titbonánu.
+        </p>
+        <p class="translation">
+          No recordéis las cosas pasadas, ni consideréis las antiguas.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">43:19</p>
+        <p class="hebrew">
+          הִנְנִי עֹשֶׂה חֲדָשָׁה עַתָּה תִצְמָח הֲלוֹא תֵדָעוּהָ אַף אָשִׂים
+          בַּמִּדְבָּר דֶּרֶךְ בִּישִׁימוֹן נְהָרוֹת׃
+        </p>
+        <p class="transliteration">
+          Hinéní ‘oséh jadasháh; attá titzmaj; halo teidá‘uhá; af asím
+          ba-midbár dérej, bi-yshimón neharót.
+        </p>
+        <p class="translation">
+          He aquí que hago cosa nueva; ahora brota, ¿no la reconoceréis? Aun
+          pondré en el desierto camino, y ríos en la soledad.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">43:20</p>
+        <p class="hebrew">
+          תְּכַבְּדַנִי חַיַּת הַשָּׂדֶה תַּנִּים וּבְנוֹת יַעֲנָה כִּי נָתַתִּי
+          בַמִּדְבָּר מַיִם נְהָרוֹת בִּישִׁימוֹן לְהַשְׁקוֹת עַמִּי בְּחִירִי׃
+        </p>
+        <p class="transliteration">
+          Tejabdení jayát ha-sadéh, tanín u-benót ya‘anáh; ki natattí ba-midbár
+          mayím, neharót bi-yshimón, le-hashkót ‘ammí bejirí.
+        </p>
+        <p class="translation">
+          Me honrarán las bestias del campo, los chacales y las hijas del
+          avestruz; porque pondré en el desierto aguas, y ríos en la soledad,
+          para dar de beber a mi pueblo, mi escogido.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="verse-number">43:21</p>
+        <p class="hebrew">עַם־זוּ יָצַרְתִּי לִי תְּהִלָּתִי יְסַפֵּרוּ׃</p>
+        <p class="transliteration">‘Am zú yatsartí lí; tehilatí yesaperú.</p>
+        <p class="translation">
+          Este pueblo que formé para Mí, contará mi alabanza.
+        </p>
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h2>✡️ Comentario Mesiánico</h2>
+      <p>
+        Este pasaje es una profecía de restauración pronunciada por el profeta
+        Yesha‘yahu durante el exilio, y se cumple plenamente en el Mashíaj
+        Yeshúa ישוע המשיח, el Redentor que trae una “cosa nueva” (jadasháh) —la
+        redención final y el acceso a la presencia de יהוה restaurado.
+      </p>
+      <ul>
+        <li>
+          <strong>Verso 14–15:</strong> יהוה se presenta como el Go’el (Redentor)
+          y Melej Yisra’el (Rey de Israel). En el Brit Hadasháh, este título
+          pertenece a Yeshúa, quien es llamado “Melej haYehudim” (Juan 19:19) y
+          “Go’el” (Efesios 1:7). En Él, la redención deja de ser solo nacional
+          (salida de Babilonia) para volverse espiritual y eterna.
+        </li>
+        <li>
+          <strong>Verso 16–17:</strong> “El que da en el mar camino.” — Evoca la
+          salida de Mitsráyim. El profeta anuncia que יהוה hará un nuevo éxodo,
+          mayor que el primero. Yeshúa cumple esto al abrir el camino del mar
+          de la muerte hacia la vida eterna, cruzando el Jordán espiritual de
+          la resurrección.
+        </li>
+        <li>
+          <strong>Verso 18–19:</strong> “He aquí que hago cosa nueva.” — El
+          término jadasháh se relaciona con Brit Jadasháh (Nuevo Pacto,
+          Jeremías 31:31). En Yeshúa, יהוה inaugura ese pacto: “Esta copa es el
+          Brit Jadasháh en mi sangre.” (Luqas 22:20). La “cosa nueva” es la
+          nueva creación (2 Corintios 5:17), donde la Ruaj HaKodesh renueva el
+          corazón humano.
+        </li>
+        <li>
+          <strong>Verso 20–21:</strong> “Pondré en el desierto aguas.” — El agua
+          viva es símbolo del Espíritu. Cumplido en Yeshúa: “El que cree en Mí,
+          de su interior correrán ríos de agua viva.” (Yojanán 7:38). El
+          desierto representa la humanidad árida; los ríos, la vida del
+          Espíritu que fluye desde el Mashíaj hacia Su pueblo.
+        </li>
+      </ul>
+      <h3 style="text-align: left; margin-left: 0">
+        🔯 Conexión Profética
+      </h3>
+      <table style="width: 100%; border-collapse: collapse">
+        <tr style="background-color: #f2f2f2">
+          <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+            Tema en Isaías
+          </th>
+          <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+            Cumplimiento en Yeshúa haMashíaj
+          </th>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            Redentor de Israel
+          </td>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            Lucas 1:68 – “Ha visitado y redimido a su pueblo.”
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd">Creador y Rey</td>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            Juan 1:3 – “Por Él fueron hechas todas las cosas.”
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd">Camino en el mar</td>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            Juan 14:6 – “Yo soy el Camino.”
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd">Cosa nueva</td>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            2 Corintios 5:17 – “Si alguno está en el Mashíaj, nueva creación
+            es.”
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            Aguas en el desierto
+          </td>
+          <td style="padding: 8px; border: 1px solid #ddd">
+            Juan 4:14 – “El agua que Yo le daré será fuente que salta para vida
+            eterna.”
+          </td>
+        </tr>
+      </table>
+      <h3 style="text-align: left; margin-left: 0; margin-top: 20px">
+        🕊️ Aplicación Espiritual
+      </h3>
+      <p>
+        <strong>“No recordéis lo pasado.”</strong> — Deja atrás la esclavitud
+        del pecado y las viejas estructuras religiosas; Elohím hace algo nuevo
+        en ti cada día.
+      </p>
+      <p>
+        <strong>“Camino en el desierto.”</strong> — En los tiempos de sequedad
+        espiritual, el Mashíaj abre sendas de esperanza donde parecía imposible
+        avanzar.
+      </p>
+      <p>
+        <strong>“Ríos en la soledad.”</strong> — Cuando el alma está vacía, la
+        Ruaj HaKodesh derrama vida, revelando la presencia de יהוה dentro del
+        creyente.
+      </p>
+      <p>
+        <strong>“Pueblo formado para Mí.”</strong> — En el Mashíaj somos un
+        pueblo escogido (1 Pedro 2:9), creado para declarar Su alabanza, no
+        solo con palabras sino con obras de justicia.
+      </p>
+      <p>
+        Así, este pasaje se cumple en la Kehiláh mesiánica como comunidad
+        redimida que vive del agua viva y anuncia al mundo el retorno del Rey.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="prophetic-content">
+      <h1>
+        🕎 Cumplimiento Profético en el Mashíaj Yeshúa ישוע המשיח
+      </h1>
+      <h2>Conexión con los Profetas, el Brit Hadasháh y Aplicación Espiritual</h2>
+      <h3>Haftaráh: Yesha‘yahu / Isaías 43:14–21 – Parashá Bereshit בְּרֵאשִׁית</h3>
+
+      <div class="prophetic-section">
+        <h1>🌿 1. Contexto Profético y Mesiánico de Isaías 43:14–21</h1>
+        <p>
+          El profeta Yesha‘yahu transmite aquí un mensaje de restauración y
+          renovación de parte de Adonái יהוה hacia Su pueblo Israel.
+        </p>
+        <p>
+          El pasaje anuncia un nuevo éxodo, una redención mayor que la salida
+          de Mitsráyim, donde יהוה abrirá camino en el mar, ríos en el desierto
+          y hará “cosa nueva” (jadasháh).
+        </p>
+        <p>
+          En el contexto mesiánico, estas promesas alcanzan su plenitud en
+          Yeshúa haMashíaj, quien inaugura el Brit Hadasháh (Nuevo Pacto) y
+          cumple en sí mismo cada símbolo de liberación y de vida.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>✡️ 2. El Cumplimiento Profético en Yeshúa haMashíaj</h1>
+        <p class="prophetic-title">
+          🕯️ a. יהוה, el Redentor y el Santo de Israel (v. 14–15)
+        </p>
+        <p class="scripture">
+          “Así dice יהוה, vuestro Redentor, el Santo de Israel...”
+        </p>
+        <p>
+          El título “Go’el” (Redentor) es central en la teología de Yesha‘yahu.
+        </p>
+        <ul>
+          <li>
+            En la Toráh, el go’el era el pariente que rescataba lo que se había
+            perdido (Levítico 25:25).
+          </li>
+          <li>
+            En el Mashíaj, יהוה mismo se hace nuestro Go’el encarnado para
+            redimirnos de la esclavitud espiritual.
+          </li>
+        </ul>
+        <p>
+          <strong>Cumplimiento:</strong>
+        </p>
+        <p class="scripture">
+          “En Él tenemos redención por Su sangre, el perdón de pecados.”
+          (Efesios 1:7)
+        </p>
+        <p>
+          Yeshúa es el “Redentor” (Go’el) que libera no solo de Babilonia o de
+          Egipto, sino de la cautividad del pecado.
+        </p>
+
+        <p class="prophetic-title">🔥 b. El que abre camino en el mar (v. 16–17)</p>
+        <p class="scripture">
+          “Así dice יהוה, el que da en el mar camino, y en las aguas poderosas
+          senda.”
+        </p>
+        <p>La alusión es al paso del Mar de Juncos, símbolo de liberación.</p>
+        <p>Pero el profeta anuncia un nuevo paso, una redención futura.</p>
+        <p>
+          <strong>Cumplimiento en el Mashíaj:</strong>
+        </p>
+        <ul>
+          <li>
+            Cuando Yeshúa camina sobre las aguas (Matityahu 14:25–27), no solo
+            muestra dominio sobre la creación, sino que se presenta como el
+            mismo יהוה que abrió el mar en Bereshit y en el Éxodo.
+          </li>
+          <li>
+            Él no solo abre un mar físico, sino el mar de la muerte,
+            transformándolo en camino hacia la vida eterna.
+          </li>
+        </ul>
+        <p class="scripture">
+          “Yo soy el Camino, la Verdad y la Vida.” (Yojanán 14:6)
+        </p>
+        <p>
+          Así, el “camino en el mar” se cumple en el Mashíaj, que es la senda
+          directa al Padre.
+        </p>
+
+        <p class="prophetic-title">
+          🌹 c. “No recordéis lo pasado... He aquí que hago cosa nueva.” (v.
+          18–19)
+        </p>
+        <p>
+          Este verso revela la transición del antiguo pacto al Brit Hadasháh.
+        </p>
+        <p>
+          La palabra “<span class="hebrew-term">חֲדָשָׁה</span> – jadasháh” es la
+          misma raíz de “<span class="hebrew-term">בְּרִית חֲדָשָׁה</span> –
+          Brit Jadasháh” (Nuevo Pacto).
+        </p>
+        <p>
+          <strong>Cumplimiento:</strong>
+        </p>
+        <p class="scripture">
+          “He aquí que vienen días, dice יהוה, en que haré un Brit Jadasháh con
+          la casa de Israel.” (Yirmeyahu 31:31)
+        </p>
+        <p>Yeshúa declara el cumplimiento en la última cena:</p>
+        <p class="scripture">
+          “Esta copa es el Brit Jadasháh en mi sangre.” (Luqas 22:20)
+        </p>
+        <p>
+          La “cosa nueva” es la nueva creación en el Mashíaj (2 Corintios
+          5:17).
+        </p>
+        <p>El viejo éxodo liberó cuerpos; el nuevo éxodo libera almas.</p>
+
+        <p class="prophetic-title">
+          🩸 d. “Pondré en el desierto camino, y ríos en la soledad.” (v. 19–20)
+        </p>
+        <p>
+          El desierto representa la sequedad espiritual, el vacío del alma
+          separada de Elohím.
+        </p>
+        <p>
+          Los “ríos” simbolizan la vida del Espíritu (Ruaj HaKodesh) que brota
+          del Mashíaj.
+        </p>
+        <p>
+          <strong>Cumplimiento:</strong>
+        </p>
+        <p class="scripture">
+          “El que cree en Mí, de su interior correrán ríos de agua viva.”
+          (Yojanán 7:38)
+        </p>
+        <p class="scripture">
+          “El agua que Yo le daré será fuente que salta para vida eterna.”
+          (Yojanán 4:14)
+        </p>
+        <p>
+          Así, Yeshúa cumple esta profecía trayendo vida en medio del desierto
+          espiritual de la humanidad, restaurando la comunión perdida en el
+          Edén.
+        </p>
+        <p>
+          Los animales salvajes —“<span class="hebrew-term">תַּנִּים וּבְנוֹת יַעֲנָה</span>” (chacales y
+          avestruces)— representan las naciones gentiles, que también se
+          unirán a la alabanza del Creador cuando sean saciadas con las aguas
+          del Espíritu.
+        </p>
+
+        <p class="prophetic-title">
+          🔯 e. “Este pueblo que formé para Mí proclamará Mi alabanza.” (v. 21)
+        </p>
+        <p>El propósito final de la redención es la adoración.</p>
+        <p>
+          Yeshúa cumple este propósito formando un pueblo mesiánico —una
+          Kehiláh compuesta de Israel y las naciones— que da testimonio de Su
+          nombre.
+        </p>
+        <p class="scripture">
+          “Para anunciar las virtudes de Aquel que os llamó de las tinieblas a
+          Su luz admirable.” (1 Kefa 2:9)
+        </p>
+        <p>
+          La adoración no se limita al Templo físico, sino que se cumple en la
+          comunidad redimida por Su Espíritu.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>📜 3. Conexión con los Profetas</h1>
+        <table style="width: 100%; border-collapse: collapse">
+          <tr style="background-color: #f2f2f2">
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Profeta
+            </th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Tema Conectado
+            </th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Cumplimiento Mesiánico
+            </th>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Jeremías 31:31
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Brit Jadasháh (Nuevo Pacto)
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Ratificado en la sangre de Yeshúa
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Ezequiel 36:25–27
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Agua purificadora y nuevo espíritu
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Cumplido por la Ruaj HaKodesh (Yojanán 3:5)
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">Oseas 2:19–20</td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Renovación del pacto nupcial
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Yeshúa, el Esposo fiel que restaura Su Esposa (Matityahu 9:15)
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Isaías 35:6–7
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Ríos en el desierto
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Cumplido en los milagros y la resurrección del Mashíaj
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">Joel 2:28–29</td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Derramamiento del Espíritu
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Cumplido en Hechos 2:17 durante Shavuot
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="prophetic-section">
+        <h1> 4. Conexión con el Brit Hadasháh</h1>
+        <p>
+          Los Shlijim (apóstoles) vieron en este texto una prefiguración de la
+          obra del Mashíaj:
+        </p>
+        <ul>
+          <li>
+            Hechos 2:17 – “Derramaré de mi Espíritu sobre toda carne.”
+            <span class="arrow">→</span> Ríos en el desierto.
+          </li>
+          <li>
+            Juan 4:14 – “El agua que Yo le daré…” <span class="arrow">→</span>
+            Ríos de vida eterna.
+          </li>
+          <li>
+            Apocalipsis 21:5 – “He aquí, Yo hago nuevas todas las cosas.”
+            <span class="arrow">→</span> He aquí que hago cosa nueva.
+          </li>
+          <li>
+            Apocalipsis 22:1–2 – “Y me mostró un río de agua de vida, claro como
+            cristal…” <span class="arrow">→</span> El cumplimiento final del río
+            mesiánico prometido en Isaías 43.
+          </li>
+        </ul>
+        <p>
+          Yeshúa es el Elohím del Éxodo y el Elohím de la Nueva Creación.
+        </p>
+        <p>
+          El antiguo camino se abre nuevamente, pero ahora hacia la restauración
+          eterna del Edén.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>🕊️ 5. Aplicación Espiritual Conectada con la Aliyáh</h1>
+        <p>
+          La Haftaráh de Isaías 43:14–21 se conecta con la Aliyáh de Bereshit
+          3:22–4:18, donde el hombre fue expulsado del Jardín y separado del
+          Árbol de la Vida.
+        </p>
+        <table style="width: 100%; border-collapse: collapse">
+          <tr style="background-color: #f2f2f2">
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Bereshit
+            </th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Isaías
+            </th>
+            <th style="padding: 8px; border: 1px solid #ddd; text-align: left">
+              Cumplimiento en Yeshúa
+            </th>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              El camino al Árbol de la Vida fue cerrado
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              יהוה abre “camino en el mar y en el desierto”
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Yeshúa es el Camino (Yojanán 14:6)
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              La tierra se volvió árida por el pecado
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Ríos en el desierto y vida renovada
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              El Espíritu Santo fluye como agua viva
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              El hombre fue desterrado
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              יהוה promete traer a Su pueblo de regreso
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Redención y restauración del Edén
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Qayin se aleja de la presencia divina
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              יהוה restaura a Su pueblo para alabanza
+            </td>
+            <td style="padding: 8px; border: 1px solid #ddd">
+              Yeshúa nos reconcilia con el Padre
+            </td>
+          </tr>
+        </table>
+        <p>
+          Así, lo que comenzó como exilio en Bereshit, termina como redención
+          en Yesha‘yahu, y se cumple plenamente en el Brit Hadasháh con la obra
+          del Mashíaj.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h1>🌄 6. Aplicación Espiritual Personal</h1>
+        <p>
+          <strong>No mires atrás:</strong>
+        </p>
+        <ul>
+          <li>
+            Deja los errores del pasado; Elohím está haciendo algo nuevo en tu
+            vida hoy.
+          </li>
+          <li>
+            Cada paso en obediencia abre un nuevo camino en tu desierto.
+          </li>
+        </ul>
+        <p>
+          <strong>Permite que Su agua te transforme:</strong>
+        </p>
+        <ul>
+          <li>
+            Busca la llenura de la Ruaj HaKodesh, pues solo ella puede convertir
+            tu sequedad en río de vida.
+          </li>
+        </ul>
+        <p>
+          <strong>Reconoce a Yeshúa como el Camino:</strong>
+        </p>
+        <ul>
+          <li>El Edén perdido se recupera solo caminando en Él.</li>
+          <li>
+            Él es el “Camino en el mar”, la senda segura entre los juicios de
+            este mundo.
+          </li>
+        </ul>
+        <p>
+          <strong>Sé testigo de Su poder renovador:</strong>
+        </p>
+        <ul>
+          <li>
+            Tu vida debe ser el testimonio visible de que יהוה aún hace “cosas
+            nuevas”.
+          </li>
+          <li>
+            Tu alabanza es la proclamación del Brit Jadasháh que vive en ti.
+          </li>
+        </ul>
+      </div>
+    </div>
+     <div class="content-container">
+      <h1>Punto 3. Brit Hadasháh: Hebreos 11:4 (El sacrificio de Abel).</h1>
+        <h1>Ivrayé / Hebreos 11:4 📖 ܥܒܪ̈ܝܐ – Ivrayé (Hebreos) 11:4</h1>
+
+        <div class="verse-container">
+            <p class="aramaic">ܒܗܝܡܢܘܬܐ ܩܪܒ ܗܒܝܠ ܕܒܚܬܐ ܡܝܬܪܬܐ ܡܢ ܩܐܝܢ ܠܐܠܗܐ ܘܐܣܗܕ ܥܠܘܗܝ ܕܙܕܩ ܘܐܣܗܕ ܐܠܗܐ ܥܠ ܩܘܪܒܢܗ ܘܒܗ ܟܕ ܡܝܬ ܥܕܟܝܠ ܡܡܠܠ</p>
+            <p class="transliteration">Fonética siríaca oriental: Behaymānūthā qarb Hāvēl dabḥtā meytartā men Qayin l-Alāhā; w-’estahad ‘alwéh d-zaddīq, w-’estahad Alāhā ‘al qurbanéh, w-béh kad mīth ‘adhkīl memallel.</p>
+            <p class="literal-translation">Traducción literal palabra por palabra: Por la fe ofreció Hével un sacrificio más excelente que Qayin a Elohím; y fue testificado acerca de él que era justo, y dio testimonio Elohím respecto a su ofrenda; y por ella, aunque muerto, todavía habla.</p>
+        </div>
+
+        <div class="prophetic-content">
+            <h2 class="prophetic-title">✡️ Comentario Mesiánico y Conexión Profética</h2>
+            <p>Este verso es la primera mención en el Brit Hadasháh de un sacrificio ofrecido “por la fe” (<span class="hebrew-term">behaymānūthā</span>).</p>
+            <p>El escritor de los Ivrayé (Hebreos) revela que Hével <span class="hebrew-term">חֶבֶל</span> comprendió el principio eterno del sacrificio redentor —la expiación por sangre inocente— mucho antes de que fuera instituido en la Toráh de Moshé.</p>
+            <p>Su fe anticipó el sacrificio perfecto del Mashíaj Yeshúa <span class="hebrew-term">ישוע המשיח</span>, el Justo (tzaddík), cuya sangre habla mejor que la de Hével (Hebreos 12:24).</p>
+
+            <h3 class="prophetic-title">🕯️ Conexión con los Profetas</h3>
+            <div class="scripture">
+                <p><strong>Isaías 53:11:</strong> “Por su conocimiento justificará Mi siervo justo a muchos, y llevará las iniquidades de ellos.”</p>
+                <p>→ Así como Hével fue declarado “tzaddík” (justo) por su ofrenda, el Mashíaj es declarado Justo y hace justos a los que confían en Él.</p>
+            </div>
+            <div class="scripture">
+                <p><strong>Miqueas 6:6–8:</strong> “¿Con qué me presentaré ante <span class="hebrew-term">יהוה</span>? ¿Con holocaustos?... Se te ha declarado, oh hombre, lo que es bueno.”</p>
+                <p>→ Hével se presentó con lo que <span class="hebrew-term">יהוה</span> requería: una ofrenda de vida inocente.</p>
+            </div>
+
+            <h3 class="prophetic-title">🔥 Conexión con el Brit Hadasháh</h3>
+            <div class="scripture">
+                <p><strong>Hebreos 12:24:</strong> “Y a Yeshúa, el mediador del Brit Jadasháh, y a la sangre rociada que habla mejor que la de Hével.”</p>
+                <p>→ La sangre de Hével clama justicia; la de Yeshúa proclama misericordia y redención.</p>
+            </div>
+            <div class="scripture">
+                <p><strong>1 Yojanán 3:12:</strong> “No como Qayin, que era del maligno y mató a su hermano. ¿Y por qué lo mató? Porque sus obras eran malas y las de su hermano justas.”</p>
+                <p>→ Hével se convierte en figura del justo perseguido, prototipo del Mashíaj inocente asesinado por la envidia del hombre.</p>
+
+            </div>
+            <h3 class="prophetic-title">🩸 Cumplimiento Profético en el Mashíaj</h3>
+            <ul>
+                <li><strong>Fe y sacrificio:</strong> Hével ofreció por fe, no por obligación.
+                    <p>→ Yeshúa ofreció Su vida voluntariamente: “Yo pongo mi vida por mis ovejas.” (Yojanán 10:15).</p></li>
+                <li><strong>Aceptación divina:</strong> Elohím miró la ofrenda de Hével con agrado.
+                    <p>→ El Padre acepta el sacrificio del Hijo y lo resucita.</p></li>
+                <li><strong>Testimonio eterno:</strong> “Por ella, aunque muerto, aún habla.”
+                    <p>→ La sangre del Mashíaj sigue hablando vida sobre los creyentes: “Padre, perdónalos.” (Luqas 23:34).</p></li>
+            </ul>
+
+            <h3 class="prophetic-title">🌄 Aplicación Espiritual Conectada con la Aliyáh de Génesis 3:22–4:18</h3>
+            <p>La fe de Hével corrige la desobediencia de Adam:</p>
+            <ul>
+                <li>Adam desobedeció por incredulidad; Hével ofreció por fe.</li>
+                <li>Qayin trajo el fruto de su esfuerzo humano; Hével trajo una vida inocente, reconociendo la necesidad de redención.</li>
+            </ul>
+            <p>La Aliyáh de Bereshit 3:22–4:18 muestra la consecuencia del pecado: la expulsión del Edén y la primera muerte humana.</p>
+            <p>Hebreos 11:4 revela la respuesta celestial a esa caída: el principio de fe en un sacrificio que agradó a Elohím, imagen profética del Mashíaj que restauraría el acceso al Árbol de la Vida.</p>
+            <p>Así, la voz de Hével prefigura la voz del Hijo:</p>
+            <ul>
+                <li>Uno murió injustamente, y su sangre clamó por justicia;</li>
+                <li>el Otro murió voluntariamente, y Su sangre habló perdón y vida eterna.</li>
+            </ul>
+
+            <h3 class="prophetic-title">🕊️ Reflexión Mesiánica</h3>
+            <p>La ofrenda de Hével enseña que lo que agrada a <span class="hebrew-term">יהוה</span> no es la obra del hombre, sino la obediencia del corazón guiado por fe.</p>
+            <p>En Yeshúa encontramos el modelo supremo de esa fe, el Cordero ofrecido sin mancha.</p>
+            <p>El creyente mesiánico está llamado a vivir una vida que “hable” aún después de la muerte —una fe viva que testifique del poder redentor del Mashíaj.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>✡️ Comentario Mesiánico de Ivrayé / Hebreos 11:4</h1>
+        <h2>En el Mashíaj Yeshúa <span class="hebrew-term">ישוע המשיח</span> y su conexión con los profetas y la Aliyáh (Bereshit 3:22–4:18)</h2>
+
+        <h3 class="prophetic-title">📖 Texto base (Peshitta aramea)</h3>
+        <div class="verse-container">
+            <p class="aramaic">ܒܗܝܡܢܘܬܐ ܩܪܒ ܗܒܝܠ ܕܒܚܬܐ ܡܝܬܪܬܐ ܡܢ ܩܐܝܢ ܠܐܠܗܐ ܘܐܣܗܕ ܥܠܘܗܝ ܕܙܕܩ ܘܐܣܗܕ ܐܠܗܐ ܥܠ ܩܘܪܒܢܗ ܘܒܗ ܟܕ ܡܝܬ ܥܕܟܝܠ ܡܡܠܠ</p>
+            <p class="transliteration">Behaymānūthā qarb Hāvēl dabḥtā meytartā men Qayin l-Alāhā; w-’estahad ‘alwéh d-zaddīq, w-’estahad Alāhā ‘al qurbanéh, w-béh kad mīth ‘adhkīl memallel.</p>
+            <p class="literal-translation">Traducción literal: Por la fe ofreció Hével un sacrificio más excelente que Qayin a Elohím; y fue testificado acerca de él que era justo, y dio testimonio Elohím respecto a su ofrenda; y por ella, aunque muerto, aún habla.</p>
+        </div>
+
+        <div class="prophetic-content">
+            <h3 class="prophetic-title">🕎 1. Significado Profundo: La Fe que Habla Aun Después de la Muerte</h3>
+            <p>El texto resalta que la ofrenda de Hével fue hecha “por fe” (<span class="hebrew-term">בֶּאֱמוּנָה / Behaymānūthā</span>) —es decir, con confianza en una revelación divina que anticipaba el principio del sacrificio redentor.</p>
+            <p>Hével discernió que el acercamiento al Creador debía realizarse por medio de vida ofrecida, no por las obras humanas.</p>
+            <p>Su sacrificio era una sombra profética del Mashíaj Yeshúa, quien sería el verdadero Cordero ofrecido por la humanidad.</p>
+            <p>El autor de los Ivrayé (Hebreos) establece así la primera conexión entre la fe en el sacrificio y la justificación del justo, enseñando que la sangre inocente —tipo del Mashíaj— testifica delante de Elohím.</p>
+
+            <h3 class="prophetic-title">🔥 2. Conexión con los Profetas</h3>
+            <p>Los profetas retomaron el tema del sacrificio justo y del clamor de la sangre inocente como anuncio de la redención futura.</p>
+
+            <h4 class="prophetic-title">📜 Isaías 53:7–11</h4>
+            <div class="scripture">
+                <p>“Como cordero fue llevado al degüello… por Su conocimiento justificará Mi siervo justo a muchos.”</p>
+                <p>Así como Hével fue declarado tzaddík (justo) por su sacrificio, el Mashíaj, el <span class="hebrew-term">Eved יהוה</span> (Siervo de <span class="hebrew-term">יהוה</span>), es declarado Justo Redentor, llevando sobre sí las iniquidades de todos.</p>
+            </div>
+
+            <h4 class="prophetic-title">📜 Miqueas 6:6–8</h4>
+            <div class="scripture">
+                <p>“¿Con qué me presentaré ante <span class="hebrew-term">יהוה</span>? ¿Con holocaustos? ... Se te ha declarado, oh hombre, lo que es bueno.”</p>
+                <p>La diferencia entre Hével y Qayin es que el primero se presenta ante Elohím con fe y obediencia, mientras el segundo confía en el fruto de su propio esfuerzo.</p>
+                <p>El profeta Miqueas muestra que el sacrificio aceptable ante Elohím es el corazón quebrantado, principio cumplido en Yeshúa, quien ofreció obediencia perfecta hasta la muerte.</p>
+            </div>
+
+            <h4 class="prophetic-title">📜 Zacarías 9:11</h4>
+            <div class="scripture">
+                <p>“Por la sangre de tu pacto, he liberado a tus prisioneros del pozo sin agua.”</p>
+                <p>La sangre del pacto eterno, anticipada en la ofrenda de Hével, se manifiesta en la sangre del Mashíaj que libera de la muerte y del exilio espiritual.</p>
+            </div>
+
+            <h3 class="prophetic-title">✡️ 3. Conexión con la Aliyáh (Bereshit 3:22–4:18)</h3>
+            <p>En esta aliáh se revela el primer sacrificio humano ofrecido a Elohím: las ofrendas de Qayin y Hével.</p>
+            <p>El contraste entre ambas define el patrón espiritual de toda la historia redentora:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Elemento</th>
+                        <th>Qayin <span class="hebrew-term">קַיִן</span></th>
+                        <th>Hével <span class="hebrew-term">הֶבֶל</span></th>
+                        <th>Cumplimiento en el Mashíaj</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tipo de ofrenda</td>
+                        <td>Fruto de la tierra (obra humana)</td>
+                        <td>Primogénitos del rebaño (vida inocente)</td>
+                        <td>Yeshúa, el Primogénito ofrecido en sacrificio</td>
+                    </tr>
+                    <tr>
+                        <td>Motivación</td>
+                        <td>Orgullo y autosuficiencia</td>
+                        <td>Fe y humildad</td>
+                        <td>Obediencia perfecta (Filipenses 2:8)</td>
+                    </tr>
+                    <tr>
+                        <td>Resultado</td>
+                        <td>Rechazo y juicio</td>
+                        <td>Aceptación y justificación</td>
+                        <td>Resurrección y gloria</td>
+                    </tr>
+                    <tr>
+                        <td>Voz de la sangre</td>
+                        <td>Clama justicia</td>
+                        <td>Clama misericordia (en el Mashíaj)</td>
+                        <td>Hebreos 12:24 – “La sangre de Yeshúa habla mejor que la de Hével”</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>El escritor de Hebreos une así el principio del Edén con la consumación mesiánica:</p>
+            <ul>
+                <li>La voz de la sangre de Hével es el primer eco del madero, donde la sangre del Hijo de Adam (<span class="hebrew-term">Ben Adam</span>) hablará perdón eterno.</li>
+                <li>En el Edén, la sangre inocente clamó desde la tierra;</li>
+                <li>en el Gólgota, la sangre inocente clamó desde el cielo.</li>
+            </ul>
+
+            <h3 class="prophetic-title">🩸 4. Yeshúa, el Hével Eterno</h3>
+            <p>Yeshúa es el cumplimiento final de la justicia de Hével.</p>
+            <p>Ambos son justos que ofrecieron sacrificio acepto y fueron asesinados por la envidia del injusto.</p>
+            <p>En ambos casos, Elohím testifica:</p>
+            <ul>
+                <li>Sobre Hével: “Dio testimonio Elohím acerca de su ofrenda.”</li>
+                <li>Sobre Yeshúa: “Este es Mi Hijo amado, en quien tengo complacencia.” (Matityahu 3:17).</li>
+            </ul>
+            <p>Sin embargo, donde la voz de Hével clamó justicia, la voz de Yeshúa clamó misericordia y reconciliación:</p>
+            <div class="scripture">
+                <p>“Padre, perdónalos, porque no saben lo que hacen.” (Luqas 23:34)</p>
+            </div>
+            <p>Yeshúa, como el Hével celestial, no solo muere injustamente sino que su sacrificio abre la puerta de regreso al Edén, el camino al Árbol de la Vida (Apocalipsis 22:14).</p>
+
+            <h3 class="prophetic-title">🔯 5. Conexión Tipológica con el Brit Hadasháh</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tema</th>
+                        <th>Hebreos 11:4</th>
+                        <th>Cumplimiento en Yeshúa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ofrenda por fe</td>
+                        <td>Hével ofreció con fe</td>
+                        <td>Yeshúa ofreció Su vida voluntariamente</td>
+                    </tr>
+                    <tr>
+                        <td>Justificación</td>
+                        <td>Elohím testifica que era justo</td>
+                        <td>El Padre lo declara justo y resucitado</td>
+                    </tr>
+                    <tr>
+                        <td>Testimonio perpetuo</td>
+                        <td>“Aunque muerto, aún habla”</td>
+                        <td>La sangre del Mashíaj habla vida eterna</td>
+                    </tr>
+                    <tr>
+                        <td>Sacrificio superior</td>
+                        <td>“Más excelente que el de Qayin”</td>
+                        <td>“Un sacrificio mejor y perfecto” (Hebreos 10:12)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Yeshúa no solo es el ejemplo de fe, sino la sustancia misma de la fe de Hével.</p>
+            <p>El sacrificio del justo fue semilla profética que floreció en el madero del Mashíaj.</p>
+
+            <h3 class="prophetic-title">🕊️ 6. Aplicación Espiritual para la Kehiláh Mesiánica</h3>
+            <ul>
+                <li><strong>Fe que ofrece, no exige:</strong> La fe genuina no busca ganancia personal, sino agradar a Elohím. Así como Hével ofreció su mejor sin buscar recompensa, el creyente mesiánico ofrece su vida como ofrenda viva (Romanos 12:1).</li>
+                <li><strong>Adoración con sangre inocente:</strong> Toda adoración verdadera está fundada en la sangre del Cordero. Sin la redención del Mashíaj, ninguna ofrenda es aceptable ante el Trono.</li>
+                <li><strong>La voz que aún habla:</strong> La fe deja huella. La vida del justo trasciende la muerte. Así como Hével, la vida de los que creen en el Mashíaj sigue “hablando” testimonio aun después de partir.</li>
+                <li><strong>Vencer el espíritu de Qayin:</strong> La envidia, el orgullo y la autosuficiencia son enemigos del sacrificio acepto. El discípulo mesiánico vence al espíritu de Qayin cuando se ofrece en humildad y amor, reconociendo que solo la sangre del Cordero abre el acceso a <span class="hebrew-term">יהוה</span>.</li>
+            </ul>
+
+            <h3 class="prophetic-title">🌅 7. Conclusión Teológica</h3>
+            <p>El mensaje de Hebreos 11:4 es el eco eterno del Edén restaurado:</p>
+            <ul>
+                <li>La puerta cerrada por el pecado se abre por la fe en un sacrificio más excelente.</li>
+                <li>El primer justo asesinado anuncia al Justo Supremo,</li>
+                <li>y su sangre inocente prepara el camino para la reconciliación total entre el hombre y Elohím.</li>
+            </ul>
+            <p>Así, la fe de Hével se convierte en la primera profecía viviente del Mashíaj, y su ofrenda en el prototipo del Brit Hadasháh, donde el amor vence a la muerte.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>✡️ PUNTO 4 – CONTEXTO HISTÓRICO Y CULTURAL</h1>
+        <h2>Aliyáh: Bereshit / Génesis 3:22–4:18</h2>
+        <h3>Parashá Bereshit <span class="hebrew-term">בְּרֵאשִׁית</span></h3>
+
+        <div class="prophetic-content">
+            <h3 class="prophetic-title">🕎 1. Contexto Histórico del Relato</h3>
+            <p>Los capítulos de Bereshit 3:22–4:18 describen la transición del hombre del estado edénico a la condición post-caída.</p>
+            <p>Este es el punto en que comienza verdaderamente la historia humana fuera del <span class="hebrew-term">Gan-Eden</span> (Jardín del Edén).</p>
+            <p>Se pasa de un mundo donde la presencia directa de <span class="hebrew-term">יהוה</span> habitaba con Adam y Javá, a un mundo donde la humanidad debe aprender a relacionarse con Él a través del sacrificio, la fe y el trabajo de sus manos.</p>
+            <p>El relato ocurre en un contexto prototípico, antes de la civilización organizada, pero en su descripción hay reflejos teológicos y culturales que prefiguran las estructuras sociales posteriores de la humanidad: el altar, el sacrificio, la ciudad, la genealogía, y el nacimiento de las culturas.</p>
+
+            <h3 class="prophetic-title">🌍 2. Aspecto Cultural y Antropológico</h3>
+            <h4 class="prophetic-title">🏕️ a. El Exilio del Edén</h4>
+            <div class="scripture">
+                <p>“Y expulsó al hombre, y puso querubines al oriente del Jardín de Edén, y una espada flameante para guardar el camino del Árbol de la Vida.” (3:24)</p>
+            </div>
+            <p>La expulsión del Edén tiene un profundo significado litúrgico y espiritual:</p>
+            <ul>
+                <li>El Jardín representaba la presencia divina; ser expulsado equivale a perder la comunión directa con <span class="hebrew-term">יהוה</span>.</li>
+                <li>El “oriente del Edén” (<span class="hebrew-term">miqqédem leGan-‘Eden</span>) se convierte en el primer santuario perdido, y el hombre es colocado fuera del “santuario” de la creación.</li>
+                <li>Los querubines y la espada de fuego representan la barrera sacerdotal que luego se repetirá en el <span class="hebrew-term">Mishkán</span> (tabernáculo) y el Templo: el velo y los querubines bordados que separaban al pueblo del Lugar Santísimo.</li>
+                <li>Arqueológicamente, la imagen del “oriente” tiene gran importancia: la mayoría de los templos del antiguo Cercano Oriente (como en Mesopotamia y Canaán) estaban orientados hacia el este, reflejando la memoria arquetípica del Edén al oriente.</li>
+            </ul>
+
+            <h4 class="prophetic-title">🌾 b. El Nacimiento del Culto y del Trabajo</h4>
+            <p>En el exilio, la humanidad comienza a trabajar la tierra y a presentar ofrendas.</p>
+            <p>Los sacrificios de Qayin <span class="hebrew-term">קַיִן</span> y Hével <span class="hebrew-term">הֶבֶל</span> en Génesis 4:3–4 representan la primera liturgia humana registrada.</p>
+            <ul>
+                <li>Qayin, agricultor (<span class="hebrew-term">‘oved adamah</span>), ofrece fruto de la tierra —símbolo del esfuerzo humano.</li>
+                <li>Hével, pastor (<span class="hebrew-term">ro‘eh tzon</span>), ofrece de los primogénitos de su rebaño —símbolo de la vida inocente ofrecida a Elohím.</li>
+            </ul>
+            <p>Este contraste cultural (agricultor/pastor) existía también en las antiguas civilizaciones mesopotámicas, y refleja la tensión entre la economía agrícola y la pastoral, pero a nivel espiritual simboliza la tensión entre el esfuerzo humano y la dependencia divina.</p>
+
+            <h4 class="prophetic-title">⚒️ c. El Surgimiento de la Civilización y el Pecado Social</h4>
+            <div class="scripture">
+                <p>“Y conoció Qayin a su mujer, y ella concibió y dio a luz a Janok; y edificó una ciudad, y llamó el nombre de la ciudad como el nombre de su hijo.” (4:17)</p>
+            </div>
+            <p>Aquí se registra el primer intento de organización urbana humana.</p>
+            <p>El verbo <span class="hebrew-term">vayiven ir</span> (“construyó una ciudad”) indica el nacimiento de la sociedad estructurada fuera del Edén, pero también la consolidación del pecado social, pues el primer constructor de ciudades es un homicida.</p>
+            <p>Desde la perspectiva cultural bíblica, la ciudad (<span class="hebrew-term">ir</span>) se convierte en símbolo de seguridad humana sin la presencia de <span class="hebrew-term">יהוה</span>, y su desarrollo se contrapone a la futura “ciudad de Elohím” (<span class="hebrew-term">Ir Elohím</span>) de Hebreos 11:10.</p>
+
+            <h3 class="prophetic-title">🕯️ 3. Contexto Espiritual y Teológico</h3>
+            <h4 class="prophetic-title">🔥 a. La Pérdida del Árbol de la Vida y la Espada Flamígera</h4>
+            <p>El Árbol de la Vida (<span class="hebrew-term">Etz haJaim</span>) representa la presencia divina y la vida eterna.</p>
+            <p>El acceso restringido simboliza que el hombre no puede volver al estado de inmortalidad por su propio esfuerzo.</p>
+            <p>La espada de fuego (<span class="hebrew-term">lahat ha-jerev</span>) anticipa el juicio y la santidad de Elohím:</p>
+            <p>Solo la sangre de un justo podría abrir de nuevo el camino a la vida eterna, cumplimiento que llegará en Yeshúa haMashíaj <span class="hebrew-term">ישוע המשיח</span> (Yojanán 14:6, Apocalipsis 22:14).</p>
+
+            <h4 class="prophetic-title">🩸 b. El Primer Homicidio: El Clamor de la Sangre Inocente</h4>
+            <div class="scripture">
+                <p>“La voz de la sangre de tu hermano clama a Mí desde la tierra.” (4:10)</p>
+            </div>
+            <p>Este versículo es la primera mención del concepto de sangre que habla (<span class="hebrew-term">dam tso‘eq min ha-adamah</span>).</p>
+            <p>El término hebreo <span class="hebrew-term">tso‘eq</span> (“clamar”) indica una apelación legal, un reclamo de justicia.</p>
+            <p>En la cultura semita antigua, la sangre derramada requería reparación, no podía quedar sin respuesta.</p>
+            <p>Este principio se desarrollará en la Toráh como la base de la justicia divina (Números 35:33).</p>
+            <p>Yeshúa, el justo derramado, invertirá ese clamor: Su sangre hablará no venganza, sino perdón (Hebreos 12:24).</p>
+
+            <h3 class="prophetic-title">🕊️ 4. Contexto Arqueológico y Geográfico</h3>
+            <p>El texto ubica a la familia de Adam “al oriente del Edén” (3:24).</p>
+            <p>Los estudios arqueológicos del Creciente Fértil señalan que las culturas más antiguas de Mesopotamia (Uruk, Eridu, y Kish) surgieron precisamente al oriente del área que antiguas tradiciones asociaban al Edén, cerca de los ríos Tigris y Éufrates (Bereshit 2:14).</p>
+            <p>La mención de Qayin edificando una ciudad podría reflejar los primeros asentamientos permanentes, probablemente relacionados con comunidades agrícolas y de intercambio, características de la región sumeria entre el 3500–3000 a.E.C.</p>
+            <p>Sin embargo, el énfasis del texto no es histórico-geográfico, sino teológico: el primer hombre que derrama sangre busca refugio construyendo muros —una ciudad— en lugar de buscar reconciliación con Elohím.</p>
+
+            <h3 class="prophetic-title">🔯 5. Contexto Lingüístico y Simbólico</h3>
+            <h4 class="prophetic-title">✡️ Nombres y significados:</h4>
+            <ul>
+                <li><strong>Hével <span class="hebrew-term">הֶבֶל</span></strong> – “Vapor, aliento, algo efímero.”
+                    <p>→ Representa la fragilidad de la vida humana después de la caída.</p></li>
+                <li><strong>Qayin <span class="hebrew-term">קַיִן</span></strong> – “Adquirido, posesión.”
+                    <p>→ Javá dice: “He adquirido varón con <span class="hebrew-term">יהוה</span>” (4:1). El nombre sugiere apropiación y orgullo, reflejando el espíritu de autosuficiencia humana.</p></li>
+                <li><strong>Janok <span class="hebrew-term">חֲנוֹךְ</span></strong> – “Dedicado, consagrado.”
+                    <p>→ Qayin da este nombre a su hijo, tal vez como intento de sacralizar su descendencia, pero fuera del pacto divino.</p></li>
+            </ul>
+            <p>El texto presenta una clara dualidad tipológica entre la línea de Qayin (autónoma, humana) y la línea de Shét (4:25–26), que representará la continuidad de la promesa redentora.</p>
+            <h3 class="prophetic-title">🕯️ 6. Significado Te ológico y Profético</h3>
+            <p>Esta aliáh marca el inicio del camino de la redención y de la historia mesiánica:</p>
+<ul>
+<li>El cierre del Edén no es un fin, sino el inicio del proceso de restauración divina.</li>
+<li>La fe de Hével y la sangre derramada prefiguran el sacrificio del Mashíaj, el Justo que restauraría el acceso al Árbol de la Vida.</li>
+<li>La marca de Qayin anticipa el sello de gracia que, en el Brit Hadasháh, se transforma en el sello del Ruaj HaKodesh (Efesios 1:13).</li>
+</ul>
+<h3 class="prophetic-title">🌄 7. Conclusión del Contexto</h3>
+        <p>El relato de Bereshit 3:22–4:18 no es una simple historia de pecado y castigo, sino la revelación del drama cósmico de la redención:</p>
+        <ul>
+            <li>La humanidad expulsada del Edén aprende a ofrecer, a clamar, y a construir.</li>
+            <li><span class="hebrew-term">יהוה</span> comienza a revelar Su misericordia, preservando aun al homicida, y prometiendo un linaje redentor.</li>
+            <li>El culto, la justicia y la redención se convierten en los pilares de la relación entre el hombre y Elohím, que hallarán su plenitud en el sacrificio perfecto del Mashíaj Yeshúa.</li>
+        </ul>
+        <div class="conclusion">
+            <p>“Y el hombre conoció que el acceso al Árbol de la Vida estaba cerrado, pero <span class="hebrew-term">יהוה</span> ya había preparado el Cordero que abriría de nuevo el camino.”</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>✡️ PUNTO 5 – ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS</h1>
+    <h2>Aliyáh: Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew-term">בְּרֵאשִׁית</span></h3>
+
+    <div class="prophetic-content">
+        <h3 class="prophetic-title">🕎 1. Introducción</h3>
+        <p>Esta Aliyáh es un eje teológico entre la caída de Adam y el inicio de la historia redentora.</p>
+        <p>Aquí se establecen las tres columnas fundamentales de toda la Toráh y del Brit Hadasháh:</p>
+        <ul>
+            <li>El Juicio Justo de <span class="hebrew-term">יהוה</span> (expulsión del Edén).</li>
+            <li>La Misericordia Divina (protección de Qayin).</li>
+            <li>El Principio del Sacrificio Acepto (ofrenda de Hével).</li>
+        </ul>
+        <p>Cada una anticipa la revelación del Mashíaj Yeshúa <span class="hebrew-term">ישוע המשיח</span> como el Camino, la Verdad y la Vida, restaurando el acceso al Árbol de la Vida (<span class="hebrew-term">Etz haJaim</span> <span class="hebrew-term">עֵץ הַחַיִּים</span>).</p>
+
+        <h3 class="prophetic-title">📜 2. Comentarios Rabínicos Clásicos</h3>
+        <h4 class="prophetic-title">🕯️ a. Rashí (Rabí Shelomó Yitzjaqí, s. XI)</h4>
+        <p>Rashí comenta sobre Génesis 3:22:</p>
+        <div class="scripture">
+            <p>“He aquí que el hombre ha venido a ser como uno de Nosotros…” — <span class="hebrew-term">יהוה</span> habla en el tribunal celestial; el hombre ha adquirido conocimiento del bien y del mal, pero no posee la capacidad de dominarlo sin la guía divina.</p>
+        </div>
+        <p>Rashí enfatiza que la expulsión no fue castigo cruel, sino acto de misericordia, para que el hombre no coma del Árbol de la Vida y viva eternamente en pecado.</p>
+        <p>👉 En términos mesiánicos, esto muestra que la muerte física fue dada como puerta a la redención: la restauración por medio de la resurrección del Justo.</p>
+
+        <h4 class="prophetic-title">📜 b. Rambán (Najmánides, s. XIII)</h4>
+        <p>Rambán comenta que los querubines y la espada flameante en 3:24 simbolizan la presencia <span class="hebrew-term">Shejináh</span> de <span class="hebrew-term">יהוה</span> custodiando el camino hacia la vida.</p>
+        <p>Dice:</p>
+        <div class="scripture">
+            <p>“Esta espada no fue arma de destrucción, sino de santificación; quien se acerque sin pureza será consumido.”</p>
+        </div>
+        <p>👉 En la visión mesiánica, esta “espada de fuego” prefigura la espada de la Palabra viva, que en el Brit Hadasháh es Yeshúa mismo (Apocalipsis 1:16).</p>
+
+        <h4 class="prophetic-title">📜 c. Midrash Bereshit Rabbah 22:7</h4>
+        <p>El Midrash enseña que Qayin ofreció fruto de segunda calidad, mientras que Hével ofreció lo mejor.</p>
+        <div class="scripture">
+            <p>“Qayin trajo lo ordinario, Hével trajo lo escogido.”</p>
+        </div>
+        <p>👉 En la luz mesiánica, esto revela que el corazón del adorador determina la aceptación, no el tipo de ofrenda.</p>
+        <p>El Mashíaj dijo:</p>
+        <div class="scripture">
+            <p>“Los verdaderos adoradores adorarán en <span class="hebrew-term">Ruaj</span> y en verdad.” (Yojanán 4:23)</p>
+        </div>
+
+        <h4 class="prophetic-title">📜 d. Targum Onkelos (paráfrasis aramea)</h4>
+        <p>El Targum traduce Génesis 4:7 así:</p>
+        <div class="scripture">
+            <p>“Si haces lo bueno, serás aceptado; pero si no haces lo bueno, tu pecado está preparado para el día del juicio; sin embargo, a ti te será entregado el dominio si lo deseas.”</p>
+        </div>
+        <p>👉 Aquí aparece el principio mesiánico del libre albedrío redimido: el hombre puede dominar el pecado solo si camina en la obediencia del Espíritu.</p>
+
+        <h3 class="prophetic-title">🔥 3. Comentario Judío Mesiánico</h3>
+        <h4 class="prophetic-title">✡️ a. La Espada de Fuego y la Sangre del Mashíaj</h4>
+        <p>El cierre del Edén no fue una maldición, sino una promesa velada.</p>
+        <p>La espada flameante (<span class="hebrew-term">lahat ha-jerev ha-mithapeket</span>) simboliza el juicio divino y la purificación.</p>
+        <p>El único que podría cruzar ese fuego sería Aquel que soportaría el juicio en lugar del hombre.</p>
+        <p>Ese “camino al Árbol de la Vida” (<span class="hebrew-term">derej ‘etz ha-chayim</span>) se revela finalmente en Yeshúa haMashíaj, quien declara:</p>
+        <div class="scripture">
+            <p>“Yo soy el Camino, la Verdad y la Vida.” (Yojanán 14:6)</p>
+        </div>
+        <p>La espada que guardaba el Edén se convierte en la lanza que hiere el costado del Mashíaj; la puerta cerrada se abre con Su sangre.</p>
+
+        <h4 class="prophetic-title">✡️ b. El Sacrificio de Hével y el Principio del Altar</h4>
+        <p>Hével, guiado por revelación, entendió que el acercamiento a <span class="hebrew-term">יהוה</span> debía hacerse mediante derramamiento de sangre inocente.</p>
+        <div class="scripture">
+            <p>“Y miró <span class="hebrew-term">יהוה</span> con agrado a Hével y a su ofrenda.” (4:4)</p>
+        </div>
+        <p>El texto hebreo usa <span class="hebrew-term">sha‘ah</span> (mirar con atención, aceptar con favor).</p>
+        <p>La misma raíz se usa en Isaías 17:7 — “mirará el hombre a su Hacedor.”</p>
+        <p>👉 Así, Hével inaugura el principio de la adoración por fe y sangre, prefigurando el sacrificio del Mashíaj (Hebreos 11:4).</p>
+        <p>Su ofrenda fue “más excelente” (<span class="hebrew-term">meytartā</span>, Peshitta), no por su valor material, sino porque reflejaba la naturaleza del sacrificio celestial.</p>
+
+        <h4 class="prophetic-title">✡️ c. El Clamor de la Sangre y la Voz de Justicia</h4>
+        <div class="scripture">
+            <p>“La voz de la sangre de tu hermano clama a Mí desde la tierra.” (4:10)</p>
+        </div>
+        <p>Aquí aparece por primera vez el concepto de la sangre que habla (<span class="hebrew-term">dam tso‘eq</span>).</p>
+        <p>En la cosmovisión hebrea, la sangre no es símbolo de muerte, sino de vida derramada que permanece en comunión con Elohím (Levítico 17:11).</p>
+        <p>La sangre de Hével clama justicia desde la tierra.</p>
+        <p>La sangre del Mashíaj clama misericordia desde el cielo.</p>
+        <div class="scripture">
+            <p>“Yeshúa, mediador del Brit Jadasháh, y la sangre rociada que habla mejor que la de Hével.” (Hebreos 12:24)</p>
+        </div>
+        <p>El contraste establece la base del mensaje redentor: El primer justo asesinado anuncia al Justo eterno que salvaría a los homicidas.</p>
+
+        <h4 class="prophetic-title">✡️ d. Qayin, el Hombre Errante, y la Marca de Preservación</h4>
+        <p>Qayin teme ser muerto por otros, y <span class="hebrew-term">יהוה</span> le pone una señal (<span class="hebrew-term">’ot</span>) de protección (4:15).</p>
+        <p>Esta señal es ambigua: representa juicio, pero también misericordia.</p>
+        <p>Rabinos antiguos (Bereshit Rabbah 22:12) dijeron que era una marca de arrepentimiento; otros, un símbolo de vergüenza.</p>
+        <p>En la visión mesiánica, la marca de Qayin anticipa el sello de redención del Ruaj HaKodesh (Efesios 1:13): Una señal espiritual que preserva del juicio, pero exige santidad.</p>
+
+        <h3 class="prophetic-title">🔯 4. Conexiones Proféticas</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tema</th>
+                    <th>Profecía</th>
+                    <th>Cumplimiento Mesiánico</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Árbol de la Vida cerrado</td>
+                    <td>Génesis 3:24</td>
+                    <td>Yeshúa abre el acceso (Apocalipsis 22:14)</td>
+                </tr>
+                <tr>
+                    <td>Sangre inocente que clama</td>
+                    <td>Génesis 4:10</td>
+                    <td>Hebreos 12:24 – la sangre del Mashíaj habla mejor</td>
+                </tr>
+                <tr>
+                    <td>Errante en la tierra</td>
+                    <td>Génesis 4:12</td>
+                    <td>Yeshúa lleva nuestro exilio y nos hace volver al Padre</td>
+                </tr>
+                <tr>
+                    <td>Ofrenda aceptada</td>
+                    <td>Génesis 4:4</td>
+                    <td>El sacrificio del Mashíaj es aceptado eternamente (Hebreos 10:12)</td>
+                </tr>
+                <tr>
+                    <td>Ciudad de Qayin</td>
+                    <td>Génesis 4:17</td>
+                    <td>Contraste con la “ciudad celestial” (Hebreos 11:10)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="prophetic-title">🕯️ 5. Comentarios del Tiempo del Segundo Templo</h3>
+        <p>Los escritos judíos intertestamentarios (como el Libro de Enoc y el Testamento de los Doce Patriarcas) interpretan la sangre de Hével como símbolo de testimonio celestial, donde el justo asesinado intercede desde el cielo.</p>
+        <p>El pensamiento de Qumrán (Manuscritos del Mar Muerto, 4Q285) desarrolla esta idea:</p>
+        <div class="scripture">
+            <p>“El Ungido será herido, y su muerte traerá expiación.”</p>
+        </div>
+        <p>Esto demuestra que la comunidad del Segundo Templo ya esperaba un sacrificio justo que redimiría la sangre derramada desde Abel hasta el fin.</p>
+        <p>Yeshúa mismo lo cita en Matityahu 23:35:</p>
+        <div class="scripture">
+            <p>“Para que venga sobre vosotros toda la sangre justa derramada en la tierra, desde la de Hével hasta la de Zacarías.”</p>
+        </div>
+
+        <h3 class="prophetic-title">🩸 6. Aplicación Profética y Espiritual</h3>
+        <ul>
+            <li><strong>La Espada de Fuego:</strong> símbolo del juicio que solo el Mashíaj podía atravesar.</li>
+            <li><strong>El Árbol de la Vida:</strong> representa la comunión restaurada por Su sacrificio.</li>
+            <li><strong>La Sangre de Hével:</strong> primer testimonio profético de la redención.</li>
+            <li><strong>El Exilio de Qayin:</strong> figura de la humanidad errante sin pacto.</li>
+            <li><strong>La Marca:</strong> preludio del sello mesiánico que protege al redimido.</li>
+        </ul>
+        <p>El plan de redención comienza aquí: el camino cerrado por el pecado será abierto por el Cordero perfecto.</p>
+
+        <h3 class="prophetic-title">🌄 7. Conclusión</h3>
+        <p>La Aliyáh de Bereshit 3:22–4:18 contiene en germen todo el Evangelio del Reino:</p>
+        <ul>
+            <li>La caída (pérdida del Edén),</li>
+            <li>El sacrificio justo (Hével),</li>
+            <li>La sangre que intercede,</li>
+            <li>La gracia preservadora (marca de Qayin),</li>
+            <li>Y la esperanza del retorno (la ciudad celestial).</li>
+        </ul>
+        <p>Así, desde los primeros capítulos de la Toráh, <span class="hebrew-term">יהוה</span> revela el misterio mesiánico que culmina en Yeshúa haMashíaj, el Justo que con Su sangre abre de nuevo el camino al Árbol de la Vida.</p>
+        <div class="conclusion">
+            <p>“Donde la espada cerró el paso, el Cordero lo abrió; donde la sangre clamó justicia, Su sangre proclamó redención.”</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>✡️ PUNTO 6 – ANÁLISIS PROFUNDO DE LA ALIYÁH</h1>
+    <h2>Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew-term">בְּרֵאשִׁית</span></h3>
+
+    <div class="prophetic-content">
+        <h3 class="prophetic-title">🕎 1. Introducción: La Transición del Edén al Mundo Caído</h3>
+        <p>Esta sección de la Toráh marca el cambio más radical en la condición humana:</p>
+        <p>La humanidad pasa de vivir en la presencia de <span class="hebrew-term">יהוה</span> a existir fuera del Jardín, bajo la influencia del pecado y la muerte.</p>
+        <p>Pero al mismo tiempo, Elohím comienza a revelar Su plan de redención, el cual se desarrollará progresivamente hasta su cumplimiento pleno en Yeshúa haMashíaj <span class="hebrew-term">ישוע המשיח</span>.</p>
+
+        <h3 class="prophetic-title">🌿 2. Estructura Literaria y Temática de la Aliyáh</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sección</th>
+                    <th>Tema central</th>
+                    <th>Significado espiritual</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>3:22–24</td>
+                    <td>Expulsión del Edén</td>
+                    <td>Separación del hombre de la presencia divina</td>
+                </tr>
+                <tr>
+                    <td>4:1–8</td>
+                    <td>Ofrenda de Qayin y Hével</td>
+                    <td>Primer conflicto entre fe y obras</td>
+                </tr>
+                <tr>
+                    <td>4:9–16</td>
+                    <td>Juicio y señal de Qayin</td>
+                    <td>Justicia y misericordia divina</td>
+                </tr>
+                <tr>
+                    <td>4:17–18</td>
+                    <td>Genealogía de Qayin</td>
+                    <td>Comienzo de la civilización caída</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>La narrativa sigue un patrón de caída, juicio, misericordia y continuidad, que se repetirá en toda la historia de Israel y culminará en la restauración mesiánica.</p>
+
+        <h3 class="prophetic-title">🔥 3. Análisis Exegético y Espiritual Versículo por Versículo</h3>
+        <h4 class="prophetic-title">Bereshit 3:22–24 – La Expulsión del Edén</h4>
+        <div class="scripture">
+            <p>“He aquí que el hombre ha venido a ser como uno de Nosotros, conociendo el bien y el mal... y puso querubines al oriente del Jardín de Edén, y una espada flameante para guardar el camino al Árbol de la Vida.”</p>
+        </div>
+        <p><strong>Análisis:</strong></p>
+        <ul>
+            <li>“Como uno de Nosotros” no implica igualdad, sino autonomía ilusoria: el hombre ahora define el bien y el mal según su propio criterio.</li>
+            <li>Los querubines (<span class="hebrew-term">keruvím</span>) son seres custodios de la santidad divina; su función en el Edén anticipa el velo del Santuario y el propiciatorio del Arca (Éxodo 25:18–22).</li>
+            <li>La espada flameante (<span class="hebrew-term">lahat ha-jerev</span>) representa el juicio divino y la imposibilidad del hombre de volver a la vida eterna sin mediación.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong> Solo el Mashíaj puede atravesar esa espada, soportando el juicio divino y abriendo nuevamente el acceso al Árbol de la Vida (Apocalipsis 2:7).</p>
+
+        <h4 class="prophetic-title">Bereshit 4:1–8 – El Nacimiento de Qayin y Hével</h4>
+        <div class="scripture">
+            <p>“Y conoció Adam a Javá su mujer... y dio a luz a Qayin, y dijo: ‘He adquirido varón con <span class="hebrew-term">יהוה</span>.’”</p>
+        </div>
+        <p><strong>Análisis:</strong></p>
+        <ul>
+            <li>El nombre Qayin (<span class="hebrew-term">קַיִן</span>) significa “adquirido, posesión”, revelando el deseo de Javá de recuperar lo perdido mediante esfuerzo humano.</li>
+            <li>Hével (<span class="hebrew-term">הֶבֶל</span>) significa “vapor, soplo” — símbolo de fragilidad y de una vida ofrecida como aliento delante de Elohím.</li>
+            <li>Ambos presentan ofrendas:
+                <ul>
+                    <li>Qayin ofrece <span class="hebrew-term">minjáh</span> (ofrenda vegetal) de su trabajo.</li>
+                    <li>Hével ofrece <span class="hebrew-term">bekorot tzonó</span> (primogénitos de su rebaño), un sacrificio de sangre.</li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Significado espiritual:</strong></p>
+        <ul>
+            <li>Qayin representa la religión del esfuerzo humano.</li>
+            <li>Hével representa la adoración por fe, prefigurando la obra del Mashíaj.</li>
+        </ul>
+        <div class="scripture">
+            <p>“Y miró <span class="hebrew-term">יהוה</span> con agrado a Hével y a su ofrenda, pero no miró con agrado a Qayin ni a su ofrenda.”</p>
+        </div>
+        <p><strong>Cumplimiento mesiánico:</strong> El sacrificio de Hével anticipa el principio del altar y del Cordero perfecto, Yeshúa, el Justo. Como dice Hebreos 11:4:</p>
+        <div class="scripture">
+            <p>“Por la fe ofreció Hével un sacrificio más excelente que Qayin.”</p>
+        </div>
+
+        <h4 class="prophetic-title">Bereshit 4:9–16 – El Juicio y la Señal</h4>
+        <div class="scripture">
+            <p>“¿Dónde está tu hermano Hével? ... La voz de la sangre de tu hermano clama a Mí desde la tierra.”</p>
+        </div>
+        <p><strong>Análisis:</strong></p>
+        <ul>
+            <li>La pregunta de Elohím no busca información, sino confesión.</li>
+            <li>La expresión “voz de la sangre” (<span class="hebrew-term">קוֹל דְּמֵי אָחִיךָ – qol demei ajija</span>) está en plural: “las sangres de tu hermano”, interpretado por los sabios como el clamor de su vida y la de su descendencia perdida.</li>
+            <li>El juicio: Qayin es maldito de la tierra y condenado a ser <span class="hebrew-term">naua vanad</span> – fugitivo y errante.</li>
+        </ul>
+        <p><strong>Misericordia divina:</strong></p>
+        <div class="scripture">
+            <p>“Y puso <span class="hebrew-term">יהוה</span> una señal sobre Qayin, para que no lo matara quien lo hallara.”</p>
+        </div>
+        <p>La marca (<span class="hebrew-term">אוֹת – ’ot</span>) simboliza protección bajo gracia, un anticipo del sello redentor del Ruaj HaKodesh (Efesios 1:13).</p>
+        <p><strong>Cumplimiento mesiánico:</strong> La sangre de Yeshúa habla “mejor que la de Hével” (Hebreos 12:24), convirtiendo el clamor de justicia en voz de perdón. La gracia que protege al homicida prefigura la misericordia del Mashíaj hacia toda la humanidad culpable.</p>
+
+        <h4 class="prophetic-title">Bereshit 4:17–18 – Qayin y la Ciudad de su Hijo</h4>
+        <div class="scripture">
+            <p>“Y conoció Qayin a su mujer, y ella dio a luz a Janok, y edificó una ciudad...”</p>
+        </div>
+        <p><strong>Análisis:</strong></p>
+        <ul>
+            <li>Aquí nace la cultura post-edénica: el hombre comienza a construir para compensar su separación de Elohím.</li>
+            <li>La ciudad (<span class="hebrew-term">ir</span>) de Qayin es símbolo de seguridad humana sin presencia divina.</li>
+            <li>El nombre “Janok <span class="hebrew-term">חֲנוֹךְ</span>” significa “dedicado”, pero esta dedicación está fuera del pacto; contrasta con el Janok justo de la línea de Shét (Génesis 5:18–24).</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong> El contraste entre la ciudad de Qayin y la “ciudad celestial” buscada por Avraham (Hebreos 11:10) revela dos caminos:</p>
+        <ul>
+            <li>Construir sin Elohím, o</li>
+            <li>Esperar la morada eterna edificada por el Mashíaj (Yojanán 14:2).</li>
+        </ul>
+
+        <h3 class="prophetic-title">✡️ 4. Análisis Mesiánico y Profético</h3>
+        <h4 class="prophetic-title">🕯️ a. El Árbol de la Vida cerrado → Yeshúa, el Camino Abierto</h4>
+        <p>El cierre del Edén fue un acto de justicia; la apertura por medio del Mashíaj fue un acto de gracia.</p>
+        <div class="scripture">
+            <p>“Bienaventurados los que lavan sus vestiduras, para tener derecho al Árbol de la Vida.” (Apocalipsis 22:14)</p>
+        </div>
+
+        <h4 class="prophetic-title">🕯️ b. La Sangre que Clama → La Voz del Mashíaj</h4>
+        <p>La sangre de Hével clama desde la tierra; la sangre de Yeshúa intercede desde el cielo (Hebreos 12:24).</p>
+        <p>Ambas hablan, pero una exige justicia, y la otra concede perdón.</p>
+
+        <h4 class="prophetic-title">🕯️ c. El Errante y la Gracia</h4>
+        <p>Qayin lleva una marca de juicio, pero también de misericordia.</p>
+        <p>De igual manera, la humanidad marcada por el pecado recibe en Yeshúa el sello de redención:</p>
+        <div class="scripture">
+            <p>“El Ruaj mismo da testimonio... que somos hijos de Elohím.” (Romanos 8:16)</p>
+        </div>
+
+        <h3 class="prophetic-title">🕊️ 5. Perspectiva Espiritual y Ética</h3>
+        <p>Esta Aliyáh enseña los fundamentos de la vida espiritual del creyente:</p>
+        <ul>
+            <li><strong>El acceso a Elohím requiere mediación.</strong> → Solo el sacrificio acepto (tipo de Yeshúa) abre el camino.</li>
+            <li><strong>La adoración debe nacer de la fe, no de la obligación.</strong> → Qayin ofreció por deber; Hével ofreció por amor.</li>
+            <li><strong>El pecado acecha, pero puede ser dominado.</strong> → “A ti será su deseo, y tú lo dominarás.” (4:7) En el Mashíaj se cumple el dominio sobre el pecado (Romanos 6:14).</li>
+            <li><strong>La justicia de Elohím siempre se mezcla con Su misericordia.</strong> → Aun el culpable recibe una marca de gracia.</li>
+            <li><strong>Toda sangre inocente será vindicada en el Mashíaj.</strong> → Yeshúa abarca en Su redención desde Hével hasta los últimos mártires.</li>
+        </ul>
+
+        <h3 class="prophetic-title">🔯 6. Conexión con los Profetas y el Brit Hadasháh</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Profecía</th>
+                    <th>Tema</th>
+                    <th>Cumplimiento en el Mashíaj</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Isaías 53:5</td>
+                    <td>Herido por nuestras rebeliones</td>
+                    <td>Yeshúa lleva el juicio del pecado</td>
+                </tr>
+                <tr>
+                    <td>Miqueas 6:6–8</td>
+                    <td>Ofrenda aceptable a Elohím</td>
+                    <td>La obediencia del Hijo perfecto</td>
+                </tr>
+                <tr>
+                    <td>Jeremías 31:31</td>
+                    <td>Brit Jadasháh (Nuevo Pacto)</td>
+                    <td>Su sangre establece el nuevo acceso</td>
+                </tr>
+                <tr>
+                    <td>Hebreos 11:4</td>
+                    <td>Fe de Hével</td>
+                    <td>Fe mesiánica que ofrece por amor</td>
+                </tr>
+                <tr>
+                    <td>Hebreos 12:24</td>
+                    <td>Sangre que habla mejor</td>
+                    <td>Intercesión eterna del Mashíaj</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="prophetic-title">🌄 7. Síntesis Espiritual</h3>
+        <p>Esta Aliyáh es la raíz de toda teología bíblica de redención:</p>
+        <ul>
+            <li>El Árbol de la Vida cerrado <span class="arrow">→</span> Camino abierto por el Mashíaj.</li>
+            <li>El sacrificio de Hével <span class="arrow">→</span> Figura del Cordero perfecto.</li>
+            <li>El pecado de Qayin <span class="arrow">→</span> El exilio de la humanidad.</li>
+            <li>La marca de Qayin <span class="arrow">→</span> El sello del Espíritu que preserva.</li>
+            <li>La ciudad de Qayin <span class="arrow">→</span> El contraste con la Jerusalén celestial.</li>
+        </ul>
+        <p>Cada elemento apunta a la restauración final en Yeshúa haMashíaj, el segundo Adam, que devuelve al hombre la comunión con <span class="hebrew-term">יהוה</span> perdida en el Edén.</p>
+    </div>
+</div>
+
+<div class="content-container">
+    <h1>✡️ PUNTO 7 – TEMA MÁS RELEVANTE DE LA ALIYÁH</h1>
+    <h2>Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew-term">בְּרֵאשִׁית</span></h3>
+
+    <div class="prophetic-content">
+        <h3 class="prophetic-title">🕎 1. Tema Central: “El Camino Cerrado y la Promesa del Regreso”</h3>
+        <p>La Aliyáh de Bereshit 3:22–4:18 contiene el eje más profundo de toda la Toráh:</p>
+        <p>El hombre pierde el acceso al Árbol de la Vida <span class="hebrew-term">עֵץ הַחַיִּים</span>, pero <span class="hebrew-term">יהוה</span> revela en ese mismo momento el camino de regreso a través del sacrificio justo, la fe y la misericordia divina.</p>
+        <p>De la expulsión del Edén brota la esperanza mesiánica.</p>
+        <p>El hombre sale del Jardín, pero Elohím no abandona al hombre; el plan redentor comienza a gestarse.</p>
+
+        <h3 class="prophetic-title">🌿 2. Desarrollo del Tema: De la Caída a la Redención</h3>
+        <p>El tema principal de la Aliyáh es la restauración del camino al Árbol de la Vida, el cual será abierto solo por medio del Mashíaj Yeshúa <span class="hebrew-term">ישוע המשיח</span>, el segundo Adam.</p>
+        <p>El texto muestra tres escenas teológicas interconectadas:</p>
+        <ul>
+            <li><strong>El cierre del acceso al Árbol de la Vida (3:22–24):</strong>
+                <ul>
+                    <li>Simboliza el juicio y la separación.</li>
+                    <li>El hombre no puede volver a la vida eterna por sus obras.</li>
+                </ul>
+            </li>
+            <li><strong>La ofrenda de Hével (4:3–4):</strong>
+                <ul>
+                    <li>Representa el principio de fe y sacrificio acepto.</li>
+                    <li>Es la primera sombra del Cordero redentor.</li>
+                </ul>
+            </li>
+            <li><strong>El clamor de la sangre y la marca de Qayin (4:10–15):</strong>
+                <ul>
+                    <li>Expone el conflicto entre justicia y gracia.</li>
+                    <li><span class="hebrew-term">יהוה</span> protege al culpable para preservar la historia de redención.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3 class="prophetic-title">🔥 3. El Camino al Árbol de la Vida: Figura Profética del Mashíaj</h3>
+        <div class="scripture">
+            <p>“Y puso querubines al oriente del Jardín de Edén y una espada flameante para guardar el camino del Árbol de la Vida.” (3:24)</p>
+        </div>
+        <p>El término <span class="hebrew-term">derej etz ha-jayim</span> (“camino al Árbol de la Vida”) aparece aquí por primera vez, y su interpretación profética es crucial:</p>
+        <ul>
+            <li>El Árbol representa a Yeshúa haMashíaj, la fuente de vida eterna (Yojanán 14:6, Apocalipsis 22:14).</li>
+            <li>Los Querubines representan la santidad y la presencia divina (<span class="hebrew-term">Shejináh</span>).</li>
+            <li>La Espada de Fuego representa la justicia divina que ningún hombre puede cruzar sin morir.</li>
+        </ul>
+        <p>Solo Yeshúa, el Justo, pudo atravesar esa espada —el juicio— en Su muerte y resurrección, y abrir el acceso a la vida eterna.</p>
+        <div class="scripture">
+            <p>“Bienaventurados los que lavan sus vestiduras, para tener derecho al Árbol de la Vida.” (Apocalipsis 22:14)</p>
+        </div>
+        <p>El tema de la Aliyáh es entonces la pérdida y la restauración del acceso a Elohím.</p>
+
+        <h3 class="prophetic-title">✡️ 4. Fe y Ofrenda: El Principio del Sacrificio Acepto</h3>
+        <p>La historia de Qayin y Hével es la continuación del drama edénico:</p>
+        <p>En el Edén, Adam desobedeció; fuera del Edén, sus hijos aprenden a acercarse a Elohím.</p>
+        <p>Uno lo hace por fe (Hével), otro por obra (Qayin).</p>
+        <div class="scripture">
+            <p>“Y miró <span class="hebrew-term">יהוה</span> con agrado a Hével y a su ofrenda, pero no a Qayin.” (4:4–5)</p>
+        </div>
+        <p>La diferencia está en el corazón y en la revelación:</p>
+        <ul>
+            <li>Hével ofreció sangre, reconociendo la necesidad de redención;</li>
+            <li>Qayin ofreció el fruto de su trabajo, simbolizando el intento humano de justificarse.</li>
+        </ul>
+        <p>Así, la fe de Hével prefigura el sacrificio del Mashíaj, mientras que la ofrenda de Qayin representa la religión del mérito humano.</p>
+        <div class="scripture">
+            <p>“Por la fe ofreció Hével un sacrificio más excelente que Qayin.” (Hebreos 11:4)</p>
+            </div>
+        <p><strong>Tema espiritual:</strong> El acceso al Árbol de la Vida no se obtiene por obra, sino por fe en el sacrificio del Justo.</p>
+        <h3 class="prophetic-title">🩸 5. El Clamor de la Sangre y la Justicia Redentora</h3>
+        <div class="scripture">
+            <p>“La voz de la sangre de tu hermano clama a Mí desde la tierra.” (4:10)</p>
+        </div>
+        <p>La sangre inocente derramada es la primera intercesión de justicia en la historia.</p>
+        <p>Pero la Toráh enseña que la sangre no solo clama venganza, sino que revela el principio de expiación:</p>
+        <div class="scripture">
+            <p>“La vida está en la sangre, y Yo os la he dado para hacer expiación.” (Levítico 17:11)</p>
+        </div>
+        <p>Por eso, el autor de los Ivrayé (Hebreos) interpreta este evento como un tipo mesiánico perfecto:</p>
+        <div class="scripture">
+            <p>“Y a Yeshúa, el mediador del Brit Jadasháh, y a la sangre rociada que habla mejor que la de Hével.” (Hebreos 12:24)</p>
+        </div>
+        <ul>
+            <li>La sangre de Hével exige justicia;</li>
+            <li>la sangre del Mashíaj otorga misericordia y vida eterna.</li>
+        </ul>
+
+        <h3 class="prophetic-title">🕯️ 6. Qayin, el Errante: Imagen de la Humanidad Caída</h3>
+        <div class="scripture">
+            <p>“Serás fugitivo y errante en la tierra.” (4:12)</p>
+        </div>
+        <p>Qayin representa al hombre separado de la presencia divina, viviendo bajo condenación, pero preservado por misericordia.</p>
+        <p>La “marca” (<span class="hebrew-term">ot</span>) que <span class="hebrew-term">יהוה</span> coloca sobre él simboliza un acto de gracia que detiene el juicio completo.</p>
+        <p>En el contexto mesiánico, esta marca anticipa el sello del Ruaj HaKodesh, que protege a los redimidos:</p>
+        <div class="scripture">
+            <p>“Fuisteis sellados con el Ruaj HaKodesh de la promesa.” (Efesios 1:13)</p>
+        </div>
+        <p>El mensaje teológico es que aun en medio del juicio, la misericordia divina prevalece.</p>
+        <p>Así como Qayin fue preservado para la continuidad de la humanidad, el pecador es preservado por la sangre del Mashíaj para la redención.</p>
+
+        <h3 class="prophetic-title">🔯 7. La Civilización Caída: La Ciudad de Qayin</h3>
+        <div class="scripture">
+            <p>“Y edificó una ciudad, y llamó su nombre como el de su hijo, Janok.” (4:17)</p>
+        </div>
+        <p>El hombre, separado de la presencia de <span class="hebrew-term">יהוה</span>, busca construir seguridad en su propio esfuerzo.</p>
+        <p>La primera ciudad humana nace de un homicida —una sociedad edificada sin Elohím.</p>
+        <p>La Toráh establece aquí el contraste que recorrerá toda la Escritura:</p>
+        <ul>
+            <li><strong>La Ciudad del Hombre (Qayin)</strong> <span class="arrow">→</span> símbolo del orgullo humano, la independencia y el pecado.</li>
+            <li><strong>La Ciudad de Elohím (Yerushalayim ha-‘Elyonah)</strong> <span class="arrow">→</span> símbolo de la redención y la morada divina (Hebreos 12:22).</li>
+        </ul>
+        <p>El tema de la ciudad muestra el desplazamiento espiritual:</p>
+        <p>El hombre busca reconstruir lo que perdió, pero sin Elohím no puede hallar la vida.</p>
+        <p>Solo en el Mashíaj se edifica la ciudad eterna:</p>
+        <div class="scripture">
+            <p>“Yo voy a preparar lugar para vosotros.” (Yojanán 14:2)</p>
+        </div>
+
+        <h3 class="prophetic-title">🌸 8. La Conexión Mesiánica: El Segundo Adam y el Nuevo Camino</h3>
+        <p>El cierre del Edén se convierte en el punto de partida del Evangelio:</p>
+        <ul>
+            <li>El primer Adam introduce el pecado y la muerte.</li>
+            <li>El segundo Adam (Yeshúa) introduce justicia y vida (1 Corintios 15:21–22).</li>
+        </ul>
+        <p>Así, la promesa velada en el Edén se cumple en el madero de la redención.</p>
+        <p>El camino que fue guardado por los querubines se abre por el Cordero.</p>
+        <p><strong>Tipología redentora:</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>En el Edén</th>
+                    <th>En el Mashíaj</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Árbol de la Vida cerrado</td>
+                    <td>Árbol del madero abierto</td>
+                </tr>
+                <tr>
+                    <td>Espada de fuego</td>
+                    <td>Lanza que hiere al Justo</td>
+                </tr>
+                <tr>
+                    <td>Sangre que clama justicia</td>
+                    <td>Sangre que clama perdón</td>
+                </tr>
+                <tr>
+                    <td>Errante y exiliado</td>
+                    <td>Redimido y adoptado</td>
+                </tr>
+                <tr>
+                    <td>Ciudad de Qayin</td>
+                    <td>Ciudad celestial (Nueva Jerusalén)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="prophetic-title">🌄 9. Tema Espiritual y Contemporáneo</h3>
+        <p>El mensaje más profundo de esta Aliyáh es la esperanza del retorno:</p>
+        <p>Aunque el hombre fue expulsado del Jardín, <span class="hebrew-term">יהוה</span> preparó el medio para regresar.</p>
+        <p>La fe de Hével, la sangre derramada, la misericordia sobre Qayin, y el sello protector revelan el patrón eterno de la redención.</p>
+        <p>Cada creyente atraviesa este mismo proceso:</p>
+        <ul>
+            <li>Es expulsado por el pecado,</li>
+            <li>Reconoce la necesidad de sacrificio,</li>
+            <li>Recibe misericordia por la sangre del Justo,</li>
+            <li>Y finalmente es restaurado al Árbol de la Vida por el Mashíaj.</li>
+        </ul>
+
+        <h3 class="prophetic-title">🕊️ 10. Conclusión: El Tema de la Aliyáh</h3>
+        <div class="conclusion">
+            <p>“Del Edén cerrado al Edén restaurado.”</p>
+        </div>
+        <p>El punto central de esta Aliyáh es que la separación de Elohím no fue definitiva, sino temporal hasta la manifestación del Redentor.</p>
+        <p>El Árbol de la Vida permanece custodiado, no perdido.</p>
+        <p>El sacrificio de Hével anuncia la promesa, y la sangre del Mashíaj cumple esa promesa.</p>
+        <p>Yeshúa haMashíaj es el camino de regreso al <span class="hebrew-term">Gan-Eden</span>,</p>
+        <p>el acceso al Árbol de la Vida,</p>
+        <p>y la respuesta eterna al clamor de toda sangre inocente desde el principio del mundo.</p>
+    </div>
+</div>
+<div class="content-container">
+    <h1>✡️ PUNTO 8 – DESCUBRIENDO AL MASHÍAJ EN CADA ALIYÁH</h1>
+    <h2>Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew">בְּרֵאשִׁית</span></h3>
+
+    <div class="section-container">
+      <h2>🕎 1. Introducción: El Mashíaj Revelado desde el Exilio del Edén</h2>
+      <p>En esta Aliyáh se revela uno de los misterios más profundos de toda la Toráh:</p>
+      <ul>
+        <li>Cuando el hombre es expulsado del Gan-Eden <span class="hebrew">גַּן עֵדֶן</span>, Elohím no cierra la historia, sino que oculta en ella la profecía del Redentor.</li>
+        <li>En los versículos de Génesis 3:22–4:18, la figura mesiánica se manifiesta a través de tipos (tavnitot), sombras (tzelalim) y figuras proféticas que anuncian al Mashíaj Yeshúa <span class="hebrew">ישוע המשיח</span>, quien habría de restaurar el acceso al Árbol de la Vida.</li>
+        <li>Así, el exilio del Edén no fue solo un castigo, sino el inicio del plan de redención que culminaría en el sacrificio del Justo, la sangre derramada que habla mejor que la de Hével (Hebreos 12:24).</li>
+      </ul>
+    </div>
+
+    <div class="section-container">
+      <h2>🌿 2. Sombras y Tipologías del Mashíaj en la Aliyáh</h2>
+      <table border="1" style="width:100%; border-collapse: collapse; text-align: center;">
+        <thead>
+          <tr>
+            <th>Elemento en Bereshit</th>
+            <th>Figura Profética</th>
+            <th>Cumplimiento en Yeshúa haMashíaj</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Árbol de la Vida (3:22)</td>
+            <td>Fuente de vida eterna y comunión con Elohím</td>
+            <td>Yeshúa: “Yo soy la Vida” (Yojanán 14:6); “Yo soy la Vid Verdadera” (15:1)</td>
+          </tr>
+          <tr>
+            <td>Querubines y espada de fuego (3:24)</td>
+            <td>Justicia y santidad que impiden el acceso</td>
+            <td>El madero donde el Justo soporta el juicio y abre el camino</td>
+          </tr>
+          <tr>
+            <td>Ofrenda de Hével (4:4)</td>
+            <td>Sacrificio inocente ofrecido por fe</td>
+            <td>La sangre del Cordero de Elohím que quita el pecado (Yojanán 1:29)</td>
+          </tr>
+          <tr>
+            <td>Sangre que clama (4:10)</td>
+            <td>Justicia celestial que exige redención</td>
+            <td>La sangre del Mashíaj que intercede por misericordia (Hebreos 12:24)</td>
+          </tr>
+          <tr>
+            <td>Señal de Qayin (4:15)</td>
+            <td>Gracia que preserva del juicio total</td>
+            <td>El sello del Ruaj HaKodesh que guarda al redimido (Efesios 1:13)</td>
+          </tr>
+          <tr>
+            <td>Ciudad de Qayin (4:17)</td>
+            <td>Sociedad humana separada de Elohím</td>
+            <td>Contraste con la “ciudad celestial” del Reino mesiánico (Hebreos 11:10)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Cada elemento del relato es un “tavnit”, un modelo espiritual que apunta al cumplimiento supremo en el Mashíaj.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>🔥 3. Profecías Mesiánicas Implícitas</h2>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ a. El Árbol de la Vida y la Vida Eterna</h3>
+        <p class="scripture">“Y guardó el camino del Árbol de la Vida.” (3:24)</p>
+        <p>El Árbol de la Vida representa a Yeshúa haMashíaj, la fuente de la inmortalidad espiritual.</p>
+        <ul>
+          <li>Cuando el hombre fue separado de este Árbol, el propósito de Elohím no fue destruido, sino pospuesto hasta la redención.</li>
+          <li>En Apocalipsis 2:7, Yeshúa dice:</li>
+        </ul>
+        <p class="scripture">“Al que venciere le daré a comer del Árbol de la Vida, que está en medio del paraíso de Elohím.”</p>
+        <p>El acceso cerrado por el pecado se abre con la sangre del Mashíaj.</p>
+        <p>La espada que guardaba el camino fue satisfecha en el juicio que cayó sobre Él (Isaías 53:5).</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ b. Hével, Tipo del Mashíaj Justo y Asesinado</h3>
+        <p class="scripture">“Y miró יהוה con agrado a Hével y a su ofrenda… y Qayin se levantó contra su hermano y lo mató.” (4:4–8)</p>
+        <p>Hével es la primera sombra mesiánica personal en la Escritura.</p>
+        <ul>
+          <li>Es el primer justo perseguido.</li>
+          <li>Su sangre inocente clama desde la tierra.</li>
+          <li>Su sacrificio fue acepto, pero su vida fue cortada por la envidia del injusto.</li>
+        </ul>
+        <p><strong>Paralelo con Yeshúa:</strong></p>
+        <ul>
+          <li>Ambos son inocentes y justos.</li>
+          <li>Ambos ofrecen sacrificio aceptable a Elohím.</li>
+          <li>Ambos mueren a manos de los que representan el sistema humano.</li>
+          <li>Ambos tienen su sangre como testimonio celestial.</li>
+        </ul>
+        <p class="scripture">“Por la fe ofreció Hével un sacrificio más excelente... y por ella, aunque muerto, aún habla.” (Hebreos 11:4)</p>
+        <p class="scripture">“Yeshúa, mediador del Brit Jadasháh... cuya sangre habla mejor que la de Hével.” (Hebreos 12:24)</p>
+        <p>El sacrificio de Hével es una tipología del Mashíaj redentor, el Cordero ofrecido desde la fundación del mundo (1 Kefa 1:19–20).</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ c. La Sangre que Clama: Justicia Transformada en Misericordia</h3>
+        <p>La sangre de Hével clama justicia; la sangre de Yeshúa clama misericordia.</p>
+        <p>Aquí se ve el cambio de dispensación: Desde la justicia retributiva hasta la gracia redentora.</p>
+        <p class="scripture">“La voz de la sangre de tu hermano clama a Mí.” (4:10)</p>
+        <p class="scripture">“Padre, perdónalos, porque no saben lo que hacen.” (Luqas 23:34)</p>
+        <p>Lo que en Hével fue demanda, en Yeshúa se convierte en intercesión.</p>
+        <p>El Mashíaj cumple el principio legal del clamor de sangre (Números 35:33), pero lo transforma en perdón eterno.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ d. La Marca de Qayin: El Sello de Preservación</h3>
+        <p class="scripture">“Y puso יהוה una señal sobre Qayin para que no lo matase quien lo hallara.” (4:15)</p>
+        <p>La palabra hebrea ’ot (señal) aparece más adelante para designar señales divinas de pacto:</p>
+        <ul>
+          <li>El arco iris con Noaj (Génesis 9:12).</li>
+          <li>El Shabat (Éxodo 31:13).</li>
+          <li>Las tefilín (Deuteronomio 6:8).</li>
+        </ul>
+        <p>Aquí, la señal es un símbolo de preservación en medio del juicio.</p>
+        <p>En la lectura mesiánica, representa la gracia provisional que apunta al sello del Ruaj HaKodesh en el Brit Hadasháh:</p>
+        <p class="scripture">“Fuisteis sellados con el Espíritu de la promesa.” (Efesios 1:13)</p>
+        <p>La marca de Qayin impide su destrucción; el sello del Espíritu impide la condenación del redimido.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ e. Qayin, Figura del Hombre Natural</h3>
+        <p>Qayin representa al hombre que intenta acercarse a Elohím sin fe ni obediencia, confiando en sus obras.</p>
+        <p>Su sacrificio agrícola simboliza el esfuerzo humano por lograr aceptación divina.</p>
+        <p>Este patrón se repite a lo largo de toda la historia:</p>
+        <ul>
+          <li>Babel: construir una torre hacia los cielos.</li>
+          <li>Israel: buscar justicia por la ley sin fe (Romanos 10:3).</li>
+          <li>Humanidad moderna: confiar en el mérito propio.</li>
+        </ul>
+        <p>Yeshúa es la respuesta al espíritu de Qayin, porque Él es la ofrenda perfecta, aceptada por el Padre (Hebreos 10:12–14).</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>🔯 4. Figuras y Patrones Redentores (Tavnitot)</h2>
+      <table border="1" style="width:100%; border-collapse: collapse; text-align: center;">
+        <thead>
+          <tr>
+            <th>Figura</th>
+            <th>Tipo</th>
+            <th>Cumplimiento Mesiánico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Expulsión del Edén</td>
+            <td>Separación de la presencia divina</td>
+            <td>Yeshúa reconcilia y restaura el acceso (Efesios 2:13–18)</td>
+          </tr>
+          <tr>
+            <td>Sangre de Hével</td>
+            <td>Testimonio de justicia</td>
+            <td>Sangre del Mashíaj: testimonio de gracia</td>
+          </tr>
+          <tr>
+            <td>Marca de Qayin</td>
+            <td>Preservación bajo juicio</td>
+            <td>Sello del Ruaj HaKodesh</td>
+          </tr>
+          <tr>
+            <td>Ciudad de Qayin</td>
+            <td>Reino humano</td>
+            <td>Ciudad celestial del Cordero (Apocalipsis 21:2)</td>
+          </tr>
+          <tr>
+            <td>Querubines y espada</td>
+            <td>Justicia divina</td>
+            <td>El madero del Mashíaj: justicia cumplida</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Cada símbolo del relato apunta proféticamente al proceso de redención mesiánica, mostrando cómo יהוה transforma la caída en oportunidad de restauración.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>🕊️ 5. Conexión Profética con los Nevi’im y el Brit Hadasháh</h2>
+      <div class="prophetic-section">
+        <p class="prophetic-title">📜 Isaías 35:8–10</p>
+        <p class="scripture">“Habrá allí un camino, y será llamado Camino de Santidad; los redimidos caminarán por él.”</p>
+        <p><span class="arrow">→</span> El “camino” guardado por los querubines se abre en Yeshúa, el Camino viviente.</p>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">📜 Zacarías 9:11</p>
+        <p class="scripture">“Por la sangre de tu pacto he liberado a tus prisioneros del pozo sin agua.”</p>
+        <p><span class="arrow">→</span> La sangre del Justo inocente abre la libertad espiritual.</p>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">📜 Hebreos 12:24</p>
+        <p class="scripture">“Yeshúa, mediador del Brit Jadasháh, y la sangre que habla mejor que la de Hével.”</p>
+        <p><span class="arrow">→</span> Conecta directamente la profecía de esta Aliyáh con el cumplimiento mesiánico.</p>
+      </div>
+      <div class="prophetic-section">
+        <p class="prophetic-title">📜 Apocalipsis 22:14</p>
+        <p class="scripture">“Bienaventurados los que lavan sus vestiduras para tener derecho al Árbol de la Vida.”</p>
+        <p><span class="arrow">→</span> El camino cerrado en Bereshit se abre definitivamente en el Mashíaj.</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>🌸 6. Revelaciones Mesiánicas en los Nombres</h2>
+      <p><strong class="highlight">Hével <span class="hebrew-term">הֶבֶל</span> – “vapor, soplo”</strong></p>
+      <p><span class="arrow">→</span> Simboliza la fragilidad de la vida humana que el Mashíaj vino a redimir (Yojanán 10:10).</p>
+      <p><strong class="highlight">Qayin <span class="hebrew-term">קַיִן</span> – “adquirido, posesión”</strong></p>
+      <p><span class="arrow">→</span> Representa la humanidad que confía en su propio mérito, contrastada con la humildad del Justo (Filipenses 2:6–8).</p>
+      <p><strong class="highlight">Janok <span class="hebrew-term">חֲנוֹךְ</span> – “dedicado, consagrado”</strong></p>
+      <p><span class="arrow">→</span> Anticipa al Janok justo de la línea mesiánica, que “caminó con Elohím” (Génesis 5:24), prefigurando la comunión restaurada en el Mashíaj.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>🔥 7. Descubrimiento Profético: Del Edén al Gólgota</h2>
+      <p>El cierre del Edén anticipa el sacrificio del Gólgota:</p>
+      <ul>
+        <li>En el Edén, el acceso al Árbol de la Vida fue cerrado por fuego.</li>
+        <li>En el Gólgota, el Árbol de la Vida (el Mashíaj crucificado) fue levantado en fuego de juicio.</li>
+      </ul>
+      <p>Allí, la espada de justicia fue satisfecha, y el camino guardado fue abierto:</p>
+      <p class="scripture">“El velo del Templo se rasgó en dos.” (Matityahu 27:51)</p>
+      <p>La espada de fuego se convierte en la lanza que hiere Su costado, y de Su costado brotan sangre y agua, símbolos del nuevo acceso a la vida eterna.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>🌄 8. Reflexión Espiritual: El Edén Restaurado en el Corazón</h2>
+      <p>Cada creyente redimido en Yeshúa experimenta el Edén restaurado dentro de sí:</p>
+      <ul>
+        <li>El acceso al Árbol de la Vida se abre por medio de la fe y del Espíritu.</li>
+        <li>La voz de la sangre del Justo ya no condena, sino que purifica.</li>
+      </ul>
+      <p class="scripture">“El que cree en Mí, de su interior correrán ríos de agua viva.” (Yojanán 7:38)</p>
+      <p>El desierto del alma humana se convierte en un jardín nuevamente habitado por la presencia de יהוה.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="content-container">
+    <h1>✡️ PUNTO 9 – MIDRASHIM, TARGUMIM, TEXTOS FUENTE Y APÓCRIFOS</h1>
+    <h2>Aliyáh: Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew">בְּרֵאשִׁית</span></h3>
+
+    <div class="section-container">
+      <h2>🕎 1. Introducción General</h2>
+      <p>El relato de Génesis 3:22–4:18 fue profundamente interpretado por los sabios de Israel y por las primeras comunidades mesiánicas.</p>
+      <p>Los Midrashim, Targumim, y algunos textos apócrifos muestran cómo este pasaje se convirtió en la base teológica para comprender:</p>
+      <ul>
+        <li>El origen del pecado y del sacrificio.</li>
+        <li>La justicia y la misericordia divina.</li>
+        <li>La esperanza de restauración mediante un Redentor justo.</li>
+      </ul>
+      <p>Estas fuentes antiguas no solo confirman la comprensión judía del texto, sino que también proyectan sombras del Mashíaj Yeshúa <span class="hebrew">ישוע המשיח</span>, a quien los talmidim reconocieron como el cumplimiento de todas estas figuras.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>📜 2. Midrashim relevantes sobre Bereshit 3:22–4:18</h2>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ a. Midrash Bereshit Rabbah 21:7 – El Consejo Divino</h3>
+        <p class="scripture">“He aquí que el hombre ha llegado a ser como uno de Nosotros” — dice el Santo, bendito sea, a los seres celestiales: ‘El hombre ha aprendido el conocimiento del bien y del mal, pero no ha adquirido aún el dominio sobre sí mismo.’”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>Este midrash insinúa que el conocimiento sin obediencia conduce a la caída, anticipando la necesidad de un Hombre perfecto, lleno del Ruaj de Elohím, que combine conocimiento y obediencia:</p>
+        <p><span class="arrow">→</span> Yeshúa, quien “aprendió la obediencia por lo que padeció” (Hebreos 5:8).</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ b. Bereshit Rabbah 22:7 – La Ofrenda de Qayin y Hével</h3>
+        <p class="scripture">“Qayin ofreció de los frutos del suelo, pero no de lo mejor; Hével ofreció de los primogénitos y de la grasa de su rebaño.”</p>
+        <p class="scripture">“El Santo, bendito sea, miró la ofrenda de Hével con favor porque su corazón era recto.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>El midrash revela que lo esencial no es la materia del sacrificio sino la intención del corazón.</p>
+        <p>El mismo principio enseña el Mashíaj en Matityahu 5:23–24 — que el adorador debe reconciliar su corazón antes de ofrecer sacrificio.</p>
+        <p>La fe de Hével representa la fe mesiánica, y su sangre derramada se convierte en el primer testimonio del justo perseguido.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ c. Bereshit Rabbah 22:12 – La Señal de Qayin</h3>
+        <p class="scripture">“Dijo Rabbi Hanina: La señal fue una letra del Nombre Santo puesta sobre su frente, para que no lo destruyeran los demás.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>La letra del Nombre Santo (según algunos, la letra ו, vav) representaba conexión, unión — el símbolo de la misericordia que aún acompaña al pecador.</p>
+        <p>Esto anticipa el sello espiritual del Ruaj HaKodesh que protege al redimido (Efesios 4:30).</p>
+        <p>La marca de Qayin fue una sombra del sello mesiánico de protección.</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ d. Midrash Tanjuma, Bereshit 9</h3>
+        <p class="scripture">“El hombre fue expulsado del Jardín para trabajar la tierra de la cual fue tomado, pero el Santo le dio vestiduras de misericordia para que no fuera destruido.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>La expulsión no fue castigo absoluto, sino acto redentor.</p>
+        <p>Así también el exilio del hombre prepara el escenario para la revelación del Redentor.</p>
+        <p>Yeshúa, el segundo Adam, revierte el exilio espiritual y nos reviste nuevamente con “vestiduras de salvación” (Isaías 61:10).</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>📜 3. Targumim sobre la Aliyáh</h2>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ Targum Onkelos sobre Génesis 4:7</h3>
+        <p class="scripture">“¿No será aceptado si haces lo bueno? Pero si no haces lo bueno, tu pecado te espera hasta el día del juicio; sin embargo, si tú te vuelves, dominarás sobre él.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>El Targum muestra que el dominio sobre el pecado depende de la teshuváh (arrepentimiento).</p>
+        <p>Yeshúa, como el Justo perfecto, nos capacita para dominar el pecado a través de Su Ruaj:</p>
+        <p class="scripture">“El pecado no se enseñoreará de vosotros, porque no estáis bajo la ley sino bajo la gracia.” (Romanos 6:14)</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ Targum Pseudo-Yonatán sobre Génesis 4:10</h3>
+        <p class="scripture">“La voz de la sangre de tu hermano clama desde la tierra ante Mí, hasta el fin del mundo.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>Aquí se afirma que la sangre de Hével tiene un clamor eterno.</p>
+        <p>Esto prepara el simbolismo que el Brit Hadasháh aplica a la sangre del Mashíaj — una sangre cuyo clamor es eterno y celestial (Hebreos 12:24).</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ Targum Yerushalmi sobre Génesis 4:15</h3>
+        <p class="scripture">“Y puso el Santo, bendito sea, una señal del pacto sobre Qayin, para que quien lo hallara no lo matara.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>El “pacto” aquí alude a la misericordia divina que preserva la línea humana hasta la llegada del Redentor.</p>
+        <p>De Qayin no viene la simiente mesiánica, pero su preservación permite que la humanidad continúe hasta la línea de Shét, de donde nacería Noaj, y posteriormente Avraham, y finalmente el Mashíaj.</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>📜 4. Textos Apócrifos y Pseudoepigráficos</h2>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ a. Libro de Enoc (1 Enoc 22:7–9)</h3>
+        <p class="scripture">“Aquí están las almas de los justos que fueron asesinados, y su voz clama por justicia ante el trono del Santo.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>Este pasaje refleja la teología de la sangre de Hével que clama desde la tierra.</p>
+        <p>El Libro de Enoc, texto conocido en tiempos del Segundo Templo, inspira el pensamiento mesiánico del Brit Hadasháh, especialmente en Hebreos 11–12, donde la sangre de Yeshúa es presentada como la voz redentora que responde al clamor de los justos asesinados.</p>
+      </div>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ b. Testamento de Rubén 5:5–6</h3>
+        <p class="scripture">“La envidia y la ira son los espíritus de Qayin, que mató a su hermano. Pero el Espíritu de la verdad es el que se manifiesta en los hijos de la luz.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>Los Testamentos de los Doce Patriarcas (siglo II a.C.) ya interpretaban a Qayin y Hével como arquetipos espirituales:</p>
+        <ul>
+          <li>Qayin representa la carne y la rebelión.</li>
+          <li>Hével representa la justicia y la fe.</li>
+        </ul>
+        <p>Yeshúa identifica lo mismo en Yojanán 8:44:</p>
+        <p class="scripture">“Desde el principio, el asesino era el adversario.”</p>
+        <p>El espíritu de Qayin es vencido únicamente en el Mashíaj, el Justo que transforma la ira en perdón.</p>
+      </div>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ c. Jubileos 4:3–6</h3>
+        <p class="scripture">“Y Hével ofreció sacrificio de los primogénitos de su rebaño ante el Adon, y fue aceptado, y el fuego descendió sobre el altar.”</p>
+        <p><strong>Comentario mesiánico:</strong></p>
+        <p>Este detalle del Libro de Jubileos (siglo II a.C.) amplía la idea de que el sacrificio de Hével fue consumido por fuego del cielo, lo que simboliza aceptación divina.</p>
+        <p>Esto se cumple en el Mashíaj, cuando Su sacrificio es recibido en el cielo como olor grato (Efesios 5:2).</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>📖 5. Relación con la Literatura de Qumrán</h2>
+      <p>En los manuscritos del Mar Muerto (especialmente en 4Q285 y 1QS IX,11) se menciona un Mashíaj sufriente que muere para expiar los pecados del pueblo.</p>
+      <p>Estos textos muestran cómo las comunidades del desierto ya interpretaban la historia de los justos asesinados (como Hével) como tipos proféticos del futuro Redentor.</p>
+      <p class="scripture">“Y el Ungido será herido, y con Su muerte expiará los pecados.” (4Q285 fragmento 5)</p>
+      <p><strong>Conclusión:</strong></p>
+      <p>Los esenios entendían que el sufrimiento del justo (como Hével) tenía poder expiatorio.</p>
+      <p>Esto prepara el marco teológico que el Brit Hadasháh desarrolla plenamente en la muerte del Mashíaj Yeshúa.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>🔥 6. Midrashim y Cumplimiento Mesiánico en el Brit Hadasháh</h2>
+      <table border="1" style="width:100%; border-collapse: collapse; text-align: center;">
+        <thead>
+          <tr>
+            <th>Tema</th>
+            <th>Fuente Rabínica</th>
+            <th>Cumplimiento en el Brit Hadasháh</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>La espada que guarda el Edén</td>
+            <td>Midrash Rabbah 21:7</td>
+            <td>Yeshúa soporta la espada del juicio (Isaías 53:5)</td>
+          </tr>
+          <tr>
+            <td>El sacrificio aceptado de Hével</td>
+            <td>Bereshit Rabbah 22:7</td>
+            <td>Hebreos 11:4 – “por la fe ofreció Hével”</td>
+          </tr>
+          <tr>
+            <td>La sangre que clama</td>
+            <td>Targum Pseudo-Yonatán 4:10</td>
+            <td>Hebreos 12:24 – “sangre que habla mejor”</td>
+          </tr>
+          <tr>
+            <td>La señal de Qayin</td>
+            <td>Bereshit Rabbah 22:12</td>
+            <td>Efesios 1:13 – sello del Espíritu</td>
+          </tr>
+          <tr>
+            <td>Ciudad de Qayin</td>
+            <td>Midrash Tanjuma Bereshit 9</td>
+            <td>Apocalipsis 21 – Ciudad celestial del Cordero</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-container conclusion">
+      <h2>🕊️ 7. Conclusión Espiritual y Mesiánica</h2>
+      <p>Todos los Midrashim y Targumim de esta Aliyáh apuntan hacia un solo centro: La voz del justo derramado y el camino cerrado hacia la vida.</p>
+      <p>El Mashíaj Yeshúa une ambos extremos:</p>
+      <ul>
+        <li>Su sangre responde al clamor de la justicia con misericordia.</li>
+        <li>Su cuerpo es el camino nuevo y vivo hacia la presencia divina (Hebreos 10:19–20).</li>
+        <li>Su Ruaj es la señal del pacto eterno en el corazón del creyente.</li>
+      </ul>
+      <p>Así, los antiguos comentarios rabínicos encuentran su plenitud en la revelación mesiánica.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="content-container">
+    <h1>✡️ PUNTO 10 – MANDAMIENTOS, PRINCIPIOS Y VALORES ENCONTRADOS EN LA ALIYÁH</h1>
+    <h2>Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew">בְּרֵאשִׁית</span></h3>
+
+    <div class="section-container">
+      <h2>🕎 1. Introducción: La Ética Divina Revelada Desde el Edén</h2>
+      <p>En esta Aliyáh, aunque nos encontramos antes de la entrega formal de la Toráh en el Sinaí, ya aparecen los principios eternos que conforman la moral y la espiritualidad de toda la Escritura.</p>
+      <p>Estos principios —raíz de los mandamientos universales (mitzvot benei Adam, las “leyes de la humanidad”)— establecen la estructura del pacto de Elohím con el hombre, y son el fundamento espiritual de la vida redimida en Yeshúa haMashíaj <span class="hebrew">ישוע המשיח</span>.</p>
+      <p>El texto de Bereshit 3:22–4:18 presenta mandamientos implícitos y valores espirituales que se desarrollan más tarde en la Toráh escrita, y que el Mashíaj confirma y perfecciona en el Brit Hadasháh.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>📜 2. Principales Mandamientos y Valores de la Aliyáh</h2>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ a. La Santidad de la Vida y la Condenación del Homicidio</h3>
+        <p class="scripture">“La voz de la sangre de tu hermano clama a Mí desde la tierra.” (Bereshit 4:10)</p>
+        <p>Este es el primer mandamiento implícito contra el homicidio (lo tirtzaj – <span class="hebrew">לֹא תִּרְצָח</span>).</p>
+        <p>El texto muestra que toda vida pertenece a Elohím, y que derramar sangre inocente profana la creación misma.</p>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>La vida humana es sagrada porque está hecha be-tzelem Elohím (a imagen de Elohím).</li>
+          <li>La sangre no pertenece al hombre, sino que es símbolo de vida y expiación (Levítico 17:11).</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>Yeshúa, el Justo, derrama Su sangre para redimir incluso al homicida.</li>
+          <li>La sangre que clama justicia (Hével) es respondida por la sangre que clama perdón (Yeshúa).</li>
+        </ul>
+        <p class="scripture">“La sangre de Yeshúa, Su Hijo, nos limpia de todo pecado.” (1 Yojanán 1:7)</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ b. El Principio de la Ofrenda Aceptable</h3>
+        <p class="scripture">“Y miró יהוה con agrado a Hével y a su ofrenda.” (Bereshit 4:4)</p>
+        <p>Aquí se establece el principio del servicio de adoración verdadero (avodah be’emunáh):</p>
+        <ul>
+          <li>El acercamiento a Elohím requiere fe, obediencia, y pureza de corazón.</li>
+        </ul>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>No toda ofrenda es aceptada; solo la que nace de la fe y de un corazón recto.</li>
+          <li>El acto exterior debe reflejar una intención interior consagrada.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>Yeshúa enseña que el adorador verdadero debe adorar “en espíritu y en verdad” (Yojanán 4:23).</li>
+          <li>El sacrificio acepto es el de Su propia vida, ofrecida voluntariamente en amor.</li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ c. El Mandamiento de Dominar el Pecado</h3>
+        <p class="scripture">“Si haces bien, serás aceptado; pero si no haces bien, el pecado está a la puerta… y tú lo dominarás.” (Bereshit 4:7)</p>
+        <p>Aquí aparece el principio de responsabilidad moral individual:</p>
+        <ul>
+          <li>El hombre puede y debe ejercer dominio sobre el mal; la tentación no es invencible, sino resistible.</li>
+        </ul>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>El pecado no domina por naturaleza: el hombre puede elegir justicia.</li>
+          <li>La victoria espiritual proviene de la sumisión a la voluntad de Elohím.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>En Yeshúa se cumple la autoridad sobre el pecado:</li>
+        </ul>
+        <p class="scripture">“El pecado no se enseñoreará de vosotros.” (Romanos 6:14)</p>
+        <ul>
+          <li>El Ruaj HaKodesh capacita al creyente para vencer el mal con el bien.</li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ d. El Valor de la Confesión y del Arrepentimiento</h3>
+        <p class="scripture">“¿Dónde está tu hermano Hével?” (Bereshit 4:9)</p>
+        <p>Elohím confronta a Qayin no para informarse, sino para darle oportunidad de teshuváh (arrepentimiento).</p>
+        <p>El silencio de Qayin es su condenación.</p>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>Elohím busca confesión sincera, no negación.</li>
+          <li>El arrepentimiento es el camino hacia la restauración y el perdón.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>El Mashíaj enseña: “Conoceréis la verdad, y la verdad os hará libres.” (Yojanán 8:32)</li>
+          <li>En Él, la confesión produce purificación total:</li>
+        </ul>
+        <p class="scripture">“Si confesamos nuestros pecados, Él es fiel y justo para perdonarnos.” (1 Yojanán 1:9)</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ e. La Misericordia de Elohím en Medio del Juicio</h3>
+        <p class="scripture">“Y puso יהוה una señal sobre Qayin, para que no lo matara quien lo hallara.” (Bereshit 4:15)</p>
+        <p>La misericordia divina se revela en la preservación del culpable.</p>
+        <p>Incluso cuando el juicio es pronunciado, la compasión de Elohím se mantiene.</p>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>El Eterno no desea la muerte del pecador, sino su arrepentimiento (Ezequiel 33:11).</li>
+          <li>El castigo busca corrección, no destrucción.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>En Yeshúa, la misericordia alcanza su plenitud:</li>
+        </ul>
+        <p class="scripture">“Padre, perdónalos, porque no saben lo que hacen.” (Luqas 23:34)</p>
+        <ul>
+          <li>La señal de Qayin prefigura el sello del Ruaj HaKodesh, que protege a los redimidos de la condenación (Efesios 1:13).</li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ f. El Principio de la Justicia Retributiva</h3>
+        <p class="scripture">“Ahora maldito eres tú de la tierra, que abrió su boca para recibir la sangre de tu hermano.” (Bereshit 4:11)</p>
+        <p>Elohím establece el principio de causa y efecto moral:</p>
+        <ul>
+          <li>El mal produce consecuencias; la tierra misma se contamina por la sangre derramada.</li>
+        </ul>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>La justicia divina es inevitable; toda acción tiene resultado espiritual.</li>
+          <li>La creación responde a la conducta moral del hombre.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>Yeshúa recibe sobre sí la retribución de todo pecado para ofrecer justificación:</li>
+        </ul>
+        <p class="scripture">“El castigo de nuestra paz fue sobre Él.” (Isaías 53:5)</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ g. El Mandamiento del Amor Fraternal</h3>
+        <p class="scripture">“¿Soy yo acaso el guardián de mi hermano?” (Bereshit 4:9)</p>
+        <p>La respuesta de Qayin revela el corazón egoísta que la Toráh condena.</p>
+        <p>El principio del ahavat ajím (amor fraternal) nace aquí, en la negación del asesino.</p>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>Cada hombre es responsable del bienestar del otro.</li>
+          <li>La indiferencia hacia el prójimo es raíz de muerte espiritual.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>Yeshúa restaura este mandamiento en su máxima expresión:</li>
+        </ul>
+        <p class="scripture">“Un mandamiento nuevo os doy: que os améis unos a otros como Yo os he amado.” (Yojanán 13:34)</p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ h. El Valor de la Humildad ante Elohím</h3>
+        <p class="scripture">“He adquirido varón con יהוה.” (Bereshit 4:1)</p>
+        <p>Javá expresa una declaración ambigua que puede leerse como orgullo (“yo he adquirido con יהוה”) o gratitud.</p>
+        <p>Aquí se establece el principio de reconocer que todo lo que el hombre recibe proviene de Elohím.</p>
+        <p><strong>Valor espiritual:</strong></p>
+        <ul>
+          <li>La soberbia engendra caída; la humildad engendra favor.</li>
+          <li>Toda creación, vida y logro humano deben atribuirse al Creador.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>Yeshúa, el segundo Adam, mostró la humildad perfecta:</li>
+        </ul>
+        <p class="scripture">“Se humilló a sí mismo, haciéndose obediente hasta la muerte.” (Filipenses 2:8)</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>🔯 3. Síntesis Ética y Espiritual</h2>
+      <table border="1" style="width:100%; border-collapse: collapse; text-align: center;">
+        <thead>
+          <tr>
+            <th>Principio</th>
+            <th>Enseñanza</th>
+            <th>Cumplimiento en el Mashíaj</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Santidad de la vida</td>
+            <td>Toda sangre pertenece a Elohím</td>
+            <td>La sangre del Mashíaj da vida eterna</td>
+          </tr>
+          <tr>
+            <td>Ofrenda aceptable</td>
+            <td>Fe y obediencia son necesarias</td>
+            <td>El sacrificio del Mashíaj es perfecto</td>
+          </tr>
+          <tr>
+            <td>Dominio del pecado</td>
+            <td>Responsabilidad moral</td>
+            <td>El Ruaj HaKodesh capacita al creyente</td>
+          </tr>
+          <tr>
+            <td>Confesión y teshuváh</td>
+            <td>Arrepentimiento sincero</td>
+            <td>Perdón por la sangre del Justo</td>
+          </tr>
+          <tr>
+            <td>Misericordia divina</td>
+            <td>Gracia en medio del juicio</td>
+            <td>Redención por el Mashíaj</td>
+          </tr>
+          <tr>
+            <td>Amor fraternal</td>
+            <td>Cuidar del hermano</td>
+            <td>Mandamiento nuevo del Mashíaj</td>
+          </tr>
+          <tr>
+            <td>Justicia divina</td>
+            <td>Consecuencias del mal</td>
+            <td>Justicia satisfecha en el sacrificio del Mashíaj</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-container conclusion">
+      <h2>🕊️ 4. Aplicación Mesiánica en la Vida del Creyente</h2>
+      <ul>
+        <li><strong>Valorar la vida y la sangre</strong> — reconocer que toda vida es sagrada ante יהוה.</li>
+        <li><strong>Adorar con fe y pureza</strong>, como Hével, no por apariencia sino por amor.</li>
+        <li><strong>Vencer el pecado con Ruaj HaKodesh</strong>, no en la fuerza de la carne.</li>
+        <li><strong>Practicar la teshuváh constante</strong>, confesando y corrigiendo el camino.</li>
+        <li><strong>Extender misericordia</strong>, recordando que fuimos preservados como Qayin.</li>
+        <li><strong>Amar al prójimo activamente</strong>, siendo guardianes unos de otros.</li>
+        <li><strong>Caminar en humildad</strong>, reconociendo que todo proviene de la gracia del Eterno.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="content-container">
+    <h1>✡️ PUNTO 11 – PREGUNTAS DE REFLEXIÓN PROFUNDA</h1>
+    <h2>Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew">בְּרֵאשִׁית</span></h3>
+
+    <div class="section-container">
+      <h2>🕎 1. Introducción</h2>
+      <p>
+        Las siguientes preguntas están diseñadas para la meditación personal, estudio grupal o enseñanza académica dentro del contexto de la Kehiláh Mesiánica, con el propósito de conducir al estudiante a descubrir los misterios del plan redentor de Elohím revelado en esta Aliyáh.
+      </p>
+      <p>
+        Cada pregunta une la reflexión espiritual, la dimensión mesiánica y el propósito profético del texto, mostrando cómo el Mashíaj Yeshúa <span class="hebrew">ישוע המשיח</span> está presente en la historia del Edén y de los primeros hombres.
+      </p>
+    </div>
+
+    <div class="section-container">
+      <h2>🔯 2. Preguntas de Reflexión y Análisis Espiritual</h2>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🕊️ Pregunta 1:</h3>
+        <p class="question">
+          ¿Qué simboliza el cierre del camino al Árbol de la Vida y cómo se revela su reapertura en el Mashíaj Yeshúa?
+        </p>
+        <p class="scripture">
+          “Y guardó el camino del Árbol de la Vida.” (Bereshit 3:24)
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            El cierre del acceso al Árbol de la Vida fue un acto de justicia divina, pero también una manifestación de misericordia.
+          </p>
+          <p>En Yeshúa, ese camino se vuelve a abrir, porque Él mismo declara:</p>
+          <p class="scripture">
+            “Yo soy el Camino, la Verdad y la Vida.” (Yojanán 14:6)
+          </p>
+          <p>
+            ¿Cómo experimentas tú hoy ese acceso restaurado por medio del Ruaj HaKodesh?
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Estoy viviendo como alguien que ha sido restaurado al Edén espiritual, caminando en comunión con יהוה, o aún busco mis propios árboles de conocimiento?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🕯️ Pregunta 2:</h3>
+        <p class="question">
+          ¿Qué diferencia esencial existe entre la ofrenda de Hével y la de Qayin, y qué enseña esto sobre la adoración verdadera?
+        </p>
+        <p class="scripture">
+          “Y miró יהוה con agrado a Hével y a su ofrenda, pero no a Qayin ni a la suya.” (Bereshit 4:4–5)
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            Qayin trajo lo que tenía, pero no lo mejor. Hével ofreció de los primogénitos de su rebaño —una entrega con fe y amor.
+          </p>
+          <p>
+            En el Brit Hadasháh, Yeshúa enseña que el Padre busca adoradores “en espíritu y en verdad” (Yojanán 4:23).
+          </p>
+          <p>
+            ¿Tu adoración refleja entrega y fe como la de Hével, o mera obligación como la de Qayin?
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Cómo puedes renovar la pureza de tu adoración, para que sea guiada por fe y Ruaj, no por rutina ni esfuerzo humano?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🔥 Pregunta 3:</h3>
+        <p class="question">
+          ¿Qué enseña Elohím al decirle a Qayin: “El pecado está a la puerta… pero tú lo dominarás”? (Bereshit 4:7)
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            Elohím revela que el pecado tiene poder real, pero también que el hombre fue creado con capacidad de dominio espiritual.
+          </p>
+          <p>En Yeshúa, este dominio se cumple plenamente:</p>
+          <p class="scripture">
+            “El pecado no se enseñoreará de vosotros.” (Romanos 6:14)
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Reconozco el poder del pecado en mi vida, pero también la autoridad que me fue dada en el Mashíaj para vencerlo?
+          </p>
+          <p>
+            ¿Cómo puedo ejercer ese dominio con la ayuda del Ruaj HaKodesh diariamente?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🩸 Pregunta 4:</h3>
+        <p class="question">
+          ¿Qué representa “la voz de la sangre que clama desde la tierra” y cómo se conecta con la sangre del Mashíaj?
+        </p>
+        <p class="scripture">
+          “La voz de la sangre de tu hermano clama a Mí desde la tierra.” (Bereshit 4:10)
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            La sangre de Hével clama justicia; la sangre del Mashíaj clama perdón (Hebreos 12:24).
+          </p>
+          <p>
+            Ambas revelan el principio espiritual de que toda sangre tiene voz ante Elohím.
+          </p>
+          <p>
+            El Mashíaj transforma el clamor de juicio en voz de misericordia.
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Permito que la voz de la sangre del Justo hable sobre mi vida —trayendo perdón, intercesión y restauración— o aún escucho los clamores de culpa y condenación?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🌄 Pregunta 5:</h3>
+        <p class="question">
+          ¿Qué nos enseña la historia de Qayin sobre la misericordia divina y la naturaleza del arrepentimiento?
+        </p>
+        <p class="scripture">
+          “Y puso יהוה una señal sobre Qayin, para que no lo matara quien lo hallara.” (Bereshit 4:15)
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            Aun después del pecado, Elohím muestra gracia preservando a Qayin.
+          </p>
+          <p>
+            Esa “señal” (’ot) anticipa el sello del pacto en el Brit Hadasháh: el Ruaj HaKodesh que protege a los redimidos.
+          </p>
+          <p>
+            La misericordia de Elohím siempre busca restauración, no destrucción.
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>¿Cómo experimento la señal de Su gracia en mi vida?</p>
+          <p>
+            ¿He aprendido a responder a Su misericordia con teshuváh genuina, o abuso de ella como Qayin?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🌾 Pregunta 6:</h3>
+        <p class="question">
+          ¿Por qué el hombre construye ciudades lejos de la presencia de Elohím (4:17), y cómo contrasta esto con la “ciudad celestial” buscada por los justos?
+        </p>
+        <p class="scripture">
+          “Y edificó una ciudad, y llamó el nombre de la ciudad como el nombre de su hijo.” (Bereshit 4:17)
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            La ciudad de Qayin representa la búsqueda humana de seguridad sin Elohím.
+          </p>
+          <p>
+            Pero Avraham “esperaba la ciudad cuyo arquitecto y constructor es Elohím” (Hebreos 11:10).
+          </p>
+          <p>
+            Toda civilización sin la presencia divina reproduce el exilio espiritual del Edén.
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Estoy edificando mi vida sobre fundamentos humanos o sobre la roca del Mashíaj?
+          </p>
+          <p>
+            ¿Mi “ciudad interior” tiene al Trono del Cordero en el centro, o al yo?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🌸 Pregunta 7:</h3>
+        <p class="question">
+          ¿Cómo revela esta Aliyáh la naturaleza de la misericordia divina frente al juicio justo?
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            Cada juicio (expulsión, maldición, exilio) viene acompañado de un acto de gracia (protección, señal, descendencia).
+          </p>
+          <p>
+            Esto revela el carácter de יהוה como Elohím justo y misericordioso, que prepara la redención aun en medio del castigo.
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Soy consciente de que cada corrección divina en mi vida contiene también una puerta de gracia?
+          </p>
+          <p>¿Busco ver la misericordia en medio de las consecuencias?</p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🕯️ Pregunta 8:</h3>
+        <p class="question">
+          ¿De qué manera Hével prefigura al Mashíaj en su fe, sacrificio y muerte?
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            Hével ofreció un sacrificio por fe; su sangre inocente fue derramada injustamente.
+          </p>
+          <p>
+            Yeshúa, el Justo, ofreció Su propia vida y fue muerto por los injustos.
+          </p>
+          <p>
+            En ambos casos, la justicia de Elohím se revela por medio de la fe y del sacrificio de inocentes.
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Reconozco al Mashíaj como el cumplimiento perfecto del sacrificio de Hével?
+          </p>
+          <p>
+            ¿Vivo ofreciendo mi vida en fe, como ofrenda espiritual agradable ante יהוה?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🔯 Pregunta 9:</h3>
+        <p class="question">
+          ¿Cómo entiendes la función de la “espada flameante” y los querubines en la historia espiritual del hombre?
+        </p>
+        <p class="scripture">
+          “Y puso querubines al oriente del Jardín y una espada flameante que se revolvía.” (Bereshit 3:24)
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>La espada representa la justicia divina; los querubines, la santidad.</p>
+          <p>El hombre no puede acercarse a Elohím por mérito propio.</p>
+          <p>
+            El Mashíaj atraviesa esa espada al morir en el madero, abriendo el camino al Edén espiritual.
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Reconozco que solo puedo acercarme a la presencia de Elohím a través de Yeshúa, quien soportó el juicio en mi lugar?
+          </p>
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">🕊️ Pregunta 10:</h3>
+        <p class="question">
+          ¿Qué enseñanza deja la vida de Qayin acerca de las consecuencias del pecado y de la gracia que preserva al pecador?
+        </p>
+        <p><strong>Reflexión:</strong></p>
+        <div class="answer">
+          <p>
+            Qayin es condenado a ser “errante y fugitivo”, imagen del alma separada de la presencia de יהוה.
+          </p>
+          <p>
+            Sin embargo, recibe una señal que lo protege: gracia sin merecimiento.
+          </p>
+          <p>
+            En esto se anticipa la redención: el pecador preservado por misericordia para recibir el mensaje del arrepentimiento.
+          </p>
+        </div>
+        <p><strong>Aplicación personal:</strong></p>
+        <div class="answer">
+          <p>
+            ¿Soy consciente de que mi preservación diaria es evidencia de Su gracia, no de mi justicia?
+          </p>
+          <p>
+            ¿Cómo puedo responder a esa gracia con obediencia y servicio fiel?
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-container conclusion">
+      <h2>🌄 3. Conclusión Espiritual</h2>
+      <p>
+        Estas reflexiones nos conducen al núcleo del mensaje de esta Aliyáh:
+      </p>
+      <p>
+        La historia del Edén, de Hével y de Qayin no es solo un relato antiguo, sino un espejo espiritual de toda la humanidad.
+      </p>
+      <p>Cada pregunta nos lleva al encuentro con el Mashíaj Yeshúa, quien:</p>
+      <ul>
+        <li>Restauró el acceso al Árbol de la Vida.</li>
+        <li>Ofreció el sacrificio acepto.</li>
+        <li>Habló una sangre de misericordia.</li>
+        <li>Transformó la maldición en redención.</li>
+      </ul>
+      <p>
+        El creyente que responde a estas verdades con fe y teshuváh comienza a caminar nuevamente en el Edén restaurado, bajo la comunión eterna con יהוה.
+      </p>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="content-container">
+    <h1>✡️ PUNTO 12 – RESUMEN DE LA ALIYÁH</h1>
+    <h2>Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew">בְּרֵאשִׁית</span></h3>
+
+    <div class="section-container">
+      <h2>🕎 1. Introducción General</h2>
+      <p>
+        Esta Aliyáh marca el punto de transición entre el Edén y la historia humana, entre la inocencia perdida y el comienzo de la redención prometida.
+      </p>
+      <p>
+        En estos versículos, la Toráh muestra la profundidad del pecado, el inicio del sufrimiento humano, pero también la primera manifestación del favor inmerecido (Jésed) de Elohím hacia el hombre.
+      </p>
+      <p>
+        En el centro de todo se encuentra Yeshúa haMashíaj <span class="hebrew">ישוע המשיח</span>, prefigurado en la espada que guarda el camino, en el sacrificio acepto de Hével, y en la sangre inocente que clama a los cielos.
+      </p>
+    </div>
+
+    <div class="section-container">
+      <h2>🌿 2. Resumen Narrativo y Espiritual</h2>
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ a. La Expulsión del Edén (Bereshit 3:22–24)</h3>
+        <p>
+          El hombre, después de conocer el bien y el mal, es expulsado del Gan-Eden <span class="hebrew">גַּן עֵדֶן</span>.
+        </p>
+        <p>
+          Elohím coloca querubines y una espada flameante para guardar el camino al Árbol de la Vida <span class="hebrew">עֵץ הַחַיִּים</span>.
+        </p>
+        <p><strong>Significado espiritual:</strong></p>
+        <ul>
+          <li>La comunión directa con יהוה es interrumpida.</li>
+          <li>
+            El acceso a la vida eterna queda cerrado, no como castigo definitivo, sino como protección misericordiosa para que el hombre no viva eternamente en estado de pecado.
+          </li>
+          <li>Desde este punto comienza la historia de la redención.</li>
+        </ul>
+        <p><strong>Proyección mesiánica:</strong></p>
+        <ul>
+          <li>
+            El camino cerrado será abierto solo por Yeshúa, quien atravesará la espada del juicio en el madero.
+          </li>
+        </ul>
+        <p class="scripture">
+          “Yo soy el Camino, la Verdad y la Vida.” (Yojanán 14:6)
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ b. El Nacimiento de Qayin y Hével (Bereshit 4:1–2)</h3>
+        <p>
+          Javá concibe y da a luz a Qayin (“adquirido, posesión”), y luego a Hével (“vapor, aliento”).
+        </p>
+        <p>
+          Ambos representan dos caminos espirituales: el de las obras humanas y el de la fe obediente.
+        </p>
+        <p><strong>Lección espiritual:</strong></p>
+        <ul>
+          <li>
+            Desde el inicio, la humanidad se divide entre quienes confían en sus propias fuerzas (Qayin) y quienes se acercan a Elohím por fe (Hével).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ c. Las Ofrendas: Fe y Rebelión (Bereshit 4:3–5)</h3>
+        <p>
+          Qayin ofrece del fruto de la tierra; Hével, de los primogénitos de su rebaño.
+        </p>
+        <p>Elohím acepta la ofrenda de Hével y rechaza la de Qayin.</p>
+        <p><strong>Interpretación espiritual:</strong></p>
+        <ul>
+          <li>
+            La diferencia no está en el tipo de ofrenda, sino en el corazón del oferente.
+          </li>
+          <li>
+            Hével ofrece lo mejor, reconociendo la necesidad de expiación mediante sangre.
+          </li>
+          <li>Qayin ofrece lo que sobra, confiando en su propio mérito.</li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>
+            Hével prefigura al Mashíaj —el Justo que ofrece Su propia vida como ofrenda perfecta.
+          </li>
+        </ul>
+        <p class="scripture">
+          “Por la fe ofreció Hével un sacrificio más excelente.” (Hebreos 11:4)
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ d. El Pecado Acechando y la Advertencia Divina (Bereshit 4:6–7)</h3>
+        <p>Elohím exhorta a Qayin:</p>
+        <p class="scripture">
+          “Si haces bien, serás aceptado; pero si no haces bien, el pecado está a la puerta… y tú lo dominarás.”
+        </p>
+        <p><strong>Mensaje espiritual:</strong></p>
+        <ul>
+          <li>El pecado tiene poder real, pero no es invencible.</li>
+          <li>
+            El hombre debe decidir si permitirá que el mal gobierne o si lo dominará con obediencia.
+          </li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>
+            Yeshúa venció al pecado y nos concede Su Ruaj HaKodesh para ejercer dominio espiritual.
+          </li>
+        </ul>
+        <p class="scripture">
+          “El pecado no se enseñoreará de vosotros.” (Romanos 6:14)
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ e. El Primer Homicidio (Bereshit 4:8–10)</h3>
+        <p>Qayin mata a su hermano Hével en un acto de envidia.</p>
+        <p>Por primera vez, la tierra recibe sangre humana inocente.</p>
+        <p><strong>Significado espiritual:</strong></p>
+        <ul>
+          <li>
+            La violencia y la muerte entran en el mundo por el rechazo del sacrificio justo.
+          </li>
+          <li>
+            La sangre de Hével “clama desde la tierra”, introduciendo el principio de justicia divina.
+          </li>
+        </ul>
+        <p><strong>Proyección mesiánica:</strong></p>
+        <ul>
+          <li>
+            La sangre del Mashíaj hablará mejor que la de Hével: no clama venganza, sino perdón (Hebreos 12:24).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ f. El Juicio y la Señal de Qayin (Bereshit 4:11–15)</h3>
+        <p>Qayin es maldito y condenado a ser “fugitivo y errante”.</p>
+        <p>Sin embargo, Elohím le da una señal (’ot) para que nadie lo mate.</p>
+        <p><strong>Significado espiritual:</strong></p>
+        <ul>
+          <li>La justicia de Elohím es perfecta: el pecado produce exilio.</li>
+          <li>
+            Pero Su misericordia preserva al culpable, dando tiempo para el arrepentimiento.
+          </li>
+          <li>
+            La marca de Qayin se convierte en símbolo de gracia que preserva del juicio completo.
+          </li>
+        </ul>
+        <p><strong>Cumplimiento mesiánico:</strong></p>
+        <ul>
+          <li>
+            En el Brit Hadasháh, el creyente recibe una nueva señal: el sello del Ruaj HaKodesh, que protege y santifica (Efesios 1:13).
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-section">
+        <h3 class="prophetic-title">✡️ g. La Ciudad de Qayin (Bereshit 4:16–18)</h3>
+        <p>
+          Qayin se aleja de la presencia de יהוה y construye una ciudad, nombrándola en honor a su hijo Janok.
+        </p>
+        <p><strong>Simbolismo espiritual:</strong></p>
+        <ul>
+          <li>
+            Representa la civilización humana edificada sin la presencia divina.
+          </li>
+          <li>
+            El hombre intenta sustituir la comunión con Elohím por estructuras materiales y sociales.
+          </li>
+        </ul>
+        <p><strong>Contraste mesiánico:</strong></p>
+        <ul>
+          <li>
+            Avraham buscará la ciudad celestial cuyo arquitecto es Elohím (Hebreos 11:10).
+          </li>
+          <li>
+            La historia de Qayin prefigura el sistema del mundo sin Elohím, mientras que el Reino del Mashíaj representa la restauración de la morada divina entre los hombres.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>🔥 3. Temas Teológicos Clave de la Aliyáh</h2>
+      <p><strong>El Camino Cerrado y la Promesa Abierta</strong></p>
+      <ul>
+        <li>El acceso al Árbol de la Vida es cerrado temporalmente.</li>
+        <li>
+          En Yeshúa se abre el nuevo camino al Padre (Hebreos 10:19–20).
+        </li>
+      </ul>
+      <p><strong>Fe vs. Obras</strong></p>
+      <ul>
+        <li>
+          Hével se acerca a Elohím por fe; Qayin, por autosuficiencia.
+        </li>
+        <li>
+          Yeshúa enseña que solo la fe viva produce aceptación ante Elohím.
+        </li>
+      </ul>
+      <p><strong>El Clamor de la Sangre</strong></p>
+      <ul>
+        <li>La sangre de Hével representa la justicia divina.</li>
+        <li>
+          La sangre del Mashíaj representa la justicia satisfecha y la misericordia eterna.
+        </li>
+      </ul>
+      <p><strong>Gracia en medio del Juicio</strong></p>
+      <ul>
+        <li>Qayin recibe una señal de preservación.</li>
+        <li>La gracia mesiánica se manifiesta incluso al culpable.</li>
+      </ul>
+      <p><strong>El Hombre Errante y el Exilio</strong></p>
+      <ul>
+        <li>El exilio físico refleja el exilio espiritual de la humanidad.</li>
+        <li>El Mashíaj es el camino de retorno al Edén espiritual.</li>
+      </ul>
+    </div>
+
+    <div class="section-container">
+      <h2>🕯️ 4. Conexión Mesiánica</h2>
+      <p>
+        Cada elemento de esta Aliyáh apunta directamente a Yeshúa haMashíaj:
+      </p>
+      <table border="1" style="width: 100%; border-collapse: collapse; text-align: center;">
+        <thead>
+          <tr>
+            <th>Evento en Bereshit</th>
+            <th>Figura Profética</th>
+            <th>Cumplimiento en el Mashíaj</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Árbol de la Vida cerrado</td>
+            <td>Justicia divina y santidad</td>
+            <td>Yeshúa abre el camino eterno (Apocalipsis 22:14)</td>
+          </tr>
+          <tr>
+            <td>Sacrificio de Hével</td>
+            <td>Fe y derramamiento de sangre inocente</td>
+            <td>Sacrificio del Cordero perfecto</td>
+          </tr>
+          <tr>
+            <td>Sangre que clama</td>
+            <td>Justicia demandada</td>
+            <td>Misericordia ofrecida por Su sangre</td>
+          </tr>
+          <tr>
+            <td>Marca de Qayin</td>
+            <td>Preservación por gracia</td>
+            <td>Sello del Ruaj HaKodesh</td>
+          </tr>
+          <tr>
+            <td>Ciudad de Qayin</td>
+            <td>Mundo sin Elohím</td>
+            <td>Jerusalén celestial (Reino mesiánico)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Así, desde el Edén hasta el madero, la Toráh anuncia el mismo mensaje:</p>
+      <p class="highlight">
+        El camino de regreso al Árbol de la Vida está en la sangre del Justo.
+      </p>
+    </div>
+
+    <div class="section-container">
+      <h2>🌸 5. Aplicación Espiritual Contemporánea</h2>
+      <ul>
+        <li>
+          <strong>Vivir en comunión:</strong> El creyente, restaurado por la sangre del Mashíaj, vuelve a caminar en la presencia de Elohím.
+        </li>
+        <li>
+          <strong>Adorar con fe:</strong> Toda ofrenda debe nacer de amor y obediencia, no de obligación.
+        </li>
+        <li>
+          <strong>Dominar el pecado:</strong> El Ruaj HaKodesh capacita para vencer la naturaleza caída.
+        </li>
+        <li>
+          <strong>Valorar la vida:</strong> Toda vida humana refleja la imagen divina.
+        </li>
+        <li>
+          <strong>Extender misericordia:</strong> Aun al culpable, Elohím ofrece oportunidad de redención.
+        </li>
+        <li>
+          <strong>Buscar la ciudad celestial:</strong> El creyente no edifica su seguridad en el mundo, sino en el Reino eterno del Mashíaj.
+        </li>
+      </ul>
+    </div>
+
+    <div class="section-container conclusion">
+      <h2>🔯 6. Síntesis Final: El Mensaje de la Aliyáh</h2>
+      <p class="highlight">“Del Edén cerrado al Edén restaurado.”</p>
+      <p>
+        La Aliyáh enseña que aunque el pecado rompió la comunión con Elohím,
+      </p>
+      <p>Su amor nunca dejó de trazar el camino de regreso.</p>
+      <p>
+        El clamor de la sangre inocente (Hével) anuncia la sangre redentora del Mashíaj.
+      </p>
+      <p>
+        La espada que guardaba el Árbol de la Vida se convierte en el fuego purificador de Su sacrificio.
+      </p>
+      <p>
+        Y el hombre errante encuentra su hogar cuando vuelve al Padre por medio del Hijo.
+      </p>
+      <p>
+        En Yeshúa haMashíaj, el camino, la puerta y el Árbol de la Vida son uno solo.
+      </p>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="content-container">
+    <h1>✡️ PUNTO 13 – TEFILÁH DE LA ALIYÁH</h1>
+    <h2>Bereshit / Génesis 3:22–4:18</h2>
+    <h3>Parashá Bereshit <span class="hebrew">בְּרֵאשִׁית</span></h3>
+
+    <div class="section-container">
+      <h2>🕎 1. Introducción Espiritual</h2>
+      <p>
+        Esta Tefiláh (oración) representa el clamor del corazón humano que, tras haber sido expulsado del Edén, anhela el retorno a la comunión con su Creador.
+      </p>
+      <p>
+        En esta Aliyáh, el hombre se ve separado del Árbol de la Vida, marcado por el pecado y el exilio, pero a la vez, cubierto por la misericordia divina.
+      </p>
+      <p>
+        La oración de esta sección busca reconectar el alma caída con el propósito eterno de Elohím, reconociendo que solo en Yeshúa haMashíaj <span class="hebrew">ישוע המשיח</span> el camino al Edén vuelve a abrirse.
+      </p>
+    </div>
+
+    <div class="section-container">
+      <h2>🙏 2. Tefiláh de Restauración y Misericordia</h2>
+      <div class="prayer-text">
+        <p>Adonái יהוה,</p>
+        <p>
+          Tú que formaste al hombre del polvo y soplaste en él aliento de vida,
+        </p>
+        <p>
+          hoy elevo mi voz como hijo exiliado,
+        </p>
+        <p>
+          recordando el Edén perdido y anhelando Tu presencia restauradora.
+        </p>
+        <p>
+          Has cerrado el camino al Árbol de la Vida por causa de mi pecado,
+        </p>
+        <p>pero no cerraste Tu corazón hacia mí.</p>
+        <p>
+          Aun en el juicio, he visto Tu gracia;
+        </p>
+        <p>aun en la distancia, he sentido Tu mirada de compasión.</p>
+        <p>Como Hével, deseo ofrecerte lo mejor de mi corazón:</p>
+        <p>mi fe, mi obediencia, mi amor sincero.</p>
+        <p>
+          Haz que mi ofrenda sea aceptada ante Ti,
+        </p>
+        <p>
+          no por mis méritos, sino por la sangre del Justo,
+        </p>
+        <p>el Cordero inmolado desde la fundación del mundo.</p>
+        <p>Perdóname por las veces en que, como Qayin,</p>
+        <p>he traído frutos sin fe y adoración sin entrega.</p>
+        <p>
+          Guíame por el camino de la teshuváh verdadera,
+        </p>
+        <p>para dominar el pecado que acecha a la puerta de mi alma.</p>
+        <p>Coloca sobre mí Tu señal de gracia,</p>
+        <p>
+          no de condenación, sino de vida;
+        </p>
+        <p>que el sello de Tu Ruaj HaKodesh me preserve en medio del juicio.</p>
+        <p>
+          No me dejes errar lejos de Tu rostro,
+        </p>
+        <p>sino haz de mi vida un altar donde habite Tu presencia.</p>
+        <p>
+          Enséñame a ser guardián de mi hermano,
+        </p>
+        <p>a amar con amor puro, a cuidar la vida como don sagrado.</p>
+        <p>
+          Que la voz de la sangre del Mashíaj,
+        </p>
+        <p>que habla mejor que la de Hével,</p>
+        <p>me cubra, me santifique y me reconcilie contigo.</p>
+        <p>Abre en mí el camino que fue cerrado por la espada,</p>
+        <p>
+          enciende Tu fuego no para destruirme, sino para purificarme,
+        </p>
+        <p>y hazme digno de comer nuevamente del Árbol de la Vida.</p>
+        <p>Elohím Eterno,</p>
+        <p>
+          haz florecer Tu Edén en mi interior:
+        </p>
+        <p>donde hubo culpa, que brote perdón;</p>
+        <p>donde hubo exilio, que haya comunión;</p>
+        <p>donde hubo sangre derramada, que nazca redención.</p>
+        <p>En el Nombre del Mashíaj Yeshúa,</p>
+        <p>
+          el Camino, la Verdad y la Vida,
+        </p>
+        <p>quien atravesó la espada por mí,</p>
+        <p>y me abrió la puerta de Tu Reino.</p>
+        <p>Amén.</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>🌿 3. Tefiláh Poética: “El Camino del Árbol de la Vida”</h2>
+      <div class="prayer-text">
+        <p>He aquí, Adonái יהוה,</p>
+        <p>me hallaste fuera del Jardín,</p>
+        <p>cubierto de polvo, de temor y de silencio.</p>
+        <p>Pero oí la voz del Justo derramado,</p>
+        <p>y entendí que Su sangre hablaba perdón.</p>
+        <p>El Edén no se perdió: espera restauración.</p>
+        <p>Tu espada ardía entre el fuego del juicio,</p>
+        <p>pero el Cordero cruzó su filo ardiente,</p>
+        <p>y el camino que guardaban los querubines</p>
+        <p>se abrió por Su entrega en el madero.</p>
+        <p>Hével cayó como justo entre los campos,</p>
+        <p>su sangre clamó justicia desde la tierra,</p>
+        <p>pero el Mashíaj habló desde el cielo:</p>
+        <p>“Padre, perdónalos, porque no saben lo que hacen.”</p>
+        <p>Y comprendí:</p>
+        <p>no soy Qayin si en mí habita Tu señal,</p>
+        <p>no soy errante si Tu Ruaj me guía,</p>
+        <p>no estoy exiliado si camino en Tu redención.</p>
+        <p>Haz de mi vida un jardín otra vez,</p>
+        <p>donde la oración sea río,</p>
+        <p>la fe, fruto;</p>
+        <p>la misericordia, sombra de Tu presencia.</p>
+        <p>Y en medio del Jardín restaurado,</p>
+        <p>que florezca el Árbol eterno,</p>
+        <p>cuyas hojas son para sanidad de las naciones.</p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h2>🔯 4. Reflexión Final</h2>
+      <p>
+        La Tefiláh de esta Aliyáh nos enseña que el Edén no fue destruido, solo velado,
+      </p>
+      <p>
+        y que el camino hacia él está trazado en la sangre del Cordero.
+      </p>
+      <p>
+        Cada lágrima, cada ofrenda y cada acto de fe son pasos hacia el Árbol de la Vida.
+      </p>
+      <p>
+        El creyente que ora desde el exilio interior, reconociendo su necesidad de redención,
+      </p>
+      <p>
+        ya comienza a caminar el “derej ‘etz ha-jayim” — el camino del Árbol de la Vida —
+      </p>
+      <p>que se abre plenamente en Yeshúa haMashíaj.</p>
+    </div>
+
+    <div class="section-container">
+      <h2>🌄 5. Bendición Final</h2>
+      <div class="prayer-text">
+        <p>Yevarejejá Adonái יהוה ve’ishmerejá,</p>
+        <p>ya’er Adonái panáv elejá vijunéka,</p>
+        <p>yisá Adonái panáv elejá veyasém lejá shalom.</p>
+        <p>Que Adonái יהוה te bendiga y te guarde,</p>
+        <p>
+          que haga resplandecer Su rostro sobre ti y te conceda gracia,
+        </p>
+        <p>
+          que vuelva Su rostro hacia ti y te conceda shalom —
+        </p>
+        <p>el shalom del Edén restaurado en el Mashíaj Yeshúa.</p>
+      </div>
+      <p class="prayer-conclusion">Amén, amén.</p>
+    </div>
+  </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya5.html">Continuar con la Aliyá 5</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

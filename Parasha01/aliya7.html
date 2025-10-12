@@ -1,0 +1,3874 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bereshit (בראשית) – Génesis 1:1-6:8</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        1. Parashá Bereshit (בראשית) Aliyáh 7: (Génesis 5:25-6:8) El linaje de Noé y la corrupción de la tierra.
+        <p>Haftaráh: Isaías 44:24-45:2 (Elohím crea todo).</p>
+        <p>Brit Hadasháh: 1 Pedro 3:18-22 (Los días de Noé y la salvación).</p>
+      </h1>
+       <h1>Punto 1. Génesis 5:25–6:8 (Linaje de Noaj y la corrupción de la tierra)</h1>
+
+    <div class="content-container">
+        <h2>Texto Hebreo con Fonética y Traducción Literal</h2>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:25</p>
+            <p class="hebrew">וַיְחִי מְתוּשֶׁלַח שֶׁבַע וּשְׁמֹנִים מָאָה שָׁנָה וַיּוֹלֶד אֶת־לָמֶךְ׃</p>
+            <p class="transliteration">Va-yejí Metushélaj sheva u-shemónim méah shaná va-yóled et Lémekh.</p>
+            <p class="translation">Y vivió Metushélaj ochenta y siete años y cien (187 años), y engendró a Lémekh.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:26</p>
+            <p class="hebrew">וַיְחִי מְתוּשֶׁלַח אַחֲרֵי הוֹלִידוֹ אֶת־לָמֶךְ שְׁמוֹנֶה מֵאוֹת שָׁנָה וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yejí Metushélaj ajaréi holidó et Lémekh shemonéh méot shaná va-yóled baním u-vanót.</p>
+            <p class="translation">Y vivió Metushélaj, después de haber engendrado a Lémekh, ochocientos años, y engendró hijos e hijas.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:27</p>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי מְתוּשֶׁלַח תְּשַׁע וְשִׁשִּׁים שָׁנָה וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol yemei Metushélaj teshá ve-shishím shaná u-tesha méot shaná va-yamót.</p>
+            <p class="translation">Y fueron todos los días de Metushélaj novecientos sesenta y nueve años, y murió.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:28</p>
+            <p class="hebrew">וַיְחִי לֶמֶךְ שְׁמֹנָה וּשְׁמֹנִים מָאָה שָׁנָה וַיּוֹלֶד בֵּן׃</p>
+            <p class="transliteration">Va-yejí Lémekh shemoná u-shemónim méah shaná va-yóled ben.</p>
+            <p class="translation">Y vivió Lémekh ochenta y ocho años y cien (188 años), y engendró un hijo.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:29</p>
+            <p class="hebrew">וַיִּקְרָא אֶת־שְׁמוֹ נֹחַ לֵאמֹר זֶה יְנַחֲמֵנוּ מִמַּעֲשֵׂנוּ וּמֵעִצְּבוֹן יָדֵינוּ מִן־הָאֲדָמָה אֲשֶׁר אֵרְרָהּ יהוה׃</p>
+            <p class="transliteration">Va-yikrá et-shemó Nóaj lemór: ze yenajeménu mimma’asénu u-me’itzbón yadeinu min-haadamá asher éreráh <span class="hebrew-term">יהוה</span>.</p>
+            <p class="translation">Y llamó su nombre Noaj, diciendo: “Éste nos consolará de nuestras obras y del dolor de nuestras manos, por causa de la tierra que <span class="hebrew-term">יהוה</span> maldijo”.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:30</p>
+            <p class="hebrew">וַיְחִי לֶמֶךְ אַחֲרֵי הוֹלִידוֹ אֶת־נֹחַ חָמֵשׁ מֵאוֹת שְׁנִים וַיּוֹלֶד בָּנִים וּבָנוֹת׃</p>
+            <p class="transliteration">Va-yejí Lémekh ajaréi holidó et Nóaj jamésh méot shaním va-yóled baním u-vanót.</p>
+            <p class="translation">Y vivió Lémekh, después de haber engendrado a Noaj, quinientos años, y engendró hijos e hijas.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:31</p>
+            <p class="hebrew">וַיִּהְיוּ כָּל־יְמֵי לֶמֶךְ שֶׁבַע וְשִׁבְעִים שָׁנָה וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃</p>
+            <p class="transliteration">Va-yihyú kol yemei Lémekh sheva ve-shiv’ím shaná u-tesha méot shaná va-yamót.</p>
+            <p class="translation">Y fueron todos los días de Lémekh setecientos setenta y siete años, y murió.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 5:32</p>
+            <p class="hebrew">וַיְהִי נֹחַ בֶּן־חֲמֵשׁ מֵאוֹת שָׁנָה וַיּוֹלֶד נֹחַ אֶת־שֵׁם אֶת־חָם וְאֶת־יָפֶת׃</p>
+            <p class="transliteration">Va-yehí Nóaj ben-jamésh méot shaná va-yóled Nóaj et Shém, et Jám ve-et Yéfet.</p>
+            <p class="translation">Y era Noaj de quinientos años, y engendró a Shém, a Jám y a Yéfet.</p>
+        </div>
+
+        <h3>Capítulo 6</h3>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:1</p>
+            <p class="hebrew">וַיְהִי כִּי־הֵחֵל הָאָדָם לָרֹב עַל־פְּנֵי הָאֲדָמָה וּבָנוֹת יֻלְּדוּ לָהֶם׃</p>
+            <p class="transliteration">Va-yehí ki-hejél ha-adám laróv al-penéi ha-adamá u-banót yullédú lahem.</p>
+            <p class="translation">Y aconteció que cuando el hombre comenzó a multiplicarse sobre la faz de la tierra, y les nacieron hijas,</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:2</p>
+            <p class="hebrew">וַיִּרְאוּ בְנֵי־הָאֱלֹהִים אֶת־בְּנוֹת הָאָדָם כִּי טֹבֹת הֵנָּה וַיִּקְחוּ לָהֶם נָשִׁים מִכֹּל אֲשֶׁר בָּחָרוּ׃</p>
+            <p class="transliteration">Va-yir’ú benéi ha-Elohím et-benót ha-adám ki továt hená va-yikjú lahem nashím mikól asher bajarú.</p>
+            <p class="translation">Y vieron los hijos de Elohím que las hijas de los hombres eran hermosas, y tomaron para sí mujeres de entre todas las que escogieron.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:3</p>
+            <p class="hebrew">וַיֹּאמֶר יהוה לֹא־יָדוֹן רוּחִי בָאָדָם לְעֹלָם בְּשַׁגַּם הוּא בָשָׂר וְהָיוּ יָמָיו מֵאָה וְעֶשְׂרִים שָׁנָה׃</p>
+            <p class="transliteration">Va-yómer <span class="hebrew-term">יהוה</span>: lo-yadón rují va-adám le-olám be-shagám hu básar, ve-hayú yamáv méah ve-esh’rím shaná.</p>
+            <p class="translation">Y dijo <span class="hebrew-term">יהוה</span>: No permanecerá Mi Ruaj en el hombre para siempre, porque él es carne; y serán sus días ciento veinte años.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:4</p>
+            <p class="hebrew">הַנְּפִלִים הָיוּ בָאָרֶץ בַּיָּמִים הָהֵם וְגַם אַחֲרֵי־כֵן אֲשֶׁר יָבֹאוּ בְנֵי הָאֱלֹהִים אֶל־בְּנוֹת הָאָדָם וְיָלְדוּ לָהֶם הֵמָּה הַגִּבֹּרִים אֲשֶׁר מֵעוֹלָם אַנְשֵׁי הַשֵּׁם׃</p>
+            <p class="transliteration">Hanefilím hayú va-áretz bayamím hahem ve-gam ajarei-ken asher yavóu benéi ha-Elohím el-benót ha-adám ve-yaldú lahem; hemá ha-gibbórim asher me-olam anshei ha-shem.</p>
+            <p class="translation">Había gigantes (nefilím) en la tierra en aquellos días, y también después, cuando los hijos de Elohím se unieron a las hijas de los hombres, y ellas les dieron hijos; éstos fueron los valientes, los hombres de renombre desde tiempos antiguos.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:5</p>
+            <p class="hebrew">וַיַּרְא יהוה כִּי רַבָּה רָעַת הָאָדָם בָּאָרֶץ וְכָל־יֵצֶר מַחְשְׁבֹת לִבּוֹ רַק רַע כָּל־הַיּוֹם׃</p>
+            <p class="transliteration">Va-yar <span class="hebrew-term">יהוה</span> ki rabá ra’at ha-adám ba-áretz, ve-kol yetzer machshevót libó rak ra kol ha-yom.</p>
+            <p class="translation">Y vio <span class="hebrew-term">יהוה</span> que la maldad del hombre era mucha en la tierra, y que todo designio de los pensamientos de su corazón era solamente malo todo el día.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:6</p>
+            <p class="hebrew">וַיִּנָּחֶם יהוה כִּי עָשָׂה אֶת־הָאָדָם בָּאָרֶץ וַיִּתְעַצֵּב אֶל־לִבּוֹ׃</p>
+            <p class="transliteration">Va-yinájem <span class="hebrew-term">יהוה</span> ki asá et ha-adám ba-áretz, va-yit’atzév el-libó.</p>
+            <p class="translation">Y se arrepintió <span class="hebrew-term">יהוה</span> de haber hecho al hombre en la tierra, y se entristeció en Su corazón.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:7</p>
+            <p class="hebrew">וַיֹּאמֶר יהוה אֶמְחֶה אֶת־הָאָדָם אֲשֶׁר בָּרָאתִי מֵעַל פְּנֵי הָאֲדָמָה מֵאָדָם עַד־בְּהֵמָה עַד־רֶמֶשׂ וְעַד־עוֹף הַשָּׁמָיִם כִּי נִחַמְתִּי כִּי עֲשִׂיתִם׃</p>
+            <p class="transliteration">Va-yómer <span class="hebrew-term">יהוה</span>: emjé et ha-adám asher baratí me-al penéi ha-adamá, me-adám ad behemah, ad remes ve-ad of ha-shamáyim, ki nijámtí ki asitím.</p>
+            <p class="translation">Y dijo <span class="hebrew-term">יהוה</span>: Borraré de la faz de la tierra al hombre que he creado, desde el hombre hasta el animal, hasta el reptil y hasta el ave del cielo; porque Me he arrepentido de haberlos hecho.</p>
+        </div>
+
+        <div class="verse-container">
+            <p class="verse-number">Bereshit / Génesis 6:8</p>
+            <p class="hebrew">וְנֹחַ מָצָא חֵן בְּעֵינֵי יהוה׃</p>
+            <p class="transliteration">Ve-Nóaj matzá jen be-einé <span class="hebrew-term">יהוה</span>.</p>
+            <p class="translation">Pero Noaj halló favor en los ojos de <span class="hebrew-term">יהוה</span>.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1 class="prophetic-title">📜 Cumplimiento Profético en el Mashíaj (Aliyáh de Bereshit 5:25–6:8)</h1>
+        <h3>“El linaje de Noaj y la corrupción de la tierra”</h3>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">🕎 I. Contexto profético y tipológico</p>
+            <p>Esta Aliyáh marca el cierre de la primera Parashá de la Toráh —Bereshit, “En el principio”— y establece el patrón de redención universal que se repetirá a lo largo de toda la Escritura. Aquí aparece Noaj <span class="hebrew-term">נח</span>, figura profética del Mashíaj Yeshúa <span class="hebrew-term">ישוע</span>, el justo que halló gracia ante <span class="hebrew-term">יהוה</span>, mientras el mundo se corrompía.</p>
+            <p class="scripture">“Ve-Nóaj matzá jen be-einé <span class="hebrew-term">יהוה</span>” — “Pero Noaj halló favor (gracia) ante los ojos de <span class="hebrew-term">יהוה</span>” (Bereshit 6:8).</p>
+            <p>El nombre <span class="hebrew-term">נֹחַ</span> / Noaj proviene de la raíz <span class="hebrew-term">נוּחַ</span> (nuaj) que significa “descansar”, “reposar”, “dar consuelo”. Su padre Lémekh declaró:</p>
+            <p class="scripture">“Éste nos consolará (<span class="hebrew-term">ינחמנו</span> / yenajemenu) de nuestras obras y del dolor de nuestras manos, por causa de la tierra que maldijo <span class="hebrew-term">יהוה</span>” (5:29).</p>
+            <p>La palabra yenajemenu tiene la misma raíz de <span class="hebrew-term">נחם</span> / najám, “consolar”, “restaurar”. Así, desde su nacimiento, Noaj es profetizado como un instrumento de consuelo y restauración, una sombra profética del Mashíaj Consolador, quien traería descanso del peso del pecado y de la maldición sobre la tierra.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title"> II. Conexión con los Profetas</p>
+            <p class="prophetic-title">📖 Isaías 54:9–10</p>
+            <p class="scripture">“Como en los días de Noaj será esto para Mí; juré que las aguas de Noaj no pasarían más sobre la tierra... porque los montes se moverán y las colinas temblarán, pero Mi amor no se apartará de ti.”</p>
+            <p>El profeta Yesha’yahu <span class="hebrew-term">ישעיהו</span> toma el pacto de Noaj como modelo de redención. Así como <span class="hebrew-term">יהוה</span> protegió a Noaj del juicio de las aguas, así promete preservar a Israel y establecer un pacto eterno de shalom a través del Mashíaj. El “amor eterno” en Isaías 54:10 apunta a Jesed <span class="hebrew-term">עולם</span> / misericordia perpetua, lo cual se cumple en Yeshúa —la manifestación viva de la Jesed de Elohím.</p>
+
+            <p class="prophetic-title">📖 Ezequiel 14:14</p>
+            <p class="scripture">“Si estuvieran en medio de ella estos tres varones: Noaj, Daniel y Job, sólo ellos por su justicia librarían su propia vida”.</p>
+            <p>Aquí Noaj representa la intercesión del justo. Su figura se conecta con la obra redentora del Mashíaj, el Justo perfecto que intercede por los suyos (Yeshayahu 53:11).</p>
+
+            <p class="prophetic-title">📖 Isaías 11:9</p>
+            <p class="scripture">“La tierra será llena del conocimiento de <span class="hebrew-term">יהוה</span> como las aguas cubren el mar.”</p>
+            <p>Después del diluvio, la tierra fue purificada; en visión profética, Isaías ve un nuevo mundo donde la justicia del Mashíaj llena la tierra, reflejo del recreación espiritual que sigue al juicio.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">✡️ III. Cumplimiento en el Brit Hadasháh</p>
+            <p class="prophetic-title">📖 1 Pedro 3:18–22</p>
+            <p class="scripture">“El Mashíaj padeció una sola vez por los pecados, el justo por los injustos, para llevarnos a Elohím... en los días de Noaj, mientras se preparaba el arca, en la cual pocas almas fueron salvas por agua. Aquello era figura de la teviláh (inmersión), que ahora nos salva, no quitando la suciedad del cuerpo, sino como testimonio de una conciencia pura delante de Elohím por la resurrección de Yeshúa el Mashíaj.”</p>
+            <p>Aquí Kefa (Pedro) enseña que el arca de Noaj es tipo de Yeshúa, el Arca de Salvación. Así como Noaj y su familia fueron preservados del juicio dentro del arca, el creyente es preservado en el Mashíaj, la única puerta de refugio (cf. Yojanán / Juan 10:9). La inmersión en agua es un símbolo profético de esta unión: entrar en el Arca es morir al mundo antiguo, y salir de ella es resucitar a una nueva creación.</p>
+
+            <p class="prophetic-title">📖 Mateo 24:37–39</p>
+            <p class="scripture">“Como en los días de Noaj, así será la venida del Hijo del Hombre.”</p>
+            <p>El mismo Yeshúa se identifica con la era de Noaj, advirtiendo que antes de Su venida el mundo estará nuevamente en corrupción y violencia. Su regreso será repentino como el diluvio, y sólo los que están “en el Arca” —es decir, en Él— serán salvos.</p>
+
+            <p class="prophetic-title">📖 Hebreos 11:7</p>
+            <p class="scripture">“Por la fe, Noaj, advertido por Elohím acerca de cosas que aún no se veían, preparó un arca para salvación de su casa.”</p>
+            <p>La emunáh (fe) de Noaj es la misma fe obediente que caracteriza al discípulo del Mashíaj: escuchar la voz de Elohím y actuar aunque el mundo no crea. El autor de Hebreos conecta directamente esta obediencia con la justificación por fe, principio mesiánico revelado plenamente en Yeshúa.</p>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">🕊 IV. Conexiones mesiánicas profundas</p>
+            <p><strong>Noaj – Mashíaj como portadores de gracia:</strong></p>
+            <ul>
+                <li>“Noaj halló jen (gracia)” <span class="arrow">→</span> “La Torá fue dada por medio de Moshé, pero la gracia y la verdad vinieron por medio de Yeshúa haMashíaj” (Yojanán 1:17).</li>
+                <li>Ambos inauguraron un nuevo comienzo para la humanidad.</li>
+            </ul>
+            <p><strong>El Arca – El Mashíaj:</strong></p>
+            <ul>
+                <li>El arca tenía una sola puerta (Bereshit 6:16). <span class="arrow">→</span> Yeshúa declara: “Yo soy la puerta; el que por mí entrare, será salvo” (Yojanán 10:9).</li>
+                <li>El arca fue recubierta con kófer (resina o “cubierta”); la misma raíz que kippur, “expiación”. <span class="arrow">→</span> Proféticamente, el Mashíaj cubre el pecado con Su propia sangre (cf. Ivrim / Hebreos 9:12).</li>
+            </ul>
+            <p><strong>El Diluvio – El Juicio Final:</strong></p>
+            <ul>
+                <li>Así como las aguas del diluvio purificaron la tierra, las Escrituras anuncian un juicio de fuego venidero (2 Pedro 3:6–7), después del cual surgirá una nueva creación (Apocalipsis 21:1).</li>
+            </ul>
+            <p><strong>El Descanso de Noaj – El Descanso del Mashíaj:</strong></p>
+            <ul>
+                <li>En Noaj, el hombre halló alivio del dolor físico; en Yeshúa, el alma encuentra descanso eterno:</li>
+                <li>“Venid a mí todos los cansados y cargados, y yo os haré descansar (anuaj)” (Mateo 11:28).</li>
+            </ul>
+        </div>
+
+        <div class="prophetic-section">
+            <p class="prophetic-title">🌿 V. Aplicación espiritual para hoy</p>
+            <ul>
+                <li><strong>Caminar en santidad en medio de la corrupción:</strong> Así como Noaj fue justo en una generación perversa (Bereshit 6:9), el creyente mesiánico debe ser “luz en medio de una generación torcida” (Filipenses 2:15). La fidelidad de Noaj no dependió del entorno, sino de su relación personal con <span class="hebrew-term">יהוה</span>.</li>
+                <li><strong>Construir el Arca espiritual:</strong> Cada acto de obediencia, fe y fidelidad es una tabla en la construcción del “arca” que protege el alma del juicio. Nuestra vida en el Mashíaj es ese refugio.</li>
+                <li><strong>Anunciar el juicio y la misericordia:</strong> Noaj fue “predicador de justicia” (2 Pedro 2:5). La comunidad mesiánica tiene la misma misión: advertir al mundo del juicio venidero, pero ofrecer la puerta abierta del Arca —Yeshúa— a todo aquel que quiera entrar.</li>
+                <li><strong>Vivir bajo la gracia, no bajo la violencia:</strong> La generación de Noaj se caracterizó por la hamás (violencia, injusticia). En contraste, el Mashíaj establece Shalom verdadero; ser discípulo es oponerse a toda violencia y reflejar la misericordia de <span class="hebrew-term">יהוה</span>.</li>
+                <li><strong>Esperanza en la restauración:</strong> Después del juicio, Elohím reinicia la historia con un pacto nuevo. En el mismo espíritu, Yeshúa declara en el Brit Hadasháh:</li>
+                <li>“He aquí, hago nuevas todas las cosas” (Hitgalut / Apocalipsis 21:5).</li>
+            </ul>
+        </div>
+
+        <div class="conclusion">
+            <p class="prophetic-title">🔯 Conclusión mesiánica</p>
+            <p>La Aliyáh de Bereshit 5:25–6:8 no es sólo genealogía: es el anuncio profético de la primera redención universal y el modelo de la redención final. Noaj <span class="hebrew-term">נח</span>, el portador del consuelo, es tipo del Mashíaj Yeshúa <span class="hebrew-term">ישוע</span>, el Consuelo de Israel y del mundo. Así como el arca salvó a una familia del juicio de las aguas, el Mashíaj salva a los que en Él confían del juicio del pecado. Y así como la tierra fue purificada y comenzó de nuevo, también el alma que entra en Yeshúa renace como nueva creación.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+     <div class="content-container">
+        <h1>📜 Punto 2. Haftaráh: Isaías 44:24-45:2 (Elohím crea todo).</h1>
+        <h2>Tema: Elohím el Creador y Redentor de Israel</h2>
+
+        <div class="section-container">
+            <h3>Conexión con la Parashá:</h3>
+            <p>Así como Elohím redimió el mundo mediante Noaj, aquí Él anuncia Su poder creador y redentor sobre Israel, preparando el camino para Su ungido, figura profética del Mashíaj Yeshúa.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>Texto Hebreo, Fonética y Traducción Literal</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayahu 44:24</div>
+            <div class="hebrew">כֹּה אָמַר יהוה גֹּאֲלֶךָ וְיֹצֶרְךָ מִבֶּטֶן אָנֹכִי יהוה עֹשֶׂה כֹל נֹטֶה שָׁמַיִם לְבַדִּי רֹקַע הָאָרֶץ מִאִתִּי׃</div>
+            <div class="transliteration">Kóh amar יהוה go'aleja ve-yotz'reja mi-béten, anojí יהוה oséh kol, notéh shamáyim levadí, roká ha-aretz me-ití.</div>
+            <div class="translation">Así dice יהוה, tu redentor y tu formador desde el vientre: Yo soy יהוה, el que hace todo, el que extiende los cielos por mí mismo y el que despliega la tierra sin ayuda de nadie.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayahu 44:25</div>
+            <div class="hebrew">מֵפֵר אֹתוֹת בַּדִּים וְקֹסְמִים יְהוֹלֵל מֵשִׁיב חֲכָמִים אָחוֹר וְדַעְתָּם יְסַכֵּל׃</div>
+            <div class="transliteration">Mefér otót baddím ve-kosmím yeholél, meshív chajamím ajór, ve-da'atam yesakkél.</div>
+            <div class="translation">Él frustra las señales de los falsos y hace vanos a los adivinos; hace retroceder a los sabios y convierte su sabiduría en necedad.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayahu 44:26</div>
+            <div class="hebrew">מְקִים דְּבַר עַבְדּוֹ וַעֲצַת מַלְאָכָיו יַשְׁלִים הָאֹמֵר לִירוּשָׁלַ‍ִם תִּוָּשֵׁב וְלַעֲרֵי יְהוּדָה תִּבָּנֶינָה וְחָרְבוֹתֶיהָ אָקוֹם׃</div>
+            <div class="transliteration">Mekím devar avdó va'atzat mal'ajáv yashlím, ha-omér li-Yerushaláyim: tivashév; ve-la'arei Yehudáh: tibbanénah; ve-charvotéha akóm.</div>
+            <div class="translation">Él confirma la palabra de su siervo y cumple el consejo de sus mensajeros; el que dice a Yerushaláyim: "Serás habitada", y a las ciudades de Yehudáh: "Serán edificadas", y sus ruinas levantaré.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayahu 44:27</div>
+            <div class="hebrew">הָאֹמֵר לַצּוּלָה חֳרָבִי וְנַהֲרוֹתַיִךְ אַוֹשִׁיב׃</div>
+            <div class="transliteration">Ha-omér la-tzúlá: joraví, ve-naharotáyikh avoshív.</div>
+            <div class="translation">El que dice al abismo: "Sécate", y haré secar tus corrientes.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayahu 44:28</div>
+            <div class="hebrew">הָאֹמֵר לְכוֹרֶשׁ רֹעִי וְכָל־חֶפְצִי יַשְׁלִם וְלֵאמֹר לִירוּשָׁלַ‍ִם תִּבָּנֶה וְהֵיכָל תִּוָּסֵד׃</div>
+            <div class="transliteration">Ha-omér le-Kóresh ro'í ve-kol chefztí yashlím, ve-le'mor li-Yerushaláyim: tibané, ve-heijál tivasséd.</div>
+            <div class="translation">El que dice a Kóresh (Ciro): "Mi pastor, él cumplirá todo mi deseo", y dirá a Yerushaláyim: "Serás edificada", y al Templo: "Será fundado".</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayahu 45:1</div>
+            <div class="hebrew">כֹּה אָמַר יהוה לִמְשִׁיחוֹ לְכוֹרֶשׁ אֲשֶׁר־הֶחֱזַקְתִּי בִימִינוֹ לְרַד לְפָנָיו גּוֹיִם וּמָתְנֵי מְלָכִים אֲפַתֵּחַ לִפְתֹּחַ לְפָנָיו דְּלָתַיִם וּשְׁעָרִים לֹא יִסָּגֵרוּ׃</div>
+            <div class="transliteration">Kóh amar יהוה li-Meshijó le-Kóresh asher hejezaqtí bi-yeminó, lerad lefanáv goyím, u-motnei melajím apatéaj, liftoaj lefanáv delatáyim, u-she'arím lo yissagerú.</div>
+            <div class="translation">Así dice יהוה a Su ungido, a Ciro, a quien tomé por su mano derecha, para someter naciones delante de él, y abrir los lomos de reyes; para abrir ante él las puertas, y las entradas no serán cerradas.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayahu 45:2</div>
+            <div class="hebrew">אֲנִי לְפָנֶיךָ אֵלֵךְ וַהֲדוּרִים אֲיַשֵּׁר דַּלְתוֹת נְחוּשָׁה אֲשַׁבֵּר וּבְרִיחֵי בַרְזֶל אֲגַדֵּעַ׃</div>
+            <div class="transliteration">Aní lefanéja eléj, va-hadurím ayashér; daltót nejoshá ashabér, u-verijéi barzél agadéa.</div>
+            <div class="translation">Yo iré delante de ti, y allanaré los lugares ásperos; romperé las puertas de bronce y cortaré las barras de hierro.</div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="explanation">
+            <h2>🔯 Comentario Mesiánico</h2>
+
+            <p>Esta Haftaráh revela a יהוה como el Creador, Redentor y Gobernante soberano que forma y utiliza incluso a los reyes gentiles para cumplir Su propósito mesiánico. Aunque se menciona al rey persa Kóresh (Ciro) como "Su ungido (מְשִׁיחוֹ / Meshijó)", este título anticipa al Mashíaj Yeshúa, el verdadero Ungido que redime a Israel y a las naciones.</p>
+
+            <div class="prophetic-section">
+                <h1>1. Tipología profética de Kóresh (Ciro)</h1>
+                <p>Ciro fue escogido por יהוה para liberar al pueblo del exilio y permitir la reconstrucción del Templo (cf. Esdras 1:1–2).</p>
+                <p>De manera tipológica, Yeshúa es el Redentor final que libera de la esclavitud espiritual, reconstruyendo el Templo interior del Ruaj (cf. Yojanán 2:19–21).</p>
+                <p>Así como Ciro abrió puertas físicas, el Mashíaj abre las puertas del cielo y del corazón humano.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>2. "Así dice יהוה, tu redentor y formador desde el vientre" (44:24)</h1>
+                <p>יהוה proclama ser tanto el Creador como el Go'el (Redentor); ambos títulos convergen en Yeshúa haMashíaj, quien es llamado "la Palabra por la cual fueron hechos los cielos" (Yojanán 1:1–3) y "el Redentor desde el vientre" (Lucas 1:31–33).</p>
+                <p>La autoidentificación de יהוה como el único que extiende los cielos y forma la tierra "sin ayuda de otro" refuta toda separación entre el Creador y el Salvador. En el Brit Hadasháh, Yeshúa declara:</p>
+                <div class="scripture">"Yo y el Padre somos Ejad (Uno)" (Yojanán 10:30).</div>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>3. Cumplimiento en el Brit Hadasháh</h1>
+                <p>Lucas 4:18–19 cita a Yeshayahu para describir la misión de Yeshúa: "El Espíritu de Adonái יהוה está sobre mí, por cuanto me ha ungido (Meshajani)..." Así como Ciro fue ungido para liberar físicamente, Yeshúa fue ungido para liberar espiritualmente.</p>
+                <p>Apocalipsis 3:7–8: Yeshúa se presenta como "El que tiene la llave de David, el que abre y nadie cierra", eco directo de Yeshayahu 45:1–2, donde יהוה abre las puertas para Su ungido.</p>
+                <p class="arrow">→</p>
+                <p>Las puertas de bronce simbolizan los poderes del pecado y la muerte; Yeshúa las quebró al resucitar, abriendo la entrada al Reino.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>4. Conexión con la Parashá Bereshit (Noaj)</h1>
+                <p>En Génesis 5:29, Lémekh profetiza que Noaj traería "consuelo" del dolor causado por la maldición. En Isaías 44:24, יהוה anuncia Su redención del caos y la ruina. Ambos textos revelan el mismo patrón divino: Elohím crea, juzga y redime.</p>
+                <p>El ciclo del diluvio y la restauración en Noaj anticipa la restauración mesiánica final anunciada por Isaías. Así como Noaj halló gracia ante יהוה, el Israel redimido hallará gracia en el Ungido de יהוה.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="explanation">
+            <h2>🌿 Aplicación Espiritual</h2>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Reconocer la soberanía absoluta de יהוה:</div>
+                <p>Él extiende los cielos y forma la tierra; nada escapa a Su control. Así también Yeshúa, el Ungido, gobierna sobre todo poder visible e invisible.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Ser instrumentos de restauración:</div>
+                <p>Ciro fue usado por Elohím aun sin conocerlo (Isaías 45:4). Del mismo modo, cada creyente puede ser usado por el Ruaj haKodesh para abrir puertas, liberar cautivos y edificar vidas.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Confianza en la promesa de reconstrucción:</div>
+                <p>Como Elohím prometió reedificar Yerushaláyim, también puede restaurar los "muros caídos" de nuestra vida espiritual. El Mashíaj es el arquitecto que edifica de nuevo lo que el pecado destruyó.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Caminar tras las huellas del Ungido:</div>
+                <p>La frase "Yo iré delante de ti" (45:2) es una promesa para quienes siguen al Mashíaj. Él allana los caminos, rompe las puertas de resistencia y guía hacia el propósito eterno.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Esperanza escatológica:</div>
+                <p>La liberación por medio del Ungido apunta al Reino mesiánico venidero, cuando todas las naciones reconocerán que יהוה es Uno, y Su Nombre Ejad (Zacarías 14:9).</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="explanation">
+            <h1>🔯 Cumplimiento Profético en el Mashíaj – Haftaráh Yeshayahu 44:24–45:2</h1>
+            <h3>Conexión con los Profetas, el Brit Hadasháh y Aplicación Espiritual</h3>
+            <p style="text-align: center; font-style: italic;">(Ministerio Judío Mesiánico de Biblia Toráh Viviente)</p>
+
+            <div class="prophetic-section">
+                <h2>🕎 I. Contexto Profético General</h2>
+                <p>El profeta Yeshayahu ישעיהו (Isaías) revela aquí la grandeza del Elohím Creador y Redentor, quien llama al rey Kóresh כורש (Ciro) como Su ungido (מְשִׁיחוֹ Meshijó), instrumento para liberar a Israel del cautiverio babilónico y restaurar Yerushaláyim ירושלים y el Heijál היכל (Templo).</p>
+                <p>Pero este pasaje va mucho más allá de la historia política. Es una profecía mesiánica en forma de tipo y sombra: Ciro es el prototipo del Mashíaj Yeshúa ישוע, el Ungido de יהוה, quien liberará al mundo del cautiverio del pecado y restaurará la verdadera adoración en el Templo espiritual del corazón humano.</p>
+                <div class="scripture">"Así dice יהוה a Su Ungido, a Ciro..." (Yeshayahu 45:1)</div>
+                <p>La palabra "Meshijó" — Su Ungido — se convierte aquí en el puente entre la liberación histórica y la redención mesiánica eterna.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h2>✡️ II. Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+
+                <h1>1. יהוה como Creador y Redentor (44:24)</h1>
+                <div class="scripture">"Así dice יהוה, tu redentor y formador desde el vientre: Yo soy יהוה que hago todas las cosas..."</div>
+                <p>יהוה proclama que Él solo extiende los cielos y forma la tierra. En el Brit Hadasháh, esta función creadora es atribuida a Yeshúa haMashíaj, revelando Su naturaleza divina:</p>
+                <div class="scripture">"Todas las cosas por Él fueron hechas, y sin Él nada de lo que ha sido hecho fue hecho." (Yojanán / Juan 1:3)</div>
+                <div class="scripture">"En Él fueron creadas todas las cosas... y en Él subsisten." (Qolasim / Colosenses 1:16–17)</div>
+                <p class="arrow">➤</p>
+                <p>Por tanto, Yeshúa es יהוה manifestado en carne, el mismo Creador y Redentor que habló por medio de Yeshayahu.</p>
+
+                <h1>2. El Ungido Libertador (45:1)</h1>
+                <div class="scripture">"Así dice יהוה a Su Ungido, a Ciro, a quien tomé por su mano derecha para someter naciones..."</div>
+                <p>El texto hebreo usa el término מְשִׁיחוֹ (Meshijó) — Su Ungido — el mismo término usado para el Mashíaj.</p>
+                <p>Ciro, aunque rey pagano, fue escogido como figura profética del Redentor venidero, quien libertaría no solo a Israel de Babilonia, sino a toda la humanidad del poder del pecado.</p>
+                <p>En Lucas 4:18–19, Yeshúa se identifica con esta misma misión al leer Isaías:</p>
+                <div class="scripture">"El Ruaj de Adonái יהוה está sobre mí, porque me ha ungido (מְשָׁחַנִי Meshajani) para proclamar libertad a los cautivos..."</div>
+                <p class="arrow">➤</p>
+                <p>Así como Ciro abrió las puertas de Babilonia, Yeshúa abre las puertas del cautiverio espiritual, cumpliendo la promesa:</p>
+                <div class="scripture">"Yo iré delante de ti... romperé las puertas de bronce y cortaré las barras de hierro" (45:2).</div>
+                <p>Este verso se cumple espiritualmente cuando el Mashíaj rompe las cadenas del pecado y abre la entrada al Reino de los Cielos.</p>
+
+                <h1>3. El Redentor que Reconstruye Yerushaláyim (44:26–28)</h1>
+                <div class="scripture">"Él confirma la palabra de su siervo... dice a Yerushaláyim: 'Serás edificada', y al Heijál: 'Será fundado.'"</div>
+                <p>En su sentido inmediato, esto se cumplió cuando Ciro permitió la reconstrucción de Yerushaláyim y del Templo (Esdras 1:1–2).</p>
+                <p>Proféticamente, prefigura la restauración mesiánica: Yeshúa edifica el Templo espiritual formado por piedras vivas — los creyentes redimidos (1 Kefa / Pedro 2:5). Él mismo declaró:</p>
+                <div class="scripture">"Destruid este Templo, y en tres días lo levantaré" (Yojanán 2:19),</div>
+                <p>refiriéndose a Su propio cuerpo.</p>
+                <p class="arrow">➤</p>
+                <p>El Mashíaj es el Constructor de la Nueva Yerushaláyim, la comunidad redimida donde habita Su Ruaj haKodesh.</p>
+
+                <h1>4. El Elohím que abre puertas (45:1–2)</h1>
+                <div class="scripture">"Abriré ante él puertas, y las entradas no serán cerradas..."</div>
+                <p>En Hitgalut / Apocalipsis 3:7–8, Yeshúa se presenta como:</p>
+                <div class="scripture">"El que tiene la llave de David, el que abre y nadie cierra, y cierra y nadie abre."</div>
+                <p>Esta frase cita directamente Isaías 45:1–2, mostrando que Yeshúa es el Ungido anunciado.</p>
+                <p>Las "puertas de bronce" simbolizan los poderes del mal, el pecado, la muerte y el infierno.</p>
+                <p class="arrow">➤</p>
+                <p>En Su muerte y resurrección, Yeshúa las quebró (cf. 1 Corintios 15:55–57), abriendo el camino a la vida eterna.</p>
+
+                <h1>5. El Nombre del Redentor es Uno con יהוה (44:24–45:2)</h1>
+                <p>Isaías afirma que יהוה actúa sin otro "junto a Él" (levadí – yo solo). El Brit Hadasháh revela que Yeshúa es esa misma manifestación divina:</p>
+                <div class="scripture">"Antes que Abraham fuese, Ani Hu / Yo Soy." (Yojanán 8:58)</div>
+                <div class="scripture">"Y verán Su rostro, y Su Nombre estará en sus frentes." (Hitgalut 22:4)</div>
+                <p class="arrow">➤</p>
+                <p>La identidad del Creador y Redentor en Isaías es la misma Persona divina manifestada en el Mashíaj.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h2>🕊 III. Conexión con los Profetas</h2>
+
+                <div class="prophetic-title">Yirmeyahu (Jeremías) 31:31–34 – El Nuevo Pacto</div>
+                <p>Isaías habla del redentor que restaurará Yerushaláyim; Jeremías anuncia un Brit Jadash escrito en el corazón. Ambos se cumplen en Yeshúa, el Mediador del Nuevo Pacto.</p>
+
+                <div class="prophetic-title">Miqueas 5:1–4 – El Gobernante de Beit-Lejem</div>
+                <p>Así como Ciro fue llamado de Persia, el Mashíaj viene de un lugar humilde, pero su dominio es universal.</p>
+
+                <div class="prophetic-title">Zacarías 9:9–10 – El Rey humilde y pacífico</div>
+                <p>Donde Ciro conquista con armas, el Mashíaj conquista con justicia y mansedumbre.</p>
+
+                <div class="prophetic-title">Isaías 52:7–10 – El anuncio de salvación</div>
+                <div class="scripture">"Qué hermosos son los pies del que anuncia la paz..."</div>
+                <p>Yeshúa trae la misma "shalom" anunciada en Isaías 45:1–2.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h2>📖 IV. Cumplimiento en el Brit Hadasháh</h2>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f0f0f0; text-align: left;">Tema profético en Isaías</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; background-color: #f0f0f0; text-align: left;">Cumplimiento en el Brit Hadasháh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Ciro, el ungido libertador (45:1)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Yeshúa, el Ungido eterno (Lucas 4:18)</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">יהוה el Creador único (44:24)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Yeshúa, la Palabra creadora (Juan 1:3)</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Reconstrucción de Yerushaláyim (44:26–28)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Restauración espiritual en Yeshúa (1 Pedro 2:5)</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Puertas abiertas y barras quebradas (45:2)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px;">Victoria sobre la muerte (Apocalipsis 1:18; 3:7)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="prophetic-section">
+                <h2>🌿 V. Aplicación Espiritual para la Comunidad Mesiánica</h2>
+
+                <div class="prophetic-title">Reconocer a יהוה como Redentor personal:</div>
+                <p>Isaías muestra que la redención es obra directa del Creador. En Yeshúa, experimentamos esa redención interior, naciendo de nuevo como "nueva creación".</p>
+
+                <div class="prophetic-title">Ser "ungidos" para liberar:</div>
+                <p>El Ruaj haKodesh unge a los hijos de Elohím para proclamar libertad, romper cadenas y abrir puertas espirituales.</p>
+                <p class="arrow">→</p>
+                <p>Nuestra misión mesiánica refleja la del Mashíaj.</p>
+
+                <div class="prophetic-title">Vivir bajo la autoridad del Mashíaj que abre puertas:</div>
+                <p>Cuando Yeshúa abre un camino, ningún obstáculo humano ni espiritual puede cerrarlo. Caminar bajo Su dirección es caminar en propósito.</p>
+
+                <div class="prophetic-title">Esperar la reconstrucción completa:</div>
+                <p>Así como Ciro permitió reedificar el Templo, el Mashíaj traerá la restauración final en la Nueva Yerushaláyim, donde la justicia y el conocimiento de יהוה llenarán la tierra (Isaías 11:9).</p>
+
+                <div class="prophetic-title">Esperanza en tiempos de cautiverio:</div>
+                <p>En los momentos de exilio espiritual o dificultad, recordamos que יהוה es quien forma, redime y abre puertas imposibles. Ningún cautiverio es permanente para quien está en el Ungido.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h2>🔯 VI. Conclusión Mesiánica</h2>
+                <p>El mensaje de Yeshayahu 44:24–45:2 revela el corazón del plan redentor: יהוה mismo actúa como Creador, Libertador y Ungido. En la historia, lo hizo por medio de Ciro; en la plenitud de los tiempos, lo hace en Yeshúa haMashíaj, el verdadero Meshíaj de יהוה, quien abre las puertas de la esclavitud y reconstruye el Templo espiritual de Su pueblo.</p>
+                
+                <p>Así como Noaj fue instrumento de redención física del mundo por medio del agua, Yeshúa es el redentor eterno, quien trae el descanso (נוח / nuaj) y la restauración (נחם / najám) prometida desde Bereshit.</p>
+            </div>
+        </div>
+    </div>
+    <h1>📜 Punto 3. Brit Hadasháh: 1 Pedro 3:18-22 (Los días de Noé y la salvación).</h1>
+    <h2>Tema: El Mashíaj Justo que redime por medio del sufrimiento y el agua de la purificación</h2>
+    <h3>(Conectado con la Parashá de Noaj y la Haftaráh de Yeshayahu 44–45)</h3>
+
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">1 Kefa 3:18</div>
+            <div class="aramaic">ܡܫܝܚܐ ܓܝܪ ܚܕܐ ܙܒܢ ܚܠܦ ܚܛܗܐ ܡܝܬ ܙܕܝܩܐ ܚܠܦ ܚܛܝܐ ܕܢܩܪܒܟܘܢ ܠܐܠܗܐ ܘܡܘܬ ܦܓܪܢ ܚܝܐ ܕܪܘܚܐ׃</div>
+            <div class="transliteration">Meshícha gar ḥada zban chalaf ḥaṭehé mit, zaddíqa chalaf chaṭayé, denaqrabhkun la-Aláha; umet pagrán, chayá derúcha.</div>
+            <div class="translation">Porque el Mashíaj una vez padeció por los pecados, el Justo por los injustos, para acercaros a Elohím; fue muerto en la carne, pero vivificado en el Ruaj.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">1 Kefa 3:19</div>
+            <div class="aramaic">ܘܒܗ ܐܙܠ ܘܐܟܪܙ ܠܗܢܘܢ ܪܘܚܐ ܕܗܘܝܢ ܒܒܝܬ ܐܣܝܪܐ׃</div>
+            <div class="transliteration">U-veh azal ve'akhraz le-henun rucha de-havín be-veit asirá.</div>
+            <div class="translation">Y en ese mismo Ruaj fue y proclamó a los rujot (espíritus) que estaban en prisión.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">1 Kefa 3:20</div>
+            <div class="aramaic">ܗܢܘܢ ܕܡܢ ܩܕܝܡ ܠܐ ܐܬܦܝܣܘ ܟܕ ܡܣܝܒܪ ܗܘܐ ܐܠܗܐ ܒܝܘܡܘܗܝ ܕܢܘܚ ܟܕ ܒܢܝܬܗ ܗܘܬ ܐܠܦܐ ܒܗ ܚܕܐ ܒܩܘܠܗ ܐܢܫܐ ܐܬܚܝܘ ܡܢ ܡܝܐ׃</div>
+            <div class="transliteration">Henun de-min qadmá lo ethpísu, kad mesabbar hava Aláha be-yomóh de-Noaj, kad bnitáh havát alfá; be-há chadá be-qoleh enashá ethḥayú men-mayá.</div>
+            <div class="translation">Aquellos que en otro tiempo fueron desobedientes, cuando Elohím esperaba con paciencia en los días de Noaj, mientras se construía el tevah (arca), en la cual pocas, es decir, ocho almas fueron salvadas por medio del agua.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">1 Kefa 3:21</div>
+            <div class="aramaic">ܘܒܕܡܘܬܗ ܐܦ ܐܢܬܘܢ ܚܝܝܢ ܐܢܬܘܢ ܒܡܥܡܘܕܝܬܐ ܠܐ ܕܢܫܠܝܢ ܙܘܗܡܐ ܕܦܓܪܐ ܐܠܐ ܕܡܫܐܠܐ ܕܬܐܪܬܐ ܛܒܬܐ ܠܐܠܗܐ ܒܝܕ ܩܝܡܬܗ ܕܝܫܘܥ ܡܫܝܚܐ׃</div>
+            <div class="transliteration">U-be-dmúteh af antun chayín antun be-ma'mudita, la denashlín zuhama de-pagra, ela de-msha'la de-te'arta tavta la-Aláha be-yad qyamteh d-Yeshúa Meshícha.</div>
+            <div class="translation">Y esto —la figura de aquello— también ahora os salva: la teviláh (inmersión), no como eliminación de la impureza del cuerpo, sino como la petición de una conciencia pura hacia Elohím, por la resurrección de Yeshúa haMashíaj.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">1 Kefa 3:22</div>
+            <div class="aramaic">ܗܘ ܕܣܠܩ ܠܫܡܝܐ ܘܐܝܬܘܗܝ ܥܠ ܝܡܝܢܗ ܕܐܠܗܐ ܘܐܫܬܥܒܕܘ ܠܗ ܡܠܐܟܐ ܘܫܘܠܛܢܐ ܘܚܝܠܐ׃</div>
+            <div class="transliteration">Hu deslaq la-shmaya, ve-ítweh 'al yeminéh d-Aláha, ve-ishta'badú leh mal'aké ve-shultaná ve-ḥaylá.</div>
+            <div class="translation">El cual ascendió a los cielos, y está a la derecha de Elohím; y le fueron sometidos los malajé (mensajeros), las autoridades y los poderes.</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+        <h2>🔯 Comentario Mesiánico y Profético</h2>
+        <p>Este pasaje es una de las claves mesiánicas más profundas del Brit Hadasháh, porque une la historia de Noaj con la obra redentora del Mashíaj.</p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h1>🕎 I. El Justo por los injustos – Tipología de Noaj y Yeshúa</h1>
+                <p>Noaj fue llamado "tzadik bedorotav" — "justo en su generación" (Bereshit 6:9).</p>
+                <p>Yeshúa es el Tzadik perfecto, el Justo por excelencia, quien entrega Su vida por los injustos, cumpliendo la profecía de Yesha'yahu 53:11:</p>
+                <div class="scripture">"Mi siervo justo justificará a muchos, y sus iniquidades él llevará."</div>
+                <p>Así como Noaj fue medio de salvación para su familia, Yeshúa es el medio eterno de salvación para toda la humanidad.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>✡️ II. El Arca – Figura del Mashíaj</h1>
+                <p>Kefa declara que el arca (tevah <span class="hebrew-term">תֵּבָה</span>) es figura de la teviláh (inmersión) que salva. Pero más profundamente, el arca representa al Mashíaj mismo:</p>
+                <p><strong>Solo había una puerta</strong> (Bereshit 6:16) — imagen de Yeshúa:</p>
+                <div class="scripture">"Yo soy la puerta; el que por mí entrare, será salvo." (Yojanán 10:9)</div>
+                <p>Dentro del arca, los justos estaban protegidos del juicio; fuera, había destrucción.<br>
+                <span class="arrow">→</span> En el Mashíaj, los creyentes hallan refugio del juicio del pecado.</p>
+                <p>El arca fue sellada por <span class="hebrew-term">יהוה</span>; la redención del creyente está sellada por el Ruaj haKodesh (Efesios 1:13).</p>
+                <p>El agua que destruyó el mundo antiguo es la misma que elevó el arca:<br>
+                <span class="arrow">→</span> El juicio se convierte en instrumento de salvación, revelando el principio mesiánico de redención a través del juicio.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>📖 III. La Teviláh – Sombra profética de la resurrección</h1>
+                <p>Kefa explica que el agua del diluvio prefiguraba la teviláh, no como rito externo, sino como expresión interior de fe y purificación. El creyente es sumergido en la muerte con el Mashíaj y resucita con Él (Romanos 6:4).</p>
+                <p><strong>"Por la resurrección de Yeshúa haMashíaj"</strong> (3:21).<br>
+                <span class="arrow">→</span> La salvación no está en el agua en sí, sino en la vida resucitada del Mashíaj, en quien el alma es vivificada por el Ruaj.</p>
+                <p>En la Peshitta, la palabra usada para "inmersión" es ܡܥܡܘܕܝܬܐ / ma'mudita, equivalente a la teviláh hebrea, el acto de purificación que simboliza nueva creación.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>🔯 IV. El Mashíaj desciende al Sheol</h1>
+                <p><strong>"Y en ese mismo Ruaj fue y proclamó a los espíritus encarcelados."</strong> (3:19)</p>
+                <p>Este verso revela un misterio mesiánico: Mientras el cuerpo de Yeshúa yacía en el sepulcro, Su Ruaj descendió al Sheol, el lugar de las almas, y proclamó Su victoria. No fue para ofrecer salvación posterior, sino para anunciar el cumplimiento del plan redentor prometido desde Noaj hasta los profetas.</p>
+                <p>El Midrash y la tradición mesiánica asocian esto con el Salmo 16:10:</p>
+                <div class="scripture">"No dejarás mi alma en el Sheol, ni permitirás que tu Santo vea corrupción."</div>
+                <p>Cumplido literalmente en el Mashíaj resucitado (Hechos 2:27).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>✡️ V. Conexión con los Profetas</h1>
+                <p><strong>Isaías 44:24 – <span class="hebrew-term">יהוה</span> el Creador y Redentor:</strong><br>
+                <span class="arrow">→</span> Yeshúa, muerto en la carne y vivificado en el Ruaj, demuestra que Él es el mismo Creador que redime por Su propia mano.</p>
+                <p><strong>Isaías 45:1–2 – El Ungido que abre puertas:</strong><br>
+                <span class="arrow">→</span> Así como Ciro abrió las puertas físicas, el Mashíaj abre las puertas del Sheol, liberando a los cautivos de la muerte (cf. Efesios 4:8–10).</p>
+                <p><strong>Isaías 54:9 – El pacto de Noaj:</strong><br>
+                <span class="arrow">→</span> "Como en los días de Noaj será esto para mí..." En Yeshúa se cumple este pacto, estableciendo un nuevo comienzo para toda la humanidad.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>🌿 VI. Aplicación Espiritual</h1>
+                <p><strong>Ser portadores de justicia en una generación corrupta:</strong><br>
+                Como Noaj fue justo en su tiempo, los discípulos del Mashíaj son llamados a ser tzadikim en medio de un mundo impuro, reflejando Su justicia.</p>
+                <p><strong>Vivir dentro del Arca espiritual:</strong><br>
+                Estar "en el Mashíaj" es vivir en Su refugio. Noaj no se salvó por el esfuerzo de remar, sino por estar dentro del arca; así, la salvación no es por obras, sino por permanecer en Yeshúa.</p>
+                <p><strong>Caminar en la conciencia pura:</strong><br>
+                La teviláh representa una conciencia limpia. Cada día, el creyente debe renovar su pacto interior con Elohím, rechazando la corrupción y el orgullo.</p>
+                <p><strong>Anunciar el mensaje del juicio y de la gracia:</strong><br>
+                Noaj fue "predicador de justicia" (2 Pedro 2:5). Hoy, la Kehiláh mesiánica tiene el mismo llamado: advertir al mundo del juicio venidero y proclamar la puerta abierta del Arca —Yeshúa.</p>
+                <p><strong>Esperar la restauración final:</strong><br>
+                Así como el arca reposó en las alturas del Ararat, el creyente espera el descanso eterno en el Reino del Mashíaj, cuando "toda rodilla se doble" (Filipenses 2:10).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>🕊 VII. Conclusión Mesiánica</h1>
+                <p>El mensaje de 1 Kefa 3:18–22 une tres realidades eternas:</p>
+                <ul>
+                    <li><strong>El Juicio:</strong> las aguas del diluvio.</li>
+                    <li><strong>La Redención:</strong> el Arca – el Mashíaj.</li>
+                    <li><strong>La Restauración:</strong> la resurrección y la ascensión.</li>
+                </ul>
+                <p>Así, el plan de <span class="hebrew-term">יהוה</span> se revela: El Justo sufre por los injustos, muere en la carne, desciende al Sheol, vence a la muerte, y asciende como Rey y Cohen eterno, a la diestra de Elohím.</p>
+                <p>Este pasaje es el eco final de Bereshit y Yeshayahu: El mismo Elohím que salvó a Noaj y que ungió a Ciro, se manifiesta en Yeshúa haMashíaj, abriendo las puertas de la vida eterna.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+        <h1>En el Mashíaj Yeshúa, su conexión con los Profetas y la Aliyáh de Bereshit (Génesis 5:25–6:8)</h1>
+        <h3>(Ministerio Judío Mesiánico de Biblia Toráh Viviente)</h3>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h1>🕎 I. Introducción Profética: La Línea de Redención desde Noaj hasta el Mashíaj</h1>
+                <p>La Aliyáh de Bereshit 5:25–6:8 introduce por primera vez en la Toráh el patrón eterno de juicio y redención: El mundo se corrompe, pero <span class="hebrew-term">יהוה</span> levanta a Noaj <span class="hebrew-term">נח</span>, un tzadik, como instrumento de consuelo (<span class="hebrew-term">נחם</span> / najám) y de descanso (<span class="hebrew-term">נוח</span> / nuaj). En él se preserva la vida y se inaugura una nueva humanidad.</p>
+                <p>De esta figura surge una tipología profética que atraviesa toda la Escritura y encuentra su plenitud en Yeshúa haMashíaj <span class="hebrew-term">ישוע המשיח</span> — el verdadero Noaj espiritual, el que trae descanso al alma, redime al mundo de la corrupción y establece una nueva creación.</p>
+                <p>El shaliaj Kefa (Pedro), inspirado por el Ruaj haKodesh, retoma esta conexión y muestra que el diluvio y el arca no fueron solo eventos históricos, sino revelaciones proféticas del plan de redención en el Mashíaj.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>✡️ II. El Mashíaj como el Tzadik Universal (1 Kefa 3:18)</h1>
+                <div class="scripture">"Porque también el Mashíaj padeció una sola vez por los pecados, el justo por los injustos, para llevarnos a Elohím."</div>
+                <p>Así como Noaj fue declarado tzadik en su generación, Yeshúa es el Tzadik absoluto, el Justo eterno. Su sufrimiento no fue un accidente histórico, sino el cumplimiento de la promesa hecha desde Bereshit:</p>
+                <div class="scripture">"Éste nos consolará de nuestras obras y del dolor de nuestras manos" (Bereshit 5:29).</div>
+                <p>En Yeshúa, esta declaración de Lémekh alcanza su máxima expresión: Él consuela al mundo del dolor del pecado, al cargarlo sobre sí mismo. La raíz común entre Noaj (<span class="hebrew-term">נוח</span>) y consolará (<span class="hebrew-term">ינחמנו</span> / yenajemenu) se une proféticamente con el nombre hebreo <span class="hebrew-term">מנחם</span> / Menajem, título mesiánico usado en tradiciones judías para el Redentor futuro.</p>
+                <p><span class="arrow">➡️</span> Yeshúa es el Menajem de Israel, el cumplimiento vivo del consuelo anunciado por Lémekh.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>🕊 III. El Arca como Figura del Mashíaj (1 Kefa 3:20–21)</h1>
+                <div class="scripture">"En los días de Noaj… ocho almas fueron salvadas por medio del agua. Aquello era figura de la teviláh (inmersión), que ahora nos salva..."</div>
+                
+                <p><strong>1. El Arca – Tevah <span class="hebrew-term">תֵּבָה</span> como símbolo del Mashíaj</strong></p>
+                <p>La palabra hebrea tevah significa tanto arca como palabra. En la tradición mesiánica, esto apunta a la Palabra viviente — el Mashíaj.</p>
+                <p>Noaj entró en la Palabra para ser salvado del juicio; nosotros entramos en Yeshúa, la Palabra hecha carne, para ser salvados de la condenación del pecado.</p>
+                <p>"Y el arca fue cubierta con kófer (resina)" (Bereshit 6:14). La raíz de kófer es la misma que kapará / expiación.<br>
+                <span class="arrow">➡️</span> Así, el Arca estaba literalmente cubierta de expiación, igual que el creyente está cubierto por la expiación del Mashíaj.</p>
+                
+                <p><strong>2. El Agua – Juicio y Purificación</strong></p>
+                <p>El agua destruye lo impuro, pero al mismo tiempo eleva el arca. De la misma manera, la muerte de Yeshúa juzga el pecado, pero exalta la vida nueva. La teviláh mesiánica simboliza este proceso: morir al viejo mundo y resucitar en el Mashíaj, entrando en una nueva creación.</p>
+                <div class="scripture">"De modo que si alguno está en el Mashíaj, nueva creación es." (2 Qorintiyim 5:17)</div>
+            </div>
+
+            <div class="prophetic-section">
+                <h1>🔥 IV. La Victoria sobre el Sheol (1 Kefa 3:19)</h1>
+                <div class="scripture">"Y en el Ruaj fue y proclamó a los espíritus encarcelados."</div>
+                <p>Este verso revela uno de los misterios más profundos del plan mesiánico: Cuando Yeshúa fue muerto en la carne, descendió al Sheol (reino de los muertos), no como un prisionero, sino como un Rey victorioso proclamando Su triunfo.</p>
+                <p>El profeta Yesha'yahu ya había anunciado esto:</p>
+                <div class="scripture">"Desnudaré las puertas de bronce, y cortaré las barras de hierro." (Isaías 45:2)</div>
+                <p><span class="arrow">➡️</span> En Su descenso, Yeshúa abrió las puertas del abismo, cumpliendo literalmente las palabras dichas a Ciro — pero en una dimensión espiritual. Donde Ciro liberó cautivos terrenales, Yeshúa liberó las almas cautivas por el pecado y la muerte.</p>
+                <p>Así se cumple también el Salmo 68:18 (Hebreo 68:19):</p>
+                <div class="scripture">"Subiste a lo alto, llevaste cautivos, diste dones a los hombres." (Pablo cita este mismo texto en Efesios 4:8 refiriéndose al Mashíaj).</div>
+            </div>
+
+            <div class="prophetic-section">
+                <h1> V. Conexión con los Profetas</h1>
+                <p><strong>Yeshayahu 44:24–45:2 – <span class="hebrew-term">יהוה</span> es el Redentor que abre puertas.</strong></p>
+                <ul>
+                    <li>En la Haftaráh, <span class="hebrew-term">יהוה</span> unge a Ciro para liberar y reconstruir.</li>
+                    <li>En el Brit Hadasháh, Yeshúa es el Ungido eterno, que abre las puertas del Sheol y reconstruye el Templo espiritual.</li>
+                    <li>Ciro actuó por mandato profético; Yeshúa actúa como el cumplimiento viviente del mismo Elohím.</li>
+                </ul>
+                
+                <p><strong>Yeshayahu 54:9–10 – "Como en los días de Noaj…"</strong></p>
+                <ul>
+                    <li>El pacto de las aguas de Noaj es figura del pacto de sangre del Mashíaj.</li>
+                    <li>Ambos señalan un nuevo comienzo y la promesa de misericordia eterna.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>🕎 Punto 4 – Contexto Histórico y Cultural de Génesis 5:25–6:8</h1>
+
+        <div class="section-container">
+            <p>
+                La séptima Aliyáh de la Parashá Bereshit (בראשית) abarca Génesis 5:25–6:8, texto
+                que marca el cierre del primer ciclo de la historia humana antes del Diluvio. En el
+                Plan de Estudio de la Toráh 2025, se relaciona con la Haftaráh Isaías 44:24–45:2 (el
+                poder creador de Elohím) y el Brit Hadashá 1 Pedro 3:18–22 (la redención prefigurada
+                en los días de Noaj).
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Contexto Histórico y Cultural</div>
+            <p>
+                Durante esta etapa, el mundo antediluviano había alcanzado un grado de desarrollo y
+                corrupción extrema. La humanidad se multiplicaba, pero la línea de Shet (Set) —de la
+                cual proviene Noaj (Noé)— mantenía la memoria de Elohím יהוה. Los textos hebreos y
+                los fragmentos de Qumrán sugieren una sociedad compleja con una división clara entre
+                los "hijos de Elohím" (descendientes piadosos de Shet) y las "hijas de los hombres"
+                (linaje corrompido de Caín).
+            </p>
+            <p>
+                Culturalmente, se refleja el paso de una economía pastoral a una civilización urbana
+                y metalúrgica (Gén 4:22), lo que coincide con evidencias arqueológicas de
+                asentamientos pre-sumerios en Mesopotamia, donde se practicaban cultos a deidades
+                híbridas. La Toráh describe el mismo fenómeno como "corrupción de toda carne", una
+                expresión que implica tanto inmoralidad moral como mezcla genética antinatural.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Marco Teológico y Simbólico</div>
+            <p>
+                El texto enfatiza el deterioro espiritual: "Y vio יהוה que la maldad del hombre era
+                mucha en la tierra" (Gén 6:5). La raíz hebrea חָמָס (jamás), traducida como
+                "violencia", describe una sociedad donde la injusticia y la rebelión contra la
+                voluntad de Elohím se habían institucionalizado.
+            </p>
+            <p>
+                El diluvio, por tanto, no fue solo un castigo, sino una purificación cósmica, un
+                reinicio del orden creado. Este tema anticipa la teología de la nueva creación
+                presente en los profetas y en el Brit Hadashá.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Contexto Mesiánico y Profético</div>
+            <p>
+                El linaje preservado a través de Noaj es el canal mesiánico que se mantendrá hasta
+                Avraham, David, y finalmente Yeshúa haMashíaj. En el documento
+                <strong>La Divinidad de Yeshúa</strong>, se expone que Yeshúa es MarYah (יהוה), el
+                mismo que trajo juicio sobre el mundo en los días de Noaj y que ahora ofrece
+                redención:
+            </p>
+            <div class="scripture">
+                "Solo Adonái יהוה puede salvar, y Yeshúa es proclamado Salvador. El que juzgó en los
+                días antiguos es el mismo que redime ahora."
+            </div>
+            <p>
+                Los profetas, como Isaías (44:24–45:2), presentan a Elohím como el Creador y Redentor
+                que actúa directamente en la historia, lo cual encuentra cumplimiento pleno en Yeshúa
+                —el mismo que, según Kefa (Pedro), "padeció una vez por los pecados, el justo por los
+                injustos, para llevarnos a Elohím" (1 Pedro 3:18).
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Conexión Espiritual y Simbólica</div>
+            <p>
+                El agua del diluvio se convierte en figura de la Teviláh (inmersión), símbolo de
+                muerte al pecado y renacimiento espiritual. La generación de Noaj representa el viejo
+                mundo dominado por la carne; el arca, una imagen de Yeshúa mismo: el único refugio
+                donde la humanidad puede hallar vida en medio del juicio divino.
+            </p>
+            <p>
+                Así, Génesis 5:25–6:8 no solo narra genealogías, sino que revela el patrón eterno de
+                redención:
+            </p>
+            <ul>
+                <li>Corrupción universal.</li>
+                <li>Gracia sobre el justo (Noaj).</li>
+                <li>Salvación mediante un pacto y un medio provisto por Elohím.</li>
+                <li>Juicio purificador.</li>
+                <li>Nuevo comienzo bajo la promesa divina.</li>
+            </ul>
+            <p>
+                En la visión mesiánica, Yeshúa es el nuevo Noaj, quien prepara un arca espiritual
+                —Su propia vida y sacrificio— para rescatar a quienes confían en Él antes del juicio
+                venidero (Mateo 24:37).
+            </p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>🕎 Punto 5 – Estudio, Comentarios y Conexiones Proféticas</h1>
+        <h2>Aliyáh de Bereshit 5:25–6:8</h2>
+        <h3>(Ministerio Judío Mesiánico de Biblia Toráh Viviente)</h3>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">📖 1. Panorama Profético General</div>
+            <p>
+                La séptima Aliyáh de Bereshit (Génesis 5:25–6:8) representa la transición entre la
+                creación original y el juicio universal. El texto marca el final de la línea de Adán
+                antes del Diluvio, donde la corrupción humana llega a su clímax. En medio de la
+                oscuridad, Noaj (נֹחַ) surge como figura profética del Mashíaj Yeshúa ישוע, el Justo
+                que halló gracia ante יהוה.
+            </p>
+            <div class="scripture">
+                "Ve-Nóaj matzá ḥen be'énei יהוה"<br />
+                "Pero Noaj halló favor en los ojos de יהוה." (Bereshit 6:8)
+            </div>
+            <p>
+                La raíz hebrea נוח (nuaj) —"reposar, dar descanso"— anticipa la obra redentora del
+                Mashíaj, quien dice:
+            </p>
+            <div class="scripture">
+                "Venid a mí todos los cansados y cargados, y yo os haré descansar (anuaj)."
+                (Mattityahu 11:28)
+            </div>
+            <p>
+                El "descanso" de Noaj, por tanto, es sombra del descanso eterno del alma en Yeshúa,
+                quien trae el verdadero Menucháh (reposo mesiánico).
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">🕯️ 2. Comentario Exegético y Teológico</div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">a. Corrupción universal y juicio divino</div>
+                <div class="scripture">
+                    "Y vio יהוה que la maldad del hombre era mucha en la tierra…" (6:5)
+                </div>
+                <p>
+                    El texto hebreo usa רַעַת הָאָדָם (ra'at ha-adam), "la maldad del hombre",
+                    indicando una degeneración moral y espiritual total. La palabra חָמָס (jamás)
+                    —violencia— aparece como diagnóstico de una humanidad en guerra contra la
+                    voluntad divina.
+                </p>
+                <p>
+                    En la exégesis mesiánica, el Diluvio simboliza el juicio escatológico anunciado
+                    por los profetas: así como las aguas purificaron la tierra en los días de Noaj,
+                    así el fuego purificará en el fin de los tiempos (cf. 2 Kefa 3:6–7).
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">b. Noaj, tipo profético del Mashíaj</div>
+                <p>
+                    El Zóhar y el Midrash Bereshit Rabbah señalan que el nombre "Noaj" contiene una
+                    doble promesa: menucháh (descanso) y nechamáh (consuelo). Lémekh profetizó:
+                </p>
+                <div class="scripture">
+                    "Este nos consolará (ינחמנו yenajemenu) de nuestras obras y del dolor de
+                    nuestras manos." (5:29)
+                </div>
+                <p>
+                    En la tradición mesiánica, Noaj prefigura a Yeshúa, quien consuela al mundo del
+                    peso del pecado y de la maldición sobre la tierra. Así como Noaj fue el mediador
+                    de un pacto de agua, Yeshúa es el mediador del pacto de sangre y Ruaj.
+                </p>
+                <div class="scripture">
+                    "Así como en los días de Noaj, así será la venida del Hijo del Hombre."
+                    (Mattityahu 24:37)
+                </div>
+                <p>
+                    Yeshúa usa la historia de Noaj como advertencia escatológica, reafirmando que el
+                    mismo Elohím que juzgó por agua volverá a juzgar por fuego, pero ofrece salvación
+                    a los que entren en el "Arca" —Su propio cuerpo redentor.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">c. El Arca como figura mesiánica</div>
+                <p>
+                    La palabra hebrea תֵּבָה (tevah) no solo significa "arca", sino también "palabra"
+                    en hebreo arcaico. Así, el Arca se convierte en símbolo de la Palabra viviente
+                    (Davar חי), Yeshúa mismo:
+                </p>
+                <div class="scripture">
+                    "El Verbo (HaDavar) se hizo carne y habitó entre nosotros." (Yojanán 1:14)
+                </div>
+                <p>El Arca tenía una sola puerta (Bereshit 6:16) <span class="arrow">→</span> Yeshúa declara:</p>
+                <div class="scripture">
+                    "Yo soy la puerta; el que por mí entrare será salvo." (Yojanán 10:9)
+                </div>
+                <p>
+                    El Arca estaba cubierta por dentro y por fuera con "kófer" (resina, cobertura),
+                    palabra raíz de Kippur – expiación. <span class="arrow">→</span> Proféticamente, el Arca fue
+                    sellada con expiación, como los redimidos son cubiertos por la sangre del
+                    Mashíaj.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">📜 3. Conexiones con los Profetas</div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">🔹 Isaías 54:9–10</div>
+                <div class="scripture">
+                    "Como en los días de Noaj será esto para mí; así juré que las aguas de Noaj no
+                    pasarían más sobre la tierra."
+                </div>
+                <p>
+                    Isaías ve en el pacto con Noaj un reflejo del amor eterno de יהוה por Israel. Ese
+                    mismo juramento de misericordia se cumple en Yeshúa, quien sella un pacto eterno
+                    de gracia. En el Brit Hadashá, Kefa cita este modelo como figura de la teviláh (1
+                    Pedro 3:21), conectando las aguas de Noaj con la regeneración espiritual.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">🔹 Ezequiel 14:14</div>
+                <div class="scripture">
+                    "Si estuvieran Noaj, Daniel y Job, sólo ellos por su justicia librarían sus
+                    almas."
+                </div>
+                <p>
+                    Ezequiel muestra que el justo intercede, pero la salvación es personal. En el
+                    contexto mesiánico, Yeshúa, el Tzadik perfecto, intercede por todos (Yeshayahu
+                    53:12).
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">🔹 Isaías 45:1–2</div>
+                <div class="scripture">
+                    "Así dice יהוה a Su Ungido (Meshijó), a Ciro…"
+                </div>
+                <p>
+                    La Haftaráh conecta al "Ungido libertador" con el patrón de Noaj: ambos son
+                    instrumentos divinos de restauración. Ciro libera a Israel del cautiverio físico;
+                    Yeshúa libera del cautiverio espiritual.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">✡️ 4. Conexión con el Brit Hadasháh</div>
+            <div class="prophetic-title">📖 1 Kefa 3:18–22</div>
+            <p>Kefa (Pedro) interpreta la historia de Noaj como figura mesiánica:</p>
+
+            <div class="prophetic-section">
+                <div class="scripture">
+                    "El Mashíaj padeció una vez por los pecados, el justo por los injustos."
+                </div>
+                <p class="answer">
+                    <span class="arrow">→</span> Así como Noaj intercedió por su generación, Yeshúa intercede con Su
+                    sacrificio.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="scripture">"Ocho almas fueron salvadas por medio del agua."</div>
+                <p class="answer">
+                    <span class="arrow">→</span> Ocho representa nueva creación (sheminí). En el Mashíaj, la humanidad
+                    renace en el octavo día —la resurrección.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="scripture">"Esto es figura de la teviláh (inmersión)."</div>
+                <p class="answer">
+                    <span class="arrow">→</span> El paso por el agua simboliza morir al mundo antiguo y resucitar en
+                    Yeshúa.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="scripture">
+                    "Yeshúa ascendió a los cielos… y le fueron sometidos malajím, potestades y
+                    poderes."
+                </div>
+                <p class="answer">
+                    <span class="arrow">→</span> El que juzgó las aguas del diluvio es el mismo que venció la muerte y
+                    gobierna sobre toda la creación.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">🔥 5. Comentario Rabínico y Mesiánico</div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">📚 Rabínico:</div>
+                <p>
+                    Los Midrashim explican que Noaj fue llamado "Ish Tzadik Tamim" (hombre justo e
+                    íntegro) porque mantuvo pureza en medio de corrupción. El Targum Yonatán traduce
+                    Génesis 6:9 como:
+                </p>
+                <div class="scripture">
+                    "Noaj fue justo ante יהוה, porque en su generación caminó en verdad."
+                </div>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">✡️ Mesiánico:</div>
+                <p>
+                    Los comentaristas nazarenos de los primeros siglos (como el Evangelio de los
+                    Hebreos y las Homilías de Kefa) vieron en Noaj una figura del Mashíaj que
+                    construye el Arca de la Salvación —Su Kehiláh. En este sentido, la Kehiláh
+                    mesiánica es el Arca actual, edificada en el Ruaj del Mashíaj.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">🌿 6. Aplicación Espiritual y Profética</div>
+            <ul>
+                <li>
+                    <strong>Caminar con Elohím en generaciones corruptas</strong> — Noaj fue
+                    diferente no por doctrina, sino por relación con יהוה.
+                </li>
+                <li>
+                    <strong>Guardar pureza de linaje espiritual</strong> — evitar la mezcla entre
+                    "hijos de Elohím" y "hijas de los hombres", imagen de la mezcla entre santidad y
+                    mundanalidad.
+                </li>
+                <li>
+                    <strong>Construir el Arca interior</strong> — cada acto de fe es una tabla; cada
+                    obediencia, un clavo en el refugio del alma.
+                </li>
+                <li>
+                    <strong>Predicar justicia antes del juicio</strong> — el tiempo de la paciencia
+                    divina se está terminando; el mensaje de Noaj resuena en la Kehiláh mesiánica.
+                </li>
+                <li>
+                    <strong>Esperar la nueva creación</strong> — así como las aguas del diluvio
+                    limpiaron la tierra, el Ruaj purifica el corazón del creyente para la venida del
+                    Mashíaj.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">🔯 7. Conclusión Profética</div>
+            <p>La Aliyáh Bereshit 5:25–6:8 es una prefiguración total del plan de redención en Yeshúa:</p>
+            <ul>
+                <li><strong>Noaj</strong> = figura del Mashíaj.</li>
+                <li><strong>El Arca</strong> = Su cuerpo y Su Kehiláh.</li>
+                <li><strong>El Diluvio</strong> = juicio y purificación.</li>
+                <li><strong>El Descanso (Nuaj)</strong> = redención y reposo eterno en Él.</li>
+            </ul>
+            <p>
+                El mismo יהוה que anunció el juicio es el que proveyó el medio de salvación. En
+                Yeshúa haMashíaj, se cumple el misterio:
+            </p>
+            <div class="scripture">
+                "El Justo sufre por los injustos, para llevarnos a Elohím." (1 Kefa 3:18)
+            </div>
+            <div class="conclusion">
+                <p>
+                    Así, esta Aliyáh nos invita a entrar en el Arca viva del Mashíaj antes del
+                    diluvio final, para hallar gracia —jen חֵן— ante los ojos de יהוה.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>🕎 Punto 6 – Análisis Profundo de la Aliyáh (Bereshit 5:25–6:8)</h1>
+        <h3>(Ministerio Judío Mesiánico de Biblia Toráh Viviente – Estudio 2025)</h3>
+        <h2>📜 Aliyáh Séptima – "Noaj, Justo ante יהוה"</h2>
+
+        <div class="section-container">
+            <p>
+                Esta Aliyáh cierra la Parashá Bereshit, marcando el final del
+                linaje antediluviano y la elección de Noaj נח como portador del
+                pacto de redención. Cada verso, desde Metushélaj hasta la gracia
+                hallada por Noaj, revela el patrón mesiánico que atraviesa toda
+                la Toráh.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔍 1. Génesis 5:25–27 – Metushélaj y el tiempo del juicio</h1>
+
+            <div class="verse-container">
+                <div class="hebrew">
+                    וַיְחִי מְתוּשֶׁלַח שֶׁבַע וּשְׁמֹנִים מָאָה שָׁנָה וַיּוֹלֶד
+                    אֶת־לָמֶךְ... וַיִּהְיוּ כָּל־יְמֵי מְתוּשֶׁלַח תְּשַׁע
+                    וְשִׁשִּׁים שָׁנָה וּתְשַׁע מֵאוֹת שָׁנָה וַיָּמֹת׃
+                </div>
+            </div>
+
+            <p>
+                Metushélaj (מְתוּשֶׁלַח) significa "su muerte traerá" o "hombre
+                del dardo". Los sabios notan que el diluvio comenzó el mismo año
+                en que murió Metushélaj, indicando que su vida fue un reloj
+                profético de la misericordia de Elohím. Así como su nombre
+                anuncia el juicio, la muerte del justo precede al castigo
+                —paralelo mesiánico: Yeshúa, el Justo, muere antes del juicio
+                del mundo, trayendo salvación para los que creen.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Aplicación mesiánica:</p>
+                <p>
+                    Metushélaj es tipo del Mashíaj, quien prolonga el tiempo
+                    antes del juicio para dar oportunidad al arrepentimiento (2
+                    Kefa / Pedro 3:9).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔍 2. Génesis 5:28–29 – Lémekh y la profecía del consuelo</h1>
+
+            <div class="scripture">
+                "Y llamó su nombre Noaj, diciendo: Este nos consolará (ינחמנו
+                yenajemenu) de nuestras obras y del dolor de nuestras manos, por
+                causa de la tierra que maldijo יהוה."
+            </div>
+
+            <p>
+                El nombre Noaj נח está ligado a נחם (najám), consolar. Lémekh
+                profetiza que Noaj traería descanso (מנוחה menujáh) de la
+                maldición. Esto conecta con Yesha'yahu 11:10:
+            </p>
+
+            <div class="scripture">
+                "Y reposará (נוּחַ) sobre Él el Ruaj de יהוה."
+            </div>
+
+            <p>
+                👉 En el sentido mesiánico, Yeshúa es el "Noaj eterno", quien
+                trae consuelo al mundo del sufrimiento del pecado. Él mismo
+                dijo:
+            </p>
+
+            <div class="scripture">
+                "Venid a mí... y hallaréis descanso (anuaj) para vuestras
+                almas." (Mattityahu 11:28–29)
+            </div>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Aplicación espiritual:</p>
+                <p>
+                    Así como Noaj fue consuelo físico en un mundo condenado,
+                    Yeshúa es consuelo espiritual en medio del juicio inminente.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>
+                🔍 3. Génesis 5:32 – Noaj engendra tres hijos: Shem, Jám y
+                Yéfet
+            </h1>
+
+            <p>
+                El número tres simboliza plenitud y propósito divino. De estos
+                tres linajes surgirán todas las naciones postdiluvianas, y de
+                Shem (שם) vendrá el linaje mesiánico.
+            </p>
+
+            <p>
+                Shem significa "nombre"; en hebreo bíblico, "el Nombre"
+                (HaShem) está vinculado con la presencia divina. Por eso, de
+                Shem saldrá el pueblo que portará el Nombre de יהוה,
+                cumpliéndose en Yeshúa haMashíaj:
+            </p>
+
+            <div class="scripture">
+                "Yo he manifestado tu Nombre a los hombres que me diste del
+                mundo." (Yojanán 17:6)
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔍 4. Génesis 6:1–2 – Corrupción de las generaciones</h1>
+
+            <div class="scripture">
+                "Y aconteció que los hombres comenzaron a multiplicarse... y los
+                hijos de Elohím vieron a las hijas de los hombres..."
+            </div>
+
+            <p>
+                Los Benéi ha-Elohím (בְּנֵי הָאֱלֹהִים) son interpretados en dos
+                niveles:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Literal:</strong> seres celestiales (malajim caídos)
+                    que corrompieron la creación.
+                </li>
+                <li>
+                    <strong>Moral:</strong> los descendientes piadosos de Shet
+                    (Set) mezclándose con la línea de Caín.
+                </li>
+            </ul>
+
+            <p>
+                En ambos casos, el principio espiritual es claro: la unión del
+                santo con lo profano produce corrupción. Esto es una advertencia
+                contra la contaminación espiritual del pueblo de Elohím con las
+                costumbres del mundo (2 Corintios 6:14).
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Comentario mesiánico:</p>
+                <p>
+                    El Mashíaj vino precisamente a reparar la mezcla y restaurar
+                    la pureza de la creación. Por medio de Su sangre, separa lo
+                    santo de lo impuro, reconstruyendo la imagen original del
+                    hombre en Elohím (Efesios 4:24).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔍 5. Génesis 6:3 – Límite de la misericordia</h1>
+
+            <div class="scripture">
+                "Y dijo יהוה: No permanecerá mi Ruaj en el hombre para siempre,
+                porque él es carne..."
+            </div>
+
+            <p>
+                El verbo hebreo יָדוֹן (yadón) implica "contender", "juzgar",
+                "habitar con". יהוה declara un límite a Su paciencia: 120 años
+                antes del diluvio.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Aplicación profética:</p>
+                <p>
+                    En el tiempo del fin, el Ruaj HaKodesh también contendrá con
+                    la humanidad antes del juicio. El Mashíaj Yeshúa, como
+                    portador del Ruaj eterno, ofrece ahora ese tiempo de
+                    misericordia:
+                </p>
+                <div class="scripture">
+                    "El Ruaj de יהוה está sobre mí... para proclamar libertad a
+                    los cautivos." (Lucas 4:18)
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔍 6. Génesis 6:4 – Los Nefilím</h1>
+
+            <div class="scripture">
+                "Los Nefilím (נְפִילִים) estaban en la tierra..."
+            </div>
+
+            <p>
+                El término viene de נפל (nafal) – "caer". Simbolizan la caída de
+                lo celestial en lo terrenal, la arrogancia y corrupción. Estos
+                gigantes representan la deificación del hombre, el mismo
+                espíritu de rebelión que se manifestará en los últimos días (2
+                Tesalonicenses 2:3–4).
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Conexión profética:</p>
+                <p>
+                    Así como en los días de Noaj hubo mezcla entre el cielo y la
+                    tierra en rebeldía, en el fin de los tiempos el hombre
+                    intentará nuevamente alcanzar lo divino por medios humanos
+                    —la religión sin santidad. El Mashíaj viene a destruir esa
+                    soberbia y restaurar la verdadera comunión.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔍 7. Génesis 6:5–7 – El dolor del Creador</h1>
+
+            <div class="scripture">
+                "Y vio יהוה que la maldad del hombre era mucha... y se
+                entristeció en su corazón."
+            </div>
+
+            <p>
+                El verbo וַיִּתְעַצֵּב (vayit'atzév) expresa una profunda
+                tristeza interior, un dolor divino. El Creador sufre ante la
+                corrupción de Su obra. En la lectura mesiánica, este "dolor"
+                anticipa el corazón traspasado del Mashíaj, quien carga el peso
+                de la maldad humana (Zacarías 12:10; Yojanán 19:34).
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Comentario espiritual:</p>
+                <p>
+                    El arrepentimiento de יהוה no implica error, sino compasión:
+                    Su santidad no puede tolerar la maldad, pero Su amor provee
+                    el medio de escape —el Arca.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔍 8. Génesis 6:8 – La gracia revelada</h1>
+
+            <div class="scripture">
+                "Pero Noaj halló ḥen (חֵן – gracia) ante los ojos de יהוה."
+            </div>
+
+            <p>
+                Esta es la primera aparición de la palabra ḥen en toda la Toráh
+                —la raíz de la "gracia" divina. es חֵן (58) es la
+                misma que de נֹחַ (Noaj), mostrando una relación inseparable
+                entre gracia y reposo.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Cumplimiento mesiánico:</p>
+                <p>En el Mashíaj, esa gracia se revela plenamente:</p>
+                <div class="scripture">
+                    "Porque la Toráh fue dada por medio de Moshé, pero la gracia
+                    (ḥesed) y la verdad vinieron por medio de Yeshúa haMashíaj."
+                    (Yojanán 1:17)
+                </div>
+                <p>
+                    Así como Noaj halló gracia en medio del juicio, los
+                    redimidos hallan gracia en el sacrificio del Cordero.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🕊 9. Síntesis Profética del Pasaje</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Elemento</th>
+                        <th>Significado en Bereshit</th>
+                        <th>Cumplimiento en el Mashíaj</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Metushélaj</td>
+                        <td>El juicio retrasado</td>
+                        <td>
+                            La paciencia de Elohím en Yeshúa (2 Pedro 3:9)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lémekh</td>
+                        <td>La profecía del consuelo</td>
+                        <td>Mashíaj como "Menajem" (Consolador)</td>
+                    </tr>
+                    <tr>
+                        <td>Noaj</td>
+                        <td>Justo hallando gracia</td>
+                        <td>Mashíaj, el Justo que redime</td>
+                    </tr>
+                    <tr>
+                        <td>El Arca</td>
+                        <td>Refugio del juicio</td>
+                        <td>El cuerpo de Yeshúa, salvación eterna</td>
+                    </tr>
+                    <tr>
+                        <td>El Diluvio</td>
+                        <td>Purificación de la tierra</td>
+                        <td>Inmersión del creyente, regeneración</td>
+                    </tr>
+                    <tr>
+                        <td>El Ruaj contendiendo</td>
+                        <td>Misericordia limitada</td>
+                        <td>Ruaj HaKodesh ofreciendo redención</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🌿 10. Aplicación Espiritual</h1>
+
+            <ul>
+                <li>
+                    <strong>Caminar con Elohím como Noaj</strong> – fe obediente
+                    en medio de corrupción.
+                </li>
+                <li>
+                    <strong>Construir el Arca interior</strong> – una vida
+                    guiada por el Ruaj y la Toráh.
+                </li>
+                <li>
+                    <strong>Anunciar el juicio y la gracia</strong> – proclamar
+                    a Yeshúa como refugio.
+                </li>
+                <li>
+                    <strong>Confiar en la paciencia de Elohím</strong> –
+                    aprovechar el tiempo de gracia antes del juicio final.
+                </li>
+                <li>
+                    <strong>Vivir bajo el favor divino (ḥen)</strong> – la
+                    gracia no anula la obediencia, la fortalece.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <h2>✡️ 11. Conclusión Profética y Mesiánica</h2>
+
+            <p>
+                El mensaje de Bereshit 5:25–6:8 es el anuncio del patrón
+                redentor eterno:
+            </p>
+
+            <p class="highlight" style="text-align: center">
+                Creación → Corrupción → Juicio → Salvación → Nueva Creación.
+            </p>
+
+            <p>En cada etapa, el Mashíaj está presente:</p>
+
+            <ul>
+                <li>En Metushélaj, la paciencia del Eterno.</li>
+                <li>En Noaj, el Justo que halla gracia.</li>
+                <li>En el Arca, Su sacrificio expiatorio.</li>
+                <li>En el Ruaj, Su presencia vivificante.</li>
+            </ul>
+
+            <p>
+                Por tanto, el Elohím que juzgó por agua es el mismo que redime
+                por sangre. Y el reposo (Noaj) que la humanidad busca solo se
+                encuentra en el Mashíaj Yeshúa ישוע, el Consuelo eterno
+                prometido desde Bereshit.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>
+            🕎 Punto 7 – Tema Más Relevante de la Aliyáh (Bereshit 5:25–6:8)
+        </h1>
+        <h3>
+            (Ministerio Judío Mesiánico de Biblia Toráh Viviente – Estudio de
+            la Toráh 2025)
+        </h3>
+
+        <div class="section-container">
+            <h2>
+                📜 Tema Central: "La Gracia y el Reposo de יהוה revelados en
+                Noaj como sombra profética del Mashíaj Yeshúa"
+            </h2>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 1. Introducción Teológica</h2>
+
+            <p>
+                Esta Aliyáh culmina la Parashá Bereshit, el primer ciclo de la
+                historia humana, y presenta el primer acto de redención en la
+                Toráh. El mundo, corrompido por la mezcla de carne y pecado,
+                está destinado al juicio, pero en medio del caos surge una
+                palabra de esperanza:
+            </p>
+
+            <div class="verse-container">
+                <div class="hebrew">וְנֹחַ מָצָא חֵן בְּעֵינֵי יהוה</div>
+                <div class="translation">
+                    "Pero Noaj halló ḥen (gracia) ante los ojos de יהוה."
+                    (Bereshit 6:8)
+                </div>
+            </div>
+
+            <p>
+                Aquí aparece por primera vez la palabra חֵן (ḥen) —"gracia" o
+                "favor inmerecido"—, que marca el inicio del lenguaje redentor
+                en toda la Escritura. Este "ḥen" no es mera benevolencia, sino
+                la manifestación del amor redentor de Elohím hacia los que le
+                temen y caminan en fidelidad.
+            </p>
+
+            <p>
+                El tema central, por tanto, es la revelación de la gracia
+                salvadora de יהוה a través de un justo que trae reposo y
+                renovación al mundo: Noaj, figura mesiánica del Mashíaj Yeshúa,
+                el reposo y la gracia encarnados.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 2. Noaj como sombra profética del Mashíaj</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Noaj נח</th>
+                        <th>Yeshúa ישוע</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Su nombre significa "descanso / reposo".</td>
+                        <td>
+                            Él declara: "Yo os haré descansar" (Mattityahu
+                            11:28).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Halló gracia ante יהוה.</td>
+                        <td>
+                            Es la manifestación viva de la gracia (Yojanán
+                            1:17).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Fue justo e íntegro en su generación.</td>
+                        <td>
+                            Es el Tzadik perfecto, sin pecado (Ivrim / Heb
+                            4:15).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Construyó el Arca para salvar a su casa.</td>
+                        <td>
+                            Edifica Su Kehiláh como arca espiritual (1 Kefa
+                            3:20–21).
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Salvó un remanente de la destrucción.</td>
+                        <td>
+                            Redime a un remanente fiel de todas las naciones.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Inicia un nuevo comienzo tras el juicio.</td>
+                        <td>
+                            Inaugura la nueva creación mediante Su resurrección.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="highlight">
+                👉 El patrón redentor de Noaj es el modelo mesiánico eterno.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 3. Tema Profético: "Juicio y Gracia"</h2>
+
+            <p>
+                El pasaje enseña que Elohím no destruye sin antes proveer un
+                medio de salvación. Antes del diluvio, יהוה envió Su aviso
+                mediante Noaj —el predicador de justicia (2 Kefa 2:5)—; de igual
+                manera, antes del juicio final, envía a Su Ungido, Yeshúa
+                haMashíaj, como refugio y redención.
+            </p>
+
+            <p>
+                El contraste entre la corrupción del hombre (6:5) y la gracia
+                sobre Noaj (6:8) revela el principio eterno:
+            </p>
+
+            <div class="scripture">
+                "Donde abundó el pecado, sobreabundó la gracia." (Rom 5:20)
+            </div>
+
+            <p>
+                El juicio y la misericordia no son opuestos; ambos fluyen del
+                mismo corazón divino. El propósito del juicio es purificar, no
+                destruir, preparando el terreno para una nueva creación.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 4. Conexión con los Profetas</h2>
+
+            <div class="prophetic-section">
+                <p class="prophetic-title">📖 Isaías 54:9–10</p>
+                <div class="scripture">
+                    "Como en los días de Noaj será esto para mí; juré que las
+                    aguas de Noaj no pasarían más sobre la tierra... mi amor no
+                    se apartará de ti."
+                </div>
+                <p>
+                    El "amor eterno" (חֶסֶד עוֹלָם ḥéset olam) prometido por
+                    יהוה en Isaías se cumple en Yeshúa, quien es la encarnación
+                    del ḥesed y el pacto de paz eterno. Isaías confirma que el
+                    pacto de Noaj fue solo una sombra del Pacto de Redención
+                    Mesiánico.
+                </p>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">📖Ezequiel 14:14</p>
+                <div class="scripture">
+                    "Aunque estuvieran Noaj, Daniel y Job, sólo ellos por su
+                    justicia librarían sus almas."
+                </div>
+                <p>
+                    Ezequiel reconoce a Noaj como símbolo del justo que
+                    intercede por su generación. De igual manera, Yeshúa, el
+                    Tzadik de Elohím, intercede continuamente por Su pueblo ante
+                    el trono celestial (Ivrim 7:25).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 5. Cumplimiento en el Brit Hadasháh</h2>
+
+            <div class="prophetic-section">
+                <p class="prophetic-title">📖 1 Kefa 3:18–22</p>
+                <p>
+                    Kefa (Pedro) explica que las aguas del diluvio representan
+                    la teviláh, y que el Arca simboliza al Mashíaj mismo.
+                </p>
+                <div class="scripture">
+                    "El Mashíaj padeció una vez por los pecados, el Justo por
+                    los injustos, para llevarnos a Elohím... en los días de
+                    Noaj, mientras se preparaba el arca..."
+                </div>
+
+                <p><strong>El agua que juzga también salva:</strong></p>
+                <p class="arrow">
+                    → En el Arca, las aguas del juicio se transforman en aguas
+                    de purificación.
+                </p>
+                <p class="arrow">
+                    → En el Mashíaj, la muerte se transforma en vida.
+                </p>
+
+                <p><strong>El Arca tiene una sola puerta:</strong></p>
+                <div class="scripture">
+                    → "Yo soy la puerta; el que por mí entrare, será salvo."
+                    (Yojanán 10:9)
+                </div>
+
+                <p>
+                    <strong
+                        >El número ocho (ocho almas salvadas) simboliza nueva
+                        creación.</strong
+                    >
+                </p>
+                <p class="arrow">
+                    → Yeshúa resucitó en el "octavo día", señal del nuevo
+                    comienzo de la humanidad redimida.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 6. El Ruaj HaKodesh y la contención divina</h2>
+
+            <div class="scripture">
+                "No permanecerá mi Ruaj en el hombre para siempre…" (6:3)
+            </div>
+
+            <p>
+                Este versículo anuncia la limitación del tiempo de gracia. Antes
+                del diluvio, el Ruaj contendía con la humanidad por 120 años.
+                Hoy, el Ruaj HaKodesh sigue contendiendo con los corazones,
+                llamando al arrepentimiento antes del juicio final.
+            </p>
+
+            <p>
+                En el plan profético, Yeshúa es quien envía el Ruaj HaKodesh
+                (Yojanán 16:7) para advertir, convencer y renovar, continuando
+                la misma obra de misericordia que comenzó en los días de Noaj.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 7. Tema Espiritual: "El Arca y el Reposo"</h2>
+
+            <p>
+                El Arca representa el refugio del justo. Así como Noaj entró al
+                Arca y fue sellado por יהוה, el creyente entra en el Mashíaj y
+                es sellado por el Ruaj HaKodesh (Efesios 1:13). El reposo (nuaj)
+                es tanto físico como espiritual:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Físico</strong>, porque Elohím detiene el juicio
+                    para preservar un remanente.
+                </li>
+                <li>
+                    <strong>Espiritual</strong>, porque en Yeshúa hallamos paz
+                    con Elohím.
+                </li>
+            </ul>
+
+            <div class="scripture">
+                "Y la paz de Elohím, que sobrepasa todo entendimiento, guardará
+                vuestros corazones y pensamientos en el Mashíaj Yeshúa." (Fil
+                4:7)
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 8. Conexión con los Moedim de Elohím</h2>
+
+            <p>
+                El tema de Noaj y el Arca se conecta tipológicamente con Pesaj
+                (פֶּסַח):
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspecto</th>
+                        <th>Noaj</th>
+                        <th>Pesaj</th>
+                        <th>Yeshúa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Juicio</strong></td>
+                        <td>Aguas del Diluvio</td>
+                        <td>Plagas sobre Egipto</td>
+                        <td>Juicio sobre el pecado</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Salvación</strong></td>
+                        <td>Arca sellada</td>
+                        <td>Casa con sangre del Cordero</td>
+                        <td>Sangre del Mashíaj</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Paso a nueva vida</strong></td>
+                        <td>Salida del Arca</td>
+                        <td>Salida de Egipto</td>
+                        <td>Resurrección</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pacto</strong></td>
+                        <td>Arco en las nubes</td>
+                        <td>Cordero del pacto</td>
+                        <td>Pacto eterno en Su sangre</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Así, Noaj prefigura al Cordero de Pésaj, que salva del juicio y
+                conduce a la libertad del alma.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔹 9. Enseñanza Profética y Contemporánea</h2>
+
+            <ul>
+                <li>
+                    La generación de Noaj refleja nuestros días, donde la
+                    violencia (jamás) y la corrupción dominan.
+                </li>
+                <li>
+                    Como en los días de Noaj, el Mashíaj está edificando el Arca
+                    espiritual —Su Kehiláh— para refugiar a los que creen antes
+                    del juicio final.
+                </li>
+                <li>
+                    El mensaje de Noaj es el mensaje de Yeshúa: "Shuvú –
+                    Arrepentíos, porque el Reino de los Cielos se ha acercado."
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <h2>🔹 10. Conclusión Mesiánica</h2>
+
+            <p>
+                El tema más relevante de esta Aliyáh es el descubrimiento de la
+                <strong>Gracia Divina (ḥen)</strong> como revelación anticipada
+                del Mashíaj, quien es el Noaj eterno, el que trae reposo,
+                consuelo y salvación.
+            </p>
+
+            <p>En Bereshit 6:8, se resume el evangelio primigenio:</p>
+
+            <div class="scripture">
+                "Pero Noaj halló gracia ante los ojos de יהוה."
+            </div>
+
+            <p>
+                Esa gracia no fue otorgada por mérito, sino por elección divina
+                —una elección que se cumple en Yeshúa haMashíaj, donde la gracia
+                se hace carne y habita entre nosotros (Yojanán 1:14).
+            </p>
+
+            <p>Así, el mensaje espiritual de esta Aliyáh proclama:</p>
+
+            <ul>
+                <li>Hay corrupción, pero también hay gracia.</li>
+                <li>Hay juicio, pero también hay salvación.</li>
+                <li>Hay muerte, pero también hay resurrección en el Mashíaj.</li>
+            </ul>
+
+            <p class="highlight" style="margin-top: 20px">
+                El mismo Elohím que se entristeció por la maldad del hombre,
+                proveyó el Arca —Su propio Mashíaj— para que la humanidad halle
+                refugio y descanso en Él.
+            </p>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>🕎 Punto 8 – Descubriendo al Mashíaj en cada Aliyáh</h1>
+        <h2>Aliyáh de Bereshit (Génesis) 5:25–6:8</h2>
+        <h3>(Ministerio Judío Mesiánico de Biblia Toráh Viviente – Estudio 2025)</h3>
+
+        <div class="section-container">
+            <h2>📜 Tema Central:</h2>
+            <p class="highlight" style="text-align: center">
+                "El Mashíaj Yeshúa, el Noaj eterno: portador del reposo, la
+                gracia y el Arca de salvación antes del juicio."
+            </p>
+            <p>
+                Esta Aliyáh contiene una revelación mesiánica completa: el
+                principio del patrón redentor de Elohím en toda la historia
+                bíblica. Desde el justo Noaj hasta el Justo por excelencia,
+                Yeshúa, el texto presenta un conjunto de figuras, profecías y
+                patrones espirituales que se cumplen en el Mashíaj.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔯 1. El Nombre "Noaj" y el Reposo Mesiánico</h2>
+
+            <div class="verse-container">
+                <div class="hebrew">
+                    וַיִּקְרָא אֶת־שְׁמוֹ נֹחַ לֵאמֹר זֶה יְנַחֲמֵנוּ מִמַּעֲשֵׂנוּ
+                </div>
+                <div class="translation">
+                    "Y llamó su nombre Noaj, diciendo: Este nos consolará de
+                    nuestras obras." (Bereshit 5:29)
+                </div>
+            </div>
+
+            <p>
+                El nombre נֹחַ (Noaj) viene de la raíz נוּחַ (nuaj) —"reposar,
+                descansar"— y se asocia también con נחם (najam) —"consolar" o
+                "aliviar el dolor". Este doble sentido revela la naturaleza
+                redentora del Mashíaj: dar reposo y consuelo al alma afligida
+                por el pecado.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Cumplimiento en Yeshúa:</p>
+                <ul>
+                    <li>
+                        "Venid a mí todos los trabajados y cargados, y yo os
+                        haré descansar (anuaj)." (Mattityahu 11:28)
+                    </li>
+                    <li>
+                        "Yo os daré otro Menajem (Consolador) para que esté con
+                        vosotros." (Yojanán 14:16)
+                    </li>
+                </ul>
+                <p class="highlight">
+                    👉 Noaj prefigura al Mashíaj que trae reposo y consolación
+                    al mundo cansado bajo el peso de la maldición de Adán.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🕊 2. Metushélaj – El Justo cuya muerte retrasa el juicio</h2>
+
+            <div class="scripture">
+                "Metushélaj vivió 187 años y engendró a Lémekh." (Bereshit
+                5:25)
+            </div>
+
+            <p>
+                El nombre מְתוּשֶׁלַח (Metushélaj) significa literalmente "cuando
+                muera, será enviado" o "su muerte traerá". Su vida representa la
+                paciencia divina; el juicio del Diluvio no vino hasta el año de
+                su muerte.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Tipología mesiánica:</p>
+                <p>
+                    Metushélaj → símbolo del Mashíaj sufriente, cuya muerte abre
+                    la puerta de la salvación antes del juicio final.
+                </p>
+                <p>
+                    Así como la muerte de Metushélaj anunció el Diluvio, la
+                    muerte de Yeshúa anuncia la redención y el nuevo pacto.
+                </p>
+                <div class="scripture">
+                    "El Justo padeció una vez por los injustos, para llevarnos a
+                    Elohím." (1 Kefa 3:18)
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🌈 3. El Arca – Figura profética del Mashíaj</h2>
+
+            <p>
+                Aunque el mandato de construir el Arca aparece en la siguiente
+                Parashá, su concepción espiritual comienza aquí, cuando Noaj
+                halla gracia ante los ojos de יהוה (6:8).
+            </p>
+
+            <p>
+                La palabra תֵּבָה (tevah) significa no solo "arca" sino también
+                "palabra" en el hebreo antiguo; así, el Arca simboliza al Davar
+                Elohím viviente —la Palabra encarnada, Yeshúa.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Elemento del Arca</th>
+                        <th>Significado Mesiánico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Una puerta única</td>
+                        <td>
+                            "Yo soy la puerta; el que por mí entrare, será
+                            salvo." (Yojanán 10:9)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sellada con "kófer" (resina/expiación)</td>
+                        <td>
+                            Raíz de "Kippur"; simboliza la cobertura de la
+                            sangre del Mashíaj.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Elevada sobre las aguas</td>
+                        <td>
+                            La resurrección del Justo sobre las aguas del
+                            juicio.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Refugio para un remanente</td>
+                        <td>La Kehiláh mesiánica salvada del juicio.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="highlight">
+                👉 El Arca es el Mashíaj mismo, la única entrada a la salvación.
+                Fuera de Él, solo hay caos y destrucción.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔥 4. El Diluvio y la Teviláh (Inmersión)</h1>
+
+            <p>
+                El juicio del Diluvio no solo destruyó, sino que purificó la
+                tierra. El agua simboliza muerte y resurrección, el paso de lo
+                viejo a lo nuevo.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 1 Kefa 3:20–21</p>
+                <div class="scripture">
+                    "Ocho almas fueron salvadas por medio del agua, figura de la
+                    teviláh, la cual ahora os salva, no como eliminación de la
+                    impureza, sino como la respuesta de una conciencia pura hacia
+                    Elohím."
+                </div>
+                <p>
+                    Así como las aguas elevaron el Arca, las aguas de la teviláh
+                    elevan al creyente en el Mashíaj a una nueva vida. En ambos
+                    casos, la gracia transforma el juicio en redención.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🌿 5. El Juicio Universal – Anticipación del Día del Mashíaj</h1>
+
+            <div class="scripture">
+                "Y vio יהוה que la maldad del hombre era mucha… y se entristeció
+                en Su corazón." (6:5–6)
+            </div>
+
+            <p>
+                El Diluvio es figura del Día de יהוה (Yom יהוה), cuando el mundo
+                será purificado nuevamente, no con agua sino con fuego (2 Kefa
+                3:6–7). Sin embargo, así como antes del Diluvio Elohím preparó un
+                Arca, antes del juicio final ha preparado al Mashíaj como
+                refugio eterno.
+            </p>
+
+            <p>Yeshúa advirtió:</p>
+            <div class="scripture">
+                "Como en los días de Noaj, así será la venida del Hijo del
+                Hombre." (Mattityahu 24:37)
+            </div>
+
+            <p class="highlight">
+                👉 En ambos contextos, el llamado es el mismo: arrepentimiento y
+                refugio en la gracia.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>
+                ✡️ 6. Noaj halló gracia – Revelación de la Salvación por Ḥen
+                (Gracia)
+            </h1>
+
+            <div class="verse-container">
+                <div class="hebrew">וְנֹחַ מָצָא חֵן בְּעֵינֵי יהוה.</div>
+                <div class="translation">(6:8)</div>
+            </div>
+
+            <p>
+                El término חֵן (ḥen) aparece aquí por primera vez en la Toráh.
+                Curiosamente, sus letras ח (jet) y ן (nun) forman un espejo
+                inverso visual —una representación de la gracia que invierte el
+                juicio. Además, נֹחַ (Noaj) es ḥen escrito al revés: una
+                inversión espiritual que muestra cómo el reposo del hombre
+                proviene del favor de Elohím.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Cumplimiento en el Mashíaj:</p>
+                <div class="scripture">
+                    "Porque la Toráh fue dada por medio de Moshé; la gracia
+                    (ḥesed) y la verdad vinieron por medio de Yeshúa haMashíaj."
+                    (Yojanán 1:17)
+                </div>
+                <p>
+                    Así, la primera mención de ḥen anuncia la revelación del
+                    Mesías de la gracia, el Noaj eterno que redime y reposa sobre
+                    Su pueblo.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🕯 7. Profecías Mesiánicas Prefiguradas</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Profecía</th>
+                        <th>Figura en Bereshit 5–6</th>
+                        <th>Cumplimiento en Yeshúa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>El Justo que sufre para salvar</td>
+                        <td>Noaj, "varón justo e íntegro"</td>
+                        <td>"El Justo por los injustos" (1 Kefa 3:18)</td>
+                    </tr>
+                    <tr>
+                        <td>La paciencia divina antes del juicio</td>
+                        <td>120 años de espera</td>
+                        <td>
+                            Misericordia antes del Día del Juicio (2 Kefa 3:9)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>La salvación por el agua</td>
+                        <td>Diluvio / Arca</td>
+                        <td>Teviláh / Resurrección</td>
+                    </tr>
+                    <tr>
+                        <td>El nuevo comienzo</td>
+                        <td>Mundo postdiluviano</td>
+                        <td>Nueva creación en el Ruaj (2 Cor 5:17)</td>
+                    </tr>
+                    <tr>
+                        <td>El reposo prometido</td>
+                        <td>Noaj = Reposo</td>
+                        <td>"Yo os haré descansar." (Matt 11:28)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                Cada elemento del relato antediluviano anticipa la obra redentora
+                del Mashíaj: sufrimiento, paciencia, purificación, reposo y nueva
+                creación.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔯 8. Conexión con los Profetas</h1>
+
+            <div class="prophetic-section">
+                <p class="prophetic-title">🕎 Isaías 54:9–10</p>
+                <div class="scripture">
+                    "Como en los días de Noaj será esto para mí... no se apartará
+                    de ti mi ḥesed."
+                </div>
+                <p>
+                    El profeta ve el pacto de Noaj como tipo del pacto mesiánico
+                    de paz (Brit Shalom). Yeshúa, al derramar Su sangre,
+                    estableció este pacto eterno:
+                </p>
+                <div class="scripture">
+                    "Mi paz os dejo, mi paz os doy." (Yojanán 14:27)
+                </div>
+            </div>
+
+            <div class="prophetic-section">
+                <p class="prophetic-title">🔥 Isaías 45:1–2</p>
+                <div class="scripture">
+                    "Así dice יהוה a Su Ungido (Meshijó)…"
+                </div>
+                <p>
+                    Ciro fue figura del Ungido que abriría las puertas cerradas;
+                    Yeshúa cumple esto espiritualmente al abrir las puertas del
+                    Sheol y del Cielo.
+                </p>
+                <p>
+                    Así, el Elohím que obró en los días de Noaj es el mismo que
+                    actúa en los días del Mashíaj: el que juzga y redime con una
+                    sola mano.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>📖 9. Conexión con el Brit Hadasháh</h1>
+
+            <p>
+                El apóstol Kefa (Pedro) establece un paralelo directo entre Noaj
+                y Yeshúa:
+            </p>
+
+            <div class="scripture">
+                "El Mashíaj padeció una vez... y en el Ruaj proclamó a los
+                espíritus encarcelados, los que fueron desobedientes en los días
+                de Noaj." (1 Kefa 3:18–20)
+            </div>
+
+            <p>
+                Este pasaje muestra al Mashíaj descendiendo al Sheol, proclamando
+                Su victoria sobre la muerte —como el Arca que flotó sobre las
+                aguas del juicio—, asegurando la redención del remanente justo.
+            </p>
+
+            <p>
+                Yeshúa, como Noaj, cruza el caos de la muerte y emerge en una
+                nueva creación.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🌿 10. Aplicación Espiritual</h1>
+
+            <ul>
+                <li>
+                    <strong>Construir el Arca interior:</strong> cada acto de
+                    obediencia edifica el refugio del alma en Yeshúa.
+                </li>
+                <li>
+                    <strong
+                        >Caminar en justicia en medio de la corrupción:</strong
+                    >
+                    vivir como Noaj —íntegro en una generación impía.
+                </li>
+                <li>
+                    <strong
+                        >Entrar al Arca antes de que venga el diluvio:</strong
+                    >
+                    recibir al Mashíaj hoy, antes del juicio.
+                </li>
+                <li>
+                    <strong>Revelar la gracia (ḥen) en la vida diaria:</strong>
+                    manifestar la compasión y pureza del Mashíaj al mundo.
+                </li>
+                <li>
+                    <strong>Esperar el reposo eterno:</strong> el Arca finalmente
+                    descansa; así también la Kehiláh reposará en la redención
+                    completa.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <h2>✡️ 11. Conclusión Mesiánica</h2>
+
+            <p>
+                El Mashíaj Yeshúa es el cumplimiento total de la revelación de
+                Noaj:
+            </p>
+
+            <ul>
+                <li>El Justo que intercede.</li>
+                <li>El Consolador que da descanso.</li>
+                <li>El Arca que preserva.</li>
+                <li>El Ruaj que contiene el juicio.</li>
+                <li>La Gracia que vence al pecado.</li>
+                <li>El Nuevo comienzo que inaugura el Reino.</li>
+            </ul>
+
+            <p>
+                Así como el Arca fue elevada por las aguas del juicio, el Mashíaj
+                fue levantado por el poder del Ruaj haKodesh sobre la muerte. Y
+                como Noaj trajo un mundo nuevo, Yeshúa traerá los "shamayim
+                jadashím ve'eretz jadasháh" (cielos nuevos y tierra nueva).
+            </p>
+
+            <div class="scripture">
+                "Porque como fueron los días de Noaj, así será la venida del Hijo
+                del Hombre." (Mattityahu 24:37)
+            </div>
+
+            <p class="highlight" style="margin-top: 20px">
+                El mensaje sigue siendo el mismo: La puerta del Arca está
+                abierta, la gracia todavía fluye, y el reposo se halla en el
+                Mashíaj Yeshúa.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>
+            🕎 Punto 9 – Midrashim, Targumim, Textos Fuentes y Apócrifos
+        </h1>
+        <h2>Aliyáh Bereshit (Génesis) 5:25–6:8</h2>
+        <h3>
+            (Ministerio Judío Mesiánico de Biblia Toráh Viviente – Estudio 2025)
+        </h3>
+
+        <div class="section-container">
+            <h2>📜 Tema Central:</h2>
+            <p class="highlight" style="text-align: center">
+                "Las fuentes midráshicas, targúmicas y apócrifas sobre los días
+                de Noaj revelan el patrón mesiánico de juicio y redención."
+            </p>
+            <p>
+                Esta sección explora cómo los textos judíos antiguos, los
+                comentarios rabínicos y las tradiciones orales interpretaron el
+                período antediluviano, y cómo, desde una lectura mesiánica, todo
+                el conjunto apunta proféticamente hacia Yeshúa haMashíaj, el
+                "Noaj eterno" que ofrece gracia antes del juicio.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔯 1. Midrash Bereshit Rabbah (בראשית רבה)</h2>
+
+            <p>El Midrash Rabbah 30:4–10 comenta:</p>
+
+            <div class="scripture">
+                "La generación del Diluvio se había corrompido en cuerpo y alma,
+                hasta que יהוה dijo: 'Mi Ruaj no contenderá con ellos para
+                siempre.' Pero Noaj halló gracia, porque permaneció apartado y
+                justo ante su generación."
+            </div>
+
+            <p>
+                El Midrash resalta que la palabra "תמים" (tamim) —"perfecto,
+                íntegro"— indica pureza moral y espiritual, no perfección
+                absoluta. El texto añade que Noaj advirtió a su generación
+                durante 120 años, construyendo el arca como testimonio visible
+                del juicio venidero.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Comentario mesiánico:</p>
+                <p>
+                    Esto refleja la obra profética del Mashíaj Yeshúa, quien
+                    también predicó justicia y misericordia a una generación
+                    perversa (cf. Mattityahu 23). Ambos son "predicadores de
+                    justicia" (2 Kefa 2:5), ofreciendo gracia antes del juicio.
+                </p>
+            </div>
+
+            <p>El Midrash continúa:</p>
+
+            <div class="scripture">
+                "Cada golpe del martillo de Noaj fue un llamado al
+                arrepentimiento."
+            </div>
+
+            <p class="highlight">
+                👉 En el contexto mesiánico, cada palabra del Mashíaj fue también
+                un golpe espiritual que advertía al mundo del juicio venidero y
+                llamaba a la teshuváh (arrepentimiento).
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🕎 2. Midrash Tanjuma (תנחומא) – Parashá Noaj</h2>
+
+            <p>
+                El Midrash Tanjuma desarrolla la idea de que el arca era una
+                enseñanza viva sobre la salvación:
+            </p>
+
+            <div class="scripture">
+                "Así como Noaj fue ordenado a entrar en el arca para ser salvado,
+                así Israel debe entrar en la Toráh para hallar refugio."
+            </div>
+
+            <p>
+                En la lectura mesiánica, este principio se cumple en Yeshúa,
+                quien es llamado HaDavar —la Palabra viviente—, la Toráh
+                encarnada (Yojanán 1:14). Por tanto, entrar en la Toráh equivale
+                a entrar en el Mashíaj, el verdadero Arca.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Aplicación mesiánica:</p>
+                <p>El Tanjuma describe tres niveles de salvación:</p>
+                <ul>
+                    <li>El Arca física – preserva del agua.</li>
+                    <li>La Toráh escrita – preserva del error.</li>
+                    <li>El Mashíaj – preserva del juicio eterno.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🔯 3. Targum Onkelos y Targum Yonatán</h2>
+
+            <p>
+                Los Targumim arameos —traducciones y comentarios antiguos del
+                texto hebreo— añaden detalles significativos.
+            </p>
+
+            <div class="prophetic-section">
+                <p class="prophetic-title">📘 Targum Onkelos sobre Génesis 6:8:</p>
+                <div class="scripture">
+                    "Pero Noaj halló gracia y misericordia ante יהוה, porqueera justo en sus obras."
+                </div>
+                <p>
+                    La adición de la palabra "misericordia" (rachamé) muestra que
+                    el concepto de gracia y compasión divina ya estaba entendido
+                    como dos aspectos del mismo amor redentor. Esto anticipa la
+                    combinación mesiánica de ḥen (gracia) y ḥesed (misericordia)
+                    revelada en Yeshúa (Yojanán 1:17).
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <p class="prophetic-title">
+                    📘 Targum Yonatán sobre Génesis 6:3:
+                </p>
+                <div class="scripture">
+                    "Y dijo יהוה: No permanecerá mi Ruaj de santidad en el hombre
+                    por siempre, pues él es carne; y le daré ciento veinte años
+                    para volver en teshuváh."
+                </div>
+                <p>
+                    Este comentario explica que los 120 años fueron un tiempo de
+                    gracia ofrecido al arrepentimiento, no simple cuenta regresiva
+                    del juicio. El propósito del Ruaj era restaurar, no destruir.
+                </p>
+            </div>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Aplicación mesiánica:</p>
+                <p>
+                    Del mismo modo, el Ruaj HaKodesh en el Brit Hadashá obra para
+                    convencer al mundo de pecado, justicia y juicio (Yojanán
+                    16:8), extendiendo un tiempo de arrepentimiento antes de la
+                    consumación final.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>
+                ✡️ 4. Midrash Pirkei deRabí Eliezer (פרקי דרבי אליעזר, cap. 22)
+            </h1>
+
+            <p>Este midrash relata:</p>
+
+            <div class="scripture">
+                "Durante ciento veinte años, Noaj plantó cedros y los cortó, y al
+                preguntarle por qué, respondía: 'Porque יהוה traerá el Diluvio
+                sobre la tierra.' Pero ellos se burlaban de él."
+            </div>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Comentario mesiánico:</p>
+                <p>Esta burla prefigura el rechazo del Mashíaj por su generación:</p>
+                <div class="scripture">
+                    "Se mofaron de Él, le escupieron y le dijeron: ¡Baja de la
+                    estaca, si eres el Hijo de Elohím!" (Mattityahu 27:40)
+                </div>
+                <p>
+                    Así como Noaj fue despreciado por preparar el Arca, Yeshúa fue
+                    despreciado por anunciar el Reino. Ambos fueron signos
+                    proféticos del juicio inminente y de la salvación que pocos
+                    aceptarían.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>📜 5. Texto de Qumrán – 1QapGen (Apócrifo de Bereshit, 1Q20)</h1>
+
+            <p>
+                Los manuscritos de Qumrán contienen una versión expandida del
+                relato antediluviano. En el Apócrifo de Bereshit (1QapGen, col.
+                II–V), se detalla el nacimiento milagroso de Noaj:
+            </p>
+
+            <div class="scripture">
+                "Cuando nació Noaj, su cuerpo era blanco como la nieve, su
+                cabello como lana, y sus ojos iluminaban la casa; y su padre
+                Lémekh temió, diciendo: 'De los malajim del cielo ha venido este
+                hijo.'"
+            </div>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Interpretación mesiánica:</p>
+                <p>
+                    Esta descripción recuerda la visión de Daniel 7:9 y
+                    Apocalipsis 1:14, donde el Hijo del Hombre aparece "blanco
+                    como la lana y resplandeciente". El texto de Qumrán proyecta
+                    sobre Noaj un aura celestial que, en clave profética, anticipa
+                    al Mashíaj encarnado —el Hombre del Cielo (1 Cor 15:47).
+                </p>
+                <p>
+                    Aunque el texto qumránico no es canónico, confirma la
+                    percepción temprana de Noaj como figura celestial, una "imagen
+                    del Justo divino".
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔥 6. Libro de Janoj (1 Henoc 6–10)</h1>
+
+            <p>
+                El Libro de Janoj —citadísimo en la literatura judía del Segundo
+                Templo y aludido en 1 Kefa y Yehudáh— amplía los eventos de
+                Génesis 6:1–4:
+            </p>
+
+            <div class="scripture">
+                "Los Vigilantes (Irin) descendieron a la tierra, tomaron esposas
+                de entre los hombres, y enseñaron violencia y artes ocultas."
+            </div>
+
+            <p>
+                Aunque su interpretación varía, el tema central es la corrupción
+                del orden divino y la intervención del Justo. Janoj anuncia el
+                juicio de Elohím mediante el Diluvio, y la preservación de un
+                hombre justo: Noaj.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Conexión mesiánica:</p>
+                <p>
+                    El Mashíaj, como "Justo vigilante" (Irin Tzadik), desciende no
+                    para corromper, sino para redimir. En el Brit Hadashá, Yeshúa
+                    desciende a los lugares más bajos (Sheol) para proclamar
+                    victoria (1 Kefa 3:19), cumpliendo la profecía simbólica de
+                    Janoj.
+                </p>
+                <div class="scripture">
+                    "He aquí, vino el Santo del cielo, y los ángeles de la
+                    rebelión fueron juzgados." (1 Henoc 10:12–14)
+                </div>
+                <p>
+                    Así, el libro de Janoj refuerza el concepto de un mediador
+                    celestial que ejecuta justicia —figura cumplida en el Mashíaj.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🌿 7. Midrash HaNeelam y el Zóhar (Parashá Noaj 66a–68a)</h1>
+
+            <p>Aunque de época posterior, el Zóhar comenta:</p>
+
+            <div class="scripture">
+                "El Arca representa el Nombre Santo de יהוה, y quien entra en
+                ella entra en Su misericordia."
+            </div>
+
+            <p>
+                Esta afirmación, leída mesiánicamente, significa que el Arca es
+                símbolo del Mashíaj-YHWH mismo. Entrar en el Arca equivale a
+                entrar en la presencia del Eterno manifestada en el Ungido.
+            </p>
+
+            <div class="prophetic-content">
+                <p class="prophetic-title">📖 Aplicación espiritual:</p>
+                <p>
+                    El creyente que entra en el Mashíaj —como Noaj en el Arca— se
+                    reviste de Su Nombre, Su gracia y Su vida.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>✡️ 8. Síntesis de las Fuentes y Lectura Mesiánica</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fuente</th>
+                        <th>Enseñanza principal</th>
+                        <th>Revelación mesiánica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bereshit Rabbah</td>
+                        <td>Noaj justo en su generación; paciencia divina</td>
+                        <td>Yeshúa justo en medio de corrupción</td>
+                    </tr>
+                    <tr>
+                        <td>Tanjuma</td>
+                        <td>El Arca = refugio en la Toráh</td>
+                        <td>El Mashíaj = Toráh viviente</td>
+                    </tr>
+                    <tr>
+                        <td>Targum Onkelos</td>
+                        <td>Gracia y misericordia ante יהוה</td>
+                        <td>Gracia revelada en Yeshúa</td>
+                    </tr>
+                    <tr>
+                        <td>Pirkei deRabí Eliezer</td>
+                        <td>Noaj predica durante 120 años</td>
+                        <td>Yeshúa anuncia el Reino antes del juicio</td>
+                    </tr>
+                    <tr>
+                        <td>1QapGen (Qumrán)</td>
+                        <td>Noaj con aspecto celestial</td>
+                        <td>Mashíaj, Hombre del Cielo</td>
+                    </tr>
+                    <tr>
+                        <td>1 Henoc</td>
+                        <td>Juicio sobre los vigilantes</td>
+                        <td>Mashíaj desciende y juzga la corrupción espiritual</td>
+                    </tr>
+                    <tr>
+                        <td>Zóhar</td>
+                        <td>El Arca = Nombre de יהוה</td>
+                        <td>El Mashíaj es la manifestación del Nombre divino</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <h1>🔯 9. Conclusión Profética y Espiritual</h1>
+
+            <p>
+                El conjunto de fuentes —canónicas, midráshicas y apócrifas—
+                convergen en un solo mensaje: El justo que halla gracia y
+                preserva la vida antes del juicio es el prototipo del Mashíaj.
+            </p>
+
+            <ul>
+                <li>Noaj representa el primer redentor del mundo físico.</li>
+                <li>
+                    Yeshúa haMashíaj es el redentor eterno del mundo espiritual.
+                </li>
+            </ul>
+
+            <p>Ambos son señal del mismo Elohím:</p>
+
+            <div class="scripture">
+                "El que juzgó el mundo por agua, juzgará otra vez, pero ahora
+                ofrece el Arca del Cordero."
+            </div>
+
+            <p class="highlight" style="margin-top: 20px">
+                Así, los midrashim y los textos antiguos no solo relatan
+                historia, sino que profetizan el misterio de la gracia: La
+                manifestación de יהוה mismo en el Mashíaj Yeshúa, para ofrecer
+                refugio antes del fuego del juicio final.
+            </p>
+        </div>
+    </div>
+    <div class="content-container">
+        <h1>🕎 Punto 10 – Mandamientos, Principios y Valores</h1>
+        <h2>Aliyáh Bereshit (Génesis) 5:25–6:8</h2>
+        <p style="text-align: center; font-style: italic;">(Ministerio Judío Mesiánico de Biblia Toráh Viviente – Estudio 2025)</p>
+
+        <div class="section-container">
+            <h3>📜 Tema Central:</h3>
+            <p class="scripture">"Los principios eternos revelados antes de la Toráh escrita: fidelidad, justicia, pureza y obediencia como expresión de la gracia."</p>
+            
+            <p>Esta Aliyáh —desde Metushélaj hasta Noaj— revela los fundamentos éticos universales del Reino de Elohím.</p>
+            <p>Aunque aún no se había entregado la Toráh en Sinaí, aquí se establecen las primeras mitzvot (mandamientos implícitos) y valores espirituales que guían la conducta del ser humano redimido.</p>
+            <p>Cada principio apunta a la naturaleza del Mashíaj, que los cumple perfectamente en Su vida y enseñanza.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔯 1. Mandamiento de la Pureza y Santidad (קדושה)</h1>
+            
+            <p class="scripture">"Vio יהוה que la maldad del hombre era mucha en la tierra..." (Bereshit 6:5)</p>
+            
+            <p>La corrupción generalizada se describe con el término <span class="hebrew-term">חָמָס</span> (jamás) —violencia, injusticia, perversión.</p>
+            <p>De aquí surge el principio de kedusháh (santidad), separación del mal moral y espiritual.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Aplicación mesiánica:</div>
+                <p>Yeshúa haMashíaj enseñó la misma ley espiritual:</p>
+                <p class="scripture">"Bienaventurados los limpios de corazón, porque ellos verán a Elohím." (Mattityahu 5:8)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Ser santos en medio de una generación corrupta.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            La santidad no es aislamiento, sino fidelidad activa a la voluntad de Elohím.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🕊 2. Mandamiento de la Justicia (צדק) y la Rectitud (תמים)</h1>
+            
+            <p class="scripture">"Noaj fue varón justo (צַדִּיק) e íntegro (תָּמִים) en sus generaciones." (6:9, continúa la sección)</p>
+            
+            <p>El texto enfatiza que Noaj practicaba justicia y honestidad en todos sus caminos.</p>
+            <p>La justicia no era legalista, sino fruto de una relación viva con יהוה.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Cumplimiento mesiánico:</div>
+                <p>El Mashíaj Yeshúa es llamado "el Tzadik", el Justo por excelencia:</p>
+                <p class="scripture">"El Justo padeció una vez por los injustos, para llevarnos a Elohím." (1 Kefa 3:18)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Caminar en justicia y verdad delante de Elohím, no conforme al mundo.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            Integridad (tamim) = coherencia entre fe y acción; fundamento del discipulado mesiánico.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🌿 3. Mandamiento de la Teshuváh (Arrepentimiento) y la Paciencia Divina</h1>
+            
+            <p class="scripture">"No permanecerá mi Ruaj en el hombre para siempre… le daré ciento veinte años." (6:3)</p>
+            
+            <p>יהוה otorga un tiempo de misericordia antes del juicio.</p>
+            <p>Este es el primer ejemplo de la longanimidad divina (erej apáyim), invitando al arrepentimiento (teshuváh).</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Aplicación mesiánica:</div>
+                <p>El Ruaj HaKodesh cumple hoy la misma función:</p>
+                <p class="scripture">"Él convencerá al mundo de pecado, de justicia y de juicio." (Yojanán 16:8)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Responder a la voz del Ruaj, volviendo a Elohím con un corazón arrepentido.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            El tiempo de gracia es limitado; cada día es una oportunidad para retornar al Arca —el Mashíaj.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>✡️ 4. Mandamiento de la Fidelidad al Pacto y la Familia</h1>
+            
+            <p class="scripture">"Noaj engendró tres hijos: Shem, Jám y Yéfet." (5:32)</p>
+            
+            <p>En medio de la corrupción moral, Noaj preservó su hogar en pureza.</p>
+            <p>La fidelidad conyugal y familiar es una mitzváh primordial antes de Sinaí.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Conexión profética:</div>
+                <p>Yeshúa enseña la santidad del vínculo familiar como reflejo del Reino:</p>
+                <p class="scripture">"Desde el principio los hizo varón y hembra." (Mattityahu 19:4–6)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Guardar la santidad del hogar, transmitiendo fe y obediencia a las generaciones.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            El hogar es la primera arca de salvación; la fe se hereda con la enseñanza y el ejemplo.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔥 5. Mandamiento de la Separación del Mal (בדל)</h1>
+            
+            <p class="scripture">"Los hijos de Elohím vieron que las hijas de los hombres eran hermosas…" (6:2)</p>
+            
+            <p>Este episodio enseña el principio de no mezclarse con lo profano.</p>
+            <p>La unión entre los "hijos de Elohím" y las "hijas de los hombres" simboliza la mezcla espiritual entre los fieles y los impíos.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Cumplimiento mesiánico:</div>
+                <p>El Mashíaj llama a Sus discípulos a una vida de distinción espiritual:</p>
+                <p class="scripture">"No ruego que los saques del mundo, sino que los guardes del mal." (Yojanán 17:15)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Evitar alianzas espirituales y morales que corrompan la fe.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            La santidad se preserva con discernimiento, no con aislamiento extremo.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🕎 6. Mandamiento de la Fe Obediente (אמונה)</h1>
+            
+            <p class="scripture">"Y Noaj halló gracia ante los ojos de יהוה." (6:8)</p>
+            
+            <p>La palabra "hallar gracia" implica una respuesta activa: la fe obediente que actúa conforme a la instrucción divina.</p>
+            <p>Noaj no fue salvo solo por creer, sino por actuar de acuerdo con lo que creyó.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Conexión mesiánica:</div>
+                <p class="scripture">"Por la fe, Noaj, advertido por Elohím acerca de lo que aún no se veía, preparó el arca para la salvación de su casa." (Ivrim / Heb 11:7)</p>
+                <p>Yeshúa manifestó esta misma obediencia perfecta:</p>
+                <p class="scripture">"Mi alimento es hacer la voluntad del que me envió." (Yojanán 4:34)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Responder con acción a la instrucción divina, sin demora ni duda.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            La fe verdadera se demuestra construyendo el "Arca" de obediencia antes de ver la lluvia.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🌈 7. Mandamiento de la Responsabilidad hacia la Creación</h1>
+            
+            <p class="scripture">"Y se corrompió la tierra delante de Elohím." (6:11, contexto inmediato)</p>
+            
+            <p>Aunque el texto menciona corrupción moral, el hebreo sugiere también deterioro físico del orden creado.</p>
+            <p>La humanidad había abusado de la tierra, quebrantando su propósito original.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Aplicación mesiánica:</div>
+                <p>El Mashíaj Yeshúa es llamado "Adon de la creación" (Adón ha-Briyáh), y enseña respeto y mayordomía hacia lo creado.</p>
+                <p class="scripture">"Bienaventurados los mansos, porque ellos heredarán la tierra." (Mattityahu 5:5)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Cuidar, preservar y honrar la creación como reflejo de la gloria de Elohím.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            La tierra es un testigo del pacto; la destrucción ecológica refleja rebeldía espiritual.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>✡️ 8. Mandamiento de la Gracia Activa (חֵן פועל)</h1>
+            
+            <p>"Noaj halló gracia…" — pero no la recibió pasivamente.</p>
+            <p>La gracia (ḥen) se tradujo en acción: obediencia, construcción y testimonio.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Cumplimiento mesiánico:</div>
+                <p>La gracia del Mashíaj no es licencia para pecar, sino poder para obedecer.</p>
+                <p class="scripture">"Por la gracia de Elohím soy lo que soy, y Su gracia no fue en vano; antes trabajé más que todos ellos." (1 Corintios 15:10)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Usar la gracia como fuerza transformadora.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            La verdadera gracia produce santidad y servicio, no pasividad.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🔯 9. Principio del Reposo Espiritual (Menucháh)</h1>
+            
+            <p>El nombre Noaj significa "descanso", y su vida representa el equilibrio entre trabajo, fe y confianza.</p>
+            <p>Este principio espiritual apunta al Shabat mesiánico —el reposo eterno en la redención.</p>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Cumplimiento mesiánico:</div>
+                <p class="scripture">"Venid a mí… y hallaréis reposo (menucháh) para vuestras almas." (Mattityahu 11:29)</p>
+            </div>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Buscar el descanso en Elohím, no en las obras humanas.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            El verdadero descanso no es ausencia de labor, sino comunión continua con יהוה por medio del Mashíaj.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>🌿 10. Principio de la Gracia Universal</h1>
+            
+            <p>Aunque el mundo estaba perdido, Elohím salva un remanente.</p>
+            <p>Esto anticipa el principio mesiánico de la redención universal: un Elohím que desea salvar, no destruir.</p>
+            
+            <p class="scripture">"Noaj halló gracia…" → "Porque Elohím no quiere que ninguno perezca, sino que todos procedan al arrepentimiento." (2 Kefa 3:9)</p>
+            
+            <p><strong>Mandamiento implícito:</strong><br>
+            Extender la misericordia divina al prójimo, siendo canales de gracia.</p>
+            
+            <p><strong>Valor espiritual:</strong><br>
+            Ser imitadores del Mashíaj, ofreciendo perdón donde hay pecado, esperanza donde hay juicio.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>✡️ Resumen de Mitzvot y Valores Espirituales</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mandamiento / Principio</th>
+                        <th>Expresión en la Aliyáh</th>
+                        <th>Cumplimiento en el Mashíaj</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pureza y Santidad</td>
+                        <td>"La tierra se llenó de jamás."</td>
+                        <td>Yeshúa, ejemplo de pureza interior.</td>
+                    </tr>
+                    <tr>
+                        <td>Justicia y Rectitud</td>
+                        <td>Noaj justo e íntegro.</td>
+                        <td>El Justo que intercede.</td>
+                    </tr>
+                    <tr>
+                        <td>Teshuváh y Misericordia</td>
+                        <td>120 años de paciencia divina.</td>
+                        <td>El tiempo de gracia en el Brit Hadashá.</td>
+                    </tr>
+                    <tr>
+                        <td>Fidelidad familiar</td>
+                        <td>Noaj preserva su casa.</td>
+                        <td>Yeshúa forma Su familia espiritual.</td>
+                    </tr>
+                    <tr>
+                        <td>Separación del mal</td>
+                        <td>"Los hijos de Elohím vieron las hijas de los hombres."</td>
+                        <td>El llamado a la santidad del Reino.</td>
+                    </tr>
+                    <tr>
+                        <td>Fe obediente</td>
+                        <td>Noaj construye el Arca.</td>
+                        <td>Yeshúa cumple toda voluntad divina.</td>
+                    </tr>
+                    <tr>
+                        <td>Mayordomía de la creación</td>
+                        <td>La tierra corrompida.</td>
+                        <td>Restauración cósmica del Mashíaj.</td>
+                    </tr>
+                    <tr>
+                        <td>Gracia activa</td>
+                        <td>"Noaj halló ḥen."</td>
+                        <td>Gracia transformadora en Yeshúa.</td>
+                    </tr>
+                    <tr>
+                        <td>Reposo espiritual</td>
+                        <td>Significado de su nombre.</td>
+                        <td>Reposo eterno en el Mashíaj.</td>
+                    </tr>
+                    <tr>
+                        <td>Gracia universal</td>
+                        <td>Salvación del remanente.</td>
+                        <td>Redención para toda nación.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="conclusion">
+            <h3>🔯 Conclusión Mesiánica</h3>
+            
+            <p>La Aliyáh de Bereshit 5:25–6:8 enseña que incluso antes de la Toráh escrita, la voluntad divina ya se revelaba en principios universales de justicia, pureza, fe, misericordia y gracia.</p>
+            <p>Estos mandamientos preparan el corazón del hombre para recibir la revelación plena del Mashíaj Yeshúa, quien los encarna todos.</p>
+            
+            <p class="scripture">"La Toráh fue dada por Moshé, pero la gracia y la verdad vinieron por medio de Yeshúa haMashíaj." (Yojanán 1:17)</p>
+            
+            <p>Él es el Noaj eterno, el Justo que halla gracia, el Mediador del pacto y el Maestro de justicia que enseña cómo vivir en rectitud antes del juicio final.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>🕎 Punto 11 – Preguntas de Reflexión y Respuestas en el Mashíaj Yeshúa</h1>
+        <h2>Aliyáh Bereshit (Génesis) 5:25–6:8</h2>
+        <p style="text-align: center; font-style: italic;">(Ministerio Judío Mesiánico de Biblia Toráh Viviente – Estudio 2025)</p>
+
+        <div class="section-container">
+            <h3>📜 Tema Central:</h3>
+            <p class="scripture">"El Reposo y la Gracia de יהוה revelados en Noaj נח y cumplidos plenamente en el Mashíaj Yeshúa ישוע."</p>
+            
+            <p>Esta Aliyáh presenta el inicio de la línea mesiánica que pasa por Noaj —el hombre justo que halla gracia en medio de la corrupción— y nos invita a reflexionar sobre cómo ese mismo patrón se cumple en la obra redentora del Mashíaj.</p>
+            
+            <p>A continuación, se presentan cinco preguntas teológicas y espirituales con sus respuestas desde la perspectiva del cumplimiento en Yeshúa haMashíaj, centradas en la redención, la gracia, el juicio y la fe.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>🔹 1. ¿Por qué Noaj halló gracia ante los ojos de יהוה, y cómo se cumple esto en el Mashíaj?</h3>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Texto:</div>
+                <p class="scripture">"Pero Noaj halló ḥen (חֵן, gracia) ante los ojos de יהוה." (Bereshit 6:8)</p>
+            </div>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">🕊 Reflexión:</div>
+                <p>Noaj no fue perfecto, pero su corazón era recto ante Elohím. Su justicia no provenía de la perfección humana, sino de la fe obediente.</p>
+                <p>El texto muestra que la gracia precede a la obediencia, y no al revés.</p>
+            </div>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">✡️ Respuesta en el Mashíaj:</div>
+                <p>Yeshúa es la manifestación viva de la gracia (ḥen).</p>
+                <p>Él no solo halló favor ante Elohím, sino que es la fuente del favor divino para toda la humanidad.</p>
+                
+                <p class="scripture">"Porque la Toráh fue dada por Moshé, pero la gracia (ḥesed) y la verdad vinieron por medio de Yeshúa haMashíaj." (Yojanán 1:17)</p>
+                
+                <p>Así como Noaj halló gracia y salvó a su familia, en Yeshúa hallamos gracia que salva eternamente; Él es el Arca donde la humanidad puede refugiarse del juicio.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>🔹 2. ¿Qué significa que el Ruaj de Elohím no contendería para siempre con el hombre (6:3)?</h3>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">📖 Texto:</div>
+                <p class="scripture">"Y dijo יהוה: No permanecerá mi Ruaj en el hombre para siempre, porque él es carne."</p>
+            </div>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">🕊 Reflexión:</div>
+                <p>Este versículo revela que hay un límite para la paciencia divina. La contención del Ruaj indica el llamado constante al arrepentimiento. La humanidad resistía esa voz interior, prefiriendo la corrupción.</p>
+            </div>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">✡️ Respuesta en el Mashíaj:</div>
+                <p>En Yeshúa se cumple la plenitud del Ruaj:</p>
+                
+                <p class="scripture">"El Ruaj de יהוה está sobre mí, por cuanto me ha ungido…" (Yeshayahu 61:1 / Lucas 4:18)</p>
+                
+                <p>El Mashíaj, al enviar el Ruaj HaKodesh, continúa esa obra de misericordia:</p>
+                
+                <p class="scripture">"Convencerá al mundo de pecado, justicia y juicio." (Yojanán 16:8)</p>
+                
+                <p>Hoy el Ruaj no contendrá para siempre; sin embargo, mientras estamos en el tiempo de gracia, el Mashíaj sigue llamando al arrepentimiento antes del juicio final.</p>
+                <p>La paciencia de Elohím en los días de Noaj es la misma paciencia manifestada en la obra redentora de Yeshúa (2 Kefa 3:9).</p>
+            </div>
+<div class="content-container">
+
+<p class="scripture">“La paz os dejo, mi paz os doy.” (Yojanán 14:27)</p>
+<p>
+En Yeshúa, el reposo y la consolación de Elohím se hacen realidad:
+Noaj nos alivia del trabajo de nuestras manos; Yeshúa nos libera del
+peso del pecado.
+</p>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+
+<h1>5. ¿Qué lección deja el contraste entre la corrupción de la generación de Noaj y la justicia del Mashíaj?</h1>
+
+
+<div class="section-container">
+<p class="question">📖 Texto:</p>
+<p class="scripture">
+“Y se corrompió la tierra delante de Elohím, y se llenó la tierra de
+jamás (violencia).” (6:11)
+</p>
+
+
+<p class="question">🕊 Reflexión:</p>
+<p>
+La generación de Noaj representa un mundo donde la mezcla entre lo
+santo y lo profano lleva a la destrucción. Noaj fue justo entre los
+impíos, caminando en integridad a pesar de la presión social.
+</p>
+
+
+<p class="question">✡️ Respuesta en el Mashíaj:</p>
+<p>
+El Mashíaj Yeshúa es el modelo supremo de justicia en medio de la
+corrupción. Así como Noaj fue justo en su generación, Yeshúa fue sin
+pecado en un mundo de pecado.
+</p>
+
+
+<p class="scripture">
+“El Príncipe de este mundo viene, pero no tiene nada en mí.” (Yojanán
+14:30)
+</p>
+
+
+<p>
+La vida del creyente debe reflejar esa misma separación y santidad.
+“Como en los días de Noaj, así será la venida del Hijo del Hombre.”
+(Mattityahu 24:37)
+</p>
+
+
+<p>
+El llamado es claro: Caminar como Noaj —en justicia y gracia— es
+caminar como el Mashíaj Yeshúa. Quien se mantiene fiel hallará el Arca
+de salvación cuando el juicio venga.
+</p>
+</div>
+
+
+<div class="section-divider"></div>
+
+<div class="conclusion">
+  <h1>Conclusión Mesiánica</h1>
+<p>
+La Aliyáh de Bereshit 5:25–6:8 revela que el mensaje de Noaj no es
+historia antigua, sino profecía viva del Mashíaj. En Él se cumple
+todo:
+</p>
+
+
+<ul>
+<li>La gracia (<span class="hebrew-term">חֵן</span>) que salva.</li>
+<li>El Ruaj que advierte.</li>
+<li>El juicio que purifica.</li>
+<li>El reposo (<span class="hebrew-term">מְנוּחָה</span>) que restaura.</li>
+<li>Y la justicia que redime.</li>
+</ul>
+
+
+<p class="scripture">
+“Como en los días de Noaj, así será la venida del Hijo del Hombre.”
+— Yeshúa haMashíaj (Mattityahu 24:37)
+</p>
+
+
+<p>
+Él es el Arca viva; en Él está la gracia, el consuelo y la vida
+eterna. Solo quien entra por Su puerta hallará reposo en medio de las
+</p>
+</div>
+<div class="content-container">
+      <h1>🕎 Punto 12 – Resumen de la Aliyáh (Bereshit 5:25–6:8)</h1>
+
+      <div class="section-container">
+        <h2>
+          (Ministerio Judío Mesiánico de Biblia Toráh Viviente – Estudio 2025)
+        </h2>
+
+        <p><strong>📜 Tema General:</strong></p>
+        <p>
+          “De la corrupción del mundo antiguo a la revelación de la gracia: la
+          figura de Noaj como sombra del Mashíaj Yeshúa, el reposo eterno en
+          medio del juicio.”
+        </p>
+
+        <p>
+          Esta Aliyáh es el cierre profético de la Parashá Bereshit, y su
+          mensaje atraviesa toda la historia bíblica: el hombre se corrompe, el
+          juicio se acerca, pero la gracia de Elohím se manifiesta a través de
+          un justo —Noaj נח— quien anticipa la venida del Mashíaj Yeshúa ישוע,
+          el Justo que salva a la humanidad del juicio final.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h2>🔯 1. Resumen Narrativo</h2>
+        <p>
+          Desde Metushélaj, cuyo nombre significa “cuando muera, será enviado”,
+          hasta Noaj, la genealogía de Adán llega a su punto más profético. En
+          este período:
+        </p>
+        <ul>
+          <li>
+            La humanidad se multiplica, pero con ello se multiplican la violencia
+            (חָמָס jamás) y la corrupción moral.
+          </li>
+          <li>
+            Elohím declara que Su Ruaj no contenderá para siempre con el hombre,
+            estableciendo un límite de 120 años para el arrepentimiento.
+          </li>
+          <li>
+            En medio de esa generación perversa, Noaj —varón justo e íntegro—
+            halla gracia ante los ojos de יהוה.
+          </li>
+        </ul>
+        <p>
+          El clímax del relato llega con esta frase decisiva:
+          <span class="scripture"
+            >“Pero Noaj halló ḥen (gracia) ante los ojos de יהוה.” (Bereshit
+            6:8)</span
+          >
+        </p>
+        <p>
+          Este verso es la semilla de todo el plan redentor de Elohím: gracia
+          que vence el juicio.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h2>🌿 2. Estructura Espiritual del Relato</h2>
+        <table>
+          <tr>
+            <th>Etapa</th>
+            <th>Descripción</th>
+            <th>Significado Profético</th>
+          </tr>
+          <tr>
+            <td>Corrupción</td>
+            <td>“La maldad del hombre era mucha.”</td>
+            <td>Condición humana caída.</td>
+          </tr>
+          <tr>
+            <td>Contención del Ruaj</td>
+            <td>Paciencia divina de 120 años.</td>
+            <td>Misericordia antes del juicio.</td>
+          </tr>
+          <tr>
+            <td>Juicio anunciado</td>
+            <td>Ruptura del orden divino.</td>
+            <td>Justicia inevitable.</td>
+          </tr>
+          <tr>
+            <td>Hallazgo de Gracia</td>
+            <td>“Noaj halló ḥen.”</td>
+            <td>Salvación por fe y favor divino.</td>
+          </tr>
+          <tr>
+            <td>Nuevo comienzo</td>
+            <td>Nacimiento de Shem, Jám y Yéfet.</td>
+            <td>Promesa de restauración a través de un linaje santo.</td>
+          </tr>
+        </table>
+        <p>
+          Cada elemento de esta estructura apunta al proceso completo del plan
+          mesiánico: Advertencia → Juicio → Gracia → Redención → Nuevo pacto.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h2>✡️ 3. El Mensaje Profético y su Cumplimiento en el Mashíaj</h2>
+        <p>
+          La historia de Noaj es la primera manifestación del evangelio eterno:
+          el Elohím que juzga es el mismo que redime.
+        </p>
+
+        <p class="prophetic-title">🔹 Juicio anunciado</p>
+        <p>
+          “Y vio יהוה que la maldad del hombre era mucha…” El juicio revela la
+          santidad del Creador; el pecado no puede permanecer impune.
+        </p>
+
+        <p class="prophetic-title">🔹 Gracia ofrecida</p>
+        <p>
+          “Noaj halló gracia ante los ojos de יהוה.” Antes del juicio, Elohím
+          ofrece gracia; antes del fuego, un Arca; antes de la condena, el
+          Mashíaj.
+        </p>
+
+        <p class="prophetic-title">🔹 Cumplimiento en Yeshúa haMashíaj</p>
+        <p>
+          Yeshúa es el Noaj eterno, el Justo que recibe gracia y la otorga. En
+          Él, la humanidad halla refugio del juicio venidero.
+        </p>
+        <p class="scripture">
+          “Porque la gracia (ḥesed) y la verdad vinieron por medio de Yeshúa
+          haMashíaj.” (Yojanán 1:17)
+        </p>
+        <p>
+          En la Brit Hadashá, Kefa (Pedro) conecta directamente a Noaj con
+          Yeshúa:
+        </p>
+        <p class="scripture">
+          “El Mashíaj padeció una vez por los pecados… en los días de Noaj,
+          mientras se preparaba el Arca.” (1 Kefa 3:18–20)
+        </p>
+        <p>
+          Así, el Arca es figura del Mashíaj mismo, y las aguas del Diluvio
+          representan el juicio transformado en redención por Su sacrificio.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h2>🕊 4. Principios Eternos Revelados</h2>
+        <ul>
+          <li>
+            <strong>El tiempo de misericordia es limitado:</strong> Elohím
+            espera con paciencia, pero Su justicia se manifestará. →
+            <span class="scripture"
+              >Yeshúa anuncia lo mismo: “Como en los días de Noaj…” (Mattityahu
+              24:37).</span
+            >
+          </li>
+          <li>
+            <strong>El justo vive por fe:</strong> Noaj creyó lo invisible y
+            actuó conforme a la palabra de Elohím. →
+            <span class="scripture"
+              >“Por la fe, Noaj preparó el Arca.” (Ivrim / Hebreos 11:7).</span
+            >
+          </li>
+          <li>
+            <strong>La obediencia preserva la vida:</strong> La fe sin acción es
+            muerte; Noaj obró movido por la fe. →
+            <span class="scripture"
+              >Yeshúa obedeció hasta la muerte, y por Su obediencia muchos son
+              hechos justos.</span
+            >
+          </li>
+          <li>
+            <strong>La gracia transforma el juicio:</strong> El mismo acto que
+            destruye al impío salva al justo. →
+            <span class="scripture"
+              >En el Mashíaj, el madero—símbolo de muerte— se convierte en
+              instrumento de vida eterna.</span
+            >
+          </li>
+          <li>
+            <strong>El reposo proviene del favor divino:</strong> Noaj significa
+            “reposo”; Yeshúa ofrece Menucháh (reposo) eterno. →
+            <span class="scripture">“Yo os haré descansar.” (Mattityahu 11:28).</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <h2>🔥 5. Simbolismo Mesiánico de los Personajes y Elementos</h2>
+        <table>
+          <tr>
+            <th>Elemento</th>
+            <th>Significado Espiritual</th>
+            <th>Cumplimiento en Yeshúa</th>
+          </tr>
+          <tr>
+            <td>Metushélaj</td>
+            <td>La paciencia de Elohím antes del juicio.</td>
+            <td>La muerte del Justo antes del juicio final.</td>
+          </tr>
+          <tr>
+            <td>Lémekh</td>
+            <td>La profecía del consuelo.</td>
+            <td>El Padre que anuncia el Consolador (Menajem).</td>
+          </tr>
+          <tr>
+            <td>Noaj</td>
+            <td>El justo que halla gracia.</td>
+            <td>El Mashíaj que da gracia a toda la humanidad.</td>
+          </tr>
+          <tr>
+            <td>El Arca</td>
+            <td>Refugio del juicio.</td>
+            <td>El Mashíaj, refugio eterno.</td>
+          </tr>
+          <tr>
+            <td>Las aguas</td>
+            <td>Juicio purificador.</td>
+            <td>La teviláh (bautismo) en la muerte y resurrección.</td>
+          </tr>
+          <tr>
+            <td>El Ruaj</td>
+            <td>Contención divina.</td>
+            <td>El Ruaj HaKodesh que llama al arrepentimiento.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="section-container">
+        <h2>🌈 6. Conexión Profética con la Haftaráh y el Brit Hadasháh</h2>
+
+        <p><strong>✡️ Haftaráh: Yeshayahu (Isaías) 44:24–45:2</strong></p>
+        <p>
+          Isaías presenta a Elohím como el Creador y Redentor que abre caminos
+          donde no los hay. → En Noaj, Elohím abre un camino sobre las aguas. →
+          En Yeshúa, abre un camino en medio de la muerte.
+        </p>
+        <p class="scripture">
+          “Yo soy יהוה, el que hace todas las cosas… que dice a las aguas:
+          secaos.” (Isaías 44:24–27)
+        </p>
+        <p>
+          El mismo que controló las aguas del Diluvio controla las aguas del
+          juicio eterno.
+        </p>
+
+        <p><strong>✡️ Brit Hadasháh: 1 Kefa (Pedro) 3:18–22</strong></p>
+        <p>
+          Pedro explica que las aguas del Diluvio simbolizan la teviláh
+          mesiánica —la purificación interior. Yeshúa, como el Arca, lleva al
+          creyente a través de las aguas del juicio hacia la nueva vida del
+          Ruaj.
+        </p>
+        <p class="scripture">
+          “Esto es figura de la teviláh, la cual ahora os salva… por la
+          resurrección del Mashíaj.”
+        </p>
+        <p>
+          Así, Noaj y Yeshúa son dos manifestaciones del mismo plan redentor:
+          juicio transformado en salvación.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h2>🕎 7. Aplicación Espiritual Contemporánea</h2>
+        <ul>
+          <li>
+            <strong>Vivir como Noaj en una generación corrupta:</strong>
+            Mantener integridad, fe y obediencia en medio de la injusticia.
+          </li>
+          <li>
+            <strong>Construir el Arca interior:</strong> Formar una vida
+            fundamentada en la Toráh y el Mashíaj, que soporte las tormentas del
+            juicio.
+          </li>
+          <li>
+            <strong>Entrar por la puerta del Arca:</strong> Aceptar al Mashíaj
+            Yeshúa como único camino hacia la vida.
+          </li>
+          <li>
+            <strong>Caminar en gracia, no en mérito:</strong> Noaj fue salvo por
+            gracia, no por obras; el creyente también vive por gracia
+            redentora.
+          </li>
+          <li>
+            <strong>Esperar el reposo prometido:</strong> El Arca reposa sobre
+            las aguas; así, el alma descansa en la redención del Mashíaj.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container conclusion">
+        <h2>✡️ 8. Conclusión Mesiánica y Profética</h2>
+        <p>
+          La Aliyáh de Bereshit 5:25–6:8 encierra el evangelio eterno en su
+          forma más antigua: la revelación del Elohím que juzga con justicia,
+          pero ofrece salvación por gracia.
+        </p>
+        <p><strong>El mensaje es eterno:</strong></p>
+        <p class="scripture">
+          “El Justo hallará gracia ante los ojos de יהוה.”
+        </p>
+        <p>
+          Yeshúa haMashíaj es el cumplimiento pleno de este misterio: Él es el
+          Noaj celestial, que construye el Arca de la fe. Es la Puerta única por
+          la cual se entra al reposo. Es la Gracia personificada, que se derrama
+          sobre el justo y el pecador. Es el Ruaj que contiende, llamando al
+          arrepentimiento. Es el Hijo del Hombre que juzgará como en los días de
+          Noaj.
+        </p>
+        <p>
+          El mismo Elohím que extendió Su mano para cerrar el Arca (Bereshit
+          7:16) extenderá Su mano nuevamente para sellar la redención final.
+          Quien hoy entra en esa Arca —el Mashíaj Yeshúa— hallará vida y reposo
+          eterno bajo el pacto de gracia.
+        </p>
+        <p class="scripture">
+          “Porque el juicio será transformado en salvación, y la justicia en
+          reposo, en el día del Mashíaj.” (Reflexión basada en 1 Kefa 3:18 y
+          Yeshayahu 54:9–10)
+        </p>
+      </div>
+    </div>
+    <div class="content-container">
+      <h1>🕎 Punto 13 – Tefiláh (Oración) de la Aliyáh Bereshit 5:25–6:8</h1>
+
+      <div class="section-container">
+        <h2>📜 Tema de la Oración</h2>
+        <p class="scripture">
+          “Que hallemos gracia ante Tus ojos, oh <span class="hebrew-term"
+            >יהוה</span
+          >, como Noaj, y que caminemos en integridad y fe en el Mashíaj Yeshúa,
+          Arca de salvación y reposo eterno.”
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h2>✡️ Tefiláh – Oración Mesiánica basada en Bereshit 5:25–6:8</h2>
+
+        <div class="prayer-text">
+          <p>
+            Adonái <span class="hebrew-term">יהוה</span> Elohím Ejad, Creador de
+            los cielos y de la tierra, el que sostuvo el mundo por Tu palabra
+            cuando la corrupción lo cubría, y en Tu misericordia escogiste a un
+            justo —Noaj נח— para preservar la vida y mostrar la senda de Tu
+            favor, te damos gracias hoy porque Tu gracia no ha cambiado.
+          </p>
+
+          <p>
+            Tú eres el mismo que hablaste en los días antiguos y aún hablas a
+            través del Ruaj HaKodesh, llamando a toda carne al arrepentimiento
+            antes del juicio. Nos acercamos a Ti, no por mérito, sino por la ḥen
+            (gracia) que hallamos en Yeshúa haMashíaj, el Justo que padeció por
+            los injustos para llevarnos a Ti.
+          </p>
+
+          <p>
+            Como Noaj edificó el Arca por fe, así deseamos edificar nuestras
+            vidas sobre la roca viva que es el Mashíaj. Que cada acto de
+            obediencia sea una tabla de esa Arca, y cada palabra de fe un clavo
+            que la afirme en medio de las aguas del juicio.
+          </p>
+
+          <p>
+            Enséñanos, oh <span class="hebrew-term">יהוה</span>, a vivir con
+            integridad (tamim) y justicia (tzedek) en medio de una generación
+            corrompida, a guardar pureza en nuestros hogares y fidelidad en
+            nuestras generaciones, para que cuando las aguas se levanten,
+            encontremos refugio bajo Tu cobertura santa.
+          </p>
+
+          <p>
+            Oh Elohím de misericordia, así como cerraste con Tu propia mano la
+            puerta del Arca, sella también nuestros corazones en el Mashíaj,
+            para que nada de lo que venga pueda apartarnos de Tu amor.
+          </p>
+
+          <p>
+            Haz que nuestros ojos vean lo invisible, que nuestros oídos escuchen
+            Tu voz antes que el trueno, y que nuestros pies caminen en la senda
+            estrecha que lleva a la vida.
+          </p>
+
+          <p>
+            Que seamos mensajeros de justicia como Noaj, advirtiendo al mundo
+            con amor y verdad, no por temor al castigo, sino por celo por Tu
+            gloria.
+          </p>
+
+          <p>
+            Ruaj HaKodesh, inspíranos a perseverar cuando la maldad aumenta, y
+            recuérdanos que en cada generación hay un remanente que halla
+            gracia. Haznos parte de ese remanente fiel, que espera con esperanza
+            viva la manifestación gloriosa del Mashíaj.
+          </p>
+
+          <p>
+            Yeshúa, Arca de nuestra redención, te damos gracias porque en Ti las
+            aguas del juicio se convierten en aguas de vida, y en Ti el Diluvio
+            se transforma en teviláh que purifica el alma.
+          </p>
+
+          <p>
+            Tú eres nuestro Noaj celestial, nuestro reposo (Menucháh) en medio
+            del caos, nuestra paz en medio del estruendo de las aguas.
+          </p>
+
+          <p>
+            Hoy renovamos nuestro pacto contigo: vivir por fe, caminar en
+            santidad y anunciar Tu favor a las naciones. Que nuestras manos sean
+            justas, nuestros corazones humildes, y nuestros labios portadores de
+            Tu nombre santo.
+          </p>
+
+          <p>
+            <span class="hebrew-term">יהוה</span>, que en el día de la prueba,
+            cuando el mundo vuelva a ser como en los días de Noaj, nos halles
+            velando, anclados en el Arca del Cordero, cubiertos por la sangre
+            del Pacto eterno, esperando la voz que diga: “Entra, tú y tu casa,
+            porque he visto justicia delante de mí.”
+          </p>
+
+          <p>
+            Sea Tu Nombre exaltado, Tu gracia manifestada, y Tu Reino
+            establecido en nuestras vidas y en toda la creación, hasta que la
+            tierra sea llena del conocimiento de
+            <span class="hebrew-term">יהוה</span> como las aguas cubren el mar.
+          </p>
+
+          <p class="prayer-conclusion">
+            B’shem Yeshúa haMashíaj, el Justo, el Refugio, el Noaj eterno, Amén,
+            amén.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-container conclusion">
+        <h2>🌿 Reflexión Final de la Tefiláh</h2>
+        <p>
+          Esta oración une los tres ejes proféticos de la Aliyáh:
+          <strong>Gracia hallada</strong> —la experiencia personal del favor
+          divino.
+        </p>
+        <p>
+          <strong>Fe obediente</strong> —la construcción del Arca en medio de la
+          incredulidad.
+        </p>
+        <p>
+          <strong>Reposo en el Mashíaj</strong> —la paz de Elohím en medio del
+          juicio.
+        </p>
+        <p>
+          La tefiláh nos recuerda que, así como Noaj fue preservado por gracia,
+          todo aquel que entra en el Arca del Mashíaj será preservado para vida
+          eterna.
+        </p>
+        <p class="scripture">
+          “Porque hallamos reposo en Él, y en Su gracia somos salvos.” (Reflexión
+          de Hebreos 4:1–11; 1 Kefa 3:18–22)
+        </p>
+      </div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../index.html">Ir al contenido de las 54 parashot</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
