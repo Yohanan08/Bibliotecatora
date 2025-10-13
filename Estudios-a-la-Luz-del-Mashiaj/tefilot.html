@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tefilot</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+           body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+/* ✨ Ajuste general de párrafos para menos separación */
+p {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+/* ✨ Espaciado compacto y limpio para las tefilot */
+.tefilah p {
+  margin: 4px 0;
+  line-height: 1.5;
+}
+
+.verse-container {
+  margin-bottom: 30px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.verse-number {
+  font-weight: bold;
+  color: #000;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.hebrew {
+  font-family: 'Times New Roman', serif;
+  direction: rtl;
+  font-size: 1.1em;
+  margin: 10px 0;
+}
+
+.transliteration {
+  font-style: italic;
+  margin: 10px 0;
+  color: #555;
+}
+
+.translation {
+  margin: 10px 0;
+}
+
+.aramaic {
+  font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene',
+    'Times New Roman', serif;
+  direction: rtl;
+  font-size: 1.3em;
+  margin: 15px 0;
+  line-height: 1.8;
+}
+
+.explanation {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.point-letter {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-right: 8px;
+  color: #000;
+}
+
+.content-container {
+  background-color: white;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.section-container {
+  margin-bottom: 25px;
+}
+
+h1 {
+  text-align: center;
+  color: #000;
+  margin-bottom: 25px;
+}
+
+h2,
+h3 {
+  text-align: center;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.section-divider {
+  border-top: 1px solid #ddd;
+  margin: 35px 0;
+}
+
+.prophetic-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.prophetic-section {
+  margin-bottom: 20px;
+}
+
+.prophetic-title {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+strong {
+  color: #000;
+}
+
+.scripture {
+  font-style: italic;
+  margin: 8px 20px;
+  padding-left: 15px;
+  border-left: 3px solid #ddd;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #000;
+}
+
+.conclusion {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 30px;
+}
+
+ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 30px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+.literal-translation {
+  margin: 8px 0;
+  font-style: italic;
+  color: #444;
+}
+
+/* Texto de oración más compacto */
+.prayer-text {
+  font-size: 1.05em;
+  line-height: 1.6;
+  margin: 12px 0;
+}
+
+.prayer-conclusion {
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#google_translate_element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  flex-wrap: wrap;
+  font-size: clamp(12px, 2.5vw, 14px);
+}
+
+/* Botones */
+.boton-descargar {
+  display: block;
+  width: clamp(150px, 70%, 180px);
+  margin: 15px auto;
+  padding: clamp(8px, 2vw, 10px);
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border-radius: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(12px, 3vw, 14px);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.boton-descargar:hover {
+  background-color: #0056b3;
+  cursor: pointer;
+}
+
+.aliya-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+  text-align: center;
+  display: inline-block;
+  font-size: clamp(14px, 4vw, 16px);
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  width: auto;
+  max-width: 100%;
+}
+
+.aliya-button:hover {
+  background-color: #45a049;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.aliya-button a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+footer {
+  margin-top: 25px;
+  text-align: center;
+  font-size: clamp(12px, 2vw, 14px);
+  color: #777;
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>🌿 Serie de oraciones (Tefilot) para Hoshana Rabá, 🕊️</h1>
+
+    <h1>🕊️ Claves Mesiánicas</h1>
+
+    <div class="content-container">
+      <h1>1. La Salvación que Clamamos</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">
+          אָנָּא יְהוָה הוֹשִׁיעָה נָּא, אָנָּא יְהוָה הַצְלִיחָה נָּא.
+        </div>
+        <div class="transliteration">
+          Ana Adonái יהוה hoshi‘ah na, ana Adonái יהוה hatzlijah na.
+        </div>
+        <div class="translation">
+          “Te rogamos, Adonái יהוה, sálvanos ahora; te rogamos, Adonái יהוה,
+          haznos prosperar.”
+        </div>
+        <div class="scripture">— Tehilim / Salmos 118:25</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            Cuando el pueblo clamó: “¡<span class="highlight">Hoshaná al Hijo de David!</span>”
+            al ver entrar a Yeshúa en Yerushaláyim, la profecía del Salmo 118
+            se hizo carne. Él no solo vino a salvar a Israel de sus enemigos
+            externos, sino a redimir el alma del hombre del poder del pecado y
+            la muerte.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Tú que oyes el clamor de los justos y el suspiro de los
+          quebrantados,<br />
+          escucha hoy la súplica de Tu pueblo.<br />
+          Nuestros labios se abren para implorarte salvación,<br />
+          porque no hay otro redentor fuera de Ti.<br />
+          Tú descendiste al polvo del hombre para levantarlo al trono del
+          cielo,<br />
+          Tú caminaste entre lágrimas y polvo para abrirnos un camino de
+          gloria.<br />
+          Sálvanos, oh Redentor eterno,<br />
+          de la vanidad del orgullo, de las redes del temor,<br />
+          del exilio del alma que olvida Tu rostro.<br />
+          Haznos prosperar en Tu verdad,<br />
+          no con riquezas perecederas, sino con la abundancia de Tu presencia.<br />
+          Renuévanos con Tu Ruaj Hakodesh,<br />
+          haz que cada respiración sea alabanza y cada jornada una ofrenda
+          viva.<br />
+          Yeshúa HaMashíaj, nuestro Adonái,<br />
+          en Ti reposa nuestra esperanza,<br />
+          en Ti se consuma toda promesa.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>💧 2. La Fuente de las Aguas Eternas</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">וּשְׁאַבְתֶּם מַיִם בְּשָׂשׂוֹן, מִמַּעַיְנֵי הַיְשׁוּעָה.</div>
+        <div class="translation">
+          “Y sacaréis con gozo aguas de los manantiales de la salvación.”
+        </div>
+        <div class="scripture">— Yesha‘yahu / Isaías 12:3</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            En el gran día de la fiesta, cuando el agua se derramaba ante el
+            altar, Yeshúa se levantó y clamó:
+          </p>
+          <div class="scripture">
+            “Si alguno tiene sed, venga a Mí y beba.” (Yojanán 7:37)
+          </div>
+          <p>
+            Así reveló que Él mismo es la
+            <span class="highlight">fuente inagotable de la salvación</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Manantial de aguas vivas,<br />
+          brota dentro de nosotros con poder redentor.<br />
+          Lava la sequedad de nuestra alma,<br />
+          satura con Tu Espíritu las grietas del corazón humano.<br />
+          Tú eres el pozo profundo del que mana la vida,<br />
+          el torrente que fluye desde el trono eterno.<br />
+          Abre las fuentes selladas de Tu misericordia,<br />
+          deja que Tu gracia corra por nuestras generaciones.<br />
+          Haz que el mundo entero beba de Ti,<br />
+          que las naciones sedientas hallen descanso en Tus corrientes.<br />
+          El que bebe de Ti jamás tendrá sed,<br />
+          porque Tú eres el agua viva que desciende del cielo.<br />
+          Yeshúa HaMashíaj, nuestro Adonái,<br />
+          haznos canales de Tu compasión,<br />
+          ríos que riegan el desierto del corazón humano,<br />
+          hasta que toda la creación refleje Tu pureza.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🔥 3. La Luz Verdadera que Ilumina</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">יְהוָה אוֹרִי וְיִשְׁעִי, מִמִּי אִירָא.</div>
+        <div class="translation">
+          “Adonái יהוה es mi luz y mi salvación; ¿a quién temeré?”
+        </div>
+        <div class="scripture">— Tehilim / Salmos 27:1</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            Durante la celebración de Sucot, las luminarias del Templo
+            resplandecían toda la noche. Yeshúa declaró:
+          </p>
+          <div class="scripture">
+            “Yo soy la luz del mundo; el que me sigue no andará en tinieblas.”
+            (Yojanán 8:12)
+          </div>
+          <p>
+            Él es la <span class="highlight">Shejináh encarnada</span>, la
+            claridad de la presencia divina entre los hombres.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Luz eterna que ninguna oscuridad puede apagar,<br />
+          enciende en nosotros la lámpara de Tu presencia.<br />
+          Brilla en las sombras de nuestra mente,<br />
+          disipa la confusión que cubre al mundo.<br />
+          Donde hubo tinieblas, pon entendimiento;<br />
+          donde hubo desesperanza, pon Tu resplandor.<br />
+          Ilumina las sendas ocultas del corazón,<br />
+          y haz de Tu pueblo antorchas vivientes que portan Tu gloria.<br />
+          Tú eres el sol de justicia que se levanta con sanidad en Sus alas.<br />
+          Permite que Tu luz despierte los huesos secos,<br />
+          que las ciudades canten de gozo,<br />
+          que la noche del exilio termine en el amanecer de Tu Reino.<br />
+          Yeshúa HaMashíaj, Adonái de Luz,<br />
+          haz de nuestra vida un reflejo de Tu esplendor,<br />
+          hasta que toda rodilla se incline ante la claridad de Tu rostro.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🌾 4. El Dueño de la Cosecha</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">שְׁלַח נָא אֶת מַלְאָכֶיךָ וְקְצֹר.</div>
+        <div class="translation">
+          “Envía a Tus segadores y recoge Tu trigo en Tus graneros.”
+        </div>
+        <div class="scripture">— inspirado en Mattityahu / Mateo 13:39</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            Yeshúa reveló que el campo es el mundo, y Él mismo es el
+            <span class="highlight">Dueño de la cosecha</span>. Al final de
+            los tiempos separará el trigo de la cizaña, reuniendo en Su Reino
+            a los justos como espigas de oro.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Tú que ves el fruto maduro del corazón,<br />
+          viene a recoger lo que sembraste con lágrimas y sangre.<br />
+          Limpia Tu campo de toda impureza,<br />
+          quita las hierbas del orgullo y la rebelión.<br />
+          Haz de Tu Kehiláh un trigo puro y dispuesto para Tu granero eterno.<br />
+          Nosotros somos Tu siembra,<br />
+          crecidos bajo el sol de Tu amor y la lluvia de Tu Espíritu.<br />
+          Tómamos en Tus manos, trilla nuestras vidas con Tu justicia,<br />
+          y guarda en Tu Era celestial el fruto de Tu redención.<br />
+          Yeshúa HaMashíaj, Adonái de la cosecha,<br />
+          que nuestra existencia sea un sacrificio de gratitud,<br />
+          que nuestra alma exhale aroma de obediencia,<br />
+          y que el gozo de los redimidos se eleve como canto ante Tu trono.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🌿 5. La Voz sobre las Aguas</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">קוֹל יְהוָה עַל הַמָּיִם, אֵל הַכָּבוֹד הִרְעִים.</div>
+        <div class="translation">
+          “La voz de Adonái יהוה sobre las aguas; el Elohím de gloria truena.”
+        </div>
+        <div class="scripture">— Tehilim / Salmos 29:3</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            El mismo Yeshúa, cuya voz es como el estruendo de muchas aguas
+            (Revelación 1:15), es la
+            <span class="highlight">Palabra viva</span> que resonó desde la
+            creación y que volverá a hablar juicio y redención.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Tu voz formó los mares y despertó las estrellas.<br />
+          Con una palabra calmaste la tormenta,<br />
+          y con otra resucitaste los muertos.<br />
+          Habla nuevamente, oh Verbo eterno,<br />
+          y los vientos se callarán ante Tu majestad.<br />
+          Haz que Tu voz resuene en nuestra conciencia,<br />
+          que cada sílaba Tuya derrita la dureza del corazón.<br />
+          Truena sobre las naciones, pero susurra a los humildes.<br />
+          Haz temblar los montes del orgullo,<br />
+          y trae reposo sobre quienes aman Tu Nombre.<br />
+          Yeshúa HaMashíaj, Palabra viviente,<br />
+          pronuncia sobre nosotros Tu bendición,<br />
+          y que Tu voz sea nuestra guía en medio de las aguas profundas.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🌺 6. El Renuevo de Justicia</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">הִנֵּה אִישׁ צֶמַח שְׁמוֹ, וּמִתַּחְתָּיו יִצְמָח.</div>
+        <div class="translation">
+          “He aquí el varón cuyo nombre es Renuevo, y brotará de sus raíces.”
+        </div>
+        <div class="scripture">— Zejaryah / Zacarías 6:12</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            Yeshúa es el <span class="highlight">Tzemaj Tzadik</span>, el
+            Renuevo Justo que floreció de la raíz de David. De un trono
+            destruido nació el Trono eterno, y de una rama cortada brotó la
+            esperanza de todas las naciones.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Renuevo Santo de Israel,<br />
+          brotaste de la tierra seca del exilio,<br />
+          floreciste donde no había vida,<br />
+          y trajiste esperanza donde solo había ruina.<br />
+          Haz crecer Tu justicia en nosotros como árbol frondoso junto a
+          corrientes de agua.<br />
+          Purifica nuestras raíces,<br />
+          quita lo marchito del pasado,<br />
+          y haz que cada rama de nuestra fe lleve fruto digno de Tu Reino.<br />
+          Oh Adonái, haz reverdecer a Tu pueblo Israel,<br />
+          vuelve a plantar Tu viña en la tierra prometida,<br />
+          y riega con Tu Ruaj Hakodesh los corazones endurecidos.<br />
+          Que Tu Nombre sea exaltado entre los árboles del campo<br />
+          y que toda creación aplauda cuando florece Tu justicia.<br />
+          Yeshúa HaMashíaj, nuestro Renuevo eterno,<br />
+          haz que el perfume de Tu santidad llene el mundo entero.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🌍 7. Luz para las Naciones</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">
+          וְנָתַתִּיךָ לְאוֹר גּוֹיִם, לִהְיוֹת יְשׁוּעָתִי עַד קְצֵה הָאָרֶץ.
+        </div>
+        <div class="translation">
+          “Te he puesto por luz de las naciones, para que seas mi salvación
+          hasta los confines de la tierra.”
+        </div>
+        <div class="scripture">— Yesha‘yahu / Isaías 49:6</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            Yeshúa es la <span class="highlight">Luz de los pueblos</span>, el
+            Siervo de Adonái יהוה que revela la gloria divina más allá de
+            Israel. En Él se cumple la promesa: “Y las naciones andarán a Su
+            luz” (Isaías 60:3).
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Tú que diste forma a la luz y pusiste brillo en los cielos,<br />
+          enciende Tu resplandor sobre las naciones.<br />
+          Donde hay ignorancia, haz brotar sabiduría;<br />
+          donde hay idolatría, revela Tu verdad.<br />
+          Ilumina los caminos del extranjero,<br />
+          haz que las costas distantes conozcan Tu Nombre.<br />
+          Levanta a Tu pueblo Israel como lámpara entre las naciones,<br />
+          que el resplandor de Tu rostro brille desde Sión<br />
+          hasta que toda la tierra se llene del conocimiento de Tu gloria.<br />
+          Disipa la oscuridad de los reinos humanos,<br />
+          derriba los tronos de violencia,<br />
+          y establece el gobierno de Tu paz.<br />
+          Yeshúa HaMashíaj, Luz de los pueblos,<br />
+          haz que cada tribu y lengua vea Tu esplendor<br />
+          y proclame con gozo:<br />
+          “El Reino pertenece a Adonái יהוה y a Su Mashíaj.”
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>⚖️ 8. El Fuego Purificador</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">
+          וְהָיָה יְהוָה כְּאֵשׁ מְצָרֵף, וּכְבֹרִית מְכַבְּסִים.
+        </div>
+        <div class="translation">
+          “Y Adonái יהוה será como fuego purificador y como jabón de lavadores.”
+        </div>
+        <div class="scripture">— Malají / Malaquías 3:2</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            Yeshúa vino a purificar los corazones, no con agua externa sino con
+            el <span class="highlight">fuego del Ruaj Hakodesh</span>. Él
+            limpia el templo interior del hombre para que se convierta en
+            morada de la presencia divina.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Fuego de santidad que nunca se apaga,<br />
+          pasa por nuestras vidas con Tu llama purificadora.<br />
+          Arde lo que no es digno de Ti,<br />
+          consume la escoria del ego y del orgullo,<br />
+          refina nuestras intenciones como oro en el crisol.<br />
+          Tú eres el fuego del altar eterno,<br />
+          el que encendió el corazón de los profetas,<br />
+          el que ilumina el alma de los redimidos.<br />
+          Purifícanos hasta que reflejemos Tu imagen.<br />
+          Limpia nuestros labios para proclamar Tu verdad.<br />
+          Aviva en nosotros el celo por Tu Reino,<br />
+          y haz que arda en nuestro interior el deseo de justicia.<br />
+          Yeshúa HaMashíaj, Adonái de fuego santo,<br />
+          haznos templos vivos donde resplandezca Tu gloria,<br />
+          para que el mundo vea en nosotros la llama de Tu amor eterno.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🌈 9. La Misericordia Eterna</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">כִּי לְעוֹלָם חַסְדּוֹ.</div>
+        <div class="translation">“Porque para siempre es Su misericordia.”</div>
+        <div class="scripture">— Tehilim / Salmos 136:1</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            La <span class="highlight">misericordia eterna</span> de Adonái
+            יהוה se reveló en Yeshúa, quien extendió Su compasión a los pobres,
+            los enfermos y los pecadores, cumpliendo la palabra: “Grande es Su
+            Jesed hasta los cielos.”
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Rostro visible de la misericordia del Altísimo,<br />
+          Tú que no desprecias al contrito ni rechazas al cansado,<br />
+          ten piedad de nosotros.<br />
+          Que Tu Jesed cubra nuestras transgresiones<br />
+          como el rocío cubre la tierra en la mañana.<br />
+          Enséñanos a amar como Tú amas,<br />
+          a perdonar como fuiste colgado en el madero perdonando.<br />
+          Extiende Tu compasión sobre Israel,<br />
+          sobre los que vagan sin hogar,<br />
+          sobre los que aún no han oído Tu Nombre.<br />
+          Que Tu ternura abrace a los que lloran,<br />
+          y que Tu bondad restaure las ruinas del alma.<br />
+          Yeshúa HaMashíaj, Adonái de compasión,<br />
+          haz que nuestra vida sea un reflejo de Tu Jesed eterno,<br />
+          y que todo corazón cansado encuentre descanso en Tu misericordia.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🌧️ 10. La Lluvia de Bendición</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">וְיוֹרֶה לָכֶם גֶּשֶׁם מוֹרֶה וּמַלְקוֹשׁ.</div>
+        <div class="translation">
+          “Él os dará la lluvia temprana y la tardía.”
+        </div>
+        <div class="scripture">— Yoel / Joel 2:23</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            El <span class="highlight">Ruaj Hakodesh</span>, derramado por
+            Yeshúa, es la lluvia prometida: la temprana en los días de los
+            apóstoles y la tardía en la restauración final de Israel y las
+            naciones.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Dador de la lluvia celestial,<br />
+          haz descender sobre nosotros el rocío de Tu Espíritu.<br />
+          Riega las semillas de fe que sembraste en nuestros corazones.<br />
+          Abre los cielos sobre los campos secos de Tu pueblo.<br />
+          Que caigan gotas de sabiduría,<br />
+          que fluyan ríos de consuelo.<br />
+          Satura la tierra con Tu presencia y haz germinar la justicia.<br />
+          Envía la lluvia temprana del arrepentimiento<br />
+          y la tardía del avivamiento.<br />
+          Yeshúa HaMashíaj, Adonái de la lluvia,<br />
+          renueva las generaciones con Tu frescura,<br />
+          y que la cosecha del mundo madure bajo la gracia de Tu sol eterno.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>🕎 11. El Nombre sobre Todo Nombre</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">בְּשֵׁם יְהוָה אֶקְרָא.</div>
+        <div class="translation">
+          “En el nombre de Adonái יהוה clamaré.”
+        </div>
+        <div class="scripture">— Tehilim / Salmos 116:13</div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+          <p>
+            El Nombre sagrado de
+            <span class="hebrew-term">יהוה</span> se manifestó en Yeshúa, quien
+            lleva el <span class="highlight">Nombre sobre todo nombre</span>
+            ante el cual toda rodilla se dobla, en el cielo, en la tierra y
+            debajo de la tierra (Filipenses 2:9–11).
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Tefiláh:</div>
+        <p class="prayer-text">
+          Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+          Nombre viviente y eterno,<br />
+          en Ti se resume toda alabanza y toda redención.<br />
+          Tu Nombre es bálsamo para el herido<br />
+          y fortaleza para el temeroso.<br />
+          Graba Tu Nombre en nuestros corazones como sello indeleble.<br />
+          Haz que nuestros labios lo pronuncien con pureza y reverencia.<br />
+          Que Tu Nombre sea santificado en Israel<br />
+          y proclamado entre todas las naciones.<br />
+          Tú eres el Nombre que salva,<br />
+          el Nombre que abre los cielos,<br />
+          el Nombre que da vida al muerto y consuela al afligido.<br />
+          Yeshúa HaMashíaj, Adonái cuyo Nombre es glorioso,<br />
+          recibe la adoración de los pueblos<br />
+          y reina para siempre en los corazones de los que te aman.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>👑 12. El Reino Eterno</h1>
+      <div class="verse-container">
+        <div class="verse-number">Verso base:</div>
+        <div class="hebrew">
+          וְהָיָה יְהוָה לְמֶלֶךְ עַל כָּל הָאָרֶץ.
+        </div>
+        <div class="translation">
+          “Y Adonái יהוה será Rey sobre toda la tierra.”
+        </div>
+        <div class="scripture">— Zejary/ Zacarías 14:9</div>
+    </div>
+    <div class="prophetic-content">
+    <div class="prophetic-section">
+      <div class="prophetic-title">Cumplimiento en Yeshúa:</div>
+      <p>
+        El <span class="highlight">Reino prometido</span> a David se
+        cumple en Yeshúa HaMashíaj. Él volverá para establecer Su dominio
+        desde Yerushaláyim, y toda la creación reconocerá Su autoridad.
+      </p>
+    </div>
+  </div>
+
+  <div class="explanation">
+    <div class="prophetic-title">Tefiláh:</div>
+    <p class="prayer-text">
+      Yeshúa HaMashíaj, nuestro mismo Adonái,<br />
+      Rey de Gloria y fundamento de toda justicia,<br />
+      levántate y establece Tu trono en la tierra.<br />
+      Haz de Jerusalén el centro de Tu luz,<br />
+      de Israel el corazón de Tu Reino,<br />
+      y de las naciones coronas de Tu victoria.<br />
+      Rompe las cadenas del odio,<br />
+      derriba las torres del orgullo,<br />
+      y trae paz a los confines del mundo.<br />
+      Haz que los reinos de la tierra se postren ante Ti,<br />
+      que los sabios confiesen Tu verdad,<br />
+      que los pobres se alegren en Tu presencia.<br />
+      Reina desde Sión, oh Adonái eterno,<br />
+      y que Tu cetro de equidad guíe a los pueblos en justicia.<br />
+      Yeshúa HaMashíaj, Rey de Reyes,<br />
+      llena el mundo con Tu gloria,<br />
+      y que la creación entera proclame:<br />
+      “Adonái יהוה es Uno, y Su Nombre Uno.”
+    </p>
+  </div>
+</div>
+    
+    <footer>
+      <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia
+          Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a>
+      </p>
+    </footer>
+  </main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
+
+
