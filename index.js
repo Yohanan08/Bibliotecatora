@@ -28,61 +28,99 @@ async function descargarPDF() {
     return;
   }
 
-  mostrarIndicador(true);
+  mostrarIndicador(true, 'Preparando descarga...');
+
+  // 1. Guardar estilos originales
+  const originalStyle = {
+    height: element.style.height,
+    overflow: element.style.overflow,
+    position: element.style.position, // Añadido para más seguridad
+  };
+
+  // 2. Aplicar estilos para asegurar la captura completa
+  element.style.height = 'auto';
+  element.style.overflow = 'visible';
+  element.style.position = 'relative'; // 'relative' es más seguro para el cálculo de altura
+
+  // Esperamos a que el contenido se re-renderice
+  await new Promise(resolve => setTimeout(resolve, 100));
 
   try {
-    // Aseguramos visibilidad total antes de capturar
-    const originalStyle = {
-      height: element.style.height,
-      overflow: element.style.overflow
-    };
-    element.style.height = 'auto';
-    element.style.overflow = 'visible';
+    // 3. Configuración de PDF y Dimensiones
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfPageWidth = 210; // Ancho A4
+    const pdfPageHeight = 297; // Alto A4
+    const margin = 10;
 
-    // Esperamos a que el contenido se re-renderice
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Dimensiones útiles de la página PDF (en mm)
+    const pdfImgWidthMM = pdfPageWidth - margin * 2; // 190 mm
+    const pdfImgHeightMM = pdfPageHeight - margin * 2; // 277 mm
 
-    // Captura de todo el contenido
-    const canvas = await html2canvas(element, {
+    // Dimensiones del contenido (en px)
+    const contentWidthPX = element.scrollWidth;
+    const totalHeightPX = element.scrollHeight;
+
+    // 4. Calcular geometría de paginación
+    // Ratio (proporción) de la página PDF
+    const pdfPageRatio = pdfImgHeightMM / pdfImgWidthMM;
+    // Calcular cuántos píxeles de alto del contenido caben en una página PDF
+    const pageHeightPX = contentWidthPX * pdfPageRatio;
+
+    // Calcular número total de páginas
+    const totalPages = Math.ceil(totalHeightPX / pageHeightPX);
+
+    // 5. Opciones base de html2canvas
+    const canvasOptions = {
       useCORS: true,
       backgroundColor: '#fff',
       scale: Math.min(window.devicePixelRatio || 1, 1.5),
-      scrollX: 0,
-      scrollY: 0,
-      width: element.scrollWidth,
-      height: element.scrollHeight
-    });
+      width: contentWidthPX,
+      // Compensamos el scroll que TENGA LA VENTANA, si es que tiene
+      scrollX: -window.scrollX,
+      scrollY: -window.scrollY,
+    };
 
-    // Restaurar estilos originales
-    element.style.height = originalStyle.height;
-    element.style.overflow = originalStyle.overflow;
-
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pageWidth = 210;
-    const pageHeight = 297;
-    const margin = 10;
-    const imgWidth = pageWidth - margin * 2;
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-    const totalPages = Math.ceil(imgHeight / (pageHeight - margin * 2));
-    const sliceHeight = canvas.height / totalPages;
-
+    // 6. Loop para capturar página por página
     for (let i = 0; i < totalPages; i++) {
-      if (i > 0) pdf.addPage();
-      const sliceCanvas = document.createElement('canvas');
-      sliceCanvas.width = canvas.width;
-      sliceCanvas.height = sliceHeight;
-      const ctx = sliceCanvas.getContext('2d');
-      ctx.drawImage(
-        canvas,
-        0, i * sliceHeight, canvas.width, sliceHeight,
-        0, 0, canvas.width, sliceHeight
-      );
-      const imgData = sliceCanvas.toDataURL('image/jpeg', 0.85);
-      pdf.addImage(imgData, 'JPEG', margin, margin, imgWidth, pageHeight - margin * 2);
+      // Actualizar el indicador de carga con el progreso
+      mostrarIndicador(true, `Generando página ${i + 1} de ${totalPages}...`);
+      
+      if (i > 0) {
+        pdf.addPage();
+      }
+
+      // Calcular el offset 'Y' (dónde empieza el recorte)
+      const yOffset = i * pageHeightPX;
+      
+      // Calcular la altura real a capturar (para la última página)
+      const currentHeightPX = Math.min(pageHeightPX, totalHeightPX - yOffset);
+
+      // --- ¡ESTA ES LA CORRECCIÓN CLAVE! ---
+      // Usamos 'y' para decirle dónde empezar a capturar
+      // Usamos 'height' para decirle dónde terminar
+      const pageCanvasOptions = {
+        ...canvasOptions,
+        height: currentHeightPX,
+        y: yOffset // Dónde empezar a capturar (en píxeles, desde el top)
+      };
+
+      // Capturar solo esta "ventana" del contenido
+      const canvas = await html2canvas(element, pageCanvasOptions);
+
+      // Calcular la altura proporcional de la imagen en el PDF
+      const imgHeightMM = (canvas.height * pdfImgWidthMM) / canvas.width;
+
+      // Añadir al PDF
+      const imgData = canvas.toDataURL('image/jpeg', 0.85);
+      pdf.addImage(imgData, 'JPEG', margin, margin, pdfImgWidthMM, imgHeightMM);
+      
+      // (Opcional) Pequeña pausa para que el navegador respire
+      await new Promise(resolve => setTimeout(resolve, 10)); 
     }
 
+    // 7. Descargar el PDF
+    mostrarIndicador(true, 'Finalizando descarga...');
     const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
     const blob = pdf.output('blob');
     const url = URL.createObjectURL(blob);
@@ -96,11 +134,21 @@ async function descargarPDF() {
     console.error('Error al generar PDF', e);
     alert('Error al generar el PDF: ' + e.message);
   } finally {
+    // 8. Restaurar estilos originales
+    element.style.height = originalStyle.height;
+    element.style.overflow = originalStyle.overflow;
+    element.style.position = originalStyle.position;
+    
+    // Ocultar indicador
     mostrarIndicador(false);
   }
 }
 
-function mostrarIndicador(mostrar) {
+/**
+ * Función de indicador de carga mejorada.
+ * Ahora acepta un parámetro de 'texto' para mostrar el progreso.
+ */
+function mostrarIndicador(mostrar, texto = "Generando PDF…") {
   let el = document.getElementById('cargando-pdf');
   if (mostrar) {
     if (!el) {
@@ -110,11 +158,15 @@ function mostrarIndicador(mostrar) {
         <div style="position:fixed;top:0;left:0;width:100%;height:100%;
         background:rgba(0,0,0,0.6);display:flex;align-items:center;
         justify-content:center;z-index:9999;font-family:sans-serif;">
-          <div style="background:white;padding:20px;border-radius:10px;text-align:center;">
-            <p>Generando PDF…</p>
+          <div style="background:white;padding:20px 40px;border-radius:10px;text-align:center;box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+            <p id="cargando-pdf-texto" style="font-size:1.1em;font-weight:bold;margin:0;">${texto}</p>
           </div>
         </div>`;
       document.body.appendChild(el);
+    } else {
+      // Si ya existe, solo actualiza el texto
+      const p = document.getElementById('cargando-pdf-texto');
+      if (p) p.innerText = texto;
     }
     el.style.display = 'flex';
   } else if (el) {
@@ -122,12 +174,18 @@ function mostrarIndicador(mostrar) {
   }
 }
 
+/**
+ * Función de utilidad para detectar navegadores integrados (sin cambios).
+ */
 function esNavegadorIntegrado() {
   const ua = navigator.userAgent.toLowerCase();
   return ua.includes('instagram') || ua.includes('fbav') || ua.includes('fban') ||
          ua.includes('whatsapp') || ua.includes('telegram') || ua.includes('line');
 }
 
+/**
+ * Listener del botón (sin cambios).
+ */
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('btn-descargar-pdf');
   if (btn) {
