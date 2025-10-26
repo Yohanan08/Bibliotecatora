@@ -1,0 +1,2264 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bereshit (בראשית) Génesis 26:30-27:27</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+      .translation {
+        margin: 10px 0;
+      }
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .section-container {
+        margin-bottom: 25px;
+      }
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+      strong {
+        color: #000;
+      }
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        6. Parashá Toldot (תולדות) Aliyáh 6: (Génesis 26:30-27:27) Engaño de
+        Yaakov a Yitzjak para obtener la bendición.
+        <p>Haftaráh: Malaquías 1:1-5 (Las naciones y las bendiciones).</p>
+        <p>Brit Hadasháh: Romanos 9:11-12 (La elección de Yaakov).</p>
+      </h1>
+      <h1>Bereshit / Génesis 26:30–27:27</h1>
+
+    <div class="content-container">
+      <h2>Punto 1. Bereshit / Génesis 26:30–27:27</h2>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 30</div>
+        <div class="hebrew">וַיַּעַשׂ לָהֶם מִשְׁתֶּה וַיֹּאכְלוּ וַיִּשְׁתּוּ׃</div>
+        <div class="transliteration">Vayya‘as lahem mishteh, vayokhlū vayishetū.</div>
+        <div class="translation">—Entonces él les hizo un banquete, y comieron y bebieron.</div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 31</div>
+        <div class="hebrew">
+          וַיַּשְׁכִּימוּ בַבֹּקֶר וַיִּשָּׁבְעוּ אִישׁ לְאָחִיו וַיְשַׁלְּחֵם יִצְחָק וַיֵּלְכוּ מֵאִתּוֹ בְּשָׁלוֹם׃
+        </div>
+        <div class="transliteration">
+          Vayyashkīmū babóqer, vayishav‘ū ish le’ajív; vayeshalléjem Yitsjáq,
+          vayéljū me’ittó beshalóm.
+        </div>
+        <div class="translation">
+          —Y madrugaron por la mañana, y juraron uno al otro; luego los despidió
+          Yitsjaq, y se fueron de con él en paz.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 32</div>
+        <div class="hebrew">
+          וַיְהִי בַּיּוֹם הַהוּא וַיָּבֹאוּ עַבְדֵי יִצְחָק וַיַּגִּדוּ לוֹ עַל־אֹדוֹת
+          הַבְּאֵר אֲשֶׁר חָפָרוּ וַיֹּאמְרוּ מָצָאנוּ מָיִם׃
+        </div>
+        <div class="transliteration">
+          Vayehí bayóm hahú, vayavó’ū ‘avdéi Yitsjáq, vayaggídu lo ‘al-’odot
+          habe’ér asher ḥafárū, vayómerū: matsánu máyim.
+        </div>
+        <div class="translation">
+          —Y aconteció en aquel día que vinieron los siervos de Yitsjaq y le
+          informaron acerca del pozo que habían cavado, diciendo: “¡Hemos hallado
+          agua!”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 33</div>
+        <div class="hebrew">
+          וַיִּקְרָא אֹתָהּ שִׁבְעָה עַל־כֵּן שֵׁם הָעִיר בְּאֵר שָׁבַע עַד הַיּוֹם
+          הַזֶּה׃
+        </div>
+        <div class="transliteration">
+          Vayiqrá otá Shiv‘ah; ‘al-kén shém ha‘ír Be’ér Shéva‘ ‘ad hayyóm hazé.
+        </div>
+        <div class="translation">
+          —Y la llamó Shiv‘ah (Juramento o Siete); por eso el nombre de la ciudad
+          es Beer Sheva hasta el día de hoy.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h2>Bereshit 26:34–35 — Esav y las mujeres hititas</h2>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 34</div>
+        <div class="hebrew">
+          וַיְהִי עֵשָׂו בֶּן אַרְבָּעִים שָׁנָה וַיִּקַּח אִשָּׁה אֶת־יְהוּדִית בַּת־בְּאֵרִי
+          הַחִתִּי וְאֶת־בָּשְׂמַת בַּת־אֵילֹן הַחִתִּי׃
+        </div>
+        <div class="transliteration">
+          Vayehi ‘Esav ben arba‘ím shaná, vayyiqaḥ ishá et-Yehudít bat-Be’erí
+          hachittí, ve’et-Basmát bat-Eylón hachittí.
+        </div>
+        <div class="translation">
+          —Y fue Esav de cuarenta años cuando tomó por esposa a Yehudit hija de
+          Beerí el hitita, y a Basmát hija de Elón el hitita.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 35</div>
+        <div class="hebrew">וַתִּהְיֶיןָ מֹרוֹת רוּחַ לְיִצְחָק וּלְרִבְקָה׃</div>
+        <div class="transliteration">Vatihyéna morót rúaj le-Yitsjáq ul-Rivqá.</div>
+        <div class="translation">
+          —Y fueron amargura de espíritu para Yitsjaq y para Rivqá.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h2>Bereshit 27:1–27 — El inicio de la bendición de Ya‘aqov</h2>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 1</div>
+        <div class="hebrew">
+          וַיְהִי כִּי זָקֵן יִצְחָק וַתִּכְהֶיןָ עֵינָיו מֵרְאֹת וַיִּקְרָא אֶת־עֵשָׂו
+          בְּנוֹ הַגָּדֹל וַיֹּאמֶר אֵלָיו בְּנִי וַיֹּאמֶר אֵלָיו הִנֵּנִי׃
+        </div>
+        <div class="transliteration">
+          Vayehí ki zakén Yitsjáq, vattikhéyná ‘eynáv mére’ot; vayiqrá
+          et-‘Esav benó haggadól, vayómer eláv: bení; vayómer eláv: hinéni.
+        </div>
+        <div class="translation">
+          —Y aconteció que cuando envejeció Yitsjaq y sus ojos se oscurecieron
+          para ver, llamó a Esav su hijo mayor y le dijo: “Hijo mío.” Y él
+          respondió: “Heme aquí.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 2</div>
+        <div class="hebrew">וַיֹּאמֶר הִנֵּה נָא זָקַנְתִּי לֹא יָדַעְתִּי יוֹם מוֹתִי׃</div>
+        <div class="transliteration">
+          Vayyómer: hiné na zakánti, lo yadá‘ti yóm motí.
+        </div>
+        <div class="translation">
+          —Y dijo: “He aquí ahora, he envejecido; no sé el día de mi muerte.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 3</div>
+        <div class="hebrew">
+          וְעַתָּה שָׂא־נָא כֵלֶיךָ תֶּלְיְךָ וְקַשְׁתֶּךָ וְצֵא הַשָּׂדֶה וְצוּדָה לִּי
+          צָיִד׃
+        </div>
+        <div class="transliteration">
+          Ve‘attá sa-na keléja, telyéja vekashteja, vetzé hasadéh, vetzudá li
+          tsáyid.
+        </div>
+        <div class="translation">
+          —Y ahora, toma, por favor, tus armas, tu aljaba y tu arco, y sal al
+          campo y cázame una presa para mí.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 4</div>
+        <div class="hebrew">
+          וַעֲשֵׂה־לִי מַטְעַמִּים כַּאֲשֶׁר אָהַבְתִּי וְהָבִיאָה לִּי וְאֹכֵלָה בַּעֲבוּר
+          תְּבָרֶכְךָ נַפְשִׁי בְּטֶרֶם אָמוּת׃
+        </div>
+        <div class="transliteration">
+          Va‘asé li mat‘amím ka’asher ahavtí, vehaviyáh li ve’okhelá, ba‘avur
+          tevaréjeja nafshí beterem amut.
+        </div>
+        <div class="translation">
+          —Y hazme manjares como me gusta, y tráemelos para que coma, y mi alma
+          te bendiga antes que muera.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 5</div>
+        <div class="hebrew">
+          וְרִבְקָה שֹׁמַעַת בְּדַבֶּר יִצְחָק אֶל־עֵשָׂו בְּנוֹ וַיֵּלֶךְ עֵשָׂו הַשָּׂדֶה
+          לָצוּד צַיִד לְהָבִיא׃
+        </div>
+        <div class="transliteration">
+          VeRivqá shomá‘at bedavér Yitsjáq el-‘Esav benó; vayélekh ‘Esav hasadéh
+          latzūd tsáyid lehaví.
+        </div>
+        <div class="translation">
+          —Y Rivqá escuchó mientras hablaba Yitsjaq a su hijo Esav, y Esav fue al
+          campo a cazar para traer.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 6</div>
+        <div class="hebrew">
+          וְרִבְקָה אָמְרָה אֶל־יַעֲקֹב בְּנָהּ לֵאמֹר הִנֵּה שָׁמַעְתִּי אֶת־אָבִיךָ
+          מְדַבֵּר אֶל־עֵשָׂו אָחִיךָ לֵאמֹר׃
+        </div>
+        <div class="transliteration">
+          VeRivqá amrá el-Ya‘aqóv bená le’mor: hiné shamá‘ti et-’avíja medabbér
+          el-‘Esav aḥíja le’mor:
+        </div>
+        <div class="translation">
+          —Y Rivqá habló a Ya‘aqov su hijo, diciendo: “He aquí, oí a tu padre que
+          hablaba con tu hermano Esav, diciendo:”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 7</div>
+        <div class="hebrew">
+          הָבִיאָה לִּי צַיִד וַעֲשֵׂה־לִי מַטְעַמִּים וְאֹכֵלָה וַאֲבָרֶכְכָה לִפְנֵי
+          יהוה לִפְנֵי מוֹתִי׃
+        </div>
+        <div class="transliteration">
+          Haviyáh li tsáyid, va‘asé li mat‘amím ve’okhelá, va’varejeja lifné יהוה
+          lifné motí.
+        </div>
+        <div class="translation">
+          —“Tráeme caza, y hazme manjares, y comeré, y te bendeciré delante de יהוה
+          antes de mi muerte.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 8</div>
+        <div class="hebrew">
+          וְעַתָּה בְּנִי שְׁמַע בְּקֹלִי לַאֲשֶׁר אֲנִי מְצַוָּה אֹתָךְ׃
+        </div>
+        <div class="transliteration">
+          Ve‘attá bení, shema beqolí la’asher aní metzavá otaj.
+        </div>
+        <div class="translation">
+          —Y ahora, hijo mío, escucha mi voz conforme a lo que te ordeno.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 9</div>
+        <div class="hebrew">
+          לֵךְ־נָא אֶל־הַצֹּאן וְקַח־לִי מִשָּׁם שְׁנֵי גְּדָיֵי עִזִּים טוֹבִים
+          וְאֶעֱשֶׂה אֹתָם מַטְעַמִּים לְאָבִיךָ כַּאֲשֶׁר אָהֵב׃
+        </div>
+        <div class="transliteration">
+          Lékh-na el-hatson, veqaḥ-li mishám shné gedayé ‘izzím továyim, ve’e‘esé
+          otam mat‘amím le’avíja ka’asher ahev.
+        </div>
+        <div class="translation">
+          —Ve, por favor, al rebaño, y tráeme de allí dos cabritos buenos, y haré
+          con ellos manjares para tu padre como le gusta.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 10</div>
+        <div class="hebrew">
+          וְהֵבֵאתָ לְאָבִיךָ וְאָכָל בַּעֲבוּר אֲשֶׁר יְבָרֶכְךָ לִפְנֵי מוֹתוֹ׃
+        </div>
+        <div class="transliteration">
+          Vehevéta le’avíja ve’akhal, ba‘avur asher yevaréjeja lifné motó.
+        </div>
+        <div class="translation">
+          —Y se los llevarás a tu padre, y comerá, para que te bendiga antes de
+          su muerte.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 11</div>
+        <div class="hebrew">
+          וַיֹּאמֶר יַעֲקֹב אֶל־רִבְקָה אִמּוֹ הֵן עֵשָׂו אָחִי אִישׁ שָׂעִר וְאָנֹכִי
+          אִישׁ חָלָק׃
+        </div>
+        <div class="transliteration">
+          Vayyómer Ya‘aqóv el-Rivqá imó: hén ‘Esav aḥí ish sa‘ír, ve’anokhí ish
+          ḥaláq.
+        </div>
+        <div class="translation">
+          —Y dijo Ya‘aqov a Rivqá su madre: “He aquí, mi hermano Esav es hombre
+          velludo, y yo soy hombre lampiño.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 12</div>
+        <div class="hebrew">
+          אוּלַי יְמֻשֵּׁנִי אָבִי וְהָיִיתִי בְעֵינָיו כִּמְתַעְתֵּעַ וְהֵבֵאתִי עָלַי
+          קְלָלָה וְלֹא בְרָכָה׃
+        </div>
+        <div class="transliteration">
+          Ulai yemushéni aví, vehayíti be‘eináv kimeta‘téa, vehevéti ‘alay
+          qelalá velo berajá.
+        </div>
+        <div class="translation">
+          —“Quizás me palpe mi padre, y seré ante sus ojos como un engañador, y
+          traeré sobre mí maldición y no bendición.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 13</div>
+        <div class="hebrew">
+          וַתֹּאמֶר לוֹ אִמּוֹ עָלַי קִלְלָתְךָ בְּנִי אַךְ שְׁמַע בְּקֹלִי וְלֵךְ
+          קַח־לִי׃
+        </div>
+        <div class="transliteration">
+          Vattómer lo imó: ‘Alay qilalatéja, bení; akh shema beqolí velekh qaḥ-li.
+        </div>
+        <div class="translation">
+          —Y su madre le dijo: “Sobre mí sea tu maldición, hijo mío; solamente
+          escucha mi voz y ve, tráemelos.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 14</div>
+        <div class="hebrew">
+          וַיֵּלֶךְ וַיִּקַּח וַיָּבֵא לְאִמּוֹ וַתַּעַשׂ אִמּוֹ מַטְעַמִּים כַּאֲשֶׁר אָהֵב
+          אָבִיו׃
+        </div>
+        <div class="transliteration">
+          Vayyélekh vayyiqaḥ vayavé le’imó, vatta‘as imó mat‘amím ka’asher ahev
+          avív.
+        </div>
+        <div class="translation">
+          —Y fue, y tomó, y los trajo a su madre; y su madre hizo manjares como
+          amaba su padre.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 15</div>
+        <div class="hebrew">
+          וַתִּקַּח רִבְקָה אֶת־בִּגְדֵי עֵשָׂו בְּנָהּ הַגָּדֹל הַחֲמֻדֹת אֲשֶׁר אִתָּהּ
+          בַּבָּיִת וַתַּלְבֵּשׁ אֶת־יַעֲקֹב בְּנָהּ הַקָּטָן׃
+        </div>
+        <div class="transliteration">
+          Vattíqaḥ Rivqá et-bigdé ‘Esav bená haggadól, hachamudót asher ittá
+          babáyit, vattalbesh et-Ya‘aqóv bená haqqatán.
+        </div>
+        <div class="translation">
+          —Y tomó Rivqá las vestiduras preciosas de Esav su hijo mayor, que
+          estaban con ella en la casa, y vistió a Ya‘aqov su hijo menor.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 16</div>
+        <div class="hebrew">
+          וְאֵת עֹרֹת גְּדָיֵי הָעִזִּים הִלְבִּישָׁה עַל־יָדָיו וְעַל חֶלְקַת
+          צַוָּארָיו׃
+        </div>
+        <div class="transliteration">
+          Ve’et ‘orót gedayé ha‘izzím hilbishá ‘al-yadav ve‘al ḥelqat tzavaráv.
+        </div>
+        <div class="translation">
+          —Y con las pieles de los cabritos cubrió sus manos y la parte lisa de
+          su cuello.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 17</div>
+        <div class="hebrew">
+          וַתִּתֵּן אֶת־הַמַּטְעַמִּים וְאֶת־הַלֶּחֶם אֲשֶׁר עָשָׂתָה בְּיַד יַעֲקֹב בְּנָהּ׃
+        </div>
+        <div class="transliteration">
+          Vattittén et-hammat‘amím ve’et-haléjem asher ‘asátá beyad Ya‘aqóv bená.
+        </div>
+        <div class="translation">
+          —Y puso los manjares y el pan que había preparado en manos de Ya‘aqov
+          su hijo.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 18</div>
+        <div class="hebrew">
+          וַיָּבֹא אֶל־אָבִיו וַיֹּאמֶר אָבִי וַיֹּאמֶר הִנֵּנִי מִי אַתָּה בְּנִי׃
+        </div>
+        <div class="transliteration">
+          Vayyavó el-avív, vayómer: aví; vayómer: hinéni, mí atá bení?
+        </div>
+        <div class="translation">
+          —Y vino a su padre, y dijo: “Padre mío.” Y él respondió: “Heme aquí;
+          ¿quién eres tú, hijo mío?”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 19</div>
+        <div class="hebrew">
+          וַיֹּאמֶר יַעֲקֹב אֶל־אָבִיו אָנֹכִי עֵשָׂו בְּכֹרֶךָ עָשִׂיתִי כַּאֲשֶׁר
+          דִּבַּרְתָּ אֵלָי קוּם נָא שְׁבָה וְאָכְלָה מִצֵּידִי בַּעֲבוּר תְּבָרְכַנִּי
+          נַפְשֶׁךָ׃
+        </div>
+        <div class="transliteration">
+          Vayyómer Ya‘aqóv el-avív: anojí ‘Esav bekhoreja; ‘asítí ka’asher
+          dibárta elái; qum-na shevá, ve’okhlá mitséydí, ba‘avur tevarjaní
+          nafsheja.
+        </div>
+        <div class="translation">
+          —Y dijo Ya‘aqov a su padre: “Yo soy Esav tu primogénito; he hecho como
+          me dijiste. Levántate, por favor, siéntate y come de mi caza, para que
+          te bendiga tu alma.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 20</div>
+        <div class="hebrew">
+          וַיֹּאמֶר יִצְחָק אֶל־בְּנוֹ מַה־זֶּה מִהַרְתָּ לִמְצֹא בְּנִי וַיֹּאמֶר כִּי
+          הִקְרָה יהוה אֱלֹהֶיךָ לְפָנָי׃
+        </div>
+        <div class="transliteration">
+          Vayyómer Yitsjaq el-benó: máh-ze mihártá limtzó, bení? Vayyómer: ki
+          hikrá יהוה Elohéija lefanái.
+        </div>
+        <div class="translation">
+          —Y dijo Yitsjaq a su hijo: “¿Cómo es esto que hallaste tan pronto,
+          hijo mío?” Y él respondió: “Porque יהוה tu Elohím la hizo venir
+          delante de mí.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 21</div>
+        <div class="hebrew">
+          וַיֹּאמֶר יִצְחָק אֶל־יַעֲקֹב גְּשָׁה נָּא וַאֲמֻשְׁךָ בְּנִי הַאַתָּה־זֶה בְּנִי
+          עֵשָׂו אִם־לֹא׃
+        </div>
+        <div class="transliteration">
+          Vayyómer Yitsjaq el-Ya‘aqóv: geshá-na va’amushkha, bení; ha’attá ze
+          bení ‘Esav im-lo?
+        </div>
+        <div class="translation">
+          —Y dijo Yitsjaq a Ya‘aqov: “Acércate, por favor, para que te palpe,
+          hijo mío, si tú eres mi hijo Esav o no.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 22</div>
+        <div class="hebrew">
+          וַיִּגַּשׁ יַעֲקֹב אֶל־יִצְחָק אָבִיו וַיְמֻשֵּׁהוּ וַיֹּאמֶר הַקֹּל קוֹל יַעֲקֹב
+          וְהַיָּדַיִם יְדֵי עֵשָׂו׃
+        </div>
+        <div class="transliteration">
+          Vayyiggásh Ya‘aqóv el-Yitsjaq avív, vayemushéhu, vayómer: haqól qól
+          Ya‘aqóv, vehayadáyim yedéi ‘Esav.
+        </div>
+        <div class="translation">
+          —Y se acercó Ya‘aqov a Yitsjaq su padre, y lo palpó, y dijo: “La voz es
+          la voz de Ya‘aqov, pero las manos son las manos de Esav.”
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 23</div>
+        <div class="hebrew">
+          וְלֹא הִכִּירוֹ כִּי הָיוּ יָדָיו כִּידֵי עֵשָׂו אָחִיו שְׂעִרֹת וַיְבָרְכֵהוּ׃
+        </div>
+        <div class="transliteration">
+          Velo hikíro, ki hayú yadáv kiyedei ‘Esav aḥív se‘irót; vayevarejéhu.
+        </div>
+        <div class="translation">
+          —Y no lo reconoció, porque sus manos eran velludas como las de su hermano Esav; y lo bendijo.
+        </div>
+    </div>
+    <div class="verse-container">
+    <div class="verse-number">Verso 24</div>
+    <div class="hebrew">וַיֹּאמֶר אַתָּה־זֶה בְּנִי עֵשָׂו וַיֹּאמֶר אָנִי׃</div>
+    <div class="transliteration">
+      Vayyómer: attá ze bení ‘Esav? Vayyómer: aní.
+    </div>
+    <div class="translation">
+      —Y dijo: “¿Eres tú mi hijo Esav?” Y él respondió: “Yo soy.”
+    </div>
+  </div>
+
+  <div class="verse-container">
+    <div class="verse-number">Verso 25</div>
+    <div class="hebrew">
+      וַיֹּאמֶר הַגִּישָׁה לִּי וְאֹכְלָה מִצֵּיד בְּנִי לְמַעַן תְּבָרֶכְךָ נַפְשִׁי
+      וַיַּגֶּשׁ־לוֹ וַיֹּאכַל וַיָּבֵא־לוֹ יַיִן וַיֵּשְׁתְּ׃
+    </div>
+    <div class="transliteration">
+      Vayyómer: haguishá li ve’okhlá mitséyd bení, lema‘an tevaréjeja nafshí;
+      vayaggésh lo vayokhal, vayavé lo yáyin vayéshet.
+    </div>
+    <div class="translation">
+      —Y dijo: “Acércame, y comeré de la caza de mi hijo, para que mi alma te
+      bendiga.” Y él se lo acercó, y comió, y le trajo vino, y bebió.
+    </div>
+  </div>
+
+  <div class="verse-container">
+    <div class="verse-number">Verso 26</div>
+    <div class="hebrew">
+      וַיֹּאמֶר אֵלָיו יִצְחָק אָבִיו גְּשָׁה־נָּא וּשְׁקָה־לִּי בְּנִי׃
+    </div>
+    <div class="transliteration">
+      Vayyómer eláv Yitsjaq avív: geshá-na ushqá-li, bení.
+    </div>
+    <div class="translation">
+      —Y dijo Yitsjaq su padre: “Acércate ahora, y bésame, hijo mío.”
+    </div>
+  </div>
+
+  <div class="verse-container">
+    <div class="verse-number">Verso 27</div>
+    <div class="hebrew">
+      וַיִּגַּשׁ וַיִּשַּׁק־לוֹ וַיָּרַח אֶת־רֵיחַ בְּגָדָיו וַיְבָרְכֵהוּ וַיֹּאמֶר רְאֵה
+      רֵיחַ בְּנִי כְּרֵיחַ שָׂדֶה אֲשֶׁר בֵּרֲכוֹ יהוה׃
+    </div>
+    <div class="transliteration">
+      Vayyiggásh vayishaq lo, vayaráḥ et-reaḥ begadav, vayevarejéhu,
+      vayómer: re’é reaḥ bení kereaḥ sadéh asher berajó יהוה.
+    </div>
+    <div class="translation">
+      —Y se acercó, y lo besó, y olió el olor de sus vestidos, y lo bendijo,
+      y dijo: “Mira, el olor de mi hijo es como el olor del campo que ha
+      bendecido יהוה.”
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>Cumplimiento Profético en el Mashíaj – Aliyáh Génesis בְּרֵאשִׁית 26:30–27:27</h1>
+
+<div class="content-container">
+  <div class="section-container">
+    <h2 class="prophetic-title">1. Contexto y conexión profética</h2>
+    <div class="prophetic-content">
+      <p>
+        Esta quinta Aliyáh de la Parashá Toldot <span class="hebrew-term">תּוֹלְדוֹת</span> (Génesis 25:19–28:9)
+        abarca los eventos en los que Ya‘aqov <span class="hebrew-term">יַעֲקֹב</span> recibe la bendición de Yitsjaq <span class="hebrew-term">יִצְחָק</span>,
+        tras la preparación de Rivqá <span class="hebrew-term">רִבְקָה</span>, y la comida simbólica que precede al acto de
+        bendecir. Es un pasaje profundamente profético, que revela el
+        principio de elección divina y de transferencia de autoridad
+        espiritual que culminará en el Mashíaj mismo.
+      </p>
+      <p>En esta sección (26:30–27:27), la Toráh presenta:</p>
+      <ul>
+        <li>
+          El pacto de paz entre Yitsjaq y Avimélej, figura de reconciliación
+          y testimonio.
+        </li>
+        <li>
+          El acto profético de bendición sobre Ya‘aqov, donde se imparte
+          autoridad mesiánica sobre las naciones.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h2 class="prophetic-title">2. Conexión con los profetas</h2>
+    <div class="prophetic-content">
+      <p>
+        El profeta Malají <span class="hebrew-term">מַלְאָכִי</span> (Mal_1:2–3) hace referencia directa a
+        esta elección divina:
+      </p>
+      <div class="scripture">“Amé a Ya‘aqov, pero aborrecí a Esav”.</div>
+      <p>
+        Esta declaración profética no solo habla de elección étnica, sino de
+        propósito redentivo. En los escritos proféticos, el linaje de
+        Ya‘aqov es la línea por la que la Redención y el Mashíaj vendrían.
+      </p>
+      <p>
+        Asimismo, Yesha‘yahu <span class="hebrew-term">ישעיהו</span> 41:8–10 llama a Israel “siervo escogido”,
+        “descendencia de Avraham, mi amigo”, revelando que esta línea
+        bendita sería vehículo del Mashíaj Siervo (Isaías 42–53).
+      </p>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h2 class="prophetic-title">3. Cumplimiento en el Brit Hadashá</h2>
+    <div class="prophetic-content">
+      <p>
+        En el Brit Hadashá, el cumplimiento mesiánico de esta bendición se ve
+        reflejado plenamente en Yeshúa haMashíaj <span class="hebrew-term">ישוע המשיח</span>, quien porta la
+        primogenitura espiritual (Colosenses 1:15–20) y recibe del Padre la
+        Bendición del Espíritu y del Reino (Mateo 3:16–17).
+      </p>
+      <p>
+        Shaúl HaShlíaḥ (Pablo) interpreta esta elección divina en Romanos
+        9:10–13, declarando que “no por obras sino por el que llama”,
+        Ya‘aqov fue escogido. Esto apunta al principio mesiánico:
+      </p>
+      <ul>
+        <li>
+          La redención no viene por mérito humano, sino por el llamado y
+          elección soberana de Elohím.
+        </li>
+      </ul>
+      <p>Hebreos 11:20 también alude a este evento:</p>
+      <div class="scripture">
+        “Por fe bendijo Yitsjaq a Ya‘aqov y a Esav respecto a cosas
+        venideras”.
+      </div>
+      <p>
+        Aquí, “cosas venideras” se refiere al plan profético del Reino
+        Mesiánico, anticipando la venida del Mashíaj como heredero legítimo
+        de la promesa.
+      </p>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h2 class="prophetic-title">4. Profecías cumplidas en esta porción</h2>
+    <div class="prophetic-content">
+      <p>
+        El Pan y el Vino preparados por Rivqá (Gén 27:9–10) anticipan el acto
+        mesiánico del Mashíaj ofreciendo su cuerpo y sangre (Yojanán
+        6:51–56).
+      </p>
+      <ul>
+        <li>
+          Rivqá representa al Ruaj HaQódesh preparando al Hijo obediente
+          (Ya‘aqov) para recibir la bendición.
+        </li>
+        <li>
+          Yeshúa, como el Hijo escogido, ofrece el “pan del cielo” en
+          obediencia perfecta, trayendo bendición eterna.
+        </li>
+      </ul>
+      <p>
+        El perfume del campo bendito (Gén 27:27) es figura del ungimiento
+        mesiánico:
+      </p>
+      <div class="scripture">
+        “El olor de mi hijo es como el olor del campo que Adonái ha
+        bendecido.”
+      </div>
+      <p>
+        Este aroma profético se cumple en Yojanán 12:3, donde Míriam unge
+        los pies de Yeshúa, y la casa se llena del perfume. El “olor del
+        campo” es símbolo de vida, redención y resurrección.
+      </p>
+      <p>
+        La voz es de Ya‘aqov pero las manos de Esav (Gén 27:22) se cumple
+        proféticamente en el Mashíaj, quien siendo rechazado por su propio
+        pueblo (voz de Israel) extiende sus manos al mundo gentil (figura de
+        Esav). Así, las manos del Mesías alcanzan a las naciones, cumpliendo
+        Isaías 49:6.
+      </p>
+      <p>La bendición de dominio (Gén 27:29):</p>
+      <div class="scripture">
+        “Sirvánte pueblos, naciones se inclinen ante ti...”
+      </div>
+      <p>
+        Se cumple plenamente en Filipenses 2:10–11, donde toda rodilla se
+        dobla ante Yeshúa haMashíaj, y toda lengua confiesa que Él es MarYah
+        <span class="hebrew-term">מריא</span> – Adonái <span class="hebrew-term">יהוה</span>.
+      </p>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h2 class="prophetic-title">5. Aplicación espiritual</h2>
+    <div class="prophetic-content">
+      <ul>
+        <li>
+          Ya‘aqov representa al creyente redimido, llamado a vestirse con la
+          justicia del Primogénito (Yeshúa).
+        </li>
+        <li>
+          El “acto de cubrirse con las vestiduras de Esav” representa al
+          creyente que, al revestirse del Mashíaj (Gálatas 3:27), recibe la
+          bendición celestial.
+        </li>
+        <li>
+          La obediencia guiada por el Ruaj (Rivqá) es esencial para alcanzar
+          la herencia espiritual.
+        </li>
+        <li>
+          El creyente, como Ya‘aqov, es llamado a acercarse al Padre con
+          reverencia, llevando el sacrificio preparado (vida rendida y fe en
+          el Cordero), para recibir la bendición del Reino.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h2 class="prophetic-title">6. Reflexión mesiánica</h2>
+    <div class="prophetic-content">
+      <p>
+        La historia no es simple engaño, sino misterio redentor. El plan de
+        Elohím permitió que la bendición viniera por medio del “hijo
+        menor”, prefigurando el principio mesiánico de la exaltación del
+        humilde y la elección del rechazado.
+      </p>
+      <p>
+        Yeshúa, despreciado y desechado, es exaltado como Primogénito de toda
+        la creación (Colosenses 1:15) y Primogénito de entre los muertos
+        (Romanos 8:29).
+      </p>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h2 class="prophetic-title">7. Aplicación espiritual contemporánea</h2>
+    <div class="prophetic-content">
+      <p>Esta Aliyáh invita a los creyentes a:</p>
+      <ul>
+        <li>
+          Buscar la bendición del Padre por medio del Hijo, no por esfuerzo
+          humano.
+        </li>
+        <li>
+          Permitir que el Ruaj HaKodesh (Rivqá) prepare nuestras vidas para
+          recibir el favor divino.
+        </li>
+        <li>
+          Entender que toda bendición proviene del sacrificio obediente y de
+          la fe en el Primogénito celestial, Yeshúa haMashíaj.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-container">
+    <h2 class="prophetic-title">8. Conclusión</h2>
+    <div class="prophetic-content">
+      <p>
+        La bendición de Ya‘aqov es la sombra profética del Reino del
+        Mashíaj, que se cumple plenamente en Yeshúa, el Hijo elegido, el
+        “Aroma del Campo Bendito”.
+      </p>
+      <p>Como dice el Brit Hadashá:</p>
+      <div class="scripture">
+        “Y sabemos que el Hijo de Elohím ha venido… Este es el verdadero
+        Elohím y la vida eterna.” (1 Yojanán 5:20)
+      </div>
+    </div>
+  </div>
+</div>
+<h1>Punto 2. Haftaráh: Malaquías 1:1-5 (Las naciones y las bendiciones).</h1>
+
+    <div class="content-container">
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 1:1</div>
+        <div class="hebrew">מַשָּׂא דְבַר־יהוה אֶל־יִשְׂרָאֵל בְּיַד מַלְאָכִי׃</div>
+        <div class="transliteration">Mashá devar–יהוה el–Yisra’el beyad Malají.</div>
+        <div class="translation">
+          Oráculo (mensaje elevado) de la palabra de יהוה a Israel por mano de
+          Malají.
+        </div>
+        <div class="literal-translation">
+          Traducción literal:<br />
+          Revelación de la palabra de יהוה dirigida a Yisra’el por medio del
+          mensajero Malají.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 1:2</div>
+        <div class="hebrew">
+          אָהַבְתִּי אֶתְכֶם אָמַר יהוה וַאֲמַרְתֶּם בַּמָּה אֲהַבְתָּנוּ הֲלוֹא אָח עֵשָׂו
+          לְיַעֲקֹב נְאֻם יהוה וָאֹהַב אֶת־יַעֲקֹב׃
+        </div>
+        <div class="transliteration">
+          Ahavtí etkhem, amar יהוה; va’amartem, bammá ahavtánu? Halo’ aj ‘Esav
+          le-Ya‘aqov? Ne’um יהוה, va’ohav et–Ya‘aqov.
+        </div>
+        <div class="literal-translation">
+          Traducción literal:<br />
+          He amado a vosotros, dice יהוה.<br />
+          Y decís: “¿En qué nos has amado?”<br />
+          ¿No fue ‘Esav hermano de Ya‘aqov? —declara יהוה—<br />
+          Pero amé a Ya‘aqov.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 1:3</div>
+        <div class="hebrew">
+          וְאֶת־עֵשָׂו שָׂנֵאתִי וָאָשִׂים אֶת־הָרָיו שְׁמָמָה וְאֶת־נַחֲלָתוֹ לְתַנּוֹת
+          מִדְבָּר׃
+        </div>
+        <div class="transliteration">
+          Ve’et–‘Esav sanetí, va’asím et–haráv shemamá, ve’et–najalató
+          letannót midbár.
+        </div>
+        <div class="literal-translation">
+          Traducción literal:<br />
+          Y a ‘Esav aborrecí,<br />
+          y puse sus montes en desolación,<br />
+          y su heredad para chacales del desierto.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 1:4</div>
+        <div class="hebrew">
+          כִּי תֹאמַר אֱדוֹם רֻשַּׁשְׁנוּ וְנָשׁוּבָה וְנִבְנֶה חֳרָבוֹת כֹּה אָמַר יהוה
+          צְבָאוֹת הֵמָּה יִבְנוּ וַאֲנִי אֶהֱרוֹס וְקָרְאוּ לָהֶם גְּבוּל רִשְׁעָה וְהָעָם
+          אֲשֶׁר זָעַם יהוה עַד־עוֹלָם׃
+        </div>
+        <div class="transliteration">
+          Ki to’mar Edom: rusháshnù, venashuvá venibné joravót; koh amar יהוה
+          tseva’ot: hemah yivnù va’aní eh’erós, vekar’ù lahem gevùl rish‘áh,
+          veha‘am asher za‘am יהוה ad ‘olam.
+        </div>
+        <div class="literal-translation">
+          Traducción literal:<br />
+          Aunque diga Edom: “Hemos sido derribados, pero volveremos y
+          edificaremos las ruinas”,<br />
+          así dice יהוה Tseva’ot:<br />
+          Ellos edificarán, pero Yo derribaré;<br />
+          y los llamarán “territorio de impiedad”<br />
+          y “el pueblo contra quien יהוה está airado para siempre”.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 1:5</div>
+        <div class="hebrew">
+          וְעֵינֵיכֶם תִּרְאֶינָה וְאַתֶּם תֹּאמְרוּ יִגְדַּל יהוה מֵעַל לִגְבוּל יִשְׂרָאֵל׃
+        </div>
+        <div class="transliteration">
+          Ve‘eineikhem tir’einah, ve’attem to’mrù: yigdal יהוה me‘al ligvùl
+          Yisra’el.
+        </div>
+        <div class="literal-translation">
+          Traducción literal:<br />
+          Y vuestros ojos verán,<br />
+          y diréis:<br />
+          “Engrandecido sea יהוה más allá de los límites de Yisra’el.”
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h2>Comentario Mesiánico</h2>
+        <p>
+          El profeta Malají revela el amor soberano de יהוה por Ya‘aqov, figura
+          del pueblo redimido por el Pacto. Esta declaración de elección y
+          rechazo (Ya‘aqov y ‘Esav) se convierte en la base de la enseñanza
+          mesiánica sobre la gracia y la elección divina, desarrollada por Sha’ul
+          השליח en Romanos 9:10–13:
+        </p>
+        <div class="scripture">
+          “Amé a Ya‘aqov y aborrecí a Esav”, citando este pasaje como revelación
+          del propósito eterno de Elohím que culmina en el Mashíaj Yeshúa ישוע,
+          el escogido por excelencia.
+        </div>
+        <p>
+          Así como Ya‘aqov recibió la bendición no por mérito propio sino por
+          gracia, también el redimido recibe vida en el Primogénito Celestial,
+          Yeshúa haMashíaj, quien encarna el amor eterno de יהוה.
+        </p>
+        <p>El texto culmina con la afirmación:</p>
+        <div class="scripture">
+          “Engrandecido sea יהוה más allá de los límites de Yisra’el”,
+        </div>
+        <p>
+          anticipando el cumplimiento mesiánico en el Brit Hadashá, cuando el
+          Nombre de יהוה será exaltado entre todas las naciones (Filipenses
+          2:10–11; Zacarías 14:9).
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1><span class="point-letter">1.</span> Contexto profético de Malaquías 1:1–5</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            El profeta Malají <span class="hebrew-term">מַלְאָכִי</span> anuncia
+            un mensaje de amor divino y de elección soberana:
+          </p>
+          <div class="scripture">
+            “He amado a Ya‘aqov <span class="hebrew-term">יַעֲקֹב</span>, y a
+            ‘Esav <span class="hebrew-term">עֵשָׂו</span> aborrecí.” (Mal 1:2–3)
+          </div>
+          <p>
+            Esta revelación no expresa una emoción humana, sino un acto profético
+            de elección redentora. Ya‘aqov representa la línea mesiánica del
+            pacto eterno; Esav, el hombre carnal que confía en la fuerza propia.
+          </p>
+          <p>
+            Desde la perspectiva mesiánica, esta palabra prepara el entendimiento
+            del principio de la elección divina en el Mashíaj, el Amado del Padre
+            desde la eternidad (Tehilím 2:7; Yeshayahu 42:1).
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">2.</span> Conexión con la Aliyáh de Génesis
+        26:30–27:27
+      </h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            La quinta Aliyáh de Parashá Toldot
+            <span class="hebrew-term">תּוֹלְדוֹת</span> narra la bendición de
+            Ya‘aqov por Yitsjaq, donde el patriarca, guiado por un propósito
+            celestial, pronuncia palabras proféticas que definirán la historia de
+            la redención.
+          </p>
+          <div class="scripture">
+            “Que pueblos te sirvan, y naciones se inclinen ante ti; sé señor de
+            tus hermanos.” (Gén 27:29)
+          </div>
+          <p>
+            Estas palabras son eco de la promesa mesiánica que se cumplirá en
+            Yeshúa, el Primogénito de entre los muertos (Colosenses 1:18). La
+            preferencia divina por Ya‘aqov prefigura la elección del Hijo Amado
+            sobre todos los hombres: un acto de gracia, no de mérito.
+          </p>
+          <p>
+            Así como Ya‘aqov se presenta ante su padre cubierto con las
+            vestiduras de su hermano, el creyente se presenta ante el Padre
+            vestido del Mashíaj, la Justicia de Elohím (Yeshayahu 61:10; 2
+            Corintios 5:21).
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1><span class="point-letter">3.</span> Conexión con los profetas</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            Yeshayahu 41:8–9 llama a Israel “siervo escogido”, “descendencia de
+            Avraham, mi amigo”. Esta elección es mesiánica, pues el Siervo
+            perfecto de Israel es Yeshúa haMashíaj, quien cumple la fidelidad que
+            el pueblo no pudo alcanzar.
+          </p>
+          <p>
+            Ovadyah <span class="hebrew-term">עֹבַדְיָה</span> 1:18–21 profetiza
+            que la “casa de Ya‘aqov será fuego, y la casa de Esav estopa”,
+            anticipando la victoria final del Reino Mesiánico sobre el sistema
+            del hombre.
+          </p>
+          <p>
+            El contraste Ya‘aqov–Esav no es étnico, sino espiritual: Ya‘aqov
+            representa la redención por fe; Esav, la autosuficiencia y el rechazo
+            del derecho de primogenitura (véase Génesis 25:34). Por tanto,
+            Malaquías 1:1–5 reinterpreta toda esta historia como anuncio de la
+            preferencia divina hacia el linaje redentor, del cual nacería el
+            Mashíaj.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1><span class="point-letter">4.</span> Cumplimiento en el Brit Hadashá</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            Sha’ul השליח (Pablo) cita directamente Malaquías 1:2–3 en Romanos
+            9:10–13, enseñando que la elección de Elohím no depende del que corre
+            ni del que quiere, sino del que llama.
+          </p>
+          <div class="scripture">
+            “Como está escrito: A Ya‘aqov amé, pero a Esav aborrecí.”
+          </div>
+          <p>
+            En el pensamiento mesiánico, esta cita revela que el Mashíaj Yeshúa es
+            el escogido supremo:
+          </p>
+          <ul>
+            <li>
+              Él es el verdadero Ya‘aqov, quien obtiene la bendición del Padre no
+              por engaño, sino por obediencia perfecta.
+            </li>
+            <li>
+              En Él se cumple el principio de la elección antes de las obras
+              (Efesios 1:4–6).
+            </li>
+          </ul>
+          <p>Cuando el profeta declara:</p>
+          <div class="scripture">
+            “Engrandecido sea יהוה más allá de los límites de Israel” (Mal 1:5),
+          </div>
+          <p>se cumple en el Brit Hadashá:</p>
+          <div class="scripture">
+            “Toda rodilla se doblará… y toda lengua confesará que Yeshúa
+            haMashíaj es MarYah <span class="hebrew-term">מריא</span>, para
+            gloria de Elohím” (Filipenses 2:10–11).
+          </div>
+          <p>
+            Así, el Nombre de יהוה se magnifica en las naciones a través del
+            reconocimiento del Mashíaj como su manifestación visible (Yojanán
+            1:1–14; Colosenses 1:15–20).
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1><span class="point-letter">5.</span> Profecías cumplidas en esta porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Profecía <span class="arrow">→</span> Cumplimiento en el Mashíaj</div>
+          <ul>
+            <li>
+              “He amado a Ya‘aqov” (Mal 1:2) <span class="arrow">→</span> Yeshúa,
+              el Amado del Padre (Matityahu 3:17).
+            </li>
+            <li>
+              “A Esav aborrecí” (Mal 1:3) <span class="arrow">→</span> Juicio sobre
+              el sistema carnal que rechaza el Reino (Yojanán 3:18–19).
+            </li>
+            <li>
+              “Ellos edificarán, y Yo derribaré” (Mal 1:4) <span class="arrow">→</span>
+              Profecía del colapso del orgullo humano y del reino de las
+              tinieblas ante la edificación del Reino Mesiánico (Mateo 16:18;
+              Hebreos 12:27–28).
+            </li>
+            <li>
+              “Engrandecido sea יהוה más allá de los límites de Israel” (Mal 1:5)
+              <span class="arrow">→</span> Cumplimiento en la expansión del
+              mensaje mesiánico a todas las naciones (Hechos 1:8).
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1><span class="point-letter">6.</span> Aplicación espiritual</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">El amor elegido:</div>
+          <p>
+            El creyente, como Ya‘aqov, es amado por gracia. La elección divina no
+            depende de la fuerza humana, sino del propósito eterno revelado en el
+            Mashíaj.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">La fidelidad frente a la autosuficiencia:</div>
+          <p>
+            Esav representa el orgullo del hombre que edifica sin Elohím. El
+            redimido es llamado a depender del Ruaj HaKodesh, no de sus obras.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Reino inconmovible:</div>
+          <p>
+            Las estructuras del mundo (Edom) serán derribadas, pero el Reino del
+            Mashíaj permanecerá. (Hebreos 12:28).
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">La expansión del Nombre de יהוה:</div>
+          <p>
+            La profecía “yigdal יהוה” anuncia la glorificación universal del Nombre
+            a través del Mashíaj, quien manifiesta plenamente la presencia divina
+            entre las naciones.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El amor inmutable del Padre:</div>
+          <p>
+            Así como Ya‘aqov fue amado desde el vientre, el creyente es amado
+            desde la eternidad (Efesios 1:4).
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">7.</span> Conexión espiritual entre Malaquías
+        1 y Génesis 27
+      </h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            Ambos textos revelan el misterio de la elección divina y la bendición
+            mesiánica:
+          </p>
+          <ul>
+            <li>
+              En Génesis 27, Yitsjaq bendice a Ya‘aqov; en Malaquías 1, Elohím
+              mismo confirma esa elección.
+            </li>
+            <li>
+              Lo que fue sombra en la tienda de Yitsjaq se cumple en el Reino del
+              Mashíaj.
+            </li>
+            <li>
+              En Yeshúa, el linaje de Ya‘aqov alcanza su plenitud: la bendición
+              universal prometida a Avraham (Génesis 12:3) se manifiesta.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1><span class="point-letter">8.</span> Reflexión mesiánica</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            El mensaje de Malaquías 1:1–5 no es un relato de favoritismo, sino una
+            profecía redentora: la línea de Ya‘aqov es el canal del amor divino
+            manifestado en Yeshúa, el Redentor prometido.
+          </p>
+          <p>
+            Yeshúa es el “Ya‘aqov perfecto”, el hombre que lucha con Elohím y
+            vence (Génesis 32:28), no con engaño, sino con obediencia hasta la
+            muerte. En Él se cumple el propósito eterno de amor:
+          </p>
+          <div class="scripture">
+            “En esto se mostró el amor de Elohím: en que envió a su Hijo unigénito
+            al mundo para que vivamos por medio de Él.” (1 Yojanán 4:9)
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">9.</span> Aplicación espiritual contemporánea
+      </h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            El creyente es llamado a vivir como Ya‘aqov transformado en Yisra’el:
+          </p>
+          <ul>
+            <li>Renunciando al esfuerzo humano (figura de Esav).</li>
+            <li>Viviendo bajo la gracia del Primogénito celestial.</li>
+            <li>Exaltando el Nombre de יהוה en todas las naciones.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1><span class="point-letter">10.</span> Conclusión</h1>
+      <div class="conclusion">
+        <p>
+          Malaquías 1:1–5 confirma el amor eterno y electivo de יהוה manifestado
+          en el Mashíaj. El contraste entre Ya‘aqov y Esav es la revelación
+          profética del Reino: el amor soberano que redime al humilde y derriba
+          la soberbia del hombre.
+        </p>
+        <p>
+          Yeshúa haMashíaj <span class="hebrew-term">ישוע המשיח</span> cumple en
+          sí mismo esta profecía:
+        </p>
+        <ul>
+          <li>Es el Amado de יהוה (Tehilím 2:7; Mat 3:17).</li>
+          <li>Es el Edificador del Reino eterno (Mat 16:18).</li>
+          <li>Y en Él, el Nombre de יהוה es engrandecido más allá de los límites de Israel.</li>
+        </ul>
+        <div class="scripture">
+          “Y vuestros ojos verán, y diréis:<br />
+          ¡Engrandecido sea יהוה más allá de los límites de Yisra’el!”<br />
+          (Malají 1:5)
+        </div>
+      </div>
+    </div>
+    <h1>Punto 3. Brit Hadasháh: Romanos 9:11-12 (La elección de Yaakov).</h1>
+    <h2>— Romayya 9:11–12</h2>
+
+    <div class="verse-container">
+      <div class="verse-number">(11)</div>
+      <div class="aramaic">
+        ʿEdén gēr ʿadlāʾ itʿbədā wlā ʿabadā tḥāwā ʾāydāyhon, dāwādhā qādāmāthā
+        dʿElohāhʾā bʾgūrāyāh netqayyām, lā bʿʿabadāthāʾlāʾ, ʾellā bʿmānā dqārā.
+      </div>
+      <div class="transliteration">
+        Transliteración fonética (siríaca oriental): (11) ‘Eden gēr ‘adlâ’
+        ethbədâ wəlâ ‘avadâ tḥawâ ʾaydâyhon, dawadhâ qâdamâthâ d’Elohâhâ
+        b’gûrâyâ nethqayyâm, lâ b’‘avadâthâ lâ, ellâ b’mânâ d’qârâ.
+      </div>
+      <div class="translation">
+        Traducción literal al español: (11) Porque antes que los hijos hubiesen
+        nacido, y antes de que hicieran bien o mal, para que el propósito de
+        Elohím permaneciera conforme a Su elección, no por las obras, sino por
+        el que llama,
+      </div>
+    </div>
+
+    <div class="verse-container">
+      <div class="verse-number">(12)</div>
+      <div class="aramaic">ʾEtʾemrā lāh, Rabbāʾʾā yʫʿabd lʾzʿārā.</div>
+      <div class="transliteration">
+        (12) Eth’emrâ lah: Rabbâ yeth‘abad l’z‘ârâ.
+      </div>
+      <div class="translation">
+        (12) le fue dicho: “El mayor servirá al menor.”
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h3>Comentario mesiánico</h3>
+      <p>
+        Esta porción del
+        <span class="highlight">Brit Hadasháh</span> cita directamente Génesis
+        25:23, y es la clave profética que conecta con Malaquías 1:2–3.
+      </p>
+      <p>
+        El emisario <span class="highlight">Sha’ul</span>
+        <span class="hebrew-term">השליח</span> (Pablo) muestra que el principio
+        de la elección divina no depende del mérito humano, sino del propósito
+        eterno de Elohím —el mismo que se cumple en el
+        <span class="highlight">Mashíaj</span>
+        <span class="hebrew-term">ישוע המשיח</span>, el escogido desde la
+        eternidad.
+      </p>
+      <p>
+        En la expresión aramea
+        <span class="highlight">“lā b‘avadāthāʾlāʾ, ʾellā bʿmānā dʿqārā”</span>,
+        la palabra <span class="hebrew-term">מַנָּא / mânā</span> (propósito,
+        designio) y <span class="hebrew-term">קָרָא / qārā</span> (llamar)
+        revelan el principio celestial: la gracia soberana del que llama
+        precede a las obras del llamado.
+      </p>
+      <p>
+        Así como Ya‘aqov fue elegido antes de nacer, el
+        <span class="highlight">Mashíaj Yeshúa</span> es el Primogénito
+        escogido antes de la creación (Efesios 1:4; Colosenses 1:15–17).
+      </p>
+      <p>
+        La frase
+        <span class="highlight">“Rabbā yeth‘abad l’z‘ârâ”</span> (“El mayor
+        servirá al menor”) es la proclamación profética del reino invertido del
+        Mashíaj, donde los soberbios son humillados y los humildes exaltados
+        (Mateo 23:12).
+      </p>
+      <p>En Yeshúa, esta palabra se cumple plenamente:</p>
+      <ul>
+        <li>El Hijo del Hombre, siendo Mayor, se hace siervo.</li>
+        <li>
+          El Reino de <span class="hebrew-term">יהוה</span> se manifiesta en la
+          humildad del Siervo fiel (Yeshayahu 42:1–7).
+        </li>
+      </ul>
+      <h4>Aplicación espiritual</h4>
+      <p>
+        La elección del creyente en Mashíaj no depende del linaje ni del
+        mérito, sino del amor eterno de <span class="hebrew-term">יהוה</span>.
+      </p>
+      <p>
+        Toda bendición fluye
+        <span class="highlight">“no por las obras, sino por el que llama”</span>.
+      </p>
+      <p>
+        En el Reino del Mashíaj, la grandeza se revela en el servicio:
+        <span class="highlight">“El mayor servirá al menor.”</span>
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Comentario Mesiánico de Romanos 9:11–12</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2 class="prophetic-title">
+          En el Mashíaj Yeshúa
+          <span class="hebrew-term">ישוע המשיח</span>
+        </h2>
+        <p>
+          Conexión profética con los <span class="highlight">Nevi’im</span>
+          (Profetas) y la <span class="highlight">Aliyáh</span> de
+          <span class="hebrew-term">בְּרֵאשִׁית</span> Bereshit 26:30–27:27
+        </p>
+        <p><strong>Profecías cumplidas en esta porción</strong></p>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">1. Introducción mesiánica</h3>
+          <p>
+            El pasaje de Romanos 9:11–12 es una revelación profunda del misterio
+            del plan redentor de Elohím, manifestado plenamente en Yeshúa
+            haMashíaj. Aquí, Sha’ul
+            <span class="hebrew-term">השליח</span> (Pablo) no está hablando
+            solamente del destino de dos hermanos —Ya‘aqov
+            <span class="hebrew-term">יַעֲקֹב</span> y Esav
+            <span class="hebrew-term">עֵשָׂו</span>—, sino de dos naturalezas
+            espirituales:
+          </p>
+          <ul>
+            <li>
+              La carne, que busca la bendición por esfuerzo humano (Esav).
+            </li>
+            <li>
+              El espíritu, que recibe la bendición por fe y elección divina
+              (Ya‘aqov).
+            </li>
+          </ul>
+          <p>
+            Este principio se cumple y se revela en el Mashíaj Yeshúa, quien es
+            el Ya‘aqov celestial, el Hijo escogido que hereda la bendición y la
+            transmite a todos los que son llamados conforme al propósito de
+            Elohím.
+          </p>
+          <div class="scripture">
+            <p>Romanos 9:11–12 (Peshitta)</p>
+            <p>
+              “Antes de que los hijos nacieran, y no hubieran hecho ni bien ni
+              mal, para que el propósito de Elohím permaneciera conforme a Su
+              elección, no por las obras, sino por el que llama. Le fue dicho:
+              El mayor servirá al menor.”
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">
+            2. Conexión con la Aliyáh – Bereshit 26:30–27:27
+          </h3>
+          <p>
+            En esta <span class="highlight">Aliyáh</span>, Yitsjaq
+            <span class="hebrew-term">יצחק</span> bendice a Ya‘aqov en lugar de
+            Esav, bajo la guía providencial de Rivqá
+            <span class="hebrew-term">רבקה</span>, figura profética del
+            <span class="highlight">Ruaj HaKodesh</span>
+            <span class="hebrew-term">רוּחַ הַקּוֹדֶשׁ</span>.
+          </p>
+          <p>
+            Ya‘aqov entra en la presencia del padre cubierto con las vestiduras
+            del primogénito, llevando el sacrificio preparado, y recibe la
+            bendición del cielo y de la tierra (Gén 27:28–29).
+          </p>
+          <p>
+            Este acto simboliza cómo el creyente entra ante el Padre revestido
+            del Mashíaj, el verdadero Primogénito, y recibe la bendición eterna
+            del Reino.
+          </p>
+          <p>
+            Romanos 9:11–12 explica espiritualmente este evento: la elección de
+            Ya‘aqov fue establecida antes de las obras, para mostrar que la
+            herencia celestial viene por la gracia del que llama, no por mérito
+            humano.
+          </p>
+          <p>Así, la escena de la bendición en Bereshit es un tipo mesiánico:</p>
+          <ul>
+            <li>Yitsjaq representa al Padre celestial.</li>
+            <li>
+              Ya‘aqov representa al Hijo elegido y a los redimidos en Él.
+            </li>
+            <li>
+              Esav representa la humanidad natural que confía en sus obras y
+              pierde la bendición.
+            </li>
+            <li>
+              Rivqá representa la acción del Espíritu preparando el plan
+              redentor.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">3. Conexión con los profetas</h3>
+          <p>
+            El principio de la elección divina revelado en Ya‘aqov y Esav
+            atraviesa toda la línea profética:
+          </p>
+          <div class="scripture">
+            <p>Malaquías <span class="hebrew-term">מַלְאָכִי</span> 1:2–3 declara:</p>
+            <p>
+              “He amado a Ya‘aqov, pero a Esav aborrecí.” Este amor no es
+              emocional, sino redentivo: Ya‘aqov es la línea mesiánica por medio
+              de la cual <span class="hebrew-term">יהוה</span> manifestaría su
+              amor al mundo.
+            </p>
+          </div>
+          <div class="scripture">
+            <p>Yeshayahu <span class="hebrew-term">ישעיהו</span> 41:8–9:</p>
+            <p>
+              “Pero tú, Yisra’el, siervo mío eres, descendencia de Avraham, mi
+              amigo; te escogí.” Aquí, “el siervo escogido” prefigura al Siervo
+              perfecto, Yeshúa haMashíaj, quien cumple el llamado de Israel como
+              luz de las naciones (Yeshayahu 42:1–6).
+            </p>
+          </div>
+          <div class="scripture">
+            <p>Ovadyah <span class="hebrew-term">עֹבַדְיָה</span> 1:18–21 profetiza:</p>
+            <p>
+              “La casa de Ya‘aqov será fuego, y la casa de Esav estopa.” En
+              Yeshúa, esta palabra se cumple espiritualmente, pues el Reino del
+              Mashíaj consume toda injusticia del hombre carnal, estableciendo
+              el Reino eterno del Espíritu.
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">
+            4. Cumplimiento en el Mashíaj Yeshúa
+          </h3>
+          <p>
+            Yeshúa es el cumplimiento perfecto de esta elección profética:
+          </p>
+          <h4>El Hijo escogido antes de las obras</h4>
+          <ul>
+            <li>
+              Antes de toda creación, Yeshúa fue designado como el Cordero
+              preparado desde el principio (1 Kefa 1:19–20).
+            </li>
+            <li>
+              Él es “el Primogénito entre muchos hermanos” (Romanos 8:29).
+            </li>
+            <li>
+              Así como Ya‘aqov fue amado antes de hacer bien o mal, Yeshúa fue
+              el amado del Padre desde la eternidad (Tehilím 2:7; Matityahu
+              3:17).
+            </li>
+          </ul>
+          <h4>La inversión del orden natural</h4>
+          <p>
+            “El mayor servirá al menor” (Rom 9:12) se cumple cuando el Mashíaj,
+            siendo el Mayor, se hace Siervo:
+          </p>
+          <div class="scripture">
+            <p>
+              “El Hijo del Hombre no vino para ser servido, sino para servir y
+              dar su vida en rescate por muchos.” (Matityahu 20:28)
+            </p>
+          </div>
+          <p>
+            En el Reino de <span class="hebrew-term">יהוה</span>, el orden
+            carnal se invierte: el humilde es exaltado, el último es primero, y
+            la elección es por gracia.
+          </p>
+          <h4>El propósito eterno revelado</h4>
+          <p>
+            En Yeshúa se cumple la intención redentora de Elohím: “para que el
+            propósito de Elohím permaneciera conforme a Su elección.”
+          </p>
+          <p>
+            Toda la historia de Ya‘aqov y Esav apunta al misterio del Mashíaj,
+            en quien el amor del Padre se manifiesta y la herencia es entregada
+            al pueblo redimido.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">
+            5. Profecías cumplidas en esta porción
+          </h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Profecía</th>
+                <th>Referencia</th>
+                <th>Cumplimiento en el Mashíaj</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>“El mayor servirá al menor.”</td>
+                <td>Génesis 25:23 / Romanos 9:12</td>
+                <td>
+                  Yeshúa, siendo mayor, se hace siervo y redentor de todos
+                  (Filipenses 2:6–8).
+                </td>
+              </tr>
+              <tr>
+                <td>“He amado a Ya‘aqov, y a Esav aborrecí.”</td>
+                <td>Malaquías 1:2–3</td>
+                <td>
+                  El amor del Padre se manifiesta en la elección del Hijo, el
+                  Amado (Mateo 3:17).
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  “Mi siervo a quien sostengo, mi escogido en quien se deleita
+                  mi alma.”
+                </td>
+                <td>Isaías 42:1</td>
+                <td>
+                  Cumplido en Yeshúa en su inmersión (teviláh) en el Yarden
+                  (Mateo 3:16–17).
+                </td>
+              </tr>
+              <tr>
+                <td>“La casa de Ya‘aqov será fuego.”</td>
+                <td>Ovadyah 1:18</td>
+                <td>
+                  Yeshúa trae fuego purificador sobre la tierra (Lucas 12:49).
+                </td>
+              </tr>
+              <tr>
+                <td>“No por obras, sino por el que llama.”</td>
+                <td>Romanos 9:11</td>
+                <td>
+                  La salvación es por la gracia que proviene del llamamiento
+                  celestial en el Mashíaj (Efesios 2:8–9).
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">6. Aplicación espiritual</h3>
+          <ul>
+            <li>
+              <strong>Elección por gracia:</strong> Así como Ya‘aqov fue
+              elegido antes de sus obras, el creyente es elegido en el Mashíaj
+              por el amor eterno de <span class="hebrew-term">יהוה</span>
+              (Efesios 1:4).
+            </li>
+            <li>
+              <strong>Revestirse del Primogénito:</strong> Entrar ante el Padre
+              no con la justicia propia, sino cubiertos con las vestiduras del
+              Mashíaj (Gén 27:15; Gálatas 3:27).
+            </li>
+            <li>
+              <strong>El servicio como grandeza:</strong> El Reino mesiánico
+              invierte el orden: “El mayor servirá al menor.” Yeshúa enseña que
+              el verdadero poder es servicio, no dominio (Lucas 22:26).
+            </li>
+            <li>
+              <strong>El propósito divino es irrevocable:</strong> Lo que
+              Elohím ha determinado antes de las obras permanece. Ninguna fuerza
+              humana puede alterar Su elección.
+            </li>
+            <li>
+              <strong>La línea de Ya‘aqov vive en los redimidos:</strong> Todo
+              aquel que vive por fe y no por esfuerzo humano camina en la
+              bendición del linaje de Ya‘aqov, heredando las promesas en el
+              Mashíaj (Romanos 9:8; Gálatas 3:29).
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">7. Conclusión mesiánica</h3>
+          <p>
+            La revelación de Romanos 9:11–12 nos muestra que la historia de
+            Ya‘aqov y Esav no es solo un relato de familia, sino una profecía de
+            redención universal.
+          </p>
+          <ul>
+            <li>Ya‘aqov representa al Mashíaj, escogido antes de las obras.</li>
+            <li>
+              Esav representa la humanidad natural que confía en sí misma.
+            </li>
+          </ul>
+          <p>
+            En Yeshúa, la gracia vence al mérito, la fe triunfa sobre la carne y
+            el Reino eterno de <span class="hebrew-term">יהוה</span> se
+            establece.
+          </p>
+          <p>
+            Así, el mensaje de Sha’ul no es fatalismo, sino esperanza mesiánica:
+            que el amor soberano de <span class="hebrew-term">יהוה</span>,
+            manifestado en Yeshúa haMashíaj, se extiende a todos los llamados
+            conforme a Su propósito.
+          </p>
+          <div class="scripture">
+            <p>
+              “No por obras, sino por el que llama.” (Romanos 9:11) Esta es la
+              esencia del <span class="highlight">Besoráh</span>: que la
+              elección divina revelada en Ya‘aqov se cumple eternamente en el
+              Amado, Yeshúa haMashíaj –
+              <span class="hebrew-term">משיח צדקנו</span>, Redentor y
+              Primogénito de toda la creación.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-container">
+        <h1>Punto 4. Contexto Histórico y Cultural</h1>
+        <div class="section-container">
+            <p>Esta sección de <span class="highlight">Bereshit</span> <span class="hebrew-term">בְּרֵאשִׁית</span> (Génesis) 26:30–27:27 pertenece a la <span class="highlight">Parashá Toldot</span> <span class="hebrew-term">תּוֹלְדוֹת</span>, cuyo tema central es la transmisión de la bendición del Pacto desde <span class="highlight">Avraham</span> <span class="hebrew-term">אברהם</span> a <span class="highlight">Yitsjaq</span> <span class="hebrew-term">יצחק</span>, y de Yitsjaq a <span class="highlight">Ya‘aqov</span> <span class="hebrew-term">יַעֲקֹב</span>.</p>
+            <p>En la cultura patriarcal del antiguo Cercano Oriente (siglo XIX–XV a.E.C.), las bendiciones del padre eran de carácter jurídico y profético, y equivalían a la transferencia de autoridad espiritual y material.</p>
+            <p>La primogenitura (<span class="hebrew-term">בְּכוֹרָה</span> – <span class="transliteration">bekhoráh</span>) otorgaba el derecho al liderazgo familiar y al pacto con <span class="highlight">Elohím</span>.</p>
+            <p>En esta escena, el acto de comer y bendecir era un rito legal y profético, no un simple gesto familiar.</p>
+            <p>El “guizo y el vino” representan un banquete de pacto (<span class="highlight">seudat berit</span>), figura del posterior <span class="highlight">séder mesiánico</span> en el <span class="highlight">Brit Hadasháh</span>.</p>
+        </div>
+        <div class="section-container">
+            <h3>Culturalmente, el texto presenta dos dimensiones:</h3>
+            <ul>
+                <li>La fidelidad divina a su elección soberana.</li>
+                <li>La tensión entre lo humano y lo espiritual: Ya‘aqov busca la bendición que Elohím ya le había prometido (Gén 25:23).</li>
+            </ul>
+        </div>
+        <div class="section-container">
+            <p>Arqueológicamente, la vida de los patriarcas refleja un entorno nómada en la región de Be’er Sheva y Gerar, áreas donde se han hallado restos de altares y pozos de época patriarcal.</p>
+            <p>El acto de cubrirse con las vestiduras de Esav, en la mentalidad semítica, implicaba tomar la identidad legal del primogénito, algo que luego será espiritualizado en el Brit Hadasháh, donde los creyentes son “revestidos del Mashíaj” (Gálatas 3:27).</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas</h1>
+        <div class="section-container">
+            <h2>Comentarios Rabínicos</h2>
+            <div class="explanation">
+                <p><span class="highlight">Rashí</span> (R. Shelomó Yitzjaqí, s. XI) señala que la bendición de Yitsjaq no fue obtenida por engaño sino por designio divino, pues Rivqá actuó conforme a la palabra profética recibida en Gén 25:23: <span class="scripture">“El mayor servirá al menor.”</span></p>
+                <p><span class="highlight">Midrash Rabbáh Bereshit 65:20</span> dice: <span class="scripture">“Rivqá conocía los secretos de la profecía, y sabía que la Shejináh estaba destinada a reposar sobre Ya‘aqov, no sobre Esav.”</span></p>
+            </div>
+        </div>
+        <div class="section-container">
+            <h2>Comentario Judío Mesiánico</h2>
+            <div class="prophetic-content">
+                <p>Los comentaristas mesiánicos interpretan este episodio como una <span class="highlight">tipología redentora</span>.</p>
+                <ul>
+                    <li><span class="highlight">Yitsjaq</span> representa al Padre celestial.</li>
+                    <li><span class="highlight">Ya‘aqov</span> representa al Hijo elegido.</li>
+                    <li><span class="highlight">Rivqá</span> simboliza al <span class="highlight">Ruaj HaKodesh</span> <span class="hebrew-term">רוּחַ הַקֹּדֶשׁ</span>, que prepara al Hijo y dispone el sacrificio.</li>
+                    <li>Las vestiduras de Esav prefiguran la encarnación: el Hijo toma la forma humana (Filipenses 2:7–8).</li>
+                    <li>El banquete y la bendición anticipan la <span class="highlight">Seudat HaMashíaj</span>, el banquete mesiánico del Reino.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section-container">
+            <h2>Conexiones proféticas</h2>
+            <div class="prophetic-content">
+                <ul>
+                    <li>El perfume del campo bendito (Gén 27:27) anticipa la unción mesiánica de Yeshúa (Yojanán 12:3).</li>
+                    <li>La frase <span class="scripture">“que Elohím te dé del rocío del cielo”</span> (27:28) se cumple espiritualmente en el derramamiento del Ruaj HaKodesh (Hechos 2:17).</li>
+                    <li><span class="scripture">“Sé señor de tus hermanos”</span> (27:29) profetiza el reinado universal del Mashíaj, ante quien toda rodilla se doblará (Filipenses 2:10–11).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 6. Análisis Profundo de la Aliyáh</h1>
+        <div class="section-container">
+            <p>El pasaje describe la transmisión del <span class="highlight">Berit Avraham</span> – Pacto Abrahámico, ahora conferido a Ya‘aqov.</p>
+            <h2>Análisis literario y espiritual:</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Pacto de Paz (26:30–33):</div>
+                    <p>Yitsjaq celebra un pacto con Avimélej. Este hecho anuncia la paz mesiánica, cuando las naciones harán alianza con la descendencia de Ya‘aqov a través del Mashíaj.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Dolor y la Elección (27:1–17):</div>
+                    <p>Yitsjaq, envejecido y con visión débil, simboliza el velo espiritual de Israel (2 Corintios 3:14–16). Rivqá actúa como instrumento del Espíritu que ejecuta el plan divino.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Acto de Revestirse (27:15):</div>
+                    <p>Ya‘aqov se cubre con las ropas de Esav, figura del Mashíaj revestido de humanidad. Así, el Eterno bendice a la humanidad en el Amado.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Beso y el Aroma (27:26–27):</div>
+                    <p>Yitsjaq siente el aroma del campo bendecido —un símbolo profético del <span class="highlight">Ruaj HaMashíaj</span>, la fragancia de vida para los que creen (2 Corintios 2:15).</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-container">
+            <h2>Dimensión mesiánica</h2>
+            <div class="prophetic-content">
+                <p>El texto muestra cómo el designio eterno de Elohím se impone sobre las limitaciones humanas. En Yeshúa, esta soberanía alcanza su plenitud:</p>
+                <div class="scripture">“No depende del que corre ni del que quiere, sino de Elohím que tiene misericordia.” (Romanos 9:16)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+        <div class="section-container">
+            <h2>Tema central:</h2>
+            <div class="explanation">
+                <p>La transferencia divina de la bendición a través de la gracia soberana y la obediencia guiada por el Espíritu.</p>
+                <p>La Aliyáh enseña que la bendición no se obtiene por posición natural, sino por propósito celestial. Ya‘aqov, aunque segundo, es elegido; Esav, aunque primogénito, la rechaza.</p>
+            </div>
+        </div>
+        <div class="section-container">
+            <h2>Importancia en la Toráh</h2>
+            <ul>
+                <li>Reafirma el principio de la elección divina como fundamento del pacto.</li>
+                <li>Establece la línea mesiánica que conducirá al nacimiento de Yeshúa haMashíaj.</li>
+            </ul>
+        </div>
+        <div class="section-container">
+            <h2>Relación con el Brit Hadasháh</h2>
+            <div class="explanation">
+                <p>Yeshúa cumple este principio: siendo el Primogénito de Elohím, recibe la bendición y la imparte a sus hermanos. En Él, los creyentes reciben la herencia celestial (Efesios 1:11).</p>
+            </div>
+        </div>
+        <div class="section-container">
+            <h2>Relación con los Moedím</h2>
+            <div class="explanation">
+                <p>Esta Aliyáh se conecta con <span class="highlight">Shavu‘ot</span> (Pentecostés), cuando la bendición del cielo —el Ruaj— es derramada sobre los que creen, confirmando la promesa del pacto.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Punto 8. Descubriendo al Mashíaj en Cada Aliyáh</h1>
+        <div class="section-container">
+            <h2>Profecías mesiánicas y tipologías</h2>
+            <div class="prophetic-content">
+                <ul>
+                    <li><span class="highlight">Rivqá</span> (<span class="hebrew-term">רוּחַ</span>) representa el Ruaj HaKodesh, preparando la obra redentora.</li>
+                    <li>El “guizo y el vino” son sombras del banquete del Brit Hadasháh, cuando Yeshúa dice: <span class="scripture">“Esto es mi cuerpo y esta es mi sangre del nuevo pacto.”</span></li>
+                    <li>El “olor del campo bendito” (27:27) anticipa la unción de Yeshúa en Bet-Anyáh (Juan 12:3).</li>
+                    <li>El “rocío del cielo” simboliza la bendición espiritual derramada desde lo alto, cumplida en Hechos 2:17.</li>
+                    <li><span class="scripture">“Sé señor de tus hermanos”</span> se cumple en Filipenses 2:10–11, cuando toda rodilla se dobla ante el Mashíaj.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section-container">
+            <h2>Cumplimientos tipológicos</h2>
+            <div class="prophetic-content">
+                <ul>
+                    <li><span class="highlight">Ya‘aqov</span> es tipo del Mashíaj sufriente y exaltado.</li>
+                    <li><span class="highlight">Esav</span> es figura del sistema del mundo que desprecia la bendición.</li>
+                    <li><span class="highlight">Yitsjaq</span> prefigura al Padre que otorga la herencia al Hijo amado.</li>
+                    <li>Las ropas del primogénito apuntan a la humanidad del Mashíaj, quien se reviste de carne para redimirnos.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section-container">
+            <h2>Revelación mesiánica</h2>
+            <div class="prophetic-content">
+                <p>El acto profético de bendecir a Ya‘aqov bajo la apariencia de Esav es misterio redentor: Elohím bendice a la humanidad (Esav) a través del Hijo (Ya‘aqov) que toma su semejanza. Así, Yeshúa, el Hijo celestial, se viste de carne humana para traer la bendición del cielo sobre la tierra.</p>
+                <div class="scripture">“El Verbo se hizo carne y habitó entre nosotros.” (Yojanán 1:14)</div>
+                <p>El perfume del campo bendito es la fragancia de Mashíaj, quien trae el aroma de vida eterna.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="conclusion">
+        <h2 class="prayer-conclusion">Conclusión de los Puntos 4–8</h2>
+        <p>Génesis 26:30–27:27 revela el misterio de la elección divina y la transmisión mesiánica del pacto. El Eterno muestra que Su propósito no depende de lo visible ni de la fuerza humana, sino del consejo eterno en el Mashíaj.</p>
+        <p>Así como Ya‘aqov fue escogido antes de las obras, Yeshúa fue escogido antes de la fundación del mundo (1 Kefa 1:20), para ser la bendición que alcanzaría a toda la humanidad.</p>
+        <h3 class="prayer-conclusion">El tema mesiánico de esta Aliyáh:</h3>
+        <p class="prayer-text">“La bendición del Padre se transmite al Hijo escogido, y por medio de Él a todos los que creen.”</p>
+    </div>
+      <div class="content-container">
+      <h1>Punto 9. Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+
+      <div class="section-container">
+        <h2>Midrashim</h2>
+        <div class="verse-container">
+          <div class="verse-number">Midrash Rabbáh Bereshit 65:20</div>
+          <div class="translation">
+            “Rivqá supo por profecía que Ya‘aqov debía recibir la bendición,
+            porque la Shejináh reposaba sobre él, no sobre Esav.”
+          </div>
+          <div class="explanation">
+            Esto muestra que el acto de Rivqá no fue manipulación humana, sino
+            cumplimiento del decreto profético anunciado en Génesis 25:23.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Midrash Tanjumá Toldot 11</div>
+          <div class="translation">
+            “Las ropas de Esav que vistió Ya‘aqov eran las que Esav había tomado
+            de Nimrod, símbolo del poder carnal del mundo; y al vestirlas,
+            Ya‘aqov las sometió al servicio del Cielo.”
+          </div>
+          <div class="explanation">
+            Esto tiene un profundo eco mesiánico: Yeshúa, al encarnarse, toma
+            forma humana —la “ropa” del mundo— y la somete al propósito de
+            redención.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>Targumim</h2>
+        <div class="verse-container">
+          <div class="verse-number">Targum Onkelos sobre Génesis 27:27</div>
+          <div class="translation">
+            “Y olió el aroma de sus ropas, y he aquí, el aroma de sus ropas era
+            como el aroma de un campo que
+            <span class="highlight">יהוה</span> ha bendecido.”
+          </div>
+          <div class="explanation">
+            Los comentaristas targúmicos interpretan “campo” como Gan-‘Eden, el
+            Jardín celestial. De modo mesiánico, Yeshúa es el Campo Bendito, en
+            quien florece el fruto del Reino (Juan 15:5).
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>Textos Apócrifos</h2>
+        <div class="verse-container">
+          <div class="verse-number">El Libro de los Jubileos 26:34–36</div>
+          <div class="translation">
+            expone que el Eterno instruyó a Rivqá en sueños, confirmando que
+            Ya‘aqov debía recibir la bendición.
+          </div>
+          <div class="explanation">
+            Esto coincide con la acción del Ruaj HaKodesh, guiando a Rivqá como
+            tipo de revelación divina.
+          </div>
+        </div>
+        <p>
+          Así, la tradición hebrea, lejos de ver engaño, percibe un acto
+          profético y espiritual dirigido por la sabiduría de Elohím.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>Punto 10. Mandamientos Encontrados o Principios y Valores</h1>
+      <p>
+        Aunque esta porción no contiene mitzvot explícitas, sí revela principios
+        eternos de la Toráh, que son fundamento de la vida del creyente
+        mesiánico:
+      </p>
+
+      <ul>
+        <li>
+          <span class="highlight">Principio de la elección divina:</span>
+          Elohím elige a quien Él quiere conforme a Su propósito (Romanos
+          9:11).
+          <br />
+          Valor espiritual: vivir en gratitud y humildad ante Su gracia.
+        </li>
+        <li>
+          <span class="highlight">Principio de obediencia al Ruaj:</span>
+          Rivqá obedece la voz del Espíritu para cumplir la profecía.
+          <br />
+          Valor: discernir la voz del Ruaj y actuar conforme al propósito
+          divino, no al razonamiento humano.
+        </li>
+        <li>
+          <span class="highlight">Principio del sacrificio preparado:</span>
+          El alimento que Ya‘aqov presenta a Yitsjaq simboliza la ofrenda
+          aceptada.
+          <br />
+          Valor: acercarse al Padre con vida rendida y limpia.
+        </li>
+        <li>
+          <span class="highlight">Principio del revestimiento espiritual:</span>
+          Ya‘aqov se cubre con las vestiduras de Esav; el creyente se reviste
+          de Mashíaj (Gálatas 3:27).
+          <br />
+          Valor: identidad en la justicia del Hijo, no en mérito personal.
+        </li>
+        <li>
+          <span class="highlight">Principio de la bendición profética:</span>
+          Las palabras pronunciadas en fe tienen poder eterno.
+          <br />
+          Valor: cuidar las palabras y usarlas para bendecir, no maldecir.
+        </li>
+      </ul>
+    </div>
+
+    <div class="content-container">
+      <h1>
+        Punto 11. Preguntas de Reflexión (con respuestas en el Mashíaj Yeshúa)
+      </h1>
+
+      <div class="section-container">
+        <div class="question">
+          ¿Por qué Elohím permitió que Ya‘aqov recibiera la bendición mediante
+          un acto aparentemente engañoso?
+        </div>
+        <div class="answer">
+          Porque Su propósito trasciende la apariencia humana; era necesario
+          mostrar que la bendición se recibe por gracia y elección, no por
+          méritos. En el Mashíaj, esta verdad se cumple: la salvación no es por
+          obras, sino por el favor inmerecido de
+          <span class="highlight">יהוה</span> (Efesios 2:8–9).
+        </div>
+      </div>
+
+      <div class="section-container">
+        <div class="question">
+          ¿Qué representa el “revestirse con las ropas de Esav”?
+        </div>
+        <div class="answer">
+          Representa la encarnación del Mashíaj, quien tomó forma humana para
+          traer bendición al mundo. “El Verbo se hizo carne” (Juan 1:14).
+        </div>
+      </div>
+
+      <div class="section-container">
+        <div class="question">
+          ¿Qué significa el “aroma del campo bendito” que Yitsjaq olió?
+        </div>
+        <div class="answer">
+          Es la fragancia del Ruaj HaMashíaj, la unción que agrada al Padre.
+          “Somos buen olor del Mashíaj para Elohím” (2 Corintios 2:15).
+        </div>
+      </div>
+
+      <div class="section-container">
+        <div class="question">
+          ¿Por qué la bendición de Yitsjaq no puede ser revocada?
+        </div>
+        <div class="answer">
+          Porque la palabra profética, una vez pronunciada bajo la unción, es
+          eterna. Así la bendición del Padre sobre Yeshúa es irrevocable: “Tú
+          eres mi Hijo amado, en ti tengo complacencia” (Matityahu 3:17).
+        </div>
+      </div>
+
+      <div class="section-container">
+        <div class="question">
+          ¿Cómo se aplica la elección de Ya‘aqov a los creyentes en el Brit
+          Hadasháh?
+        </div>
+        <div class="answer">
+          Los creyentes son llamados “linaje escogido” (1 Kefa 2:9); reciben la
+          misma bendición a través del Primogénito celestial, Yeshúa haMashíaj.
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>Punto 12. Resumen de la Aliyáh</h1>
+      <p>
+        La Aliyáh de Génesis 26:30–27:27 relata el pacto de paz de Yitsjaq y la
+        bendición otorgada a Ya‘aqov, guiados por la sabiduría profética de
+        Rivqá. El tema central es la transferencia espiritual de la
+        primogenitura, que prefigura la herencia mesiánica.
+      </p>
+
+      <ul>
+        <li>
+          <span class="highlight">Históricamente,</span> muestra la continuidad
+          del pacto abrahámico.
+        </li>
+        <li>
+          <span class="highlight">Espiritualmente,</span> revela que la
+          elección divina precede a las obras humanas.
+        </li>
+        <li>
+          <span class="highlight">Proféticamente,</span> anuncia el misterio
+          del Mashíaj que será escogido antes de la fundación del mundo.
+        </li>
+        <li>
+          <span class="highlight">Mesiánicamente,</span> todo apunta a Yeshúa:
+          el Hijo amado que recibe la bendición del Padre y la reparte a sus
+          hermanos.
+        </li>
+      </ul>
+
+      <p>En resumen:</p>
+      <div class="conclusion">
+        El Padre (Yitsjaq) bendice al Hijo (Ya‘aqov) bajo la dirección del
+        Espíritu (Rivqá), para que por medio del Hijo, la bendición alcance a
+        toda la humanidad.
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>Punto 13. Tefiláh de la Aliyáh</h1>
+
+      <h2>Tefiláh – Oración Mesiánica Inspirada en Génesis 26:30–27:27</h2>
+
+      <div class="prayer-text">
+        <p>Abba Kadosh <span class="highlight">יהוה</span>,</p>
+        <p>
+          Tú que elegiste a Ya‘aqov para mostrar tu misericordia, y en el tiempo
+          perfecto revelaste tu amor en Yeshúa haMashíaj, el Hijo amado que
+          recibió la bendición celestial.
+        </p>
+        <p>
+          Enséñanos a caminar como Ya‘aqov, en humildad, buscando tu rostro y tu
+          favor. Revístenos con las vestiduras del Primogénito celestial, para
+          que al presentarnos ante Ti, halles en nosotros el aroma del campo
+          bendito, el perfume de la obediencia de tu Hijo.
+        </p>
+        <p>
+          Derrama sobre nosotros el rocío del cielo y la fertilidad de tu Ruaj,
+          que nuestras vidas sean campos bendecidos donde florezca tu Reino.
+        </p>
+        <p>
+          Que se cumpla en nosotros tu palabra: “El mayor servirá al menor”,
+          para que aprendamos a servir con humildad, como sirvió el Mashíaj.
+        </p>
+        <p>
+          Engrandece tu Nombre <span class="highlight">יהוה</span> en medio de
+          las naciones, y haznos portadores de tu bendición, para que el mundo
+          vea en nosotros el reflejo de tu amor eterno.
+        </p>
+        <p>
+          <span class="hebrew-term">בְּשֵׁם יֵשׁוּעַ הַמָּשִׁיחַ</span> – B’shem
+          Yeshúa haMashíaj, Amén, amén.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="conclusion">
+        <h3>Síntesis Final (Puntos 9–13)</h3>
+        <p>
+          Esta Aliyáh es una joya profética: el amor soberano de
+          <span class="highlight">יהוה</span> se revela en la elección de
+          Ya‘aqov, prefigurando la elección del Mashíaj, el Amado del Padre. En
+          ella vemos la armonía entre Toráh, Profetas y Brit Hadasháh, mostrando
+          que toda la historia redentora converge en Yeshúa.
+        </p>
+        <p><span class="highlight">Tema central:</span></p>
+        <p class="prayer-conclusion">
+          “La bendición eterna del Padre es conferida al Hijo escogido, Yeshúa
+          haMashíaj, y por medio de Él a todo aquel que es llamado conforme a Su
+          propósito.”
+        </p>
+      </div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya7.html">Continuar con la Aliyá 7</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

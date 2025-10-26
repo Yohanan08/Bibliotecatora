@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bereshit (בראשית) Génesis 26:1-12</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+      .translation {
+        margin: 10px 0;
+      }
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .section-container {
+        margin-bottom: 25px;
+      }
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+      strong {
+        color: #000;
+      }
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        6. Parashá Toldot (תולדות) Aliyáh 3: (Génesis 26:1-12) Yitzjak en Gerar
+        y su pacto con Avimelej.
+        <p>Haftaráh: Malaquías 2:1-7 (La fidelidad al pacto).</p>
+        <p>
+          Brit Hadasháh: Santiago 1:2-4 (La fe probada y la fidelidad de
+          Yitzjak).
+        </p>
+      </h1>
+      <h1>Punto 1. Bereshit / Génesis 26:1-12</h1>
+    <div class="contenedor-de-contenido">
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 1</div>
+            <div class="hebreo">וַיְהִי רָעָב בָּאָרֶץ מִלְּבַד הָרָעָב הָרִאשׁוֹן אֲשֶׁר הָיָה בִּימֵי אַבְרָהָם וַיֵּלֶךְ יִצְחָק אֶל־אֲבִימֶלֶךְ מֶלֶךְ־פְּלִשְׁתִּים גְּרָרָה׃</div>
+            <div class="transliteración">Va-yehí ra'av ba'áretz milvad ha-ra'av ha-rishón asher hayá bimey Avraham, va-yélej Yitzḥaq el-Avimélej mélej Pelishtím Gerará.</div>
+            <div class="traducción">Y hubo hambre en la tierra, además de la primera hambre que fue en los días de Avraham; y fue Yitzḥaq a Avimélej, rey de los filisteos, a Gerar.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 2</div>
+            <div class="hebreo">וַיֵּרָא אֵלָיו יְהוָה וַיֹּאמֶר אַל־תֵּרֵד מִצְרָיְמָה שְׁכֹן בָּאָרֶץ אֲשֶׁר אֹמַר אֵלֶיךָ׃</div>
+            <div class="transliteración">Va-yéra eláv יהוה va-yómer, al teréd Mitzráyma; shekhón ba-áretz asher omár eléija.</div>
+            <div class="traducción">Y se le apareció יהוה y dijo: No desciendas a Mitsráyim; habita en la tierra que Yo te diré.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 3</div>
+            <div class="hebreo">גּוּר בָּאָרֶץ הַזֹּאת וְאֶהְיֶה עִמְּךָ וַאֲבָרֶכְךָ כִּי־לְךָ וּלְזַרְעֲךָ אֶתֵּן אֶת־כָּל־הָאֲרָצֹת הָאֵל וַהֲקִמֹתִי אֶת־הַשְּׁבֻעָה אֲשֶׁר נִשְׁבַּעְתִּי לְאַבְרָהָם אָבִיךָ׃</div>
+            <div class="transliteración">Gur ba-áretz ha-zót ve-ehyéh imjá va-avarekhjá, ki lejá ul-zar'ajá eten et kol ha-aratzót ha-el, va-hakimotí et ha-shevúah asher nishba'ti le-Avraham avíja.</div>
+            <div class="traducción">Habita en esta tierra, y estaré contigo y te bendecirá; porque a ti ya tu descendencia daré todas estas tierras, y confirmaré el juramento que juré a Avraham tu padre.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 4</div>
+            <div class="hebreo">וְהִרְבֵּיתִי אֶת־זַרְעֲךָ כְּכוֹכְבֵי הַשָּׁמַיִם וְנָתַתִּי לְזַרְעֲךָ אֵת כָּל־הָאֲרָצֹת הָאֵל וְהִתְבָּרֲכוּ בְזַרְעֲךָ כֹּל גּוֹיֵי הָאָרֶץ׃</div>
+            <div class="transliteración">Ve-hirbéti et zar'ajá ke-kokhvé ha-shamáyim, ve-natátí le-zar'ajá et kol ha-aratzót ha-el, ve-hitbar'khú be-zar'ajá kol goyé ha-aretz.</div>
+            <div class="traducción">Y multiplicaré tu descendencia como las estrellas del cielo, y atreveré a tu descendencia todas estas tierras, y serán benditas en tu simiente todas las naciones de la tierra.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 5</div>
+            <div class="hebreo">עֵקֶב אֲשֶׁר שָׁמַע אַבְרָהָם בְּקֹלִי וַיִּשְׁמֹר מִשְׁמַרְתִּי מִצְו‍ֹתַי חֻקּוֹתַי וְתוֹרֹתָי׃</div>
+            <div class="transliteración">Ékev asher shamá Avraham be-kolí, va-yishmór mishmartí, mitzvotái, jukotái ve-torotái.</div>
+            <div class="traducción">Por cuanto Avraham escuchó Mi voz y guardó Mi encargo, Mis mandamientos, Mis estatutos y Mis instrucciones.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 6</div>
+            <div class="hebreo">וַיֵּשֶׁב יִצְחָק בִּגְרָר׃</div>
+            <div class="transliteración">Va-yéshev Yitzḥaq bi-Gerár.</div>
+            <div class="traducción">Y habitó Yitzḥaq en Gerar.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 7</div>
+            <div class="hebreo">וַיִּשְׁאֲלוּ אַנְשֵׁי הַמָּקוֹם עַל־אִשְׁתּוֹ וַיֹּאמֶר אֲחֹתִי הִוא כִּי יָרֵא לֵאמֹר אִשְׁתִּי פֶּן־יַהַרְגֻנִי אַנְשֵׁי הַמָּקוֹם עַל־רִבְקָה כִּי־טוֹבַת מַרְאֶה הִוא׃</div>
+            <div class="transliteración">Va-yish'alu anshey ha-makom al ishtó, va-yómer: ajotí hi; ki yaré le'mor ishtí, pen yaharguní anshey ha-makom al Rivqá, ki továt mar'é hi.</div>
+            <div class="traducción">Y los hombres del lugar le preguntaron acerca de su mujer; y él dijo: Es mi hermana, porque temía decir: Es mi mujer; no sea que me maten los hombres del lugar por causa de Rivqá, porque era de hermoso aspecto.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 8</div>
+            <div class="hebreo">וַיְהִי כִּי אָרְכוּ־לוֹ שָׁם הַיָּמִים וַיַּשְׁקֵף אֲבִימֶלֶךְ מֶלֶךְ־פְּלִשְׁתִּים בְּעַד הַחַלּוֹן וַיַּרְא וְהִנֵּה־יִצְחָק מְצַחֵק אֵת רִבְקָה אִשְׁתּוֹ׃</div>
+            <div class="transliteración">Va-yehí ki arkhú lo sham ha-yamím, va-yashkéf Avimélej mélej Pelishtím be'ad ha-jalón, va-yar ve-hiné Yitzḥaq metzajék et Rivqá ishtó.</div>
+            <div class="traducción">Y sucedió que cuando él había estado allí mucho tiempo, Avimélej rey de los filisteos miró por una ventana y vio, y he aquí, Yitzḥaq jugaba con Rivqá su mujer.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 9</div>
+            <div class="hebreo">וַיִּקְרָא אֲבִימֶלֶךְ לְיִצְחָק וַיֹּאמֶר אַךְ הִנֵּה אִשְׁתְּךָ הִוא וְאֵיךְ אָמַרְתָּ אֲחֹתִי הִוא וַיֹּאמֶר אֵלָיו יִצְחָק כִּי אָמַרְתִּי פֶּן־אָמֻת עָלֶיהָ׃</div>
+            <div class="transliteración">Va-yikrá Avimélej le-Yitzḥaq va-yómer: aj hiné isht'já hola, ve-ej amártá ajotí hola? Va-yómer eláv Yitzḥaq: ki amartí, pen amút aléha.</div>
+            <div class="traducción">Entonces llamó Avimélej a Yitzḥaq y dijo: He aquí, ella es tu mujer. ¿Cómo dijiste: es mi hermana? Y Yitzḥaq le respondió: Porque dije, quizás moriré por causa de ella.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 10</div>
+            <div class="hebreo">וַיֹּאמֶר אֲבִימֶלֶךְ מַה־זֹּאת עָשִׂיתָ לָּנוּ כִּמְעַט שָׁכַב אַחַד הָעָם אֶת־אִשְׁתֶּךָ וְהֵבֵאתָ עָלֵינוּ אָשָׁם׃</div>
+            <div class="transliteración">Va-yómer Avimélej: má zot asíta lanu? Kim'at shakáv ajad ha-am et ishtéja, ve-hevetá aléinu asham.</div>
+            <div class="traducción">Y dijo Avimélej: ¿Qué es esto que nos ha hecho? Casi hubiera dormido uno del pueblo con tu mujer, y habrías traído culpa sobre nosotros.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 11</div>
+            <div class="hebreo">וַיְצַו אֲבִימֶלֶךְ אֶת־כָּל־הָעָם לֵאמֹר הַנֹּגֵעַ בָּאִישׁ הַזֶּה וּבְאִשְׁתּוֹ מוֹת יוּמָת׃</div>
+            <div class="transliteración">Va-yetzav Avimélej et kol ha-am lemór: ha-nogéa ba-ish ha-ze u-ve-ishtó mot yumat.</div>
+            <div class="traducción">Y Avimélej ordenó a todo el pueblo, diciendo: Cualquiera que toque a este hombre oa su mujer ciertamente morirá.</div>
+        </div>
+
+        <div class="verse-contenedor">
+            <div class="número-de-verso">Verso 12</div>
+            <div class="hebreo">וַיִּזְרַע יִצְחָק בָּאָרֶץ הַהִוא וַיִּמְצָא בַשָּׁנָה הַהִוא מֵאָה שְׁעָרִים וַיְבָרְכֵהוּ יְהוָה׃</div>
+            <div class="transliteración">Va-yizra Yitzḥaq ba-aretz ha-hi, va-yimtza ba-shaná ha-hi me'ah she'arím, va-yevarejéhu יהוה.</div>
+            <div class="traducción">Y sembró Yitzḥaq en aquella tierra, y halló en aquel año ciento por uno; y lo bendijo יהוה.</div>
+        </div>
+    </div>
+
+    <h1>Cumplimiento Profético en el Mashíaj — Génesis בְּרֵאשִׁית 26:1-12</h1>
+
+    <div class="contenedor-de-contenido">
+        <div class="sección-contenedor">
+            <h2>Introducción Profética y Contexto Espiritual</h2>
+            <div class="explicación">
+                <p>En Génesis 26:1–12, <span class="destacar">Yitzḥaq</span> <span class="término-hebreo">יצחק</span> enfrenta una situación paralela a la que vivió su padre <span class="destacar">Avraham</span> <span class="término-hebreo">אברהם</span>: un tiempo de hambre, la tentación de descender a <span class="destacar">Mitsráyim</span> <span class="término-hebreo">מִצְרָיִם</span>, y la intervención directa de <span class="destacar">יהוה</span>, quien lo llama a permanecer en la tierra prometida.</p>
+                <p>Este episodio no solo refleja la fidelidad de <span class="destacar">Elohím</span> a Su pacto, sino también prefigura al <span class="destacar">Mashíaj</span>, quien en medio de la escasez y la prueba, manifiesta la obediencia perfecta y el cumplimiento del plan redentor.</p>
+                <p>La alianza de Avraham, confirmada a Yitzḥaq, encuentra su cumplimiento pleno en <span class="destacar">Yeshúa haMashíaj</span> <span class="término-hebreo">ישוע המשיח</span>, la simiente prometida (<span class="destacar">zera zar'a</span> <span class="término-hebreo">זֶרַע</span>) a través de la cual todas las naciones son bendecidas (Bereshit 26:4).</p>
+            </div>
+        </div>
+
+        <div class="divisor-de-sección"></div>
+
+        <div class="sección-contenedor">
+            <h2>Tipología Mesiánica en la Aliyá</h2>
+
+            <div class="contenido-profético">
+                <div class="sección-profética">
+                    <div class="título-profético"><span class="punto-letra">a.</span> El Hambre y la Prueba – Imagen del Sufrimiento del Mashíaj</div>
+                    <div class="escritura">“Y hubo hambre en la tierra…” (v.1)</div>
+                    <p>El hambre física simboliza la sequía espiritual del mundo antes de la venida del Mesías. Así como Yitzḥaq es probado en la fe, también Yeshúa fue llevado por el <span class="destacar">Ruaj Hakódesh</span> <span class="término-hebreo">רוּחַ הַקּוֹדֶשׁ</span> al desierto, enfrentando hambre y tentación (Matityahu <span class="término-hebreo">מתי</span> 4:1-4).</p>
+                    <p>Ambos permanecen fieles a la palabra de <span class="destacar">יהוה</span>, demostrando confianza total en la provisión divina.</p>
+                    <p><span class="destacar">Profecía cumplida:</span></p>
+                    <div class="escritura">“He aquí vienen días, dice <span class="destacar">יהוה</span>, en los cuales enviaré hambre a la tierra, no hambre de pan ni sed de agua, sino de oír las palabras de <span class="destacar">יהוה</span>.” (Amós 8:11)</div>
+                    <p>Yeshúa es esa Palabra Viva (<span class="destacar">Milta</span> <span class="arameo">ܡܠܬܐ</span> como en arameo, Juan 1:1), quien sacia la verdadera hambre espiritual.</p>
+                </div>
+
+                <div class="sección-profética">
+                    <div class="título-profético"><span class="punto-letra">b.</span> Permanecer en la Tierra – Obediencia del Hijo</div>
+                    <div class="escritura">“No desciendas a Mitsráyim, habita en la tierra que Yo te diré”. (v.2)</div>
+                    <p><span class="destacar">Elohím</span> instruye a Yitzḥaq a no buscar seguridad en el sistema egipcio (símbolo del mundo), sino permanecer bajo Su dirección.</p>
+                    <p>Esto anticipa la fidelidad del <span class="destacar">Mashíaj</span>, quien no buscó refugio en los sistemas humanos, sino que obedeció plenamente al Padre:</p>
+                    <div class="escritura">“Mi alimento es hacer la voluntad del que me envió y acabar su obra.” (Yojanán 4:34)</div>
+                    <p>La obediencia de Yitzḥaq es sombra de la obediencia perfecta de Yeshúa, quien se sometió hasta la muerte, cumpliendo el juramento eterno hecho a Avraham.</p>
+                </div>
+
+                <div class="sección-profética">
+                    <div class="título-profético"><span class="punto-letra">c.</span> Confirmación del Juramento – El Pacto Mesiánico</div>
+                    <div class="escritura">“Y confirmaré el juramento que juré a Avraham tu padre…” (v.3)</div>
+                    <p>Aquí, <span class="destacar">Elohím</span> reitera la promesa del Pacto Eterno — juramento que encuentra cumplimiento en la redención mesiánica.</p>
+                    <p><span class="destacar">Shaúl (Pablo)</span> enseña claramente:</p>
+                    <div class="escritura">“Y a Avraham fueron hechas las promesas, ya su simiente… la cual es Mashíaj.” (Gálatas 3:16)</div>
+                    <p>La promesa dada a Yitzḥaq de multiplicación y bendición se cumple en la comunidad mesiánica — los hijos de la fe (Gálatas 3:7-9).</p>
+                    <p>Así, el “juramento de Avraham” se perpetúa en <span class="destacar">Mashíaj</span> como garantía de salvación universal.</p>
+                </div>
+
+                <div class="sección-profética">
+                    <div class="título-profético"><span class="punto-letra">d.</span> La Simiente y la Bendición Universal</div>
+                    <div class="escritura">“En tu simiente serán bendecidas todas las naciones de la tierra.” (v.4)</div>
+                    <p>Este verso es proféticamente mesiánico.</p>
+                    <p>El término hebreo <span class="destacar">zar'a</span> <span class="término-hebreo">זֶרַע</span> (simiente) se usa en singular, apuntando no a una descendencia colectiva, sino a un individuo: <span class="destacar">Yeshúa haMashíaj</span>, el “<span class="destacar">Zéra Avraham</span>” que trae redención a los pueblos.</p>
+                    <p><span class="destacar">Conexión profética:</span></p>
+                    <ul>
+                        <li>Yeshayahu 42:1-6: “He aquí Mi Siervo, a quien sostengo… pondré Mi Espíritu sobre él, y traerá justicia a las naciones”.</li>
+                        <li>Lucas 2:32: “Luz para revelación a las naciones y gloria de tu pueblo Israel”.</li>
+                        <li>Hechos 3:25-26: “Vosotros sois los hijos del pacto… en tu simiente serán benditas todas las familias de la tierra”.</li>
+                    </ul>
+                    <p>Por tanto, <span class="destacar">Yitzḥaq</span> es tipo del Hijo amado que anticipa al Hijo eterno, la manifestación visible del juramento eterno de <span class="destacar">Elohím</span>.</p>
+                </div>
+
+                <div class="sección-profética">
+                    <div class="título-profético"><span class="punto-letra">e.</span> “Por cuanto Avraham oyó Mi voz…” (v.5)</div>
+                    <p>La fidelidad de Avraham se transfiere a Yitzḥaq, como la fidelidad del Padre celestial se manifiesta en el Hijo.</p>
+                    <p>Yeshúa declara:</p>
+                    <div class="escritura">“Yo hago siempre lo que agrada a Mi Padre”. (Yojanán 8:29)</div>
+                    <p>Así, la obediencia del patriarca es figura de la obediencia del <span class="destacar">Mashíaj</span> — la perfecta <span class="destacar">Torá</span> viva (<span class="destacar">Torát Jaim</span> <span class="término-hebreo">תּוֹרַת חַיִּים</span>) que encarna la voluntad divina.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="divisor-de-sección"></div>
+
+        <div class="sección-contenedor">
+            <h2>Cumplimiento Profético y Brit Hadashá</h2>
+            <div class="explicación">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Elemento en Génesis 26:1–12</th>
+                            <th>Cumplimiento en el Mashíaj (Brit Hadashá)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hambre en la tierra</td>
+                            <td>Juan 6:35 – “Yo soy el Pan de Vida”.</td>
+                        </tr>
+                        <tr>
+                            <td>Mandato de no ir a Mitsráyim</td>
+                            <td>Mateo 4:10 – “Solo a <span class="destacar">יהוה</span> tu <span class="destacar">Elohím</span> adorarás”.</td>
+                        </tr>
+                        <tr>
+                            <td>Confirmación del juramento</td>
+                            <td>Lucas 1:72–73 – “Para mostrar misericordia… recordando su pacto santo.”</td>
+                        </tr>
+                        <tr>
+                            <td>Multiplicación de la simiente</td>
+                            <td>Hechos 2:47 – “Y el <span class="destacar">Adón</span> añadía cada día a los que habían de ser salvos.”</td>
+                        </tr>
+                        <tr>
+                            <td>Bendición universal</td>
+                            <td>Gálatas 3:8 – “En ti serán benditas todas las naciones.”</td>
+                        </tr>
+                        <tr>
+                            <td>Obediencia de Avraham</td>
+                            <td>Filipenses 2:8 – “Yeshúa se humilló, haciéndose obediente hasta la muerte”.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Cada acción de Yitzḥaq en esta porción anticipa las obras redentoras de Yeshúa:</p>
+                <ul>
+                    <li>Él siembra (v.12) la palabra de vida y cosecha abundante fruto en los corazones.</li>
+                    <li>Así como Yitzḥaq recibe cien por uno, <span class="destacar">Mashíaj</span> trae una cosecha espiritual multiplicada entre las naciones (Matityahu 13:23).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divisor-de-sección"></div>
+
+        <div class="sección-contenedor">
+            <h2>Aplicación Espiritual Contemporánea</h2>
+            <div class="contenido-profético">
+                <div class="sección-profética">
+                    <div class="título-profético">Permanecer donde <span class="destacar">Elohím</span> nos llama:</div>
+                    <p>En tiempos de crisis, el creyente mesiánico no busca refugio en “Mitsráyim” (dependencia humana), sino en la dirección del <span class="destacar">Ruaj Hakódesh</span>.</p>
+                    <div class="escritura">– “Quédate en la tierra que Yo te diré.” (v.2)</div>
+                    <p>Obedecer en medio de la incertidumbre activa la promesa de bendición.</p>
+                </div>
+
+                <div class="sección-profética">
+                    <div class="título-profético">La fidelidad trae multiplicación:</div>
+                    <p>La siembra de Yitzḥaq en tierra de sequía (v.12) simboliza la fe activa que da fruto en ambientes adversos.</p>
+                    <div class="escritura">– Cuando sembramos conforme a la palabra de <span class="destacar">יהוה</span>, la cosecha excede las expectativas humanas.</div>
+                </div>
+
+                <div class="sección-profética">
+                    <div class="título-profético">Obediencia como herencia espiritual:</div>
+                    <p>La obediencia de Avraham, transmitida a Yitzḥaq, nos enseña que la fe se hereda no por linaje físico, sino por continuidad espiritual en <span class="destacar">Mashíaj</span>.</p>
+                </div>
+
+                <div class="sección-profética">
+                    <div class="título-profético">Yeshúa como el verdadero Yitzḥaq (Risa y Gozo):</div>
+                    <p>El nombre <span class="destacar">Yitzḥaq</span> (<span class="término-hebreo">יִצְחָק</span>, “él reirá”) prefigura la alegría mesiánica.</p>
+                    <div class="escritura">– En Yeshúa, el mundo encuentra cansado gozo eterno: “Estas cosas os he hablado para que mi gozo esté en vosotros”. (Juan 15:11)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divisor-de-sección"></div>
+
+        <div class="sección-contenedor">
+            <h2>Profecías Cumplidas en Esta Porción</h2>
+            <div class="explicación">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Profecía en la Torá</th>
+                            <th>Cumplimiento Mesiánico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>La simiente de Avraham bendecirá a todas las naciones (Gén. 26:4)</td>
+                            <td>Cumplido en Yeshúa haMashíaj, descendiente de Avraham (Mat. 1:1; Gál. 3:16)</td>
+                        </tr>
+                        <tr>
+                            <td>Permanecer en la tierra prometida (26:2-3)</td>
+                            <td>Cumplido en la misión de Mashíaj que predica dentro de Israel antes de extender la redención al mundo (Mat. 15:24)</td>
+                        </tr>
+                        <tr>
+                            <td>Multiplicación y prosperidad sobrenatural (26:12)</td>
+                            <td>Cumplido en la expansión de la <span class="destacar">Kehiláh Mesiánica</span> (Hechos 2:47; 9:31)</td>
+                        </tr>
+                        <tr>
+                            <td>Bendición por la obediencia del padre (26:5)</td>
+                            <td>Cumplido en el testimonio del Hijo obediente (Fil. 2:8; Heb. 5:8-9)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="divisor-de-sección"></div>
+
+        <div class="sección-contenedor">
+            <h2>Conclusión</h2>
+            <div class="conclusión">
+                <p>Génesis 26:1–12 es un espejo profético del camino del <span class="destacar">Mashíaj</span>:</p>
+                <p>obediencia en la prueba, bendición en la tierra prometida y redención universal a través de la simiente santa.</p>
+                <p>El <span class="destacar">Elohím</span> que se reveló a Yitzḥaq es el mismo que se manifestó en Yeshúa, trayendo cumplimiento pleno al juramento hecho a Avraham. </p>
+            <div class="escritura"> “En tu simiente serán benditas todas las naciones.” </div>
+        <div class="conclusión-de-la-oración"> (Génesis 26:4 – Cumplido en Gálatas 3:16) </div>
+      </div>
+    </div>
+  </div>
+  <h1>Punto 2. Haftaráh: Malaquías 2:1-7 (La fidelidad al pacto).</h1>
+
+    <div class="content-container">
+      <h2>Verso 1</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:1</div>
+        <div class="hebrew">וְעַתָּה אֵלֵיכֶם הַמִּצְוָה הַזֹּאת הַכֹּהֲנִים׃</div>
+        <div class="transliteration">Ve-‘attá eléijem ha-mitzváh ha-zot ha-kohanim.</div>
+        <div class="translation">Y ahora, a vosotros es este mandamiento, oh sacerdotes.</div>
+      </div>
+
+      <h2>Verso 2</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:2</div>
+        <div class="hebrew">
+          אִם־לֹא תִשְׁמְעוּ וְאִם־לֹא תָשִׂימוּ עַל־לֵב לָתֵת כָּבוֹד לִשְׁמִי אָמַר יהוה צְבָאוֹת וְשִׁלַּחְתִּי בָכֶם
+          אֶת־הַמְאֵרָה וְאָרוֹתִי אֶת־בִּרְכוֹתֵיכֶם וְגַם־אָרוֹתִיהָ כִּי אֵינְכֶם שָׂמִים עַל־לֵב׃
+        </div>
+        <div class="transliteration">
+          Im-lo tishme‘u ve-im-lo tasímu al-lev latet kavód li-shemí, amar יהוה
+          Tzeva’ot, ve-shillajtí bajem et ha-me’ará, ve-arótí et birjotéijem,
+          ve-gam arótíha ki einjem samím al-lev.
+        </div>
+        <div class="translation">
+          Si no escucháis, y si no ponéis en vuestro corazón dar honra a Mi Nombre —dice
+          יהוה Tseva’ot—, enviaré sobre vosotros la maldición, y maldeciré vuestras
+          bendiciones; y aún las he maldecido, porque no ponéis en vuestro corazón.
+        </div>
+      </div>
+
+      <h2>Verso 3</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:3</div>
+        <div class="hebrew">
+          הִנְנִי גֹעֵר לָכֶם אֶת־הַזֶּרַע וְזֵרִיתִי פֶרֶשׁ עַל־פְּנֵיכֶם פֶרֶשׁ חַגֵּיכֶם וְנָשָׂא אֶתְכֶם אֵלָיו׃
+        </div>
+        <div class="transliteration">
+          Hineni go‘er lajém et ha-zéra‘, ve-zérití pérèsh al-penéijem, pérèsh
+          ḥagéijem, ve-nasá etkém eláv.
+        </div>
+        <div class="translation">
+          He aquí, Yo reprenderé vuestra semilla, y esparciré estiércol sobre vuestros
+          rostros, el estiércol de vuestras solemnidades; y con él seréis removidos.
+        </div>
+      </div>
+
+      <h2>Verso 4</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:4</div>
+        <div class="hebrew">
+          וִידַעְתֶּם כִּי שִׁלַּחְתִּי אֲלֵיכֶם אֶת־הַמִּצְוָה הַזֹּאת לִהְיוֹת בְּרִיתִי אֶת־לֵוִי אָמַר יהוה צְבָאוֹת׃
+        </div>
+        <div class="transliteration">
+          Vi-yadá‘tem ki shillajtí aleijem et ha-mitzváh ha-zot lihyót berití et Leví,
+          amar יהוה Tseva’ot.
+        </div>
+        <div class="translation">
+          Y sabréis que Yo os envié este mandamiento, para que permanezca Mi pacto con
+          Levî, dice יהוה Tseva’ot.
+        </div>
+      </div>
+
+      <h2>Verso 5</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:5</div>
+        <div class="hebrew">
+          בְּרִיתִי הָיְתָה אִתּוֹ הַחַיִּים וְהַשָּׁלוֹם וָאֶתְּנֵם לוֹ מוֹרָא וַיִּירָאֵנִי וּמִפְּנֵי שְׁמִי נִחַת הוּא׃
+        </div>
+        <div class="transliteration">
+          BeritÍ hayetá itó ha-ḥayím ve-ha-shalóm, va-etném lo morá, va-yirá’eni,
+          u-mipné shemí niját hu.
+        </div>
+        <div class="translation">
+          Mi pacto fue con él —vida y paz—, y Yo se los di para que Me temiera; y él Me
+          temió y ante Mi Nombre se humilló.
+        </div>
+      </div>
+
+      <h2>Verso 6</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:6</div>
+        <div class="hebrew">
+          תּוֹרַת אֱמֶת הָיְתָה בְּפִיהוּ וְעַוְלָה לֹא נִמְצְאָה בִשְׂפָתָיו בְּשָׁלוֹם וּבְמִישׁוֹר הָלַךְ אִתִּי
+          וְרַבִּים הֵשִׁיב מֵעָו‍ֹן׃
+        </div>
+        <div class="transliteration">
+          Torát émet hayetá be-fiv, ve-‘avlá lo nimtzé’a bisfatáv; be-shalóm u-ve-mishór
+          haláj ití, ve-rabím heshív me-‘avón.
+        </div>
+        <div class="translation">
+          La Toráh de verdad estuvo en su boca, y maldad no fue hallada en sus labios; en
+          paz y rectitud caminó conmigo, y apartó a muchos de la iniquidad.
+        </div>
+      </div>
+
+      <h2>Verso 7</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:7</div>
+        <div class="hebrew">
+          כִּי שִׂפְתֵי כֹהֵן יִשְׁמְרוּ־דַעַת וְתוֹרָה יְבַקְשׁוּ מִפִּיהוּ כִּי מַלְאַךְ יהוה צְבָאוֹת הוּא׃
+        </div>
+        <div class="transliteration">
+          Ki sifté kohén yishmerú-da‘at, ve-Toráh yevakshú mi-piv, ki mal’áj יהוה Tseva’ot
+          hu.
+        </div>
+        <div class="translation">
+          Porque los labios del kohén guardarán conocimiento, y la Toráh buscarán de su
+          boca, porque él es mensajero de יהוה Tseva’ot.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2>Comentario Mesiánico – Conexión con el Mashíaj</h2>
+        <p>
+          Este pasaje revela el pacto de vida y shalom entre Elohím y los kohanim
+          (sacerdotes), representado en Levî, pero su plenitud se cumple en el Mashíaj
+          Yeshúa <span class="hebrew-term">ישוע המשיח</span>, quien es el Kohén Gadol
+          <span class="hebrew-term">לְעוֹלָם</span> (Sumo Sacerdote eterno) según la
+          orden de Melkitzédeq <span class="hebrew-term">מלכי־צדק</span> (Tehilím 110:4;
+          Hebreos 7:17).
+        </p>
+        <p>
+          Así como el kohén debía enseñar la Toráh de verdad, Yeshúa vino como el Davar
+          Elohím <span class="hebrew-term">דבר אלוהים</span>, la Toráh viviente.
+        </p>
+        <p>
+          — “La Toráh de verdad estuvo en su boca” (v.6) encuentra su eco en Yojanán 14:6:
+        </p>
+        <blockquote class="scripture">“Yo soy el Camino, la Verdad y la Vida.”</blockquote>
+        <p>
+          Yeshúa cumple el modelo del kohén fiel que instruye en justicia y reconcilia al
+          pueblo con Elohím:
+        </p>
+        <blockquote class="scripture">
+          “Porque los labios del kohén guardarán conocimiento…” (v.7)
+        </blockquote>
+        <p>Se cumple en Lucas 24:45:</p>
+        <blockquote class="scripture">
+          “Entonces les abrió la mente para que comprendieran las Escrituras.”
+        </blockquote>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">Cumplimiento Profético y Conexión con los Profetas</h3>
+          <p>
+            <strong>Isaías 42:6</strong> — “Yo, יהוה, te he llamado en justicia… y te
+            pondré por pacto al pueblo.”
+            <br />
+            <span class="arrow">→</span> Yeshúa, el verdadero Kohén haGadol, establece el
+            pacto Nuevo con sangre (Matityahu 26:28).
+          </p>
+          <p>
+            <strong>Jeremías 31:31–34</strong> — El nuevo pacto escrito en los corazones,
+            enseñado por el mismo Ruaj HaKodesh.
+            <br />
+            <span class="arrow">→</span> Refleja la promesa del conocimiento sacerdotal
+            interiorizado (ve-Toráh yevakshú mi-piv).
+          </p>
+          <p>
+            <strong>Ezequiel 44:23</strong> — Los sacerdotes enseñarán la diferencia entre
+            lo kadosh y lo profano.
+            <br />
+            <span class="arrow">→</span> En el Brit Hadashá, Yeshúa y sus talmidim
+            continúan esta enseñanza de discernimiento espiritual.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h3>Aplicación Espiritual</h3>
+        <ul>
+          <li>
+            El creyente mesiánico es llamado a ser kohén del pacto nuevo, guardando
+            conocimiento, instruyendo en la Toráh de Mashíaj (1 Kefa 2:9).
+          </li>
+          <li>
+            El temor reverente y la pureza de labios (v.6) reflejan la santidad de
+            aquellos que enseñan la Palabra viva.
+          </li>
+          <li>
+            El mensaje mesiánico transforma la función sacerdotal: el Mashíaj nos hace
+            reino de kohanim (Hitgalut 1:6), donde el conocimiento fluye de su boca a
+            través del Ruaj.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>Cumplimiento Profético en el Mashíaj – Malají מַלְאָכִי 2:1–7</h1>
+
+      <div class="section-container">
+        <h2 class="prophetic-title">1. Contexto Profético de la Haftaráh</h2>
+        <p>
+          El profeta <span class="highlight">Malají מַלְאָכִי</span> —“Mi Mensajero”—
+          profetiza en el período posterior al retorno del exilio babilónico (siglo V
+          a.E.C.). Israel ha reconstruido el Templo, pero los
+          <span class="hebrew-term">kohanim כֹּהֲנִים</span> han corrompido su servicio:
+          ofrecen sacrificios contaminados, han perdido el temor reverente y pervierten
+          la instrucción (<span class="hebrew-term">Torat Emet תּוֹרַת אֱמֶת</span>).
+        </p>
+        <p>
+          En esta reprimenda, יהוה se presenta como el guardián del pacto de vida y paz
+          (<span class="hebrew-term">בריתי החיים והשלום</span>) hecho con Leví, símbolo
+          del ministerio sacerdotal. Sin embargo, la profecía trasciende el tiempo:
+          anticipa la venida de un Sacerdote perfecto, que restaurará la pureza del
+          servicio y del conocimiento divino.
+        </p>
+        <p>
+          Ese Sacerdote eterno es <span class="highlight">Yeshúa haMashíaj ישוע המשיח</span>,
+          el cumplimiento del pacto levítico en su dimensión celestial.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2 class="prophetic-title">2. Tipología Mesiánica del Pacto de Leví</h2>
+        <h3>Verso 5 – “Mi pacto fue con él: vida y shalom”</h3>
+        <p>
+          El pacto con Leví representa el servicio sacerdotal fiel y sin corrupción. Pero
+          la historia muestra que el sacerdocio aarónico fracasó, dando paso a la
+          promesa de un nuevo orden sacerdotal eterno.
+        </p>
+        <blockquote class="scripture">
+          Tehilím 110:4 – “Tú eres kohén para siempre, según el orden de Melkitzédeq.”
+        </blockquote>
+        <p>
+          Esta palabra mesiánica se cumple en Yeshúa, quien no procede de Leví sino de
+          Yehudá, pero establece un sacerdocio celestial basado no en genealogía sino en
+          santidad eterna (Hebreos 7:11–17).
+        </p>
+        <p>
+          Por tanto, el “pacto de vida y shalom” es profecía del
+          <span class="hebrew-term">Brit Hadashá בְּרִית חֲדָשָׁה</span>, sellado en la
+          sangre del Cordero (Matityahu 26:28).
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">3. Cumplimiento Profético en el Mashíaj</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Profecía en Malají 2:1–7</th>
+              <th>Cumplimiento en el Mashíaj</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>“Daré mi pacto de vida y shalom.” (v.5)</td>
+              <td>
+                Yeshúa, el Dador de Vida y Príncipe de Shalom (Yeshayahu 9:6; Yojanán
+                14:27).
+              </td>
+            </tr>
+            <tr>
+              <td>“La Toráh de verdad estuvo en su boca.” (v.6)</td>
+              <td>Yeshúa es la Toráh viviente (Yojanán 1:14; 14:6).</td>
+            </tr>
+            <tr>
+              <td>“En paz y rectitud caminó conmigo.” (v.6)</td>
+              <td>Su caminar perfecto cumple toda justicia (Mat. 3:15; Heb. 4:15).</td>
+            </tr>
+            <tr>
+              <td>“Muchos apartó del pecado.” (v.6)</td>
+              <td>
+                Mashíaj aparta a muchos de la iniquidad (Tito 2:14; 1 Kefa 2:24).
+              </td>
+            </tr>
+            <tr>
+              <td>“Los labios del kohén guardarán conocimiento.” (v.7)</td>
+              <td>
+                Yeshúa enseña como Maestro Divino, no como los escribas (Mat. 7:29; Lc.
+                24:45).
+              </td>
+            </tr>
+            <tr>
+              <td>“Porque él es mensajero de יהוה צְבָאוֹת.” (v.7)</td>
+              <td>
+                Cumplido en Yeshúa, el Malaj del Pacto (<span class="hebrew-term"
+                  >מַלְאָךְ הַבְּרִית</span
+                >
+                – Malají 3:1).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Así, el Kohén Mesiánico se revela como el cumplimiento del ministerio levítico:
+          Él es el mediador único entre Elohím y los hombres (1 Timoteo 2:5), la
+          expresión plena del <span class="highlight">mal’aj יהוה צְבָאוֹת</span>.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">4. Conexión con los Profetas</h2>
+        <div class="prophetic-section">
+          <h3>a. Yeshayahu 42:6–7</h3>
+          <blockquote class="scripture">
+            “Yo, יהוה, te he llamado en justicia… y te pondré por pacto al pueblo, por
+            luz a las naciones.”
+          </blockquote>
+          <ul>
+            <li>
+              Yeshúa, el Eved יהוה, cumple el propósito del pacto de Leví: no solo
+              instruye a Israel, sino que lleva la Toráh al mundo entero.
+            </li>
+            <li>Su boca, llena de Torat Emet, abre los ojos espirituales y libera a los
+              cautivos.
+            </li>
+          </ul>
+        </div>
+        <div class="prophetic-section">
+          <h3>b. Jeremías 31:31–33</h3>
+          <blockquote class="scripture">
+            “Haré un pacto nuevo… pondré Mi Toráh dentro de ellos y sobre sus corazones la
+            escribiré.”
+          </blockquote>
+          <ul>
+            <li>
+              El pacto de vida y shalom anunciado a Leví alcanza su consumación espiritual
+              en el Brit Hadashá, donde la enseñanza divina se interioriza por el Ruaj
+              HaKodesh.
+            </li>
+          </ul>
+        </div>
+        <div class="prophetic-section">
+          <h3>c. Ezequiel 37:26</h3>
+          <blockquote class="scripture">
+            “Haré con ellos un pacto de shalom… y estableceré Mi santuario en medio de
+            ellos.”
+          </blockquote>
+          <ul>
+            <li>
+              Este pacto de shalom es el cumplimiento mesiánico del ministerio sacerdotal
+              purificado, en el cual Mashíaj mismo es el Santuario viviente (Yojanán
+              2:19–21).
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2 class="prophetic-title">5. Conexión con el Brit Hadashá</h2>
+        <p>
+          El autor de Hebreos revela directamente la relación entre Malají 2 y la obra
+          sacerdotal de Yeshúa:
+        </p>
+        <blockquote class="scripture">
+          Hebreos 7:22–25 — “Yeshúa ha venido a ser fiador de un pacto superior… porque
+          permanece para siempre, tiene un sacerdocio inmutable.”
+        </blockquote>
+        <ul>
+          <li>
+            La “vida y shalom” del pacto con Leví (Mal. 2:5) se manifiestan en la vida
+            eterna del Sumo Sacerdote celestial.
+          </li>
+          <li>
+            El conocimiento que debía salir de los labios de los kohanim (v.7) ahora
+            brota de la boca de Mashíaj, que enseña con autoridad divina (Lucas 4:32).
+          </li>
+          <li>
+            Él intercede perpetuamente por nosotros, cumpliendo la función del mal’aj
+            יהוה (mensajero del pacto).
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">6. Conexión con la Parashá Toldot (Génesis 26:1–12)</h2>
+        <p>Ambas porciones comparten un tema redentor:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Toldot (Gén. 26:1–12)</th>
+              <th>Malají 2:1–7</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Elohím confirma el pacto con Yitzḥaq por la obediencia de Avraham.</td>
+              <td>Elohím recuerda el pacto con Leví por la fidelidad y verdad.</td>
+            </tr>
+            <tr>
+              <td>La bendición depende de la obediencia al llamado.</td>
+              <td>El sacerdocio depende del temor y fidelidad a יהוה.</td>
+            </tr>
+            <tr>
+              <td>Yitzḥaq siembra y cosecha cien por uno.</td>
+              <td>El kohén fiel siembra Toráh y cosecha redención en muchos.</td>
+            </tr>
+            <tr>
+              <td>
+                Ambos anticipan la obra de Yeshúa, quien obedece, enseña y bendice todas
+                las naciones.
+              </td>
+              <td>
+                Mashíaj cumple el pacto sacerdotal eterno, enseñando la Toráh de verdad y
+                trayendo shalom.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="highlight">La conexión profética:</p>
+        <ul>
+          <li>
+            El pacto de Avraham y el pacto de Leví convergen en la persona del Mashíaj.
+          </li>
+          <li>
+            Yeshúa es simultáneamente el heredero de Avraham y el Kohén eterno de
+            Melkitzédeq — uniendo ambos pactos en un solo propósito: vida, verdad y
+            shalom eterno.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2 class="prophetic-title">7. Aplicación Espiritual</h2>
+        <div class="prophetic-section">
+          <p class="question">Restaurar el sacerdocio interior:</p>
+          <div class="answer">
+            <p>
+              Todo creyente mesiánico es llamado a ser kohén del pacto (Hitgalut 1:6),
+              reflejando la verdad en sus labios.
+            </p>
+            <blockquote class="scripture">
+              → “Porque los labios del kohén guardarán conocimiento.” (v.7)
+            </blockquote>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <p class="question">Temor reverente y santidad de palabra:</p>
+          <div class="answer">
+            <p>
+              Así como el kohén debía guardar pureza de labios, el discípulo de Mashíaj
+              debe hablar con integridad y enseñar con humildad.
+            </p>
+            <blockquote class="scripture">
+              → Efesios 4:29: “Ninguna palabra corrupta salga de vuestra boca.”
+            </blockquote>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <p class="question">El Pacto de Vida y Shalom:</p>
+          <div class="answer">
+            <p>
+              No es un concepto teórico, sino una realidad espiritual que se manifiesta en
+              la paz interior y en la reconciliación con Elohím por medio de Yeshúa.
+            </p>
+            <blockquote class="scripture">
+              → Colosenses 1:20: “Y por medio de Él reconciliar consigo todas las cosas,
+              haciendo shalom por la sangre de Su madero.”
+            </blockquote>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <p class="question">Enseñar Torat Emet – La Toráh de Verdad:</p>
+          <div class="answer">
+            <p>
+              El creyente mesiánico debe instruir, no según tradiciones humanas, sino
+              conforme a la Toráh viva que Yeshúa encarna.
+            </p>
+            <blockquote class="scripture">
+              → 2 Timoteo 2:15: “Procura presentarte aprobado, que maneja correctamente la
+              palabra de verdad.”
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">8. Profecías Cumplidas en Esta Porción</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Profecía</th>
+              <th>Cumplimiento Mesiánico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>“Mi pacto fue con él: vida y shalom.” (Mal. 2:5)</td>
+              <td>
+                Juan 10:10 – “Yo he venido para que tengan vida, y la tengan en abundancia.”
+              </td>
+            </tr>
+            <tr>
+              <td>“La Toráh de verdad estuvo en su boca.” (2:6)</td>
+              <td>Juan 14:6 – “Yo soy la Verdad.”</td>
+            </tr>
+            <tr>
+              <td>“Muchos apartó del pecado.” (2:6)</td>
+              <td>1 Pedro 2:24 – “Él llevó nuestros pecados en Su cuerpo.”</td>
+            </tr>
+            <tr>
+              <td>“Los labios del kohén guardarán conocimiento.” (2:7)</td>
+              <td>
+                Lucas 24:45 – “Les abrió el entendimiento para comprender las Escrituras.”
+              </td>
+            </tr>
+            <tr>
+              <td>“Porque él es mensajero de יהוה צבאות.” (2:7)</td>
+              <td>
+                Malají 3:1 / Hebreos 3:1 – “Considerad al Emisario y Kohén Supremo de
+                nuestra confesión, Yeshúa.”
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2 class="prophetic-title">9. Conclusión Mesiánica</h2>
+        <p>
+          Malaquías 2:1–7 anuncia el fracaso del sacerdocio terreno, pero a la vez
+          anticipa la perfección sacerdotal del Mashíaj, quien restaura el temor, la
+          verdad y el conocimiento de Elohím entre los hombres.
+        </p>
+        <p>
+          El Pacto de Vida y Shalom no es una metáfora: es la presencia viva del Mashíaj
+          en medio de Su pueblo, que enseña, redime y purifica. Su boca es la fuente de la
+          Toráh eterna, y Su sangre es el sello del pacto nuevo.
+        </p>
+        <p class="highlight">“Porque él es mensajero de יהוה צבאות.” (Malají 2:7)</p>
+        <p>Cumplido en:</p>
+        <blockquote class="scripture">
+          “Yo soy el buen Pastor; el buen Pastor da su vida por las ovejas.” (Yojanán
+          10:11)
+        </blockquote>
+        <p>
+          Así, el <span class="hebrew-term">Mal’aj haBrit מַלְאָךְ הַבְּרִית</span>
+          —Yeshúa haMashíaj— cumple en sí mismo el pacto levítico y extiende a toda la
+          humanidad el conocimiento de la Toráh de Verdad.
+        </p>
+      </div>
+    </div>
+     <h1>Punto 3. Brit Hadasháh: Santiago 1:2-4 (La fe probada y la fidelidad de Yitzjak).</h1>
+
+    <div class="content-container">
+      <div class="verse-container">
+        <div class="verse-number">Verso 2</div>
+        <div class="aramaic">
+          ܚܫܒܘ ܠܟܘܢ ܚܕܘܬܐ ܪܒܬܐ ܐܚܝ ܟܕ ܐܬܢܣܝܬܘܢ ܢܣܝܘܢܐ ܡܫܚܠܦܐ
+        </div>
+        <div class="transliteration">
+          Hashbu lakhun ḥadwátá rabbtá, aḥay, kad etnassíton nasyoná
+          meshḥalfá.
+        </div>
+        <div class="translation">
+          Tened por gran gozo, mis hermanos, cuando seáis probados en diversas
+          pruebas.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 3</div>
+        <div class="aramaic">
+          ܕܐܝܕܥܝܢ ܐܢܬܘܢ ܕܒܘܩܝܗ ܕܗܝܡܢܘܬܟܘܢ ܗܘܐ ܠܗ ܡܣܝܒܪܢܘܬܐ
+        </div>
+        <div class="transliteration">
+          De-id‘in antun de-buqíh de-heymanutkhun, hawa leh mesyabranutá.
+        </div>
+        <div class="translation">
+          Sabiendo que la prueba de vuestra fe produce perseverancia
+          (constancia).
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 4</div>
+        <div class="aramaic">
+          ܘܡܣܝܒܪܢܘܬܐ ܬܗܘܐ ܠܗ ܥܒܕܐ ܓܡܝܪܐ ܕܬܗܘܘܢ ܓܡܝܪܝܢ ܘܫܠܡܝܢ ܘܠܐ ܬܗܘܘܢ
+          ܒܚܣܝܪܘܬܐ ܕܡܕܡ
+        </div>
+        <div class="transliteration">
+          U-mesyabranutá tehwe leh ‘avdá gamírá, de-tehwehun gamirín u-shlemin,
+          u-la tehwehun be-ḥasirutá de-madam.
+        </div>
+        <div class="translation">
+          Y la perseverancia tenga su obra completa, para que seáis perfectos y
+          plenos, sin faltar en nada.
+        </div>
+      </div>
+    </div>
+
+    <h1>Comentario Mesiánico y Cumplimiento Profético</h1>
+    <div class="content-container">
+      <div class="explanation">
+        La carta de Ya‘aqov
+        <span class="hebrew-term">יַעֲקֹב</span> (Santiago), hermano de Yeshúa
+        haMashíaj
+        <span class="hebrew-term">ישוע המשיח</span>, refleja la sabiduría
+        hebrea antigua y el espíritu profético del Tanakh aplicado a los
+        discípulos del Brit Hadashá.
+      </div>
+
+      <p>
+        El pasaje está profundamente conectado con la enseñanza de Génesis
+        26:1–12 y Malají 2:1–7, pues en los tres textos encontramos un mismo
+        patrón espiritual: La prueba, la obediencia, y la recompensa de
+        fidelidad.
+      </p>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">1.</span> Cumplimiento en el Mashíaj
+          </div>
+          <p>Yeshúa mismo es el ejemplo perfecto del mensaje de Ya‘aqov:</p>
+          <div class="scripture">
+            “Aprendió la obediencia por lo que padeció.” (Hebreos 5:8)
+          </div>
+          <div class="scripture">
+            “Por la alegría puesta delante de Él soportó la estaca (el madero).”
+            (Hebreos 12:2)
+          </div>
+          <p>
+            Así como Yitzḥaq fue probado por el hambre y permaneció en la tierra
+            de la promesa, Yeshúa soportó la aflicción sin apartarse del
+            propósito de
+            <span class="hebrew-term">יהוה</span>. La prueba (nasyoná
+            <span class="hebrew-term">נסיון</span>) revela la autenticidad de
+            la fe y produce en nosotros la semejanza del Mashíaj.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">2.</span> Conexión con los Profetas
+          </div>
+          <h3 class="prophetic-title">a. Yeshayahu 48:10</h3>
+          <div class="scripture">
+            “He aquí te he purificado, y no como a plata; te he probado en el
+            horno de aflicción.”
+          </div>
+          <p>
+            El mismo principio espiritual que Ya‘aqov enseña: las pruebas no
+            destruyen al justo, sino que lo refinan.
+          </p>
+          <h3 class="prophetic-title">b. Tehilím 66:10–12</h3>
+          <div class="scripture">
+            “Tú nos probaste, oh Elohím… nos pasaste por fuego y por agua, pero
+            nos sacaste a abundancia.”
+          </div>
+          <p>
+            De igual forma, Yitzḥaq halló bendición en medio de la sequía
+            (Génesis 26:12). El fuego de la prueba abre el camino a la
+            multiplicación espiritual.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">3.</span> Conexión con el Brit Hadashá
+          </div>
+          <p>
+            El mensaje de Ya‘aqov armoniza con la enseñanza del propio Yeshúa:
+          </p>
+          <div class="scripture">
+            Matityahu 5:10–12 – “Bienaventurados los perseguidos por causa de la
+            justicia, porque de ellos es el Reino.”
+          </div>
+          <div class="scripture">
+            Rom. 5:3–5 – “La tribulación produce paciencia, la paciencia
+            carácter probado, y el carácter probado esperanza.”
+          </div>
+          <div class="scripture">
+            1 Kefa 1:6–7 – “La prueba de vuestra fe, mucho más preciosa que el
+            oro, sea hallada en alabanza y honra en la revelación de Yeshúa
+            haMashíaj.”
+          </div>
+          <p>
+            En todos estos textos, la misma raíz hebrea conceptual de
+            <span class="hebrew-term">nisayon נסיון</span> (prueba) implica
+            purificación y propósito redentor. El sufrimiento no es castigo,
+            sino instrumento de perfección en el carácter mesiánico.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">4.</span> Aplicación Espiritual y
+            Conexión con Toldot
+          </div>
+          <p>
+            Así como Yitzḥaq fue probado por el hambre y permaneció fiel, y los
+            kohanim de Malají 2 fueron probados en su fidelidad al pacto,
+            también el creyente mesiánico es probado para revelar la pureza de
+            su fe.
+          </p>
+          <h3 class="prophetic-title">a. Perseverancia bajo presión</h3>
+          <p>
+            Las pruebas son el terreno donde el Ruaj HaKodesh
+            <span class="hebrew-term">רוּחַ הַקּוֹדֶשׁ</span> cultiva la
+            perseverancia (mesyabranutá). El discípulo no huye de la prueba,
+            sino que la abraza como medio de crecimiento.
+          </p>
+          <h3 class="prophetic-title">b. Madurez espiritual</h3>
+          <p>
+            La “obra completa” (‘avdá gamírá) del verso 4 apunta al propósito
+            final de Elohím: que el creyente alcance madurez (shlemut
+            <span class="hebrew-term">שלמות</span>), reflejando el carácter del
+            Mashíaj.
+          </p>
+          <h3 class="prophetic-title">c. Gozo en medio de la aflicción</h3>
+          <p>
+            Ya‘aqov no exhorta a disfrutar el dolor, sino a ver con ojos
+            proféticos el fruto que la prueba producirá. El gozo (ḥadwátá
+            rabbtá) surge al comprender que cada dificultad nos acerca al
+            cumplimiento del propósito divino.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">5.</span> Profecías Cumplidas y
+            Simbolismo Mesiánico
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Tema profético</th>
+                <th>Cumplimiento en el Mashíaj y sus discípulos</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>El justo probado (Yeshayahu 53:7)</td>
+                <td>Yeshúa soportó el sufrimiento en silencio y obediencia.</td>
+              </tr>
+              <tr>
+                <td>La fe probada produce vida (Habacuc 2:4)</td>
+                <td>
+                  “El justo por su fe vivirá”; cumplido en la comunidad
+                  mesiánica.
+                </td>
+              </tr>
+              <tr>
+                <td>El pacto de vida y shalom (Malají 2:5)</td>
+                <td>
+                  Yeshúa otorga vida y paz por medio de la perseverancia
+                  redentora.
+                </td>
+              </tr>
+              <tr>
+                <td>Siembra y cosecha (Génesis 26:12)</td>
+                <td>
+                  Las pruebas son la siembra que produce cosecha espiritual en
+                  Mashíaj.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">6.</span> Conclusión Mesiánica
+          </div>
+          <p>
+            Ya‘aqov 1:2–4 es la voz profética del discipulado mesiánico: enseña
+            que la fe auténtica debe pasar por fuego para volverse oro
+            refinado. Así como Yitzḥaq sembró en tierra seca y halló abundancia,
+            el discípulo que persevera en medio de las pruebas cosecha plenitud
+            espiritual en Yeshúa.
+          </p>
+          <p class="scripture">
+            “La perseverancia tenga su obra completa…”
+          </p>
+          <p>
+            — porque el propósito de <span class="hebrew-term">יהוה</span> en
+            nuestras pruebas es formar el carácter del Mashíaj en nosotros.
+          </p>
+          <p>
+            El mismo Ruaj que fortaleció a Yitzḥaq en la tierra de hambre y a
+            los kohanim fieles de Leví, hoy actúa en el creyente mesiánico para
+            producir gozo, madurez y plenitud.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h1>
+      Comentario Mesiánico de Ya‘aqov
+      <span class="hebrew-term">יַעֲקֹב</span> (Santiago) 1:2–4
+    </h1>
+    <h2>
+      En el Mashíaj Yeshúa <span class="hebrew-term">ישוע המשיח</span>
+    </h2>
+    <h3>
+      Conexión con los Profetas, la Aliyá de Génesis 26:1–12, y las profecías
+      cumplidas en esta porción.
+    </h3>
+
+    <div class="content-container">
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">1.</span> Contexto Espiritual y Propósito
+            Mesiánico del Texto
+          </div>
+          <p>
+            La carta de Ya‘aqov, hermano de Yeshúa y líder de la Kehiláh en
+            Yerushaláyim, fue dirigida a las “doce tribus en la dispersión”
+            (Ya‘aqov 1:1). Desde su inicio, el enfoque es netamente israelita y
+            mesiánico, recordando a los creyentes en la diáspora que las
+            pruebas no son castigo, sino el proceso de refinamiento por medio
+            del cual Elohím forma el carácter de Mashíaj en nosotros.
+          </p>
+          <div class="scripture">
+            “Tened por gran gozo, mis hermanos, cuando os halléis en diversas
+            pruebas.” (Ya‘aqov 1:2)
+          </div>
+          <p>
+            Ya‘aqov retoma aquí el lenguaje profético de la Toráh, donde las
+            pruebas (nisayon <span class="hebrew-term">נִסָּיוֹן</span>) son el
+            horno en que se purifica la fe (Devarim 8:2). Así, el mensaje está
+            en perfecta continuidad con las Aliyot de Toldot
+            <span class="hebrew-term">תּוֹלְדוֹת</span>, especialmente con
+            Génesis 26:1–12, donde Yitzḥaq es probado por el hambre pero
+            permanece fiel en la tierra de promesa, resultando en multiplicación
+            y bendición.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">2.</span> El Mashíaj como el Modelo
+            Perfecto de Perseverancia
+          </div>
+          <p>
+            El mensaje central de Ya‘aqov 1:2–4 se cumple plenamente en Yeshúa
+            haMashíaj, quien soportó la mayor prueba en obediencia perfecta.
+          </p>
+          <h3 class="prophetic-title">a. La Alegría en la Prueba</h3>
+          <p>
+            “Tened por gran gozo (
+            <span class="aramaic">ܚܕܘܬܐ</span> ḥadwátá) cuando seáis
+            probados…”
+          </p>
+          <p>Yeshúa anticipa este principio en su enseñanza:</p>
+          <div class="scripture">
+            “Bienaventurados los que lloran, porque ellos serán consolados.”
+            (Matityahu 5:4)
+          </div>
+          <div class="scripture">
+            “Regocijaos cuando os persigan por causa de la justicia.”
+            (Matityahu 5:11–12)
+          </div>
+          <p>
+            En el Mashíaj, la alegría en la aflicción no es masoquismo, sino
+            una visión profética que contempla el fruto de la redención detrás
+            del sufrimiento. Así como Yitzḥaq perseveró en la tierra del hambre,
+            sembró y cosechó ciento por uno (Bereshit 26:12), Yeshúa sembró Su
+            vida en dolor y cosechó la redención de multitudes.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">3.</span> Conexión con los Profetas del
+            Tanakh
+          </div>
+          <h3 class="prophetic-title">a. Yeshayahu <span class="hebrew-term">ישעיהו</span> 48:10</h3>
+          <div class="scripture">
+            “He aquí te he refinado, pero no como a plata; te he probado en el
+            horno de la aflicción.”
+          </div>
+          <p>
+            Yeshúa encarna esta purificación en su obediencia perfecta. Él es
+            el Israel fiel que soporta el fuego de la aflicción sin rebelarse,
+            cumpliendo lo que Israel no logró en generaciones anteriores.
+          </p>
+          <h3 class="prophetic-title">b. Tehilím <span class="hebrew-term">תהילים</span> 66:10–12</h3>
+          <div class="scripture">
+            “Porque Tú nos probaste, oh Elohím, nos ensayaste como se afina la
+            plata… pero nos sacaste a abundancia.”
+          </div>
+          <p>
+            Este salmo refleja la misma dinámica que Ya‘aqov describe: la
+            prueba produce abundancia espiritual. La palabra hebrea
+            <span class="hebrew-term">נסיון</span> (nisayon) y el arameo
+            <span class="aramaic">ܢܣܝܘܢܐ</span> (nasyoná) comparten la idea de
+            probar para elevar. El objetivo no es destruir, sino fortalecer la
+            fe y producir plenitud (shlemut <span class="hebrew-term">שלמות</span>).
+          </p>
+          <h3 class="prophetic-title">c. Job <span class="hebrew-term">איוב</span> 23:10</h3>
+          <div class="scripture">
+            “Mas Él conoce mi camino; si me probare, saldré como oro.”
+          </div>
+          <p>
+            El justo de Uz prefigura a Mashíaj: probado intensamente, pero
+            victorioso en integridad. Ya‘aqov cita el mismo principio que se
+            cumple en la perfección de Yeshúa —el Justo por excelencia—, cuya
+            fidelidad fue probada hasta la muerte.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">4.</span> Conexión con la Aliyá de
+            Génesis 26:1–12
+          </div>
+          <p>
+            En la segunda Aliyá de Parashá Toldot, Yitzḥaq enfrenta hambre en
+            la tierra y recibe la orden divina:
+          </p>
+          <div class="scripture">
+            “No desciendas a Mitsráyim; habita en la tierra que Yo te diré.”
+            (Gén. 26:2)
+          </div>
+          <p>
+            Esta instrucción revela el principio espiritual del pasaje de
+            Ya‘aqov:
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>Aliyá Toldot (Gén. 26:1–12)</th>
+                <th>Ya‘aqov 1:2–4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Prueba: hambre en la tierra.</td>
+                <td>Prueba: diversas aflicciones.</td>
+              </tr>
+              <tr>
+                <td>Orden: permanecer donde Elohím dirige.</td>
+                <td>Exhortación: perseverar bajo la prueba.</td>
+              </tr>
+              <tr>
+                <td>Resultado: cosecha multiplicada.</td>
+                <td>Resultado: madurez completa.</td>
+              </tr>
+              <tr>
+                <td>Tema central: obediencia produce bendición.</td>
+                <td>Tema central: fe probada produce plenitud.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            El hambre de Yitzḥaq no fue un castigo, sino el campo donde Elohím
+            multiplicó su fe y su fruto. Así también, las pruebas de los
+            creyentes son el terreno donde el Ruaj Hakódesh
+            <span class="hebrew-term">רוּחַ הַקּוֹדֶשׁ</span> produce el carácter
+            del Mashíaj.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">5.</span> Cumplimiento Profético en
+            Yeshúa haMashíaj
+          </div>
+          <p>
+            Yeshúa es la plenitud de la perseverancia divina: Él soportó la
+            tentación, el rechazo, la aflicción y la muerte, y en todo se
+            mantuvo fiel al propósito eterno del Padre.
+          </p>
+          <div class="scripture">
+            “Por la alegría puesta delante de Él soportó el madero,
+            menospreciando la vergüenza.” (Ivrim/Hebreos 12:2)
+          </div>
+          <p>
+            La “alegría puesta delante de Él” es precisamente lo que Ya‘aqov
+            enseña: la visión espiritual del resultado glorioso más allá del
+            sufrimiento. Por su perseverancia (mesyabranutá
+            <span class="aramaic">ܡܣܝܒܪܢܘܬܐ</span>), Yeshúa alcanzó la
+            perfección (shlemut <span class="hebrew-term">שלמות</span>) del
+            propósito redentor, haciéndose fuente de salvación eterna (Hebreos
+            5:8–9).
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">6.</span> Conexión con el Brit Hadashá
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Enseñanza de Ya‘aqov 1:2–4</th>
+                <th>Cumplimiento en otros textos del Brit Hadashá</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>“Tened por gran gozo las pruebas.”</td>
+                <td>
+                  Rom. 5:3–5 – “Nos gloriamos en las tribulaciones, sabiendo que
+                  producen paciencia.”
+                </td>
+              </tr>
+              <tr>
+                <td>“La prueba de vuestra fe produce perseverancia.”</td>
+                <td>
+                  1 Kefa 1:6–7 – “La prueba de vuestra fe… sea hallada en
+                  alabanza en la revelación de Mashíaj.”
+                </td>
+              </tr>
+              <tr>
+                <td>“La perseverancia tenga su obra completa.”</td>
+                <td>
+                  Heb. 10:36 – “Tenéis necesidad de perseverancia para que,
+                  habiendo hecho la voluntad de Elohím, obtengáis la promesa.”
+                </td>
+              </tr>
+              <tr>
+                <td>“Para que seáis perfectos y plenos.”</td>
+                <td>
+                  Mat. 5:48 – “Sed perfectos como vuestro Padre celestial es
+                  perfecto.”
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            El hilo profético y mesiánico une toda la Escritura: la
+            perseverancia bajo prueba revela la autenticidad de la fe y produce
+            la plenitud de la imagen de Mashíaj en el creyente.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">7.</span> Aplicación Espiritual
+          </div>
+          <ul>
+            <li>
+              <strong>Ver las pruebas como semilla divina.</strong> Así como
+              Yitzḥaq sembró en tierra árida, el discípulo mesiánico siembra
+              obediencia en medio de la adversidad, confiando que
+              <span class="hebrew-term">יהוה</span> dará fruto multiplicado.
+            </li>
+            <li>
+              <strong>El gozo no depende de la circunstancia.</strong> “Tened
+              por gran gozo” — el gozo es un fruto del Ruaj, no del entorno
+              (Gálatas 5:22).
+            </li>
+            <li>
+              <strong>La paciencia (mesyabranutá) como obra del Ruaj.</strong>
+              Es el carácter del Mashíaj formándose en nosotros, la fuerza
+              interna que nos permite permanecer firmes en fe, esperanza y
+              pureza.
+            </li>
+            <li>
+              <strong>La perfección (shlemut) como meta espiritual.</strong> No
+              se trata de perfección sin errores, sino de madurez completa:
+              plenitud en obediencia, como Yeshúa la vivió.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">8.</span> Profecías Cumplidas en Esta
+            Porción
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Profecía / Principio</th>
+                <th>Cumplimiento en Mashíaj y su Kehiláh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>“El justo vivirá por su fe.” (Habacuc 2:4)</td>
+                <td>
+                  Cumplido en Yeshúa, modelo de fidelidad y perseverancia.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  “Te he probado en el horno de aflicción.” (Yeshayahu 48:10)
+                </td>
+                <td>
+                  Cumplido en la pasión y obediencia del Mashíaj.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  “Mi pacto fue con él: vida y shalom.” (Malají 2:5)
+                </td>
+                <td>
+                  Cumplido en el Brit Hadashá, donde el Mashíaj nos da vida y
+                  paz por la prueba redentora.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  “Y sembró Yitzḥaq en la tierra y halló cien por uno.” (Gén.
+                  26:12)
+                </td>
+                <td>
+                  Cumplido en el Reino: Yeshúa siembra Su vida y cosecha
+                  redención multiplicada (Yojanán 12:24).
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            <span class="point-letter">9.</span> Conclusión Mesiánica
+          </div>
+          <p class="conclusion">
+            El mensaje de Ya‘aqov 1:2–4 no es un llamado al sufrimiento, sino a
+            la visión celestial que comprende el propósito del sufrimiento: que
+            la fe del creyente sea purificada como el oro y produzca plenitud
+            en el Mashíaj Yeshúa.
+          </p>
+          <p class="conclusion">
+            Así como Yitzḥaq fue probado y prosperó, y los kohanim fueron
+            llamados a fidelidad en Malají, el discípulo mesiánico de hoy es
+            probado para ser perfeccionado.
+          </p>
+          <p class="conclusion">
+            “La perseverancia tenga su obra completa.”
+          </p>
+          <p class="conclusion">
+            — Para que la imagen del Mashíaj resplandezca en nosotros, hasta
+            que se cumpla lo profetizado: “Y verán su rostro, y su Nombre
+            estará en sus frentes.” (Hitgalut 22:4)
+          </p>
+        </div>
+      </div>
+    </div>
+    <h1>PUNTO 4 — Contexto Histórico y Cultural</h1>
+    <div class="content-container">
+      <p>
+        El capítulo 26 del libro de Bereshit nos sitúa en el territorio del
+        Néguev, en los días en que
+        <span class="highlight">Yitzḥaq יצחק</span>, el hijo de la promesa,
+        habita en la región de <span class="highlight">Gerar גְּרָר</span>,
+        bajo la autoridad del rey filisteo
+        <span class="highlight">Avimélej אֲבִימֶלֶךְ</span>. La referencia al
+        hambre “además del primero” (v.1) conecta este episodio con la hambruna
+        del tiempo de <span class="highlight">Avraham אבְרָהָם</span> (Gén.
+        12:10), mostrando un patrón divino:
+        <span class="highlight">Elohím</span> prueba la fidelidad de las
+        generaciones para confirmar Su pacto.
+      </p>
+      <p>En este contexto:</p>
+      <ul>
+        <li>
+          <strong>Gerar</strong> era una zona fronteriza fértil al suroeste de
+          Canaán, limítrofe con el territorio egipcio, donde los patriarcas
+          interactuaron con pueblos semíticos y filisteos.
+        </li>
+        <li>
+          Los filisteos de esta época no son los mismos invasores del período
+          de los jueces; se trata de clanes locales de origen avéstico o egeo,
+          integrados culturalmente en la región.
+        </li>
+        <li>
+          <strong>Yitzḥaq</strong>, como patriarca, asume el rol de custodio
+          del pacto, conservando la línea de promesa entre Avraham y
+          <span class="highlight">Ya‘aqov יַעֲקֹב</span>.
+        </li>
+        <li>
+          La tierra experimenta crisis agrícola, reflejando ciclos naturales
+          del Medio Oriente, pero espiritualmente significa el tiempo de
+          prueba, donde la fe del justo es refinada.
+        </li>
+      </ul>
+      <p>
+        En términos culturales, la preservación de la simiente (
+        <span class="hebrew-term">זֶרַע</span> zéra‘) y la obediencia a la voz
+        divina son elementos claves en el pensamiento patriarcal. Elohím no
+        solo asegura descendencia física, sino también una herencia espiritual
+        mesiánica, que hallará cumplimiento en la “Simiente única” —
+        <span class="hebrew-term">הַזֶּרַע הָאֶחָד</span> haZéra haEjad —
+        <span class="highlight">Yeshúa haMashíaj ישוע המשיח</span>.
+      </p>
+    </div>
+
+    <h1>PUNTO 5 — Estudio, Comentarios y Conexiones Proféticas</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>A. Comentario Rabínico</h2>
+        <div class="explanation">
+          <p>
+            Los sabios destacan la fidelidad de
+            <span class="highlight">Yitzḥaq</span>. El Midrash Bereshit Rabbah
+            64:3 comenta que “el hambre fue enviada para probar a Yitzḥaq, así
+            como su padre fue probado”. El Rambán (Najmánides) interpreta que la
+            orden “no desciendas a Mitsráyim” fue un recordatorio de que
+            <span class="highlight">Yitzḥaq</span> era un
+            <span class="hebrew-term">עֹלָה תְּמִימָה</span> olah temimáh — un
+            sacrificio completo, consagrado a
+            <span class="highlight">יהוה</span>, y por tanto debía permanecer
+            en la tierra santa.
+          </p>
+          <p>
+            El Sforno añade que el mandato de permanecer en la tierra prometida
+            enseñaba dependencia total del Eterno, no de las economías o
+            alianzas humanas. Por eso, cada acto de
+            <span class="highlight">Yitzḥaq</span> —su permanencia, su
+            siembra, su bendición— es un testimonio de fe pura.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>B. Comentario Mesiánico</h2>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <p>
+              Proféticamente, <span class="highlight">Yitzḥaq</span> representa
+              al <span class="highlight">Mashíaj</span> obediente, quien no
+              busca salida humana a la prueba, sino que permanece en la voluntad
+              del Padre.
+            </p>
+            <p>
+              Cuando <span class="highlight">Elohím</span> le dice “No
+              desciendas a Mitsráyim”, anticipa el ejemplo de
+              <span class="highlight">Yeshúa</span>, quien rehusó el camino
+              fácil durante la tentación en el desierto (Matityahu 4:1–10).
+            </p>
+            <p>
+              El juramento de <span class="highlight">Avraham</span> (26:3–5)
+              se renueva en <span class="highlight">Yitzḥaq</span> como figura
+              del pacto eterno sellado en el <span class="highlight"
+                >Mashíaj</span
+              >, quien confirma todas las promesas dadas a los patriarcas
+              (Lucas 1:72–73; Gálatas 3:16).
+            </p>
+            <p>
+              La siembra y cosecha sobrenatural (v.12) prefigura el principio
+              del Reino: lo sembrado en obediencia da fruto multiplicado por la
+              bendición divina (Matityahu 13:23).
+            </p>
+            <p>
+              <span class="highlight">Yitzḥaq</span> es, pues, un tipo
+              mesiánico: el hijo prometido, obediente, probado y bendecido, cuyo
+              caminar anticipa el camino redentor del Hijo eterno.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>C. Conexiones Proféticas</h2>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">Yeshayahu 30:23</h3>
+            <p class="scripture">
+              “Entonces dará lluvia a tu semilla con que siembras la tierra…”
+            </p>
+            <p>
+              <span class="arrow">→</span> Cumplido espiritualmente en el
+              <span class="highlight">Ruaj Hakódesh</span> que hace germinar la
+              Palabra sembrada por <span class="highlight">Mashíaj</span>.
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">Tehilím 126:5–6</h3>
+            <p class="scripture">
+              “Los que siembran con lágrimas segarán con gozo.”
+            </p>
+            <p>
+              <span class="arrow">→</span> Paralelo a
+              <span class="highlight">Yitzḥaq</span>, quien sembró en tiempo de
+              sequía y cosechó abundancia; así
+              <span class="highlight">Mashíaj</span> sembró Su vida en dolor y
+              cosechó redención eterna.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1>PUNTO 6 — Análisis Profundo de la Aliyáh</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h3 class="prophetic-title">Verso 1: La hambruna simboliza...</h3>
+        <p>
+          La hambruna simboliza la escasez espiritual del mundo sin revelación.
+          <span class="arrow">→</span> En el Brit Hadashá,
+          <span class="highlight">Yeshúa</span> declara: “Yo soy el Pan de Vida”
+          (Yojanán 6:35), satisfaciendo el hambre eterna.
+        </p>
+      </div>
+      <div class="section-container">
+        <h3 class="prophetic-title">Versos 2–3: El mandato de permanecer...</h3>
+        <p>
+          El mandato de permanecer es una prueba de fe.
+          <span class="arrow">→</span> <span class="highlight">Yeshúa</span>,
+          como el perfecto Israel, obedece al Padre en todo, enseñando a
+          depender del Cielo.
+        </p>
+      </div>
+      <div class="section-container">
+        <h3 class="prophetic-title">
+          Verso 4: “En tu simiente serán benditas todas las naciones”...
+        </h3>
+        <p>
+          “En tu simiente serán benditas todas las naciones” — esta es la
+          profecía mesiánica central del Pacto Abrahámico.
+          <span class="arrow">→</span> Cumplida en
+          <span class="highlight">Yeshúa</span>, la Simiente singular (Gálatas
+          3:16).
+        </p>
+      </div>
+      <div class="section-container">
+        <h3 class="prophetic-title">Verso 5: La fidelidad de Avraham...</h3>
+        <p>
+          La fidelidad de <span class="highlight">Avraham</span> es tipo de la
+          obediencia perfecta del <span class="highlight">Mashíaj</span>, quien
+          escucha la voz del Padre y guarda Su Toráh.
+        </p>
+      </div>
+      <div class="section-container">
+        <h3 class="prophetic-title">Verso 12: La siembra y cosecha...</h3>
+        <p>
+          La siembra y cosecha representan el principio del Reino, donde la
+          obediencia produce multiplicación espiritual (Marcos 4:20).
+        </p>
+      </div>
+    </div>
+
+    <h1>PUNTO 7 — Tema Más Relevante de la Aliyáh</h1>
+    <div class="content-container">
+      <div class="prophetic-content">
+        <h3 class="prophetic-title">Tema Central:</h3>
+        <p class="highlight">
+          “La fe obediente en tiempo de prueba produce bendición y cumplimiento
+          profético en el Mashíaj.”
+        </p>
+        <p>
+          El tema dominante es <strong>obediencia en la adversidad</strong>.
+          <span class="highlight">Yitzḥaq</span> no huye del hambre, sino que
+          permanece en la tierra de promesa, confiando en la palabra de
+          <span class="highlight">יהוה</span>. Esa fidelidad abre la puerta a
+          una cosecha milagrosa y a la renovación del pacto eterno.
+        </p>
+        <p>
+          Este principio se cumple plenamente en
+          <span class="highlight">Yeshúa haMashíaj</span>, quien:
+        </p>
+        <ul>
+          <li>
+            Permaneció fiel en el desierto (Matityahu 4:1–11),
+          </li>
+          <li>
+            Obedeció en Getsemaní (Lucas 22:42),
+          </li>
+          <li>
+            Y fue exaltado a la diestra de <span class="highlight">Elohím</span>
+            (Filipenses 2:8–9).
+          </li>
+        </ul>
+        <p>
+          Así, el “ciento por uno” de <span class="highlight">Yitzḥaq</span> es
+          figura del fruto redentor del <span class="highlight">Mashíaj</span>,
+          que multiplica vida eterna en los que creen.
+        </p>
+      </div>
+    </div>
+
+    <h1>PUNTO 8 — Descubriendo al Mashíaj en la Aliyáh</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>A. Tipología Mesiánica</h2>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">
+              <span class="highlight">Yitzḥaq</span> – figura del Hijo
+              obediente
+            </h3>
+            <p>
+              <span class="arrow">→</span> El hijo de la promesa, probado en el
+              altar y bendecido por la obediencia, es una
+              <span class="hebrew-term">תַּבְנִית</span> tavnit (modelo) del
+              <span class="highlight">Mashíaj</span> Puesto en el madero y resucitado.
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">El hambre – símbolo del desierto espiritual</h3>
+            <p>
+              <span class="arrow">→</span> Como Israel en el desierto, la
+              humanidad experimenta hambre de justicia.
+              <span class="highlight">Mashíaj</span> es el Pan celestial
+              (Yojanán 6:48).
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">La siembra – sombra del sacrificio redentor</h3>
+            <p>
+              <span class="arrow">→</span> <span class="highlight">Yitzḥaq</span>
+              sembró su semilla; <span class="highlight">Yeshúa</span> sembró
+              Su vida (Yojanán 12:24). Ambos cosechan fruto abundante.
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">El juramento – figura del pacto eterno</h3>
+            <p>
+              <span class="arrow">→</span> El juramento dado a
+              <span class="highlight">Avraham</span> y renovado a
+              <span class="highlight">Yitzḥaq</span> se cumple en
+              <span class="highlight">Yeshúa</span>, quien sella con Su sangre
+              el pacto de vida y shalom (Hebreos 13:20).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>B. Profecías Mesiánicas Identificadas</h2>
+        <div class="prophetic-content">
+          <table>
+            <thead>
+              <tr>
+                <th>Profecía / Tipo</th>
+                <th>Cumplimiento en el Mashíaj</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>“En tu simiente serán benditas las naciones.” (v.4)</td>
+                <td>
+                  Cumplido en <span class="highlight">Yeshúa</span>, la Simiente
+                  singular (Gál. 3:16).
+                </td>
+              </tr>
+              <tr>
+                <td>“Yo estaré contigo y te bendeciré.” (v.3)</td>
+                <td>
+                  Cumplido en Emmanu-El (<span class="highlight">Elohím</span>
+                  con nosotros) – Mat. 1:23.
+                </td>
+              </tr>
+              <tr>
+                <td>“Cosechó ciento por uno.” (v.12)</td>
+                <td>
+                  Cumplido en el Reino de <span class="highlight">Mashíaj</span>:
+                  multiplicación espiritual (Marcos 4:20).
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>C. Reflexión Mesiánica</h2>
+        <div class="prophetic-content">
+          <div class="conclusion">
+            <p>
+              La fidelidad de <span class="highlight">Yitzḥaq</span> prefigura
+              el carácter de <span class="highlight">Yeshúa</span>: obediencia,
+              dependencia y confianza en el plan eterno de
+              <span class="highlight">יהוה</span>. El hambre se transforma en
+              bendición cuando la fe permanece; del mismo modo, la muerte se
+              transforma en vida a través del sacrificio del
+              <span class="highlight">Mashíaj</span>.
+            </p>
+            <p>
+              El creyente mesiánico es llamado a imitar la fe de
+              <span class="highlight">Yitzḥaq</span> y reflejar la
+              perseverancia de <span class="highlight">Yeshúa</span>,
+              sembrando obediencia aun en tiempos de sequía espiritual,
+              sabiendo que la cosecha viene de la bendición celestial.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-container">
+        <h1>PUNTO 9 — Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+        <div class="section-container">
+            <h3>Midrashim relevantes</h3>
+            <div class="verse-container">
+                <p>Bereshit Rabbah 64:3 enseña que el hambre en los días de Yitzḥaq fue enviada “para probarlo, como fue probado Avraham”. Esto enfatiza que cada generación de los patriarcas debía manifestar la fidelidad del pacto.</p>
+                <p class="explanation">
+                    <span class="arrow">→</span> En el nivel mesiánico, esta <span class="hebrew-term">נִסָּיוֹן</span> <span class="transliteration">nisayón</span> (prueba) representa las pruebas que Mashíaj soporta por la redención del mundo.
+                </p>
+            </div>
+            <div class="verse-container">
+                <p>Midrash Tanjuma Toldot 7 comenta:</p>
+                <p class="scripture">“El Eterno le dijo a Yitzḥaq: ‘Quédate en la tierra de tu herencia; no desciendas al lugar de confusión, porque Yo estaré contigo.’”</p>
+                <p class="explanation">
+                    <span class="arrow">→</span> El Midrash asocia Mitsráyim con confusión y dependencia humana, mientras que Canaán representa fe y promesa. Esto revela la enseñanza espiritual de confiar en la dirección divina.
+                </p>
+            </div>
+            <div class="verse-container">
+                <p>Pirkei deRabbi Eliezer 33 identifica la siembra de Yitzḥaq como un acto profético, donde su semilla física anticipa la semilla espiritual que sería bendición a las naciones.</p>
+                <p class="explanation">
+                    <span class="arrow">→</span> En Yeshúa haMashíaj, esta semilla se convierte en la Palabra viva sembrada en los corazones (Yojanán 12:24).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>Targumim</h3>
+            <div class="verse-container">
+                <p>Targum Onkelos sobre Génesis 26:3 traduce:</p>
+                <p class="scripture">“Habita en la tierra, y haré reposar Mi Shejiná contigo, y te bendeciré.”</p>
+                <p class="explanation">
+                    <span class="arrow">→</span> El Targum vincula la presencia divina (Shejináh) con la bendición de permanencia, lo que apunta directamente a la encarnación del Mashíaj, la Shejiná manifestada entre los hombres (Yojanán 1:14).
+                </p>
+            </div>
+            <div class="verse-container">
+                <p>Targum Yonatán expande Génesis 26:12 diciendo:</p>
+                <p class="scripture">“Yitzḥaq sembró en esa tierra, y el Nombre de <span class="hebrew-term">יהוה</span> lo bendijo, y su cosecha fue cien veces multiplicada por mérito del juramento hecho a su padre.”</p>
+                <p class="explanation">
+                    <span class="arrow">→</span> Este detalle midráshico enfatiza que la bendición está anclada en el juramento eterno (<span class="hebrew-term">שבועת עולם</span> Shevuat Olam), que se cumple en Yeshúa, el garante del pacto perpetuo (Hebreos 7:22).
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>Textos Apócrifos y Qumrán</h3>
+            <div class="verse-container">
+                <p>Libro de los Jubileos 24:20–22:</p>
+                <p class="scripture">“Yitzḥaq confió en el Nombre de <span class="hebrew-term">יהוה</span>, y plantó en la tierra prometida, y su semilla fue bendita.”</p>
+                <p class="explanation">
+                    <span class="arrow">→</span> Qumrán asocia esta confianza con el <span class="hebrew-term">אמונה</span> <span class="transliteration">emunáh</span> — fe fiel — que caracteriza a los hijos de la luz.
+                    En el Brit Hadashá, esta <span class="transliteration">emunáh</span> es la fe en el Mashíaj, la verdadera semilla de bendición (Gálatas 3:16).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>PUNTO 10 — Mandamientos o Principios y Valores Encontrados</h1>
+        <p>Aunque esta sección no contiene mandamientos halájicos explícitos, sí revela principios espirituales eternos (Mitzvot Derabanán de enseñanza mesiánica):</p>
+
+        <ul>
+            <li>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Obedecer la voz de <span class="hebrew-term">יהוה</span> en tiempos de prueba</div>
+                    <p><span class="arrow">→</span> (Gén. 26:2–3) Permanecer en la voluntad divina aun cuando las circunstancias sean adversas.</p>
+                    <p class="scripture">Cumplimiento en Yeshúa: “Mi alimento es hacer la voluntad del que me envió.” (Yojanán 4:34)</p>
+                </div>
+            </li>
+            <li>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Confiar en el juramento eterno de Elohím</div>
+                    <p><span class="arrow">→</span> (v.3–5) Yitzḥaq confía en el juramento dado a Avraham.</p>
+                    <p class="scripture">En el Brit Hadashá: “El pacto confirmado por Elohím no puede ser anulado.” (Gál. 3:17)</p>
+                </div>
+            </li>
+            <li>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Sembrar en fe y esperar bendición multiplicada</div>
+                    <p><span class="arrow">→</span> (v.12) Yitzḥaq siembra en tierra árida y cosecha abundancia.</p>
+                    <p class="scripture">En el Mashíaj: “El que siembra en el Espíritu, del Espíritu segará vida eterna.” (Gál. 6:8)</p>
+                </div>
+            </li>
+            <li>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Guardar fidelidad al llamado divino</div>
+                    <p><span class="arrow">→</span> La obediencia de Yitzḥaq refleja el valor mesiánico de permanecer firme.</p>
+                    <p class="scripture">“El que persevere hasta el fin, éste será salvo.” (Matityahu 24:13)</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-container">
+        <h1>PUNTO 11 — Preguntas de Reflexión con Respuestas en el Mashíaj</h1>
+        <div class="section-container">
+            <div class="question">¿Por qué Elohím probó a Yitzḥaq con hambre en la tierra?</div>
+            <div class="answer">
+                <span class="arrow">→</span> Para desarrollar fe en medio de la escasez, preparando el camino para la fe perfecta del Mashíaj, quien soportó la prueba sin desviarse del propósito divino (Heb. 5:8).
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">¿Qué enseña la orden “No desciendas a Mitsráyim”?</div>
+            <div class="answer">
+                <span class="arrow">→</span> Que el justo no busca seguridad en el sistema del mundo, sino en la palabra de <span class="hebrew-term">יהוה</span>.
+                En Yeshúa, esta enseñanza se cumple cuando rechaza los reinos del mundo ofrecidos por haSatan (Mat. 4:8–10).
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">¿Cuál es el significado mesiánico del “juramento de Avraham”?</div>
+            <div class="answer">
+                <span class="arrow">→</span> Es el pacto eterno de redención que culmina en Yeshúa haMashíaj, la Simiente por la cual todas las naciones son bendecidas (Gál. 3:16).
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">¿Por qué Yitzḥaq sembró en medio de la sequía?</div>
+            <div class="answer">
+                <span class="arrow">→</span> Porque su fe veía más allá del entorno; sabía que la bendición dependía de la promesa, no del clima.
+                En Mashíaj, el sembrador celestial siembra Su vida y cosecha redención (Yojanán 12:24).
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">¿Cómo nos enseña esta Aliyáh a vivir en el Reino?</div>
+            <div class="answer">
+                <span class="arrow">→</span> A depender de la voz de <span class="hebrew-term">יהוה</span>, perseverar en la fe, y sembrar obediencia aun en tiempos difíciles, sabiendo que la recompensa es multiplicada en Yeshúa, el Adon de la Cosecha (Mat. 9:37–38).
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>PUNTO 12 — Resumen de la Aliyáh</h1>
+        <p>En Génesis 26:1–12, Yitzḥaq enfrenta hambre, pero recibe un mandato divino: “No desciendas a Mitsráyim.”</p>
+        <p>Su obediencia activa el juramento eterno hecho a Avraham: bendición, multiplicación y presencia divina.</p>
+        <p>Yitzḥaq obedece, habita en Gerar, y aun en la tierra seca siembra y cosecha cien veces más.</p>
+        <p>La fidelidad de Elohím se manifiesta sobrenaturalmente.</p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-title">Aplicación Mesiánica:</div>
+            <p>Yitzḥaq prefigura a Yeshúa haMashíaj — el Hijo obediente que, probado en todo, permanece fiel, y cuya obediencia produce una cosecha redentora.</p>
+            <p>Así como Yitzḥaq sembró en la tierra y obtuvo abundancia, Mashíaj sembró Su vida en el mundo y obtuvo salvación para multitudes.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>PUNTO 13 — Tefiláh de la Aliyáh</h1>
+        <h2>Tefiláh (Oración) – En el Espíritu del Mashíaj</h2>
+        <div class="prayer-text">
+            <p><span class="hebrew-term">יהוה</span> Elohím de Avraham, de Yitzḥaq y de Ya‘aqov,</p>
+            <p>Tú que probaste a tus siervos para revelar la fidelidad del corazón,</p>
+            <p>enséñanos a permanecer en la tierra de tu promesa aun en tiempo de hambre.</p>
+            <br>
+            <p>Que nuestro corazón no descienda a Mitsráyim — a la confianza humana —</p>
+            <p>sino que repose en tu palabra viva, en tu Ruaj Hakódesh que da fuerza en la sequía.</p>
+            <br>
+            <p>Así como bendijiste la siembra de Yitzḥaq con abundancia,</p>
+            <p>bendice también la semilla de fe que sembramos en el nombre de Yeshúa haMashíaj,</p>
+            <p>la Simiente bendita, el cumplimiento de tu juramento eterno.</p>
+            <br>
+            <p>Haz que nuestra perseverancia produzca fruto ciento por uno,</p>
+            <p>para gloria de tu Nombre,</p>
+            <p>y que, al igual que Yitzḥaq, experimentemos la presencia de tu Shejináh en medio de nuestras pruebas.</p>
+            <br>
+            <p>Bendito eres Tú, <span class="hebrew-term">יהוה</span> Tseva’ot,</p>
+            <p>que haces florecer la fe de tus hijos aun en la tierra seca,</p>
+            <p>y confirmas tu pacto eterno en el Mashíaj Yeshúa,</p>
+            <p>nuestra vida, nuestra bendición y nuestra paz.</p>
+            <p><span class="hebrew-term">אָמֵן</span> – Amén.</p>
+        </div>
+        <div class="prayer-conclusion">
+            Amén.
+        </div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer> 
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya4.html">Continuar con la Aliyá 4</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

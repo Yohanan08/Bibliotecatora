@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bereshit (בראשית) Génesis 26:23-29</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+      .translation {
+        margin: 10px 0;
+      }
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .section-container {
+        margin-bottom: 25px;
+      }
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+      strong {
+        color: #000;
+      }
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        6. Parashá Toldot (תולדות) Aliyáh 5: (Génesis 26:23-29) El pacto entre
+        Yitzjak y Avimelej.
+        <p>Haftaráh: Malaquías 2:1-7 (El honor en los pactos).</p>
+        <p>
+          Brit Hadasháh: Efesios 2:14-18 (Yeshúa reconcilia a los separados).
+        </p>
+      </h1>
+      <h1>Punto 1. Bereshit / Génesis 26:23–29</h1>
+
+    <div class="content-container">
+      <h2>Verso 23</h2>
+      <div class="verse-container">
+        <div class="hebrew">וַיַּעַל מִשָּׁם בְּאֵר שָׁבַע׃</div>
+        <div class="transliteration">Vayya‘al mishám Be’ér Shéva‘.</div>
+        <div class="translation">—Y subió de allí a Beer Sheva.</div>
+      </div>
+
+      <h2>Verso 24</h2>
+      <div class="verse-container">
+        <div class="hebrew">
+          וַיֵּרָא אֵלָיו יְהוָה בַּלַּיְלָה הַהוּא וַיֹּאמֶר אָנֹכִי אֱלֹהֵי אַבְרָהָם
+          אָבִיךָ אַל־תִּירָא כִּי־אִתְּךָ אָנֹכִי וּבֵרַכְתִּיךָ וְהִרְבֵּיתִי אֶת־זַרְעֲךָ
+          בַּעֲבוּר אַבְרָהָם עַבְדִּי׃
+        </div>
+        <div class="transliteration">
+          Vayyērā eláv יהוה balláylah hahú vayómer: anojí Elohé Avrahám avíja;
+          al-tirá ki ittjá anojí, uverajtíja vehirbéti et-zar‘ajá, ba‘avur
+          Avrahám avdí.
+        </div>
+        <div class="translation">
+          —Y se le apareció יהוה aquella noche, y dijo: “Yo soy el Elohím de tu
+          padre Avraham; no temas, porque Yo estoy contigo, y te bendeciré y
+          multiplicaré tu descendencia por causa de Avraham Mi siervo.”
+        </div>
+      </div>
+
+      <h2>Verso 25</h2>
+      <div class="verse-container">
+        <div class="hebrew">
+          וַיִּבֶן שָׁם מִזְבֵּחַ וַיִּקְרָא בְּשֵׁם יְהוָה וַיֶּט שָׁם אָהֳלוֹ
+          וַיִּכְרוּ־שָׁם עַבְדֵי יִצְחָק בְּאֵר׃
+        </div>
+        <div class="transliteration">
+          Vayyíven shám mizbéaj, vayiqrá beshém יהוה; vayyét shám aholó,
+          vayyijrū shám ‘avdéi Yitsjáq be’ér.
+        </div>
+        <div class="translation">
+          —Y edificó allí un altar, e invocó el Nombre de יהוה, y plantó allí su
+          tienda; y los siervos de Yitsjaq cavaron allí un pozo.
+        </div>
+      </div>
+
+      <h2>Verso 26</h2>
+      <div class="verse-container">
+        <div class="hebrew">
+          וַאֲבִימֶלֶךְ הָלַךְ אֵלָיו מִגְּרָר וַאֲחֻזַּת מֵרֵעֵהוּ וּפִיכֹל
+          שַׂר־צְבָאוֹ׃
+        </div>
+        <div class="transliteration">
+          Va’Avimélej haláj eláv miggerár, va’Ajuzzát mere‘éhu, uFíjol
+          sar-tzeva’ó.
+        </div>
+        <div class="translation">
+          —Y Avimélej fue hacia él desde Gerar, con Ajuzzát su amigo, y Fíjol,
+          jefe de su ejército.
+        </div>
+      </div>
+
+      <h2>Verso 27</h2>
+      <div class="verse-container">
+        <div class="hebrew">
+          וַיֹּאמֶר אֲלֵיהֶם יִצְחָק מַדּוּעַ בָּאתֶם אֵלָי וְאַתֶּם שְׂנֵאתֶם אֹתִי
+          וַתְּשַׁלְּחוּנִי מֵאִתְּכֶם׃
+        </div>
+        <div class="transliteration">
+          Vayyómer alehém Yitsjáq: madúa bátem elái, ve’atem sene’eténi
+          vatshallejūni me’ittéjem?
+        </div>
+        <div class="translation">
+          —Y les dijo Yitsjaq: “¿Por qué habéis venido a mí, siendo que me
+          odiabais y me echasteis de entre vosotros?”
+        </div>
+      </div>
+
+      <h2>Verso 28</h2>
+      <div class="verse-container">
+        <div class="hebrew">
+          וַיֹּאמְרוּ רָאֹה רָאִינוּ כִּי־הָיָה יְהוָה עִמָּךְ וַנֹּאמֶר תְּהִי־נָא
+          אָלָה בֵּינוֹתֵינוּ בֵּינֵינוּ וּבֵינֶךָ וְנִכְרְתָה בְרִית עִמָּךְ׃
+        </div>
+        <div class="transliteration">
+          Vayyómeru: ra’ó ra’ínu ki-hayá יהוה immáj; vanómer, tehi-na alá
+          beinotéinu, beinéinu uveinéja, venikretá berit immáj.
+        </div>
+        <div class="translation">
+          —Y dijeron: “Viendo vimos que יהוה está contigo; por tanto dijimos:
+          haya ahora juramento entre nosotros, entre nosotros y tú, y haremos
+          pacto contigo.”
+        </div>
+      </div>
+
+      <h2>Verso 29</h2>
+      <div class="verse-container">
+        <div class="hebrew">
+          אִם־תַּעֲשֶׂה עִמָּנוּ רָעָה כַּאֲשֶׁר לֹא נְגַעֲנוּךָ וְכַאֲשֶׁר עָשִׂינוּ
+          עִמְּךָ רַק־טוֹב וַנְשַׁלֵּחֲךָ בְּשָׁלוֹם אַתָּה עַתָּה בְּרוּךְ יְהוָה׃
+        </div>
+        <div class="transliteration">
+          Im-ta‘asé immánu ra‘á, ka’asher lo negá‘nukha, vekha’asher asínu
+          immjá rak-tov, vaneshalléja bjashalóm; atá atá berúj יהוה.
+        </div>
+        <div class="translation">
+          —Que no nos hagas mal, así como nosotros no te hemos tocado, y como
+          solo bien te hicimos y te enviamos en shalom; tú eres ahora bendito
+          de יהוה.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h2>Traducción Literal Continua</h2>
+      <div class="literal-translation">
+        <p>Y subió desde allí a Beer Sheva,</p>
+        <p>y se le apareció יהוה aquella noche y dijo:</p>
+        <p>
+          “Yo soy el Elohím de tu padre Avraham; no temas, porque Yo estoy
+          contigo.
+        </p>
+        <p>
+          Y te bendeciré y multiplicaré tu descendencia por causa de Avraham,
+          Mi siervo.”
+        </p>
+        <p>Entonces edificó allí un altar,</p>
+        <p>e invocó el Nombre de יהוה,</p>
+        <p>y extendió allí su tienda,</p>
+        <p>y cavaron allí los siervos de Yitsjaq un pozo.</p>
+        <p>Y vino hacia él Avimélej desde Gerar,</p>
+        <p>y con él Ajuzzát su amigo y Fíjol, comandante de su ejército.</p>
+        <p>Y les dijo Yitsjaq:</p>
+        <p>
+          “¿Por qué habéis venido a mí, si me habéis odiado y me echasteis de
+          entre vosotros?”
+        </p>
+        <p>Y respondieron:</p>
+        <p>“Hemos visto claramente que יהוה está contigo,</p>
+        <p>
+          y dijimos: haya, por favor, un juramento entre nosotros, entre
+          nosotros y tú,
+        </p>
+        <p>y hagamos pacto contigo:</p>
+        <p>que no nos harás mal,</p>
+        <p>así como nosotros no te tocamos,</p>
+        <p>y te hicimos solo bien,</p>
+        <p>y te enviamos en paz.</p>
+        <p>Tú eres ahora bendito de יהוה.”</p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>
+        <span class="point-letter">1.</span> Contexto Profético y Espiritual de
+        la Aliyáh
+      </h1>
+      <div class="explanation">
+        <p>
+          Esta sección ocurre en Beer Sheva, lugar donde los patriarcas
+          experimentan revelaciones directas de יהוה. Allí se sella una alianza
+          de paz (<span class="hebrew-term">ברית שלום</span>) entre Yitsjaq e
+          Avimélej, prefigurando el pacto mesiánico de reconciliación entre
+          Israel y las naciones.
+        </p>
+        <p>El texto contiene tres ejes proféticos:</p>
+        <ul>
+          <li>
+            La aparición de יהוה a Yitsjaq, reafirmando el pacto de Avraham.
+          </li>
+          <li>
+            La construcción del altar e invocación del Nombre de יהוה — símbolo
+            del culto verdadero.
+          </li>
+          <li>
+            El pacto de paz con las naciones (Avimélej = “padre rey”), figura
+            del pacto universal bajo el reinado del Mashíaj.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">2.</span> Cumplimiento Profético en Yeshúa
+        HaMashíaj
+      </h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">a. Aparición de יהוה (v. 24)</h3>
+          <p>
+            <span class="hebrew-term">וַיֵּרָא אֵלָיו יְהוָה...</span> “Y se le
+            apareció יהוה...”
+          </p>
+          <p>
+            Aquí יהוה se revela como Elohím de su padre Avraham, confirmando que
+            la Promesa continúa a través de la simiente (<span
+              class="hebrew-term"
+              >זרע</span
+            >). En el nivel mesiánico, esta revelación prefigura la
+            manifestación visible del Eterno en Yeshúa, tal como se enseña en
+            Juan 1:18:
+          </p>
+          <div class="scripture">
+            “Nadie ha visto jamás a Elohím; el Único Elohím engendrado, que
+            está en el seno del Padre, Él lo ha revelado.”
+          </div>
+          <p>
+            En el texto arameo peshitta, Yeshúa es llamado
+            <span class="aramaic">מריא</span> / MarYah, es decir, el mismo יהוה
+            manifestado. Así como יהוה se aparece a Yitsjaq en Beer Sheva,
+            MarYah Yeshúa se manifestó al pueblo de Israel, reafirmando el
+            mismo pacto eterno prometido a Avraham.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">
+            b. “No temas, porque Yo estoy contigo” (v. 24)
+          </h3>
+          <p>
+            Esta promesa es reiterada por Yeshúa haMashíaj a sus talmidim:
+          </p>
+          <div class="scripture">
+            “Y he aquí, Yo estoy con vosotros todos los días, hasta el fin del
+            siglo.” (Matityahu 28:20, Peshitta)
+          </div>
+          <p>
+            La misma expresión profética —“<span class="hebrew-term"
+              >אנכי עמך / anojí imjá</span
+            >”— reaparece aquí como garantía divina de presencia, señalando la
+            divinidad eterna del Mashíaj, quien no es un mensajero externo sino
+            el mismo Elohím que habló con los patriarcas.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">
+            c. “Te bendeciré y multiplicaré tu descendencia” (v. 24)
+          </h3>
+          <p>
+            El verbo <span class="hebrew-term">וְהִרְבֵּיתִי / ve-hirbéti</span>
+            — multiplicar — tiene un cumplimiento espiritual en el nacimiento
+            de la descendencia de fe (<span class="hebrew-term"
+              >זרע האמונה</span
+            >) mediante Yeshúa, según Gálatas 3:16:
+          </p>
+          <div class="scripture">
+            “A Avraham fueron hechas las promesas, y a su simiente... la cual
+            es el Mashíaj.”
+          </div>
+          <p>
+            De modo que Yitsjaq tipifica al Hijo Prometido, y la bendición de
+            multiplicación culmina en el Mashíaj como “la simiente única” de
+            quien proviene toda la familia de fe.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">3.</span> Conexión con los Profetas
+        (Nevi’im)
+      </h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">a. Beer Sheva — Lugar de Pacto</h3>
+          <ul>
+            <li>
+              Beer Sheva reaparece proféticamente en Amós 5:5, donde se condena
+              la idolatría pero se recuerda el lugar del pacto original.
+            </li>
+            <li>
+              Yitsjaq establece allí el altar verdadero, en contraste con los
+              falsos altares.
+            </li>
+            <li>
+              Así, el profeta anuncia que la restauración futura de Israel
+              incluiría el retorno al culto puro — cumplimiento mesiánico en
+              Yeshúa, el Altar viviente (Hebreos 13:10, Peshitta).
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">b. El Pacto de Paz</h3>
+          <p>
+            La declaración de Avimélej en el verso 29 —
+            <span class="highlight">“Tú eres ahora bendito de יהוה”</span> — es
+            paralela a Isaías 49:6:
+          </p>
+          <div class="scripture">
+            “Te pondré como luz de las naciones, para que mi salvación alcance
+            hasta los confines de la tierra.”
+          </div>
+          <p>
+            Aquí, el rey filisteo reconoce la bendición de יהוה sobre Yitsjaq,
+            como las naciones reconocerán la bendición de MarYah Yeshúa, el
+            descendiente de Avraham, en los tiempos del Reino mesiánico.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">c. Ezequiel 37:26</h3>
+          <div class="scripture">
+            “Y estableceré con ellos pacto de paz (<span class="hebrew-term"
+              >ברית שלום</span
+            >)... será pacto eterno con ellos.”
+          </div>
+          <p>
+            Ese pacto de paz, prefigurado entre Yitsjaq y Avimélej, tiene su
+            cumplimiento final en el Brit Hadasháh (Nuevo Pacto), sellado por
+            la sangre de Yeshúa (Luqá 22:20).
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">4.</span> Cumplimiento en el Brit Hadasháh
+        (Nuevo Pacto Arameo)
+      </h1>
+      <div class="prophetic-content">
+        <p>
+          En el Peshitta, Yeshúa es identificado como el Elohím visible, MarYah
+          manifestado en carne (Juan 1:14; Filipenses 2:6–11). El pacto de paz
+          que Yitsjaq sella con Avimélej se cumple en Efesios 2:14–16, donde
+          Shaúl revela:
+        </p>
+        <div class="scripture">
+          “Él mismo es nuestra Shalom, que de ambos pueblos hizo uno, y derribó
+          el muro intermedio de separación... creando en sí mismo un solo
+          hombre nuevo, haciendo la paz.”
+        </div>
+        <p>
+          Así, Yitsjaq representa proféticamente al Mashíaj pacificador, y
+          Avimélej representa a las naciones reconciliadas con Israel en el
+          cuerpo del Mashíaj.
+        </p>
+        <p>
+          Yeshúa, al igual que Yitsjaq, es el hijo de la promesa, quien sufre el
+          rechazo (como Yitsjaq fue expulsado de Gerar, v. 27), pero luego es
+          buscado para hacer alianza de paz — imagen perfecta de la
+          reconciliación mesiánica.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1><span class="point-letter">5.</span> Aplicación Espiritual</h1>
+      <div class="explanation">
+        <ul>
+          <li>
+            <strong
+              ><span class="highlight"
+                >Revelación personal del Eterno:</span
+              ></strong
+            >
+            Así como יהוה se apareció a Yitsjaq, el creyente mesiánico
+            experimenta la presencia directa del Mashíaj en su vida, sin
+            intermediarios humanos, mediante la Ruaj HaKodesh.
+          </li>
+          <li>
+            <strong
+              ><span class="highlight"
+                >Edificar altar espiritual:</span
+              ></strong
+            >
+            “Y edificó allí un altar” (v. 25) enseña que debemos establecer un
+            lugar de adoración pura en el corazón, donde se invoque el Nombre
+            de יהוה por medio de Yeshúa.
+          </li>
+          <li>
+            <strong
+              ><span class="highlight"
+                >Reconciliación y Shalom:</span
+              ></strong
+            >
+            La alianza entre Yitsjaq y Avimélej nos llama a vivir en paz con
+            todos, como enseña Romanos 12:18, porque quienes son benditos por
+            יהוה deben irradiar Su paz.
+          </li>
+          <li>
+            <strong
+              ><span class="highlight"
+                >Reconocimiento de la bendición divina:</span
+              ></strong
+            >
+            Las naciones dirán: “Tú eres ahora bendito de יהוה” — en sentido
+            espiritual, todo aquel en quien habita el Mashíaj se convierte en
+            bendición viva para otros.
+          </li>
+          <li>
+            <strong
+              ><span class="highlight">Fe heredada:</span></strong
+            >
+            Así como Yitsjaq heredó el pacto de su padre, el creyente hereda
+            por fe las promesas de Avraham a través del Mashíaj (Gálatas
+            3:29).
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">6.</span> Profecías Cumplidas en esta
+        Porción
+      </h1>
+      <div class="prophetic-content">
+        <table>
+          <thead>
+            <tr>
+              <th>Profecía en la Toráh</th>
+              <th>Cumplimiento en Mashíaj</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                יהוה se aparece como Elohím del padre Avraham (v. 24)
+              </td>
+              <td>
+                Yeshúa, manifestación visible de Elohím (Juan 8:58 “Antes que
+                Avraham fuese, Yo Soy”).
+              </td>
+            </tr>
+            <tr>
+              <td>“No temas, porque Yo estoy contigo”</td>
+              <td>
+                Promesa mesiánica cumplida: “Yo estoy con vosotros” (Matityahu
+                28:20).
+              </td>
+            </tr>
+            <tr>
+              <td>Pacto de Shalom con Avimélej</td>
+              <td>Efesios 2:14–16 — “Él es nuestra Shalom.”</td>
+            </tr>
+            <tr>
+              <td>Bendición y multiplicación del Zera (descendencia)</td>
+              <td>Gálatas 3:16 — “Tu simiente es el Mashíaj.”</td>
+            </tr>
+            <tr>
+              <td>Invocar el Nombre de יהוה (v.25)</td>
+              <td>
+                Romanos 10:13 cita Joel 3:5 — “Todo el que invoque el Nombre de
+                יהוה será salvo”
+                <span class="arrow">→</span> aplicado a Yeshúa MarYah.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        <span class="point-letter">7.</span> Conclusión Teológica y Espiritual
+      </h1>
+      <div class="conclusion">
+        <p>
+          Génesis 26:23–29 revela el misterio del pacto eterno entre Elohím e
+          Israel, cumplido en Yeshúa haMashíaj. El Elohím que se apareció a
+          Yitsjaq es el mismo que se encarnó para establecer la Shalom eterna
+          entre el Creador y Su pueblo.
+        </p>
+        <p>Yitsjaq representa al Hijo Prometido, rechazado pero vindicado.</p>
+        <p>
+          Avimélej representa a las naciones que reconocen la bendición del
+          Eterno.
+        </p>
+        <p>
+          El altar representa la adoración redimida, y Beer Sheva — el pozo del
+          juramento — se convierte en símbolo del pacto eterno en la Sangre del
+          Cordero de Pésaj, Yeshúa.
+        </p>
+      </div>
+    </div>
+    <h1>Punto 2. Haftaráh: Malaquías 2:1-7 (El honor en los pactos).</h1>
+
+    <div class="content-container">
+      <h2>Verso 1</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:1</div>
+        <div class="hebrew">וְעַתָּה אֵלֵיכֶם הַמִּצְוָה הַזֹּאת הַכֹּהֲנִים׃</div>
+        <div class="transliteration">Ve-‘attá eléijem ha-mitzváh ha-zot ha-kohanim.</div>
+        <div class="translation">Y ahora, a vosotros es este mandamiento, oh sacerdotes.</div>
+      </div>
+
+      <h2>Verso 2</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:2</div>
+        <div class="hebrew">
+          אִם־לֹא תִשְׁמְעוּ וְאִם־לֹא תָשִׂימוּ עַל־לֵב לָתֵת כָּבוֹד לִשְׁמִי אָמַר יהוה צְבָאוֹת וְשִׁלַּחְתִּי בָכֶם
+          אֶת־הַמְאֵרָה וְאָרוֹתִי אֶת־בִּרְכוֹתֵיכֶם וְגַם־אָרוֹתִיהָ כִּי אֵינְכֶם שָׂמִים עַל־לֵב׃
+        </div>
+        <div class="transliteration">
+          Im-lo tishme‘u ve-im-lo tasímu al-lev latet kavód li-shemí, amar יהוה
+          Tzeva’ot, ve-shillajtí bajem et ha-me’ará, ve-arótí et birjotéijem,
+          ve-gam arótíha ki einjem samím al-lev.
+        </div>
+        <div class="translation">
+          Si no escucháis, y si no ponéis en vuestro corazón dar honra a Mi Nombre —dice
+          יהוה Tseva’ot—, enviaré sobre vosotros la maldición, y maldeciré vuestras
+          bendiciones; y aún las he maldecido, porque no ponéis en vuestro corazón.
+        </div>
+      </div>
+
+      <h2>Verso 3</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:3</div>
+        <div class="hebrew">
+          הִנְנִי גֹעֵר לָכֶם אֶת־הַזֶּרַע וְזֵרִיתִי פֶרֶשׁ עַל־פְּנֵיכֶם פֶרֶשׁ חַגֵּיכֶם וְנָשָׂא אֶתְכֶם אֵלָיו׃
+        </div>
+        <div class="transliteration">
+          Hineni go‘er lajém et ha-zéra‘, ve-zérití pérèsh al-penéijem, pérèsh
+          ḥagéijem, ve-nasá etkém eláv.
+        </div>
+        <div class="translation">
+          He aquí, Yo reprenderé vuestra semilla, y esparciré estiércol sobre vuestros
+          rostros, el estiércol de vuestras solemnidades; y con él seréis removidos.
+        </div>
+      </div>
+
+      <h2>Verso 4</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:4</div>
+        <div class="hebrew">
+          וִידַעְתֶּם כִּי שִׁלַּחְתִּי אֲלֵיכֶם אֶת־הַמִּצְוָה הַזֹּאת לִהְיוֹת בְּרִיתִי אֶת־לֵוִי אָמַר יהוה צְבָאוֹת׃
+        </div>
+        <div class="transliteration">
+          Vi-yadá‘tem ki shillajtí aleijem et ha-mitzváh ha-zot lihyót berití et Leví,
+          amar יהוה Tseva’ot.
+        </div>
+        <div class="translation">
+          Y sabréis que Yo os envié este mandamiento, para que permanezca Mi pacto con
+          Levî, dice יהוה Tseva’ot.
+        </div>
+      </div>
+
+      <h2>Verso 5</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:5</div>
+        <div class="hebrew">
+          בְּרִיתִי הָיְתָה אִתּוֹ הַחַיִּים וְהַשָּׁלוֹם וָאֶתְּנֵם לוֹ מוֹרָא וַיִּירָאֵנִי וּמִפְּנֵי שְׁמִי נִחַת הוּא׃
+        </div>
+        <div class="transliteration">
+          BeritÍ hayetá itó ha-ḥayím ve-ha-shalóm, va-etném lo morá, va-yirá’eni,
+          u-mipné shemí niját hu.
+        </div>
+        <div class="translation">
+          Mi pacto fue con él —vida y paz—, y Yo se los di para que Me temiera; y él Me
+          temió y ante Mi Nombre se humilló.
+        </div>
+      </div>
+
+      <h2>Verso 6</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:6</div>
+        <div class="hebrew">
+          תּוֹרַת אֱמֶת הָיְתָה בְּפִיהוּ וְעַוְלָה לֹא נִמְצְאָה בִשְׂפָתָיו בְּשָׁלוֹם וּבְמִישׁוֹר הָלַךְ אִתִּי
+          וְרַבִּים הֵשִׁיב מֵעָו‍ֹן׃
+        </div>
+        <div class="transliteration">
+          Torát émet hayetá be-fiv, ve-‘avlá lo nimtzé’a bisfatáv; be-shalóm u-ve-mishór
+          haláj ití, ve-rabím heshív me-‘avón.
+        </div>
+        <div class="translation">
+          La Toráh de verdad estuvo en su boca, y maldad no fue hallada en sus labios; en
+          paz y rectitud caminó conmigo, y apartó a muchos de la iniquidad.
+        </div>
+      </div>
+
+      <h2>Verso 7</h2>
+      <div class="verse-container">
+        <div class="verse-number">Malaquías 2:7</div>
+        <div class="hebrew">
+          כִּי שִׂפְתֵי כֹהֵן יִשְׁמְרוּ־דַעַת וְתוֹרָה יְבַקְשׁוּ מִפִּיהוּ כִּי מַלְאַךְ יהוה צְבָאוֹת הוּא׃
+        </div>
+        <div class="transliteration">
+          Ki sifté kohén yishmerú-da‘at, ve-Toráh yevakshú mi-piv, ki mal’áj יהוה Tseva’ot
+          hu.
+        </div>
+        <div class="translation">
+          Porque los labios del kohén guardarán conocimiento, y la Toráh buscarán de su
+          boca, porque él es mensajero de יהוה Tseva’ot.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2>Comentario Mesiánico – Conexión con el Mashíaj</h2>
+        <p>
+          Este pasaje revela el pacto de vida y shalom entre Elohím y los kohanim
+          (sacerdotes), representado en Levî, pero su plenitud se cumple en el Mashíaj
+          Yeshúa <span class="hebrew-term">ישוע המשיח</span>, quien es el Kohén Gadol
+          <span class="hebrew-term">לְעוֹלָם</span> (Sumo Sacerdote eterno) según la
+          orden de Melkitzédeq <span class="hebrew-term">מלכי־צדק</span> (Tehilím 110:4;
+          Hebreos 7:17).
+        </p>
+        <p>
+          Así como el kohén debía enseñar la Toráh de verdad, Yeshúa vino como el Davar
+          Elohím <span class="hebrew-term">דבר אלוהים</span>, la Toráh viviente.
+        </p>
+        <p>
+          — “La Toráh de verdad estuvo en su boca” (v.6) encuentra su eco en Yojanán 14:6:
+        </p>
+        <blockquote class="scripture">“Yo soy el Camino, la Verdad y la Vida.”</blockquote>
+        <p>
+          Yeshúa cumple el modelo del kohén fiel que instruye en justicia y reconcilia al
+          pueblo con Elohím:
+        </p>
+        <blockquote class="scripture">
+          “Porque los labios del kohén guardarán conocimiento…” (v.7)
+        </blockquote>
+        <p>Se cumple en Lucas 24:45:</p>
+        <blockquote class="scripture">
+          “Entonces les abrió la mente para que comprendieran las Escrituras.”
+        </blockquote>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">Cumplimiento Profético y Conexión con los Profetas</h3>
+          <p>
+            <strong>Isaías 42:6</strong> — “Yo, יהוה, te he llamado en justicia… y te
+            pondré por pacto al pueblo.”
+            <br />
+            <span class="arrow">→</span> Yeshúa, el verdadero Kohén haGadol, establece el
+            pacto Nuevo con sangre (Matityahu 26:28).
+          </p>
+          <p>
+            <strong>Jeremías 31:31–34</strong> — El nuevo pacto escrito en los corazones,
+            enseñado por el mismo Ruaj HaKodesh.
+            <br />
+            <span class="arrow">→</span> Refleja la promesa del conocimiento sacerdotal
+            interiorizado (ve-Toráh yevakshú mi-piv).
+          </p>
+          <p>
+            <strong>Ezequiel 44:23</strong> — Los sacerdotes enseñarán la diferencia entre
+            lo kadosh y lo profano.
+            <br />
+            <span class="arrow">→</span> En el Brit Hadashá, Yeshúa y sus talmidim
+            continúan esta enseñanza de discernimiento espiritual.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h3>Aplicación Espiritual</h3>
+        <ul>
+          <li>
+            El creyente mesiánico es llamado a ser kohén del pacto nuevo, guardando
+            conocimiento, instruyendo en la Toráh de Mashíaj (1 Kefa 2:9).
+          </li>
+          <li>
+            El temor reverente y la pureza de labios (v.6) reflejan la santidad de
+            aquellos que enseñan la Palabra viva.
+          </li>
+          <li>
+            El mensaje mesiánico transforma la función sacerdotal: el Mashíaj nos hace
+            reino de kohanim (Hitgalut 1:6), donde el conocimiento fluye de su boca a
+            través del Ruaj.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>Cumplimiento Profético en el Mashíaj – Malají מַלְאָכִי 2:1–7</h1>
+
+      <div class="section-container">
+        <h2 class="prophetic-title">1. Contexto Profético de la Haftaráh</h2>
+        <p>
+          El profeta <span class="highlight">Malají מַלְאָכִי</span> —“Mi Mensajero”—
+          profetiza en el período posterior al retorno del exilio babilónico (siglo V
+          a.E.C.). Israel ha reconstruido el Templo, pero los
+          <span class="hebrew-term">kohanim כֹּהֲנִים</span> han corrompido su servicio:
+          ofrecen sacrificios contaminados, han perdido el temor reverente y pervierten
+          la instrucción (<span class="hebrew-term">Torat Emet תּוֹרַת אֱמֶת</span>).
+        </p>
+        <p>
+          En esta reprimenda, יהוה se presenta como el guardián del pacto de vida y paz
+          (<span class="hebrew-term">בריתי החיים והשלום</span>) hecho con Leví, símbolo
+          del ministerio sacerdotal. Sin embargo, la profecía trasciende el tiempo:
+          anticipa la venida de un Sacerdote perfecto, que restaurará la pureza del
+          servicio y del conocimiento divino.
+        </p>
+        <p>
+          Ese Sacerdote eterno es <span class="highlight">Yeshúa haMashíaj ישוע המשיח</span>,
+          el cumplimiento del pacto levítico en su dimensión celestial.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2 class="prophetic-title">2. Tipología Mesiánica del Pacto de Leví</h2>
+        <h3>Verso 5 – “Mi pacto fue con él: vida y shalom”</h3>
+        <p>
+          El pacto con Leví representa el servicio sacerdotal fiel y sin corrupción. Pero
+          la historia muestra que el sacerdocio aarónico fracasó, dando paso a la
+          promesa de un nuevo orden sacerdotal eterno.
+        </p>
+        <blockquote class="scripture">
+          Tehilím 110:4 – “Tú eres kohén para siempre, según el orden de Melkitzédeq.”
+        </blockquote>
+        <p>
+          Esta palabra mesiánica se cumple en Yeshúa, quien no procede de Leví sino de
+          Yehudá, pero establece un sacerdocio celestial basado no en genealogía sino en
+          santidad eterna (Hebreos 7:11–17).
+        </p>
+        <p>
+          Por tanto, el “pacto de vida y shalom” es profecía del
+          <span class="hebrew-term">Brit Hadashá בְּרִית חֲדָשָׁה</span>, sellado en la
+          sangre del Cordero (Matityahu 26:28).
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">3. Cumplimiento Profético en el Mashíaj</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Profecía en Malají 2:1–7</th>
+              <th>Cumplimiento en el Mashíaj</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>“Daré mi pacto de vida y shalom.” (v.5)</td>
+              <td>
+                Yeshúa, el Dador de Vida y Príncipe de Shalom (Yeshayahu 9:6; Yojanán
+                14:27).
+              </td>
+            </tr>
+            <tr>
+              <td>“La Toráh de verdad estuvo en su boca.” (v.6)</td>
+              <td>Yeshúa es la Toráh viviente (Yojanán 1:14; 14:6).</td>
+            </tr>
+            <tr>
+              <td>“En paz y rectitud caminó conmigo.” (v.6)</td>
+              <td>Su caminar perfecto cumple toda justicia (Mat. 3:15; Heb. 4:15).</td>
+            </tr>
+            <tr>
+              <td>“Muchos apartó del pecado.” (v.6)</td>
+              <td>
+                Mashíaj aparta a muchos de la iniquidad (Tito 2:14; 1 Kefa 2:24).
+              </td>
+            </tr>
+            <tr>
+              <td>“Los labios del kohén guardarán conocimiento.” (v.7)</td>
+              <td>
+                Yeshúa enseña como Maestro Divino, no como los escribas (Mat. 7:29; Lc.
+                24:45).
+              </td>
+            </tr>
+            <tr>
+              <td>“Porque él es mensajero de יהוה צְבָאוֹת.” (v.7)</td>
+              <td>
+                Cumplido en Yeshúa, el Malaj del Pacto (<span class="hebrew-term"
+                  >מַלְאָךְ הַבְּרִית</span
+                >
+                – Malají 3:1).
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Así, el Kohén Mesiánico se revela como el cumplimiento del ministerio levítico:
+          Él es el mediador único entre Elohím y los hombres (1 Timoteo 2:5), la
+          expresión plena del <span class="highlight">mal’aj יהוה צְבָאוֹת</span>.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">4. Conexión con los Profetas</h2>
+        <div class="prophetic-section">
+          <h3>a. Yeshayahu 42:6–7</h3>
+          <blockquote class="scripture">
+            “Yo, יהוה, te he llamado en justicia… y te pondré por pacto al pueblo, por
+            luz a las naciones.”
+          </blockquote>
+          <ul>
+            <li>
+              Yeshúa, el Eved יהוה, cumple el propósito del pacto de Leví: no solo
+              instruye a Israel, sino que lleva la Toráh al mundo entero.
+            </li>
+            <li>Su boca, llena de Torat Emet, abre los ojos espirituales y libera a los
+              cautivos.
+            </li>
+          </ul>
+        </div>
+        <div class="prophetic-section">
+          <h3>b. Jeremías 31:31–33</h3>
+          <blockquote class="scripture">
+            “Haré un pacto nuevo… pondré Mi Toráh dentro de ellos y sobre sus corazones la
+            escribiré.”
+          </blockquote>
+          <ul>
+            <li>
+              El pacto de vida y shalom anunciado a Leví alcanza su consumación espiritual
+              en el Brit Hadashá, donde la enseñanza divina se interioriza por el Ruaj
+              HaKodesh.
+            </li>
+          </ul>
+        </div>
+        <div class="prophetic-section">
+          <h3>c. Ezequiel 37:26</h3>
+          <blockquote class="scripture">
+            “Haré con ellos un pacto de shalom… y estableceré Mi santuario en medio de
+            ellos.”
+          </blockquote>
+          <ul>
+            <li>
+              Este pacto de shalom es el cumplimiento mesiánico del ministerio sacerdotal
+              purificado, en el cual Mashíaj mismo es el Santuario viviente (Yojanán
+              2:19–21).
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2 class="prophetic-title">5. Conexión con el Brit Hadashá</h2>
+        <p>
+          El autor de Hebreos revela directamente la relación entre Malají 2 y la obra
+          sacerdotal de Yeshúa:
+        </p>
+        <blockquote class="scripture">
+          Hebreos 7:22–25 — “Yeshúa ha venido a ser fiador de un pacto superior… porque
+          permanece para siempre, tiene un sacerdocio inmutable.”
+        </blockquote>
+        <ul>
+          <li>
+            La “vida y shalom” del pacto con Leví (Mal. 2:5) se manifiestan en la vida
+            eterna del Sumo Sacerdote celestial.
+          </li>
+          <li>
+            El conocimiento que debía salir de los labios de los kohanim (v.7) ahora
+            brota de la boca de Mashíaj, que enseña con autoridad divina (Lucas 4:32).
+          </li>
+          <li>
+            Él intercede perpetuamente por nosotros, cumpliendo la función del mal’aj
+            יהוה (mensajero del pacto).
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">6. Conexión con la Parashá Toldot (Génesis 26:1–12)</h2>
+        <p>Ambas porciones comparten un tema redentor:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Toldot (Gén. 26:1–12)</th>
+              <th>Malají 2:1–7</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Elohím confirma el pacto con Yitzḥaq por la obediencia de Avraham.</td>
+              <td>Elohím recuerda el pacto con Leví por la fidelidad y verdad.</td>
+            </tr>
+            <tr>
+              <td>La bendición depende de la obediencia al llamado.</td>
+              <td>El sacerdocio depende del temor y fidelidad a יהוה.</td>
+            </tr>
+            <tr>
+              <td>Yitzḥaq siembra y cosecha cien por uno.</td>
+              <td>El kohén fiel siembra Toráh y cosecha redención en muchos.</td>
+            </tr>
+            <tr>
+              <td>
+                Ambos anticipan la obra de Yeshúa, quien obedece, enseña y bendice todas
+                las naciones.
+              </td>
+              <td>
+                Mashíaj cumple el pacto sacerdotal eterno, enseñando la Toráh de verdad y
+                trayendo shalom.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="highlight">La conexión profética:</p>
+        <ul>
+          <li>
+            El pacto de Avraham y el pacto de Leví convergen en la persona del Mashíaj.
+          </li>
+          <li>
+            Yeshúa es simultáneamente el heredero de Avraham y el Kohén eterno de
+            Melkitzédeq — uniendo ambos pactos en un solo propósito: vida, verdad y
+            shalom eterno.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2 class="prophetic-title">7. Aplicación Espiritual</h2>
+        <div class="prophetic-section">
+          <p class="question">Restaurar el sacerdocio interior:</p>
+          <div class="answer">
+            <p>
+              Todo creyente mesiánico es llamado a ser kohén del pacto (Hitgalut 1:6),
+              reflejando la verdad en sus labios.
+            </p>
+            <blockquote class="scripture">
+              → “Porque los labios del kohén guardarán conocimiento.” (v.7)
+            </blockquote>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <p class="question">Temor reverente y santidad de palabra:</p>
+          <div class="answer">
+            <p>
+              Así como el kohén debía guardar pureza de labios, el discípulo de Mashíaj
+              debe hablar con integridad y enseñar con humildad.
+            </p>
+            <blockquote class="scripture">
+              → Efesios 4:29: “Ninguna palabra corrupta salga de vuestra boca.”
+            </blockquote>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <p class="question">El Pacto de Vida y Shalom:</p>
+          <div class="answer">
+            <p>
+              No es un concepto teórico, sino una realidad espiritual que se manifiesta en
+              la paz interior y en la reconciliación con Elohím por medio de Yeshúa.
+            </p>
+            <blockquote class="scripture">
+              → Colosenses 1:20: “Y por medio de Él reconciliar consigo todas las cosas,
+              haciendo shalom por la sangre de Su madero.”
+            </blockquote>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <p class="question">Enseñar Torat Emet – La Toráh de Verdad:</p>
+          <div class="answer">
+            <p>
+              El creyente mesiánico debe instruir, no según tradiciones humanas, sino
+              conforme a la Toráh viva que Yeshúa encarna.
+            </p>
+            <blockquote class="scripture">
+              → 2 Timoteo 2:15: “Procura presentarte aprobado, que maneja correctamente la
+              palabra de verdad.”
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2 class="prophetic-title">8. Profecías Cumplidas en Esta Porción</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Profecía</th>
+              <th>Cumplimiento Mesiánico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>“Mi pacto fue con él: vida y shalom.” (Mal. 2:5)</td>
+              <td>
+                Juan 10:10 – “Yo he venido para que tengan vida, y la tengan en abundancia.”
+              </td>
+            </tr>
+            <tr>
+              <td>“La Toráh de verdad estuvo en su boca.” (2:6)</td>
+              <td>Juan 14:6 – “Yo soy la Verdad.”</td>
+            </tr>
+            <tr>
+              <td>“Muchos apartó del pecado.” (2:6)</td>
+              <td>1 Pedro 2:24 – “Él llevó nuestros pecados en Su cuerpo.”</td>
+            </tr>
+            <tr>
+              <td>“Los labios del kohén guardarán conocimiento.” (2:7)</td>
+              <td>
+                Lucas 24:45 – “Les abrió el entendimiento para comprender las Escrituras.”
+              </td>
+            </tr>
+            <tr>
+              <td>“Porque él es mensajero de יהוה צבאות.” (2:7)</td>
+              <td>
+                Malají 3:1 / Hebreos 3:1 – “Considerad al Emisario y Kohén Supremo de
+                nuestra confesión, Yeshúa.”
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h2 class="prophetic-title">9. Conclusión Mesiánica</h2>
+        <p>
+          Malaquías 2:1–7 anuncia el fracaso del sacerdocio terreno, pero a la vez
+          anticipa la perfección sacerdotal del Mashíaj, quien restaura el temor, la
+          verdad y el conocimiento de Elohím entre los hombres.
+        </p>
+        <p>
+          El Pacto de Vida y Shalom no es una metáfora: es la presencia viva del Mashíaj
+          en medio de Su pueblo, que enseña, redime y purifica. Su boca es la fuente de la
+          Toráh eterna, y Su sangre es el sello del pacto nuevo.
+        </p>
+        <p class="highlight">“Porque él es mensajero de יהוה צבאות.” (Malají 2:7)</p>
+        <p>Cumplido en:</p>
+        <blockquote class="scripture">
+          “Yo soy el buen Pastor; el buen Pastor da su vida por las ovejas.” (Yojanán
+          10:11)
+        </blockquote>
+        <p>
+          Así, el <span class="hebrew-term">Mal’aj haBrit מַלְאָךְ הַבְּרִית</span>
+          —Yeshúa haMashíaj— cumple en sí mismo el pacto levítico y extiende a toda la
+          humanidad el conocimiento de la Toráh de Verdad.
+        </p>
+      </div>
+    </div>
+    <h1>Punto 3. Brit Hadasháh: Efesios 2:14-18 (Yeshúa reconcilia a los separados).</h1>
+
+    <div class="content-container">
+      <div class="verse-container">
+        <div class="verse-number">Verso 14</div>
+        <div class="aramaic">
+          ܗܘ ܗܘ ܫܠܡܢ ܕܥܒܕ ܬܪܝܗܘܢ ܚܕ ܘܦܪܩ ܣܝܓܐ ܕܡܨܥܬܐ ܘܣܢܐܐ ܒܒܣܪܗ ܐܘܪܝܬܐ ܕܦܘܩܕܢܐ ܒܦܘܩܕܢܐ ܒܛܠ.
+        </div>
+        <div class="transliteration">
+          Hu hu shlamān, d‘avad treihon ḥad, u-paraq seyga d-meṣ‘ta, u-sna’ā
+          b-besreh; ūrītha d-puqdanā b-puqdanā beṭel.
+        </div>
+        <div class="translation">
+          —Él mismo es nuestra Shalom, el que de ambos hizo uno, y derribó la
+          muralla divisoria, y la enemistad en su carne, y abolió la Toráh de
+          los mandamientos en ordenanzas.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 15</div>
+        <div class="aramaic">ܕܒܪ ܬܪܝܗܘܢ ܠܓܒܪܐ ܚܕܐ ܚܕܬܐ ܘܥܒܕ ܫܠܡܐ.</div>
+        <div class="transliteration">
+          d-bar treihon le-gabrā ḥadā ḥadtā, u-‘avad shlamā.
+        </div>
+        <div class="translation">
+          —Para crear de los dos un solo hombre nuevo, haciendo Shalom.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 16</div>
+        <div class="aramaic">
+          ܘܪܥܐ ܠܬܪܝܗܘܢ ܒܦܓܪܗ ܚܕ ܥܡ ܐܠܗܐ ܘܩܛܠ ܒܗ ܠܣܢܐܐ.
+        </div>
+        <div class="transliteration">
+          U-ra‘ā le-treihon b-pagréh ḥad ‘am Alāhā, u-qaṭal beh le-sna’ā.
+        </div>
+        <div class="translation">
+          —Y reconcilió a ambos en un solo cuerpo con Elohím, y en Él mismo mató
+          la enemistad.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 17</div>
+        <div class="aramaic">ܘܐܬܐ ܘܣܒܪ ܫܠܡܐ ܠܟܘܢ ܠܪܚܝܩܐ ܘܠܩܪܝܒܐ.</div>
+        <div class="transliteration">
+          U-āth w-sabar shlamā lekhon, le-raḥiqē w-le-qariqē.
+        </div>
+        <div class="translation">
+          —Y vino y anunció la Shalom a ustedes, a los que estaban lejos y a los
+          que estaban cerca.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Verso 18</div>
+        <div class="aramaic">
+          ܡܛܠ ܕܒܗ ܐܝܬ ܠܢ ܬܪܝܢ ܩܘܪܒܐ ܒܪܘܚܐ ܚܕܐ ܠܘܬ ܐܒܐ.
+        </div>
+        <div class="transliteration">
+          Mṭol d-beh eyth lan treyn qurbā b-Ruḥā ḥadā, luwath Abbā.
+        </div>
+        <div class="translation">
+          —Porque por medio de Él tenemos ambos acceso en un mismo Ruaj al
+          Padre.
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>Traducción literal completa y continua</h2>
+      <div class="literal-translation">
+        Porque Él mismo es nuestra Shalom,<br />
+        quien de los dos pueblos hizo uno,<br />
+        y derribó la pared intermedia de separación,<br />
+        y abolió en su carne la enemistad —<br />
+        la Toráh de los mandamientos en ordenanzas—<br />
+        para crear en sí mismo, de los dos, un solo hombre nuevo,<br />
+        haciendo Shalom;<br /><br />
+        y para reconciliar a ambos en un solo cuerpo con Elohím,<br />
+        matando en Él la enemistad.<br /><br />
+        Y vino y anunció Shalom a los que estaban lejos,<br />
+        y Shalom a los que estaban cerca;<br /><br />
+        porque por medio de Él,<br />
+        tenemos ambos acceso en un mismo Ruaj al Padre.
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>Comentario Mesiánico Profundo</h2>
+      <div class="explanation">
+        <div class="point-letter">“Hu hu shlamān – Él mismo es nuestra Shalom”</div>
+        <p>
+          El texto arameo enfatiza una identidad: Él mismo es la
+          <span class="highlight">Shalom</span>. No solo trae paz; Él es la Paz
+          personificada, igual que en Yesha‘yahu / Isaías 9:5 donde se le llama
+          Sar Shalom — Príncipe de la Paz. Aquí, Sha’ul revela que la paz
+          mesiánica no es un concepto, sino una presencia divina encarnada.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <div class="point-letter">“Derribó la pared de separación”</div>
+        <p>
+          Esta “muralla” (<span class="aramaic">ܣܝܓܐ</span>
+          <span class="highlight">seyga</span>) alude al Soreg, la valla del
+          Templo que separaba a los gentiles. En la obra redentora de Yeshúa,
+          esa pared espiritual se destruye. Por eso, el acceso al Lugar Santo
+          (<span class="hebrew-term">יהוה</span> mismo) se abre a todas las
+          naciones.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <div class="point-letter">
+          “Abolió la Toráh de los mandamientos en ordenanzas”
+        </div>
+        <p>
+          No significa anular la Toráh, sino abolir el código ceremonial que
+          separaba a los pueblos. Yeshúa no elimina la Toráh moral, sino la
+          hostilidad producida por las interpretaciones humanas que excluían a
+          los gentiles del pacto. Es el cumplimiento de Yirmeyahu 31:31–33: la
+          Toráh escrita en el corazón.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <div class="point-letter">
+          “Un solo hombre nuevo” (<span class="aramaic">ܓܒܪܐ ܚܕܐ ܚܕܬܐ</span>)
+        </div>
+        <p>
+          Esta frase describe la <span class="highlight">Kehiláh</span>
+          mesiánica — una humanidad restaurada bajo el Mashíaj, donde Israel y
+          las naciones forman un solo cuerpo: el Cuerpo del Mashíaj,
+          cumplimiento de la promesa a Avraham: “En ti serán benditas todas las
+          familias de la tierra” (Bereshit 12:3).
+        </p>
+      </div>
+
+      <div class="explanation">
+        <div class="point-letter">
+          “Acceso en un mismo Ruaj al Padre”
+        </div>
+        <p>
+          La palabra aramea <span class="aramaic">ܩܘܪܒܐ</span> /
+          <span class="highlight">qurbā</span> significa literalmente
+          acercamiento sacrificial. Por medio del Mashíaj, ambos pueblos tienen
+          entrada ante <span class="hebrew-term">יהוה</span> como sacerdotes en
+          el mismo Espíritu. Esta frase evoca la visión de Yejezqel / Ezequiel
+          37:26–27, donde el pacto de Shalom une a todos bajo un solo Santuario:
+          “Mi morada estará entre ellos, y Yo seré su Elohím.”
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Conexión Profética con la Aliyáh de Bereshit 26:23–29
+          </div>
+          <p>
+            Así como Yitsjaq y Avimélej sellan un pacto de paz (<span
+              class="hebrew-term"
+              >ברית שלום</span
+            >) después de la enemistad, Yeshúa haMashíaj reconcilia Israel y las
+            naciones mediante Su cuerpo.
+          </p>
+          <p>
+            Beer Sheva, el “pozo del juramento”, tipifica el lugar del Nuevo
+            Pacto, donde fluye el agua viva del Ruaj HaKodesh (cf. Juan 7:38,
+            Peshitta).
+          </p>
+          <p>
+            En ambos textos, el tema es reconciliación, unidad, y la bendición
+            del Eterno manifestada en el Hijo.
+          </p>
+          <p>
+            Así como Avimélej declara: “Tú eres ahora bendito de
+            <span class="hebrew-term">יהוה</span>” (Gén. 26:29), Sha’ul enseña
+            que por el Mashíaj todos los pueblos reciben la bendición de
+            Avraham (Gálatas 3:14).
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Aplicación Espiritual</div>
+          <ul>
+            <li>
+              <strong>Vivir en Shalom:</strong> no solo paz emocional, sino una
+              reconciliación activa con otros y con
+              <span class="hebrew-term">יהוה</span>.
+            </li>
+            <li>
+              <strong>Derribar muros:</strong> el creyente mesiánico está
+              llamado a derribar toda división étnica o religiosa en el Cuerpo.
+            </li>
+            <li>
+              <strong>Caminar en unidad del Ruaj:</strong> nuestra comunión con
+              el Padre se mantiene solo en el Espíritu de Yeshúa.
+            </li>
+            <li>
+              <strong>Ser testigos del Pacto:</strong> así como Yitsjaq edificó
+              un altar en Beer Sheva, debemos edificar altares de adoración
+              donde la Shalom del Mashíaj sea proclamada.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>1. Introducción: La revelación del Pacto de Shalom en el Mashíaj</h1>
+      <p>
+        El mensaje de Efesios 2:14–18 es uno de los más profundos testimonios
+        del cumplimiento mesiánico del pacto de paz (<span class="hebrew-term"
+          >ברית שלום</span
+        >) anunciado en los Profetas. Sha’ul (Paulos), escribiendo desde la
+        perspectiva del pacto nuevo en sangre, declara que Yeshúa haMashíaj
+        es Él mismo nuestra Shalom — la presencia visible de
+        <span class="hebrew-term">יהוה</span> que reconcilia en un solo cuerpo
+        tanto a Israel como a las naciones.
+      </p>
+      <p>
+        En este pasaje, la teología del Peshitta arameo subraya que Yeshúa no
+        solo trae paz, sino que Él mismo es la Paz, el Shalom viviente. Esta es
+        la misma manifestación divina que se reveló a Yitsjaq en Beer Sheva,
+        diciendo:
+      </p>
+      <div class="scripture">
+        “No temas, porque Yo estoy contigo” (Bereshit 26:24).
+      </div>
+      <p>
+        Así, la promesa hecha al patriarca se cumple en la obra redentora del
+        Mashíaj, quien reconcilia los pueblos dispersos bajo un solo Nombre.
+      </p>
+    </div>
+
+    <div class="content-container">
+      <h1>2. Cumplimiento en el Mashíaj Yeshúa</h1>
+
+      <div class="section-container">
+        <h3>
+          <span class="point-letter">a.</span> “Él mismo es nuestra Shalom”
+          (Ef. 2:14)
+        </h3>
+        <p>El arameo dice:</p>
+        <div class="aramaic">
+          Hu hu shlamān d‘avad treihon ḥad — “Él mismo es nuestra Shalom, el que
+          de ambos hizo uno.”
+        </div>
+        <p>
+          Yeshúa es la encarnación del Shalom de
+          <span class="hebrew-term">יהוה</span>, como lo profetizó Isaías
+          9:5–6:
+        </p>
+        <div class="scripture">
+          “Se llamará su Nombre... Príncipe de Shalom (<span
+            class="hebrew-term"
+            >שַׂר־שָׁלוֹם</span
+          >), del aumento de su gobierno y de la paz no habrá fin.”
+        </div>
+        <p>
+          Yeshúa cumple este título no solo en Su mensaje, sino en Su propia
+          esencia. La paz mesiánica no es una idea ética, sino una persona
+          divina que derriba las murallas de separación.
+        </p>
+        <p>
+          Así como Yitsjaq experimentó el Shalom de
+          <span class="hebrew-term">יהוה</span> al final de su conflicto con
+          Avimélej (Gén. 26:29), el Mashíaj realiza ese Shalom de forma eterna
+          entre Israel y las naciones, cumpliendo la profecía de Zacarías 9:10:
+        </p>
+        <div class="scripture">
+          “Él hablará paz a las naciones, y su dominio será de mar a mar.”
+        </div>
+      </div>
+
+      <div class="section-container">
+        <h3>
+          <span class="point-letter">b.</span> “Derribó la muralla de
+          separación”
+        </h3>
+        <p>
+          El arameo usa la palabra <span class="aramaic">ܣܝܓܐ</span> /
+          <span class="highlight">seyga</span>, “valla, cerca, muro de
+          contención”. En el Templo de Jerusalén, existía un muro llamado
+          Soreg, que impedía el paso de los gentiles al Atrio de Israel bajo
+          pena de muerte. El Mashíaj derriba simbólicamente esa barrera en su
+          carne, cumpliendo lo dicho por Isaías 56:6–7:
+        </p>
+        <div class="scripture">
+          “Y a los hijos de los extranjeros que se alleguen a
+          <span class="hebrew-term">יהוה</span>... los llevaré a Mi monte
+          santo, y los alegraré en Mi casa de oración.”
+        </div>
+        <p>
+          Así, el muro del Templo —hecho por hombres— cae con el sacrificio del
+          Mashíaj, y se abre un acceso directo a <span class="hebrew-term"
+            >יהוה</span
+          >
+          para toda la humanidad, cumpliendo también Ezequiel 37:27:
+        </p>
+        <div class="scripture">
+          “Mi morada estará entre ellos, y Yo seré su Elohím, y ellos serán Mi
+          pueblo.”
+        </div>
+      </div>
+
+      <div class="section-container">
+        <h3>
+          <span class="point-letter">c.</span> “Abolió en su carne la
+          enemistad... creando en sí mismo un solo hombre nuevo” (Ef. 2:15)
+        </h3>
+        <p>
+          La expresión aramea <span class="aramaic">gabrā ḥadtā</span> (<span
+            class="aramaic"
+            >ܓܒܪܐ ܚܕܬܐ</span
+          >) — “un hombre nuevo” — es un eco directo de la promesa mesiánica de
+          Isaías 43:18–19:
+        </p>
+        <div class="scripture">
+          “He aquí que Yo hago cosa nueva (<span class="hebrew-term"
+            >חֲדָשָׁה ḥadashá</span
+          >), ahora brota; ¿no la reconoceréis?”
+        </div>
+        <p>
+          La creación de un solo cuerpo nuevo en el Mashíaj es la nueva
+          humanidad redimida, donde Israel y las naciones se funden en una
+          misma identidad espiritual: el Israel renovado, o la Kehiláh
+          Mesiánica.
+        </p>
+        <p>
+          Así, el “hombre nuevo” es una figura del segundo Adám, cumplimiento
+          directo de 1 Corintios 15:47 en el Peshitta:
+        </p>
+        <div class="scripture">
+          “El segundo Hombre es MarYah del cielo.”
+        </div>
+      </div>
+
+      <div class="section-container">
+        <h3>
+          <span class="point-letter">d.</span> “Reconciliar a ambos en un solo
+          cuerpo con Elohím” (Ef. 2:16)
+        </h3>
+        <p>
+          El verbo arameo <span class="highlight">ra‘ā</span> (<span
+            class="aramaic"
+            >ܪܥܐ</span
+          >) indica “restaurar una relación rota, hacer amistad de nuevo”.
+          Yeshúa, en su propio cuerpo (<span class="aramaic">ܒܦܓܪܗ</span> /
+          <span class="highlight">b-pagréh</span>), elimina la
+          <span class="highlight">sna’ā</span> (<span class="aramaic"
+            >ܣܢܐܐ</span
+          >
+          / enemistad). Este acto cumple la visión del pacto de paz eterno de
+          Ezequiel 37:26–28:
+        </p>
+        <div class="scripture">
+          “Y haré con ellos pacto de Shalom, pacto eterno será con ellos, y
+          pondré Mi santuario en medio de ellos para siempre.”
+        </div>
+        <p>
+          Yeshúa es ese Santuario viviente, el lugar donde Elohím y el hombre
+          se encuentran sin mediación sacerdotal terrenal. El altar que Yitsjaq
+          levantó en Beer Sheva (Gén. 26:25) anticipa este altar espiritual —
+          el cuerpo del Mashíaj donde se ofrece la reconciliación eterna.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>
+          <span class="point-letter">e.</span> “Y vino y anunció Shalom” (Ef.
+          2:17)
+        </h3>
+        <p>
+          Esta frase alude directamente a Isaías 52:7, profecía mesiánica:
+        </p>
+        <div class="scripture">
+          “¡Cuán hermosos son sobre los montes los pies del que anuncia Shalom,
+          del que proclama buenas nuevas, del que anuncia salvación, del que
+          dice a Sión: Tu Elohím reina!”
+        </div>
+        <p>
+          El Mashíaj cumple literalmente esta profecía, trayendo
+          <span class="highlight">b’sorata d-shlamā</span> — la buena nueva de
+          la paz. Él no solo predica, sino que encarna la proclamación
+          profética de Isaías.
+        </p>
+        <p>
+          Así como Yitsjaq selló la Shalom con Avimélej por medio de un
+          juramento (Beer Sheva = “Pozo del juramento”), Yeshúa sella la Shalom
+          eterna por medio de Su sangre, estableciendo el Brit Hadasháh
+          anunciado en Jeremías 31:31–34.
+        </p>
+      </div>
+
+      <div class="section-container">
+        <h3>
+          <span class="point-letter">f.</span> “Por medio de Él tenemos ambos
+          acceso en un mismo Ruaj al Padre” (Ef. 2:18)
+        </h3>
+        <p>El arameo dice:</p>
+        <div class="aramaic">
+          Mṭol d-beh eyth lan treyn qurbā b-Ruḥā ḥadā, luwath Abbā. “Porque en
+          Él tenemos ambos acercamiento, en un mismo Espíritu, al Padre.”
+        </div>
+        <p>
+          El término <span class="highlight">qurbā</span> (<span
+            class="aramaic"
+            >ܩܘܪܒܐ</span
+          >) proviene de la raíz del hebreo <span class="hebrew-term">קרב</span>
+          / <span class="highlight">qarav</span>, “acercarse, ofrecerse”, la
+          misma raíz de <span class="highlight">korbán</span> (sacrificio). Por
+          tanto, el acceso no es solo espiritual, sino sacrificial: Yeshúa es el
+          <span class="highlight">korbán</span> eterno, el acercamiento que nos
+          une con <span class="hebrew-term">יהוה</span>.
+        </p>
+        <p>
+          Esto cumple la tipología del altar de Yitsjaq, sobre el cual se
+          invocó el Nombre Santo (Gén. 26:25). El Mashíaj es ese altar final
+          donde el Ruaj une a los redimidos en un solo cuerpo.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>3. Conexión con la Aliyáh de Génesis 26:23–29</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Tema en Génesis 26:23–29</th>
+            <th>Cumplimiento en Efesios 2:14–18</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="hebrew-term">יהוה</span> se aparece a Yitsjaq con
+              promesa de paz
+            </td>
+            <td>Yeshúa, manifestación visible de <span class="hebrew-term"
+                >יהוה</span
+              >, trae la paz eterna.</td>
+          </tr>
+          <tr>
+            <td>“No temas, porque Yo estoy contigo”</td>
+            <td>“Él mismo es nuestra Shalom.”</td>
+          </tr>
+          <tr>
+            <td>Yitsjaq edifica altar e invoca el Nombre de <span
+                class="hebrew-term"
+                >יהוה</span
+              ></td>
+            <td>
+              Mashíaj se convierte en el altar espiritual donde se reconcilian
+              los pueblos.
+            </td>
+          </tr>
+          <tr>
+            <td>Pacto de Shalom entre Yitsjaq y Avimélej</td>
+            <td>
+              Reconciliación entre Israel y las naciones en el cuerpo del
+              Mashíaj.
+            </td>
+          </tr>
+          <tr>
+            <td>“Tú eres bendito de <span class="hebrew-term">יהוה</span>”</td>
+            <td>
+              Efesios 1:3 – “Bendito sea el Elohím y Padre de nuestro Adón
+              Yeshúa, que nos bendijo en los lugares celestiales.”
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        El pacto de Beer Sheva fue una sombra profética del Brit Hadasháh en el
+        Mashíaj. Yitsjaq, hijo de la promesa, prefigura a Yeshúa, el Hijo
+        Prometido, que sella la paz eterna entre Elohím y los hombres.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>4. Profecías Cumplidas en Esta Porción</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Profeta</th>
+            <th>Profecía</th>
+            <th>Cumplimiento en Efesios 2:14–18</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Isaías 9:5–6</td>
+            <td>El Príncipe de Shalom traerá paz sin fin.</td>
+            <td>“Él mismo es nuestra Shalom.”</td>
+          </tr>
+          <tr>
+            <td>Isaías 52:7</td>
+            <td>El que anuncia Shalom proclama el Reino de Elohím.</td>
+            <td>“Vino y anunció Shalom.”</td>
+          </tr>
+          <tr>
+            <td>Isaías 56:6–7</td>
+            <td>Los extranjeros serán admitidos a la Casa de Oración.</td>
+            <td>“Derribó la pared de separación.”</td>
+          </tr>
+          <tr>
+            <td>Ezequiel 37:26–28</td>
+            <td>Pacto eterno de Shalom y Santuario entre los hombres.</td>
+            <td>
+              “Reconciliar a ambos en un solo cuerpo con Elohím.”
+            </td>
+          </tr>
+          <tr>
+            <td>Zacarías 9:10</td>
+            <td>
+              Su dominio será de mar a mar; hablará Shalom a las naciones.
+            </td>
+            <td>“Hizo de los dos un solo hombre nuevo.”</td>
+          </tr>
+          <tr>
+            <td>Jeremías 31:31–33</td>
+            <td>Pacto nuevo escrito en los corazones.</td>
+            <td>“Acceso en un mismo Ruaj al Padre.”</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h1>5. Aplicación Espiritual</h1>
+      <div class="conclusion">
+        <ul>
+          <li>
+            La <span class="highlight">Shalom</span> no es ausencia de
+            conflicto, sino presencia del Mashíaj. Solo en Él las divisiones
+            internas del corazón se derriban.
+          </li>
+          <li>
+            El muro del ego y la exclusión debe caer. Así como el Soreg cayó, el
+            creyente mesiánico debe dejar caer sus barreras culturales y
+            religiosas.
+          </li>
+          <li>
+            Somos llamados a ser el “hombre nuevo”. La nueva humanidad del
+            Mashíaj no vive según el linaje físico, sino según el Ruaj.
+          </li>
+          <li>
+            El altar interior debe permanecer encendido. Cada alma redimida debe
+            ser como el altar de Yitsjaq: un lugar donde se invoca el Nombre
+            Santo.
+          </li>
+          <li>
+            Caminar en Shalom es reflejar la naturaleza de
+            <span class="hebrew-term">יהוה</span> mismo. El que camina en el
+            Mashíaj se convierte en portador de la bendición de Avraham para las
+            naciones.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <h1>4. CONTEXTO HISTÓRICO Y CULTURAL</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h3>1. Contexto geográfico e histórico</h3>
+            <p>Los eventos ocurren en <span class="highlight">Beer Sheva בְּאֵר שָׁבַע</span>, una región del sur de Canaán (actual Negev), que servía como frontera natural entre el territorio patriarcal y el dominio filisteo de <span class="highlight">Gerar גְּרָר</span>.</p>
+            <p>Beer Sheva significa literalmente “pozo del juramento” o “pozo de siete”, evocando los pactos y los pozos cavados por Avraham y Yitsjaq (Gén. 21 y 26).</p>
+            <p>En el contexto del Segundo Milenio a.E.C., los pactos de paz eran sellados con juramentos y banquetes (Gén. 26:30), simbolizando reconciliación y alianza.</p>
+            <p>La diplomacia entre clanes nómadas (como la familia de Yitsjaq) y reyes sedentarios (como Avimélej) era común en el Cercano Oriente antiguo.</p>
+            <p>Estos acuerdos establecían derechos sobre pozos, rutas de pastoreo y fronteras territoriales.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>2. Contexto espiritual</h3>
+            <p>La revelación de <span class="highlight">יהוה</span> a Yitsjaq (v. 24) repite el patrón del llamado de Avraham (Gén. 12:1–3) y del encuentro de Ya‘aqov en Bet-El (Gén. 28:13).</p>
+            <p>Esta secuencia muestra la continuidad del pacto abrahámico, donde la promesa de tierra, descendencia y bendición universal se transfiere a Yitsjaq como heredero espiritual.</p>
+            <p>El altar erigido (v. 25) señala un lugar de adoración y comunión directa con <span class="highlight">Elohím</span>, anticipando los altares patriarcales que prefiguran el Mishkán y más tarde el Templo.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>3. Contexto arqueológico y cultural</h3>
+            <p>En Beer Sheva se han hallado restos de altares de piedra tallada del periodo patriarcal temprano (siglo XIX–XVIII a.E.C.), lo que coincide con las descripciones bíblicas.</p>
+            <p>El nombre de Avimélej (‘Padre Rey’) era probablemente un título dinástico, similar al uso egipcio de “Faraón”.</p>
+            <p>El jefe militar <span class="highlight">Fíjol פִיכֹל</span>, mencionado también en Génesis 21, sugiere continuidad en las relaciones entre los reinos filisteos y los patriarcas.</p>
+        </div>
+    </div>
+
+    <h1>5. ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h3>1. Comentario rabínico clásico</h3>
+            <p>El Midrash Bereshit Rabbah 64:10 comenta que la aparición de <span class="highlight">יהוה</span> a Yitsjaq en Beer Sheva fue una confirmación divina de que el pacto de Avraham continuaba con su hijo.</p>
+            <p>Rashi enseña que el pozo representa la <span class="highlight">Toráh</span> viva, cuyas aguas no se agotan.</p>
+            <p>El altar es visto como el símbolo del servicio puro a <span class="highlight">יהוה</span> sin mediadores humanos.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>2. Comentario mesiánico</h3>
+            <p>En la perspectiva mesiánica, Yitsjaq —el hijo de la promesa, nacido sobrenaturalmente y ofrecido en sacrificio (Gén. 22)— prefigura a <span class="highlight">Yeshúa haMashíaj</span>.</p>
+            <p>En este pasaje, Yitsjaq es el portador de la bendición universal y el mediador del <span class="highlight">Shalom</span> de <span class="highlight">Elohím</span>, cumpliendo el tipo mesiánico del “Hijo obediente”.</p>
+            <p>La frase “Y se le apareció <span class="highlight">יהוה</span> y dijo: Yo soy el <span class="highlight">Elohím</span> de tu padre Avraham” (v. 24) revela la identidad eterna del <span class="highlight">Elohím</span> visible, el mismo que en el <span class="highlight">Brit Hadasháh</span> se manifiesta como <span class="highlight">MarYah Yeshúa</span>, quien dice:</p>
+            <div class="scripture">
+                “Antes que Avraham fuese, Yo Soy” (Yojanán 8:58).
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>3. Conexión profética</h3>
+            <div class="scripture">
+                <p>Isaías 32:17: “La obra de la justicia será Shalom.”</p>
+            </div>
+            <p>La justicia de <span class="highlight">Elohím</span> en el <span class="highlight">Mashíaj</span> produce paz, como el pacto entre Yitsjaq y Avimélej.</p>
+            <div class="scripture">
+                <p>Ezequiel 37:26: “Haré con ellos pacto de Shalom, pacto eterno será con ellos.”</p>
+            </div>
+            <p>Este pacto eterno es anunciado proféticamente en Beer Sheva y cumplido en Yeshúa, quien reconcilia Israel y las naciones.</p>
+            <div class="scripture">
+                <p>Zacarías 9:10: “Hablará Shalom a las naciones.”</p>
+            </div>
+            <p>El pacto entre Yitsjaq y Avimélej prefigura la futura reconciliación mesiánica universal.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>4. Notas gramaticales y guemátricas</h3>
+            <p>La palabra <span class="hebrew-term">שָׁלוֹם</span> / <span class="highlight">Shalom</span> (paz) tiene valor numérico 376, el mismo que <span class="hebrew-term">עֵשָׂו</span> / <span class="highlight">Esav</span>, lo que sugiere que la verdadera victoria sobre el conflicto fraternal solo se logra por medio del <span class="highlight">Shalom</span> de <span class="highlight">Elohím</span>.</p>
+            <p><span class="hebrew-term">בְּאֵר שָׁבַע</span> / <span class="highlight">Beer Sheva</span> = “Pozo del juramento”. <span class="arrow">→</span> la misma que <span class="hebrew-term">ברית עולם</span> / <span class="highlight">Brit Olam</span>, “pacto eterno”.</p>
+        </div>
+    </div>
+
+    <h1>6. ANÁLISIS PROFUNDO DE LA ALIYÁH</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <p><span class="highlight">Revelación (v. 24):</span> <span class="highlight">יהוה</span> se revela personalmente a Yitsjaq, reafirmando Su presencia. En la teología mesiánica, esto anticipa la encarnación divina en Yeshúa, quien manifiesta la presencia visible del <span class="highlight">Elohím</span> invisible.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="highlight">Construcción del altar (v. 25):</span> representa la restauración del servicio espiritual puro, sin ídolos ni mediadores. Es una figura del altar interno del corazón, donde el creyente invoca el Nombre de <span class="highlight">יהוה</span> por medio del <span class="highlight">Mashíaj</span>.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="highlight">Cavar pozos (v. 25):</span> los siervos de Yitsjaq cavaron un nuevo pozo, símbolo del flujo renovado del <span class="highlight">Ruaj HaKodesh</span>. Proféticamente, esto alude a Juan 7:38 (“De su interior correrán ríos de agua viva”).</p>
+        </div>
+        <div class="section-container">
+            <p><span class="highlight">Pacto con Avimélej (vv. 26–29):</span> refleja el proceso mesiánico de reconciliación. El enemigo que antes expulsó a Yitsjaq ahora busca la paz; de igual modo, las naciones que rechazaron al <span class="highlight">Elohím</span> de Israel serán atraídas por el <span class="highlight">Mashíaj</span> para sellar un pacto eterno de <span class="highlight">Shalom</span>.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="highlight">Reconocimiento del favor divino (v. 28):</span> Avimélej dice: “Viendo vimos que <span class="highlight">יהוה</span> está contigo.”</p>
+            <p>Esto se cumple en Mateo 28:20, donde Yeshúa promete: “Yo estoy con vosotros siempre.”</p>
+        </div>
+    </div>
+
+    <h1>7. TEMA MÁS RELEVANTE DE LA ALIYÁH</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h3>Tema central: El Pacto de Shalom y la Presencia de יהוה</h3>
+            <p>El núcleo temático es la presencia divina (<span class="highlight">Shejináh</span>) que garantiza la continuidad del pacto de Avraham, y el establecimiento de la paz universal.</p>
+            <p>El <span class="highlight">Shalom</span> no es simple ausencia de guerra, sino la plenitud de la comunión con <span class="highlight">Elohím</span>.</p>
+            <ul>
+                <li>En Yitsjaq, el <span class="highlight">Shalom</span> se manifiesta en Beer Sheva.</li>
+                <li>En Yeshúa, el <span class="highlight">Shalom</span> se manifiesta en el madero— el “altar definitivo” del pacto eterno.</li>
+                <li>En el creyente, el <span class="highlight">Shalom</span> se manifiesta por la presencia del <span class="highlight">Ruaj HaKodesh</span>.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h3>Conexión con el Brit Hadasháh:</h3>
+            <p>Efesios 2:14–18 explica el cumplimiento de este tema:</p>
+            <div class="scripture">
+                “Él mismo es nuestra Shalom, que de ambos pueblos hizo uno.”
+            </div>
+            <p>Así, el pacto entre Yitsjaq y Avimélej profetiza la reconciliación mesiánica entre Israel y las naciones, cumpliendo el propósito del <span class="highlight">Elohím</span> de Avraham:</p>
+            <p>bendecir todas las familias de la tierra por medio de su simiente (el <span class="highlight">Mashíaj</span>).</p>
+        </div>
+    </div>
+
+    <h1>8. DESCUBRIENDO AL MASHÍAJ EN ESTA ALIYÁH</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h3>1. Tipología mesiánica</h3>
+            <h4>Yitsjaq como tipo del Mashíaj:</h4>
+            <ul>
+                <li>Ambos son hijos de la promesa, amados por el Padre, ofrecidos como sacrificio, y portadores de bendición universal.</li>
+                <li>En Beer Sheva, Yitsjaq es confirmado como portador del pacto; en el Jordán, Yeshúa es confirmado como el Hijo Amado.</li>
+            </ul>
+            <p>El altar representa al <span class="highlight">Mashíaj</span> como mediador y punto de encuentro entre <span class="highlight">Elohím</span> y la humanidad.</p>
+            <p>Así como Yitsjaq edificó un altar, Yeshúa se ofrece a sí mismo como altar y korban perfecto.</p>
+            <p>El pozo de agua viva es figura del <span class="highlight">Ruaj HaKodesh</span> que emana del <span class="highlight">Mashíaj</span>.</p>
+            <p>Beer Sheva anticipa las palabras de Yeshúa en Juan 4:14: “El agua que Yo le daré será en él una fuente que salte para vida eterna.”</p>
+        </div>
+
+        <div class="section-container">
+            <h3>2. Sombras proféticas (Tzelalim)</h3>
+            <ul>
+                <li>El pacto con Avimélej anuncia el pacto de <span class="highlight">Shalom</span> universal (Ezequiel 37:26).</li>
+                <li>La reconciliación prefigura el efecto del sacrificio redentor del <span class="highlight">Mashíaj</span> (Efesios 2:16).</li>
+                <li>El reconocimiento “tú eres bendito de <span class="highlight">יהוה</span>” (v. 29) anticipa la glorificación del Hijo, cuando toda lengua confesará que Yeshúa es <span class="highlight">MarYah</span> (Filipenses 2:10–11).</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h3>3. Figuras y patrones redentores (Tavnitot)</h3>
+            <ul>
+                <li><span class="highlight">Subida a Beer Sheva (v. 23):</span> imagen de ascenso espiritual. En los Evangelios, Yeshúa también “sube” a Jerusalén para sellar el pacto eterno.</li>
+                <li><span class="highlight">Edificar altar e invocar el Nombre:</span> tipifica la comunión directa con el Eterno a través del sacrificio del <span class="highlight">Mashíaj</span>.</li>
+                <li><span class="highlight">Pacto y juramento:</span> anticipan el <span class="highlight">Brit Hadasháh</span> sellado con sangre.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h3>4. Profecías cumplidas en Yeshúa</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Profecía</th>
+                        <th>Cumplimiento en el Mashíaj</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Promesa de Shalom a Yitsjaq (v. 24)</td>
+                        <td>“Mi Shalom os dejo; Mi Shalom os doy.” (Yojanán 14:27)</td>
+                    </tr>
+                    <tr>
+                        <td>Pacto con Avimélej (v. 28–29)</td>
+                        <td>Efesios 2:14–16 — reconciliación entre Israel y las naciones.</td>
+                    </tr>
+                    <tr>
+                        <td>Invocación del Nombre de <span class="highlight">יהוה</span> (v. 25)</td>
+                        <td>Hechos 2:21 (Peshitta) — “Todo el que invoque el Nombre de <span class="highlight">יהוה</span> será salvo.”</td>
+                    </tr>
+                    <tr>
+                        <td>Pozo de Beer Sheva</td>
+                        <td>Yeshúa como fuente de agua viva (Yojanán 4:14; 7:38).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h3>Conclusión de los Puntos 4–8</h3>
+        <p>La Aliyáh de Génesis 26:23–29 es una miniatura profética del Evangelio eterno.</p>
+        <p>Yitsjaq, el hijo obediente, prefigura al <span class="highlight">Mashíaj</span> que sella la paz entre <span class="highlight">Elohím</span> y los hombres.</p>
+        <p>Beer Sheva se convierte en símbolo del <span class="highlight">Brit Shalom</span> que culmina en Yeshúa, el Altísimo hecho carne.</p>
+        <p>Donde antes hubo contienda por los pozos, ahora hay reconciliación;</p>
+        <p>donde antes hubo expulsión, ahora hay bienvenida;</p>
+        <p>donde antes hubo enemistad, ahora hay <span class="highlight">Shalom</span> eterno.</p>
+        <p>Yeshúa haMashíaj es el cumplimiento visible de la aparición de <span class="highlight">יהוה</span> en Beer Sheva,</p>
+        <p>el Cordero que establece el Pacto eterno de paz (<span class="hebrew-term">ברית שלום עולם</span>) entre el Creador y Su pueblo.</p>
+    </div>
+    <div class="content-container">
+        <h1>9. MIDRASHIM, TARGUMIM, TEXTOS FUENTE Y APÓCRIFOS</h1>
+        <div class="section-container">
+            <div class="verse-number">1. Midrash Bereshit Rabbah 64:10–12</div>
+            <p>El Midrash comenta que cuando Yitsjaq subió a Beer Sheva, יהוה le habló para consolarlo después de los conflictos por los pozos.</p>
+            <p>Dice el texto rabínico:</p>
+            <div class="scripture">
+                “El Santo, bendito sea Él, le dijo: No temas, hijo mío, como estuve con tu padre Avraham, así estaré contigo.”
+            </div>
+            <p>Esto revela que la presencia divina se transfiere de generación en generación a los que caminan en fidelidad al pacto.</p>
+            <p>El Midrash también señala que el altar que Yitsjaq edificó fue una continuación del altar de Avraham, enseñando que la adoración verdadera se hereda en obediencia, no solo en sangre.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="verse-number">2. Targum Onkelos</div>
+            <p>El Targum arameo de Onkelos traduce Génesis 26:24 así:</p>
+            <div class="aramaic">
+                “וְאִתְגְּלֵי לֵיהּ מֵימְרָא דַיְיָ בְּלֵילְיָא הַהוּא”
+            </div>
+            <p class="translation">“Y se le reveló la Palabra de יהוה (<span class="hebrew-term">מֵימְרָא דַיְיָ</span>) aquella noche.”</p>
+            <p>Esta expresión <span class="highlight">Memra d’Adonái</span> (Palabra de יהוה) es clave mesiánicamente, pues en la literatura targúmica la Memra representa la manifestación visible del Eterno, lo mismo que en el Brit Hadashá se identifica con Yeshúa haMashíaj, la Palabra hecha carne (<span class="hebrew-term">מֵימְרָא דְמַרְיָא</span>).</p>
+            <p>Así, el Targum confirma que la aparición de יהוה a Yitsjaq en Beer Sheva fue una teofanía del Mashíaj preencarnado.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="verse-number">3. Midrash Tanjuma, Toldot 8</div>
+            <p>El Midrash enseña:</p>
+            <div class="scripture">
+                “El Eterno se le apareció a Yitsjaq para confirmar el pacto del juramento (<span class="hebrew-term">שְׁבוּעָה</span>), y el ángel de la paz caminó con él.”
+            </div>
+            <p>Esta figura del <span class="highlight">malaj shalom</span> (mensajero de paz) apunta directamente a la profecía mesiánica de Isaías 9:5–6, donde el Mesías es llamado <span class="highlight">Sar Shalom</span> (Príncipe de Paz).</p>
+        </div>
+
+        <div class="section-container">
+            <div class="verse-number">4. Textos apócrifos</div>
+            <p>El Libro de Jubileos 24:17–22 reitera que el Eterno bendijo a Yitsjaq en Beer Sheva y le prometió:</p>
+            <div class="scripture">
+                “Seré con tus hijos y los multiplicaré como las estrellas del cielo.”
+            </div>
+            <p>Este texto, de la tradición del Segundo Templo, destaca el juramento perpetuo (<span class="highlight">Sheva</span> = juramento, siete) que Elohím estableció, y que los autores mesiánicos reconocieron como cumplido en Yeshúa, la “Simiente” (Gálatas 3:16).</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>10. MANDAMIENTOS, PRINCIPIOS Y VALORES ENCONTRADOS</h1>
+        <p>En estos versículos no hay mitzvot halájicos explícitos, pero sí principios espirituales eternos derivados del pacto.</p>
+
+        <div class="section-container">
+            <div class="prophetic-title">Principio de fe y confianza:</div>
+            <p>“No temas, porque Yo estoy contigo” (v. 24) enseña la <span class="highlight">emunáh</span> activa en la presencia constante de יהוה.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Principio de adoración pura:</div>
+            <p>“Y edificó allí un altar e invocó el Nombre de יהוה” (v. 25) implica el mandamiento implícito de invocar el Nombre Santo con un corazón limpio.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Principio de paz y reconciliación:</div>
+            <p>El pacto con Avimélej (vv. 26–29) enseña el valor de buscar <span class="highlight">Shalom</span> incluso con los que antes fueron adversarios, reflejo del carácter divino.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Principio de testimonio:</div>
+            <p>“Viendo vimos que יהוה está contigo” (v. 28) muestra que la conducta del justo revela la presencia del Eterno ante el mundo.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Principio mesiánico del pacto eterno:</div>
+            <p>El acto de juramento y alianza prefigura el <span class="highlight">Brit Hadasháh</span>, en el cual la paz se sella por la sangre del Mashíaj.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Valor esencial:</div>
+            <p>La vida del justo debe ser un testimonio viviente del <span class="highlight">Shalom</span> de יהוה — no un conflicto, sino una fuente de reconciliación.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>11. PREGUNTAS DE REFLEXIÓN (CON RESPUESTAS EN EL MASHÍAJ)</h1>
+        <div class="section-container">
+            <div class="question">1. ¿Por qué יהוה se aparece a Yitsjaq justo después de su rechazo por los hombres?</div>
+            <div class="answer">Porque cuando el mundo rechaza al justo, el Eterno se le revela más profundamente. En Yeshúa, esta verdad se cumple plenamente: cuando fue rechazado y crucificado, el Padre lo glorificó.</div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">2. ¿Qué representa el altar que Yitsjaq construye?</div>
+            <div class="answer">El altar es figura del corazón redimido, donde se ofrece adoración genuina. Yeshúa es el altar eterno: “Tenemos un altar del cual no tienen derecho de comer los que sirven en el tabernáculo” (Hebreos 13:10).</div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">3. ¿Cómo prefigura el pacto con Avimélej la obra del Mashíaj?</div>
+            <div class="answer">Así como Yitsjaq reconcilia con su enemigo, el Mashíaj reconcilia a Israel y a las naciones, haciendo <span class="highlight">Shalom</span> mediante su cuerpo (Efesios 2:14–16).</div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">4. ¿Por qué Avimélej reconoce la bendición de יהוה sobre Yitsjaq?</div>
+            <div class="answer">Porque la presencia de Elohím en la vida del justo es evidente. De igual manera, el mundo reconocerá que Yeshúa es bendito de יהוה cuando toda rodilla se doble ante Él (Filipenses 2:10–11).</div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">5. ¿Qué enseñanza práctica deja este texto para los creyentes en Yeshúa?</div>
+            <div class="answer">El creyente mesiánico debe reflejar la paz de Mashíaj en toda relación humana, siendo un canal del <span class="highlight">Brit Shalom</span> — el pacto de paz eterno que proviene del Altísimo.</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>12. RESUMEN DE LA ALIYÁH</h1>
+        <p>En Bereshit 26:23–29, Yitsjaq asciende a Beer Sheva, donde יהוה se le aparece para confirmar el pacto de Avraham.</p>
+        <p>El Eterno le promete Su presencia, bendición y multiplicación de su <span class="highlight">zera</span> (descendencia).</p>
+        <p>Yitsjaq responde con adoración: edifica un altar, invoca el Nombre de יהוה, y extiende allí su tienda. Sus siervos cavan un pozo, señal del fluir de vida y provisión espiritual.</p>
+        <p>Luego, Avimélej —quien antes lo había expulsado— viene a hacer un pacto de paz. Reconoce que יהוה está con Yitsjaq y le propone un juramento de <span class="highlight">Shalom</span>. La enemistad se convierte en amistad, y el rechazo en reconocimiento.</p>
+        <p>Este episodio anticipa la obra redentora de Yeshúa haMashíaj, quien en Su carne derribó la muralla de enemistad, reconciliando a Israel y las naciones.</p>
+        <p>El altar de Beer Sheva se transforma en el símbolo del pacto eterno de <span class="highlight">Shalom</span> cumplido en el <span class="highlight">Brit Hadasháh</span>.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>13. TEFILÁH DE LA ALIYÁH</h1>
+        <h2>Tefiláh – Oración de Shalom y Reconciliación</h2>
+        <div class="prayer-text">
+            <p>יהוה, Elohím de Avraham, de Yitsjaq y de Ya‘aqov,</p>
+            <p>Tú que te apareciste en Beer Sheva y prometiste: “No temas, porque Yo estoy contigo”,
+            haz que esa misma presencia habite en nosotros por medio de Yeshúa haMashíaj.</p>
+            <p>Edifica en nuestro corazón un altar de pureza,
+            donde tu Nombre sea invocado en verdad y no en palabra vana.</p>
+            <p>Derriba toda muralla de separación,
+            reconcilia a los hermanos divididos,
+            y haz fluir de nuestro interior el pozo de aguas vivas de tu Ruaj HaKodesh.</p>
+            <p>Así como Yitsjaq y Avimélej sellaron un pacto de <span class="highlight">Shalom</span>,
+            sella hoy en nosotros tu <span class="highlight">Brit Shalom</span> eterno,
+            para que toda nación vea tu bendición reflejada en los que te sirven.</p>
+            <p>Que en la <span class="highlight">Kehiláh Mesiánica</span> de hoy se cumpla tu promesa:
+            “Él mismo es nuestra Shalom, que de ambos pueblos hizo uno.”</p>
+            <p>Bendito eres Tú, יהוה,
+            Elohím de <span class="highlight">Shalom</span> y Fuente de toda reconciliación,
+            revelado en Yeshúa haMashíaj,
+            quien es uno contigo, <span class="highlight">Ejad</span> por los siglos.</p>
+            <p class="prayer-conclusion">Amén.</p>
+        </div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya6.html">Continuar con la Aliyá 6</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
