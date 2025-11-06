@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LAS DOCTRINAS DEL REEMPLAZO</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+    <h1>LAS DOCTRINAS DEL REEMPLAZO#2</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Definición del Supersesionismo</h2>
+            <p>
+                La doctrina del reemplazo, conocida teológicamente como <strong class="highlight">Supersesionismo</strong>, es una enseñanza errónea que ha causado una profunda desviación de la verdad bíblica a lo largo de los siglos. Esta falsa enseñanza sostiene que, debido a que el pueblo de Israel no reconoció a <strong class="highlight">Yeshúa HaMashíaj</strong> como nación, <strong class="highlight">Adonai</strong> ha revocado permanentemente Sus promesas a Israel y ha transferido Su pacto y bendiciones a la Iglesia, vista como un "Nuevo Israel." Concomitantemente, afirma que la <strong class="highlight">Torá</strong> (la Ley de Moshé) fue completamente abolida en el Brit Hadashah y no tiene ya ninguna vigencia para los creyentes en Yeshúa.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>La Introducción Histórica de la Herejía</h2>
+            <p>
+                El surgimiento de esta enseñanza se dio de manera gradual en los primeros siglos de la Era Común, marcando una dolorosa división en la comunidad mesiánica primitiva.
+            </p>
+            <ul>
+                <li>
+                    <span class="point-letter">1.</span> <strong class="prophetic-title">El Distanciamiento Post-Templo:</strong> Tras la destrucción del Segundo Templo en el año 70 d.C. y, más significativamente, después de la Revuelta de Bar Kojba (132-135 d.C.), la comunidad de creyentes en Yeshúa comenzó a separarse del cuerpo principal del pueblo judío.
+                </li>
+                <li>
+                    <span class="point-letter">2.</span> <strong class="prophetic-title">Influencia Gentil y Helenista:</strong> A medida que la mayoría de los creyentes pasaron a ser de origen gentil, y bajo la influencia de la filosofía helenística, se gestó una visión que veía al judaísmo y la Torá como algo inferior o puramente carnal. Esto fue exacerbado por la necesidad de la joven fe de distanciarse de los conflictos de Israel con el Imperio Romano.
+                </li>
+                <li>
+                    <span class="point-letter">3.</span> <strong class="prophetic-title">Los Padres de la Iglesia:</strong> Ciertos Padres de la Iglesia promovieron una teología que alegaba que los pactos y las promesas hechas a Israel eran ahora propiedad exclusiva de la Iglesia. Las profecías de juicio se aplicaban al pueblo judío, mientras que las de bendición se reinterpretaban exclusivamente para la nueva comunidad. Esta teología llevó a la minimización de las <strong class="highlight">Fiestas del Eterno</strong> y la observancia del <strong class="highlight">Shabat</strong> en favor de las festividades y el día de reposo adoptados por el mundo gentil. Esta herejía, al rechazar la validez perpetua de la Torá, socavó el fundamento profético del mismo <strong class="highlight">Mashíaj</strong>.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>La Refutación de la Palabra de Adonai a Través de Yeshúa</h1>
+        <p>
+            La Palabra de Adonai, revelada en el <strong class="highlight">Tanaj</strong> y confirmada por Yeshúa HaMashíaj en el <strong class="highlight">Brit Hadashah</strong>, nos saca de este error al demostrar que la Torá no fue abolida, sino magnificada y cumplida en Él.
+        </p>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">1. La Permanencia de la Torá en Yeshúa</h3>
+            <p>
+                El propio Yeshúa refutó la idea de la abolición de la Ley y los Profetas con la más alta autoridad. Él declara sin ambages:
+            </p>
+
+            <div class="verse-container">
+                <div class="verse-number">Matityahu 5:17-18</div>
+                <div class="translation">"No penséis que he venido para abrogar la Torá o los Profetas; no he venido para abrogar, sino para cumplir. Porque de cierto os digo que hasta que pasen el cielo y la tierra, ni una jota ni una tilde pasará de la Torá, hasta que todo se haya cumplido."</div>
+                <div class="literal-translation">(Traducción literal adaptada del texto mesiánico)</div>
+            </div>
+
+            <div class="explanation">
+                La palabra "<strong class="highlight">cumplir</strong>" (en griego *pleroo*) significa "llenar," "completar," o "llevar a su propósito total," no "destruir" o "anular." Yeshúa no vino a quitar la <strong class="highlight">Torá</strong>, sino a vivirla perfectamente y a hacerla accesible a la humanidad a través de Su sacrificio, escribiéndola en el corazón por el <strong class="highlight">Ruach HaKodesh</strong>. Por lo tanto, mientras el cielo y la tierra permanezcan, la Torá sigue en pie.
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">2. La Naturaleza Renovada del Pacto</h3>
+            <p>
+                El <strong class="highlight">Brit Hadashah</strong> no es un pacto de reemplazo, sino la renovación, la activación y la perfección del pacto hecho con Israel. El profeta <strong class="highlight">Yirmeyahu</strong> (Jeremías) es claro al declarar a quién va dirigido este pacto:
+            </p>
+
+            <div class="verse-container">
+                <div class="verse-number">Yirmeyahu 31:31</div>
+                <div class="hebrew"><span class="hebrew-term">הִנֵּה יָמִים בָּאִים נְאֻם־יְהוָה וְכָרַתִּי אֶת־בֵּית יִשְׂרָאֵל וְאֶת־בֵּית יְהוּדָה בְּרִית חֲדָשָׁה׃</span></div>
+                <div class="transliteration">Hinneh yamim ba’im n’um <span class="hebrew-term">YHWH</span>, v’charatti et-beit Yisra’el v’et-beit Yehudah b’rit chadashah.</div>
+                <div class="translation">"He aquí que vienen días, dice יְהוָה, en los cuales haré nuevo pacto con la casa de Israel y con la casa de Judá."</div>
+            </div>
+            
+            <p>
+                El autor de <strong class="highlight">Ivrim</strong> (Hebreos) cita esta profecía en el Brit Hadashah, confirmando que el nuevo pacto prometido es precisamente aquel donde Adonai pondría Su Torá en la mente y el corazón de Su pueblo:
+            </p>
+
+            <div class="verse-container">
+                <div class="verse-number">Ivrim 8:10 (citando a Yirmeyahu)</div>
+                <div class="translation">"Daré mis leyes en la mente de ellos, y sobre su corazón las escribiré; y seré a ellos por Elohim, y ellos me serán a mí por pueblo."</div>
+            </div>
+
+            <div class="explanation">
+                La <strong class="highlight">Torá</strong> es el contenido de este pacto renovado, y el <strong class="highlight">Ruach HaKodesh</strong> es el poder que nos capacita para vivirla (Torá Viviente), lo cual es el verdadero propósito de la redención en Yeshúa.
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">3. El Propósito del Ruaj HaKodesh</h3>
+            <p>
+                La obra del <strong class="highlight">Ruach HaKodesh</strong> (Espíritu Santo) es precisamente llevarnos a caminar en la Ley de Adonai, no a evadirla. El profeta <strong class="highlight">Yejezquel</strong> (Ezequiel) lo establece como un aspecto clave de la restauración:
+            </p>
+
+            <div class="verse-container">
+                <div class="verse-number">Yejezquel 36:27</div>
+                <div class="translation">"Y pondré dentro de vosotros mi Espíritu, y haré que andéis en mis estatutos, y guardéis mis preceptos, y los pongáis por obra."</div>
+            </div>
+
+            <div class="explanation">
+                En el <strong class="highlight">Mashíaj</strong>, los creyentes de las naciones son <strong class="highlight">injertados en el olivo de Israel</strong> (Romanos 11:17), compartiendo las raíces y la savia de las promesas. Esto no reemplaza a Israel, sino que expande el alcance de la misericordia de Adonai, llevando a la restauración de <strong class="highlight">Yisra'el</strong> en los últimos días. La Torá sigue siendo el mapa para el pueblo del Eterno, y Yeshúa es la puerta y el camino para vivirla en plenitud.
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="conclusion">
+        <h2>Oración por la Sabiduría de la Torá en Yeshúa</h2>
+        <div class="prayer-text">
+            <p>
+                <strong class="highlight">Adonai</strong> y <strong class="highlight">Elohim de Yisra'el</strong>, <span class="hebrew-term">יְהוָה</span> de los Ejércitos, nos acercamos a Tu Presencia en el Nombre Sublime de <strong class="highlight">Yeshúa HaMashíaj</strong>, quien es la Torá Viviente y la Palabra que se hizo carne.
+            </p>
+            <p>
+                Padre Nuestro, Te damos gracias porque en Tu infinita misericordia nos diste Tu <strong class="highlight">Torá</strong> como una lámpara a nuestros pies y una luz en nuestro camino (Salmo 119:105). Ella es Verdad, es santa y es perfecta, diseñada para guiarnos a la vida y la santidad.
+            </p>
+            <p>
+                Confesamos que, por nuestra debilidad carnal, fuimos incapaces de guardar Tu Torá perfectamente, y el conocimiento del pecado entró por medio de ella. Pero Tú no nos dejaste en nuestro error. Enviaste a Yeshúa, quien no vino a abrogar, sino a <strong class="highlight">cumplir</strong> (Matityahu 5:17), magnificando cada <strong class="highlight">mitzvá</strong> (mandamiento) con Su vida justa y perfecta.
+            </p>
+            <p>
+                Te pedimos, oh Adon, que a través del <strong class="highlight">Ruach HaKodesh</strong>, pongas Tu <strong class="highlight">Torá</strong> no solo en nuestra mente, sino que la escribas en nuestro corazón, tal como lo prometiste en el Brit Hadashah (Ivrim 8:10). Que el Ruach nos dé el deseo y la fuerza para andar en Tus estatutos y guardar Tus preceptos (Yejezquel 36:27).
+            </p>
+            <p>
+                <strong class="highlight">Mashíaj Yeshúa</strong>, Tú eres nuestro sumo sacerdote según la orden de Melquisedec, y en Ti hallamos la gracia para ser justificados. Ayúdanos a entender que la Torá sigue siendo el mapa para una vida de obediencia, y que la fe en Ti no anula la Ley, sino que la <strong class="highlight">establece</strong> (Romanos 3:31).
+            </p>
+            <p>
+                Que nuestra vida, al igual que la Tuya, glorifique al Padre. Que podamos vivir cada <strong class="highlight">Shabat</strong>, cada Fiesta del Eterno, y cada mandamiento de justicia, no como una carga religiosa, sino como una expresión de amor y gratitud por Tu redención.
+            </p>
+            <p>
+                Que nuestra obediencia a Tu Torá, vivida en el Mashíaj, sea un testimonio a las naciones de que <strong class="highlight">Adonai es Uno</strong>, y de que Su Palabra permanece para siempre.
+            </p>
+            <p>
+                Te pedimos todo esto en el Nombre de Yeshúa HaMashíaj, nuestro Adon, el cumplimiento de la Torá y de los Profetas.
+            </p>
+        </div>
+        <div class="prayer-conclusion">
+            Amén, y Amén.
+        </div>
+    </div>
+    
+    <footer>
+      <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia
+          Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a>
+      </p>
+    </footer>
+  </main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
