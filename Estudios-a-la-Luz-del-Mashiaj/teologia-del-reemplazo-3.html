@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LAS DOCTRINAS DEL REEMPLAZO</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+    <h1>LAS DOCTRINAS DEL REEMPLAZO #3</h1>
+    <h1>LA FALSA DOCTRINA DEL DOMINGO</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>Introducción al Desvío del Shabat</h2>
+        <p>
+          La introducción de la falsa doctrina que sostiene que el Shabat
+          (sábado) fue reemplazado por el domingo como día de reposo y adoración
+          no se halla en las Sagradas Escrituras, sino que fue un proceso
+          histórico gradual, influenciado primariamente por factores políticos y
+          la asimilación de costumbres paganas por parte de la estructura
+          eclesiástica que se fue desarrollando después de la era de los
+          apóstoles.
+        </p>
+        <p>
+          Este cambio comenzó a gestarse sutilmente en los siglos II y III de la
+          era común, y fue formalizado mediante decretos civiles y eclesiásticos
+          en el siglo IV.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <h3 class="prophetic-title">
+          1. Los Decretos Imperiales (Siglo IV d.C.)
+        </h3>
+        <p>
+          El momento crucial en la imposición del domingo como día oficial de
+          reposo fue con el Edicto del Emperador Constantino I el 7 de marzo del
+          año 321 d.C. Constantino, quien era devoto del dios
+          <span class="highlight">Sol Invictus</span>, emitió un decreto civil
+          para todo el Imperio Romano que establecía:
+        </p>
+        <blockquote class="scripture">
+          "En el venerable día del Sol, que los magistrados y las personas
+          que residen en las ciudades descansen, y que todos los talleres
+          permanezcan cerrados." (Fuente histórica: Codex Justinianus 3.12.3)
+        </blockquote>
+        <p>
+          Aunque este edicto no menciona directamente a Yeshúa ni a la
+          resurrección, su propósito fue oficializar el "Día del Sol"
+          (domingo) como un día de descanso para todo el imperio. Este acto
+          secular, al alinearse con la práctica que ya comenzaba a ganar terreno
+          en algunas comunidades cristianas no-judías, le dio un peso legal y
+          social decisivo a la observancia del domingo.
+        </p>
+
+        <h3 class="prophetic-title">
+          2. Los Concilios Eclesiásticos
+        </h3>
+        <p>
+          Posteriormente, la institución eclesiástica que se iba consolidando
+          reforzó esta práctica con autoridad religiosa, buscando
+          <span class="highlight"
+            >conscientemente diferenciarse de las raíces judías</span
+          >
+          de la fe, en un tiempo de fuerte antijudaísmo.
+        </p>
+        <p>
+          El <span class="highlight">Concilio de Laodicea</span> (alrededor del
+          año 363-364 d.C.) emitió cánones que desincentivaban y, de hecho,
+          prohibían la observancia del Shabat de
+          <span class="hebrew-term">יְהוָה</span> entre los creyentes.
+          Específicamente, el Canon 29 de este concilio declara que los creyentes
+          no deben "judaizar" descansando en el Shabat y deben honrar el
+          "día del señor" (domingo).
+        </p>
+        <p>
+          De esta manera, la práctica que se originó fuera de la autoridad
+          bíblica y apostólica, primero obtuvo un respaldo imperial pagano y
+          luego una sanción eclesiástica, consolidando el desvío del mandamiento
+          perpetuo del Shabat establecido en la Torá.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>1.1 Origen histórico</h3>
+        <p>
+          La enseñanza de que el domingo reemplazó al Shabat no tiene origen en
+          la Toráh, ni en el Brit Hadasháh, sino en decretos romano-católicos
+          posteriores al siglo II E.C.
+        </p>
+        <ul>
+          <li>
+            En el año <span class="highlight">321 E.C.</span>, el emperador
+            Constantino decretó:
+            <blockquote class="scripture">
+              “Que todos los jueces, habitantes de ciudades y los oficios
+              descansen en el venerable día del Sol.”
+            </blockquote>
+            (Código de Justiniano, lib. III, tít. 12, ley 3).
+          </li>
+        </ul>
+        <p>
+          Aquí se introduce el culto solar romano (<span class="highlight"
+            >dies Sol Invictus</span
+          >) en el calendario imperial, marcando el inicio del cambio del
+          séptimo día bíblico por el primer día pagano.
+        </p>
+        <ul>
+          <li>
+            Los concilios de Laodicea (364 E.C.) y Nicea I (325 E.C.) reforzaron
+            esta sustitución. El Canon 29 de Laodicea declara:
+            <blockquote class="scripture">
+              “Los cristianos no deben judaizar descansando en sábado, sino
+              trabajar ese día; y deben honrar el día del Señor.”
+            </blockquote>
+          </li>
+        </ul>
+        <p>
+          Así nace la doctrina antibíblica de reemplazar el Shabat por el
+          domingo, desligando la fe de sus raíces hebreas y de los tiempos
+          señalados (Moedim) de Elohím.
+        </p>
+        <p>
+          Bereshit 2:3 establece el Shabat como día de reposo universal, antes de
+          Israel y del Sinaí, por lo tanto, <span class="highlight">no puede
+          ser abrogado</span>.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>1.3 Testimonio de Yeshúa y sus talmidim</h3>
+        <p>
+          Yeshúa nunca transgredió el Shabat (Yojanán 5:18 muestra la acusación
+          falsa), sino que lo restauró en su sentido original: misericordia, vida
+          y santificación.
+        </p>
+
+        <div class="verse-container">
+          <p class="verse-number">Marcos 2:28 (Peshitta)</p>
+          <div class="aramaic">
+            ܕܽܠܗܰܝܟܶܢ
+            ܗܽܘ
+            ܒܪܶܗ
+            ܕܐ̄ܢܫܳܐ
+            ܡܳܪܝܳܐ
+            ܐܦ
+            ܕܫܰܒܬܳܐ
+          </div>
+          <p class="literal-translation">
+            por tanto, el Ben Ha Adam אָדָם es el Adón también para el día de
+            Shabat.
+          </p>
+          <p>
+            En el texto arameo, <span class="highlight">MarYah de Shabat</span>
+            indica autoridad divina sobre el día consagrado, no abolición.
+          </p>
+        </div>
+
+        <div class="verse-container">
+          <p class="verse-number">Lucas 23:56</p>
+          <p class="translation">
+            “Y reposaron el día del Shabat conforme al mandamiento.”
+          </p>
+          <p>
+            Este versículo confirma que aun después de la muerte del Mashíaj, sus
+            seguidoras
+            <span class="highlight">guardaron el Shabat</span>.
+          </p>
+        </div>
+
+        <p>
+          En Hechos 17:2 y 18:4, Shaúl “razonaba cada Shabat en la sinagoga”.
+          Ningún texto del Brit Hadasháh ordena trasladar la santidad del séptimo
+          día al primero.
+        </p>
+      </div>
+    </div>
+    <h1>LA PERPETUIDAD DEL SHABAT EN LAS ESCRITURAS</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El tema sobre el supuesto reemplazo del Shabat (sábado) por el domingo
+          es una doctrina que se aparta de la instrucción de la Torá y del
+          testimonio del Brit Hadashah. Es fundamental examinar este asunto bajo
+          la luz de las Escrituras para comprender la permanencia del Shabat y su
+          glorioso cumplimiento profético en Yeshúa HaMashíaj.
+        </p>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">1. Fundamento en la Creación</h3>
+          <p>
+            Adonai reposó el séptimo día y lo santificó, estableciendo un patrón
+            para la humanidad.
+          </p>
+          <div class="verse-container">
+            <p class="verse-number">Génesis 2:2-3</p>
+            <p class="translation">
+              "Y concluyó Elohím en el día séptimo la obra que hizo; y reposó el
+              día séptimo de toda la obra que había hecho. Y bendijo Elohím al
+              día séptimo, y lo santificó, porque en él reposó de toda la obra
+              que había hecho en la creación."
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">2. Mandamiento Perpetuo</h3>
+          <p>Es el cuarto de los Diez Mandamientos.</p>
+          <div class="verse-container">
+            <p class="verse-number">Éxodo 20:8-11</p>
+            <p class="translation">
+              "Acuérdate del día de Shabat para santificarlo... porque en seis
+              días hizo <span class="hebrew-term">יְהוָה</span> los cielos y la
+              tierra, el mar, y todas las cosas que en ellos hay, y reposó en el
+              día séptimo; por tanto, <span class="hebrew-term">יְהוָה</span>
+              bendijo el día de Shabat y lo santificó."
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">3. Pacto y Señal Eterna</h3>
+          <p>
+            <span class="hebrew-term">יְהוָה</span> lo designó como una
+            <span class="highlight">señal perpetua</span> de Su pacto con Su
+            pueblo.
+          </p>
+          <div class="verse-container">
+            <p class="verse-number">Éxodo 31:16-17</p>
+            <p class="translation">
+              "Guardarán, pues, el día de Shabat los hijos de Israel,
+              celebrándolo por pacto perpetuo... Señal es para siempre entre mí y
+              los hijos de Israel; porque en seis días hizo
+              <span class="hebrew-term">יְהוָה</span> los cielos y la tierra, y
+              en el séptimo día cesó y reposó."
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">
+            Yeshúa no vino a abrogar, sino a cumplir
+          </h3>
+          <div class="verse-container">
+            <p class="verse-number">Mateo 5:17-18</p>
+            <p class="translation">
+              "No penséis que he venido para abrogar la Torá o los Profetas; no
+              he venido para abrogar, sino para cumplir. Porque de cierto os digo
+              que hasta que pasen el cielo y la tierra, ni una <span
+                class="highlight"
+                >yod</span
+              >
+              ni una <span class="highlight">tilde</span> pasará de la Torá,
+              hasta que todo se haya cumplido."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1>CUMPLIMIENTO PROFÉTICO DEL MASHÍAJ EN SHABAT</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>La Profecía de Daniel y los "Tres Días y Tres Noches"</h2>
+        <p>
+          La muerte de Yeshúa fue profetizada para ocurrir a mitad de la semana
+          (Daniel 9:27). Si murió un miércoles (antes del Shabat de Matza), Su
+          resurrección requería el cumplimiento exacto de la señal que Él mismo
+          dio.
+        </p>
+        <div class="verse-container">
+          <p class="verse-number">Mateo 12:40</p>
+          <p class="translation">
+            "Porque como estuvo Jonás en el vientre del gran pez
+            <span class="highlight">tres días y tres noches</span>, así estará el
+            Hijo del Hombre en el corazón de la tierra tres días y tres noches."
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h3 class="prophetic-title">Cálculo Bíblico de la Resurrección</h3>
+        <p>Para que se cumplieran tres días y tres noches:</p>
+        <ul>
+          <li>
+            <span class="point-letter">1.</span> Muerte (<strong
+              >Noche 1 / Día 1</strong
+            >): Miércoles (antes del Shabat alto de Matza).
+          </li>
+          <li>
+            <span class="point-letter">2.</span> Jueves (Día 1)
+            <span class="arrow">→</span>
+            <strong>Noche 2 / Día 2</strong>.
+          </li>
+          <li>
+            <span class="point-letter">3.</span> Viernes (Noche 2 / Día 2)
+            <span class="arrow">→</span>
+            <strong>Noche 3 / Día 3</strong>.
+          </li>
+          <li>
+            <span class="point-letter">4.</span> El tercer día completo concluye
+            al finalizar el <span class="highlight">Shabat</span> (Sábado,
+            Noche 3 / Día 3).
+          </li>
+        </ul>
+        <p>
+          El tercer día completo concluye al finalizar el Shabat, justo antes del
+          anochecer del sábado.
+        </p>
+
+        <h3 class="prophetic-title">El Sepulcro Vacío</h3>
+        <ul>
+          <li>
+            Las mujeres no fueron al sepulcro en Shabat, sino que esperaron.
+            <div class="scripture">
+              Lucas 23:56 dice que ellas "volvieron, y prepararon especias
+              aromáticas y ungüentos; y
+              <span class="highlight">descansaron el Shabat</span>, conforme al
+              mandamiento."
+            </div>
+          </li>
+          <li>
+            Ellas fueron <span class="highlight">"al venir la mañana del
+            primer día de la semana"</span> (domingo), y el sepulcro ya estaba
+            vacío.
+            <div class="scripture">
+              Marcos 16:6 registra la voz del Adon (a través de Su ángel)
+              diciendo: "Ha resucitado; no está aquí."
+            </div>
+          </li>
+        </ul>
+        <p>
+          Yeshúa <span class="highlight">ya había salido</span>. Él no resucitó
+          en domingo; Él ya había resucitado, cumpliendo la señal de los tres
+          días y tres noches en el corazón de la tierra.
+        </p>
+        <p>
+          La resurrección de Yeshúa en la tarde del Shabat no reemplaza el
+          Shabat, sino que lo engrandece, convirtiéndolo en el día de reposo no
+          solo de la creación, sino también de la Nueva Creación y de la victoria
+          final sobre el pecado y la muerte.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="conclusion">
+        <h3>Conclusión: El Shabat Permanece</h3>
+        <p>
+          El Shabat permanece inalterable. La doctrina del reemplazo por el
+          domingo es una tradición humana, ajena a la enseñanza de Yeshúa y Sus
+          apóstoles, quienes continuaron observando el Shabat y las Fiestas del
+          Eterno. El verdadero reposo lo hallamos en Yeshúa HaMashíaj.
+        </p>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">Referencias Apostólicas</h3>
+          <div class="verse-container">
+            <p class="verse-number">Hch-Maaseh HaShelijim 13:42</p>
+            <p class="translation">
+              [42]Cuando se iban, el pueblo invitó a Shaúl
+              <span class="hebrew-term">שׁאול</span> y Bar-Nabba para que les
+              hablaran el
+              <span class="highlight">siguiente Shabat</span> más sobre este
+              asunto.
+            </p>
+          </div>
+          <div class="verse-container">
+            <p class="verse-number">Hch-Maaseh HaShelijim 18:4</p>
+            <p class="translation">
+              [4]Shaúl <span class="hebrew-term">שׁאול</span> empezó a tener
+              discusiones en la sinagoga todos los
+              <span class="highlight">Shabatot</span> donde trataba de persuadir
+              a Yehudim y a Griegos.
+            </p>
+          </div>
+          <div class="verse-container">
+            <p class="verse-number">Mc-Markos 2:28</p>
+            <p class="translation">
+              [28]por tanto, el Ben Ha Adam <span class="hebrew-term">אָדָם</span>
+              es el <span class="highlight">Adón también para el día de Shabat</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="prayer-text">
+          <p>
+            Nuestro enfoque debe ser en vivir una vida de obediencia a toda la
+            instrucción de <span class="hebrew-term">יְהוָה</span>, sabiendo que
+            Yeshúa es la Torá Viviente, el cumplimiento profético de todo lo
+            escrito.
+          </p>
+        </div>
+
+        <div class="prayer-conclusion">
+          ¡Baruj HaShem! (¡Bendito sea el Nombre!)
+        </div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>🛐 Tefiláh de Reposo y Victoria en Yeshúa HaMashíaj</h2>
+        <p class="prayer-text">
+          <span class="highlight">Baruj Atá <span class="hebrew-term">יְהוָה</span>, Eloheynu Melej Ha’olam.</span><br />
+          Bendito seas Tú, <span class="hebrew-term">יְהוָה</span>, Adonai nuestro, Rey del universo.
+        </p>
+        <p class="prayer-text">
+          Padre nuestro, te damos gracias por el don del Shabat, el día que
+          santificaste y bendijiste como señal eterna entre Tú y Tu pueblo. Te
+          alabamos porque, al igual que reposaste de Tu obra de la Creación
+          (Génesis 2:2-3), nos invitas a descansar de nuestras obras, encontrando
+          el verdadero reposo para nuestras almas en Yeshúa, nuestro Mashíaj
+          (Mateo 11:28-30).
+        </p>
+        <p class="prayer-text">
+          En este día de reposo, recordamos y declaramos la verdad de Tu Torá y
+          la fidelidad de Tu Hijo. Agradecemos por Su sacrificio a mitad de la
+          semana y por Su perfecto cumplimiento de la señal de Jonás, al pasar
+          tres días y tres noches en el corazón de la tierra (Mateo 12:40).
+        </p>
+        <p class="prayer-text">
+          Adonai, te glorificamos porque, al completarse el tiempo de Su reposo y
+          al culminar este Shabat sagrado, Tú levantaste a nuestro Adon Yeshúa de
+          entre los muertos, demostrando que Su reposo en el sepulcro fue la
+          victoria final. Él es la primicia de aquellos que durmieron (1
+          Corintios 15:20), y Su resurrección no solo confirma Su identidad como
+          el Mashíaj de Israel, sino que también sella el poder de Tu Ruach
+          HaKodesh.
+        </p>
+        <p class="prayer-text">
+          Que la luz de Su resurrección, manifestada en Shabat,
+          ilumine nuestras vidas. Permítenos entrar en Tu reposo (Hebreos 4:9-11),
+          confiando plenamente en Su obra terminada en el madero y en Su vida
+          victoriosa. Que no seamos llevados por tradiciones de hombres que
+          anulan Tu Palabra, sino que andemos en el mandamiento perpetuo del
+          Shabat y en el camino de la vida que Él nos dejó.
+        </p>
+        <p class="prayer-text">
+          Bendice este Shabat para que sea un tiempo de gozo, santidad y profundo
+          estudio de Tu Torá. Fortalécenos para que, como Yeshúa, podamos vivir y
+          morir en obediencia a Tu voluntad.
+        </p>
+        <p class="prayer-conclusion">
+          <span class="highlight">Baruj Atá <span class="hebrew-term">יְהוָה</span>, Mekadesh Ha’Shabat.</span><br />
+          Bendito seas Tú, <span class="hebrew-term">יְהוָה</span>, que
+          santificas el Shabat.Amén.
+        </p>
+      </div>
+    <footer>
+      <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia
+          Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a>
+      </p>
+    </footer>
+  </main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
