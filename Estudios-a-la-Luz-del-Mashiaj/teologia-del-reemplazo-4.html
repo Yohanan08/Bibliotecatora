@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LAS DOCTRINAS DEL REEMPLAZO</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <div class="section-container">
+      <h1>LAS DOCTRINAS DEL REEMPLAZO #4</h1>
+      <div class="content-container">
+        <p>
+          En el contexto de las Escrituras y el entendimiento mesiánico, el
+          término "arrebatamiento" (a menudo llamado "rapto" en círculos
+          teológicos occidentales) se refiere a una doctrina que sugiere que los
+          creyentes serán retirados de la tierra antes de un período de
+          tribulación. Sin embargo, es crucial examinar las Escrituras y la
+          historia para comprender el origen de esta enseñanza y cómo la Palabra
+          de Elohim presenta la redención final y la reunión de Su pueblo.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h1>1. Origen Histórico de la Doctrina del Arrebatamiento</h1>
+      <div class="content-container">
+        <p>
+          La doctrina del "arrebatamiento secreto" o pre-tribulacionista, como
+          se enseña popularmente en muchos círculos evangélicos modernos, no
+          tiene sus raíces en el pensamiento judío del Primer Siglo ni en la
+          enseñanza apostólica temprana.
+        </p>
+        <ul>
+          <li>
+            <span class="highlight">Desarrollo Tardío:</span> Esta perspectiva
+            teológica comenzó a ganar prominencia significativa en el siglo XIX.
+            Se asocia frecuentemente con John Nelson Darby (1800-1882) y el
+            movimiento de los Hermanos de Plymouth. Darby sistematizó la idea de
+            una dispensación en la que la Iglesia sería retirada secretamente
+            antes de la Gran Tribulación, separando así el destino de la Iglesia
+            del destino de Israel.
+          </li>
+          <li>
+            <span class="highlight">Ausencia en la Enseñanza Antigua:</span> Los
+            escritos de los primeros padres de la iglesia y, más importante aún,
+            la tradición judía mesiánica, no reflejan una creencia en un escape
+            secreto de la tribulación. Por el contrario, la enseñanza bíblica
+            consistentemente prepara al pueblo de Elohim para perseverar a
+            través de las pruebas, no para ser removido de ellas de manera
+            invisible.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h1>
+        2. La Enseñanza Bíblica sobre la Reunión y la Restauración
+      </h1>
+      <div class="content-container">
+        <p>
+          Las Escrituras, tanto en el Tanaj como en el Brit Hadashah, presentan
+          una visión unificada de la redención que culmina en la venida visible
+          y gloriosa del Mashíaj Yeshúa para reunir a Su pueblo y establecer Su
+          Reino.
+        </p>
+        <p>
+          <span class="point-letter">La Venida Visible del Mashíaj:</span>
+          Yeshúa mismo describe Su regreso no como un evento secreto, sino como
+          algo innegablemente visible y glorioso.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Mt-Matityah 24:27-31</div>
+        <div class="translation">
+          [27] Porque cuando venga el Ben Ha Adam, será como un relámpago, que
+          se ve destellar brillante desde el este y llena el firmamento hasta el
+          horizonte oeste. <small>Dan 7:13-14</small> <br />
+          [28] Donde hay un cuerpo muerto, allí es donde se encontrarán los
+          buitres." <small>Lc 17: 37; Job 39:30; Ex 19:4; Miq 1:16</small>
+          <br />
+          [29] "Pero inmediatamente después de la Tribulación de esos tiempos,
+          el sol se oscurecerá, la luna dejará de brillar, las estrellas caerán
+          del firmamento y los poderes en el cielo se estremecerán.
+          <small>Ez 32:7; Is 13:10; 34:4; Hag 2:6; Mc 13:25; Lc 21:26; Heb 12:26</small>
+          <br />
+          [30] "Después, la señal del Ben Ha Adam
+          <span class="hebrew-term">אָדָם</span> aparecerá en el firmamento,
+          todas las tribus de La Tierra lloraran, y ellos verán al Ben Ha Adam
+          <span class="hebrew-term">אָדָם</span> viniendo en las nubes del cielo
+          con tremendo poder y gloria.
+          <small>Is 11:12, Zac 12:10, 14; Mt 24:30; Dan 7:13-14</small> <br />
+          [31] Y enviará a sus malajim con un gran shofar; y reunirá a su pueblo
+          escogido de los cuatro vientos, de un extremo al otro del cielo.
+          <small>Is 27:13; 1 Co 15:52, Lc 17:34-36; 1 Tes 4:17.</small>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <p>
+          <span class="highlight">La Resurrección y la Transformación:</span> El
+          Brit Hadashah enseña sobre la "harpazo" (palabra griega traducida a
+          veces como "arrebatar" o "tomar"), que se refiere a la reunión de los
+          creyentes con el Adon en Su venida.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">1Ts-Tesalonikim א 4:16-18</div>
+        <div class="translation">
+          [16] Porque el Adón mismo bajará de los cielos con un grito vigoroso,
+          con un llamado por el malaj principal, [Gabriel] y con el Shofar de
+          Adonái <span class="hebrew-term">יהוה</span>; aquellos que han muerto
+          unidos con el Mashíaj <span class="hebrew-term">מָשִׁיחַ</span> serán
+          los primeros en resucitar; <br />
+          [17] después, nosotros los que hayamos quedado vivos, con ellos
+          seremos adelantados rápidamente en nubes, para encontrarnos con el
+          Adón en el aire; y por tanto siempre estaremos con el Adón. <br />
+          [18] Así que aliéntense unos a otros con estas palabras.
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          Este pasaje describe un evento público y ruidoso ("voz de mando",
+          "trompeta"), asociado con la resurrección de los muertos, no un escape
+          silencioso y secreto.
+        </p>
+      </div>
+
+      <div class="content-container">
+        <p>
+          <span class="highlight">Preservación en Medio de la Prueba:</span> La
+          tipología bíblica, como se ve en la historia de Noaj (Noé), muestra
+          que Elohim preserva a los justos a través del juicio, no sacándolos
+          del mundo antes de que ocurra.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">2P-Kefa ב 2:5</div>
+        <div class="translation">
+          [5] Y no perdonó al mundo antiguo, sino que preservó a Noaj
+          <span class="hebrew-term">נֹחַ</span>, pregonero de justicia con los
+          otros siete y trajo la gran inundación sobre el mundo de los impíos.
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          Así como Noaj fue guardado en el arca mientras el juicio caía, los
+          creyentes son guardados en el Mashíaj durante los tiempos difíciles.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <h1>3. La Restauración de las 12 Tribus de Israel</h1>
+      <div class="content-container">
+        <p>
+          La Escritura no enfoca la esperanza final en un escape al cielo, sino
+          en la restauración del Reino a Israel y la reunión de las doce tribus
+          bajo el reinado del Mashíaj Yeshúa.
+        </p>
+        <p>
+          <span class="highlight">La Promesa Profética:</span> Los profetas
+          hablaron repetidamente de un tiempo en que Adonai reuniría a los
+          dispersos de Israel y de Judá.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Is-Ieshaiah 27:12-13</div>
+        <div class="translation">
+          [12] En aquel día Adonái <span class="hebrew-term">יהוה</span>
+          trillará el grano entre el Río Eufrates y el torrente de Mitsraim
+          <span class="hebrew-term">מִצְרַיִם</span>; ¡y ustedes serán
+          recogidos, uno por uno, hijos de Israel
+          <span class="hebrew-term">ישראל</span>! <br />
+          [13] En aquel día sonará un gran shofar. Aquellos perdidos en la
+          tierra de Ashur regresarán, también aquellos esparcidos por la tierra
+          de Mitsraim <span class="hebrew-term">מִצְרַיִם</span>; y ellos
+          adorarán a Adonái <span class="hebrew-term">יהוה</span> en el Monte
+          Kadosh en Ierushalaim
+          <span class="hebrew-term">יְרוּשָׁלַיִם</span>.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <p>
+          <span class="highlight">El Papel de Yeshúa:</span> Yeshúa es el Pastor
+          que viene a reunir a las ovejas perdidas de la casa de Israel. Su obra
+          redentora tiene como objetivo final la restauración de todo Israel,
+          uniendo a Efraím (las diez tribus del norte) y a Judá.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Jn-Yojanan 10:16</div>
+        <div class="translation">
+          [16] Pero tengo otras ovejas que no son de este redil; También debo
+          traerlas. Ellas también oirán mi voz, y habrá un rebaño, y Un Pastor.
+          <small>
+            Gen 12:3; 18:14; 26:4; Is 11:10; 54:1-3; Am 9:11; Ez 37: 24; Ef 2:
+            11-22; Jn 11:52; Ap 12:5
+          </small>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <p>
+          La visión final es la de las doce tribus restauradas y sirviendo a
+          Adonai en unidad, junto con los redimidos de todas las naciones, en la
+          Nueva Jerusalén.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Ap-Jazón 21:12</div>
+        <div class="translation">
+          [12] Tenía un gran muro alto con doce puertas; a las puertas doce
+          malajim; e inscritos en las puertas estaban los nombres de las doce
+          tribus de los Benei Israel -
+          <span class="hebrew-term">בניישראל</span> [Hijos de Israel].
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-container">
+      <div class="content-container">
+        <p>
+          La doctrina del "arrebatamiento" secreto antes de la tribulación se
+          sustenta comúnmente en la interpretación aislada de ciertos
+          versículos, ignorando el contexto hebreo y profético de la
+          restauración de Israel. A continuación, expongo los textos que la
+          religión utiliza frecuentemente y la corrección basada en la Torá y el
+          testimonio de Yeshúa.
+        </p>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. Los Versos Utilizados por la Religión
+          </div>
+          <p>
+            Existen pasajes específicos que se han descontextualizado para
+            enseñar una huida inminente fuera del mundo:
+          </p>
+          <ul>
+            <li>
+              <span class="highlight">1 Tesalonicenses 4:17:</span>
+              <div class="scripture">
+                después, nosotros los que hayamos quedado vivos, con ellos
+                seremos adelantados rápidamente en nubes, para encontrarnos con
+                el Adón en el aire; y por tanto siempre estaremos con el Adón.
+              </div>
+              <p>
+                Se interpreta erróneamente como un viaje de ida al cielo para
+                escapar de los problemas de la tierra.
+              </p>
+            </li>
+            <li>
+              <span class="highlight">Mateo 24:40-41:</span>
+              <div class="scripture">
+                [40] Entonces estarán dos hombres en el campo; uno será tomado y
+                el otro será dejado atrás. <small>Mt 13:41</small> <br />
+                [41] Dos mujeres estarán moliendo en un molino; una será tomada
+                y la otra dejada. Y esto será porque los mensajeros al final del
+                mundo eliminarán las piedras de tropiezo del mundo y separarán a
+                los buenos de los malos.
+              </div>
+              <p>
+                La interpretación popular sugiere que el "tomado" es el creyente
+                que se va al cielo en el rapto, y el "dejado" es el que se queda
+                a sufrir la tribulación.
+              </p>
+            </li>
+            <li>
+              <span class="highlight">1 Corintios 15:52:</span>
+              <div class="scripture">
+                [52] Sólo tomará un momento, en un abrir y cerrar de los ojos,
+                al Shofar final. Porque el Shofar sonará, y los muertos serán
+                resucitados para vivir eternamente y nosotros también seremos
+                transformados.
+              </div>
+              <p>
+                Se usa para alegar la instantaneidad y el carácter secreto del
+                evento.
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2. La Correcta Interpretación a través del Mashíaj y la Torá
+          </div>
+          <p>
+            Cuando analizamos estos textos bajo la luz del Tanaj y la enseñanza
+            de Yeshúa, el sentido cambia drásticamente hacia la restauración del
+            Reino en la tierra y la reunión de las doce tribus.
+          </p>
+          <ul>
+            <li>
+              <span class="highlight"
+                >El Contexto de Noaj (Mateo 24 y Lucas 17):</span
+              >
+              Como leemos en la Parashá Noaj, Yeshúa mismo establece el
+              paralelo: "Mas como en los días de Noaj, así será la venida del
+              Hijo del Hombre" (Mateo 24:37). En los días de Noaj, ¿quiénes
+              fueron "tomados"? El diluvio vino y se los llevó a todos (los
+              impíos) a juicio. ¿Quiénes fueron "dejados"? Noaj y su familia
+              fueron dejados a salvo en el arca para heredar la tierra
+              purificada. Por tanto, en la venida del Mashíaj, ser "tomado"
+              alude al juicio (como la cizaña que es atada para el fuego), y ser
+              "dejado" o preservado es la bendición para entrar al Reino
+              milenial aquí en la tierra.
+            </li>
+            <li>
+              <span class="highlight"
+                >La Reunión (Harpazo) para Recibir al Rey:</span
+              >
+              En 1 Tesalonicenses 4, la palabra "recibir" (del griego apantesis)
+              se usaba técnicamente para describir la salida de los ciudadanos
+              de una ciudad para recibir a un Rey dignatario que venía en
+              camino, para luego escoltarlo de regreso a la ciudad. No subimos
+              para quedarnos en las nubes; subimos a recibir a nuestro Rey,
+              Yeshúa, y descender con Él a Jerusalén para establecer Su reinado
+              y cumplir la promesa de la restauración del trono de David. Esto
+              concuerda con Zacarías 14, que afirma que "se afirmarán sus pies
+              en aquel día sobre el monte de los Olivos".
+            </li>
+            <li>
+              <span class="highlight">La Restauración de las 12 Tribus:</span>
+              La esperanza bíblica no es abandonar la tierra, sino la
+              restauración de las 12 tribus de Israel. El Mashíaj viene a reunir
+              a los dispersos (Efraím y Judá) de los cuatro vientos (Mateo
+              24:31), tal como lo profetizaron Ezequiel e Isaías. Esta reunión
+              es posterior a la tribulación y tiene como fin habitar la tierra
+              prometida bajo el Nuevo Pacto, no escapar a moradas etéreas ajenas
+              al plan profético de Adonai para Su pueblo Israel.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <p>
+          Nuestra expectativa es la redención visible, la resurrección de los
+          muertos y la vida en el Olam Habá (Mundo Venidero) bajo el gobierno de
+          justicia de nuestro Adonai Yeshúa.
+        </p>
+        <p>
+          En resumen, la Escritura nos llama a esperar la venida gloriosa de
+          nuestro Adon Yeshúa, quien reunirá a Su pueblo, resucitará a los
+          justos y restaurará el Reino a Israel, reinando sobre toda la tierra.
+          Nuestra esperanza no es escapar, sino perseverar y ser transformados a
+          Su imagen en Su venida.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-container">
+      <div class="content-container">
+        <h2>Clamamos por la Restauración de las Dos Casas</h2>
+        <div class="prayer-text">
+          Te pedimos, Padre, que soples Tu aliento de vida sobre los huesos
+          secos de la Casa de Israel y la Casa de Judá (Ezequiel 37). Quita el
+          velo de nuestros ojos y el corazón de piedra de nuestra carne.
+          <ul>
+            <li>
+              <span class="highlight">Restaura</span> la identidad de los
+              dispersos de Efraím que están entre las naciones, para que
+              reconozcan su herencia.
+            </li>
+            <li>
+              <span class="highlight">Guarda</span> y bendice a nuestros
+              hermanos de Judá, y revélate a ellos con poder.
+            </li>
+            <li>
+              <span class="highlight">Haz</span> que las dos varas sean una sola
+              en Tu mano, sanando la brecha antigua, para que no seamos más dos
+              naciones, sino un solo pueblo bajo Tu pacto.
+            </li>
+          </ul>
+        </div>
+
+        <h2>Exaltamos a Yeshúa, nuestro Mashíaj y Rey</h2>
+        <div class="prayer-text">
+          Declaramos que esta restauración es posible únicamente por los méritos
+          de Adonai Yeshúa HaMashíaj. Gracias por enviar a Tu Hijo, el Renuevo
+          de David, quien derribó la pared intermedia de separación y nos
+          reconcilió Contigo mediante la sangre del Nuevo Pacto (Brit Hadashah).
+          Él es la Puerta de las ovejas y el Buen Pastor que ha salido a buscar
+          lo que se había perdido. Te pedimos que, a través de Yeshúa, injertes
+          a los creyentes de las naciones en el olivo natural de Israel, para
+          que juntos participemos de la rica savia de la raíz santa.
+        </div>
+
+        <div class="prayer-conclusion">
+          Nuestra Petición Final:<br />
+          Acelera, oh Adonai, el tiempo de la redención completa. Que Tu Torá
+          sea escrita en nuestras mentes y corazones tal como lo prometiste.
+          Levanta a Tu pueblo para ser luz a las naciones, caminando en el
+          ejemplo perfecto de Yeshúa. Que pronto veamos a nuestro Rey descender
+          a Tzion, y que toda rodilla se doble y toda lengua confiese que Yeshúa
+          es el Adon, para gloria de Tu Nombre.
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de Biblia
+          Toráh Viviente Para Maestros, Traductores y Estudiantes: https://bibliatorahviviente.github.io/recursos/</a>
+      </p>
+    </footer>
+  </main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
