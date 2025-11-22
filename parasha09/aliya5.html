@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bereshit (בראשית) Génesis 39:1-6</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+      .translation {
+        margin: 10px 0;
+      }
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .section-container {
+        margin-bottom: 25px;
+      }
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+      strong {
+        color: #000;
+      }
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+      9. Parashá Vayeshev (וישב)Aliyáh 5: (Génesis 39:1-6) Yosef prospera en la casa de Potifar.
+        <p>
+          Haftaráh: Amós 2:6-3:8 (La protección y el cuidado de Elohím).
+        </p>
+        <p>
+          Brit Hadasháh: 1 Pedro 2:19-20 (Sufrir injustamente con integridad).
+        </p>
+      </h1>
+      <h1>📜 Punto 1. Génesis (Bereshit) 39:1-6</h1>
+
+    <div class="content-container">
+
+        <div class="section-container">
+            <h2>Texto Interlineal</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 39:1</div>
+                <div class="hebrew">וְיוֹסֵף הוּרַד מִצְרָיְמָה וַיִּקְנֵהוּ פּוֹטִיפַר סְרִיס פַּרְעֹה שַׂר הַטַּבָּחִים אִישׁ מִצְרִי מִיַּד הַיִּשְׁמְעֵאלִים אֲשֶׁר הוֹרִדֻהוּ שָׁמָּה</div>
+                <div class="transliteration">V'Yosef hurád Mitzráyimah vayyiqnēhu Pōṭīfar s'rís Par'ōh sar haṭabbāḥím ish Mitzrī miyyad ha'Yishm'e'elím asher hôridúhu shámmāh.</div>
+                <div class="translation">Y José fue descendido a Egipto, y lo compró Potifar, eunuco de Faraón, jefe de los guardias, varón egipcio, de mano de los ismaelitas, quienes lo habían hecho descender allí.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 39:2</div>
+                <div class="hebrew">וַיְהִי יהוה אֶת־יוֹסֵף וַיְהִי אִישׁ מַצְלִיחַ וַיְהִי בְּבֵית אֲדֹנָיו הַמִּצְרִי</div>
+                <div class="transliteration">Vayhí יהוה et-Yosef vayhí ish matzlíaḥ vayhí b'veit Adōnāv ha'Mitzrī.</div>
+                <div class="translation">Y estuvo יהוה con José, y fue varón exitoso [próspero], y estuvo en la casa de su Adon el egipcio.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 39:3</div>
+                <div class="hebrew">וַיַּרְא אֲדֹנָיו כִּי יהוה אִתּוֹ וְכֹל אֲשֶׁר־הוּא עֹשֶׂה יהוה מַצְלִיחַ בְּיָדוֹ</div>
+                <div class="transliteration">Vayyar Adōnāv ki יהוה ittō v'khol asher-hu 'ōśéh יהוה matzlíaḥ b'yādō.</div>
+                <div class="translation">Y vio Su Adon que יהוה estaba con él, y todo lo que él hacía, יהוה hacía prosperar en Su mano.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 39:4</div>
+                <div class="hebrew">וַיִּמְצָא יוֹסֵף חֵן בְּעֵינָיו וַיְשָׁרֶת אֹתוֹ וַיַּפְקִדֵהוּ עַל־בֵּיתוֹ וְכֹל אֲשֶׁר־יֶשׁ־לוֹ נָתַן בְּיַד־יוֹסֵף</div>
+                <div class="transliteration">Vayyimtzā Yosef ḥén b'eináv vay'shārét oto vayyafqidēhu 'al-beitó v'khol asher-yesh-ló natán b'yad-Yosef.</div>
+                <div class="translation">Y halló José gracia a Sus ojos, y lo sirvió, y lo puso [como] encargado sobre Su casa, y todo lo que había para él, lo puso en mano de José.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 39:5</div>
+                <div class="hebrew">וַיְהִי מֵאָז הִפְקִיד אֹתוֹ בְּבֵיתוֹ וְעַל כָּל־אֲשֶׁר יֶשׁ־לוֹ וַיְבָרֶךְ יהוה אֶת־בֵּית הַמִּצְרִי בִּגְלַל יוֹסֵף וַיְהִי בִרְכַּת יהוה בְּכָל־אֲשֶׁר יֶשׁ־לוֹ בַּבַּיִת וּבַשָּׂדֶה</div>
+                <div class="transliteration">Vayhí me'az hipqid oto b'veitō v'al kol-asher yesh-ló vayvarékh יהוה et-beit ha'Mitzrī bi'glal Yosef vayhí birkat יהוה b'khol asher yesh-ló ba'báyit u'vassādeh.</div>
+                <div class="translation">Y fue desde que él lo encargó en Su casa y sobre todo lo que había para él, y bendijo יהוה la casa del egipcio por causa de José, y fue la bendición de יהוה en todo lo que había para él, en la casa y en el campo.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 39:6</div>
+                <div class="hebrew">וַיַּעֲזֹב כָּל־אֲשֶׁר־לוֹ בְּיַד־יוֹסֵף וְלֹא־יָדַע אִתּוֹ מְאוּמָה כִּי אִם־הַלֶּחֶם אֲשֶׁר־הוּא אוֹכֵל וַיְהִי יוֹסֵף יְפֵה־תֹאַר וִיפֵה מַרְאֶה</div>
+                <div class="transliteration">Vayya'azóv kol-asher-ló b'yad-Yosef v'lo-yāda' ittó m'ūmah ki im-ha'léjem asher-hu okhel. Vayhí Yosef y'feh-tó'ar viy'feh mar'éh.</div>
+                <div class="translation">Y abandonó todo lo que había para él en mano de José, y no sabía con él cosa alguna, sino el pan que él comía. Y fue José hermoso de figura y hermoso de aspecto.</div>
+            </div>
+
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Análisis Mesiánico y Explicación</h2>
+
+            <div class="explanation">
+                <p>El relato de José en la casa de Potifar es un claro ejemplo de la providencia de Elohim incluso en medio del sufrimiento y la traición. Más allá de la historia, José sirve como un poderoso tipo o sombra (una "tipología") de la vida y el ministerio de <span class="highlight">Yeshúa HaMashíaḥ</span>.</p>
+
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">Analogía de José y Yeshúa </div>
+                        <ul>
+                            <li><span class="point-letter">A.</span> <span class="highlight">Rechazo y Venta:</span> José fue <span class="highlight">rechazado por sus hermanos</span> y <span class="highlight">vendido por 20 piezas de plata</span> (Génesis 37:28). Yeshúa fue <span class="highlight">rechazado por Su propio pueblo</span> y <span class="highlight">vendido por 30 piezas de plata</span> (Mateo 27:3).</li>
+                            <li><span class="point-letter">B.</span> <span class="highlight">Descenso a las Naciones:</span> José fue llevado a <span class="highlight">Egipto</span> (las naciones), donde se convirtió en siervo. Yeshúa fue "descendido" al mundo de los <span class="highlight">Gentiles</span> (Naciones) para obrar Su salvación.</li>
+                            <li><span class="point-letter">C.</span> <span class="highlight">El Éxito Divino:</span> En el verso 2, leemos <span class="highlight">"Vayhí יהוה et-Yosef"</span> (Y estuvo יהוה con José). Aunque era un esclavo, Elohim hizo <span class="highlight">prosperar</span> (<span class="hebrew-term">מַצְלִיחַ</span> - <span class="highlight">matzlíaḥ</span>) todo lo que José hacía. Esto refleja el poder y la autoridad con la que Yeshúa operaba, haciendo prosperar el Reino de Elohim.</li>
+                            <li><span class="point-letter">D.</span> <span class="highlight">La Posición de Autoridad:</span> Potifar colocó a José como encargado sobre <span class="highlight">toda su casa</span> (v. 4). De manera similar, después de Su sufrimiento, Yeshúa fue elevado a la posición de <span class="highlight">autoridad sobre toda la creación</span> (Filipenses 2:9-11).</li>
+                        </ul>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">La Bendición Transferida (Génesis 39:5)</div>
+                        <p>El verso 5 es clave: <span class="highlight">"y bendijo יהוה la casa del egipcio por causa de José"</span>. La presencia de José, el hombre de Elohim, trajo bendición a la casa de un gentil (Potifar). Esto prefigura el hecho de que la <span class="highlight">bendición de Israel</span> (Yeshúa) se ha extendido a las naciones gentiles (<span class="highlight">los egipcios espirituales</span>) por causa de Él, el Mesías, según lo prometido en el Pacto de Abraham.</p>
+                        <p class="scripture">"Y serán benditas en ti todas las familias de la tierra." (Génesis 12:3)</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Reflexión y Oración</h2>
+
+            <div class="explanation">
+                <div class="question">¿Cómo se aplica esto a nuestra vida?</div>
+                <div class="answer">Al igual que José, la presencia del creyente en <span class="highlight">Yeshúa</span> puede convertirse en un <span class="highlight">canal de bendición</span> para el entorno, el trabajo o el hogar (incluso aquellos que no conocen a Elohim), por causa del Espíritu que mora en nosotros. Somos <span class="highlight">embajadores</span> de esa prosperidad y favor divino.</div>
+
+                <div class="prophetic-content">
+                    <div class="prophetic-title">Oración de Intercesión y Favor</div>
+                    <p class="prayer-text">
+                        Padre Celestial, <span class="highlight">Adonai Elohim</span>, así como Tu presencia estuvo con José e hiciste prosperar la casa de Potifar por causa de él, te pedimos que Tu favor y Tu <span class="highlight">Berajá</span> (bendición) nos sigan. Que dondequiera que estemos, seamos un conducto de Tu bendición. Que los que nos rodean vean que <span class="highlight">Tú estás con nosotros</span>, y que todo lo que hacemos, <span class="highlight">Tú lo haces prosperar en nuestra mano</span> (Génesis 39:3). En el nombre de Yeshúa HaMashíaḥ. Amén.
+                    </p>
+                    <div class="prayer-conclusion">¡Bendito seas, Rey del Universo!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <p>Este estudio nos anima a confiar en el plan de <span class="highlight">יהוה</span>, sabiendo que incluso en los valles más profundos (la esclavitud de José), Su propósito mesiánico está siendo ejecutado y Su favor nos acompaña.</p>
+    </div>
+    <h1 class="highlight">👑 El Mashíaj Yeshúa: El Esclavo Exaltado</h1>
+
+    <div class="explanation">
+        <p>El cumplimiento profético de esta porción se centra en el principio de que la humillación y el sufrimiento del Justo (el descenso a la esclavitud, Génesis 39:1) son el preludio necesario para Su exaltación y el ejercicio de Su soberanía.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>1. La Presencia de Adonai en el Descenso (Génesis 39:2-3)</h1>
+
+        <p>La frase central y repetida es: <span class="highlight">"Y estuvo יהוה con José"</span> (39:2) y <span class="highlight">"vio Su Adon que יהוה estaba con él"</span> (39:3).</p>
+
+        <div class="verse-container">
+            <div class="verse-number">Génesis 39:2</div>
+            <div class="hebrew">וַיְהִ֣י יְהוָה֮ אֶת־יוֹסֵף֒ וַיְהִ֣י אִ֔ישׁ מַצְלִ֖יחַ וַיְהִ֕י בְּבֵ֖ית אֲדֹנָ֥יו הַמִּצְרִֽי׃</div>
+            <div class="transliteration">Vayehi Adonái et-Yoséf vayhí ish matzlíaj vayhí bevét adonav hamitzrí.</div>
+            <div class="translation">Y estuvo יהוה con José, y fue un hombre prosperado; y estuvo en la casa de su señor el egipcio.</div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Profecía Cumplida: El Siervo Sufriente</div>
+                <p>La historia de Yosef se convierte en el modelo para el Siervo Sufriente. El rechazo, la venta y el descenso a la esclavitud no anularon la presencia de Adonai.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Yeshúa en el Brit Hadashah</div>
+                <p>Yeshúa se humilló hasta la muerte, pero el Padre estuvo con Él (Juan 8:29). La profecía del Mesías <span class="highlight">Emanuel</span> ("El-con-nosotros") se cumple en Yeshúa. A pesar de ser "descendido" a la muerte (el sepulcro), Elohim no lo abandonó, sino que lo resucitó y lo puso por <span class="highlight">Adon</span> de todo, tal como Yosef fue puesto por Adon (amo) de la casa de Potifar.</p>
+                <div class="scripture">Hechos 7:9-10: Esteban subraya esta conexión: "Y Elohim estaba con él, y le libró de todas Sus tribulaciones, y le dio gracia y sabiduría..." La presencia de Elohim es la clave de la victoria.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>2. La Bendición y la Transferencia de Autoridad (Génesis 39:4-6)</h1>
+
+        <p>Yosef no solo prospera para sí mismo, sino que se convierte en un canal de bendición para el egipcio (el gentil) que lo posee (39:5).</p>
+
+        <div class="verse-container">
+            <div class="verse-number">Génesis 39:5</div>
+            <div class="hebrew">וַיְהִ֞י מֵאָ֣ז הִפְקִ֣יד אֹת֗וֹ בְּבֵיתוֹ֙ וְעַל־כָּל־אֲשֶׁ֣ר יֶשׁ־ל֔וֹ וַיְבָ֤רֶךְ יְהוָה֙ אֶת־בֵּ֣ית הַמִּצְרִ֔י בִּגְלַל֙ יוֹסֵ֔ף וַיְהִ֗י בִּרְכַּ֤ת יְהוָה֙ בְּכָל־אֲשֶׁ֣ר יֶשׁ־ל֔וֹ בַּבַּ֖יִת וּבַשָּׂדֶֽה׃</div>
+            <div class="transliteration">Vayhí me’áz hifqíd otó bevethó ve‘al kol-asher yesh-ló vayvárej Adonái et-bét hamitzrí bi’glál Yoséf vayhí birkát Adonái bejol-asher yesh-ló babáyit uvassadéh.</div>
+            <div class="translation">Y sucedió que desde que lo puso a cargo de su casa y sobre todo lo que tenía, bendijo YHVH la casa del egipcio por causa de José; y fue la bendición de YHVH en todo lo que tenía, en la casa y en el campo.</div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">La Bendición Mediadora</div>
+                <p>"y bendijo <span class="hebrew-term">יהוה</span> la casa del egipcio por causa de José, y fue la bendición de <span class="hebrew-term">יהוה</span> en todo lo que había para él..."</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Yeshúa, el Mediador de la Bendición</div>
+                <p>Yeshúa es la simiente de Abraham a través de la cual toda la tierra es bendecida (Génesis 12:3). Como Mashíaj, Él es el Justo a través del cual la bendición de Adonai se extiende a las naciones (el egipcio, en este caso, tipifica al gentil). La transferencia de autoridad que hace Potifar a Yosef (39:4) es un tipo de la transferencia de toda autoridad en el cielo y en la tierra a Yeshúa tras Su resurrección (Mateo 28:18).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>3. La Belleza y la Perfección del Justo (Génesis 39:6)</h1>
+
+        <p>El texto culmina con una nota sobre la perfección física de Yosef: <span class="highlight">"Y fue José hermoso de figura y hermoso de aspecto."</span></p>
+
+        <div class="verse-container">
+            <div class="verse-number">Génesis 39:6 (Parcial)</div>
+            <div class="hebrew">...וַיְהִ֥י יוֹסֵ֖ף יְפֵה־תֹ֥אַר וִיפֵה מַרְאֶֽה׃</div>
+            <div class="transliteration">...vayhí Yoséf yféh-tó’ar viféh mar’éh.</div>
+            <div class="translation">...Y fue José hermoso de figura y hermoso de aspecto.</div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Tipología de Perfección</div>
+                <p>Este detalle no es trivial. En la Torá, la belleza física a menudo refleja la integridad moral y espiritual (por ejemplo, Sara, Raquel, David). La belleza de Yosef atestigua que, a pesar de Su descenso, Su carácter no fue contaminado.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Yeshúa, el Más Hermoso</div>
+                <p>Yeshúa es el <span class="highlight">"más hermoso de los hijos de los hombres"</span> (Salmo 45:2). Su perfección, a diferencia de la de Yosef, es moral y espiritual. Él no tenía pecado, y Su belleza y perfección fueron la causa de Su exaltación, al ser presentado como el Cordero sin mancha ante el Padre después de Su obra en el madero.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>🙏 Aplicación Espiritual (Aliyá Personal)</h1>
+
+        <div class="explanation">
+            <p>La <span class="highlight">Aliyá</span> (ascenso/elevación) espiritual de este pasaje es la ascensión por medio de la sumisión y la fidelidad.</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">La Aliyá en la Adversidad</div>
+            <p>La elevación de Yosef comienza en el punto más bajo. Nuestra Aliyá es un ascenso de la fe que nos exige fidelidad dondequiera que Adonai nos haya colocado, incluso en el "Egipto" de la esclavitud, el trabajo humilde o la prueba. La certeza de que <span class="hebrew-term">יהוה</span> está con nosotros (39:2) nos da la capacidad de prosperar y ser luz para los que no conocen a Adonai (el egipcio).</p>
+        </div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Ser Canal de Bendición</div>
+            <p>El objetivo de nuestra Aliyá no es solo nuestra prosperidad, sino convertirnos en un canal para que la Bendición de Yeshúa se extienda a nuestro entorno. Al igual que Yosef, debemos actuar con integridad y excelencia de tal manera que aquellos que nos rodean (<span class="highlight">bi'glal Yosef</span>, "por causa de José") vean la bendición de Adonai en sus vidas y den testimonio de Su presencia.</p>
+        </div>
+
+        <div class="conclusion">
+            <p class="prayer-text">Padre Celestial, te pido que mi vida, al igual que la de Yosef, sea un testimonio de Tu inquebrantable presencia, incluso en los momentos más oscuros. Ayúdame a someterme a Tu voluntad y a operar con tal fidelidad y excelencia que la bendición de Yeshúa se extienda a mi entorno, y que otros puedan ver Tu mano sobre mí. Que yo sea un canal, y no solo un recipiente. Amén.</p>
+            <div class="prayer-conclusion">En el Nombre de Yeshúa el Mashíaj.</div>
+        </div>
+
+    </div>
+    <h1>📜 Punto 2. Haftaráh: Amós 2:6-3:8 (La protección y el cuidado de Elohím).</h1>
+
+    <div class="content-container">
+        <h2>Amós 2:6-8 (Juicio contra Israel)</h2>
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:6</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה עַל־שְׁלֹשָׁה פִּשְׁעֵי יִשְׂרָאֵל וְעַל־אַרְבָּעָה לֹא אֲשִׁיבֶנּוּ עַל־מִכְרָם בַּכֶּסֶף צַדִּיק וְאֶבְיוֹן בַּעֲבוּר נַעֲלָיִם</div>
+                <div class="transliteration">Koh amar <span class="highlight">יְהוָה</span> al-shloshah pish'ei Yisra'el v'al-arba'ah lo ashivennu; al-mojram ba'késef tzaddik v'evyon ba'avur na'aláyim.</div>
+                <div class="translation">Así ha dicho <span class="highlight">יְהוָה</span>: Por tres transgresiones de Israel, y por cuatro, no lo revertiré (no retiraré el juicio); por haber vendido al justo por plata, y al necesitado a causa de un par de sandalias.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:7</div>
+                <div class="hebrew">הַשֹּׁאֲפִים עַל־עֲפַר־אֶרֶץ בְּרֹאשׁ דַּלִּים וְדֶרֶךְ עֲנָוִים יַטּוּ וְאִישׁ וְאָבִיו יֵלְכוּ אֶל־הַנַּעֲרָה לְמַעַן חַלֵּל אֶת־שֵׁם קָדְשִׁי</div>
+                <div class="transliteration">Ha'sho'afim al-afar-eretz b'rosh dallim v'dérej anavim yattu; v'ish v'aviv yél'chu el-ha'na'arah l'ma'an challél et-shém kodshí.</div>
+                <div class="translation">Los que ansían el polvo de la tierra sobre la cabeza de los pobres, y el camino de los mansos tuercen; y el hombre y su padre van a la misma joven, para profanar el Nombre de Mi Santidad.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:8</div>
+                <div class="hebrew">וְעַל־בְּגָדִים חֲבֻלִים יַטּוּ עַל־יַד כָּל־מִזְבֵּחַ וְיֵין עֲנוּשִׁים יִשְׁתּוּ בֵּית אֱלֹהֵיהֶם</div>
+                <div class="transliteration">V'al-b'gadim chazulim yattu al-yad kol-mizbéaj; v'yein anushim yishtú beit Eloheihém.</div>
+                <div class="translation">Y sobre ropas tomadas en prenda se acuestan junto a todo altar; y el vino de los multados beben en la casa de sus Elohim.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>Amós 2:9-16 (Recordatorio del Favor de Adonai y el Pecado)</h2>
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:9</div>
+                <div class="hebrew">וְאָנֹכִי הִשְׁמַדְתִּי אֶת־הָאֱמֹרִי מִפְּנֵיהֶם אֲשֶׁר גָּבֹהּ כְּגֹבַהּ אֲרָזִים גָּבְהוֹ וְחָסֹן הוּא כָּאַלּוֹנִים וָאַשְׁמִיד פִּרְיוֹ מִמַּעַל וְשָׁרָשָׁיו מִתַּחַת</div>
+                <div class="transliteration">V'anojí hishmadti et-ha'Emorí mi'pneihém; asher gavoah k'govah arazim govho v'jasón hu ka'allonim; va'ashmid piryo mi'ma'al v'shorashav mi'tájat.</div>
+                <div class="translation">Y Yo destruí al Amorreo delante de ellos, cuya altura era como la altura de cedros y fuerte como las encinas; y destruí su fruto de arriba y sus raíces de abajo.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:10</div>
+                <div class="hebrew">וְאָנֹכִי הֶעֱלֵיתִי אֶתְכֶם מֵאֶרֶץ מִצְרַיִם וָאוֹלֵךְ אֶתְכֶם בַּמִּדְבָּר אַרְבָּעִים שָׁנָה לְרִשְׁתֶּכם אֶת־אֶרֶץ הָאֱמֹרִי</div>
+                <div class="transliteration">V'anojí he'eleiti et'chem me'eretz Mitzráyim va'oléj et'chem ba'midd'bar arba'im shaná l'rish'tchem et-eretz ha'Emorí.</div>
+                <div class="translation">Y Yo os hice subir de la tierra de Egipto y os conduje en el desierto cuarenta años, para que heredarais la tierra del Amorreo.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:11</div>
+                <div class="hebrew">וָאָקִים מִבְּנֵיכֶם לִנְבִיאִים וּמִבַּחוּרֵיכֶם לִנְזִרִים הַאַף אֵין־זֹאת בְּנֵי יִשְׂרָאֵל נְאֻם־יְהוָה</div>
+                <div class="transliteration">Va'akim mi'b'neijém li'n'vi'im u'mi'bajuureijém li'n'zirim. Ha'af ein-zot b'nei Yisra'el, n'um-<span class="highlight">יְהוָה</span>.</div>
+                <div class="translation">Y levanté de vuestros hijos para [ser] profetas, y de vuestros jóvenes para [ser] nazareos. ¿No es así, oh hijos de Israel?, declara <span class="highlight">יְהוָה</span>.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:12</div>
+                <div class="hebrew">וַתַּשְׁקוּ אֶת־הַנְּזִרִים יָיִן וְעַל הַנְּבִיאִים צִוִּיתֶם לֵאמֹר לֹא תִנָּבְאוּ</div>
+                <div class="transliteration">Va'tashku et-ha'n'zirim yayin v'al ha'n'vi'im tzivvitém lemor: Lo tinnab'u.</div>
+                <div class="translation">Y disteis de beber vino a los nazareos, y sobre los profetas ordenasteis, diciendo: No profeticéis.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:13</div>
+                <div class="hebrew">הִנֵּה אָנֹכִי מֵעִיק תַּחְתֵּיכֶם כַּאֲשֶׁר תָּעִיק הָעֲגָלָה הַמְּלֵאָה לָהּ עָמִיר</div>
+                <div class="transliteration">Hinnéh anojí me'ik tajtéijem ka'asher ta'ik ha'agalah ham'le'ah lah amir.</div>
+                <div class="translation">He aquí, Yo oprimo debajo de vosotros, como oprime la carreta llena para sí de gavillas.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:14</div>
+                <div class="hebrew">וְאָבַד מָנוֹס מִקָּל וְחָזָק לֹא־יְאַמֵּץ כֹּחוֹ וְגִבּוֹר לֹא יְמַלֵּט נַפְשׁוֹ</div>
+                <div class="transliteration">V'avad manos mi'qal v'jazak lo-y'ammetz kocho v'gibbor lo y'mallét nafshó.</div>
+                <div class="translation">Y perecerá la huida del ligero, y el fuerte no fortalecerá su fuerza, y el valiente no librará su vida.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:15</div>
+                <div class="hebrew">וְתֹפֵשׂ הַקֶּשֶׁת לֹא יַעֲמֹד וְקַל בְּרַגְלָיו לֹא יְמַלֵּט וְרֹכֵב הַסּוּס לֹא יְמַלֵּט נַפְשׁוֹ</div>
+                <div class="transliteration">V'toféś ha'késhet lo ya'amód v'qal b'raglav lo y'mallét v'rojév ha'sus lo y'mallét nafshó.</div>
+                <div class="translation">Y el que empuña el arco no se sostendrá, y el ligero de pies no librará, y el jinete del caballo no librará su vida.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:16</div>
+                <div class="hebrew">וְאַמִּיץ לִבּוֹ בַּגִּבּוֹרִים עָרוֹם יָנוּס בַּיּוֹם הַהוּא נְאֻם־יְהוָה</div>
+                <div class="transliteration">V'ammitz libbó ba'gibbórim aróm yanus ba'yom ha'hu, n'um-<span class="highlight">יְהוָה</span>.</div>
+                <div class="translation">Y el de corazón valiente entre los valientes desnudo huirá en aquel día, declara <span class="highlight">יְהוָה</span>.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>Amós 3:1-8 (La Causa y Efecto del Juicio)</h2>
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:1</div>
+                <div class="hebrew">שִׁמְעוּ הַדָּבָר הַזֶּה אֲשֶׁר דִּבֶּר יְהוָה עֲלֵיכֶם בְּנֵי יִשְׂרָאֵל עַל כָּל־הַמִּשְׁפָּחָה אֲשֶׁר הֶעֱלֵיתִי מֵאֶרֶץ מִצְרַיִם לֵאמֹר</div>
+                <div class="transliteration">Shim'u ha'davar ha'zéh asher dibbér <span class="highlight">יְהוָה</span> aleijém b'nei Yisra'el al kol-ha'mishpajá asher he'eleiti me'eretz Mitzráyim lemor.</div>
+                <div class="translation">Escuchad esta palabra que ha hablado <span class="highlight">יְהוָה</span> contra vosotros, oh hijos de Israel, contra toda la familia que Yo hice subir de la tierra de Egipto, diciendo:</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:2</div>
+                <div class="hebrew">רַק אֶתְכֶם יָדַעְתִּי מִכֹּל מִשְׁפְּחוֹת הָאֲדָמָה עַל־כֵּן אֶפְקֹד עֲלֵיכֶם אֵת כָּל־עֲו‍ֹנֹתֵיכֶם</div>
+                <div class="transliteration">Rak et'chém yada'ti mi'kkol mishp'jot ha'adamah; al-ken efkod aleijém ét kol-avonotéijem.</div>
+                <div class="translation">Solamente a vosotros conocí de todas las familias de la tierra; por tanto, castigaré sobre vosotros todas vuestras iniquidades.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:3</div>
+                <div class="hebrew">הֲיֵלְכוּ שְׁנַיִם יַחְדָּו בִּלְתִּי אִם־נוֹעָדוּ</div>
+                <div class="transliteration">Ha'yél'chu shnáyim yajdáv bilti im-no'adu?</div>
+                <div class="translation">¿Andarán dos juntos, si no se han puesto de acuerdo?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:4</div>
+                <div class="hebrew">הַיִּשְׁאַג אַרְיֵה בַּיַּעַר וּטְרֶף אֵין לוֹ הֲיִתֵּן כְּפִיר קוֹלוֹ מִמְּעֹנָתוֹ בִּלְתִּי אִם־לָכָד</div>
+                <div class="transliteration">Ha'yish'ag aryéh ba'ya'ar v'téreff ein lo? Ha'yittén k'fir qoló mi'm'onato bilti im-lakhád?</div>
+                <div class="translation">¿Rugirá el león en el bosque sin tener presa? ¿Dará el leoncillo su voz desde su guarida sin haber capturado algo?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:5</div>
+                <div class="hebrew">הֲתִפֹּל צִפּוֹר עַל־פַּח הָאָרֶץ וּמוֹקֵשׁ אֵין לָהּ הֲיַעֲלֶה־פַּח מִן־הָאֲדָמָה וְלָכוֹד לֹא יִלְכֹּד</div>
+                <div class="transliteration">Ha'tippól tzippor al-páj ha'aretz u'mokesh ein lah? Ha'ya'aléh-paj min-ha'adamah v'lajod lo yilkód?</div>
+                <div class="translation">¿Caerá el pájaro en el lazo de la tierra sin que haya trampa para él? ¿Se levantará el lazo de la tierra sin haber capturado algo?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:6</div>
+                <div class="hebrew">אִם־תִּתָּקַע שׁוֹפָר בְּעִיר וְעָם לֹא יֶחֱרָדוּ הֲתִהְיֶה רָעָה בָּעִיר וַיְהוָה לֹא עָשָׂה</div>
+                <div class="transliteration">Im-tittaka shofár b'ir v'am lo yejeradu? Ha'tihyéh ra'ah ba'ir v'<span class="highlight">יְהוָה</span> lo asáh?</div>
+                <div class="translation">¿Si es tocado el shofar en la ciudad, no se estremecerá el pueblo? ¿Habrá maldad en la ciudad, y <span class="highlight">יְהוָה</span> no lo habrá hecho?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:7</div>
+                <div class="hebrew">כִּי לֹא יַעֲשֶׂה אֲדֹנָי יְהוָה דָּבָר כִּי אִם־גָּלָה סוֹדוֹ אֶל־עֲבָדָיו הַנְּבִיאִים</div>
+                <div class="transliteration">Ki lo ya'aséh <span class="highlight">Adonái יְהוָה</span> davár ki im-galáh sodó el-avadáv ha'n'vi'im.</div>
+                <div class="translation">Porque no hará <span class="highlight">Adon יְהוָה</span> cosa alguna, sino que revelará Su secreto a Sus siervos los profetas.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:8</div>
+                <div class="hebrew">אַרְיֵה שָׁאָג מִי לֹא יִיָרָא אֲדֹנָי יְהוָה דִּבֶּר מִי לֹא יִנָּבֵא</div>
+                <div class="transliteration">Aryéh sha'ág mi lo yirá? <span class="highlight">Adonái יְהוָה</span> dibbér mi lo yinnabé?</div>
+                <div class="translation">El león ha rugido, ¿quién no temerá? <span class="highlight">Adon יְהוָה</span> ha hablado, ¿quién no profetizará?</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>🦁 Aplicación Profética en Yeshúa HaMashíaj</h1>
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Juicio de la Injusticia (2:6-8)</div>
+                <p>La conexión de esta profecía con el Mashíaj Yeshúa se centra en Su rol como el <span class="highlight">León de la tribu de Judá</span> (el que ruge) y el Restaurador de la Justicia (el que condena la opresión).</p>
+                <p>Amós condena a Israel por la opresión de los justos y los pobres ("vendido al justo por plata"). Esto prefigura el mayor acto de injusticia: la traición y venta del <span class="highlight">Justo</span> (Yeshúa) por treinta piezas de plata (Mateo 26:15). El pueblo profanó el Nombre de Adonai al rechazar al Mashíaj, el Hijo que fue enviado a restaurar la justicia del Reino.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Rugido del León y el Profeta Fiel (3:3-8)</div>
+                <p>La serie de preguntas de causa y efecto culmina en <span class="scripture">Amós 3:7-8: Adonai no actúa sin revelar Su plan a Sus profetas, y cuando Él ruge (como león), el profeta debe hablar.</span></p>
+                <ul>
+                    <li><strong>Yeshúa es el cumplimiento máximo de este profeta.</strong> Él vino, no solo a hablar el mensaje, sino a ser el Mensaje de Adonai (Hebreos 1:1-2).</li>
+                    <li>Su enseñanza y Su sacrificio fueron el <span class="highlight">"rugido"</span> de Adonai al mundo, anunciando que el Reino se había acercado.</li>
+                </ul>
+                <p>La pregunta, <span class="scripture">"El león ha rugido, ¿quién no temerá? Adon <span class="hebrew-term">יְהוָה</span> ha hablado, ¿quién no profetizará?" (Amós 3:8)</span>, se convierte en la justificación de la misión de los Apóstoles y los seguidores de Yeshúa en el Brit Hadashah. Ellos no podían dejar de hablar lo que habían visto y oído (Hechos 4:20), porque Adonai había rugido a través de Su Hijo.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">El "Conocimiento" y la Responsabilidad (3:2)</div>
+                <p>La frase, <span class="scripture">"Solamente a vosotros conocí de todas las familias de la tierra; por tanto, castigaré sobre vosotros todas vuestras iniquidades" (Amós 3:2)</span>, establece el principio de que mayor conocimiento trae mayor responsabilidad. Yeshúa lo reitera: <span class="scripture">"A todo aquel a quien se le haya dado mucho, mucho se le demandará" (Lucas 12:48)</span>. Israel fue elegido para ser luz, y su fracaso en la justicia llevó al juicio.</p>
+                <p>La aplicación espiritual es clara: La justicia social, el cuidado del pobre y la obediencia a la Torá (Amós 2:6-8) son inseparables del verdadero conocimiento de Adonai. Los que siguen a Yeshúa deben ser aquellos que caminan en <span class="highlight">acuerdo</span> (Amós 3:3) con Su voluntad y no tuercen el camino del manso.</p>
+            </div>
+        </div>
+    </div>
+    <h1>👑 Cumplimiento Profético en Yeshúa HaMashíaj</h1>
+
+    <div class="content-container">
+        <p>La profecía de Amós se centra en dos ejes principales que Yeshúa cumple: la <span class="highlight">Justicia Perfecta</span> y la <span class="highlight">Revelación Final de Adonai</span>.</p>
+    </div>
+
+    <h1>1. La Injusticia Condenada y el Justo Vendido (Amós 2:6)</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <p>Amós condena a Israel por "vender al justo por plata y al necesitado a causa de un par de sandalias."</p>
+            <div class="verse-container">
+                <div class="verse-number">Amós 2:6</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה עַל־שְׁלֹשָׁה פִּשְׁעֵי יִשְׂרָאֵל וְעַל־אַרְבָּעָה לֹא אֲשִׁיבֶנּוּ עַל־מִכְרָם בַּכֶּסֶף צַדִּיק וְאֶבְיוֹן בַּעֲבוּר נַעֲלָיִם</div>
+                <div class="transliteration">Koh amar Adonai, al shloshah pish'ei Yisra'el, ve'al arba'ah lo ashivennu, al mikhram bakkesef tzaddiq ve'evyon ba'avur na'alayim.</div>
+                <div class="literal-translation">Así dice Adonai: Por tres transgresiones de Israel, y por cuatro, no lo revocaré; por vender por dinero al justo y al pobre a causa de un par de sandalias.</div>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Profecía Cumplida:</div>
+                <p>Este es un arquetipo profético que se consuma en el mayor acto de injusticia de la historia: la venta de <span class="highlight">Yeshúa HaMashíaj por treinta piezas de plata</span> (Zacarías 11:12-13; Mateo 26:15). Yeshúa no era solo un justo, sino el <span class="highlight">Justo por excelencia</span> (Hechos 3:14), que fue traicionado por Su propio pueblo debido a la avaricia y la envidia.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Conexión con el Brit Hadashah:</div>
+                <p>Kefas (Pedro), en el Brit Hadashah, testifica que la ignorancia del pueblo llevó a la entrega y negación del Santo y Justo (Hechos 3:14). La traición de Yeshúa por dinero es el cumplimiento máximo de la transgresión condenada por Amós contra la justicia social.</p>
+                <div class="scripture">"Mas vosotros negasteis al Santo y al Justo, y pedisteis que se os diese un homicida" (Hechos 3:14).</div>
+            </div>
+        </div>
+    </div>
+
+    <h1>2. El Rugido del León (Amós 3:8)</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <p>La porción culmina con una justificación de la profecía: "El león ha rugido, ¿quién no temerá? Adon <span class="hebrew-term">יְהוָה</span> ha hablado, ¿quién no profetizará?" (Amós 3:8).</p>
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:8</div>
+                <div class="hebrew">אַרְיֵה שָׁאָג מִי לֹא יִירָא אֲדֹנָי יְהוִה דִּבֶּר מִי לֹא יִנָּבֵא</div>
+                <div class="transliteration">Aryeh sha'ag, mi lo yira? Adonai YHVH dibber, mi lo yinnave?</div>
+                <div class="literal-translation">El león ha rugido, ¿quién no temerá? Adonai YHVH ha hablado, ¿quién no profetizará?</div>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Yeshúa, el León de Judá:</div>
+                <p>Yeshúa es el <span class="highlight">León de la tribu de Judá</span> (Apocalipsis 5:5), cuyo "rugido" es la autoridad de la Palabra de Adonai manifestada en carne. La venida de Yeshúa, Su enseñanza radical sobre el Reino (Mateo 5-7), y Su juicio final sobre la hipocresía religiosa son el cumplimiento de la advertencia de Amós.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Revelación del Secreto (Sod) de Adonai:</div>
+                <p>El versículo 3:7, "Porque no hará Adon <span class="hebrew-term">יְהוָה</span> cosa alguna, sino que revelará Su secreto a Sus siervos los profetas", encuentra su plenitud en Yeshúa. El "<span class="highlight">secreto</span>" (<span class="hebrew-term">סוֹד</span> - *sod*) de Adonai es Su plan de redención y el Misterio del Mashíaj (Colosenses 1:26-27), revelado completamente por Yeshúa a Sus discípulos (Marcos 4:11).</p>
+                <div class="scripture">"en el cual están escondidos todos los tesoros de la sabiduría y del conocimiento" (Colosenses 2:3).</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>📜 Conexión con el Tanaj (Profetas) y Brit Hadashah</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Conexión con los Profetas del Tanaj</h2>
+            <ul>
+                <li>
+                    <span class="highlight">Oseas (Hoshea):</span> Amós 3:2, "Solamente a vosotros conocí [<span class="hebrew-term">יְדַעְתִּי</span> - *yadáti*] de todas las familias de la tierra," se relaciona con el amor incondicional y, a la vez, disciplinario de Adonai por Israel, un tema recurrente en Oseas (Oseas 11:1). Este "<span class="highlight">conocimiento</span>" (<span class="hebrew-term">יְדַעְתִּי</span> - *yadáti*) es un pacto de relación íntima que exige fidelidad a la Torá, especialmente en la justicia.
+                </li>
+                <li>
+                    <span class="highlight">Miqueas (Mijah):</span> La condena a la opresión del pobre y al tuerce del camino de los mansos (Amós 2:7) es eco del llamado profético fundamental: "¿Qué pide de ti Adonai: solo hacer <span class="highlight">justicia</span> (<span class="hebrew-term">מִשְׁפָּט</span> - *mishpat*), amar la <span class="highlight">misericordia</span> (<span class="hebrew-term">חֶסֶד</span> - *jesed*), y humillarte para caminar con tu Elohim?" (Miqueas 6:8).
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con el Brit Hadashah</h2>
+            <ul>
+                <li>
+                    <span class="highlight">Mayor Responsabilidad:</span> Yeshúa reafirma el principio de Amós 3:2. A Israel, a quien se le dio la Torá y los Profetas (el "mucho conocimiento"), se le demandaría una fidelidad más estricta (Lucas 12:48). El rechazo a la Torá viviente (Yeshúa) marcó el final de la paciencia de Adonai con la casa que no produjo fruto de justicia.
+                </li>
+                <li>
+                    <span class="highlight">El Shofar y la Advertencia (Amós 3:6):</span> La pregunta: "¿Si es tocado el shofar en la ciudad, no se estremecerá el pueblo?" es la justificación de la predicación del Brit Hadashah. Los apóstoles son los que tocan el <span class="highlight">shofar</span> de advertencia sobre el juicio venidero, que es la segunda venida de Yeshúa (1 Corintios 15:52). La única escapatoria (la huida, Amós 2:14) es a través del arrepentimiento (<span class="hebrew-term">תְּשׁוּבָה</span> - *Teshuvá*) y la fe en el Mashíaj.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>🙏 Aplicación Espiritual (Aliyá Personal)</h1>
+
+    <div class="content-container">
+        <p>Para el creyente mesiánico, la Aliyá de Amós 2:6-3:8 nos llama a tres principios fundamentales de vida en Yeshúa:</p>
+
+        <div class="section-container">
+            <h2>1. El Acuerdo de la Torá (Amós 3:3)</h2>
+            <div class="verse-container">
+                <div class="verse-number">Amós 3:3</div>
+                <div class="hebrew">הֲיֵלְכוּ שְׁנַיִם יַחְדָּו בִּלְתִּי אִם־נוֹעֲדוּ</div>
+                <div class="transliteration">Hayeilkhu shnayim yajdav bilti im no'adu?</div>
+                <div class="literal-translation">¿Andarán dos juntos, si no se han puesto de acuerdo?</div>
+            </div>
+            <div class="explanation">
+                <p>La pregunta exige una aplicación personal de la <span class="highlight">Teshuvá</span> (arrepentimiento). No podemos caminar con Adonai si nuestras vidas no están en <span class="highlight">acuerdo</span> con Su Torá. Vivir en Yeshúa significa estar en perfecto acuerdo con el Padre (Juan 17:21), reflejando Su justicia y santidad en cada acción.</p>
+                <p>Nuestra Aliyá espiritual requiere unidad (<span class="hebrew-term">יַחְדָּו</span> - *Yajad*) con el Mashíaj, donde ya no somos nosotros quienes vivimos, sino que Yeshúa vive en nosotros (Gálatas 2:20).</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2>2. La Defensa del Tzaddik (Justo)</h2>
+            <div class="explanation">
+                <p>La condena de Amós se enfoca en la explotación de los pobres (<span class="hebrew-term">דַּלִּים</span> - *dallim*) y la venta del <span class="highlight">justo</span> (<span class="hebrew-term">צַדִּיק</span> - *tzaddik*). La aplicación espiritual es que el creyente, vestido de la justicia de Yeshúa, debe ser un <span class="highlight">defensor activo de la justicia</span> (<span class="hebrew-term">מִשְׁפָּט</span> - *mishpat*) en este mundo.</p>
+                <p>Nuestra fe en Yeshúa HaMashíaj debe manifestarse en un profundo rechazo a la opresión, y en una vida que no busca la ganancia material a costa de la dignidad del prójimo (Amós 2:7).</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2>3. Profetizar el Rugido</h2>
+            <div class="explanation">
+                <p>Amós 3:8 nos otorga una <span class="highlight">identidad profética</span>. Habiendo escuchado el "rugido" de Adonai a través de Yeshúa y el <span class="highlight">Ruach HaKodesh</span>, no podemos callar. La Aliyá de este pasaje es la subida del creyente al Monte de la Revelación para luego bajar a la diáspora y la tierra con el mensaje de Adonai.</p>
+                <p>El Mashíaj nos ha revelado el <span class="highlight">secreto</span> (Amós 3:7), y ahora somos Sus profetas que, en el poder del Ruach HaKodesh, declaramos la verdad de Su Reino a un mundo que está bajo juicio (Juan 16:8-11).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="conclusion">
+        <h3>Oración de Conclusión (Tefilá)</h3>
+        <p class="prayer-text">Adonai Yeshúa HaMashíaj, <span class="arrow">→</span> el León de la Tribu de Judá, <span class="arrow">→</span> hoy escuchamos Tu rugido a través de la boca de Tu siervo Amós. <br>
+        Te pedimos perdón por cada vez que hemos consentido la injusticia, o hemos negociado el valor de un justo por ganancia material. <br>
+        Danos el valor de ser Tus profetas en esta tierra, de vivir en perfecto acuerdo (<span class="hebrew-term">יַחְדָּו</span> - *Yajad*) contigo y Tu Torá. <br>
+        Revela Tu <span class="hebrew-term">סוֹד</span> (*Sod*) en nuestras vidas y capacítanos con Tu <span class="highlight">Ruach HaKodesh</span> para ser defensores de la justicia (<span class="hebrew-term">מִשְׁפָּט</span> - *mishpat*) y proclamadores de Tu Reino. <br>
+        Que nuestra vida refleje la justicia perfecta por la cual fuiste vendido y sacrificado. Amén.
+        </p>
+        <p class="prayer-conclusion">Baruj Hashem (Bendito sea el Nombre).</p>
+    </div>
+    <h1>📜 Punto 3. Brit Hadasháh: 1 Pedro 2:19-20 (Sufrir injustamente con integridad).</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Análisis Verso por Verso (Peshitta)</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Pedro 2:19</div>
+                <div class="aramaic">ܡܛܠ ܕܗܢܘ ܛܝܡܐ ܕܐܢ ܐܢܫ ܒܝܕܬܐ ܕܬܪܥܝܬܐ ܢܤܝܒܪ ܐܘܠܨܢܐ ܟܕ ܡܬܐܠܨ ܠܐ ܒܟܐܢܘܬܐ</div>
+                <div class="transliteration">Fonética (Transliteración): Meṭol d'henaw ṭaymā' d'en 'anāš b'yāḏaṯā d'tar'īṯā nesīḇar 'wlṣānā' kaḏ meṯ'alṣ lā b'ḵaynuṯā.</div>
+                <div class="translation">Traducción Literal: Porque esto [es] gracia, si alguno con conciencia de Elohim soporta tribulaciones cuando es afligido no con justicia.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Pedro 2:20</div>
+                <div class="aramaic">ܐܢ ܓܝܪ ܚܛܝܬܘܢ ܘܡܬܐܠܨܝܢ ܐܢܬܘܢ ܐܝܢܐ ܗܘ ܫܘܒܗܪܐ ܘܐܢ ܕܝܢ ܛܒܬܐ ܥܒܕܬܘܢ ܘܤܝܒܪܬܘܢ ܒܡܤܝܒܪܢܘܬܐ ܗܢܘ ܛܝܡܐ ܠܘܬ ܐܠܗܐ</div>
+                <div class="transliteration">Fonética (Transliteración): En gīr ḥṭīṯūn w'meṯ'alṣīn 'antūn 'ayna' hū šawḇahrā' w'en dēn ṭāḇāṯā 'ḇaḏtūn w'sīḇartūn b'maṣīḇranūṯā' henaw ṭaymā' lwāṯ Alāhā.</div>
+                <div class="translation">Traducción Literal: Si porque pecasteis y sois afligidos, ¿cuál es la gloria? Y si pero cosas buenas hicisteis y soportasteis con paciencia, esto [es] gracia con Elohim.</div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="explanation">
+                <h3>Comentario Mesiánico y Contextual</h3>
+                <p>Estos versos se centran en el concepto de <span class="highlight">sufrimiento inmerecido</span> como una forma de <span class="highlight">gracia</span> o favor ante <strong>Elohim</strong>. El término arameo clave es <strong>ܛܝܡܐ</strong> (<span class="hebrew-term">ṭaymā'</span>), que significa 'gracia', 'favor', o 'recompensa/crédito'.</p>
+                
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">1. El Valor del Sufrimiento Injusto (v. 19)</div>
+                        <p>El v. 19 establece que el sufrimiento bajo una <span class="highlight">conciencia de Elohim</span> (es decir, sabiendo que uno es inocente ante el maltrato, pero lo soporta por causa de la fe) es lo que tiene verdadero valor (<span class="hebrew-term">ṭaymā'</span>). No se trata de masoquismo, sino de una <span class="highlight">aflicción inmerecida</span> ("no con justicia").</p>
+                    </div>
+                    
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">2. La Diferencia entre Sufrir por el Mal y Sufrir por el Bien (v. 20)</div>
+                        <ul>
+                            <li><strong>Sufrir por Pecado:</strong> Si uno sufre por haber pecado (ej. por un delito), no hay <span class="highlight">gloria</span> o mérito. El sufrimiento es la consecuencia justa de sus actos.</li>
+                            <li><strong>Sufrir por el Bien:</strong> Si uno realiza "cosas buenas" (<span class="highlight">ܛܒܬܐ</span>, <span class="hebrew-term">ṭāḇāṯā'</span>) y soporta la aflicción con <span class="highlight">paciencia</span> (<span class="hebrew-term">maṣīḇranūṯā'</span>), "esto [es] gracia con Elohim." Esto se alinea con el ejemplo de Yeshúa HaMashiaj.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">3. Conexión Mesiánica</div>
+                        <p>Estos versos preparan la introducción del <span class="highlight">ejemplo supremo de Yeshúa</span> en los versos siguientes (2:21-25). Sufrir injustamente por hacer el bien es seguir las pisadas del Mashiaj, quien sufrió sin haber cometido pecado.</p>
+                        <div class="scripture">"Pues para esto fuisteis llamados; porque también el Mashiaj sufrió por vosotros, dejándoos ejemplo, para que sigáis sus pisadas." (1 Pedro 2:21)</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="conclusion">
+                <h3>Reflexión y Oración</h3>
+                <p>La exhortación de Kefa (Pedro) es fundamental para la vida del creyente: la prueba de la fe no es evitar el sufrimiento, sino la actitud con la que se recibe el sufrimiento inmerecido, viéndolo como una oportunidad para reflejar la paciencia de <strong>Yeshúa</strong> y ganando <span class="highlight">favor divino</span>.</p>
+                <div class="prayer-text">
+                    <p>Padre Celestial, te damos gracias por el ejemplo de Yeshúa, quien soportó la aflicción más injusta por nuestra salvación. Te pedimos que nos concedas la <span class="highlight">conciencia de Elohim</span>, la fuerza y la paciencia (<span class="hebrew-term">maṣīḇranūṯā'</span>) para soportar con gracia las tribulaciones que no merecemos, para que nuestro sufrimiento sea <span class="hebrew-term">ṭaymā'</span> —un favor, un mérito, una recompensa— ante Ti.</p>
+                </div>
+                <div class="prayer-conclusion">Amén.</div>
+            </div>
+
+        </div>
+    </div>
+    <h1>👑 El Mashíaj Yeshúa: El Siervo Sufriente y Justificado</h1>
+    <p>
+      El mensaje de Pedro se centra enteramente en el ejemplo de
+      <strong>Yeshúa</strong> como el Justo que soportó la injusticia para dejar
+      un modelo a Su pueblo.
+    </p>
+
+    <div class="content-container">
+      <h2>1. El Precio de la Gracia (Ṭaymā')</h2>
+      <p>
+        El versículo 19 declara: "Porque esto [es] gracia (<span
+          class="highlight"
+          >ṭaymā'</span
+        >) si alguno con conciencia de Elohim soporta tribulaciones cuando es
+        afligido no con justicia."
+      </p>
+
+      <div class="verse-container">
+        <div class="verse-number">1 Pedro 2:19 (Texto Arameo Peshitta)</div>
+        <div class="aramaic">
+          ܗܳܕ݂ܶܐ ܓ݁ܶܝܪ ܐܺܝܬ݂ܶܝܗ ܛܰܝܡܳܐ ܐܶܢ ܐ̱ܢܳܫ ܒ݁ܝܳܕ݂ܰܥܬ݂ܳܐ ܕ݁ܬ݂ܰܪܥܺܝܬ݂ܶܗ ܕ݁ܰܐܠܳܗܳܐ ܢܣܰܝܒ݁ܰܪ ܥܳܩܳܬ݂ܳܐ ܟ݁ܰܕ݂ ܡܶܬ݂ܰܥܰܩ ܢܳܙܶܦ݂
+          ܠܳܐ ܒ݁ܰܟ݂ܝܼܢܽܘܬ݂ܳܐ
+        </div>
+        <div class="transliteration">
+          hādē geyr īṯeyh ṭaymā' en nāš b'yādaṯā d'tarʿīṯēh d'Alāhā nsabaṯ ʿāqāṯā
+          kad meṯ'ʿeq nāzep lā b'ḵaynuṯā
+        </div>
+        <div class="literal-translation">
+          Esto [es] porque es gracia si alguno con conocimiento de su conciencia
+          de Elohim, soporta tribulaciones cuando es afligido no con justicia.
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h3 style="text-align: left">
+          Yeshúa, la Justificación del <span class="highlight">Ṭaymā'</span>
+        </h3>
+        <p>
+          El acto de Yeshúa en el madero fue la cúspide del sufrimiento injusto. Él
+          fue el único que soportó la aflicción (<span class="highlight"
+            >wlṣānā'</span
+          >) completamente sin justicia (<span class="highlight"
+            >lā b'ḵaynuṯā'</span
+          >), porque no había pecado en Él. Al soportar, Él demostró que el
+          verdadero mérito o <span class="highlight">gracia</span> (<span
+            class="highlight"
+            >ṭaymā'</span
+          >) ante Adonai no se gana a través de la retribución o la defensa
+          propia, sino a través de la sumisión paciente a la voluntad del Padre.
+        </p>
+
+        <h4 style="text-align: left">Contraste (2:20)</h4>
+        <p>
+          Pedro contrasta el sufrimiento por la justicia de Elohim (el
+          <span class="highlight">ṭaymā'</span>) con el sufrimiento por el propio
+          pecado. No hay gloria (<span class="highlight">šawḇahrā'</span>) en
+          ser castigado por la maldad propia, pero sí la hay en imitar la
+          paciencia del Mashíaj al hacer el bien y ser injuriado por ello.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>2. Conexión con los Profetas: El Eved Adonai</h2>
+      <p>
+        El mandato de Pedro a la paciencia y el sufrimiento injusto está
+        profundamente enraizado en la profecía del Tanaj, especialmente en el
+        <span class="highlight">Eved Adonai</span> (Siervo de
+        <span class="hebrew-term">יהוה</span>).
+      </p>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Isaías (Yeshayahu) 50:6</div>
+          <p>
+            El siervo de <span class="hebrew-term">יהוה</span> profetiza: "Di Mi
+            cuerpo a los heridores, y Mis mejillas a los que Mes tiraban de la
+            barba; no escondí Mi rostro de las injurias y de los esputos."
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento en Yeshúa</div>
+          <p>
+            <strong>Yeshúa</strong> se sometió completamente a la humillación
+            física y verbal sin retaliación. Su sufrimiento es la realización de
+            esta profecía, estableciendo que el Mashíaj reinaría a través de la
+            mansedumbre y la soportación del dolor injusto, no a través de la
+            fuerza militar.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Isaías 53:7</div>
+          <p class="scripture">
+            "Angustiado él, y afligido, no abrió Su boca; como cordero fue
+            llevado al matadero; y como oveja delante de Sus trasquiladores,
+            enmudeció, y no abrió Su boca."
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Paciencia Mesiánica</div>
+          <p>
+            La <span class="highlight">paciencia</span> (<span class="highlight"
+              >maṣīḇranūṯā'</span
+            >) a la que Pedro llama es, precisamente, el silencio y la fe
+            inquebrantable de Yeshúa en Su Pasión, la única manera de que Su
+            sacrificio fuera perfecto.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>3. Aplicación Espiritual (Aliyá Personal): La Elevación por la Conciencia</h2>
+      <p>
+        La <span class="highlight">Aliyá</span> (ascenso/elevación) espiritual
+        que este pasaje demanda es la elevación de la conciencia sobre la carne y
+        la identificación con el Mashíaj.
+      </p>
+
+      <div class="explanation">
+        <h3 style="text-align: left">
+          Aliyá de la Conciencia de Elohim
+        </h3>
+        <p>
+          El sufrimiento debe ser soportado "<span class="highlight"
+            >con conciencia de Elohim</span
+          >" (<span class="highlight">b'yāḏaṯā d'tar'īṯā'</span>). Esto significa
+          ascender de la perspectiva terrenal ("¿Por qué me pasa esto a mí?") a
+          la celestial ("Elohim sabe, y esto es una prueba de mi fe"). Esta
+          conciencia es la que transforma el dolor en gracia (<span
+            class="highlight"
+            >ṭaymā'</span
+          >) ante el Padre.
+        </p>
+
+        <h3 style="text-align: left">
+          Aliyá a la Gloria por la Humillación
+        </h3>
+        <p>
+          Este pasaje profetiza un patrón central del Reino: exaltación a través
+          de la humillación. Así como Yeshúa fue entregado y sufrió injustamente
+          para ser exaltado a la diestra de Adonai (Hechos 2:33), nuestra
+          <span class="highlight">Aliyá</span> es soportar la injusticia sabiendo
+          que esta es la senda real que nos lleva a compartir Su
+          <span class="highlight">gloria</span> (<span class="highlight"
+            >šawḇahrā'</span
+          >) en la Era Mesiánica venidera. La paciencia en la aflicción es un
+          acto de fe en Su venida.
+        </p>
+        <div class="conclusion">
+          <p>
+            <strong>Conclusión Práctica:</strong> El creyente mesiánico es llamado
+            a reflejar la
+            <span class="highlight">paciencia inmerecida</span> de Yeshúa ante la
+            injusticia, no como resignación pasiva, sino como un acto consciente
+            de fe en que el Padre es quien justifica y exalta en el tiempo
+            perfecto.
+          </p>
+        </div>
+      </div>
+    </div>
+    <h1>PUNTO 4 — Contexto Histórico y Cultural de Génesis 39:1–6</h1>
+    <div class="content-container">
+        <p>(Aliyáh dentro de Parashá VaYeshev)</p>
+        <p>
+            Génesis 39 abre la sección que describe el nuevo escenario de
+            <span class="highlight">Yosef en Mitsráyim</span> tras ser vendido. Esta porción (vv. 1–6) introduce el
+            ambiente político, social y religioso del Egipto del Imperio Medio/Tardío, y
+            sienta las bases de la futura exaltación de Yosef.
+        </p>
+
+        <div class="section-container">
+            <h2>1. Egipto: Imperio, jerarquía y sociedad</h2>
+            <div class="explanation">
+                <div class="prophetic-section">
+                    <p>
+                        <span class="point-letter">a.</span> Potifar (<span class="hebrew-term">פֹטִיפַר</span>)
+                        <span class="arrow">→</span> oficial de Par‘ó
+                    </p>
+                    <ul>
+                        <li>
+                            Potifar es:
+                            <ul>
+                                <li>
+                                    sar hatabbajim («jefe de los guardias»; también entendido
+                                    como jefe de verdugos),
+                                </li>
+                                <li>un funcionario de alto rango,</li>
+                                <li>miembro de la élite militar.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Egipto poseía:
+                            <ul>
+                                <li>burocracia sofisticada,</li>
+                                <li>clases sociales definidas,</li>
+                                <li>
+                                    posición elevada para funcionarios del ejército y la
+                                    administración.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>
+                        Yosef cae directamente en manos de la
+                        <span class="highlight">aristocracia estatal</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>2. La categoría de “esclavo extranjero”</h2>
+            <div class="explanation">
+                <p>En Egipto, el esclavo extranjero podía:</p>
+                <ul>
+                    <li>ser utilizado como sirviente personal,</li>
+                    <li>ascender en responsabilidad si demostraba capacidad,</li>
+                    <li>administrar propiedades bajo supervisión.</li>
+                </ul>
+                <p>
+                    Yosef recibe un puesto intermedio, luego asciende al grado de
+                    <span class="highlight">mayordomo</span> (<span class="hebrew-term">משק</span>) principal.
+                </p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>3. Administración de casas aristocráticas</h2>
+            <div class="explanation">
+                <p>La casa de un noble egipcio incluía:</p>
+                <ul>
+                    <li>
+                        empleados, mayordomos, cocineros, artesanos, contadores,
+                    </li>
+                    <li>siervos y esclavos extranjeros,</li>
+                    <li>recursos agrícolas, establos y almacenes.</li>
+                </ul>
+                <p>
+                    El mayordomo “sobre toda la casa” era responsable de:
+                </p>
+                <ul>
+                    <li>contabilidad,</li>
+                    <li>distribución de alimentos,</li>
+                    <li>control de siervos,</li>
+                    <li>administración de bienes,</li>
+                    <li>reporte directo al dueño.</li>
+                </ul>
+                <p>Esta posición era de <span class="highlight">enorme confianza</span>.</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>4. Religión egipcia e identidad hebrea</h2>
+            <div class="explanation">
+                <p>Egipto era profundamente religioso:</p>
+                <ul>
+                    <li>múltiples divinidades,</li>
+                    <li>ritualidad diaria,</li>
+                    <li>pureza y magia.</li>
+                </ul>
+                <p>
+                    Yosef, fiel a <span class="highlight">Adonái</span>
+                    <span class="hebrew-term">יהוה</span>, vive en un ambiente completamente
+                    <span class="highlight">idolátrico</span>, pero su fidelidad lo
+                    distingue.
+                </p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>5. Presencia de Semitas y grupos asiáticos (Aamu) en Egipto</h2>
+            <div class="explanation">
+                <p>
+                    Arqueología y documentos como:
+                </p>
+                <ul>
+                    <li>las pinturas de Beni Hassan,</li>
+                    <li>listas de trabajadores “asiáticos”,</li>
+                    <li>inscripciones de clanes semitas,</li>
+                </ul>
+                <p>confirman que semitas participaban como:</p>
+                <ul>
+                    <li>trabajadores,</li>
+                    <li>mercenarios,</li>
+                    <li>esclavos,</li>
+                    <li>administradores.</li>
+                </ul>
+                <p>
+                    Esto encaja con el rol de Yosef como
+                    <span class="highlight">semita en ascenso</span> dentro del sistema
+                    egipcio.
+                </p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>6. La belleza física como descripción simbólica</h2>
+            <div class="explanation">
+                <p>El texto dice que Yosef era:</p>
+                <ul>
+                    <li>yefé to’ar,</li>
+                    <li>yefé mar’eh.</li>
+                </ul>
+                <p>En la cultura semítica:</p>
+                <ul>
+                    <li>
+                        la belleza física simboliza <span class="highlight">bendición divina</span>,
+                    </li>
+                    <li>
+                        anticipa pruebas y tentaciones (como veremos en 39:7–20),
+                    </li>
+                    <li>señala dignidad futura (como David).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <h1>PUNTO 5 — Estudio, Comentarios y Conexiones Proféticas (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>A. Comentario verso a verso</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">39:1</div>
+                <div class="hebrew">וַיּוּרַד יוֹסֵף מִצְרָיְמָה וַיִּקְנֵהוּ פּוֹטִיפַר סְרִיס פַּרְעֹה שַׂר הַטַּבָּחִים אִישׁ מִצְרִי מִיַּד הַיִּשְׁמְעֵאלִים אֲשֶׁר הֹוּרִדֻהוּ שָׁמָּה</div>
+                <div class="transliteration">Va-yurad Yosef Mitzráyimah va-yiknéhu Potifar serís Par‘ó sar ha-tabbajim ish Mitzri mi-yad ha-Yishme‘elim asher horidúhu shámmah.</div>
+                <div class="translation">Yosef fue descendido a Egipto, y lo compró Potifar, oficial de Faraón, jefe de los guardias, varón egipcio, de mano de los ismaelitas que lo habían descendido allá.</div>
+                <div class="literal-translation">El término “hurmah” (venta) implica transferencia legal. Los midrashim dicen que cada paso de Yosef era dirigido por la Providencia.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">39:2</div>
+                <div class="hebrew">וַיְהִי יְהוָה אֶת־יוֹסֵף וַיְהִי אִישׁ מַצְלִיחַ וַיְהִי בְּבֵית אֲדֹנָיו הַמִּצְרִי׃</div>
+                <div class="transliteration">Va-yehi Adonái et-Yosef va-yehi ish matzlíaj va-yehi be-vet adonav ha-mitzrí.</div>
+                <div class="translation">Y fue Adonái <span class="hebrew-term">יהוה</span> con Yosef, y él fue varón próspero, y estuvo en casa de su amo el egipcio.</div>
+                <div class="literal-translation">
+                    Frase clave. Marca la diferencia entre esclavo y hombre libre: la
+                    <span class="highlight">presencia divina</span>. Es un eco del tema
+                    patriarcal: Elohím con Abraham, con Yitsjaq, con Ya‘aqov. Ahora con
+                    Yosef, incluso en esclavitud.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">39:3</div>
+                <div class="hebrew">וַיַּרְא אֲדֹנָיו כִּי יְהוָה אִתּוֹ וְכֹל אֲשֶׁר־הוּא עֹשֶׂה יְהוָה מַצְלִיחַ בְּיָדוֹ׃</div>
+                <div class="transliteration">Va-yar adonav ki Adonái ittó ve-khol asher-hu oséh Adonái matzlíaj be-yadó.</div>
+                <div class="translation">Y vio su amo que Adonái estaba con él, y que todo lo que él hacía, Adonái lo prosperaba en su mano.</div>
+                <div class="literal-translation">
+                    Un egipcio idólatra “ve” que Adonái prospera a Yosef. Esto es
+                    <span class="highlight">testimonio silencioso</span> del poder del
+                    Elohím único.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">39:4</div>
+                <div class="hebrew">וַיִּמְצָא יוֹסֵף חֵן בְּעֵינָיו וַיְשָׁרֶת אֹתוֹ וַיַּפְקִדֵהוּ עַל־בֵּיתוֹ וְכֹל אֲשֶׁר־יֶשׁ־לוֹ נָתַן בְּיָדוֹ׃</div>
+                <div class="transliteration">Va-yimtzá Yosef jén be-eináv va-yesharet otó va-yafqidéhu al-beito ve-khol asher-yesh-ló natán be-yadó.</div>
+                <div class="translation">Y halló Yosef gracia (ḥen) en sus ojos y le sirvió, y lo puso por mayordomo sobre su casa, y todo lo que tenía lo entregó en su mano.</div>
+                <div class="literal-translation">
+                    El término <span class="highlight">ḥen</span> (gracia) aparece: en Noaj,
+                    en Moisés, en Rut, en el Mashíaj. La gracia divina otorgada a un justo
+                    en tierra extranjera.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">39:5</div>
+                <div class="hebrew">וַיְהִי מֵאָז הִפְקִיד אֹתוֹ עַל־בֵּיתוֹ וְעַל כָּל־אֲשֶׁר יֶשׁ־לוֹ וַיְבָרֶךְ יְהוָה אֶת־בֵּית הַמִּצְרִי בִּגְלַל יוֹסֵף וַיְהִי בִּרְכַּת יְהוָה בְּכָל־אֲשֶׁר יֶשׁ־לוֹ בַּבַּיִת וּבַשָּׂדֶה׃</div>
+                <div class="transliteration">Va-yehi me-áz hifqid otó al-beito ve-al kol-asher yesh-ló va-yevárekh Adonái et-beit ha-mitzrí bi-glal Yosef va-yehi birkat Adonái be-khol-asher yesh-ló ba-báyit u-va-sadéh.</div>
+                <div class="translation">Y fue desde que lo puso por mayordomo sobre su casa y sobre todo lo que tenía, que Adonái bendijo la casa del egipcio por causa de Yosef; y fue la bendición de Adonái en todo lo que tenía en la casa y en el campo.</div>
+                <div class="literal-translation">
+                    Ecos de la promesa a Abraham: “Serás bendición para todas las
+                    familias de la tierra.”
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">39:6</div>
+                <div class="hebrew">וַיַּעֲזֹב כָּל־אֲשֶׁר־לוֹ בְּיַד־יוֹסֵף וְלֹא־יָדַע אִתּוֹ מְאוּמָה כִּי אִם־הַלֶּחֶם אֲשֶׁר־הוּא אוֹכֵל וַיְהִי יוֹסֵף יְפֵה־תֹאַר וִיפֵה מַרְאֶה׃</div>
+                <div class="transliteration">Va-ya‘azov kol-asher-ló be-yad-Yosef ve-ló-yadá ittó me-umáh ki im-ha-léjem asher-hu okhel va-yehi Yosef yefé-to’ar vi-yefé mar’eh.</div>
+                <div class="translation">Y abandonó todo lo que tenía en mano de Yosef, y no sabía con él de nada, sino del pan que él comía. Y era Yosef de bella figura y de bello aspecto.</div>
+                <div class="literal-translation">
+                    Reflejo de <span class="highlight">autoridad total</span>. Imagen que
+                    prefigura el ascenso final de Yosef a la diestra de Par‘ó.
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>B. Comentario Rabínico</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Rashi</div>
+                    <div class="scripture">
+                        <p>
+                            “Todo lo que Yosef tocaba prosperaba.” Interpreta que Potifar
+                            confiaba en Yosef incluso para decisiones internas de familia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Ibn Ezra</div>
+                    <div class="scripture">
+                        <p>
+                            Sostiene que la prosperidad era visible, no solo interna, y que
+                            Yosef reflejaba honestidad absoluta.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Ramban</div>
+                    <div class="scripture">
+                        <p>
+                            Ve en este texto la afirmación explícita de la
+                            <span class="highlight">intervención divina continua</span>,
+                            incluso en el exilio.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>C. Comentario judío mesiánico</h2>
+            <div class="explanation">
+                <p>Yosef representa:</p>
+                <ul>
+                    <li>integridad bajo presión,</li>
+                    <li>justicia en tierra pagana,</li>
+                    <li>modelo del siervo fiel.</li>
+                </ul>
+                <p>Su ascenso en casa de Potifar anticipa su <span class="highlight">exaltación futura</span>.</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>D. Conexión con Yeshúa haMashíaj</h2>
+            <div class="prophetic-content">
+                <p>
+                    Según el archivo LA DIVINIDAD DE YESHÚA, Yeshúa es
+                    <span class="highlight">MarYah manifestado en carne</span>, cuya
+                    presencia trae bendición dondequiera que Él está.
+                </p>
+                <p>Así como Yosef en Mitsráyim:</p>
+                <ul>
+                    <li>Yeshúa desciende al mundo (como extranjero),</li>
+                    <li>manifiesta la gracia del Padre,</li>
+                    <li>bendice a quienes lo reciben,</li>
+                    <li>es <span class="highlight">exaltado después de humillación</span>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <h1>PUNTO 6 — Análisis Profundo de la Aliyáh (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>1. Estructura literaria</h2>
+            <div class="explanation">
+                <p>El texto tiene un patrón de ascenso:</p>
+                <p>
+                    A <span class="highlight">Yosef vendido</span>
+                    <br />
+                    <span class="arrow"> </span>B <span class="highlight">Elohím con él</span>
+                    <br />
+                    <span class="arrow">  </span>C <span class="highlight">Yosef prospera</span>
+                    <br />
+                    <span class="arrow">  </span>C' <span class="highlight">Potifar reconoce</span>
+                    <br />
+                    <span class="arrow"> </span>B' <span class="highlight">Elohím bendice la casa</span>
+                    <br />
+                    A' <span class="highlight">Yosef sobre toda la casa</span>
+                </p>
+                <p>Es un quiasmo profético: <span class="highlight">“Descenso → Presencia divina → Ascenso”</span>.</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>2. Temas teológicos</h2>
+            <div class="explanation">
+                <p><span class="point-letter">a.</span> Providencia soberana</p>
+                <p>La mano de Elohím guía:</p>
+                <ul>
+                    <li>la llegada de Yosef,</li>
+                    <li>su ubicación exacta,</li>
+                    <li>su ascenso progresivo.</li>
+                </ul>
+                <p><span class="point-letter">b.</span> Justicia divina lenta pero segura</p>
+                <p>Aunque parece abandonado, es <span class="highlight">sostenido por Adonái</span> <span class="hebrew-term">יהוה</span>.</p>
+                <p><span class="point-letter">c.</span> Bendición a través del justo</p>
+                <p>Como en Abraham, la bendición se extiende a <span class="highlight">gentiles</span> por causa de un hebreo justo.</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>3. Dimensión sociológica</h2>
+            <div class="explanation">
+                <p>Yosef, siendo extranjero, asciende por:</p>
+                <ul>
+                    <li>confianza,</li>
+                    <li>integridad,</li>
+                    <li>capacidad administrativa,</li>
+                    <li>obediencia a Elohím.</li>
+                </ul>
+                <p>Es ejemplo de <span class="highlight">resiliencia cultural en exilio</span>.</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>4. Psico-narrativa</h2>
+            <div class="explanation">
+                <p>El narrador muestra a un adolescente esclavo que mantiene:</p>
+                <ul>
+                    <li>fe,</li>
+                    <li>disciplina,</li>
+                    <li>ética,</li>
+                    <li>humildad.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <h1>PUNTO 7 — Tema Más Relevante de la Aliyáh (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <div class="prophetic-content">
+                <p class="prophetic-title">
+                    <span class="highlight">“La presencia de Elohím transforma al siervo en administrador y convierte el exilio en bendición.”</span>
+                </p>
+                <p>Este tema refleja:</p>
+                <ul>
+                    <li>gracia divina,</li>
+                    <li>fidelidad en pruebas,</li>
+                    <li>ascenso del justo,</li>
+                    <li>propósito más grande que la injusticia sufrida.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con Yeshúa haMashíaj</h2>
+            <div class="explanation">
+                <p>Yeshúa revela la misma realidad:</p>
+                <p>Donde Él está presente, hay:</p>
+                <ul>
+                    <li>multiplicación,</li>
+                    <li>bendición,</li>
+                    <li>restauración,</li>
+                    <li>exaltación tras la humildad.</li>
+                </ul>
+                <p>
+                    Según el archivo LA DIVINIDAD DE YESHÚA, esta dinámica es propia de
+                    <span class="highlight">MarYah manifestado en el mundo</span> para traer luz a las naciones.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <h1>PUNTO 8 — Descubriendo al Mashíaj en la Aliyáh (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>1. Tipología mesiánica de Yosef</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">a. Descenso</div>
+                    <p>Yosef desciende a Mitsráyim. <span class="arrow">→</span> Yeshúa desciende al mundo.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">b. Servidumbre</div>
+                    <p>Yosef es siervo por injusticia. <span class="arrow">→</span> Yeshúa toma “forma de siervo” voluntariamente (según tradición mesiánica).</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">c. Presencia divina</div>
+                    <p>“Adonái estaba con Yosef.” <span class="arrow">→</span> En Yeshúa, Adonái <span class="hebrew-term">יהוה</span> está encarnado (según tu archivo mesiánico).</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">d. Bendición a gentiles</div>
+                    <p>La casa de Potifar es bendecida por Yosef. <span class="arrow">→</span> Las naciones son bendecidas por la obra del Mashíaj.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">e. Exaltación futura</div>
+                    <p>Yosef será exaltado a la diestra de Par‘ó. <span class="arrow">→</span> Yeshúa exaltado a la diestra del Trono en categoría mesiánica nazarena.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>2. Sombras y patrones redentores</h2>
+            <div class="explanation">
+                <p>El justo prospera aunque parezca derrotado.</p>
+                <p>La injusticia se convierte en plataforma de salvación.</p>
+                <p>La presencia divina se manifiesta en el extranjero rechazado.</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>3. Lectura aramea mesiánica</h2>
+            <div class="explanation">
+                <div class="aramaic">
+                    Yosef es figura de “Shaliaḥ Mellta” (mensajero de la palabra redentora), portador de la presencia que transforma la casa donde entra.
+                </div>
+                <p>Así como Yosef trae prosperidad a un hogar pagano,</p>
+                <p>Yeshúa trae restauración a un mundo en oscuridad.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <p class="prayer-text">
+            <strong>Oración de Conclusión:</strong> "Padre, <span class="highlight">Adonái</span> <span class="hebrew-term">יהוה</span>, gracias por revelar tu plan de exaltación a través de la vida de Yosef. Permítenos ver tu <span class="highlight">Providencia</span> obrando en medio de nuestras pruebas. Que, al igual que Yosef, tu Presencia sea evidente en nosotros para que aquellos que no te conocen vean tu bendición. En el nombre de Yeshúa haMashíaj, el Justo Exaltado, Amén."
+        </p>
+        <p class="prayer-conclusion">¡Baruj HaShem (Bendito sea el Nombre)!</p>
+    </div>
+    <h1>PUNTO 9 — Midrashim, Targumim y Textos Fuentes (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <p>Génesis 39:1–6 contiene capas interpretativas que han sido tratadas en el Midrash, en los Targumim arameos y en textos antiguos que buscan explicar por qué Yosef prospera aun siendo esclavo.</p>
+
+        <div class="section-container">
+            <h3>1. Midrashim relevantes</h3>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">a.</span> Bereshit Rabbah 86:3–6</div>
+                    <p>Afirma que “la <span class="highlight">Shejináh</span> acompañó a Yosef a Mitsráyim”, mostrando que la presencia de <span class="highlight">Adonái יהוה</span> no depende del lugar, sino de la fidelidad del justo.</p>
+                    <p>El Midrash dice que la bendición caía sobre todo lo que Yosef tocaba, y que Potifar percibió que Yosef tenía “or luz” —luz del Cielo.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">b.</span> Bereshit Rabbah 86:4 — Yosef halla gracia</div>
+                    <p>Se comenta que Yosef poseía “<span class="highlight">hinam shel maljut</span>” —la gracia de reyes— anticipando su futura realeza administrativa en Egipto.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">c.</span> Midrash Tanjuma, VaYeshev 8</div>
+                    <p>Presenta la idea de que Yosef era “como <span class="highlight">llave de bendición</span>”, y que incluso la prosperidad pagana puede ser medio para cumplir la voluntad de Adonái.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">d.</span> Midrash sobre integridad en exilio</div>
+                    <p>Varios midrashim comparan a Yosef con Daniel, resaltando que la verdadera sabiduría es mantener pureza en contextos paganos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>2. Targumim arameos</h3>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">a.</span> Targum Onkelos</div>
+                    <ul>
+                        <li>Traduce que Yosef “servía” con fidelidad.</li>
+                        <li>Aclara que Potifar vio explícitamente que “la <span class="highlight">Memrá de Adonái</span>” (la Palabra) estaba con Yosef.</li>
+                    </ul>
+                    <p>En la tradición aramea, <span class="highlight">Memrá</span> puede indicar presencia divina activa.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">b.</span> Targum Yonatan</div>
+                    <ul>
+                        <li>Añade que la bendición descendía “por causa de <span class="highlight">Yosef, el justo</span>”.</li>
+                        <li>Interpreta que Potifar observó milagros o señales de prosperidad inusual.</li>
+                        <li>Subraya que Elohím dirigía la casa a través de Yosef.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>3. Textos Fuentes adicionales</h3>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">a.</span> Literatura de Qumrán (paralelos conceptuales)</div>
+                    <p>Aunque no comentan directamente Génesis 39, los textos de Qumrán presentan al <span class="highlight">Moreh haTzedek</span> (Maestro de Justicia) como figura cuya presencia trae bendición aun en persecución. Yosef encaja en ese patrón del “justo en exilio”.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">b.</span> Tradición Nazarena primitiva</div>
+                    <p>Los maestros nazarenos veían en Yosef una figura mesiánica:</p>
+                    <ul>
+                        <li>justo,</li>
+                        <li>rechazado por sus hermanos,</li>
+                        <li>enviado a tierra extranjera,</li>
+                        <li>exaltado entre gentiles.</li>
+                    </ul>
+                    <p>Esto refuerza la tipología con <span class="highlight">Yeshúa haMashíaj</span>, como se presenta en LA DIVINIDAD DE YESHÚA, donde se afirma la identidad divina y redentora del Mashíaj.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title"><span class="point-letter">c.</span> Literatura rabínica medieval</div>
+                    <p>Comentan que la prosperidad de Yosef cumplía las promesas a Abraham: “en ti serán benditas todas las familias de la tierra”.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 10 — Mandamientos o Principios Encontrados (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <p>Aunque en este pasaje no aparecen <span class="highlight">mitzvot</span> explícitas, sí emergen principios éticos fundamentales:</p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">1.</span> Fidelidad y ética en el trabajo</div>
+                <p>Yosef trabaja con integridad aun siendo esclavo.</p>
+                <div class="explanation">
+                    <strong>Principio:</strong> la fidelidad no depende de la condición social, sino del compromiso con <span class="highlight">Adonái יהוה</span>.
+                </div>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">2.</span> Responsabilidad y excelencia</div>
+                <p>Yosef administra con diligencia, demostrando el principio de honrar a Elohím con excelencia en todo lo que se hace.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">3.</span> Ser testimonio entre gentiles</div>
+                <p>Potifar reconoce la bendición de Adonái en Yosef.</p>
+                <div class="explanation">
+                    <strong>Principio:</strong> la vida del justo revela al Elohím verdadero aún en contextos paganos.
+                </div>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">4.</span> Confianza delegada y rendición de cuentas</div>
+                <p>Potifar confía en Yosef “todo lo que tenía”.</p>
+                <div class="explanation">
+                    <strong>Principio:</strong> asumir responsabilidades con honestidad es parte del llamado ético bíblico.
+                </div>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title"><span class="point-letter">5.</span> La presencia divina como fundamento</div>
+                <p>La frase “<span class="highlight">Adonái estaba con él</span>” es el eje del texto.</p>
+                <div class="explanation">
+                    <strong>Principio:</strong> la presencia de Elohím transforma circunstancias y otorga propósito en medio del sufrimiento.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 11 — Preguntas de Reflexión con Respuestas en el Mashíaj (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <div class="question">1. ¿Cómo pudo Yosef prosperar siendo esclavo en tierra extranjera?</div>
+            <div class="answer">
+                <p><strong>Respuesta mesiánica:</strong></p>
+                <p>La prosperidad de Yosef proviene de la presencia de <span class="highlight">Adonái יהוה</span>, no de su estatus social.</p>
+                <p>En el Mashíaj, según LA DIVINIDAD DE YESHÚA, la presencia de <span class="highlight">MarYah</span> en carne revela que la verdadera prosperidad es la obra divina en nosotros, no las circunstancias externas.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">2. ¿Por qué Potifar reconoce que la bendición proviene del Elohím de Yosef?</div>
+            <div class="answer">
+                <p><strong>Respuesta mesiánica:</strong></p>
+                <p>El justo que vive bajo la unción del Mashíaj irradia luz.</p>
+                <p><span class="highlight">Yeshúa</span> enseñó que “su luz ilumina incluso entre gentiles”; Yosef anticipa este principio.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">3. ¿Qué significa hallar gracia (<span class="hebrew-term" dir="rtl">חֵן</span> *ḥen*) delante de Potifar?</div>
+            <div class="answer">
+                <p><strong>Respuesta mesiánica:</strong></p>
+                <p>La gracia refleja el favor inmerecido que Elohím otorga por medio del <span class="highlight">Mashíaj</span>, quien es <span class="highlight">MarYah</span> y fuente de toda gracia.</p>
+                <p>Yosef recibe <span class="hebrew-term" dir="rtl">חֵן</span> *ḥen* que apunta a la plenitud de gracia revelada en Yeshúa.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">4. ¿Qué enseña la administración de Yosef sobre liderazgo?</div>
+            <div class="answer">
+                <p><strong>Respuesta mesiánica:</strong></p>
+                <p>El liderazgo según el Mashíaj es <span class="highlight">servicio, integridad y responsabilidad</span>.</p>
+                <p>Yosef anticipa al Siervo exaltado que gobierna con sabiduría y justicia.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">5. ¿Cómo debe responder hoy el creyente ante situaciones de injusticia o exilio personal?</div>
+            <div class="answer">
+                <p><strong>Respuesta mesiánica:</strong></p>
+                <p>Como Yosef: <span class="highlight">fidelidad y confianza</span>.</p>
+                <p>Yeshúa haMashíaj muestra que Elohím transforma prisión en propósito y esclavitud en plataforma de salvación.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 12 — Resumen de la Aliyáh (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h3>Resumen Histórico</h3>
+            <p>Yosef es llevado a Mitsráyim y adquirido por Potifar, un alto funcionario egipcio.</p>
+            <p>Aunque esclavo, <span class="highlight">Adonái יהוה</span> está con él y todo lo que hace prospera.</p>
+            <p>Potifar percibe que la bendición viene del Elohím de Yosef y lo asciende a mayordomo principal.</p>
+            <p>Toda la casa del egipcio es bendecida por causa de Yosef.</p>
+            <p>Potifar deja en sus manos todos sus bienes, confiando en su integridad absoluta.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>Resumen mesiánico</h3>
+            <p>El <span class="highlight">justo sufriente</span> bendice incluso a los extranjeros.</p>
+            <p>La historia apunta a la <span class="highlight">misión universal del Mashíaj</span>, cuya presencia trae vida y prosperidad espiritual a todas las naciones.</p>
+            <p>Así como Yosef prospera en esclavitud, <span class="highlight">Yeshúa haMashíaj</span> —<span class="highlight">MarYah</span> según LA DIVINIDAD DE YESHÚA— trae redención aun en los lugares más oscuros.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 13 — Tefiláh (Oración) de la Aliyáh (Génesis 39:1–6)</h1>
+    <div class="content-container">
+        <div class="prayer-text">
+            <p>Adonái יהוה,</p>
+            <p>Tú que acompañaste a Yosef a Mitsráyim,</p>
+            <p>y que transformaste la casa de Potifar en bendición,</p>
+            <p>te damos gracias porque Tu presencia sostiene al justo en toda circunstancia.</p>
+            <p>Yeshúa haMashíaj,</p>
+            <p>Tú que eres <span class="highlight">MarYah</span> manifestado,</p>
+            <p>enséñanos a vivir con fidelidad aun cuando somos probados,</p>
+            <p>a trabajar con integridad,</p>
+            <p>y a ser luz entre los que no te conocen.</p>
+            <p>Ruaj HaKodesh,</p>
+            <p>fortalece nuestro corazón para permanecer firmes en medio de injusticias,</p>
+            <p>para que, como Yosef,</p>
+            <p>nuestras acciones reflejen Tu gloria y traigan prosperidad espiritual a nuestro entorno.</p>
+            <p>Que cada hogar donde entremos reciba bendición,</p>
+            <p>que la gracia divina nos rodee como rodeó a Yosef,</p>
+            <p>y que nuestra vida sea testimonio del amor eterno de Elohím.</p>
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya6.html">Continuar con la Aliyá 6</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
