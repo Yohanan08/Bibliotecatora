@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>El Nombre del Creador</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <header>
+        <h1>EL NOMBRE DEL CREADOR יְהוָה</h1>
+        <p class="translation">
+            La afirmación de que el Nombre de nuestro Rey, Adonai Yeshúa HaMashíaj, no ha sido revelado es insostenible y se contradice directamente con la evidencia profética del Tanaj y la revelación completa del Brit Hadashah. El Nombre del Salvador no es un misterio oculto; es la manifestación explícita del plan de salvación de <span class="highlight hebrew-term">יְהוָה</span>.
+        </p>
+    </header>
+
+    <div class="content-container">
+        <h1>I. El Nombre Único de יְהוָה en el Tanaj</h1>
+        <p>
+            La Torá establece que <span class="highlight hebrew-term">יְהוָה</span> reveló Su Nombre y Su plan de salvación desde el principio.
+        </p>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">La Revelación Eterna del Tetragrammaton:</h3>
+            <p>
+                Cuando Moshé preguntó a Adonai por Su Nombre, la respuesta fue la base de toda la identidad redentora:
+            </p>
+            <div class="verse-container">
+                <div class="verse-number">Shemot 3:14-15 (Tora Viviente)</div>
+                <div class="translation">
+                    "Y dijo Elohím a Moshé: EH-YEH ASHÉR EH-YEH (YO SOY EL QUE SOY). Y dijo: Así dirás a los hijos de Yisra'el: EH-YEH me envió a vosotros. Además dijo Elohím a Moshé: Así dirás a los hijos de Yisra'el: <span class="hebrew-term">יְהוָה</span>, el Elohím de vuestros padres, el Elohím de Avraham, Elohím de Yitzjak y Elohím de Ya'akóv, me ha enviado a vosotros; <strong class="highlight">éste es Mi Nombre para siempre</strong>, y con él se Me recordará por todas las generaciones"
+                </div>
+            </div>
+            <p>
+                Este pasaje afirma que el Nombre no solo fue revelado, sino que fue establecido para la eternidad.
+            </p>
+        </div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">La Unidad del Nombre (Shemá):</h3>
+            <p>
+                La columna vertebral de la fe de Israel es la declaración de la unicidad de Adonai y Su Nombre, conocido como el Shemá:
+            </p>
+            <div class="verse-container">
+                <div class="verse-number">Devarim 6:4</div>
+                <div class="hebrew">שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָֽד</div>
+                <div class="transliteration">Shemá Yisra'el: Adonai Elohénu, Adonai Ejad.</div>
+                <div class="translation">"Escucha Yisra'el: <span class="hebrew-term">יְהוָה</span> nuestro Elohím, <span class="hebrew-term">יְהוָה</span> Uno es"</div>
+            </div>
+            <p>
+                Esta unidad culmina proféticamente en el reconocimiento final del Rey Mashíaj:
+            </p>
+            <div class="verse-container">
+                <div class="verse-number">ZacarYah 14:9</div>
+                <div class="translation">"Y será <span class="hebrew-term">יְהוָה</span> Rey sobre toda la tierra; en aquel día <span class="hebrew-term">יְהוָה</span> será <strong class="highlight">Uno, y Su Nombre Uno</strong>"</div>
+            </div>
+            <p>La persona del Mashíaj es la encarnación de este Nombre único.</p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>II. El Nombre de Yeshúa como Cumplimiento Profético</h1>
+        <p>
+            El Nombre <strong class="highlight">Yeshúa</strong> (<span class="hebrew-term">יֵשׁוּעַ</span>) es hebreo y significa "<span class="hebrew-term">יְהוָה</span> salva" o "Salvación de <span class="hebrew-term">יְהוָה</span>". Este Nombre es la manifestación del propósito redentor revelado en el Tanaj.
+        </p>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">Torre Fuerte y Salvación:</h3>
+            <p>
+                El profeta YeshaYah, al describir al Siervo Sufriente y Redentor, habla de una salvación futura:
+            </p>
+            <div class="verse-container">
+                <div class="verse-number">Mishlé (Proverbios) 18:10</div>
+                <div class="translation">"El Nombre de <span class="hebrew-term">יְהוָה</span> es Torre fuerte; a ella corre el justo y es levantado"</div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">El Nuevo Nombre Designado por יְהוָה:</h3>
+            <p>
+                Adonai promete darle un nuevo Nombre, y este Nombre está ligado a Su gloria:
+            </p>
+            <div class="verse-container">
+                <div class="verse-number">YeshaYah 62:2</div>
+                <div class="translation">"Y las naciones verán tu justicia, y todos los reyes tu gloria; y te será puesto un nombre nuevo, que la boca de <span class="hebrew-term">יְהוָה</span> designará"</div>
+            </div>
+            <p>
+                El Nombre <strong class="highlight">Yeshúa</strong> es precisamente el Nombre designado por Adonai que lleva implícita Su propia identidad y Su poder salvador.
+            </p>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>III. La Revelación Explícita en el Brit Hadashah</h1>
+        <p>
+            El Brit Hadashah (Peshita Aramea) no deja lugar a dudas, pues el Nombre Yeshúa fue ordenado directamente por el cielo antes de Su nacimiento.
+        </p>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">La Orden Divina y el Significado Redentor:</h3>
+            <p>
+                El ángel de <span class="hebrew-term">יְהוָה</span> le ordena a Yosef que ponga el Nombre Yeshúa al niño, explicando el significado:
+            </p>
+            <div class="verse-container">
+                <div class="verse-number">Mateo 1:21 (Brit Hadashah)</div>
+                <div class="translation">"Y dará a luz un hijo, y llamarás Su Nombre <strong class="highlight">Yeshúa</strong>, porque Él <strong class="highlight">salvará</strong> a Su pueblo de sus pecados"</div>
+            </div>
+            <p>
+                El acto de salvar (Yeshúa) es el testimonio irrefutable del Nombre.
+            </p>
+        </div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">El Único Nombre para la Salvación:</h3>
+            <p>
+                Kefá (Pedro) declaró que el Nombre del Mashíaj es el único vehículo de redención:
+            </p>
+            <div class="verse-container">
+                <div class="verse-number">Hechos 4:12 (Brit Hadashah)</div>
+                <div class="translation">"Y en ningún otro hay salvación; porque no hay otro Nombre bajo el cielo, dado a los hombres, en que podamos ser salvos"</div>
+            </div>
+            <p>Este Nombre es el que está "sobre todo nombre" (Filipenses 2:9-11).</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>IV. Origen de la Confusión y Refutación</h1>
+
+        <div class="explanation">
+            <h3 class="prophetic-title">El Error Doctrinal: Confundir Pronunciación con Identidad</h3>
+            <p>
+                La creencia errónea surge de una confusión entre la revelación de la identidad y la pronunciación del Tetragrammaton (<span class="hebrew-term">יְהוָה</span>).
+            </p>
+            <ul>
+                <li><strong>El Celo por el Nombre:</strong> Algunos grupos confunden la pronunciación de <span class="hebrew-term">יְהוָה</span> con la identidad revelada del Mashíaj, argumentando que la pronunciación exacta se perdió.</li>
+                <li><strong>Ignorancia del Mesianismo:</strong> <strong class="highlight">Yeshúa HaMashíaj</strong> no es un nombre alternativo, sino la manifestación completa del Nombre de <span class="hebrew-term">יְהוָה</span> en la carne. Negar que Yeshúa sea el Nombre revelado es negar la Palabra de Adonai.</li>
+            </ul>
+        </div>
+        
+        <div class="section-divider"></div>
+        
+        <div class="prophetic-content">
+            <h2>La Revelación Innegable de יְהוָה en la Escritura</h2>
+            
+            <div class="prophetic-section">
+                <div class="prophetic-title">Mandato de Recordación (Shemot 3:15):</div>
+                <p>
+                    <strong class="highlight">Frecuencia de Revelación:</strong> El Nombre <span class="hebrew-term">יְהוָה</span> está revelado en el Tanaj aproximadamente <strong class="highlight">6,828 veces</strong>, demostrando que Adonai quería que Su pueblo lo invocara.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Conexión en los Escritos (Tehilim/Salmos):</div>
+                <div class="verse-container">
+                    <div class="verse-number">Tehilim (Salmos) 54:1</div>
+                    <div class="translation">"Sálvame, oh Elohím, por Tu Nombre, y con Tu poder hazme justicia"</div>
+                </div>
+                <p>
+                    El nombre hebreo para "Sálvame" es una variación de la misma raíz (<span class="hebrew-term">יָשַׁע</span> - yasha) que da origen a <strong class="highlight">Yeshúa</strong>.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Vástago Justo (Yirmeyah 23:5-6):</div>
+                <div class="verse-container">
+                    <div class="verse-number">Yirmeyah 23:5-6</div>
+                    <div class="translation">"y este será Su Nombre con el cual Le llamarán: <span class="hebrew-term">יְהוָה</span>, Justicia Nuestra"</div>
+                </div>
+                <p>
+                    <strong class="highlight">Yeshúa HaMashíaj</strong> es este Vástago, y Su Nombre lo identifica como el cumplimiento de esta profecía, trayendo la justicia de <span class="hebrew-term">יְהוָה</span>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>V. El Nombre Manifestado y el Conocimiento Profético</h1>
+
+        <div class="prophetic-content">
+            <h2 class="prophetic-title">Promesa de Conocimiento del Nombre (YeshaYah 52:6)</h2>
+            <div class="verse-container">
+                <div class="verse-number">YeshaYah 52:6</div>
+                <div class="translation">"Por tanto, Mi pueblo sabrá <strong class="highlight">Mi Nombre</strong> por esta causa en aquel día; porque Yo Soy el mismo que dice: Heme aquí"</div>
+            </div>
+            <p class="explanation">
+                Esta profecía se refiere a que el poder redentor, el significado y el carácter de Su Nombre serían plenamente conocidos y experimentados a través del acto de salvación: <strong class="highlight">la venida del Mashíaj</strong>.
+            </p>
+        </div>
+
+        <div class="prophetic-content">
+            <h2 class="prophetic-title">Yeshúa HaMashíaj: El Nombre Manifestado</h2>
+            <div class="prophetic-section">
+                <div class="prophetic-title">La Declaración de Yeshúa (Yojanán 17:6, 26):</div>
+                <div class="verse-container">
+                    <div class="verse-number">Yojanán 17:6</div>
+                    <div class="translation">"He manifestado <strong class="highlight">Tu Nombre</strong> a los hombres que del mundo Me diste; tuyos eran, y Me los diste, y han guardado Tu Palabra"</div>
+                </div>
+                <div class="verse-container">
+                    <div class="verse-number">Yojanán 17:26</div>
+                    <div class="translation">"Y les he dado a conocer Tu Nombre, y lo daré a conocer aún, para que el amor con que Me has amado, esté en ellos, y Yo en ellos"</div>
+                </div>
+                <p>
+                    El Nombre que Yeshúa manifestó es la verdad de que Él, como Mashíaj, es la <strong class="highlight">salvación de <span class="hebrew-term">יְהוָה</span></strong>.
+                </p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Nombre Sobre Todo Nombre (Filipenses 2:9-10):</div>
+                <div class="scripture">
+                    "Le dio un Nombre que es <strong class="highlight">sobre todo nombre</strong>, para que en el Nombre de Yeshúa se doble toda rodilla..."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>VI. El Silogismo de la Salvación: Yo'el y Romanos</h1>
+
+        <div class="prophetic-content">
+            <h2 class="prophetic-title">I. La Profecía del Tanaj: Yo'el 2:32</h2>
+            <div class="verse-container">
+                <div class="verse-number">Yo'el 2:32 (Tanaj)</div>
+                <div class="translation">"Y sucederá que <strong class="highlight">todo aquel que invocare el Nombre de <span class="hebrew-term">יְהוָה</span>, será salvo</strong>..."</div>
+            </div>
+            <p>
+                <strong class="highlight">Punto clave:</strong> La promesa de salvación está ligada a la invocación del Nombre de <span class="hebrew-term">יְהוָה</span>.
+            </p>
+        </div>
+
+        <div class="prophetic-content">
+            <h2 class="prophetic-title">II. El Cumplimiento en el Brit Hadashah: Romanos 10:9, 13-14</h2>
+            <div class="prophetic-section">
+                <div class="prophetic-title">La Confesión Central (Romanos 10:9):</div>
+                <div class="verse-container">
+                    <div class="verse-number">Romanos 10:9 (Brit Hadashah)</div>
+                    <div class="translation">"Que si confesares con tu boca que <strong class="highlight">Yeshúa es Adonai</strong>, y creyeres en tu corazón que Elohím Le levantó de los muertos, serás salvo"</div>
+                </div>
+                <p>
+                    La confesión central para la salvación es que <strong class="highlight">Yeshúa es Adonai</strong> (el יְהוָה de la profecía).
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">La Aplicación de Yo'el (Romanos 10:13):</div>
+                <div class="verse-container">
+                    <div class="verse-number">Romanos 10:13 (Citando a Yo'el 2:32)</div>
+                    <div class="translation">"Porque todo aquel que invocare el <strong class="highlight">Nombre de Adonai</strong>, será salvo"</div>
+                </div>
+                <p>
+                    <strong class="highlight">Conexión Inequívoca:</strong> Shaúl identifica a Yeshúa como el Adonai (<span class="hebrew-term">יְהוָה</span>) cuyo Nombre invoca el creyente para ser salvo.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">La Necesidad de la Proclamación (Romanos 10:14):</div>
+                <div class="verse-container">
+                    <div class="verse-number">Romanos 10:14</div>
+                    <div class="translation">"¿Cómo, pues, invocarán a aquel en el cual no han creído? ¿Y cómo creerán en aquel de quien no han oído? ¿Y cómo oirán sin haber quien les predique?"</div>
+                </div>
+                <p>
+                    <strong class="highlight">Conclusión Lógica:</strong> El Nombre que debe ser predicado es el de Yeshúa, confirmando que es el Nombre revelado para la salvación.
+                </p>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <h3>Resumen Final: El Nombre Revelado es Yeshúa HaMashíaj</h3>
+            <ul>
+                <li>El Nombre <span class="hebrew-term">יְהוָה</span> fue revelado miles de veces como un memorial perpetuo.</li>
+                <li>La promesa de "conocerán Mi Nombre" (YeshaYah 52:6) se cumplió en la plenitud del carácter y poder redentor de <strong class="highlight">Yeshúa</strong>.</li>
+                <li><strong class="highlight">Yeshúa HaMashíaj</strong> es la manifestación viva y final de ese Nombre, quien cumplió la profecía al declarar: "He manifestado Tu Nombre" (Yojanán 17:6).</li>
+                <li>Es el Nombre por el cual se invoca la salvación, según Yo'el 2:32 y su aplicación en Romanos 10:13.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Tefilá por la Restauración del Nombre del Mashíaj</h2>
+        
+        <div class="prayer-text">
+            <p>
+                <strong class="highlight">Baruj Atá <span class="hebrew-term">יְהוָה</span> Eloheynu Melej Ha'olam</strong> (Bendito eres Tú, <span class="hebrew-term">יְהוָה</span>, nuestro Elohím, Rey del universo).
+            </p>
+            <p>
+                Adonai, Rey del Universo, te damos gracias por el don inigualable de Tu Palabra, que es la Torá, los Profetas, y los Escritos (Tanaj), y el Brit Hadashah. Declaramos que en ellos has revelado Tu identidad y Tu plan de salvación.
+            </p>
+            <p>
+                Reconocemos Tu Nombre eterno, <span class="hebrew-term">יְהוָה</span>, y confesamos que Tu Nombre está íntimamente ligado al Nombre de Tu Hijo. No hay dos nombres para la salvación, sino la manifestación de Tu unidad y Tu propósito eterno.
+            </p>
+            
+            <h3 class="prophetic-title">La Unidad y la Verdad del Nombre</h3>
+            <p>
+                Padre, imploramos la restauración del verdadero conocimiento de <strong class="highlight">Yeshúa HaMashíaj</strong> en todo el mundo.
+            </p>
+            <ul>
+                <li>Que la mentira sea desenmascarada, y que el velo que cubre los ojos de Tu pueblo sea quitado (2 Corintios 3:14).</li>
+                <li>Que el Nombre de Yeshúa, que significa "<span class="hebrew-term">יְהוָה</span> salva", sea reconocido como el cumplimiento de la promesa profética:
+                    <div class="scripture">
+                        Así como el profeta Yo'el declaró que "todo aquel que invocare el Nombre de <span class="hebrew-term">יְהוָה</span>, será salvo" (Yo'el 2:32), que la asamblea de Tu pueblo confiese con denuedo que <strong class="highlight">Yeshúa es Adonai</strong> (Romanos 10:9).
+                    </div>
+                </li>
+            </ul>
+            
+            <h3 class="prophetic-title">Exaltación y Soberanía</h3>
+            <p>
+                Declaramos la supremacía del Nombre que está sobre todo nombre, el Nombre que nos fue revelado por mandato angélico (Mateo 1:21).
+            </p>
+            <ul>
+                <li>Conforme a la profecía de ZacarYah, oramos para que llegue pronto el día en que <span class="hebrew-term">יְהוָה</span> sea Rey sobre toda la tierra, y que el mundo confiese que Su Nombre es Uno (ZacarYah 14:9).</li>
+                <li>Que en el Nombre de <strong class="highlight">Yeshúa HaMashíaj</strong> se doble toda rodilla en el cielo, en la tierra y debajo de la tierra (Filipenses 2:9-10). Que el mundo entero sepa que el Rey de Israel, el Rey de Iehudáh, el Rey de los injertados, es <strong class="highlight">Adonai Yeshúa HaMashíaj</strong>, nuestro Elohím.</li>
+            </ul>
+            <p>
+                Que esta Tefilá acelere el día en que la tierra sea llena del conocimiento de <span class="hebrew-term">יְהוָה</span>, como las aguas cubren el mar (YeshaYah 11:9), un conocimiento que solo se revela plenamente en Tu Mesías.
+            </p>
+        </div>
+
+        <p class="prayer-conclusion">
+            Te pedimos todo esto en el Nombre santo y poderoso de Yeshúa HaMashíaj, la Torá Viviente, Amén.
+        </p>
+    </div>
+        <p class="prayer-conclusion">
+            <a href="https://ia-interactiva.vercel.app/">Yeshúa la Toraviviente | todos los recursos kedoshim para tu crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj</a>
+        </p>
+        <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia
+                        Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a>
+                </p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
