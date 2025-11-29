@@ -1,0 +1,129 @@
+<!doctype html>
+<!-- ...existing code... -->
+<style>
+  /* Estilos mínimos para navbar + sidebar incrustados */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 12px;
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(6px);
+    box-shadow: none;
+    z-index: 10000;
+  }
+  .hamburger-btn {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 36px;
+    height: 28px;
+    justify-content: center;
+    background: rgba(255,255,255,0.85); /* ligero fondo para legibilidad */
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    backdrop-filter: blur(4px); /* opcional: mejora visibilidad sobre imágenes */
+  }
+  .hamburger-line{
+    height:3px;
+    background:#333;
+    border-radius:2px;
+  }
+  .navbar-title{font-weight:600;color:#222}
+  .overlay{
+    position:fixed;inset:0;background:rgba(0,0,0,0.35);display:none;z-index:999;
+  }
+  .overlay.active{display:block}
+  .sidebar{
+    position:fixed;left:-320px;top:0;height:100%;width:300px;background:#fff;
+    box-shadow: 4px 0 18px rgba(0,0,0,0.12);z-index:1000;padding:14px;
+    transition:left .28s ease;
+    overflow:auto;
+    border-radius:0 12px 12px 0;
+  }
+  .sidebar.active{left:0}
+  .sidebar-header{display:flex;flex-direction:column;gap:6px}
+  .close-btn{align-self:flex-end;border:none;background:transparent;font-size:20px;cursor:pointer}
+  .sidebar-title{font-weight:700}
+  .sidebar-subtitle{font-size:13px;color:#555}
+  .menu-section{margin-top:12px}
+  .menu-item{display:flex;gap:8px;align-items:flex-start;text-decoration:none;color:#222;padding:8px;border-radius:8px}
+  .menu-item .icon{font-size:18px}
+  .menu-item:hover{background:#f7f9ff}
+</style>
+
+<!-- HTML del menú (insertado en el placeholder) -->
+<div class="navbar" role="navigation" aria-label="Menú principal">
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="Abrir menú">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </button>
+  <div class="navbar-title"><span>📖</span> Recursos Kedoshim.</div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <button class="close-btn" id="closeBtn" aria-label="Cerrar">×</button>
+    <div class="sidebar-title"><span>📖</span> Contenidos</div>
+    <div class="sidebar-subtitle">Recursos Kedoshim</div>
+  </div>
+
+  <div class="sidebar-content">
+    <div class="menu-section">
+      <a href="https://ia-interactiva.vercel.app/" class="menu-item">
+        <span class="icon">🕎</span>
+        <span class="menu-text">Yeshúa la Toraviviente | todos los recursos kedoshim para tu crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ...existing code...
+  (function(){
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeBtn');
+
+    if (!hamburgerBtn || !sidebar || !overlay || !closeBtn) return;
+
+    function openSidebar(){
+      sidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSidebar(){
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    hamburgerBtn.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      if (sidebar.classList.contains('active')) closeSidebar(); else openSidebar();
+    });
+
+    closeBtn.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // cerrar con ESC
+    document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeSidebar(); });
+
+    // cerrar al click en enlace del menú
+    document.querySelectorAll('.menu-item').forEach(it=> it.addEventListener('click', closeSidebar));
+  })();
+  // ...existing code...
+</script>
+<!-- ...existing code... -->
