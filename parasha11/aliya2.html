@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Parashá Vayigash (ויגש)- Génesis 44:31-45:7</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+  11. Parashá Vayigash (ויגש) – Aliyáh 2: (Génesis 44:31-45:7) Yosef se revela a sus hermanos.
+        <p>
+       Haftaráh: Ezequiel 37:15-28 (Reunión de los hijos de Israel).
+        </p>
+        <p>
+        Brit Hadasháh: Romanos 11:25-26 (El redescubrimiento de Yeshúa por Israel).
+        </p>
+      </h1>
+      <h1>Punto 1. Bereshit (Génesis) 44:31 - 45:7</h1>
+
+    <div class="content-container">
+        <h2>La Intercesión de Judá y la Revelación de Yosef</h2>
+
+        <div class="section-container">
+            <h3>Judá Intercede por Binyamin (44:31-34)</h3>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 44:31</div>
+                <div class="hebrew">וְרָאָה כִּי אֵין הַנַּעַר וָמֵת וְהוֹרִידוּ עֲבָדֶיךָ אֶת־שֵׂיבַת עַבְדְּךָ אָבִינוּ בְּיָגוֹן שְׁאֹלָה:</div>
+                <div class="transliteration">Ve-ra'áh kí ein hanna'ar vamét vehoridú avadéja et-seivát avdeja avínu beyagón she'ólah.</div>
+                <div class="translation">Traducción Literal: Y verá que el joven no está, y morirá; y habrán hecho descender sus siervos las canas de su siervo nuestro padre con angustia al Sheól.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 44:32</div>
+                <div class="hebrew">כִּי עַבְדְּךָ עָרַב אֶת־הַנַּעַר מֵעִם אָבִי לֵאמֹר אִם־לֹא אֲבִיאֶנּוּ אֵלֶיךָ וְחָטָאתִי לְאָבִי כָּל־הַיָּמִים:</div>
+                <div class="transliteration">Ki avdejá aráv et-hanna'ar me'im aví lemór im-lo aviennu eilayja vejatáti le'aví kol-hayyamím.</div>
+                <div class="translation">Traducción Literal: Porque su siervo fue fiador del joven con mi padre, diciendo: Si no lo traigo a ti, habré pecado contra mi padre todos los días.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 44:33</div>
+                <div class="hebrew">וְעַתָּה יֵשֶׁב־נָא עַבְדְּךָ תַּחַת הַנַּעַר עֶבֶד לַאדֹנִי וְהַנַּעַר יַעַל עִם־אֶחָיו:</div>
+                <div class="transliteration">Ve'atáh yeshév-na avdeja tájat hanna'ar éved la'Adoní vehanna'ar ya'al im-ejáv.</div>
+                <div class="translation">Traducción Literal: Y ahora, por favor, quédese su siervo en lugar del joven como esclavo de mi Adon, y que el joven suba con sus hermanos.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 44:34</div>
+                <div class="hebrew">כִּי אֵיךְ אֶעֱלֶה אֶל־אָבִי וְהַנַּעַר אֵינֶנּוּ אִתִּי פֶּן אֶרְאֶה בָרָע אֲשֶׁר יִמְצָא אֶת־אָבִי:</div>
+                <div class="transliteration">Ki éij e'eléh el-aví vehanna'ar einénnu ití pen er'éh vará ashér yimtzá et-aví.</div>
+                <div class="translation">Traducción Literal: Porque ¿cómo subiré a mi padre si el joven no está conmigo? No sea que vea el mal que encontrará a mi padre.</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>Yosef se da a Conocer a sus Hermanos (45:1-7)</h3>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 45:1</div>
+                <div class="hebrew">וְלֹא יָכֹל יוֹסֵף לְהִתְאַפֵּק לְכֹל הַנִּצָּבִים עָלָיו וַיִּקְרָא הֹוצִיאוּ כָל־אִישׁ מֵעָלָי וְלֹא־עָמַד אִישׁ אִתּוֹ בְּהִתְוַדַּע יוֹסֵף אֶל־אֶחָיו:</div>
+                <div class="transliteration">Veló yajól Yoséf lehit'apék lejol hannitzavím aláv vayyiqrá hotzíu jol-ish me'aláy veló-amád ish ittó behitvadda' Yoséf el-ejáv.</div>
+                <div class="translation">Traducción Literal: Y no pudo Yosef contenerse delante de todos los que estaban de pie junto a él; y gritó: ¡Hagan salir a todo hombre de mi presencia! Y no se quedó nadie con él al darse a conocer Yosef a sus hermanos.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 45:2</div>
+                <div class="hebrew">וַיִּתֵּן אֶת־קֹלוֹ בִּבְכִי וַיִּשְׁמְעוּ מִצְרַיִם וּבֵית פַּרְעֹה:</div>
+                <div class="transliteration">Vayyittén et-qoló bivkhí vayyishme'ú Mitzráyim uvéit Par'óh.</div>
+                <div class="translation">Traducción Literal: Y alzó su voz en llanto, y oyeron los Mitzrayim (Egipcios) y la casa del Faraón.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 45:3</div>
+                <div class="hebrew">וַיֹּאמֶר יוֹסֵף אֶל־אֶחָיו אֲנִי יוֹסֵף הַעוֹד אָבִי חָי וְלֹא־יָכְלוּ אֶחָיו לַעֲנוֹת אֹתוֹ כִּי נִבְהֲלוּ מִפָּנָיו:</div>
+                <div class="transliteration">Vayyómer Yoséf el-ejáv: Aní Yoséf, ha'ód aví jáy? Veló-yájlu ejáv la'anót otó ki nivhalú mippanáv.</div>
+                <div class="translation">Traducción Literal: Y dijo Yosef a sus hermanos: Yo soy Yosef. ¿Vive aún mi padre? Y no pudieron sus hermanos responderle, porque se turbaron de su presencia.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 45:4</div>
+                <div class="hebrew">וַיֹּאמֶר יוֹסֵף אֶל־אֶחָיו גְּשׁוּ־נָא אֵלַי וַיִּגָּשׁוּ וַיֹּאמֶר אֲנִי יוֹסֵף אֲחִיכֶם אֲשֶׁר־מְכַרְתֶּם אֹתִי מִצְרָיְמָה:</div>
+                <div class="transliteration">Vayyómer Yoséf el-ejáv: Geshú-na eiláy, vayyiggáshu. Vayyómer: Aní Yoséf ajijém ashér-mejartém otí Mitzráymah.</div>
+                <div class="translation">Traducción Literal: Y dijo Yosef a sus hermanos: Acérquense, por favor, a mí. Y se acercaron. Y dijo: Yo soy Yosef su hermano, a quien vendieron a Mitzráyim.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 45:5</div>
+                <div class="hebrew">וְעַתָּה אַל־תֵּעָצְבוּ וְאַל־יִחַר בְּעֵינֵיכֶם כִּי־מְכַרְתֶּם אֹתִי הֵנָּה כִּי לְמִחְיָה שְׁלָחַנִי אֱלֹהִים לִפְנֵיכֶם:</div>
+                <div class="transliteration">Ve'atáh al-te'atzvú ve'al-yijár be'einéijem kí-mejartém otí hénh: Ki lemíjyá shlajáni Elohím lifnéijem.</div>
+                <div class="translation">Traducción Literal: Y ahora no se entristezcan ni se enojen con ustedes mismos por haberme vendido aquí, porque para vida (<span class="hebrew-term">לְמִחְיָה</span> - lijyá) me envió Elohim delante de ustedes.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 45:6</div>
+                <div class="hebrew">כִּי־זֶה שְׁנָתַיִם הָרָעָב בְּקֶרֶב הָאָרֶץ וְעוֹד חָמֵשׁ שָׁנִים אֲשֶׁר אֵין־חָרִישׁ וְקָצִיר:</div>
+                <div class="transliteration">Ki-zéh shnatáyim hará'áv beqérev ha'áretz ve'ód jamésh shaním ashér ein-jarísh veqatzír.</div>
+                <div class="translation">Traducción Literal: Porque ya son dos años de hambre en medio de la tierra, y quedan aún cinco años en que no habrá arada ni siega.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Bereshit (Génesis) 45:7</div>
+                <div class="hebrew">וַיִּשְׁלָחֵנִי אֱלֹהִים לִפְנֵיכֶם לָשׂוּם לָכֶם שְׁאֵרִית בָּאָרֶץ וּלְהַחֲיוֹת לָכֶם לִגְדֹלָה:</div>
+                <div class="transliteration">Vayyishlajéni Elohím lifnéijem lasúm lajém she'erít ba'áretz ulehajayót lajém ligdólah.</div>
+                <div class="translation">Traducción Literal: Y me envió Elohim delante de ustedes, para ponerles un remanente (<span class="hebrew-term">שְׁאֵרִית</span> - she'erit) en la tierra y para darles vida en gran salvación (<span class="hebrew-term">לִגְדֹלָה</span> - ligdólah).</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+        <h2>Análisis Mesiánico y Temas Proféticos</h2>
+
+        <div class="section-container">
+            <h3><span class="highlight">El Paralelo Mesiánico: Judá y Yosef</span></h3>
+            <p>La narrativa de Judá y Yosef es un poderoso cuadro profético de la Primera y Segunda Venida del Mesías, <span class="highlight">Yeshúa HaMashíaj</span>.</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. El Sacrificio del Fiador (Judá - Mashíaj Ben Efrayim / Yosef)</div>
+                    <p>La disposición de Judá de ofrecerse como <span class="highlight">fiador</span> (<span class="hebrew-term">עָרַב</span> - aráv, 44:32), sacrificando su propia libertad por la de su hermano, prefigura la intercesión de Yeshúa:</p>
+                    <ul>
+                        <li>Judá se ofrece como esclavo en lugar de Benjamín (44:33).</li>
+                        <li>Yeshúa se ofreció como siervo para rescatarnos de la esclavitud del pecado (Filipenses 2:7).</li>
+                    </ul>
+                </div>
+                
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. La Revelación al Remanente (Yosef - Mashíaj Ben David)</div>
+                    <p>La dramática auto-revelación de Yosef (45:1-3) se considera un modelo de la eventual revelación de Yeshúa a Su pueblo Israel en los últimos días.</p>
+                    <ul>
+                        <li>Yosef ordena que todos los gentiles salgan (<span class="highlight">"Hagan salir a todo hombre de mi presencia"</span>) para estar a solas con sus hermanos (Israel). Este es un momento íntimo y exclusivo.</li>
+                        <li>La pregunta de Yosef: <span class="highlight">"Yo soy Yosef, ¿vive aún mi padre?"</span>, choca con la incredulidad y el terror de sus hermanos, quienes se turbaron (<span class="highlight">נִבְהֲלוּ</span> - nivhalú, 45:3). Esto refleja el shock de Israel cuando finalmente reconozcan a su Mesías Ejecutado.</li>
+                        <li>El plan de Elohim: Yosef afirma que su venta no fue por maldad de ellos, sino un plan divino para preservación (<span class="hebrew-term">לְמִחְיָה</span> - lijyá, 45:5). El exilio y el sufrimiento de Yeshúa también fueron un plan para la vida de muchos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <h1>BERESHIT (GÉNESIS) 44:31 - 45:7</h1>
+    <p style="text-align: center; font-style: italic;">
+        La porción de Bereshit (Génesis) 44:31-45:7 es el clímax de la narrativa de Yosef, donde se revela a Sus hermanos y se establece la soberanía de Elohim sobre el mal humano. Este pasaje es un poderoso patrón profético de la Revelación del Mashíaj de Israel a Su pueblo.
+    </p>
+    <div class="section-divider"></div>
+
+    <h1>PASAJES CLAVE DE LA ALIYÁ</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Génesis 45:4 - La Revelación</h2>
+            <div class="verse-container">
+                <div class="verse-number">Génesis 45:4</div>
+                <div class="hebrew">וַיֹּאמֶר יוֹסֵף אֶל־אֶחָיו אֲנִי יוֹסֵף הַעוֹד אָבִי חָי וְלֹא יָכְלוּ אֶחָיו לַעֲנוֹת אֹתוֹ כִּי נִבְהֲלוּ מִפָּנָיו׃</div>
+                <div class="transliteration">Vayómer Yosef el-ejav Aní Yosef ha'od aví jay veló yajlú ejav la'anót otó kí nivhalú mippanáv.</div>
+                <div class="translation">Y dijo Yosef a sus hermanos: Yo soy Yosef. ¿Vive aún mi padre? Y sus hermanos no pudieron responderle, porque estaban turbados delante de él.</div>
+            </div>
+            <div class="verse-container">
+                <div class="verse-number">Génesis 45:5</div>
+                <div class="hebrew">וְעַתָּה אַל־תֵּעָצְבוּ וְאַל־יִחַר בְּעֵינֵיכֶם כִּי־מְכַרְתֶּם אֹתִי הֵנָּה כִּי לְמִחְיָה שְׁלָחַנִי אֱלֹהִים לִפְנֵיכֶם׃</div>
+                <div class="transliteration">Ve'attáh al-te'atzvú ve'al-yíjar be'einéijem kí-mejartem otí hénh: kí l'mijyah shlajaní Elohím lifnéijem.</div>
+                <div class="literal-translation">Y ahora no se entristezcan ni se enojen con ustedes mismos por haberme vendido aquí, porque <span class="highlight">para vida</span> (l'mijyah) me envió Elohim delante de ustedes.</div>
+            </div>
+        </div>
+    </div>
+
+    <h1>PATRÓN PROFÉTICO EN YOSEF</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Profecía Cumplida y Conexión con los Profetas</h2>
+            <p>El centro de esta aliyá es la transformación del dolor en redención, un tema recurrente en la profecía de Israel, y su manifestación en el Mashíaj Yeshúa.</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Pasaje Profético (Tanaj):</div>
+                    <div class="verse-container">
+                        <div class="verse-number">Zekharyah (Zacarías) 12:10</div>
+                        <div class="scripture">"Y derramaré sobre la casa de David, y sobre los moradores de Yerushaláyim, espíritu de gracia y de oración; y mirarán a Mí, a quien traspasaron, y harán lamentación sobre él, como lamentación por hijo único, afligiéndose por él como quien se aflige por el primogénito."</div>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Conexión con los Profetas:</div>
+                    <p>El plan de <span class="hebrew-term">יְהוָה</span> es salvar a Su pueblo a través de Aquel que fue rechazado.</p>
+                    <ul>
+                        <li><span class="highlight">Yesha'yahu (Isaías) 53:3:</span> El Siervo de <span class="hebrew-term">יְהוָה</span> es "despreciado y desechado entre los hombres, varón de dolores, experimentado en quebranto." <span class="highlight">Yosef fue despreciado y vendido</span> (Génesis 45:4).</li>
+                        <li><span class="highlight">Yirmeyahu (Jeremías) 31:16-17:</span> La restauración de los hijos de Israel tras su luto. El lamento de los hermanos de Yosef (Génesis 45:3) al darse cuenta de su pecado, prefigura la <span class="highlight">lamentación futura de Israel (Zekharyah 12:10)</span> por Aquel que fue traspasado, antes de Su revelación gloriosa.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="explanation">
+                <div class="prophetic-title">Explicación del Cumplimiento:</div>
+                <p>Yosef, que significa "<span class="hebrew-term">יְהוָה</span> añade," fue vendido por sus hermanos a las naciones (Mitzráyim) y dado por muerto (Génesis 37). Luego fue exaltado como Adon sobre el mundo conocido. Cuando sus hermanos se postran ante él sin reconocerlo, se cumple la profecía de sus sueños (Génesis 37:9). Este es el patrón del <span class="highlight">Mashíaj ben Yosef</span>: Yeshúa fue rechazado, vendido por treinta piezas, y exaltado a la derecha del Padre. La profecía de Zekharyah se cumplirá cuando, en los últimos días, el pueblo de Israel (los hermanos) reconozca a Yeshúa (Yosef) como el gobernante exaltado que fue traspasado por ellos. La <span class="highlight">turbación y el llanto</span> de los hermanos de Yosef son el modelo de la <span class="highlight">Teshuvá</span> nacional que precede a la redención final.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Cumplimiento en Yeshúa HaMashíaj (Brit Hadashah)</h2>
+            <p>El Brit Hadashah (Peshita Aramea) enfatiza que el plan de redención de Yeshúa es una obra de soberanía divina sobre la malicia humana, exactamente como la explicación de Yosef.</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Pasaje de Cumplimiento (Brit Hadashah):</div>
+                    <div class="verse-container">
+                        <div class="verse-number">Hechos (Ma'aséi HaShlichím) 2:36</div>
+                        <div class="aramaic">ܕܫܝܘܠܝܟܘܢ ܗܟܝܠ ܟܠܗ ܒܝܬ ܐܝܣܪܝܠ ܕܠܗܢܐ ܝܫܘܥ ܕܐܢܬܘܢ ܙܩܦܬܘܢܗ ܐܠܗܐ ܥܒܕܗ ܡܪܝܐ ܘܡܫܝܚܐ ܀</div>
+                        <div class="literal-translation">Sepa, pues, ciertísimamente toda la casa de Israel, que a este Yeshúa, a quien ustedes colgaron en el madero, Elohim lo ha hecho Adon (MarYah) y Mashíaj.</div>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Demostración del Cumplimiento:</div>
+                    <ul>
+                        <li><span class="highlight">"Yo Soy Yeshúa, su Hermano" (<span class="hebrew-term">Aní Yoséf, Ajijém</span>):</span> Yosef revela su identidad, afirmando: "Yo soy Yosef, su hermano, a quien vendieron..." (Génesis 45:4). La Shejináh de Yeshúa se manifestó a Israel como un hombre simple, pero fue rechazado y entregado. El cumplimiento final de la profecía es que Yeshúa se revelará a Su pueblo en el tiempo señalado, diciendo esencialmente: "Yo soy Yeshúa, su Mashíaj".</li>
+                        <li><span class="highlight">La Soberanía de Elohim (<span class="hebrew-term">L'Mijyá</span>):</span> Yosef consuela a sus hermanos diciendo: "...<span class="literal-translation">para vida (lijyá) Me envió Elohim delante de ustedes</span>" (Génesis 45:5). La maldad de la venta no anuló el plan de <span class="hebrew-term">יְהוָה</span>. El Brit Hadashah afirma que la muerte y rechazo de Yeshúa no fueron un error, sino la voluntad soberana de Elohim para la salvación del mundo. La entrega de Yeshúa al madero, aunque perpetrada por la malicia de los líderes religiosos de la época, fue el medio que <span class="hebrew-term">יְהוָה</span> usó para "<span class="literal-translation">ponerles un remanente</span>" (<span class="hebrew-term">she'erít</span>) y darles vida (Génesis 45:7), es decir, la vida eterna por medio del Brit Hadashah.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>APLICACIÓN ESPIRITUAL</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Aplicación Espiritual Conectada a la Aliyá</h2>
+            <p>Esta porción mesiánica nos enseña el principio de la Gracia Soberana y la necesidad de la humillación (Teshuvá) para recibir la redención.</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Perdón y la Soberanía (<span class="highlight">Hashgajáh Prati</span>):</div>
+                    <p>Yosef perdona a sus hermanos, viendo la mano de Elohim detrás del mal humano. La aplicación espiritual es que el creyente debe abrazar el perdón total, reconociendo que Yeshúa HaMashíaj ha transformado la traición y la maldad en el camino hacia la vida. Debemos tener la perspectiva de que <span class="highlight">todo coopera para el bien</span> de aquellos que son llamados (Romanos 8:28).</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Preparación para la Revelación:</div>
+                    <p>Yosef expulsa a los egipcios antes de revelarse (Génesis 45:1). Esto simboliza que la revelación íntima y redentora del Mashíaj a Su pueblo ocurre cuando la interferencia del "mundo" (las naciones/gentiles) es retirada momentáneamente. La aplicación es buscar la <span class="highlight">intimidad con Yeshúa HaMashíaj</span>, en un lugar apartado y consagrado, donde podamos confesar nuestra falta y recibir Su revelación de gracia sin la distracción del mundo.</p>
+                </div>
+            </div>
+        </div>
+        <h1>Punto 2. Haftaráh: Ezequiel 37:15-28 (Reunión de los hijos de Israel).</h1>
+
+    <div class="content-container">
+      <h2>La Visión de los Dos Maderos</h2>
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:15</div>
+          <div class="hebrew">וַיְהִי דְבַר־יְהוָה אֵלַי לֵאמֹר:</div>
+          <div class="transliteration">Vayehí devar-יְהוָה eiláy lemór.</div>
+          <div class="translation">
+            Traducción Literal: Y fue la palabra de יְהוָה a mí, diciendo:
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:16</div>
+          <div class="hebrew">
+            וְאַתָּה בֶן־אָדָם קַח־לְךָ עֵץ אֶחָד וּכְתֹב עָלָיו לִיהוּדָה וְלִבְנֵי
+            יִשְׂרָאֵל חֲבֵרָו וּלְקַח עֵץ אֶחָד וּכְתֹוב עָלָיו לְיֹוסֵף עֵץ
+            אֶפְרַיִם וְכָל־בֵּית יִשְׂרָאֵל חֲבֵרָו:
+          </div>
+          <div class="transliteration">
+            Ve'atáh ven-adám qaj-lejá etz ejád ujtóv aláv li-Yehudáh velivnéi
+            Yisra'el javeráv uleqáj etz ejád ujtóv aláv leYoséf etz Efráyim
+            vejol-Beit Yisra'el javeráv.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y tú, hijo de hombre, toma para ti un madero
+            uno y escribe sobre él: Para Yehudáh y para los hijos de Yisra'el
+            sus compañeros. Y toma un madero uno y escribe sobre él: Para Yosef,
+            madero de Efráyim, y para toda la Casa de Yisra'el sus compañeros.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:17</div>
+          <div class="hebrew">
+            וְקָרַב אֹתָם אֶחָד אֶל־אֶחָד לְךָ לְעֵץ אֶחָד וְהָיוּ לַאֲחָדִים
+            בְּיָדֶךָ:
+          </div>
+          <div class="transliteration">
+            Veqaráv otám ejád el-ejád leja le'etz ejád vehayú la'ajadím
+            beyadéja.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y júntalos uno hacia uno para ti, para que sean
+            un madero uno, y serán uno en tu mano.
+          </div>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="explanation">
+        <h3>Explicación del Significado Profético</h3>
+        <p>
+          Este acto simbólico es la clave para entender la profecía de la
+          restauración final de Israel. Representa la reunificación de las dos
+          casas divididas:
+        </p>
+        <ul>
+          <li>
+            <span class="point-letter">A.</span> El madero de
+            <strong class="highlight">Yehudáh (Judá)</strong>: Representa el
+            Reino del Sur, que incluía a Judá, Benjamín y Leví (la clase
+            sacerdotal).
+          </li>
+          <li>
+            <span class="point-letter">B.</span> El madero de
+            <strong class="highlight">Yosef/Efráyim</strong>: Representa el
+            Reino del Norte (Israel), a menudo llamado
+            <strong class="highlight">Efráyim</strong> por ser la tribu
+            dominante. Este reino fue dispersado por Asiria.
+          </li>
+          <li>
+            <span class="point-letter">C.</span> El resultado: Los dos maderos
+            se unen en la mano del profeta (y por extensión, en la mano de
+            יְהוָה), simbolizando la
+            <strong class="highlight">unidad nacional total</strong> de todas
+            las doce tribus de Israel.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>La Interpretación de יְהוָה</h2>
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:18</div>
+          <div class="hebrew">
+            וְכִי יֹאמְרוּ אֵלֶיךָ בְּנֵי עַמְּךָ לֵאמֹר הֲלֹוא־תַגִּיד לָנוּ מָה
+            אֵלֶּה לָךְ:
+          </div>
+          <div class="transliteration">
+            Veají yómeru eiléiha benéi amjá lemór halo-targíd lánu mah éleh
+            laj.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y cuando te digan los hijos de tu pueblo,
+            diciendo: ¿No nos declararás qué significan estas cosas para ti?
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:19</div>
+          <div class="hebrew">
+            דַּבֵּר אֲלֵהֶם כֹּה אָמַר אֲדֹנָי יְהוִה הִנֵּה אֲנִי לֹקֵחַ אֶת־עֵץ
+            יֹוסֵף אֲשֶׁר בְּיַד־אֶפְרַיִם וְשִׁבְטֵי יִשְׂרָאֵל חֲבֵרָו וְנָתַתִּי
+            אֹותֹו עַל־עֵץ יְהוּדָה וַעֲשִׂיתִים לְעֵץ אֶחָד וְהָיוּ אֶחָד
+            בְּיָדִי:
+          </div>
+          <div class="transliteration">
+            Dabér alehém koh amár Adonái יְהוִה: Hinnéh aní loqéaj et-etz Yosef
+            ashér beyád-Efráyim veshivtéi Yisra'el javeráv venatátí otó al-etz
+            Yehudáh va'asitím le'etz ejád vehayú ejád beyadí.
+          </div>
+          <div class="translation">
+            Traducción Literal: Habla a ellos: Así dice Adonai יְהוִה: He aquí,
+            Yo tomo el madero de Yosef, que está en la mano de Efráyim y las
+            tribus de Yisra'el sus compañeros, y lo pondré sobre el madero de
+            Yehudáh, y los haré un madero uno, y serán uno en Mi mano.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:20-21</div>
+          <div class="hebrew">
+            (20) וְהָיוּ הָעֵצִים אֲשֶׁר כָּתַבְתָּ עֲלֵיהֶם בְּיָדְךָ
+            לְעֵינֵיהֶם: (21) וְדַבֵּר אֲלֵהֶם כֹּה אָמַר אֲדֹנָי יְהוִה הִנֵּה
+            אֲנִי לֹקֵחַ אֶת־בְּנֵי יִשְׂרָאֵל מִבֵּין הַגֹּויִם... וְהֵבֵאתִי
+            אֹותָם אֶל־אַדְמָתָם:
+          </div>
+          <div class="transliteration">
+            (20) Vehayú ha'etzím ashér katávta aleihém beyadjá le'einéihém. (21)
+            Vedabér alehém koh amár Adonái יְהוִה: Hinnéh aní loqéaj et-benéi
+            Yisra'el mibbén hagoyím... veheveiti otám el-admatám.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y estarán los maderos sobre los cuales escribiste
+            en tu mano, ante sus ojos. Y diles: Así dice Adonai יְהוִה: He aquí,
+            Yo tomo a los hijos de Yisra'el de en medio de las naciones a donde
+            fueron, y los reuniré de alrededor y los traeré a su tierra.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:22-23</div>
+          <div class="hebrew">
+            (22) וְעָשִׂיתִי אֹותָם לְגֹוי אֶחָד בָּאָרֶץ בְּהָרֵי יִשְׂרָאֵל
+            וּמֶלֶךְ אֶחָד יִהְיֶה לְכֻלָּם לְמֶלֶךְ וְלֹא־יִהְיוּ עֹוד לִשְׁנֵי
+            גֹויִם וְלֹא יֵחָצוּ עֹוד לִשְׁתֵּי מַמְלָכֹות עֹוד: (23) וְלֹא
+            יִטַּמְּאוּ עֹוד בְּגִלּוּלֵיהֶם וּבְשִׁקּוּצֹותֵיהֶם וּבְכֹל
+            פִּשְׁעֵיהֶם וְהֹושַׁעְתִּי אֹותָם מִכֹּל מֹושְׁבֹתֵיהֶם אֲשֶׁר חָטְאוּ
+            בָהֶם וְטִהַרְתִּי אֹותָם וְהָיוּ־לִי לְעָם וַאֲנִי אֶהְיֶה לָהֶם
+            לֵאלֹהִים:
+          </div>
+          <div class="transliteration">
+            (22) Ve'asití otám legóy ejád ba'áretz beharéi Yisra'el umélej ejád
+            yihyéh lejulám lemélej veló-yihyú od lishnéi goyím veló yejatú od
+            lishtéi mamlajót od. (23) Veló yitam'ú od begiluléihém
+            uveshiqutzotéihém uvejol pish'eihém vehosha'tí otám mikkol
+            moshvotéihém ashér jat'ú vahém vethihartí otám vehayú-li le'ám
+            va'aní ehyeh lahém le'Elohím.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y los haré una nación una en la tierra, en los
+            montes de Yisra'el, y un rey uno será para todos ellos por rey; y no
+            serán más dos naciones, ni se dividirán más en dos reinos. Y no se
+            contaminarán más con sus ídolos, ni con sus abominaciones, ni con
+            todas sus transgresiones; y los salvaré de todos sus lugares donde
+            pecaron, y los purificaré. Y serán Mi pueblo, y Yo seré para ellos
+            Elohím.
+          </div>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="prophetic-content">
+        <h3 class="prophetic-title">
+          Análisis Mesiánico y Escatológico de la Reunificación
+        </h3>
+        <div class="prophetic-section">
+          <p>
+            El cumplimiento de esta profecía implica varios elementos
+            esenciales que apuntan a la Era Mesiánica:
+          </p>
+          <ul>
+            <li>
+              <strong>Unidad Indivisible:</strong> La frase
+              <strong class="highlight">"un madero uno"</strong>
+              (<span class="hebrew-term">עֵץ אֶחָד</span> -
+              <em class="transliteration">etz ejád</em>) y
+              <strong class="highlight">"un rey uno"</strong> (<span
+                class="hebrew-term"
+                >מֶלֶךְ אֶחָד</span
+              >
+              - <em class="transliteration">mélej ejád</em>) garantiza que la
+              reunificación será permanente, sin la posibilidad de una nueva
+              división de los reinos.
+            </li>
+            <li>
+              <strong>Retorno Físico y Espiritual:</strong> El verso 21 enfatiza
+              el <strong class="highlight">retorno físico</strong> (
+              <em class="transliteration">veheveiti otám el-admatám</em> - "y
+              los traeré a su tierra"), mientras que el verso 23 describe una
+              <strong class="highlight">purificación espiritual</strong> total,
+              eliminando la idolatría y las transgresiones. La restauración es
+              completa: cuerpo y alma.
+            </li>
+            <li>
+              <strong>Nueva Relación con Elohím:</strong> El pacto final
+              culmina con la declaración "Y serán Mi pueblo, y Yo seré para
+              ellos <strong class="highlight">Elohím</strong>" (v. 23),
+              estableciendo una relación de pacto restaurada y perfecta.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>El Reino del Mesías David</h2>
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:24</div>
+          <div class="hebrew">
+            וְעַבְדִּי דָוִד מֶלֶךְ עֲלֵיהֶם וְרֹועֶה אֶחָד יִהְיֶה לְכֻלָּם
+            וּבְמִשְׁפָּטַי יֵלֵכוּ וְחֻקֹּותַי יִשְׁמְרוּ וְעָשׂוּ אֹותָם:
+          </div>
+          <div class="transliteration">
+            Ve'avdí David mélej aleihém vero'éh ejád yihyéh lejulám uvémishpatáy
+            yelejú vejuqotáy yishmerú ve'asú otám.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y Mi siervo David será rey sobre ellos, y un
+            pastor uno será para todos ellos. Y en Mis juicios caminarán, y Mis
+            estatutos guardarán y los pondrán por obra.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:25</div>
+          <div class="hebrew">
+            וְיָשְׁבוּ עַל־הָאָרֶץ אֲשֶׁר נָתַתִּי לְעַבְדִּי לְיַעֲקֹב אֲשֶׁר
+            יָשְׁבוּ בָהּ אֲבֹותֵיכֶם וְיָשְׁבוּ עָלֶיהָ הֵמָּה וּבְנֵיהֶם וּבְנֵי
+            בְנֵיהֶם עַד־עֹולָם וְדָוִד עַבְדִּי נָשִׂיא לָהֶם לְעֹולָם:
+          </div>
+          <div class="transliteration">
+            Veyashvú al-ha'áretz ashér natáti le'avdí leYa'akóv ashér yashvú vah
+            avoteijém veyashvú aleihá hemáh uvenéihém uvenéi veneihém ad-'olám
+            veDavid avdí nasí lahém le'olám.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y habitarán en la tierra que di a Mi siervo
+            Ya'akov, donde habitaron sus padres. Y habitarán en ella ellos, y
+            sus hijos, y los hijos de sus hijos, para siempre. Y David Mi
+            siervo será príncipe para ellos para siempre.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yejezkel (Ezequiel) 37:26-28</div>
+          <div class="hebrew">
+            (26) וְכָרַתִּי לָהֶם בְּרִית שָׁלֹום בְּרִית עֹולָם יִהְיֶה אֹותָם
+            וּנְתַתִּים וְהִרְבֵּיתִי אֹותָם וְנָתַתִּי אֶת־מִקְדָּשִׁי בְּתֹוכָם
+            לְעֹולָם: (27) וְהָיָה מִשְׁכָּנִי עֲלֵיהֶם וְהָיִיתִי לָהֶם לֵאלֹהִים
+            וְהֵמָּה יִהְיוּ־לִי לְעָם: (28) וְיָדְעוּ הַגֹּויִם כִּי אֲנִי יְהוָה
+            מְקַדֵּשׁ אֶת־יִשְׂרָאֵל בִּהְיֹות מִקְדָּשִׁי בְּתֹוכָם לְעֹולָם:
+          </div>
+          <div class="transliteration">
+            (26) Vekaratí lahém berit shalóm berit 'olám yihyéh otám unetattím
+            vehurbéití otám venatattí et-Miqdashí betojám le'olám. (27) Vehayáh
+            Mishkaní aleihém vehayíti lahém le'Elohím vehemmáh yihyú-li le'ám.
+            (28) Veyade'ú hagoyím ki aní יְהוָה meqadésh et-Yisra'el bihyót
+            Miqdashí betojám le'olám.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y haré con ellos un pacto de paz; un pacto
+            eterno será con ellos. Y los estableceré y los multiplicaré, y
+            pondré Mi Santuario en medio de ellos para siempre. Y estará Mi
+            Tabernáculo sobre ellos, y Yo seré para ellos Elohím, y ellos serán
+            Mi pueblo. Y sabrán las naciones que Yo soy יְהוָה, que santifico a
+            Yisra'el, al estar Mi Santuario en medio de ellos para siempre.
+          </div>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+      <div class="prophetic-content">
+        <h3 class="prophetic-title">El Reinado Eterno de David (el Mesías)</h3>
+        <div class="prophetic-section">
+          <p>
+            El texto establece claramente que el líder de este Israel reunificado
+            será <strong class="highlight">David</strong>. Dado que el David
+            histórico ya había muerto en tiempos de Ezequiel, esto es una
+            referencia directa al
+            <strong class="highlight">Mesías Ben David</strong> (el Mesías
+            hijo de David), la simiente de David prometida para gobernar para
+            siempre.
+          </p>
+          <ul class="prophetic-section">
+            <li>
+              <strong>Liderazgo Mesiánico:</strong> Se le llama "Mi siervo
+              David" y se dice que será <span class="highlight">rey</span> (
+              <em class="transliteration">mélej</em>) y
+              <span class="highlight">príncipe</span> (
+              <em class="transliteration">nasí</em>) <strong
+                class="highlight"
+                >para siempre</strong
+              >
+              (<em class="transliteration">le'olám</em>) (vv. 24-25). Esto
+              subraya la naturaleza eterna e incambiable de Su soberanía.
+            </li>
+            <li>
+              <strong>Pacto de Paz:</strong> La promesa culmina con un
+              <strong class="highlight">"pacto de paz, un pacto
+                eterno"</strong
+              >
+              (<span class="hebrew-term">בְּרִית שָׁלֹום בְּרִית עֹולָם</span> -
+              <em class="transliteration">berit shalóm berit 'olám</em>), que
+              asegura la seguridad y la prosperidad de Israel bajo el gobierno
+              del Mesías.
+            </li>
+            <li>
+              <strong>Presencia Divina:</strong> El sello de este pacto es la
+              presencia de Elohim a través de Su Santuario (
+              <em class="transliteration">Miqdashí</em>) y Su Tabernáculo (
+              <em class="transliteration">Mishkaní</em>) <strong
+                class="highlight"
+                >en medio de ellos para siempre</strong
+              >
+              (vv. 26-27). Esta presencia es la que santifica a Israel y es
+              reconocida por todas las naciones (v. 28).
+            </li>
+          </ul>
+        </div>
+      </div>
+      <h1>
+        La Porción de Yejezkel (Ezequiel) 37:15-28
+    </h1>
+
+    <div class="content-container">
+        <p>
+            La porción de Yejezkel (Ezequiel) 37:15-28 es una de las profecías más trascendentales en las Sagradas Escrituras, ya que describe la reunificación total de las dos casas de Israel (Yehudáh y Efráyim/Yosef) bajo el reinado del Mashíaj. Este cumplimiento es central en el ministerio Judío mesiánico.
+        </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>
+        Profecía Cumplida y Conexión con los Profetas
+    </h1>
+
+    <div class="content-container">
+        <p>
+            El pasaje de Yejezkel 37 se conecta directamente con otras profecías del Tanaj, todas apuntando a un solo Rey y un solo pueblo.
+        </p>
+
+        <div class="section-container">
+            <h2>Pasaje Profético (Tanaj):</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">Yejezkel (Ezequiel) 37:24</div>
+                <div class="hebrew">וְעַבְדִּי דָוִד מֶלֶךְ עֲלֵיהֶם וְרֹעֶה אֶחָד יִהְיֶה לְכֻלָּם וּבְמִשְׁפָּטַי יֵלֵכוּ וְחֻקֹּתַי יִשְׁמְרוּ וְעָשׂוּ אוֹתָם׃</div>
+                <div class="transliteration">Ve'avdi David mélej aleihém, veroeh ejad yihyéh lekulám; uvémishpatáy yeilejú vejuqotáy yishmerú ve'asú otám.</div>
+                <div class="translation">"Y Mi siervo David será rey sobre ellos, y un pastor uno será para todos ellos. Y en Mis juicios caminarán, y Mis estatutos guardarán y los pondrán por obra."</div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2>Conexión con los Profetas:</h2>
+            <ul>
+                <li>
+                    <div class="scripture">
+                        <strong>Yirmeyahu (Jeremías) 30:9:</strong> "Sino que servirán a <span class="highlight">יְהוָה</span> su Elohim, y a David su rey, a quien Yo les levantaré."
+                    </div>
+                </li>
+                <li>
+                    <div class="scripture">
+                        <strong>Hoshea (Oseas) 3:5:</strong> "Después volverán los hijos de Israel, y buscarán a <span class="highlight">יְהוָה</span> su Elohim, y a David su rey; y temerán a <span class="highlight">יְהוָה</span> y a su bondad en el fin de los días."
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="explanation">
+            <h3>Explicación del Cumplimiento:</h3>
+            <p>
+                El "<span class="highlight">Mi siervo David</span>" no se refiere a la resurrección literal del Rey David, sino a un descendiente perfecto que ocupará Su trono eternamente. Este descendiente es el <span class="highlight">Mashíaj Yeshúa</span>, el Mesías de la Casa de David.
+            </p>
+            <p>
+                La profecía del "madero de Yosef" uniéndose al "madero de Yehudáh" (versículos 16-17) simboliza la curación de la división que ocurrió después del Rey Salomón, donde el Reino del Norte (<span class="highlight">Efráyim/Yosef</span>) y el Reino del Sur (<span class="highlight">Yehudáh</span>) se separaron. En Yeshúa, ambos reinos encuentran su Pastor y Rey legítimo, logrando la <span class="highlight">Ejad</span> (unidad).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>
+        Cumplimiento Profético en el Mashíaj (Brit Hadashah)
+    </h1>
+
+    <div class="content-container">
+        <p>
+            El Brit Hadashah (Peshita Aramea) presenta a Yeshúa HaMashíaj como el cumplimiento absoluto de la promesa de un solo Pastor y Rey, quien también trae el <span class="highlight">Pacto de Paz</span> (<span class="hebrew-term">ברית שלום</span> - Brit Shalóm), mencionado en Yejezkel 37:26.
+        </p>
+
+        <div class="section-container">
+            <h2>Pasaje de Cumplimiento (Brit Hadashah):</h2>
+            <div class="verse-container">
+                <div class="verse-number">Yochanán (Juan) 10:16</div>
+                <div class="translation">"También tengo otras ovejas que no son de este redil; a aquellas también me es necesario traer, y oirán Mi voz; y habrá un rebaño y un pastor."</div>
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Demostración del Cumplimiento:</div>
+                <ul>
+                    <li>
+                        <span class="point-letter">A.</span>
+                        <strong>Un Pastor Uno:</strong> Yeshúa se declara el único Pastor (<span class="hebrew-term">רועה אחד</span> - Ro'éh Ejád) que recoge a todas las "ovejas perdidas de la Casa de Israel" (las Diez Tribus, Efráyim) y las une con Yehudáh. Este es el cumplimiento directo de Yejezkel 37:22 ("un rey uno será para todos ellos por rey").
+                    </li>
+                    <li>
+                        <span class="point-letter">B.</span>
+                        <strong>Pacto de Paz (Yejezkel 37:26):</strong> Este Pacto Eterno de Paz es establecido por Yeshúa. El Brit Hadashah lo identifica como el pacto de reconciliación y la Torá escrita en el corazón (Yirmeyahu 31:33), garantizando que el pueblo camine en los <span class="hebrew-term">משפטים</span> (mishpatím - juicios) y <span class="hebrew-term">חוקות</span> (juqot - estatutos) de <span class="highlight">יְהוָה</span> (Yejezkel 37:24).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Efesiyim (Efesios) 2:14 (Peshita Aramea: MarYah es nuestra paz)</div>
+                <div class="verse-container">
+                    <div class="aramaic">
+                        ܗܘ ܓܝܪ ܐܝܬܘܗܝ ܫܠܡܢ ܗܘ ܕܥܒܕ ܬܪ̈ܬܝܗܝܢ ܚܕܐ ܘܫܪܐ ܣܝܓܐ ܕܩܝܡܐ ܗܘܐ ܒܡܨܥܬܐ.
+                    </div>
+                    <div class="translation">
+                        "Porque él mismo es nuestra paz, que de los dos pueblos hizo uno, derribando la pared intermedia de separación."
+                    </div>
+                </div>
+                <p>
+                    Este versículo demuestra cómo <span class="highlight">Yeshúa HaMashíaj</span> unió a los dos grupos (Israel y las naciones injertadas/gentiles) en uno solo bajo Su autoridad, eliminando las causas de la impureza mencionadas en Yejezkel 37:23.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>
+        Aplicación Espiritual Conectada a la Aliyá
+    </h1>
+
+    <div class="content-container">
+        <p>
+            La visión de los dos maderos y la promesa de un solo Rey y un Santuario eterno tienen implicaciones profundas para la vida del creyente mesiánico:
+        </p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Restauración Personal y Colectiva:</div>
+                <p>
+                    La profecía comienza con la promesa de ser limpiados de la <span class="hebrew-term">טֻמְאָה</span> (tum'á - inmundicia) y los <span class="hebrew-term">גִּלּוּלִים</span> (gilulím - ídolos) (Yejezkel 37:23). Espiritualmente, esto se aplica a la <span class="highlight">Teshuvá</span> (arrepentimiento) que purifica al creyente de la idolatría del mundo y de las transgresiones. Yeshúa es el Purificador y Redentor.
+                </p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Unidad Mesiánica (Ejad):</div>
+                <p>
+                    La instrucción de unir los dos maderos en uno nos llama a buscar la unidad entre los creyentes. El Mashíaj Yeshúa no solo une a las Dos Casas de Israel, sino que también injerta a las naciones en este olivo (Romanos 11). La aplicación es vivir en <span class="hebrew-term">שלום</span> (shalóm - paz), reconociendo que todos somos parte de un solo cuerpo bajo la cabeza que es Yeshúa HaMashíaj.
+                </p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Mishkán (Santuario) Interior y Eterno:</div>
+                <p>
+                    Yejezkel culmina con la promesa de que el Santuario de <span class="highlight">יְהוָה</span> estará <span class="hebrew-term">בְּתוֹכָם</span> (betojám - en medio de ellos) para siempre (Yejezkel 37:26-27). Esta promesa se cumple en el Brit Hadashah a través del <span class="highlight">Ruaj HaKodesh</span>, el cual habita en el corazón de cada creyente, haciendo de cada uno un templo vivo de Elohim, mientras esperamos el cumplimiento final del Templo y el Reino Mesiánico.
+                </p>
+            </div>
+        </div>
+    </div>
+    <h1>📖 Punto 3. Brit Hadasháh: Romanos 11:25-26 (El redescubrimiento de Yeshúa por Israel).</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>Análisis Interlineal y Mesiánico</h2>
+        <p>
+          Este pasaje es fundamental para entender el plan de salvación de
+          Adonai con respecto a
+          <strong class="highlight">Israel y las Naciones</strong>.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="verse-container">
+        <div class="verse-number">Romiyim (Romanos) 11:25</div>
+        <div class="aramaic">
+          ܠܐ ܓܝܪ ܨܒܐ ܐܢܐ ܕܬܬܟܣܘܢ ܡܢ ܗܢܐ ܐܪܙܐ ܐܚܝ ܕܠܐ ܬܗܘܘܢ ܚܟܝܡܝܢ ܒܪܥܝܢ
+          ܢܦܫܟܘܢ ܕܫܪܝܪܘܬܐ ܐܘܚܕܬ ܠܗ ܠܐܝܣܪܐܝܠ ܒܩܛܥܐ ܥܕܡܐ ܕܢܥܘܠ ܡܘܠܝܐ ܕܥܡܡܐ܀
+        </div>
+        <div class="transliteration">
+          Fonética: La guír tzvá 'áná d'tetj'sún mín háná 'arzá 'ajáy d'lá
+          téhwún jakhimín b'rá'yán náfshakhún d'shrirúthá 'újdhat láh
+          l'Isrá'él b'qát'á 'ádhmá d'né'úl múlayá d'ámm'má.
+        </div>
+        <div class="translation">
+          Traducción Literal: Porque no quiero que ignoren este
+          <strong class="highlight">secreto (arzá)</strong>, hermanos míos, para
+          que no sean sabios en su propia opinión, que
+          <strong class="highlight">ceguera (shrirúthá)</strong> le ha sucedido a
+          <strong class="highlight">Israel</strong> en parte,
+          <strong class="highlight">hasta que entre la plenitud de las naciones.</strong
+          >
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Romiyim (Romanos) 11:26</div>
+        <div class="aramaic">
+          ܘܗܝܕܝܢ ܟܠܗ ܐܝܣܪܐܝܠ ܢܚܐ ܐܝܟܢܐ ܕܟܬܝܒ ܕܢܐܬܐ ܡܢ ܨܗܝܘܢ ܦܪܘܩܐ ܘܢܗܦܟ ܥܘܠܐ
+          ܡܢ ܝܥܩܘܒ܀
+        </div>
+        <div class="transliteration">
+          Fonética: W'háydén kúlláh 'Isrá'él néjé 'aykáná d'ktíbh d'né'tá mín
+          <span class="hebrew-term">ܨܗܝܘܢ</span> (Tziyón) párúqá w'néhphakh
+          'áwlán mín Yá'qóbh.
+        </div>
+        <div class="translation">
+          Traducción Literal: Y entonces,
+          <strong class="highlight">todo Israel será salvo</strong> (kúlláh
+          'Isrá'él néjé), como está escrito: "Vendrá de
+          <strong class="highlight">Tziyón</strong> el
+          <strong class="highlight">Redentor (párúqá)</strong> y apartará las
+          iniquidades de
+          <strong class="highlight">Ya'aqóbh</strong>."
+        </div>
+      </div>
+    </div>
+
+    <h1>🔍 Explicación Mesiánica del 'Secreto'</h1>
+    <div class="content-container">
+      <div class="explanation">
+        <h3>El Secreto (Arzá / Mysterion) Revelado</h3>
+        <p>
+          El apóstol Sha'ul (Pablo) revela un
+          <strong class="highlight">gran misterio</strong> (<span
+            class="hebrew-term"
+            >ܐܪܙܐ</span
+          >
+          / <em>arzá</em> en arameo) a las comunidades de creyentes:
+        </p>
+
+        <ul>
+          <li>
+            <span class="point-letter">A.</span> La
+            <strong class="highlight">ceguera</strong> es
+            <strong class="highlight">parcial</strong> y
+            <strong class="highlight">temporal</strong>. No toda persona en
+            Israel está cegada, y la ceguera terminará.
+          </li>
+          <li>
+            <span class="point-letter">B.</span> El propósito de esta ceguera es
+            permitir que se cumpla la
+            <strong class="highlight">"plenitud de las naciones"</strong>. Esto
+            se refiere al número completo de no-judíos que serán injertados en el
+            pueblo de Adonai a través de Yeshúa.
+          </li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h3>La Promesa: "Todo Israel será Salvo"</h3>
+        <p>
+          El verso 26 es una promesa directa del futuro de Israel, citando
+          Escrituras del Tanakh (Antiguo Testamento):
+        </p>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">Cita Profética:</div>
+            <p class="scripture">
+              Isaías 59:20 - "Y vendrá el Redentor a Sion, y a los que en Jacob
+              se vuelven de la transgresión, dice el Adon."
+            </p>
+            <p>
+              El término arameo
+              <strong class="highlight">ܦܪܘܩܐ</strong> (<em>párúqá</em>) se
+              traduce como
+              <strong class="highlight">Redentor</strong>, haciendo clara
+              referencia a la segunda venida del Mashíaj (Mesías) Yeshúa.
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">Significado de "Todo Israel":</div>
+            <p>
+              La frase
+              <strong class="highlight">"kúlláh 'Isrá'él néjé"</strong
+              >(todo Israel será salvo) se interpreta como:
+            </p>
+            <ul>
+              <li>
+                <span class="point-letter">1.</span> Una
+                <strong class="highlight">mayoría</strong> de los descendientes
+                físicos de Israel que vivan en el tiempo del retorno del Mesías.
+              </li>
+              <li>
+                <span class="point-letter">2.</span> La nación de
+                <strong class="highlight">Israel como entidad</strong
+                >, reconociendo a Yeshúa como su Mesías al final de los tiempos.
+              </li>
+            </ul>
+            <p>
+              Esto no significa que cada individuo judío de todas las épocas será
+              salvo automáticamente, sino que la promesa nacional a
+              <strong class="highlight">Jacob</strong> se cumplirá cuando
+              <strong class="highlight">el Redentor</strong> aparte la iniquidad
+              de ellos como nación.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1>
+        Comentario Mesiánico en Yeshúa HaMashíaj: Romiyim (Romanos) 11:25-26
+    </h1>
+
+    <div class="content-container">
+        <p>
+            El pasaje de Romiyim (Romanos) 11:25-26 contiene el "secreto" (<span
+                class="highlight"
+                >arzá</span
+            >) mesiánico de la restauración de Israel, el cual es la culminación de
+            todas las profecías de redención. Este texto subraya que el rechazo
+            parcial de Israel es temporal y tiene un propósito: la inclusión de las
+            naciones, lo cual a su vez garantizará la salvación total de Israel.
+        </p>
+
+        <div class="explanation">
+            <h3>La enseñanza central de esta porción</h3>
+            <p>
+                Se basa en la fidelidad eterna de <span class="highlight">יְהוָה</span>
+                a Sus pactos con Israel.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>1. El Secreto (Arzá) del Retraso</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">Romiyim (Romanos) 11:25</div>
+                <div class="aramaic">
+                    ܠܳܐ ܓ݁ܶܝܪ ܨܳܒ݂ܶܐ ܐ̱ܢܳܐ ܕ݁ܬ݂ܶܬ݂ܟ݁ܰܣܶܐ ܡܶܢܟ݂ܽܘܢ ܗܳܢܳܐ ܐ̱ܪܳܙܳܐ ܐܰܚܰܝ ܕ݁ܠܳܐ
+                    ܬ݁ܶܗܘܽܘܢ ܚܰܟ݁ܺܝܡܺܝܢ ܒ݁ܪܰܥܝܳܢ ܢܰܦ݂ܫܟ݂ܽܘܢ ܕ݁ܫܶܪܝܪܽܘܬ݂ܳܐ ܗܳܕ݂ܶܐ
+                    ܒ݁ܩܳܛܥܳܐ ܗ̱ܝ ܗܘܳܬ݂ ܠܺܐܝܣܪܳܝܶܠ ܥܕ݂ܰܡܳܐ ܕ݁ܢܶܥܽܘܠ ܡܽܘܠܳܝܳܐ ܕ݁ܥܰܡܡܶܐ܂
+                </div>
+                <div class="transliteration">
+                    Lā geyr ṣāḇe'nā' dṯeṯkasē menkūn hānā'
+                    <span class="highlight">arāzā</span> aḥay d'lā ṯehwūn
+                    <span class="highlight">ḥakhimīn b'ra'yān nafshakūn</span> d'šerīrūṯā
+                    hāḏē baqāṭ'ā hī hoṯ l'Isrā'ēl 'aḏmā d'nē'ūl mūlayā d'am'mā.
+                </div>
+                <div class="translation">
+                    Pues no quiero, hermanos, que ignoréis este secreto, para que no
+                    seáis sabios en vuestra propia opinión; que el endurecimiento
+                    (ceguera) parcial le ha sobrevenido a Israel, hasta que entre la
+                    plenitud de las naciones.
+                </div>
+            </div>
+
+            <p>
+                El "secreto" que Rav Shaúl (Pablo) revela es que el
+                <span class="highlight">endurecimiento (shrirúthá, ceguera)</span>
+                que le sucedió a Israel no es total ni permanente, sino
+                <span class="highlight">parcial (b'qát'á)</span> y
+                <span class="highlight">temporal</span> (<em
+                    >'ádhmá d'né'úl múlayá d'ámm'má</em
+                >
+                — hasta que entre la plenitud de las naciones).
+            </p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Propósito de la Ceguera:</div>
+                    <p>
+                        La ceguera parcial de Israel sirvió como un conducto de
+                        salvación para las naciones. La caída de Israel provocó que la
+                        antorcha del Evangelio se encendiera en el mundo gentil.
+                    </p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Plenitud de las Naciones:</div>
+                    <p>
+                        La entrada de la <span class="highlight">Múlayá d'Amm'má</span>
+                        (Plenitud de las Naciones) es el número preordenado de gentiles
+                        que deben ser injertados en el olivo de Israel (Romanos 11:17)
+                        antes de que se cumpla el tiempo de la restauración de Israel.
+                    </p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Fidelidad de Yeshúa:</div>
+                    <p>
+                        El <span class="highlight">Mashíaj</span> es la garantía de
+                        que <span class="highlight">יְהוָה</span> completará Su plan: el
+                        injerto de las naciones y, posteriormente, la resurrección
+                        espiritual de Israel.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>2. El Resultado Glorioso: Todo Israel Será Salvo</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">Romiyim (Romanos) 11:26a</div>
+                <div class="aramaic">
+                    ܘܗܳܟ݂ܰܢܳܐ ܟ݁ܽܠܶܗ ܐܺܝܣܪܳܝܶܠ ܢܶܚܶܐ
+                </div>
+                <div class="transliteration">
+                    W'hākhenā' kuleh Isrā'ēl neḥeh.
+                </div>
+                <div class="translation">
+                    Y entonces, todo Israel será salvo.
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p>
+                    <span class="point-letter">A.</span>
+                    <span class="highlight">Todo Israel:</span> Esto se refiere a la
+                    nación de Israel en su conjunto: las dos casas (Yehudáh y
+                    Efráyim/Yosef) reunidas bajo el Mashíaj Yeshúa, como se prometió en
+                    <span class="scripture">Yejezkel 37</span>. No significa cada
+                    individuo israelita a lo largo de la historia, sino el pueblo
+                    pactado restaurado y redimido.
+                </p>
+                <p>
+                    <span class="point-letter">B.</span>
+                    <span class="highlight">El Redentor (Párúqá):</span> La salvación
+                    de Israel está directamente ligada al retorno del
+                    <span class="highlight">Párúqá</span> (Redentor) de
+                    <span class="highlight">Tziyón</span> (Sión), Quien es Yeshúa
+                    HaMashíaj. Él no solo salva, sino que "apartará las iniquidades de
+                    Ya'aqóbh," completando el Nuevo Pacto (Brit Hadashah).
+                </p>
+            </div>
+
+            <h3 class="section-divider">
+                Conexión con los Profetas y Profecías Cumplidas
+            </h3>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">
+                        Pasaje Profético (Tanaj) citado en Romanos 11:26-27:
+                    </div>
+                    <div class="verse-container">
+                        <div class="verse-number">Yesha'yahu (Isaías) 59:20</div>
+                        <div class="hebrew">
+                            וּבָ֤א לְצִיּוֹן֙ גּוֹאֵ֔ל וּלְשָׁבֵ֥י פֶ֖שַׁע בְּיַֽעֲקֹ֑ב נְאֻם־יְהוָֽה׃
+                        </div>
+                        <div class="translation">
+                            "Y vendrá el Redentor a Tziyón, y a los que se vuelven de
+                            la transgresión en Ya'aqóbh, dice יְהוָה."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Conexión Profética Adicional:</div>
+                    <div class="verse-container">
+                        <div class="verse-number">Yirmeyahu (Jeremías) 31:33</div>
+                        <div class="translation">
+                            "Sino que este será el pacto que haré con la casa de Israel
+                            después de aquellos días, dice יְהוָה: Pondré Mi Torá dentro
+                            de ellos, y la escribiré en su corazón..."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Explicación del Cumplimiento:</div>
+                    <p>
+                        El regreso del <span class="highlight">Párúqá</span>
+                        (Redentor), Yeshúa HaMashíaj, marca la etapa final del
+                        cumplimiento profético. Él vendrá para:
+                    </p>
+                    <ul>
+                        <li>
+                            <span class="highlight">Apartar la Iniquidad:</span> Su obra
+                            final de Teshuvá y perdón para Israel se cumplirá cuando la
+                            nación le reconozca (<span class="scripture"
+                                >Zekharyah 12:10</span
+                            >).
+                        </li>
+                        <li>
+                            <span class="highlight">Activar el Nuevo Pacto:</span> El
+                            resultado de la salvación de todo Israel será que el pueblo,
+                            a través del <span class="highlight">Ruaj HaKodesh</span>,
+                            tendrá la Torá inscrita en sus corazones, capacitando a la
+                            nación para vivir en obediencia y santidad, tal como se
+                            predijo en Yirmeyahu.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="explanation">
+                <h3>Aplicación Espiritual Conectada a la Aliyá</h3>
+                <p>
+                    Esta porción de la Escritura nos ofrece una poderosa aplicación
+                    espiritual para el creyente mesiánico, ya sea de origen judío o
+                    gentil:
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">Humildad y Evitar la Arrogancia:</span>
+                        El mandato inicial es no ser sabios en su propia opinión
+                        (<em
+                            >d'lá téhwún jakhimín b'rá'yán náfshakhún</em
+                        >). Esto es una advertencia directa a la arrogancia. Los
+                        creyentes de las naciones no deben jactarse contra las ramas
+                        originales de Israel, sino reconocer que su salvación depende
+                        de ser injertados en el olivo hebreo por la gracia de Yeshúa
+                        (Romanos 11:18).
+                    </li>
+                    <li>
+                        <span class="highlight"
+                            >Intercesión por el Pueblo Pactado:</span
+                        >
+                        Sabiendo que la ceguera es parcial y temporal, la
+                        <span class="highlight">Kehiláh</span> debe vivir en oración e
+                        intercesión para que se cumpla la plenitud de las naciones y el
+                        "secreto" se revele, acelerando el día en que todo Israel será
+                        salvo por Su Redentor.
+                    </li>
+                    <li>
+                        <span class="highlight">Expectativa Mesiánica:</span> La
+                        <span class="highlight">aliyá</span> enseña que el destino de
+                        Israel está ligado al retorno del Mashíaj Yeshúa. La aplicación
+                        es vivir en una constante esperanza escatológica, sabiendo que
+                        el Rey vendrá de <span class="highlight">Tziyón</span> para
+                        establecer Su Reino de <span class="highlight">Shalóm</span
+                        > (Paz) cuando se cumpla el plan de redención para Israel y las
+                        naciones.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>
+        Punto 4 — Contexto histórico y cultural de Génesis 44:31–45:7
+    </h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>1. Ubicación literaria y litúrgica</h2>
+            <p>
+                Esta sección (Génesis 44:31–45:7) forma la
+                <span class="highlight">Aliyah 2 de la Parashá VaYigash</span>; abarca
+                la continuación del discurso de Judá y la dramática revelación de la
+                identidad de José (el reconocimiento y la explicación de cómo Elohim usó
+                los hechos para salvar la familia). La asignación litúrgica y su
+                paralelismo con la Haftará (Ezequiel 37) están registradas en la guía
+                de las 54 Parashot.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>2. Marco histórico-cultural: Egipto y las cortes administradas</h2>
+            <ul>
+                <li>
+                    <span class="highlight"
+                        >Administración centralizada del grano:</span
+                    >
+                    El escenario muestra un sistema en el cual un funcionario (José)
+                    controla el alimento en época de hambruna. En el Cercano Oriente
+                    antiguo el control del trigo y el pan equivalía a poder político
+                    —quien administra el grano tiene capacidad de salvar o condenar
+                    pueblos—. (Esto es el telón de fondo que hace plausible el drama:
+                    la familia depende ahora de la jurisdicción de un «visir»).
+                </li>
+                <li>
+                    <span class="highlight"
+                        >Prácticas sociales del honor/vergüenza y rehenes:</span
+                    >
+                    Las sociedades patriarcales del mundo antiguo valoraban la
+                    integridad del honor familiar y la estabilidad del padre de clan.
+                    Retener a una persona como garantía o rehén (o amenazar con ello)
+                    era una técnica de control con profundas implicaciones sociales y
+                    psicológicas: la posibilidad de perder un hijo —especialmente para
+                    un anciano padre— equivale a la ruina social.
+                </li>
+                <li>
+                    <span class="highlight"
+                        >Dinámica familiar y primogenitura emocional:</span
+                    >
+                    Jacob (<span class="hebrew-term">יַעֲקֹב</span>) ama especialmente a
+                    José y a Benjamín; ese favoritismo es culturalmente peligroso
+                    (provoca celos) pero explica por qué la amenaza sobre Benjamín
+                    despierta una respuesta tan poderosa y sacrificial en Judá.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>3. Contexto narrativo y función en la saga de José</h2>
+            <ul>
+                <li>
+                    <span class="highlight"
+                        >Punto de inflexión moral y narrativo:</span
+                    >
+                    este tramo une el clímax moral (la prueba de los hermanos) con el
+                    desenlace: la escena conduce directamente a la revelación (45:1–7)
+                    y a la reunificación. Narrativamente, lo que sigue (la confesión
+                    de José) sólo tiene pleno sentido frente a la transformación de los
+                    hermanos que acaba de mostrarse —por eso esta aliáh es
+                    estructuralmente decisiva.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h1>
+        Punto 5 — Estudio, comentarios y conexiones proféticas de Génesis 44:31–45:7
+    </h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>A. Resumen inmediato del pasaje (temas centrales)</h2>
+            <ul>
+                <li>
+                    Judá concluye su intercesión, apela al dolor del padre y declara
+                    que él se quedará como siervo en lugar de Benjamín si eso libera al
+                    joven.
+                </li>
+                <li>
+                    José, conmovido ante la demostración del carácter cambiado de sus
+                    hermanos y por el sufrimiento de Jacob, ordena apartarlos y
+                    finalmente se revela: pronuncia palabras que culminan en la
+                    confesión “Yo soy José” y explica que todo lo que aconteció lo
+                    dirigió <span class="highlight">Elohím</span> para preservarlos.
+                    (La aparición del “yo soy” de José es notable en la tradición
+                    textual y en la lectura tipológica).
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>B. Comentarios exegéticos clave</h2>
+            <ul>
+                <li>
+                    <span class="highlight"
+                        >Ironía dramática y reconocimiento:</span
+                    >
+                    la narración juega con la ironía: los hermanos no reconocen a José,
+                    pero él los conoce perfectamente; su acto de revelar su identidad
+                    ocurre justo cuando la prueba ha mostrado su transformación moral.
+                </li>
+                <li>
+                    <span class="highlight">Providencia y retribución:</span> José
+                    interpreta los hechos como plan divino: lo que sus hermanos
+                    intentaron para hacerle daño, <span class="highlight">Elohím</span>
+                    lo usó para salvar muchas vidas. Esa
+                    <span class="highlight">teodicea</span> (Elohim usa el mal humano
+                    para fines de vida y preservación) es un tema teológico central en
+                    la saga.
+                </li>
+                <li>
+                    <span class="highlight"
+                        >Función retórica del discurso de Judá:</span
+                    >
+                    su oferta sacrificial legitima la reconciliación: no es una mera
+                    excusa sentimental sino una demostración pública —y jurídicamente
+                    significativa— de que la familia ha cambiado.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>C. Conexiones proféticas y tipologías mayores</h2>
+            <ul>
+                <li>
+                    <span class="highlight">Paralelo con la Haftará (Ezeq. 37:15–28):</span
+                    >
+                    la lectura litúrgica junta el motivo de la reunificación de las
+                    ramas (Judá y José/Efraín). El pasaje de Génesis se convierte en una
+                    <span class="highlight">«prefiguración» narrativa</span> de la
+                    futura reunificación nacional y del gobierno unificador que la
+                    profecía anuncia.
+                </li>
+                <li>
+                    <span class="highlight">Tipología mesiánica:</span> en la exégesis
+                    mesiánica tuya y en la tradición que contiene el dossier La
+                    Divinidad de Yeshúa, se señala que
+                    <span class="highlight">José funciona como tipo del
+                        Salvador-proveedor</span
+                    >
+                    (administra la supervivencia),
+                    <span class="highlight">Judá como tipo del líder intercesor</span
+                    > (la rama llamada a la realeza), y la convergencia de ambos
+                    anticipa la figura compleja del Mashíaj —El que provee y al mismo
+                    tiempo intercede/entrega. Esto permite leer 45:1–7 no sólo como
+                    historia familiar sino como sombra profética del gobierno mesiánico
+                    que reunirá y preservará.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <h1>
+        Punto 6 — Análisis profundo de la Aliyáh (Génesis 44:31–45:7)
+    </h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>1. Estructura narrativa y movimientos retóricos</h2>
+            <p><span class="point-letter">A.</span> Culminación del discurso de Judá (44:31–34): reafirma sus argumentos, personaliza la tragedia (la vejez de Jacob) y vuelve a ofrecerse como garante. Este cierre prepara la respuesta emocional de José.</p>
+            <p><span class="point-letter">B.</span> Retirada de los hermanos y respuesta de José (45:1–3): José no reacciona inmediatamente con ira ni con castigo; su respuesta es emocional—se retira a solas y llora—luego regresa para hablar. La secuencia narrativa enfatiza el control deliberado de José al revelar su identidad en el momento oportuno.</p>
+            <p><span class="point-letter">C.</span> Revelación y teodicea (45:4–7): José interpreta históricamente los acontecimientos: “No fueron ustedes quienes me enviaron aquí, sino Elohím” (o fórmula equivalente), mostrando comprensión providencial: lo que se quería para mal, <span class="highlight">Elohím</span> lo transformó en bien para salvar. Esta interpretación funciona como la teología narrativa del libro.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>2. Temas literarios y símbolos</h2>
+            <ul>
+                <li><span class="highlight">Lágrimas y humillación:</span> simbolizan la resolución humana ante el misterio divino.</li>
+                <li><span class="highlight">“Yo soy” y la voz en primera persona:</span> el momento de la autodeclaración es pregnante: la frase “Yo soy José” (y la interpretación “Yo soy” como declaración de identidad en otros contextos) es un motivo que la tradición cristiana/aramea comparará con las afirmaciones <span class="highlight">«ENA NA / Yo soy»</span> de Yeshúa —esto aparece en tu dossier y es teológicamente relevante al leer tipologías.</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>3. Desarrollo del carácter y psicología narrativa</h2>
+            <ul>
+                <li><span class="highlight">José:</span> demuestra magnanimidad: perdona e interpreta. Su conducta no es de justiciero sino de restaurador; ha alcanzado una sabiduría práctica y teológica (ve la mano de <span class="highlight">Elohím</span>).</li>
+                <li><span class="highlight">Hermanos:</span> ahora humillados y penitentes; la escena muestra cohesión ética transformada.</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>4. Dimensión jurídica/ritual implícita</h2>
+            <p>El ofrecimiento de Judá (quedarse en servidumbre) no es meramente emotivo: refleja nociones jurídicas de
+                <span class="highlight">garantía y rescate</span> que tenían peso social real. El reconocimiento público de la
+                disposición a ser rehén legitima la confianza del padre al recibir noticias.
+            </p>
+        </div>
+    </div>
+
+    <h1>
+        Punto 7 — Tema más relevante de la Aliyáh (Génesis 44:31–45:7)
+    </h1>
+
+    <div class="content-container">
+        <h2>Tema central: Revelación divina a través de la intercesión humana: la providencia que convierte intención maligna en redención.</h2>
+        <div class="explanation">
+            <h3>Explicación:</h3>
+            <p>Esta aliáh muestra cómo la <span class="highlight">intercesión</span> y la
+                <span class="highlight">transformación ética humana</span> (Judá y los hermanos) son el escenario humano donde la
+                <span class="highlight">acción divina</span> se hace visible (José se revela y declara que Elohím había guiado
+                los acontecimientos). La reconciliación no es solamente humana ni únicamente divina: es la confluencia donde la
+                conversión moral humano permite la manifestación de la providencia que salva.
+            </p>
+            <p>En clave mesiánica: la escena tipifica la estructura salvadora —
+                <span class="highlight">Intercesor (Judá)</span>
+                <span class="arrow">→</span>
+                <span class="highlight">Administra-salvación (José)</span>
+                <span class="arrow">=</span>
+                <span class="highlight">figura que en la tradición mesiánica culmina en Yeshúa</span>, quien es a la vez
+                Intercesor divino y Salvador que transforma la caída en redención.
+            </p>
+        </div>
+    </div>
+
+    <h1>
+        Punto 8 — Descubriendo al Mashíaj en la Aliyáh de Génesis 44:31–45:7
+    </h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>1. Métodos para “descubrir” al Mashíaj (aplicados aquí):</h2>
+            <ul>
+                <li><span class="highlight">Tipología (tipo y antitipo):</span> ver figuras en el AT que “prefiguran” atributos del Mashíaj.</li>
+                <li><span class="highlight">Sombra y cumplimiento (tzelah → cumplimiento):</span> eventos, roles y rasgos que funcionan como sombras de la obra redentora.</li>
+                <li><span class="highlight">Paralelismo profético (Haftará y textos mesiánicos):</span> conexión temática con textos proféticos que anuncian unidad y rey restaurador (Ezequiel 37).</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>2. Figuras y paralelos específicos en este pasaje</h2>
+            <h3>José como tipo del Mashíaj Salvador/Proveedor:</h3>
+            <ul>
+                <li>José salva físicamente a la familia mediante administración sagaz del grano; en la tipología, esto apunta al Mashíaj que trae salvación y sustento (espiritual y a veces material) para su pueblo.</li>
+                <li>En la literatura mesiánica se ve a José como “<span class="highlight">Yeshúa en figura</span>” —uno rechazado por hermanos, elevado por la providencia, instrumento de salvación.</li>
+            </ul>
+            <h3>Judá como tipo del líder intercesor y rey-sacrificante:</h3>
+            <ul>
+                <li>Judá asume el riesgo en favor de Benjamín; su ofrecimiento anticipa la entrega sacerdotal/real del Mashíaj, y probablemente explica por qué la tribu de Judá será la línea davídica: <span class="highlight">liderazgo probado por disposición sacrificial</span>.</li>
+            </ul>
+            <h3>Conjunción José–Judá = Prefiguración completa del Mashíaj:</h3>
+            <p>La narrativa combina la provisión y la intercesión —dos atributos que en la teología del Nuevo Testamento se concentran en Yeshúa (quien provee pan de vida y actúa como Intercesor). El dossier <span class="highlight">La Divinidad de Yeshúa</span> recalca este tipo de nexos: la figura que administra salvación y que declara «Yo soy» es paradigmática para la identidad mesiánica.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>3. Notas teológicas específicas (énfasis arameo/“ENA NA”)</h2>
+            <div class="explanation">
+                <p>Tu documento subraya que la fórmula “Yo soy” (<span class="highlight">ENA NA</span>, <span class="highlight">Ehieh</span>) es un patrón teológico—palabras similares en el NT arameo/ Peshitta son adjudicadas a Yeshúa como declaraciones de identidad divina. En Génesis la autodeclaración de José "<span class="highlight">Yo soy José</span>" no es declaración divina per se, pero literariamente resuena con la idea de identidad revelada y con la ironía de que uno (José) puede decir “yo soy” para restaurar relación; los exegetas mesiánicos usan ese eco (con cautela) para enlazar la revelación de identidad en el AT con las grandes confesiones de identidad del Mashíaj en el NT. Esa lectura tipológica está documentada en tu dossier y en la tradición cristiana en arameo.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>4. Aplicación: cómo leer la aliáh en clave mesiánica práctica</h2>
+            <p>Ver a José y Judá como “<span class="highlight">figura y sombra</span>” ayuda a comprender que la salvación bíblica ocurre por la relación entre la conversión moral humana y la acción soberana de <span class="highlight">Elohím</span>. En el cristianismo mesiánico, esto se cumple en <span class="highlight">Yeshúa</span>: Él es quien, siendo divino, se hace servidor; quien siendo rey, intercede; y cuya obra convierte lo que fue hecho para mal en redención para muchos.
+            </p>
+        </div>
+    </div>
+    <h1>
+        Punto 9 — Midrashim, Targumim y textos fuentes relevantes para Génesis
+        44:31–45:7
+      </h1>
+
+      <div class="section-container">
+        <h2>Resumen y orientación general</h2>
+        <p>
+          Las interpretaciones tradicionales (midrásicas y targúmicas) y otras
+          fuentes antiguas iluminan este pasaje desde tres ejes: 1) la
+          <span class="highlight">transformación moral de los hermanos</span>; 2)
+          el significado jurídico/social del <span class="highlight">ofrecimiento de Judá</span>; 3)
+          la providencia divina que convierte el mal humano en medio de
+          salvación. A continuación indico las fuentes y su aporte típico (sin
+          inventar citas textuales que no estén en tus archivos subidos — si
+          quieres, puedo traer citas textuales concretas de cada
+          midrash/targum en la próxima entrega).
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>Midrashim (tradición rabínica)</h3>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">Midrash Rabbah</div>
+            <p>
+              Discute la conducta de los hermanos y suele realzar la
+              <span class="highlight">conversión de Judá</span> —considerándolo el
+              punto moral que habilita la reconciliación y la restauración.
+              Otros aggadot clásicas (p. ej. colecciones sobre la saga de José)
+              resaltan la
+              <span class="highlight">providencia divina</span> que transforma la
+              intención de hacer daño en instrumento de salvación.
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              Pirkei de-Rabbi Eliezer y Midrashim Menores
+            </div>
+            <p>
+              Interpretan los motivos y la psicología de los personajes, a menudo
+              ampliando la narrativa bíblica para explicar detalles (por
+              ejemplo, por qué Jacob estaba tan afligido, o por qué Judá se
+              ofrece).
+            </p>
+          </div>
+          <p class="conclusion">
+            <strong>Uso en tu marco:</strong> estos midrashim sirven para
+            enfatizar la tesis temática de la aliáh: la
+            <span class="hebrew-term">תשובה</span> (<span
+              class="transliteration"
+              >teshuváh</span
+            >, arrepentimiento visible) y la intercesión que conduce a la
+            restauración.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>Targumim (traducciones-exégesis arameas)</h3>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">Targum Onkelos</div>
+            <p>
+              Normalmente provee una traducción relativamente literal con ligeras
+              aclaraciones lingüísticas; ayuda a comprender cómo los antiguos
+              lectores arameos entendieron frases jurídicas como
+              <span class="highlight">“quedaré yo”</span> (ofrecimiento de ser
+              garante/rehén).
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              Targum Pseudo-Jonatán / Targum Yerushalmi
+            </div>
+            <p>
+              Tienden a añadir
+              <span class="highlight">comentarios explicativos</span> y a veces
+              interpretan la acción con matices teológicos (por ejemplo,
+              resaltando la mano de Elohim en los eventos).
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              Peshitta / Versiones Arameas Cristianas
+            </div>
+            <p>
+              En el campo arameo aparece el motivo tipológico de José
+              como <span class="highlight">figura de salvación</span> y la
+              interpretación de la providencia (v. ej. lectura de 45:5–7 como un
+              acto divino que redime).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>Otras fuentes antiguas y patrísticas</h3>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <p>
+              antiguos suelen ver en
+              José una <span class="highlight">figura del Salvador</span>; la
+              revelación de José se lee como <span class="highlight">“tipo”</span>
+              del reconocimiento final del Mesías.
+            </p>
+            <p>
+              En tu propio dossier
+              <span class="highlight">La Divinidad de Yeshúa</span> se recoge la
+              lectura tipológica que une la providencia de José con la obra del
+              <span class="hebrew-term">משיח</span> (<span
+                class="transliteration"
+                >Mashíaj</span
+              >) (esto sirve de marco para la lectura mesiánica de la aliáh).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <strong>Qué puedo traer si quieres extra material:</strong>
+        <ul>
+          <li>Citas textuales de Midrash Rabbah (secciones sobre José).</li>
+          <li>
+            Extractos de Targum Onkelos y Targum Pseudo-Jonatán en los versos
+            44:31–45:7.
+          </li>
+        </ul>
+        <p>
+          Dímelo y las extraigo y coloco interlinealmente junto al hebreo.
+        </p>
+        <p class="literal-translation">
+          Referencias internas usadas: guía de las 54 Parashot para ubicar la
+          aliáh y la Haftará asociada; dossier La Divinidad de Yeshúa para la
+          lectura tipológica/mesianista de la providencia y la intercesión.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>
+        Punto 10 — Mandamientos o principios encontrados en Génesis 44:31–45:7
+      </h1>
+
+      <div class="explanation">
+        <p>
+          Aunque no hay un listado formal de
+          <span class="hebrew-term">מצוות</span> (<span class="transliteration"
+            >mitzvot</span
+          >, leyes) en este pasaje narrativo, el texto contiene
+          <span class="highlight">principios éticos y prácticos</span> que
+          funcionan como mandamientos morales aplicables a la comunidad:
+        </p>
+        <ul>
+          <li>
+            <span class="highlight">Interceder por el prójimo y asumir responsabilidad</span> —
+            Judá ofrece su propia libertad por Benjamín; esto es modelo de
+            liderazgo sacrificial. (Principio: “Defiende y protege a los
+            tuyos”.)
+          </li>
+          <li>
+            <span class="highlight">Honrar y proteger al padre anciano</span> —
+            Respecto filial como deber moral de la familia y comunidad.
+          </li>
+          <li>
+            <span class="highlight">Mostrar teshuváh con actos concretos</span>
+            — El arrepentimiento verdadero se prueba en la acción reparadora,
+            no sólo en palabras.
+          </li>
+          <li>
+            <span class="highlight">No ser instrumento de daño: reconocer y
+            reparar injusticias pasadas</span> — Los hermanos deben enfrentar las
+            consecuencias morales de la venta de José mediante restauración.
+          </li>
+          <li>
+            <span class="highlight">Reconocer la providencia y confiar en Elohím aun en el mal</span>
+            — José interpreta los eventos como instrumento de la voluntad divina
+            para preservar vidas; la actitud teológica es confiar en la
+            soberanía redentora.
+          </li>
+          <li>
+            <span class="highlight">Liderazgo humilde y restaurador</span> — El
+            gobernante/autoridad (aquí, José) debe usar el poder para
+            reconciliar, no para destruir.
+          </li>
+        </ul>
+        <p class="conclusion">
+          Estos principios tienen aplicación práctica en la
+          <span class="hebrew-term">קהילה</span> (<span class="transliteration"
+            >Kehiláh</span
+          >): intercesión activa, defensores de los vulnerables, restauración
+          pública del daño, y liderazgo servicial. Para la lectura mesiánica,
+          todos se reconcilian en la obra de
+          <span class="highlight">Yeshúa como Intercesor y Redentor</span> (ver
+          el dossier).
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>
+        Punto 11 — Cinco preguntas de reflexión con respuestas en el Mashíaj
+        (Génesis 44:31–45:7)
+      </h1>
+
+      <div class="explanation">
+        <p>
+          <span class="highlight"
+            >Nota: las respuestas aquí son explícitamente lecturas mesiánicas</span
+          >
+          —es decir, cómo interpretar el sentido del pasaje a la luz de Yeshúa
+          haMashíaj, siguiendo la línea teológica de tus materiales.
+        </p>
+
+        <div class="section-container">
+          <div class="question">
+            1. ¿Por qué Judá se ofrece y qué significa ese ofrecimiento?
+          </div>
+          <div class="answer">
+            <span class="highlight"
+              >Respuesta en el Mashíaj:</span
+            >
+            El ofrecimiento de Judá es un acto de <span class="highlight">sustitución</span>
+            que prefigura la intercesión del Mashíaj. Yeshúa, como Intercesor, se
+            entrega por la Kehiláh; Judá enseña que la redención exige entrega, y
+            Yeshúa cumple esa entrega perfectamente.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            2. ¿Qué implica la revelación de José (“Yo soy José”) en términos de
+            reconciliación?
+          </div>
+          <div class="answer">
+            <span class="highlight"
+              >Respuesta en el Mashíaj:</span
+            >
+            La revelación produce <span class="highlight">restauración</span>; en el
+            cumplimiento mesiánico, la revelación de Yeshúa como Adonái y
+            Mashíaj trae <span class="highlight">reconciliación</span> entre Adonái y
+            su pueblo. Así como la verdad de la identidad de José permite la
+            reunificación, la verdad sobre Yeshúa como Salvador posibilita la
+            unión definitiva.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            3. ¿Cómo entiende el pasaje la relación entre el mal humano y la
+            providencia de Elohím?
+          </div>
+          <div class="answer">
+            <span class="highlight"
+              >Respuesta en el Mashíaj:</span
+            >
+            José declara que <span class="highlight">Elohím convirtió la malicia de los hombres en bien</span>.
+            En Yeshúa, la pasión y la traición humana son transformadas por la
+            resurrección y la obra redentora: el mal es usado para cumplimiento
+            salvífico. Esta teodicea es central en la cristiandad mesiánica.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            4. ¿Qué enseñanza práctica deja el pasaje para la comunidad de fe?
+          </div>
+          <div class="answer">
+            <span class="highlight"
+              >Respuesta en el Mashíaj:</span
+            >
+            Priorizar la <span class="highlight">restauración</span>, practicar la
+            <span class="highlight">intercesión</span> y la <span class="highlight">solidaridad
+            sacrificial</span>; la comunidad que imita a Yeshúa busca la
+            reconciliación activa y protege a los vulnerables. (La aliáh exige
+            obras que manifiesten la fe).
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            5. ¿Hay en este pasaje una señal o sombra del liderazgo
+            davídico/mesiánico?
+          </div>
+          <div class="answer">
+            <span class="highlight"
+              >Respuesta en el Mashíaj:</span
+            >
+            Sí—el rol de Judá como <span class="highlight">intercesor</span> y la
+            <span class="highlight">reunificación con la casa de José</span>
+            anticipan la autoridad unificadora que la profecía (Ezeq.37) asigna
+            al Mesías de la línea de Judá; Yeshúa cumple ese papel como Rey que
+            redime y une.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>
+        Punto 12 — Resumen de la Aliyáh (Génesis 44:31–45:7)
+      </h1>
+
+      <div class="conclusion">
+        <h3>Resumen conciso y teológico:</h3>
+        <p>
+          En Génesis 44:31–45:7 se cierra la suplica de
+          <span class="highlight">Judá</span>, quien insiste en asumir la carga y
+          el riesgo por Benjamín para proteger a su anciano padre. Conmovido por
+          la evidencia de cambio moral en sus hermanos y por el sufrimiento del
+          padre,
+          <span class="highlight">José se retira, llora y luego se revela</span>
+          a sus hermanos. José interpreta los sucesos como
+          <span class="highlight">dirección de Elohím</span>: lo que los hombres
+          intentaron para hacerle daño, Elohím lo usó para preservar muchas
+          vidas. El episodio culmina la prueba de los hermanos y abre la
+          <span class="highlight">reconciliación familiar y la salvación
+          providencial</span> que conducirá al traslado de la casa de Jacob a
+          Egipto. Litúrgicamente esta aliáh es la
+          <span class="highlight">Aliyah 2 de VaYigash</span> y se lee en
+          paralelo con la Haftará de reunificación (Ezequiel 37).
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h1>
+        Punto 13 — Tefiláh (Oración) de la Aliyáh (Génesis 44:31–45:7)
+      </h1>
+
+      <div class="explanation">
+        <h3>Tefiláh por la reconciliación y la intercesión</h3>
+        <div class="prayer-text">
+          <p>
+            Adonái
+            <span class="hebrew-term">יהוה</span>,
+          </p>
+          <p>
+            Tú que gobiernas con justicia y vuelves las sendas de los hombres
+            hacia la vida, escucha nuestra súplica.
+          </p>
+          <p>
+            Danos el espíritu de <span class="highlight">Judá</span>: coraje para
+            interceder, amor para asumir la carga del hermano, sabiduría para
+            reparar lo que fue quebrantado.
+          </p>
+          <p>
+            Abre nuestros ojos como a los hermanos de José, para que veamos la
+            mano de tu <span class="highlight">providencia</span> obrando aun en
+            la adversidad.
+          </p>
+          <p>
+            Que el dar y recibir de <span class="highlight">perdón</span> en
+            nuestra familia y en nuestra
+            <span class="hebrew-term">קהילה</span> (<span
+              class="transliteration"
+              >Kehiláh</span
+            >) refleje la obra del <span class="highlight">Mashíaj Yeshúa haMashíaj</span>, nuestro
+            Intercesor y Redentor.
+          </p>
+          <p>
+            Haz, Adonái <span class="hebrew-term">יהוה</span>, que en nuestras
+            pruebas nunca olvidemos que Tú puedes volver los designios del mal en
+            cauce de vida; que nuestras acciones den testimonio de verdadera
+            <span class="hebrew-term">תשובה</span> (<span
+              class="transliteration"
+              >teshuváh</span
+            >).
+          </p>
+          <p>
+            Bendice a los ancianos, protege a los pequeños y levanta líderes que
+            sirvan con humildad.
+          </p>
+          <p>
+            Por la misericordia de Adonái <span class="hebrew-term">יהוה</span> y
+            en memoria del sacrificio y la intercesión del Mashíaj, amén.
+          </p>
+        </div>
+        <div class="prayer-conclusion">
+          Bendición: Que la paz de Adonái <span class="hebrew-term">יהוה</span>
+          habite entre nosotros y que la reconciliación brote en nuestras casas.
+        </div>
+      </div>
+    </div>
+ <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya3.html">Continuar con la Aliyá 3</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

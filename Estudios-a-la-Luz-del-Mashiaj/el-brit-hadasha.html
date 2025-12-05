@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>El Brit Hadashah es con la Casa de Israel y la Casa de Yehudah</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>El Brit Hadashah es con la Casa de Israel y la Casa de Yehudah</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El estudio del Brit Hadashah (Pacto Nuevo) revela una verdad
+          fundamental establecida por los Profetas del Tanaj: este Pacto fue
+          prometido y destinado específicamente a las dos casas del pueblo de
+          Israel: la Casa de Israel (Efraín) y la Casa de Yehudah (Judá).
+          Yeshúa HaMashíaj es el mediador y el cumplimiento de esta promesa,
+          haciendo posible la unidad profética y la restauración total de
+          Israel.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>La Promesa del Pacto Nuevo en el Tanaj</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          La fuente principal de esta doctrina se encuentra en el profeta
+          Yirmiyáhu (Jeremías), quien anticipó la naturaleza interna y
+          permanente del nuevo acuerdo que
+          <span class="hebrew-term">יְהוָה</span> establecería con Su pueblo.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Yirmiyáhu 31:31-33 (Tanaj)</div>
+        <div class="hebrew">
+          הִנֵּה יָמִים בָּאִים נְאֻם־יְהוָה וְכָרַתִּי אֶת־בֵּית יִשְׂרָאֵל
+          וְאֶת־בֵּית יְהוּדָה בְּרִית חֲדָשָׁה׃ לֹא כַבְּרִית אֲשֶׁר
+          כָּרַתִּי אֶת־אֲבוֹתָם בְּיוֹם הֶחֱזִיקִי בְיָדָם לְהוֹצִיאָם
+          מֵאֶרֶץ מִצְרָיִם אֲשֶׁר־הֵמָּה הֵפֵרוּ אֶת־בְּרִיתִי וְאָנֹכִי
+          בָּעַלְתִּי בָם נְאֻם־יְהוָה׃ כִּי זֹאת הַבְּרִית אֲשֶׁר אֶכְרֹת
+          אֶת־בֵּית יִשְׂרָאֵל אַחֲרֵי הַיָּמִים הָהֵם נְאֻם־יְהוָה נָתַתִּי
+          אֶת־תּוֹרָתִי בְּקִרְבָּם וְעַל־לִבָּם אֶכְתֲּבֶנָּה וְהָיִיתִי
+          לָהֶם לֵאלֹהִים וְהֵמָּה יִהְיוּ־לִי לְעָם׃
+        </div>
+        <div class="transliteration">
+          Hiné yamim ba'im ne'um-Adonai vekarati et-Beit Yisrael ve'et-Beit
+          Yehudah berit chadashah. Lo kaberit asher karati et-avotam beyom
+          jecheziqi veyadam lehotzi'am me'eretz Mitzrayim asher-hemah heferu
+          et-beriti ve'anoji ba'alti vam ne'um-Adonai. Ki zot haberit asher
+          ekrot et-Beit Yisrael acharei hayamim hahem ne'um-Adonai natati
+          et-Torati bekirbam ve'al-libam ektevenah vehayiti lahem le'Elohim
+          vehemah yihyu-li le'am.
+        </div>
+        <div class="translation">
+          "He aquí que vienen días, dice יְהוָה, en los cuales haré un pacto
+          nuevo con la Casa de Israel y con la Casa de Yehudah. No como el
+          pacto que hice con sus padres el día que tomé su mano para sacarlos
+          de la tierra de Mitzrayim (Egipto); mi pacto, el cual ellos
+          rompieron, aunque Yo fui un esposo para ellos, dice יְהוָה. Sino que
+          este será el pacto que haré con la Casa de Israel después de aquellos
+          días, dice יְהוָה: Daré Mi Torá en sus mentes, y la escribiré sobre
+          sus corazones; y Yo seré su Elohím, y ellos serán Mi pueblo."
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          <span class="highlight">Explicación:</span> Este pasaje es inequívoco
+          en su destinatario. <span class="hebrew-term">יְהוָה</span> no
+          promete un pacto con una nación enteramente nueva, sino un pacto
+          renovado (Brit Hadashah) con las mismas dos entidades históricas que
+          componen el pueblo de Israel. La distinción entre la Casa de Israel
+          (a menudo dispersa y asimilada entre las naciones) y la Casa de
+          Yehudah (la que retuvo el conocimiento de la Torá y el sacerdocio) es
+          crucial. Este Pacto difiere del de Sinaí en que la Torá sería
+          internalizada, escrita directamente en el corazón por medio del Ruach
+          HaKodesh, garantizando una obediencia genuina y una relación íntima.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Cumplimiento Profético en Yeshúa HaMashíaj</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El Brit Hadashah enseña que el mediador de este pacto es Yeshúa,
+          quien vertió Su sangre en el madero para ratificarlo, tal como lo
+          había predicho el profeta Yeshayáhu (Isaías), refiriéndose a Yeshúa
+          como "luz de las naciones" y "pacto para el pueblo" (Yeshayáhu 42:6).
+        </p>
+        <p>
+          La Carta a los Hebreos (Ivrim), escrita desde la perspectiva del
+          pensamiento mesiánico, confirma que Yeshúa es el Sumo Sacerdote que
+          ha hecho efectivo el cumplimiento de la profecía de Yirmiyáhu.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">
+          Ivrim 8:8-12 (Brit Hadashah, basado en la Peshita)
+        </div>
+        <div class="aramaic">
+          ܡܛܠ ܕܡܟܣ ܐܢܘܢ ܘܐܡܪ ܕܗܐ ܝܘܡܬܐ ܐܬܝܢ ܐܡܪ ܡܪܝܐ ܘܐܩܝܡ ܥܡ ܒܝܬ
+          ܐܝܣܪܐܝܠ ܘܥܡ ܒܝܬ ܝܗܘܕܐ ܕܝܬܩܐ ܚܕܬܐ ܠܐ ܐܝܟ ܕܝܬܩܐ ܗܘ ܕܥܒܕܬ ܥܡ
+          ܐܒܗܝܗܘܢ ܒܝܘܡܐ ܕܐܚܕܬ ܐܢܘܢ ܒܐܝܕܝܗܘܢ ܕܐܦܩ ܐܢܘܢ ܡܢ ܐܪܥܐ ܕܡܨܪܝܢ
+          ܕܗܢܘܢ ܠܐ ܩܘܝܘ ܒܕܝܬܩܝ ܘܐܢܐ ܐܣܠܝܬ ܡܢܗܘܢ ܐܡܪ ܡܪܝܐ ܗܢܘ ܕܝܢ
+          ܕܝܬܩܐ ܕܐܩܝܡ ܠܒܝܬ ܐܝܣܪܐܝܠ ܒܬܪ ܝܘܡܬܐ ܗܢܘܢ ܐܡܪ ܡܪܝܐ ܐܬܠ ܢܡܘܣܝ
+          ܒܪܥܝܢܗܘܢ ܘܥܠ ܠܒܗܘܢ ܐܟܬܘܒ ܐܢܘܢ ܘܐܗܘܐ ܠܗܘܢ ܐܠܗܐ ܘܗܢܘܢ ܢܗܘܘܢ ܠܝ
+          ܥܡܐ ܘܠܐ ܢܠܦ ܐܢܫ ܠܚܒܪܗ ܘܠܐ ܐܢܫ ܠܐܚܘܗܝ ܕܢܐܡܪ ܕܥ ܠܡܪܝܐ ܡܛܠ
+          ܕܟܠܗܘܢ ܢܕܥܘܢܢܝ ܡܢ ܙܥܘܪܗܘܢ ܘܥܕܡܐ ܠܪܘܪܒܗܘܢ ܡܛܠ ܕܐܗܘܐ ܡܪܚܡܢܐ ܥܠ
+          ܥܘܠܗܘܢ ܘܚܛܗܝܗܘܢ ܘܥܘܠܗܘܢ ܠܐ ܐܬܕܟܪ ܬܘܒ
+        </div>
+        <div class="translation">
+          "Porque él les dice con reproche: 'He aquí que vienen días, dice Adon,
+          en que estableceré un pacto nuevo con la Casa de Israel y con la Casa
+          de Yehudah; no según el pacto que hice con sus padres en el día que
+          los tomé de la mano para sacarlos de la tierra de Mitzrayim; porque
+          ellos no permanecieron en Mi pacto, y Yo me desentendí de ellos, dice
+          Adon. Porque este es el pacto que estableceré con la Casa de Israel
+          después de aquellos días, dice Adon: Pondré Mis leyes en sus mentes,
+          y las escribiré en sus corazones; y Yo seré para ellos un Elohím, y
+          ellos serán para Mí un pueblo. Y nadie enseñará a su prójimo, y nadie
+          a su hermano, diciendo: "Conoce a Adon"; porque todos me conocerán,
+          desde el más pequeño hasta el más grande de ellos. Porque seré
+          clemente con sus iniquidades, y de sus pecados y de sus iniquidades
+          no me acordaré más.'"
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          <span class="highlight"
+            >Aplicación Espiritual Conectada al Mashíaj:</span
+          >
+          Este pasaje del Brit Hadashah cita directamente a Yirmiyáhu para
+          demostrar que Yeshúa no vino a establecer una nueva religión ni a
+          anular el plan de <span class="hebrew-term">יְהוָה</span>, sino a
+          inaugurar el Pacto predicho, cumpliendo el requisito de que la Torá
+          fuese escrita en el corazón. El sacrificio de Yeshúa HaMashíaj en el
+          madero es el medio por el cual la iniquidad es perdonada, permitiendo
+          que el Ruach HaKodesh cumpla la promesa de implantar la Torá en la
+          mente y el corazón de los hijos de Israel, incluyendo tanto a los
+          dispersos (Casa de Israel) como a los que se aferraron al Pacto (Casa
+          de Yehudah), unificándolos en un solo cuerpo bajo Su Mesiandad.
+        </p>
+        <p>
+          El Brit Hadashah es la manifestación de la fidelidad de
+          <span class="hebrew-term">יְהוָה</span> a Su pueblo, y Yeshúa es el
+          Adonai que trae la redención y la restauración para la Casa de Israel
+          y la Casa de Yehudah.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="prophetic-content">
+      <div class="prophetic-section">
+        <div class="prophetic-title">
+          El Destinatario del Brit Hadashah
+        </div>
+        <p>
+          El texto no dice que este Brit sea con "la Iglesia" o con un nuevo
+          pueblo, sino con el mismo Israel dividido en dos casas: la del Norte
+          (Israel/Efraim) y la del Sur (Yehudah).
+        </p>
+        <p>
+          El propósito de Yeshúa haMashíaj fue precisamente reunir en uno a las
+          ovejas dispersas de ambas casas (ver Yojanán / Juan 10:16; Ezequiel
+          37:15–28). En Él se cumple la promesa de restauración total de Am
+          Israel.
+        </p>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">La Torá Renovada, No Reemplazada</div>
+        <p>
+          El comentario mesiánico de la Biblia Toráh Viviente con Comentarios
+          explica que este pacto es la renovación de la Toráh escrita en los
+          corazones por medio de la Ruaj HaKodesh, y no un reemplazo de la
+          Toráh dada en el Sinaí. Yeshúa vino a confirmar ese Brit, no a
+          anularlo, como está escrito en Mattityahu / Mateo 5:17:
+        </p>
+        <div class="scripture">
+          "No piensen que he venido a abolir la Toráh o los Neviím; no he
+          venido a abolir, sino a llenar (cumplir, completar)".
+        </div>
+      </div>
+
+      <div class="prophetic-section">
+        <div class="prophetic-title">El Injerto de las Naciones</div>
+        <p>
+          Así, el Brit Hadasháh es la restauración del Pacto eterno, sellado
+          con la sangre del Cordero (Yeshúa), y extendido en misericordia a las
+          naciones que se injertan en Israel, como explica Shaúl / Pablo en
+          Romiyim / Romanos 11:17–24: los de las naciones son injertados en el
+          Olivo de Israel, no reemplazan al Israel natural.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>Resumen</h2>
+
+    <div class="content-container">
+      <table
+        style="
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        "
+      >
+        <thead>
+          <tr style="background-color: #f0f0f0">
+            <th
+              style="
+                border: 1px solid #ddd;
+                padding: 12px;
+                text-align: left;
+                font-weight: bold;
+              "
+            >
+              Concepto
+            </th>
+            <th
+              style="
+                border: 1px solid #ddd;
+                padding: 12px;
+                text-align: left;
+                font-weight: bold;
+              "
+            >
+              Significado Mesiánico
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px">
+              Brit Hadasháh
+            </td>
+            <td style="border: 1px solid #ddd; padding: 12px">
+              Renovación del Pacto eterno con Israel y Yehudah
+            </td>
+          </tr>
+          <tr style="background-color: #f9f9f9">
+            <td style="border: 1px solid #ddd; padding: 12px">Fundamento</td>
+            <td style="border: 1px solid #ddd; padding: 12px">
+              Toráh escrita en los corazones (Jer 31:31–33)
+            </td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px">Mediador</td>
+            <td style="border: 1px solid #ddd; padding: 12px">
+              Yeshúa haMashíaj (Hebreos 8:6)
+            </td>
+          </tr>
+          <tr style="background-color: #f9f9f9">
+            <td style="border: 1px solid #ddd; padding: 12px">Alcance</td>
+            <td style="border: 1px solid #ddd; padding: 12px">
+              Reunificación de las dos casas (Ezequiel 37:15–28)
+            </td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #ddd; padding: 12px">Extensión</td>
+            <td style="border: 1px solid #ddd; padding: 12px">
+              Injerto de las naciones en Israel (Romanos 11:17–24)
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="conclusion">
+        <p>
+          Por lo tanto, la Casa de Israel (Efraim) y la Casa de Yehudah (Judá)
+          son los destinatarios del Brit Hadasháh, que en Yeshúa haMashíaj
+          encuentra su cumplimiento pleno, restaurando la unidad del pueblo del
+          Eterno bajo un solo Rey y un solo Pastor.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>🙏 Oración Basada en el Brit Hadashah y la Fidelidad del Pacto</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h3>Reconocimiento de la Autoridad del Mashíaj</h3>
+        <div class="prayer-text">
+          Avinu Malkeinu (Padre nuestro, Rey nuestro), nos acercamos a Ti no
+          por nuestros propios méritos, sino a través del Brit Hadashah, el
+          Pacto Renovado establecido por la sangre de Tu Hijo, Yeshúa
+          HaMashíaj.
+        </div>
+        <div class="prayer-text">
+          Reconocemos la verdad de Yochanán (Juan) 14:6, donde Yeshúa declaró:
+          "Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino
+          por mí." En Yeshúa, tenemos acceso directo a Tu Presencia, pues Él es
+          nuestro Sumo Sacerdote según el orden de Malki-Tzédeq, quien
+          intercede por nosotros (Ivrim 7:25).
+        </div>
+      </div>
+
+      <div class="section-container">
+        <h3>Petición por el Ruach HaKodesh y el Entendimiento de la Torá</h3>
+        <div class="prayer-text">
+          Te pedimos, <span class="hebrew-term">יְהוָה</span>, que derrames el
+          Ruach HaKodesh sobre nosotros, tal como fue prometido a Tus hijos.
+          Que se cumpla en nuestras vidas la profecía citada en Ivrim (Hebreos)
+          8:10: "Pondré Mis leyes en sus mentes, y las escribiré en sus
+          corazones."
+        </div>
+        <div class="prayer-text">
+          Limpia nuestro entendimiento para que podamos caminar no según la
+          carne, sino según el Espíritu (Romanos 8:4-5), cumpliendo los justos
+          requisitos de la Torá en amor y obediencia. Guíanos en toda verdad,
+          para que vivamos como Tzadikim (justos) en HaMashíaj.
+        </div>
+      </div>
+
+      <div class="section-container">
+        <h3>Clamor por Unidad y Restauración</h3>
+        <div class="prayer-text">
+          Clamamos por la unidad del pueblo de Israel, la Casa de Israel y la
+          Casa de Yehudah, para que el mundo sepa que Tú has enviado a Yeshúa
+          (Yochanán 17:21). Que seamos uno en Ti, reflejando el amor que el
+          Padre tiene por el Hijo.
+        </div>
+        <div class="prayer-text">
+          Fortalécenos para que podamos ser instrumentos de Tu paz y consuelo.
+          Que seamos la luz del mundo, reflejando la gloria de Yeshúa
+          HaMashíaj, quien se entregó por nosotros en el madero, para que todo
+          aquel que en Él cree no se pierda, sino que tenga vida eterna
+          (Yochanán 3:16).
+        </div>
+      </div>
+
+      <div class="section-container">
+        <h3>Afirmación de Esperanza</h3>
+        <div class="prayer-text">
+          Gracias, Adonai, porque Tu fidelidad es inmutable. Tú eres el Adon
+          que vendrá pronto a buscar a Su pueblo. Vivimos con la esperanza de
+          la resurrección en Shabat y el retorno de nuestro Rey, cuando Él
+          enjugará toda lágrima y establecerá Su Reino eterno.
+        </div>
+        <div class="prayer-conclusion">
+          En el Nombre de Yeshúa HaMashíaj, el Amén, el Testigo Fiel y
+          Verdadero. Amén.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+      <p>
+        <strong>Yeshúa la Toraviviente</strong> | todos los recursos kedoshim
+        para tu crecimiento en el mashiaj Judío Adonai Yeshúa Hamashiaj
+      </p>
+      <p>
+        <a
+          href="https://ia-interactiva.vercel.app/"
+          style="color: #555; text-decoration: none"
+          >https://ia-interactiva.vercel.app/</a
+        >
+      </p>
+        <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia
+                        Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a>
+                </p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>

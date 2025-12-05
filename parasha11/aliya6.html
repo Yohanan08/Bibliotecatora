@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Parashá Vayigash (ויגש)- Génesis 46:28-47:11</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+  11. Parashá Vayigash (ויגש) – Aliyáh 6: (Génesis 46:28-47:10) Reunión de Yosef y Yaakov.
+        <p>
+       Haftaráh: Jeremías 31:15-20 (La restauración de los lazos familiares).
+        </p>
+        <p>
+        Brit Hadasháh: Juan 14:1-6 (Preparar un lugar para el encuentro).
+        </p>
+      </h1> 
+      <h1>Punto 1. Génesis 46:28 – Génesis 47:10</h1>
+
+    <div class="content-container">
+        <h2>Encuentro de Jacob y José en Gosén</h2>
+
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Génesis 46:28</div>
+                <div class="hebrew">וְאֶת־יְהוּדָה שָׁלַח לְפָנָיו אֶל־יוֹסֵף לְהוֹרֹת לְפָנָיו גֹּשְׁנָה וַיָּבֹאוּ אַרְצָה גֹּשֶׁן:</div>
+                <div class="transliteration">Ve'et-Yehudáh shálaj lefanáv el-Yosef, lehorót lefanáv Góshnah. Vayávo'u Artzáh Góshén.</div>
+                <div class="translation">Y a Yehudáh envió delante de él a Yosef, para indicarle el camino delante de él a Góshén. Y vinieron a la tierra de Góshén.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 46:29</div>
+                <div class="hebrew">וַיֶּאְסֹר יוֹסֵף מֶרְכַּבְתּוֹ וַיַּעַל לִקְרַאת יִשְׂרָאֵל אָבִיו גֹּשְׁנָה וַיֵּרָא אֵלָיו וַיִּפֹּל עַל־צַוָּארָיו וַיֵּבְךְּ עַל־צַוָּארָיו עוֹד:</div>
+                <div class="transliteration">Vayye'sór Yosef merkabtó vayyá'al likrat Yisra'él aviv Góshnáh vayyerá eláv vayyipol al-tzavva'ráv vayyévech al-tzavva'ráv 'od.</div>
+                <div class="translation">Y atendió Yosef su carro, y subió al encuentro de Israel su padre a Góshén, y se apareció a él, y cayó sobre sus cuellos, y lloró sobre sus cuellos aún.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 46:30</div>
+                <div class="hebrew">וַיֹּאמֶר יִשְׂרָאֵל אֶל־יוֹסֵף אָמוּתָה הַפַּעַם אַחֲרֵי רְאוֹתִי אֶת־פָּנֶיךָ כִּי עוֹדֶךָ חָי:</div>
+                <div class="transliteration">Vayomer Yisra'el el-Yosef: Amútah hapá'am ajaréy re'otí et-panéyja, ki 'odejá jay.</div>
+                <div class="translation">Y dijo Israel a Yosef: "Moriré esta vez, después de ver tus rostros, porque aún vives."</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="explanation">
+            <h3>Explicación y Comentario Mesiánico</h3>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Reunión y la Realidad</div>
+                    <p>El envío de <span class="highlight">Yehudáh</span> (<span class="hebrew-term">יְהוּדָה</span>) es significativo. Yehudáh, de quien vendría la línea del Mesías, es el encargado de guiar a Israel (<span class="hebrew-term">יִשְׂרָאֵל</span> - Jacob) hacia <span class="highlight">Yosef</span> (<span class="hebrew-term">יוֹסֵף</span>), quien prefigura al Mesías en su primer y segundo advenimiento.</p>
+                    <ul>
+                        <li><span class="highlight">Yosef sube al encuentro:</span> Este acto de Yosef, saliendo de su posición de autoridad en Egipto para encontrarse con su padre, es un paralelismo con el <span class="highlight">Mashíaj Ben Yosef</span> (Mesías hijo de José) en su humildad y en el encuentro final con su pueblo.</li>
+                        <li><span class="highlight">"Moriré esta vez..." (46:30):</span> La frase de Israel no es un deseo de muerte, sino una expresión de profunda satisfacción y plenitud. Su vida ha alcanzado su propósito, al ver al hijo que creía muerto, vivo y en gloria. Esto refleja el sentimiento del remanente de Israel al <span class="highlight">reconocer al Mesías</span> que una vez rechazaron, encontrando la vida y el propósito en Él.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>Preparación para Faraón y el Arreglo en Gosén</h1>
+
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Génesis 46:31</div>
+                <div class="hebrew">וַיֹּאמֶר יוֹסֵף אֶל־אֶחָיו וְאֶל־בֵּית אָבִיו אֶעֱלֶה וְאַגִּידָה לְפַרְעֹה וְאֹמְרָה אֵלָיו אַחַי וּבֵית אָבִי אֲשֶׁר בְּאֶרֶץ כְּנַעַן בָּאוּ אֵלָי:</div>
+                <div class="transliteration">Vayomer Yosef el-ejáv ve'el-beyt aviv: E'eléh ve'aguidáh leFar'oh ve'omráh eláv: Ajáy uv'eyt aví asher be'Eretz Kena'an ba'u eláy.</div>
+                <div class="translation">Y dijo Yosef a sus hermanos y a la casa de su padre: "Subiré y anunciaré a Par'oh (Faraón), y diré a él: Mis hermanos y la casa de mi padre, que estaban en la tierra de Kena'an, han venido a mí.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 46:32</div>
+                <div class="hebrew">וְהָאֲנָשִׁים רֹעֵי צֹאן כִּי־אַנְשֵׁי מִקְנֶה הָיוּ וְצֹאנָם וּבְקָרָם וְכָל־אֲשֶׁר לָהֶם הֵבִיאוּ:</div>
+                <div class="transliteration">Veha'anashím ro'éy tzon, ki-anshey miknéh hayu; veTzonám uv'karám vekhol-asher lahem hevÍ'u.</div>
+                <div class="translation">Y los hombres son pastores de ovejas, porque son hombres de ganado. Y sus ovejas, y su ganado, y todo lo que es de ellos trajeron.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 46:33</div>
+                <div class="hebrew">וְהָיָה כִּי־יִקְרָא לָכֶם פַּרְעֹה וְאָמַר מַה־מַּעֲשֵׂיכֶם:</div>
+                <div class="transliteration">Vehayáh ki-yiqrá lajem Par'oh ve'amár: Mah ma'aseyjém?</div>
+                <div class="translation">Y sucederá que cuando os llame Par'oh y diga: ¿Cuáles son vuestras obras?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 46:34</div>
+                <div class="hebrew">וַאֲמַרְתֶּם אַנְשֵׁי מִקְנֶה הָיוּ עֲבָדֶיךָ מִנְּעוּרֵינוּ וְעַד־עַתָּה גַּם־אֲנַחְנוּ גַּם־אֲבֹתֵינוּ לְמַעַן תֵּשְׁבוּ בְּאֶרֶץ גֹּשֶׁן כִּי תוֹעֲבַת מִצְרַיִם כָּל־רֹעֵה צֹאן:</div>
+                <div class="transliteration">Va'amartém: Anshey miknéh hayu avadéyja minne'uréynu ve'ad-'attáh, gam-anájnu gam-avotéynu; lema'an teshvú be'éretz Góshén. Ki to'avat Mitzráyim kol-ro'éh tzon.</div>
+                <div class="translation">Y diréis: "Hombres de ganado han sido tus siervos, desde nuestra juventud y hasta ahora, también nosotros, también nuestros padres; para que habitéis en la tierra de Góshén. Porque abominación de Mitzráyim (Egipto) es todo pastor de ovejas.</div>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h3>Análisis de Estrategia</h3>
+            <p>Yosef instruye a sus hermanos para que se identifiquen como pastores de ganado, un oficio que era una <span class="highlight">"abominación"</span> (<span class="hebrew-term">תּוֹעֲבַת</span> - <span class="highlight">to'avat</span>) para los egipcios. Esto tiene un doble propósito:</p>
+            <ol>
+                <li><strong>Asegurar la Separación:</strong> Al ser considerados impuros o inaceptables por su profesión, los israelitas se mantendrían separados de la cultura egipcia, impidiendo la asimilación.</li>
+                <li><strong>Garantizar Gosén:</strong> Esto convencería a Faraón de concederles la tierra de <span class="highlight">Gosén</span> (<span class="hebrew-term">גֹּשֶׁן</span>), la región más fértil pero apartada, preservando su identidad y su herencia como un pueblo. Esta separación es crucial para la promesa de la nación santa.</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>Entrevista de la Familia con Faraón</h1>
+
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:1</div>
+                <div class="hebrew">וַיָּבֹא יוֹסֵף וַיַּגֵּד לְפַרְעֹה וַיֹּאמֶר אָבִי וְאַחַי וְצֹאנָם וּבְקָרָם וְכָל־אֲשֶׁר לָהֶם בָּאוּ מֵאֶרֶץ כְּנָעַן וְהִנֵּה בְאֶרֶץ גֹּשֶׁן:</div>
+                <div class="transliteration">Vayávo Yosef vayyaggéd leFar'oh vayyómer: Aví ve'ajáy veTzonám uv'karám vekhol-asher lahem ba'u me'Eretz Kena'an veHinnéh ve'éretz Góshén.</div>
+                <div class="translation">Y vino Yosef y anunció a Par'oh, y dijo: Mi padre y mis hermanos, y sus ovejas, y su ganado, y todo lo que es de ellos, vinieron de la tierra de Kena'an, y he aquí, están en la tierra de Góshén.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:2</div>
+                <div class="hebrew">וּמִקְצֵה אֶחָיו לָקַח חֲמִשָּׁה אֲנָשִׁים וַיַּצִּגֵם לִפְנֵי פַרְעֹה:</div>
+                <div class="transliteration">Umiqqetzéh ejáv laqaj jamisháh anashím vayyatzitzgém lifnéy Far'oh.</div>
+                <div class="translation">Y del extremo de sus hermanos tomó cinco hombres, y los presentó delante de Par'oh.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:3</div>
+                <div class="hebrew">וַיֹּאמֶר פַּרְעֹה אֶל־אֶחָיו מַה־מַּעֲשֵׂיכֶם וַיֹּאמְרוּ אֶל־פַּרְעֹה רֹעֵה צֹאן עֲבָדֶיךָ גַּם־אֲנַחְנוּ גַּם־אֲבֹתֵינוּ:</div>
+                <div class="transliteration">Vayomer Par'oh el-ejáv: Mah ma'aseyjém? VayyomrÚ el-Par'oh: Ro'éh tzon avadéyja, gam-anájnu gam-avotéynu.</div>
+                <div class="translation">Y dijo Par'oh a sus hermanos: ¿Cuáles son vuestras obras? Y dijeron a Par'oh: Pastores de ovejas son tus siervos, también nosotros, también nuestros padres.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:4</div>
+                <div class="hebrew">וַיֹּאמְרוּ אֶל־פַּרְעֹה לָגוּר בָּאָרֶץ בָּאנוּ כִּי אֵין מִרְעֶה לַצֹּאן אֲשֶׁר לַעֲבָדֶיךָ כִּי־כָבֵד הָרָעָב בְּאֶרֶץ כְּנָעַן וְעַתָּה יֵשְׁבוּ־נָא עֲבָדֶיךָ בְּאֶרֶץ גֹּשֶׁן:</div>
+                <div class="transliteration">VayyomrÚ el-Par'oh: Lagúr ba'áretz ba'nu, ki éyn mir'éh laTzon asher la'avadéyja, ki-kavéd hará'áv be'Eretz Kena'an; ve'attáh yeshvú-na avadéyja be'éretz Góshén.</div>
+                <div class="translation">Y dijeron a Par'oh: Para morar en la tierra vinimos, porque no hay pasto para las ovejas que son de tus siervos, porque pesada es el hambre en la tierra de Kena'an. Y ahora, habiten, por favor, tus siervos en la tierra de Góshén.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:5</div>
+                <div class="hebrew">וַיֹּאמֶר פַּרְעֹה אֶל־יוֹסֵף לֵאמֹר אָבִיךָ וְאַחֶיךָ בָּאוּ אֵלֶיךָ:</div>
+                <div class="transliteration">Vayomer Par'oh el-Yosef lemór: Avíja ve'ajéyja ba'u eléyja.</div>
+                <div class="translation">Y dijo Par'oh a Yosef, diciendo: Tu padre y tus hermanos vinieron a ti.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:6</div>
+                <div class="hebrew">אֶרֶץ מִצְרַיִם לְפָנֶיךָ הִוא בְּמֵיטַב הָאָרֶץ הוֹשֵׁב אֶת־אָבִיךָ וְאֶת־אַחֶיךָ יֵשְׁבוּ בְּאֶרֶץ גֹּשֶׁן וְאִם־יָדַעְתָּ וְיֶשׁ־בָּם אַנְשֵׁי־חַיִל וְשַׂמְתָּם שָׂרֵי מִקְנֶה עַל־אֲשֶׁר־לִי:</div>
+                <div class="transliteration">Éretz Mitzráyim lefanéyja hi; beMeytav ha'áretz hoshév et-avíja ve'et-ajéyja; yeshvú be'éretz Góshén. Ve'im-yadá'ta veyésh-bám anshey-jáyil vesamtám sarey miknéh 'al-asher-lí.</div>
+                <div class="translation">La tierra de Mitzráyim delante de ti está. En lo mejor de la tierra haz morar a tu padre y a tus hermanos; habiten en la tierra de Góshén. Y si sabes que hay en ellos hombres de valor, ponlos por jefes de ganado sobre lo que es mío.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <h1>Jacob Bendice a Faraón</h1>
+
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:7</div>
+                <div class="hebrew">וַיָּבֵא יוֹסֵף אֶת־יַעֲקֹב אָבִיו וַיַּעֲמִדֵהוּ לִפְנֵי פַרְעֹה וַיְבָרֶךְ יַעֲקֹב אֶת־פַּרְעֹה:</div>
+                <div class="transliteration">Vayyavé Yosef et-Yaakov aviv vayya'amidéhu lifnéy Far'oh; vayvaréj Yaakov et-Par'oh.</div>
+                <div class="translation">Y trajo Yosef a Yaakov su padre, y lo puso delante de Par'oh. Y bendijo Yaakov a Par'oh.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:8</div>
+                <div class="hebrew">וַיֹּאמֶר פַּרְעֹה אֶל־יַעֲקֹב כַּמָּה יְמֵי שְׁנֵי חַיֶּיךָ:</div>
+                <div class="transliteration">Vayomer Par'oh el-Yaakov: Kammáh yeméy shnéy jayéyja?</div>
+                <div class="translation">Y dijo Par'oh a Yaakov: ¿Cuántos son los días de los años de tu vida?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:9</div>
+                <div class="hebrew">וַיֹּאמֶר יַעֲקֹב אֶל־פַּרְעֹה יְמֵי שְׁנֵי מְגוּרַי שְׁלֹשִׁים וּמְאַת שָׁנָה מְעַט וְרָעִים הָיוּ יְמֵי שְׁנֵי חַיַּי וְלֹא הִשִּׂיגוּ אֶת־יְמֵי שְׁנֵי חַיֵּי אֲבֹתַי בִּימֵי מְגוּרֵיהֶם:</div>
+                <div class="transliteration">Vayomer Yaakov el-Par'oh: Yeméy shnéy meguráy shloshím um'at shanah; me'at ur'a'ím hayú yeméy shnéy jayáy velo hissígú et-yeméy shnéy jayéy avotáy biméy megureyhém.</div>
+                <div class="translation">Y dijo Yaakov a Par'oh: Los días de los años de mi peregrinación: ciento treinta años; pocos y malos fueron los días de los años de mi vida, y no alcanzaron los días de los años de la vida de mis padres en los días de su peregrinación.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:10</div>
+                <div class="hebrew">וַיְבָרֶךְ יַעֲקֹב אֶת־פַּרְעֹה וַיֵּצֵא מִלִּפְנֵי פַרְעֹה:</div>
+                <div class="transliteration">Vayvaréj Yaakov et-Par'oh vayyetzei millifnéy Far'oh.</div>
+                <div class="translation">Y bendijo Yaakov a Par'oh, y salió de la presencia de Par'oh.</div>
+            </div>
+        </div>
+
+        <div class="explanation">
+            <h3>La Bendición y el Peregrinaje</h3>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Supremacía de Jacob</div>
+                    <p>Aunque Yosef es la autoridad en Egipto, es <span class="highlight">Yaakov</span> (<span class="hebrew-term">יַעֲקֹב</span>) quien bendice a Par'oh (Faraón), el soberano del imperio. Esto demuestra un principio bíblico: <span class="highlight">el menor es bendecido por el mayor</span> (Hebreos 7:7). Jacob, como patriarca de la línea de la promesa y siervo del <span class="highlight">D-s Altísimo</span>, tiene una autoridad espiritual superior a la de cualquier rey terrenal. Su bendición trae el favor divino sobre Egipto.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Vida como Peregrinación</div>
+                    <p>La respuesta de Jacob sobre la duración de su vida alude a la naturaleza <span class="highlight">transitoria</span> de su existencia terrenal:</p>
+                    <ul>
+                        <li><span class="highlight">"Días de mi peregrinación" (<span class="hebrew-term">יְמֵי שְׁנֵי מְגוּרַי</span>):</span> Jacob se ve a sí mismo como un extranjero y peregrino en este mundo. Esta es una clave mesiánica y un tema recurrente en las Escrituras (ver Hebreos 11:13-16), donde los justos buscan una <span class="highlight">patria celestial</span>.</li>
+                        <li><span class="highlight">"Pocos y malos fueron":</span> Su vida estuvo marcada por la adversidad (engaño, separación de Yosef, hambruna). Esto resalta el contraste con la vida eterna y la paz que el Mesías ofrece. La plenitud de la vida no está en la longevidad, sino en el cumplimiento de la promesa.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="conclusion">
+        <h3 class="highlight">Conclusión Mesiánica</h3>
+        <p>Esta porción de la Torá ilustra el plan de D-s para preservar a Su pueblo, incluso al colocarlos temporalmente en un entorno de exilio (<span class="highlight">Gosén en Egipto</span>), donde serían <span class="highlight">apartados</span>. Yosef, el <span class="highlight">redentor</span> y <span class="highlight">sustentador</span>, prefigura al <span class="highlight">Mesías</span>, quien prepara el lugar para Su pueblo en el mundo. La supremacía espiritual de Yaakov, al bendecir a Faraón, subraya que la verdadera autoridad reside en la línea del pacto, que culmina en <span class="highlight">Yeshúa HaMashíaj</span>, quien es el Rey y el Sumo Sacerdote que bendice a las naciones.</p>
+    </div>
+<h1>ANÁLISIS MESIÁNICO DE BERESHIT (GÉNESIS) 46:28-47:10</h1>
+
+    <div class="content-container">
+        <p>
+            La porción de Génesis 46:28 a 47:10 narra la reunión de Yaakov con Yosef en Góshén
+            y el encuentro y bendición de Yaakov al Faraón (Par'oh). Este segmento es rico en
+            significado mesiánico, pues ilustra el encuentro del creyente con el Salvador
+            exaltado y la autoridad final del patriarca de la fe sobre el poder del mundo.
+        </p>
+    </div>
+
+    <div class="content-container">
+        <h2>Cumplimiento Profético en Yeshúa HaMashíaj</h2>
+        <p>
+            El tema central es el encuentro transformador de Israel con su hijo, el gobernador
+            exaltado (Yosef), y el ejercicio de la autoridad espiritual.
+        </p>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>1. El Encuentro con el Mashíaj Exaltado (Génesis 46:29-30)</h1>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Pasaje Profético (Tanaj):</div>
+                    <div class="verse-container">
+                        <div class="verse-number">Génesis 46:29</div>
+                        <div class="hebrew">
+                            וַיֶּאְסֹר יוֹסֵף מֶרְכַּבְתּוֹ וַיַּעַל לִקְרַאת יִשְׂרָאֵל אָבִיו
+                            גֹּשְׁנָה וַיֵּרָא אֵלָיו וַיִּפֹּל עַל־צַוָּארָיו וַיֵּבְךְּ עַל־צַוָּארָיו עוֹד
+                         </div>
+                        <div class="transliteration">
+                            Va-ye’esor Yosef mer’kav’to va-ya’al lik’rat Yis’ra’el aviv Gosh’nah
+                            va-yei’ra eilav va-yipol al-tzav’avav va-yeiv’k al-tzav’arav od.
+                        </div>
+                        <div class="translation">
+                            "Y atendió Yosef su carro, y subió al encuentro de Israel su padre
+                            a Góshén, y se apareció a él, y cayó sobre sus cuellos, y lloró sobre
+                            sus cuellos aún."
+                        </div>
+                    </div>
+                    <div class="verse-container">
+                        <div class="verse-number">Génesis 46:30</div>
+                        <div class="hebrew">
+                            וַיֹּאמֶר יִשְׂרָאֵל אֶל־יוֹסֵף אָמוּתָה הַפַּעַם אַחֲרֵי רְאֹותִי אֶת־פָּנֶיךָ כִּי עוֹדְךָ חָי׃
+                        </div>
+                        <div class="transliteration">
+                            Va-yomer Yis’ra’el el-Yosef amutah ha-pa’am aharéi r’oti et-panékha
+                            ki od’kha khai.
+                        </div>
+                        <div class="translation">
+                            "Y dijo Israel a Yosef: 'Moriré esta vez, después de ver tus rostros,
+                            porque aún vives'."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="prophetic-title">Explicación del Cumplimiento:</div>
+                    <p>
+                        El reencuentro es una imagen de la redención futura. Yaakov (Israel),
+                        que había dado a su hijo por muerto, lo encuentra vivo y glorioso. Su
+                        declaración, <span class="highlight">"Moriré esta vez,"</span> expresa
+                        la satisfacción máxima de haber visto la salvación. Yosef, el que fue
+                        rechazado y cubierto con sangre, se presenta como el sustentador del
+                        mundo, yendo a buscar a su padre a la puerta de Mitzráyim.
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Pasaje del Brit Hadashah (Peshita):</div>
+                    <div class="scripture">
+                        Juan 14:19 (Yeshúa habla a Sus discípulos)
+                        <br />
+                        "En breve el mundo no me verá más; pero vosotros me veréis. Porque Yo
+                        vivo, y vosotros viviréis."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="prophetic-title">Aplicación Espiritual a la Aliyá:</div>
+                    <p>
+                        Así como Yaakov se encontró con Yosef (su sustento y salvación), el
+                        creyente mesiánico vive con la promesa de ver el Rostro de
+                        <span class="highlight">Yeshúa HaMashíaj</span> (el Salvador que fue
+                        muerto, pero que aún vive). El encuentro de Yaakov con Yosef en Góshén
+                        prefigura el momento en que el remanente de Israel se encontrará con
+                        Su Mashíaj al final de los tiempos, un encuentro que trae consuelo y el
+                        conocimiento de que la vida eterna está asegurada. La vida de Yaakov es
+                        sostenida no por la riqueza de Egipto, sino por la presencia de su Hijo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>2. La Bendición de la Autoridad Superior (Génesis 47:7, 10)</h1>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Pasaje Profético (Tanaj):</div>
+                    <div class="verse-container">
+                        <div class="verse-number">Génesis 47:7</div>
+                        <div class="hebrew">
+                            וַיָּבֵא יוֹסֵף אֶת־יַעֲקֹב אָבִיו וַיַּעֲמִדֵהוּ לִפְנֵי פַרְעֹה וַיְבָרֶךְ יַעֲקֹב אֶת־פַּרְעֹה׃
+                        </div>
+                        <div class="transliteration">
+                            Va-yavé Yosef et-Ya’akov aviv va-ya’amidehu lifnéi Par’oh va-yevárekh
+                            Ya’akov et-Par’oh.
+                        </div>
+                        <div class="translation">
+                            "Y trajo Yosef a Yaakov su padre, y lo puso delante de Par'oh; y
+                            bendijo Yaakov a Par'oh."
+                        </div>
+                    </div>
+                    <div class="verse-container">
+                        <div class="verse-number">Génesis 47:10</div>
+                        <div class="hebrew">
+                            וַיְבָרֶךְ יַעֲקֹב אֶת־פַּרְעֹה וַיֵּצֵא מִלִּפְנֵי פַרְעֹה׃
+                        </div>
+                        <div class="transliteration">
+                            Va-yevárekh Ya’akov et-Par’oh va-yeitzé mi-lifnéi Par’oh.
+                        </div>
+                        <div class="translation">
+                            "Y bendijo Yaakov a Par'oh, y salió de la presencia de Par'oh."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="prophetic-title">Explicación del Cumplimiento:</div>
+                    <p>
+                        El patriarca, Yaakov, el peregrino que ha luchado con
+                        <span class="hebrew-term">יְהוָה</span>, es quien bendice al gobernante
+                        de la nación más poderosa del mundo. Este acto profético establece que
+                        la <span class="highlight">autoridad espiritual de Adonai</span>,
+                        manifestada en Su siervo, es superior a cualquier poder terrenal o
+                        político.
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Pasaje del Brit Hadashah (Peshita):</div>
+                    <div class="scripture">
+                        Hebreos 7:7 (Referencia a la superioridad de Melquisedec sobre Abraham)
+                        <br />
+                        "Y sin duda alguna, el menor es bendecido por el mayor."
+                    </div>
+                </div>
+
+                <div class="explanation">
+                    <div class="prophetic-title">Aplicación Espiritual a la Aliyá:</div>
+                    <p>
+                        El Mashíaj Yeshúa, siendo nuestro <span class="highlight">"gran sumo
+                        sacerdote"</span> conforme al orden de Melquisedec, es quien posee toda
+                        autoridad para bendecir. Yaakov, por su linaje y pacto con
+                        <span class="hebrew-term">יְהוָה</span>, representa la Casa Sacerdotal.
+                        El creyente, unido a Yeshúa, ejerce una autoridad espiritual que supera
+                        los poderes temporales de este mundo. No es Par'oh quien da el estatus
+                        de Yaakov, sino Yaakov quien imparte la bendición de Elohím a Par'oh.
+                        Nuestra ciudadanía y autoridad no vienen de este mundo, sino de la
+                        bendición que nos ha dado Yeshúa HaMashíaj.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con los Profetas y la Aliyá</h2>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Conexión con los Profetas (Tanaj)</div>
+                    <div class="scripture">
+                        Jeremías 31:16-17: El Profeta habla de la esperanza después del cautiverio:
+                        <br />
+                        "Hay esperanza para tu futuro, dice <span class="hebrew-term">יְהוָה</span>, y los hijos volverán a su propia frontera."
+                    </div>
+                    <p>
+                        <strong>Conexión:</strong> La historia de Yaakov bajando a Mitzráyim (la esclavitud y el cautiverio futuro) está siempre marcada por la esperanza profética del retorno (la Ascensión prometida en Génesis 46:4). Esta esperanza se cumplirá completamente cuando Yeshúa regrese a Israel y a Su pueblo a Su herencia.
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Aplicación Espiritual a la Aliyá (Góshén como Refugio)</div>
+                    <div class="scripture">
+                        La Separación para la Santidad (Génesis 46:34):
+                        <br />
+                        Yosef aconseja a sus hermanos que se identifiquen como pastores, una abominación para los egipcios, para asegurar que sean separados en la tierra de Góshén. Este aislamiento intencional garantiza la preservación de la identidad hebrea.
+                    </div>
+                    <p>
+                        <strong>Aplicación Mesiánica:</strong> El creyente mesiánico debe estar dispuesto a ser considerado una "abominación" o ser rechazado por el mundo (representado por Mitzráyim) para preservar su identidad en <span class="highlight">Yeshúa HaMashíaj, el Gran Pastor</span>. Góshén es el lugar de refugio y preservación provisto por el Mashíaj exaltado (Yosef) para que Su pueblo pueda crecer en santidad y no ser asimilado por el mundo. El Mashíaj nos ha provisto un "lugar" (<span class="highlight">Góshén espiritual</span>) donde podemos vivir según la Torá y ser separados para Su propósito, antes del Éxodo final.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Punto 2. Haftaráh: Jeremías 31:15-20 (La restauración de los lazos familiares).</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Lamento de Raquel y la Promesa de Retorno</h2>
+            <h3>Jeremías 31:15</h3>
+            <div class="verse-container">
+                <div class="verse-number">Verso 15</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה קוֹל בְּרָמָה נִשְׁמָע נְהִי בְּכִי תַמְרוּרִים רָחֵל מְבַכָּה עַל־בָּנֶיהָ מֵאֲנָה לְהִנָּחֵם עַל־בָּנֶיהָ כִּי אֵינֶנּוּ:</div>
+                <div class="transliteration">Koh amár <span class="highlight">יְהוָה</span>: Qol beRamáh nishmá', nehí bejí tamrurím. Rajél (Raquel) mebakkáh 'al-banéyha; me'anáh lehinanjém 'al-banéyha, ki éynennu.</div>
+                <div class="translation">Así dijo <span class="highlight">יְהוָה</span>: Voz en Ramáh es oída, lamento, llanto de amarguras. Rajél (Raquel) está llorando por sus hijos; rehusó ser consolada por sus hijos, porque no están.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 16</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה מִנְעִי קוֹלֵךְ מִבֶּכִי וְעֵינַיִךְ מִדִּמְעָה כִּי יֵשׁ שָׂכָר לִפְעֻלָּתֵךְ נְאֻם־יְהוָה וְשָׁבוּ מֵאֶרֶץ אוֹיֵב:</div>
+                <div class="transliteration">Koh amár <span class="highlight">יְהוָה</span>: Min'í qoléj mibbají, ve'eynáyij mimmá'áh. Ki yésh sajár lif'ullatéj, ne'úm-<span class="highlight">יְהוָה</span>, veShavú me'éretz oyév.</div>
+                <div class="translation">Así dijo <span class="highlight">יְהוָה</span>: Detén tu voz del llanto, y tus ojos de la lágrima, porque hay recompensa para tu obra, oráculo de <span class="highlight">יְהוָה</span>, y volverán de la tierra del enemigo.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Verso 17</div>
+                <div class="hebrew">וְיֵשׁ־תִּקְוָה לְאַחֲרִיתֵךְ נְאֻם־יְהוָה וְשָׁבוּ בָנִים לִגְבוּלָם:</div>
+                <div class="transliteration">Veyésh-tiqvah le'ajaritéj, ne'úm-<span class="highlight">יְהוָה</span>, veShavú vaním ligvulám.</div>
+                <div class="translation">Y hay esperanza para tu futuro, oráculo de <span class="highlight">יְהוָה</span>, y volverán los hijos a su propia frontera.</div>
+            </div>
+
+            <div class="explanation">
+                <h3>Comentario Mesiánico y Contexto</h3>
+                <p>El lamento de <span class="highlight">Raquel</span> (madre de José y Benjamín, ancestro de Efraín y Manasés) simboliza el dolor de la madre de Israel por la pérdida de sus hijos en el exilio (versículo 15). Históricamente, se sitúa en Ramá, cerca de donde Raquel fue enterrada y por donde los exiliados del Reino del Norte (Efraín/Israel) pasaron camino a Asiria/Babilonia.</p>
+
+                <p>El Nuevo Testamento cita este pasaje (<span class="scripture">Mateo 2:16-18</span>) como un cumplimiento profético del dolor por la masacre de los niños en Belén, ordenada por Herodes, asociando así el lamento por el exilio con el dolor causado por el rechazo al Mesías, <span class="highlight">Yeshúa</span>. </p>
+
+                <p>La promesa de <span class="highlight">יהוה</span> (versículos 16-17) es la de la redención y el retorno: el llanto cesará porque los hijos <span class="literal-translation">"volverán de la tierra del enemigo"</span> y <span class="literal-translation">"volverán los hijos a su propia frontera"</span>. Esto no solo se cumplió con el retorno parcial del exilio babilónico, sino que apunta a la restauración final de Israel y la reunión de las <span class="highlight">Diez Tribus Perdidas</span> (Efraín), una promesa central en la profecía mesiánica.</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Arrepentimiento y Misericordia de Efraín</h2>
+            <h3>Jeremías 31:18</h3>
+            <div class="verse-container">
+                <div class="verse-number">Verso 18</div>
+                <div class="hebrew">שָׁמֹעַ שָׁמַעְתִּי אֶפְרַיִם מִתְנוֹדֵד הִכִּיתַנִי וְאֵחָכַח כְּעֵגֶל לֹא לֻמָּד הֲשִׁיבֵנִי וְאָשׁוּבָה כִּי אַתָּה יְהוָה אֱלֹהָי:</div>
+                <div class="transliteration">Shamó'a shamá'ti Efráyim mitnodéd: Hikitáni, ve'ejajéj ke'égel lo lummád. Hashivéni ve'ashúvah, ki Attáh <span class="highlight">יְהוָה</span> Eloháy.</div>
+                <div class="translation">Escuchando, escuché Efráyim (Efraín) lamentándose: "Me golpeaste, y fui castigado como novillo no enseñado. Hazme volver y volveré, porque Tú eres <span class="highlight">יְהוָה</span>, mi Elohím."</div>
+            </div>
+
+            <h3>Jeremías 31:19</h3>
+            <div class="verse-container">
+                <div class="verse-number">Verso 19</div>
+                <div class="hebrew">כִּי אַחֲרֵי שׁוּבִי נִחַמְתִּי וְאַחֲרֵי הִוָּדְעִי סָפַקְתִּי עַל־יָרֵךְ בֹּשְׁתִּי וְגַם־נִכְלַמְתִּי כִּי נָשָׂאתִי חֶרְפַּת נְעוּרָי:</div>
+                <div class="transliteration">Ki ajaréy Shuví nijam'tí, ve'ajaréy hivvád'í safaqtí 'al-yaréj. Boshtí vegam-nijlam'tí, ki nasá'tí jerpát ne'uráy.</div>
+                <div class="translation">Porque después de mi regreso me arrepentí, y después de ser instruido golpeé sobre el muslo. Me avergoncé y también fui humillado, porque soporté la afrenta de mi juventud.</div>
+            </div>
+
+            <h3>Jeremías 31:20</h3>
+            <div class="verse-container">
+                <div class="verse-number">Verso 20</div>
+                <div class="hebrew">הֲבֵן יַקִּיר לִי אֶפְרַיִם אִם יֶלֶד שַׁעֲשֻׁעִים כִּי־מִדֵּי דַּבְּרִי בּוֹ זָכֹר אֶזְכְּרֶנּוּ עוֹד עַל־כֵּן הָמוּ מֵעַי לוֹ רַחֵם אֲרַחֲמֶנּוּ נְאֻם־יְהוָה:</div>
+                <div class="transliteration">HaVen yaqqír lí Efráyim im yéled sha'ashu'ím? Ki-míddey dabbrí bo, zajór ezkerénnu 'od. 'Al-ken hamú me'áy lo, rajém arajaménnu, ne'úm-<span class="highlight">יְהוָה</span>.</div>
+                <div class="translation">¿Acaso hijo precioso para Mí es Efráyim? ¿Acaso niño de deleites? Pues desde que hablé con él, recordándolo lo recordaré aún. Por esto, se conmueven Mis entrañas por él; ciertamente lo tendré misericordia, oráculo de <span class="highlight">יְהוָה</span>.</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Clamor de Efraín (<span class="hebrew-term">אֶפְרַיִם</span>)</div>
+                    <p>En estos versículos, <span class="highlight">Efraín</span>, que simboliza al Reino del Norte disperso, expresa un arrepentimiento profundo y genuino. Reconoce que su sufrimiento es un castigo merecido (<span class="literal-translation">"Me golpeaste"</span>), pero clama por el <span class="highlight">Teshuvá</span> (retorno/arrepentimiento): <span class="literal-translation">"Hazme volver y volveré"</span> (versículo 18).</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Corazón del Padre</div>
+                    <p>La respuesta de <span class="highlight">יהוה</span> (versículo 20) es de profunda compasión. La pregunta retórica: <span class="literal-translation">"¿Acaso hijo precioso para Mí es Efráyim? ¿Acaso niño de deleites?"</span>, afirma el amor incondicional de Elohim. La frase <span class="literal-translation">"se conmueven Mis entrañas por él"</span> ( <span class="hebrew-term">הָמוּ מֵעַי לוֹ</span> - <span class="transliteration">hamú me'áy lo</span>) es una expresión de la misericordia más íntima y visceral de Elohim. Esta misericordia es la base de la <span class="highlight">Nueva Alianza</span> mencionada justo antes, en Jeremías 31:31.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Aplicación Mesiánica</div>
+                    <p>El arrepentimiento de Efraín es un modelo para el retorno final de todo Israel. Esta profecía apunta a un tiempo futuro en el que el pueblo de Israel, especialmente las tribus dispersas (Efraín), reconocerán su pecado y su necesidad de salvación. El llamado a <span class="literal-translation">"Hazme volver y volveré"</span> refleja la enseñanza de <span class="highlight">Yeshúa</span>, donde el verdadero arrepentimiento es la condición para la redención.</p>
+                    <p>La promesa de que Elohim lo <span class="literal-translation">"tendrá misericordia"</span> es un eco de la naturaleza del Mesías, quien es la personificación de la misericordia de <span class="highlight">יהוה</span> y el medio por el cual las Diez Tribus (Efraín) serán finalmente restauradas y reunidas con Judá.</p>
+                </div>
+            </div>
+        </div>
+        <h1>Jeremías 31:15-20: La Profecía de Rajél y la Restauración de Efráyim</h1>
+
+    <div class="content-container">
+        <p>El pasaje de Jeremías 31:15-20 (que contiene la famosa imagen de Rajél llorando y la promesa de retorno de Efráyim) es una de las profecías más fundamentales sobre la restauración de Israel, la cual se cumple en la obra redentora de <span class="highlight">Yeshúa HaMashíaj</span>.</p>
+        <h2>Cumplimiento Profético en Yeshúa HaMashíaj</h2>
+        <p>La profecía aborda el dolor del exilio y la diáspora (el llanto de Rajél) y la posterior <span class="highlight">Teshuvá</span> (arrepentimiento) y restauración de la Casa de Israel (Efráyim).</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>1. El Llanto y el Exilio (Génesis 35:19 y Jeremías 31:15)</h2>
+        <div class="section-container">
+            <h3>Pasaje Profético (Tanaj):</h3>
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:15</div>
+                <div class="hebrew">כֹּה אָמַר יְהוָה קוֹל בְּרָמָה נִשְׁמָע נְהִי בְּכִי תַמְרוּרִים רָחֵל מְבַכָּה עַל־בָּנֶיהָ מֵאֲנָה לְהִנָּחֵם עַל־בָּנֶיהָ כִּי אֵינֶנּוּ׃</div>
+                <div class="transliteration">Kó amar Adonai kol be-Ramáh nishmáh nehí bejí tamrurím <span class="hebrew-term">Rajél</span> me-vajáh al-baneiha me'anáh lehinajém al-baneiha kí einénu.</div>
+                <div class="translation">Así dijo <span class="highlight">יְהוָה</span>: Voz en <span class="highlight">Ramáh</span> es oída, lamento, llanto de amarguras. Rajél (Raquel) está llorando por sus hijos; rehusó ser consolada por sus hijos, porque no están.</div>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Explicación del Cumplimiento:</strong></p>
+                <p><span class="highlight">Rajél</span>, quien murió dando a luz a <span class="highlight">Binyamín</span> cerca de Ramáh (Génesis 35:19), es la madre simbólica de las Diez Tribus del Norte (<span class="highlight">Efráyim</span>) y Binyamín, y por extensión, de todo Israel en el exilio. Su llanto representa el dolor de Israel por sus hijos perdidos y llevados en cautiverio.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>Pasaje del Brit Hadashah (Peshita):</h3>
+            <div class="scripture">
+                <div class="verse-number">Mateo 2:16-18 (Referencia a la Matanza de los Inocentes)</div>
+                <p>Entonces Herodes... envió y mató a todos los niños en <span class="highlight">Beit Lejem</span> (Belén) y en todos sus términos... Entonces se cumplió lo que fue dicho por el profeta Jeremías, que dice: 'Una voz fue oída en <span class="highlight">Ramáh</span>, llanto y gran lamento; <span class="highlight">Rajél</span> llora por sus hijos, y no quiso ser consolada, porque no están'.</p>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Aplicación Espiritual a la Aliyá:</div>
+                <p>El Mashíaj <span class="highlight">Yeshúa</span> cumplió esta profecía en un doble sentido:</p>
+                <ul>
+                    <li><strong class="point-letter">A. En lo Físico:</strong> El evento de la matanza de niños por Herodes (un descendiente de Edom) conecta el dolor ancestral de Israel con el sufrimiento inmediato que rodeó el nacimiento del <span class="highlight">Mashíaj</span>. Yeshúa compartió el destino de exilio y persecución, pues Su familia tuvo que huir a Mitzráyim, cumpliendo así el patrón de redención.</li>
+                    <li><strong class="point-letter">B. En lo Espiritual:</strong> <span class="highlight">Yeshúa</span> es la única consolación para el llanto de Rajél. El exilio y el dolor (la muerte de los hijos) se revierten por el pacto de Yeshúa. Él es la esperanza que permite que las Diez Tribus (<span class="highlight">Efráyim</span>) y <span class="highlight">Yehudáh</span> se reúnan.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>2. La Teshuvá y la Restauración (Jeremías 31:18-20)</h2>
+        <div class="section-container">
+            <h3>Pasaje Profético (Tanaj):</h3>
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:18</div>
+                <div class="hebrew">שָׁמ֤וֹעַ שָׁמַ֙עְתִּי֙ אֶפְרַ֤יִם מִתְנוֹדֵד֙ יִסַּרְתַּ֙נִי וָאֶוָּסֵ֤ר כְּעֵ֙גֶל֙ לֹ֣א לֻמָּ֔ד הֲשִׁיבֵ֥נִי וְאָשׁ֖וּבָה כִּ֣י אַתָּ֥ה יְהוָה אֱלֹהָֽי׃</div>
+                <div class="transliteration">Shamóa shamáti <span class="hebrew-term">Efráyim</span> mitnodéd yisartáni va'evasér ke-égel lo lumád hashivéni ve'ashúvah kí Atáh Adonai Eloháy.</div>
+                <div class="translation">Escuchando, escuché <span class="highlight">Efráyim</span> (Efraín) lamentándose: 'Me golpeaste, y fui castigado como novillo no enseñado. Hazme volver y volveré, porque Tú eres <span class="highlight">יְהוָה</span>, mi <span class="highlight">Elohím</span>'.</div>
+            </div>
+            <div class="verse-container">
+                <div class="verse-number">Jeremías 31:20</div>
+                <div class="hebrew">הֲבֵן֙ יַקִּ֣יר לִ֔י אֶפְרַ֖יִם אִ֣ם יֶ֣לֶד שַׁעֲשֻׁעִ֑ים ... כִּֽי־רַחֵ֥ם אֲ‍ֽרַחֲמֶ֖נּוּ נְאֻם־יְהוָֽה׃</div>
+                <div class="transliteration">Ha-vén yaqír li <span class="hebrew-term">Efráyim</span> im yéled sha'ashuím?... kí-rajém arajaménu neum-Adonai.</div>
+                <div class="translation">¿Acaso hijo precioso para Mí es <span class="highlight">Efráyim</span>? ¿Acaso niño de deleites? ... ciertamente lo tendré misericordia, oráculo de <span class="highlight">יְהוָה</span>.</div>
+            </div>
+
+            <div class="explanation">
+                <p><strong>Explicación del Cumplimiento:</strong></p>
+                <p>Esta es la profecía de la <span class="highlight">Teshuvá</span> (arrepentimiento) de la Casa de Israel (representada por <span class="highlight">Efráyim</span>). Efráyim reconoce su pecado y su castigo ("Me golpeaste") y pide ser restaurado a la relación de pacto ("Hazme volver y volveré"). <span class="highlight">יְהוָה</span> responde con profunda compasión: "<span class="highlight">Hijo precioso</span>" y "ciertamente lo tendré misericordia."</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>Pasaje del Brit Hadashah (Peshita):</h3>
+            <div class="scripture">
+                <div class="verse-number">Romanos 11:25-26 (Referencia a la Restauración final)</div>
+                <p>Porque no quiero, hermanos, que ignoréis este misterio, para que no seáis sabios en vosotros mismos, que una ceguera parcial ha acontecido a Israel, hasta que la plenitud de las naciones haya entrado. Y entonces <span class="highlight">todo Israel será salvo</span>.</p>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-title">Aplicación Espiritual a la Aliyá:</div>
+                <p>La profecía de Jeremías sobre la <span class="highlight">Teshuvá</span> de <span class="highlight">Efráyim</span> y el amor incondicional de <span class="highlight">יְהוָה</span> se cumple mediante la obra de <span class="highlight">Yeshúa HaMashíaj</span>:</p>
+                <ul>
+                    <li><strong class="point-letter">A. La Misericordia del Mashíaj:</strong> La compasión de <span class="highlight">יְהוָה</span> hacia Efráyim (y toda la Casa de Israel) es la misma misericordia que se manifestó completamente en <span class="highlight">Yeshúa</span>. Él es el medio por el cual la <span class="highlight">Teshuvá</span> es posible. El "golpe" (castigo) que Efráyim reconoció haber merecido fue llevado por Yeshúa en el madero.</li>
+                    <li><strong class="point-letter">B. La Reunificación:</strong> La promesa de que <span class="highlight">Efráyim</span> (las tribus dispersas entre las naciones) volverá a su frontera (Jeremías 31:17) se cumple cuando estos "hijos perdidos" regresan espiritualmente al único Pacto a través de <span class="highlight">Yeshúa HaMashíaj</span>. La "plenitud de las naciones" (Romanos 11:25) es la entrada de Efráyim y otros creyentes gentiles, que son injertados en el olivo, haciendo que "todo Israel sea salvo."</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="conclusion">
+        <h3>Profecías Cumplidas en la Porción</h3>
+        <p>La profecía cumplida en esta porción, y que es citada explícitamente en el <span class="highlight">Brit Hadashah</span>, es:</p>
+        <div class="section-container">
+            <ul>
+                <li><span class="highlight">Jeremías 31:15</span> (El llanto de Rajél) y su cumplimiento literal en <span class="highlight">Mateo 2:18</span>.</li>
+            </ul>
+            <p>Esto demuestra que los eventos que rodearon el nacimiento de <span class="highlight">Yeshúa</span> fueron previstos en el <span class="highlight">Tanaj</span>, conectando Su vida con el dolor, el exilio, y la eventual redención de <span class="highlight">Israel</span>.</p>
+        </div>
+    </div>
+    <h1>Punto 3. Brit Hadasháh: Juan 14:1-6 (Preparar un lugar para el encuentro).</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>📜 Versos Interlineales (Arameo-Español)</h2>
+
+        <div class="verse-container">
+          <div class="verse-number">Juan 14:1</div>
+          <div class="aramaic">
+            ܠܳܐ ܢܶܬ݁ܪܰܥܰܫ ܠܶܒ݁ܟ݂ܽܘܢ ܗܰܝܡܶܢܘ ܒ݁ܰܐܠܳܗܳܐ ܘܒ݂ܺܝ ܗܰܝܡܶܢܘ܂
+          </div>
+          <div class="transliteration">
+            Fonética: <span class="highlight">Lá netra'ash lébkún</span>;
+            <span class="highlight">hayméno b'Aláhá uví hayméno.</span>
+          </div>
+          <div class="translation">
+            Traducción Literal: No se turbe vuestro corazón. Creed en
+            <span class="highlight">Aláhá (Elohím)</span> y creed en Mí.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Juan 14:2</div>
+          <div class="aramaic">
+            ܒ݁ܶܝܬ݂ ܐܳܒ݂ܝ ܡܳܢܶܐ ܣܰܓ݁ܺܝܐܺܝܢ ܐܺܝܬ݂ ܘܶܐܠܳܐ ܐܳܡܰܪ ܐ݈ܢܳܐ ܗ݈ܘܺܝܬ݂ ܠܟ݂ܽܘܢ
+            ܕ݁ܳܐܙܶܠ ܐ݈ܢܳܐ ܕ݁ܶܐܛܰܝܶܒ݂ ܠܟ݂ܽܘܢ ܐܰܬ݂ܪܳܐ܂
+          </div>
+          <div class="transliteration">
+            Fonética: <span class="highlight">Beyt Abí</span> máné sagí'ín íth;
+            w'éllá ámar hwayth l'kún d'ázél ná d'etayéb l'kún atrá.
+          </div>
+          <div class="translation">
+            Traducción Literal: En la casa de mi Padre moradas muchas hay. Y si
+            no, os lo diría, porque voy a
+            <span class="highlight">prepararos un lugar</span>.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Juan 14:3</div>
+          <div class="aramaic">
+            ܘܶܐܢ ܐܳܙܶܠ ܐ݈ܢܳܐ ܐܶܛܰܝܶܒ݂ ܠܟ݂ܽܘܢ ܐܰܬ݂ܪܳܐ ܬ݁ܽܘܒ݂ ܐܳܬ݂ܶܐ
+            ܘܰܐܣܶܒ݂ܟ݂ܽܘܢ ܠܘܳܬ݂ܝ ܕ݁ܰܐܝܟ݁ܳܐ ܕ݁ܰܐܢܳܐ ܐܺܝܬ݂ܰܝ ܐܳܦ݂ ܐܰܢ݈ܬ݁ܽܘܢ
+            ܬ݁ܶܗܘܽܘܢ܂
+          </div>
+          <div class="transliteration">
+            Fonética: W'én ázél ná etayéb l'kún atrá,
+            <span class="highlight">túb áthé w'asébkún lwathí</span>, d'ayká
+            d'aná íthay áf antún téhwún.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y si voy y os preparo un lugar, de
+            <span class="highlight">nuevo vendré y os tomaré a Mí</span>, para
+            que donde Yo estoy, también vosotros estéis.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Juan 14:4</div>
+          <div class="aramaic">
+            ܘܶܐܝܟ݁ܳܐ ܕ݁ܳܐܙܶܠ ܐ݈ܢܳܐ ܝܳܕ݂ܥܺܝܢ ܐܢ݈ܬ݁ܽܘܢ ܘܽܐܘܪܚܳܐ ܝܳܕ݂ܥܺܝܢ ܐܢ݈ܬ݁ܽܘܢ܂
+          </div>
+          <div class="transliteration">
+            Fonética: W'ayká d'ázél ná, yád'ín antún w'urjá yád'ín antún.
+          </div>
+          <div class="translation">
+            Traducción Literal: Y donde Yo voy, sabéis vosotros, y
+            <span class="highlight">el camino sabéis vosotros</span>.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Juan 14:5</div>
+          <div class="aramaic">
+            ܐܳܡܰܪ ܠܶܗ ܬ݁ܳܐܘܡܳܐ ܡܳܪܰܢ ܠܳܐ ܝܳܕ݂ܥܺܝܢܰܢ ܠܰܐܝܟ݁ܳܐ ܐܳܙܶܠ ܐܰܢ݈ܬ݁
+            ܘܽܐܘܪܚܳܐ ܐܰܝܟ݁ܰܢܳܐ ܡܶܫܟ݁ܚܺܝܢܰܢ ܠܡܺܝܕ݂ܰܥ܂
+          </div>
+          <div class="transliteration">
+            Fonética: Ámar léh Tá'wmá: Máran, lá yád'ínan l'ayká ázél ant;
+            w'urjá aykaná meshkjínan l'mída'.
+          </div>
+          <div class="translation">
+            Traducción Literal: Dijo a Él Tá'wmá (Tomás): Adón nuestro,
+            no sabemos a dónde vas, ¿y el camino cómo podemos saberlo?
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Juan 14:6</div>
+          <div class="aramaic">
+            ܐܳܡܰܪ ܠܶܗ ܝܶܫܽܘܥ ܐܶܢܳܐ ܐ݈ܢܳܐ ܐܽܘܪܚܳܐ ܘܫܽܘܪܳܪܳܐ ܘܚܰܝܶܐ ܠܳܐ ܐ̱ܢܳܫ
+            ܐܳܬ݂ܶܐ ܠܘܳܬ݂ ܐܰܒ݂ܝ ܐܶܠܳܐ ܒ݁ܺܝ܂
+          </div>
+          <div class="transliteration">
+            Fonética: Ámar léh <span class="highlight">Yéshú'a</span>:
+            <span class="highlight">Ená ná urjá w'shurárá w'hayyé</span>; lá nash
+            áthé lwath Abí éllá bí.
+          </div>
+          <div class="translation">
+            Traducción Literal: Dijo a Él Yeshúa:
+            <span class="highlight">Yo soy el Camino, y la Verdad, y la Vida</span
+            >. Nadie viene a mi Padre, sino por Mí.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Análisis y Comentario Mesiánico</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>🗝️ La Paz y la Confianza en Yeshúa</h2>
+        <div class="explanation">
+          <p>
+            El verso 14:1 es un llamado a la **paz interior** y la **confianza**.
+            El término arameo **ܠܳܐ ܢܶܬ݁ܪܰܥܰܫ** (<span
+              class="highlight"
+              >Lá netra'ash</span
+            >) significa 'no se turbe' o 'no tiemble'.
+          </p>
+          <ul>
+            <li>
+              <span class="point-letter">A.</span>
+              **Doble Mandato de Fe:** Yeshúa da un mandato doble: creer en
+              <strong
+                >Aláhá (El Padre, la Deidad) y creer en Él (el Hijo)</strong
+              >. Esto establece una igualdad o unidad de fe.
+            </li>
+            <li>
+              <span class="point-letter">B.</span>
+              <span class="literal-translation"
+                >Lá netra'ash lébkún
+                <span class="arrow">→</span> No se turbe vuestro corazón.</span
+              >
+              En el contexto de las inminentes noticias de Su partida, esta es
+              una instrucción crucial para el discípulo.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>🏠 La Morada Celestial y el Retorno</h2>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              1. La "Casa del Padre" (Beyt Abí)
+            </div>
+            <p>
+              La mención de "muchas moradas" en la casa del Padre
+              (<span class="highlight">Beyt Abí</span>) no solo se refiere a un
+              lugar físico, sino a un estado de **relación** y **hogar
+              eterno** para todos los redimidos.
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">2. El Retorno Mesiánico</div>
+            <p>
+              El verso 14:3 es una promesa directa de la **Segunda Venida** de
+              Yeshúa.
+              <span class="literal-translation"
+                >Túb áthé w'asébkún lwathí
+                <span class="arrow">→</span> de nuevo vendré y os tomaré a
+                Mí.</span
+              >
+              Esto tiene una profunda connotación mesiánica y escatológica:
+            </p>
+            <ul>
+              <li>
+                <strong class="highlight">Propósito:</strong
+                >
+                Llevar a Su pueblo a donde Él está.
+              </li>
+              <li>
+                <strong class="highlight">La Esperanza:</strong
+                >
+                La certeza de Su retorno es el ancla de la esperanza
+                <span class="hebrew-term">HaKadosh</span>.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>🛣️ Yo Soy el Camino, la Verdad y la Vida</h2>
+
+        <div class="explanation">
+          <p>
+            La pregunta de Tomás (<span class="highlight">Tá'wmá</span>) en el
+            verso 5 provoca una de las declaraciones de identidad más
+            fundamentales de Yeshúa.
+          </p>
+          <div class="scripture">
+            <span class="question">Pregunta de Tomás:</span>
+            <div class="answer">
+              Adón  nuestro, no sabemos a dónde vas, ¿y el camino cómo
+              podemos saberlo?
+            </div>
+          </div>
+          <div class="scripture">
+            <span class="question">Respuesta de Yeshúa (14:6):</span>
+            <div class="answer">
+              <span class="highlight"
+                >Ená ná urjá w'shurárá w'hayyé (Yo soy el Camino, y la Verdad, y
+                la Vida)</span
+              >. Nadie viene a mi Padre, sino por Mí.
+            </div>
+          </div>
+        </div>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">La Triple Declaración</div>
+            <p>
+              Yeshúa no solo indica el camino; **Él es** el camino, la verdad y
+              la vida.
+            </p>
+            <ul>
+              <li>
+                **El Camino (<span class="highlight">Urjá</span>):** Él es el
+                único acceso al Padre, la vía de la reconciliación (Hebreos
+                10:19-20).
+              </li>
+              <li>
+                **La Verdad (<span class="highlight">Shurárá</span>):** Él es la
+                plena revelación de Elohim y Su pacto, la realidad detrás de las
+                sombras de la Torá (Juan 1:17).
+              </li>
+              <li>
+                **La Vida (<span class="highlight">Hayyé</span>):** Él es la
+                fuente de la vida eterna y la vida abundante (Juan 10:10).
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="content-container">
+        <h1>Comentario Mesiánico de Juan 14:1-6</h1>
+
+        <div class="section-container">
+            <p>
+                El pasaje de Juan 14:1-6 (Brit Hadashah, Peshita) contiene las palabras de Yeshúa a Sus
+                discípulos en vísperas de Su partida. Es una de las declaraciones más profundas sobre Su
+                identidad como el único mediador y el camino hacia la plenitud del Padre.
+            </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h1>I. El Consuelo de la Fe y la Promesa (Juan 14:1-3)</h1>
+
+        <div class="section-container">
+            <h2>Pasaje Central:</h2>
+            <div class="verse-container">
+                <div class="verse-number">Juan 14:1</div>
+                <div class="aramaic">
+                    ܠܳܐ ܢܶܬ݁ܪܰܗܰܒ݂ ܠܶܒ݁ܟ݂ܽܘܢ ܗܰܝܡܶܢܘ ܒ݁ܰܐܠܳܗܳܐ ܘܒ݂ܰܝ ܗܰܝܡܶܢܘ
+                </div>
+                <div class="transliteration">Lá netrahab lebkon. Haimenu b'Aláhá, ubí haimenu.</div>
+                <div class="translation">No se turbe vuestro corazón. Creed en Aláhá (Elohím) y creed en Mí.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Juan 14:3</div>
+                <div class="aramaic">
+                    ܘܶܐܢ ܐܶܙܰܠ ܐܽܘܛܰܝܶܒ݂ ܠܟ݂ܽܘܢ ܐܰܬ݂ܪܳܐ ܬ݁ܽܘܒ݂ ܐܺܬ݂ܶܐ ܘܶܐܫܩܽܠܟ݂ܽܘܢ
+                    ܠܘܳܬ݂ܝ ܕ݁ܰܐܝܟ݁ܳܐ ܕ݁ܶܐܢܳܐ ܐܺܝܬ݂ܰܝ ܐܳܦ݂ ܐܰܢ݈ܬ݁ܽܘܢ ܬ݁ܶܗܘܽܘܢ
+                </div>
+                <div class="transliteration">
+                    Wen ezal uṭáyeb lkon atrá tub eté weshqulkon lwatí, daiká dená itai áf antún tehwún.
+                </div>
+                <div class="translation">
+                    Y si voy y os preparo un lugar, de nuevo vendré y os tomaré a Mí, para que donde Yo estoy,
+                    también vosotros estéis.
+                </div>
+            </div>
+
+            <div class="explanation">
+                <h3>Explicación del Cumplimiento en Yeshúa:</h3>
+                <p>
+                    Yeshúa se presenta como el fundamento de la fe, equiparando la fe en Él con la fe en el
+                    Padre. La promesa de preparar un lugar se conecta con el rol del Mashíaj como el Sacerdote
+                    y Esposo:
+                </p>
+
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">El Sumo Sacerdote:</div>
+                        <p>
+                            Yeshúa ascendió al cielo, al Santuario Kadosh, para interceder por nosotros y hacer
+                            la expiación final, preparando el camino y el lugar donde Su pueblo pueda habitar
+                            en la presencia de <strong class="hebrew-term">יְהוָה</strong>.
+                        </p>
+                    </div>
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">La Jupá (El Hogar):</div>
+                        <p>
+                            Esta promesa se conecta con la tradición de la boda hebrea, donde el novio deja la
+                            casa del padre para preparar un lugar para su novia (la Jupá o la nueva casa), y
+                            luego regresa a buscarla. <strong class="highlight">Yeshúa, el Novio de Israel</strong>, ha ido a preparar el Reino
+                            para Su congregación, y Su regreso (la Segunda Venida) es para llevarnos a esa
+                            morada eterna.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h1>II. Yeshúa: El Camino, la Verdad y la Vida (Juan 14:6)</h1>
+
+        <div class="section-container">
+            <h2>Declaración Mesiánica Central:</h2>
+            <div class="verse-container">
+                <div class="verse-number">Juan 14:6</div>
+                <div class="aramaic">
+                    ܐܳܡܰܪ ܠܶܗ ܝܶܫܽܘܥ ܐܶܢܳܐ ܐܺܝܬ݂ܰܝ ܐܽܘܪܚܳܐ ܘܰܫܪܳܪܳܐ ܘܚܰܝܶܐ
+                    ܠܳܐ ܐ݈ܢܳܫ ܐܳܬ݂ܶܐ ܠܘܳܬ݂ ܐܰܒ݂ܝ ܐܶܠܳܐ ܒ݁ܝ
+                </div>
+                <div class="transliteration">
+                    Ámar leh Yeshú: Ená ítay Urḥá, waShrorá, waḤayyé. Lá násh áté lwat Abí, elá bí.
+                </div>
+                <div class="translation">
+                    Dijo a Él Yeshúa: Yo soy el Camino, y la Verdad, y la Vida. Nadie viene a mi Padre, sino por Mí.
+                </div>
+            </div>
+
+            <div class="explanation">
+                <h3>Conexión Profética y Cumplimiento:</h3>
+
+                <div class="prophetic-content">
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">"El Camino" (<strong class="hebrew-term">הַדֶּרֶךְ</strong> <span class="arrow">→</span> HaDérej):</div>
+                        <ul>
+                            <li>
+                                <span class="point-letter">A.</span>
+                                <span class="highlight">Conexión Profética (Tanaj):</span>
+                                El concepto de "el camino" se halla en la Torá misma. La Torá es el mapa para
+                                la vida justa. Isaías 35:8 profetiza un "Camino de Santidad" para los redimidos
+                                de <strong class="hebrew-term">יְהוָה</strong>.
+                            </li>
+                            <li>
+                                <span class="point-letter">B.</span>
+                                <span class="highlight">Cumplimiento en Yeshúa:</span>
+                                Yeshúa HaMashíaj es el
+                                <strong class="highlight">Camino Viviente</strong> (HaDérej) que nos guía de regreso al Padre. Él no solo da
+                                instrucciones sobre el camino (como la Torá escrita), sino que Él es la
+                                encarnación perfecta de esa Torá, abriendo una senda de acceso que fue
+                                imposible de cruzar por el hombre pecador.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">"La Verdad" (<strong class="hebrew-term">הָאֱמֶת</strong> <span class="arrow">→</span> Ha'Emet):</div>
+                        <ul>
+                            <li>
+                                <span class="point-letter">A.</span>
+                                <span class="highlight">Conexión Profética (Tanaj):</span>
+                                La Verdad es una característica intrínseca de <strong class="hebrew-term">יְהוָה</strong> (Salmos 33:4).
+                                Los profetas llamaban al pueblo a andar en la verdad (Zacarías 8:16).
+                            </li>
+                            <li>
+                                <span class="point-letter">B.</span>
+                                <span class="highlight">Cumplimiento en Yeshúa:</span>
+                                Él es la
+                                <strong class="highlight">Verdad encarnada</strong>, el Davar (la Palabra) que se hizo carne. La Verdad en
+                                Yeshúa es el conocimiento completo de <strong class="hebrew-term">יְהוָה</strong>, que Él revela a la humanidad,
+                                especialmente en el Brit Hadashah.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="prophetic-section">
+                        <div class="prophetic-title">"La Vida" (<strong class="hebrew-term">הַחַיִּים</strong> <span class="arrow">→</span> HaJayím):</div>
+                        <ul>
+                            <li>
+                                <span class="point-letter">A.</span>
+                                <span class="highlight">Conexión Profética (Tanaj):</span>
+                                El Árbol de la Vida (Génesis 3:22) y la Torá como fuente de vida (Mishlé/Proverbios 3:18).
+                            </li>
+                            <li>
+                                <span class="point-letter">B.</span>
+                                <span class="highlight">Cumplimiento en Yeshúa:</span>
+                                Él es la
+                                <strong class="highlight">Vida Eterna</strong> (Jayyé Olam). Al comer de Él (recibirlo por fe), obtenemos
+                                el sustento espiritual para vivir eternamente. Su resurrección en Shabat (el día
+                                de reposo y cumplimiento) lo prueba como la fuente inagotable de Vida que da
+                                el Padre a través de Él.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h1>III. Conexión con la Aliyá y Aplicación Espiritual</h1>
+
+        <div class="section-container">
+            <p>
+                Este pasaje es una poderosa enseñanza mesiánica para la <strong class="highlight">Aliyá espiritual</strong> (el ascenso de regreso a Adonai):
+            </p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Único Mediador (Juan 14:6):</div>
+                    <p>
+                        La afirmación de Yeshúa ("Nadie viene a mi Padre, sino por Mí") resuelve la crisis de Yaakov de cómo encontrar el camino a la presencia de <strong class="hebrew-term">יְהוָה</strong>. El Tabernáculo y el Templo, con sus velos y sacrificios, eran sombras del Mashíaj. <strong class="highlight">Yeshúa, por Su sacrificio en el madero, rasgó el velo y se convirtió en el único Camino</strong> para que el hombre pueda tener una relación directa con el Padre, cumpliendo el significado más profundo del Sacerdocio.
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Consolación para el Exilio (Juan 14:1):</div>
+                    <p>
+                        Después de la diáspora y la aflicción de Israel (el llanto de Rajél, como vimos en Jeremías 31), el mensaje de Yeshúa a Sus discípulos es la mayor consolación: <span class="scripture">"No se turbe vuestro corazón."</span> Este consuelo se basa en la certeza de Su regreso para completar la redención y llevar a Su pueblo a la morada final, la <strong class="highlight">verdadera y eterna Tierra Prometida</strong>, donde ya no hay exilio ni dolor.
+                    </p>
+                </div>
+            </div>
+            <h1>✦ PUNTO 4 — CONTEXTO HISTÓRICO Y CULTURAL (Génesis 46:28–47:10)</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>1. Situación histórica general</h2>
+        <p>Este pasaje describe:</p>
+        <ul>
+          <li>La llegada efectiva de Israel a Egipto.</li>
+          <li>El establecimiento en la región de Goshen.</li>
+          <li>El encuentro entre Yaʿaqov y Yosef.</li>
+          <li>La presentación de Yaʿaqov ante Faraón.</li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <h3>Históricamente:</h3>
+        <h4>Goshen / Tierra de Ramsés</h4>
+        <ul>
+          <li>Era una zona fértil del Delta Oriental con abundantes pastizales.</li>
+          <li>
+            Los egipcios solían asignar esta zona a pueblos semitas para labores
+            pastoriles.
+          </li>
+          <li>
+            Geográficamente servía de frontera, y por eso era ideal para grupos
+            nómadas sin necesidad de asimilarse inmediatamente al politeísmo
+            egipcio.
+          </li>
+        </ul>
+
+        <h4>Pastores y Egipto</h4>
+        <ul>
+          <li>
+            Culturalmente, los egipcios despreciaban a los pastores (cf.
+            <span class="scripture">46:34</span>).
+          </li>
+          <li>
+            Eso garantizó que Israel no se integrara de forma peligrosa a la
+            cultura idólatra.
+          </li>
+          <li>
+            Lo que era desprecio social se convirtió en
+            <span class="highlight">protección divina</span>.
+          </li>
+        </ul>
+
+        <h4>Estatus de Yosef</h4>
+        <ul>
+          <li>
+            Yosef es <span class="highlight">Mishneh leMelekh</span> (“segundo
+            del rey”).
+          </li>
+          <li>Su autoridad permite a Israel obtener privilegios inusuales:</li>
+          <ul>
+            <li>tierra asignada,</li>
+            <li>movilidad controlada,</li>
+            <li>entrevistas con el rey.</li>
+          </ul>
+          <li>
+            Llegada con comitiva real: Yosef viaja en su carro oficial para
+            recibir a su padre. Los carros son símbolo diplomático de alto honor.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>2. Marco literario y teológico</h2>
+        <ul>
+          <li>
+            El clímax emocional: Yaʿaqov y Yosef se encuentran tras décadas.
+          </li>
+          <li>
+            Yaʿaqov <span class="highlight">bendice a Faraón</span> —un detalle
+            teológicamente provocador: el patriarca, portador de la bendición de
+            <span class="highlight">Elohím</span>, bendice al rey de la mayor
+            potencia mundial.
+          </li>
+          <li>
+            La narrativa subraya que Israel entra a Egipto no como esclavo, sino
+            como <span class="highlight">invitado real</span>.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <h2>3. Contexto espiritual</h2>
+        <ul>
+          <li>
+            Yaʿaqov entra en Egipto como <span class="highlight"
+              >portador del pacto</span
+            >.
+          </li>
+          <li>
+            Se inicia uno de los temas más importantes del Tanaj: La presencia de
+            <span class="highlight">Elohím</span> acompañando a Israel en el
+            exilio.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h1>
+      ✦ PUNTO 5 — ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS (46:28–47:10)
+    </h1>
+
+    <div class="content-container">
+      <h2>1. Comentario exegético verso a verso</h2>
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">46:28</div>
+          <div class="explanation">
+            <p>
+              — <span class="highlight">Yehudah</span> va delante para preparar
+              el camino.
+            </p>
+            <p>
+              Este detalle es profundo: Yehudah —futuro linaje mesiánico— abre el
+              camino hacia la protección y la restauración.
+            </p>
+            <p>
+              <span class="highlight">Rashi</span> señala que Yehudah es enviado
+              para establecer una <span class="highlight">yeshiváh</span>, un
+              centro de <span class="highlight">Toráh</span> en Goshen.
+            </p>
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">46:29–30</div>
+          <div class="explanation">
+            <p>— Encuentro entre Yosef y Yaʿaqov.</p>
+            <p>
+              Yosef se presenta en carro real, se echa sobre su padre y
+              <span class="highlight">llora largamente</span>.
+            </p>
+            <p>
+              Yaʿaqov declara que puede morir en paz ahora que ha visto a Yosef
+              vivo.
+            </p>
+            <p>
+              Tema: la <span class="highlight">vida ha triunfado sobre el duelo</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">46:31–34</div>
+          <div class="explanation">
+            <p>— Plan estratégico de Yosef.</p>
+            <p>
+              Yosef instruye a sus hermanos para que declaren ser
+              <span class="highlight">pastores</span>.
+            </p>
+            <p>
+              Sabía que esto les daría Goshen y <span class="highlight"
+                >evitaría su asimilación</span
+              >.
+            </p>
+            <p>Acción política y espiritual a la vez.</p>
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">47:1–6</div>
+          <div class="explanation">
+            <p>— Presentación de los hermanos.</p>
+            <p>
+              Faraón concede Goshen y ofrece empleos para “hombres capaces” entre
+              los hermanos.
+            </p>
+            <p>
+              Reconoce la autoridad moral y divina de <span class="highlight"
+                >Yosef</span
+              >.
+            </p>
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">47:7–10</div>
+          <div class="explanation">
+            <p>— Yaʿaqov bendice a Faraón.</p>
+            <p>
+              <span class="highlight"
+                >Inversión de jerarquías</span
+              >:
+            </p>
+            <ul>
+              <li>El bendecido por Elohím bendice al rey del mundo.</li>
+              <li>
+                Muestra la supremacía de la
+                <span class="highlight">bendición divina</span> sobre la
+                autoridad humana.
+              </li>
+            </ul>
+            <p>
+              En la Haftará (Ezequiel 37) esta dinámica apunta a la
+              <span class="highlight">restauración mesiánica</span>: Israel como
+              cabeza espiritual entre las naciones.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>2. Comentarios rabínicos clásicos</h2>
+        <ul>
+          <li>
+            <strong>Rashi</strong>
+            <div class="answer">
+              Yehudah va adelante para preparar un centro espiritual: Israel no
+              se define por geografía, sino por <span class="highlight"
+                >Toráh</span
+              >.
+            </div>
+          </li>
+          <li>
+            <strong>Sforno</strong>
+            <div class="answer">
+              El llanto prolongado de Yosef muestra que él había guardado su
+              emoción por disciplina, mientras que Yaʿaqov necesitaba ver
+              restaurada su alma.
+            </div>
+          </li>
+          <li>
+            <strong>Ibn Ezra</strong>
+            <div class="answer">
+              Notación sociológica: el desprecio egipcio a los pastores se
+              convierte en <span class="highlight"
+                >estrategia divina</span
+              >
+              para preservar la identidad israelita.
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>3. Conexiones proféticas</h2>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">Con Ezequiel 37 (Haftará)</div>
+            <ul>
+              <li>
+                Yehudah (línea del Mesías) y Yosef trabajan juntos para la
+                restauración.
+              </li>
+              <li>
+                El encuentro en Egipto prefigura la
+                <span class="highlight">futura reunificación nacional</span>.
+              </li>
+            </ul>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">Con Éxodo</div>
+            <ul>
+              <li>
+                Goshen es el punto de partida de la
+                <span class="highlight">futura redención</span>.
+              </li>
+              <li>
+                Este pasaje es el “prólogo teológico” del Éxodo.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>
+          4. Conexiones mesiánicas (según tu dossier La Divinidad de Yeshúa)
+        </h2>
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <ul>
+              <li>
+                Yosef, exaltado y cercano al rey, anticipa al
+                <span class="highlight">Mashíaj</span> que, aun siendo exaltado,
+                recibe y abraza a su pueblo.
+              </li>
+              <li>
+                Yehudah abriendo camino es figura del linaje mesiánico
+                <span class="highlight">preparando la redención</span>.
+              </li>
+              <li>
+                La bendición de Yaʿaqov sobre Faraón anticipa la
+                <span class="highlight">superioridad espiritual del Reino del Mashíaj</span
+                >
+                sobre los reinos del mundo.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h1>
+      ✦ PUNTO 6 — ANÁLISIS PROFUNDO DE LA ALIYÁH (46:28–47:10)
+    </h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>1. Estructura literaria</h2>
+        <ul>
+          <li>
+            Yehudah enviado adelante (<span class="scripture">46:28</span>).
+          </li>
+          <li>
+            Encuentro entre Yosef y Yaʿaqov (<span class="scripture"
+              >46:29–30</span
+            >).
+          </li>
+          <li>
+            Preparativos estratégicos (<span class="scripture">46:31–34</span
+            >).
+          </li>
+          <li>
+            Presentación ante Faraón (<span class="scripture">47:1–6</span>).
+          </li>
+          <li>
+            Bendición de Yaʿaqov sobre Faraón (<span class="scripture"
+              >47:7–10</span
+            >).
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <h2>2. Análisis emocional</h2>
+        <ul>
+          <li>
+            El reencuentro es un punto de
+            <span class="highlight">restauración psicológica</span> para ambos.
+          </li>
+          <li>
+            Yaʿaqov pasa de <span class="highlight"
+              >muerte emocional a vida espiritual</span
+            >.
+          </li>
+          <li>
+            Yosef, que había llorado en secreto, ahora llora libremente.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <h2>3. Análisis teológico</h2>
+        <ul>
+          <li>
+            Yehudah y Yosef unidos: símbolo del
+            <span class="highlight">plan mesiánico</span>.
+          </li>
+          <li>
+            Goshen como <span class="highlight">santuario en el exilio</span>.
+          </li>
+          <li>
+            La bendición de Yaʿaqov sobre Faraón establece la
+            <span class="highlight">supremacía espiritual de Israel</span>.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-container">
+        <h2>4. Análisis sociopolítico</h2>
+        <ul>
+          <li>
+            La estrategia de Yosef protege a Israel de la
+            <span class="highlight">asimilación</span>.
+          </li>
+          <li>
+            Faraón muestra respeto, admiración y dependencia de la sabiduría de
+            Israel.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h1>
+      ✦ PUNTO 7 — TEMA MÁS RELEVANTE DE LA ALIYÁH
+    </h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>Tema central:</h2>
+        <p>
+          La llegada de Israel a Egipto bajo la
+          <span class="highlight">bendición divina</span> y la guía del linaje
+          mesiánico (<span class="highlight">Yehudah</span>) anticipa la futura
+          redención nacional.
+        </p>
+
+        <div class="explanation">
+          <div class="prophetic-title">¿Por qué este tema?</div>
+          <ul>
+            <li>
+              Porque <span class="highlight">Yehudah abre camino</span>
+              <span class="arrow">→</span> símbolo del Mesías.
+            </li>
+            <li>
+              <span class="highlight">Yosef recibe y protege</span>
+              <span class="arrow">→</span> figura del Mesías exaltado.
+            </li>
+            <li>
+              <span class="highlight">Yaʿaqov bendice a Faraón</span>
+              <span class="arrow">→</span> el pacto domina sobre los imperios.
+            </li>
+            <li>
+              <span class="highlight">Goshen</span>
+              <span class="arrow">→</span> espacio profético donde nacerá la
+              redención del Éxodo.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1>
+      ✦ PUNTO 8 — DESCUBRIENDO AL MASHÍAJ EN LA ALIYÁH (46:28–47:10)
+    </h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          Aplicando: tipología, sombras, midrash mesiánico, patrones redentores y
+          conexión con Peshitta según tu dossier.
+        </p>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              1. Yehudah abriendo camino (<span class="scripture">46:28</span
+              >)
+            </div>
+            <ul>
+              <li>
+                Yehudah (Judá) es padre del linaje del <span class="highlight"
+                  >Mashíaj</span
+                >.
+              </li>
+              <li>
+                Su rol aquí anticipa al Mashíaj como el que
+                <span class="highlight">abre camino a la salvación</span>.
+              </li>
+            </ul>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              2. Yosef como figura del Mashíaj exaltado
+            </div>
+            <ul>
+              <li>
+                Yosef, exaltado ante Faraón,
+                <span class="highlight">recibe a su pueblo sufriente</span
+                >.
+              </li>
+              <li>
+                Paralelo mesiánico: <span class="highlight">Yeshúa</span>
+                exaltado recibe a Su pueblo con amor.
+              </li>
+            </ul>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">3. El abrazo que restaura vida</div>
+            <ul>
+              <li>
+                El llanto de Yosef sobre Yaʿaqov anticipa la
+                <span class="highlight">compasión mesiánica</span>.
+              </li>
+              <li>
+                Es señal del amor del Mashíaj por Israel, aun después de largos
+                tiempos de separación.
+              </li>
+            </ul>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              4. La estrategia para evitar asimilación
+            </div>
+            <ul>
+              <li>
+                Yosef protege a Israel del politeísmo.
+              </li>
+              <li>
+                El Mashíaj <span class="highlight"
+                  >protege la identidad espiritual</span
+                >
+                de su <span class="hebrew-term">Kehiláh</span>.
+              </li>
+            </ul>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">5. Yaʿaqov bendice a Faraón</div>
+            <ul>
+              <li>
+                Esto muestra que la <span class="highlight"
+                  >autoridad espiritual del pacto</span
+                >
+                supera al poder imperial.
+              </li>
+              <li>
+                En clave mesiánica:
+                <ul>
+                  <li>
+                    El Reino del Mashíaj es
+                    <span class="highlight">superior</span> a los reinos de este
+                    mundo.
+                  </li>
+                  <li>
+                    Las naciones recibirán bendición por medio del
+                    <span class="highlight">Rey Mesiánico</span>.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              6. Goshen como prototipo del Reino
+            </div>
+            <ul>
+              <li>
+                Un lugar separado, seguro, próspero.
+              </li>
+              <li>
+                Tipo del <span class="highlight">refugio mesiánico</span>, donde
+                <span class="highlight">Elohím</span> guarda a Su pueblo en medio
+                de las naciones.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1>✦ PUNTO 9 — MIDRASHIM, TARGUMIM Y TEXTOS FUENTES (46:28–47:10)</h1>
+    <div class="content-container">
+        <p>
+            Esta sección es rica en material midráshico debido a tres motivos:
+        </p>
+        <ul>
+            <li>el encuentro entre Yaʿaqov y Yosef,</li>
+            <li>
+                la presencia del linaje mesiánico (<span class="highlight">Yehudáh</span>) preparando
+                el camino,
+            </li>
+            <li>
+                la bendición del patriarca sobre Faraón, un gesto que implica supremacía
+                espiritual.
+            </li>
+        </ul>
+        <div class="section-container">
+            <h3>1. Midrashim relevantes</h3>
+            <div class="explanation">
+                <p>
+                    <span class="point-letter">a)</span>
+                    <span class="highlight">Bereshit Rabbah 95–97</span> (temático)
+                </p>
+                <p>Los midrashim sobre este pasaje enfatizan:</p>
+                <h4>Yehudah enviado adelante (46:28):</h4>
+                <p>
+                    El Midrash enseña que <span class="highlight">Yehudáh fue enviado a establecer
+                    una yeshiváh en Goshen</span> antes de la llegada de Yaʿaqov.
+                </p>
+                <p>
+                    Esto significa que Israel jamás debe morar sin <span class="highlight">Toráh</span>,
+                    incluso en el exilio.
+                </p>
+                <h4>El llanto de Yosef (46:29):</h4>
+                <p>
+                    Midrash Rabbah interpreta que Yosef lloró más que Yaʿaqov porque él
+                    cargaba el dolor de 22 años de separación y la responsabilidad de la
+                    preservación de Israel.
+                </p>
+                <h4>El tiempo se detuvo en el abrazo:</h4>
+                <p>
+                    Algunos midrashim dicen que Yaʿaqov recitaba el
+                    <span class="highlight">Shema</span> mientras Yosef lloraba, interpretando el
+                    encuentro como un acto de entrega total a Elohím.
+                </p>
+                <h4>La bendición de Yaʿaqov sobre Faraón (47:7–10):</h4>
+                <p>
+                    El Midrash resalta que “el menor es bendecido por el mayor”, afirmando la
+                    <span class="highlight">superioridad espiritual de Yaʿaqov</span> sobre el rey
+                    más poderoso del mundo.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>2. Targumim</h3>
+            <div class="explanation">
+                <h4>Targum Onkelos</h4>
+                <p>Conserva el texto de forma literal pero aclara funciones:</p>
+                <ul>
+                    <li>Yehudáh como líder espiritual.</li>
+                    <li>Yaʿaqov como “anciano digno” que entra a Egipto con honor.</li>
+                </ul>
+                <h4>Targum Pseudo-Yonatán / Yerushalmi</h4>
+                <ul>
+                    <li>Añade que Yehudáh fue enviado por <span class="highlight">inspiración
+                    divina</span>.</li>
+                    <li>Explica que la bendición de Yaʿaqov sobre Faraón prolongó la prosperidad
+                    de Egipto.</li>
+                    <li>Presenta a Yosef como “rey en práctica”, aunque no de nombre,
+                    anticipando la tipología mesiánica.</li>
+                </ul>
+                <div class="verse-container">
+                    <div class="verse-number">Génesis 46:28 (Fragmento Arameo)</div>
+                    <div class="aramaic">וִיהוּדָה שְׁדַר לָקֳדָמוֹהִי לְקַבָּלָא יָתֵיהּ, לְהוֹרִי עַל גּוֹשֶׁן</div>
+                    <div class="transliteration">...</div>
+                    <div class="translation">...</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>3. Tradiciones arameas (Peshitta)</h3>
+            <div class="explanation">
+                <p>
+                    La Peshitta enfatiza la <span class="highlight">presencia divina acompañando
+                    a Yaʿaqov</span>, lo cual coincide con
+                    tu documento La Divinidad de Yeshúa, donde la figura del Mashíaj es
+                    quien acompaña al pueblo en sus descensos y ascensos.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>4. Lecturas nazarenas y mesiánicas antiguas</h3>
+            <div class="explanation">
+                <ul>
+                    <li>
+                        <span class="highlight">Yosef</span> es visto como <span class="highlight">sombra
+                        del Mashíaj</span> exaltado que recibe a su pueblo.
+                    </li>
+                    <li>
+                        <span class="highlight">Yehudáh</span> anticipa al Mesías que <span class="highlight">abre
+                        camino</span>.
+                    </li>
+                    <li>
+                        La bendición sobre Faraón anticipa la futura superioridad del <span class="highlight">Reino
+                        del Mashíaj</span> sobre los reinos del mundo.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>✦ PUNTO 10 — MANDAMIENTOS O PRINCIPIOS ENCONTRADOS (46:28–47:10)</h1>
+    <div class="content-container">
+        <p>
+            Aunque no hay mandamientos formales, sí hay <span class="highlight">valores
+            eternos</span> derivados del texto:
+        </p>
+        <div class="section-container">
+            <p><span class="point-letter">1.</span> <span class="highlight">La prioridad espiritual precede a la residencia física</span></p>
+            <p>Yehudáh establece un centro de Toráh en Goshen antes de que llegue la familia.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">2.</span> <span class="highlight">La reconciliación exige emoción auténtica</span></p>
+            <p>El llanto de Yosef enseña que el perdón verdadero involucra vulnerabilidad.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">3.</span> <span class="highlight">La familia se honra con presencia y cercanía</span></p>
+            <p>El abrazo entre padre e hijo modela el valor del vínculo familiar restaurado.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">4.</span> <span class="highlight">La identidad debe preservarse aun en entornos extraños</span></p>
+            <p>Yosef instruye que declaren ser pastores para mantener separación de la idolatría egipcia.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">5.</span> <span class="highlight">Honrar (y bendecir) a la autoridad sin perder identidad</span></p>
+            <p>Yaʿaqov bendice a Faraón como patriarca, mostrando respeto pero sin ceder su posición espiritual.</p>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">6.</span> <span class="highlight">Comprender que la vida de exilio también está bajo la guía de Elohím</span></p>
+            <p>La residencia en Goshen no es accidente, sino diseño divino para futura redención.</p>
+        </div>
+    </div>
+
+    <h1>✦ PUNTO 11 — PREGUNTAS DE REFLEXIÓN CON RESPUESTAS EN EL MASHÍAJ (46:28–47:10)</h1>
+    <div class="content-container">
+        <p>
+            Las respuestas siguen tu línea doctrinal mesiánica, especialmente la contenida
+            en <span class="highlight">La Divinidad de Yeshúa</span>.
+        </p>
+
+        <div class="section-container">
+            <p class="question">1. ¿Por qué Yehudáh es enviado delante del pueblo?</p>
+            <div class="answer">
+                <p>
+                    <span class="highlight">Respuesta en el Mashíaj:</span>
+                </p>
+                <p>
+                    Porque el <span class="highlight">linaje mesiánico siempre abre el
+                    camino</span>. Yeshúa, hijo de David (de Yehudáh), va delante de Su pueblo
+                    para preparar lugar, protegerlo y guiarlo hacia la vida.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">2. ¿Qué enseñan las lágrimas de Yosef sobre el carácter del Mashíaj?</p>
+            <div class="answer">
+                <p>
+                    <span class="highlight">Respuesta en el Mashíaj:</span>
+                </p>
+                <p>
+                    Revelan que la redención es <span class="highlight">profundamente
+                    empática</span>.
+                </p>
+                <p>
+                    Yeshúa llora con Su pueblo, como Yosef lo hizo con Yaʿaqov. El Mashíaj no
+                    es distante: siente, abraza, restaura.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">3. ¿Por qué era importante mantener separación cultural en Goshen?</p>
+            <div class="answer">
+                <p>
+                    <span class="highlight">Respuesta en el Mashíaj:</span>
+                </p>
+                <p>
+                    Para <span class="highlight">preservar identidad espiritual</span>.
+                </p>
+                <p>
+                    En el Nuevo Pacto, el Mashíaj llama a Su Kehiláh a ser luz sin mezclarse
+                    con la oscuridad. La separación es para propósito, no aislamiento.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">4. ¿Qué implica que Yaʿaqov bendiga a Faraón?</p>
+            <div class="answer">
+                <p>
+                    <span class="highlight">Respuesta en el Mashíaj:</span>
+                </p>
+                <p>
+                    Que la <span class="highlight">autoridad espiritual del pacto supera
+                    toda autoridad terrenal</span>.
+                </p>
+                <p>
+                    En la lectura mesiánica, el Reino de Yeshúa es el Reino supremo ante el
+                    cual se inclinarán las naciones.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">5. ¿Qué nos enseña el encuentro Yaʿaqov–Yosef sobre la restauración mesiánica?</p>
+            <div class="answer">
+                <p>
+                    <span class="highlight">Respuesta en el Mashíaj:</span>
+                </p>
+                <p>
+                    Que la <span class="highlight">redención del Mashíaj sanará heridas
+                    antiguas</span> y reunirá a familias, tribus y naciones.
+                </p>
+                <p>
+                    El abrazo es anticipo del encuentro final entre Israel y su Rey.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h1>✦ PUNTO 12 — RESUMEN DE LA ALIYÁH (46:28–47:10)</h1>
+    <div class="content-container">
+        <p>
+            <span class="highlight">Yehudáh</span> es enviado adelante para preparar el camino
+            a Goshen, representando liderazgo mesiánico. <span class="highlight">Yosef</span>
+            recibe a su padre con lágrimas profundas y un abrazo que sella la restauración
+            familiar. Luego prepara a sus hermanos para presentarse ante Faraón,
+            instruyéndoles cómo mantener identidad y distancia cultural.
+        </p>
+        <p>
+            <span class="highlight">Faraón</span>, impresionado por la integridad de Yosef,
+            concede Goshen al clan y ofrece empleos a los hermanos. Finalmente, <span class="highlight">Yaʿaqov</span>
+            es presentado ante Faraón y lo bendice, estableciendo la
+            <span class="highlight">superioridad espiritual del pacto de Elohím</span> sobre
+            el poder del imperio.
+        </p>
+        <p class="conclusion">
+            Esta aliáh concluye mostrando que Israel entra en Egipto no como esclavo, sino
+            como nación protegida, unida y bendecida, lista para convertirse en el pueblo
+            que Elohím formará para Su propósito redentor.
+        </p>
+    </div>
+
+    <h1>✦ PUNTO 13 — TEFILÁH (ORACIÓN) DE LA ALIYÁH (46:28–47:10)</h1>
+    <div class="content-container">
+        <div class="prayer-text">
+            <p>
+                <span class="highlight">Tefiláh por la Guía y la Restauración</span>
+            </p>
+            <p>Adonái <span class="hebrew-term">יהוה</span>, Elohím de nuestros padres,</p>
+            <p>
+                gracias por guiarnos como guiaste a Yaʿaqov y a su familia hacia Goshen.
+            </p>
+            <p>
+                Que, como Yehudáh, sepamos abrir caminos santos en nuestras comunidades,
+            </p>
+            <p>
+                y que, como Yosef, tengamos corazones capaces de llorar, perdonar y restaurar.
+            </p>
+            <p>
+                Enséñanos a vivir en medio de las naciones sin perder Tu identidad,
+            </p>
+            <p>
+                firmes en la Toráh y guiados por Tu <span class="highlight">Ruaj</span>.
+            </p>
+            <p>
+                Que <span class="highlight">Yeshúa haMashíaj</span>,
+            </p>
+            <p>
+                quien recibe a Su pueblo con compasión,
+            </p>
+            <p>
+                nos abrace, nos renueve y nos dirija hacia la plenitud de Tu propósito.
+            </p>
+            <p>
+                Bendice a quienes gobiernan,
+            </p>
+            <p>
+                como Yaʿaqov bendijo a Faraón,
+            </p>
+            <p>
+                y haznos instrumentos de <span class="highlight">Shalom</span> sin comprometer la
+                verdad del pacto.
+            </p>
+            <p>
+                Sé Tú nuestro Goshen espiritual,
+            </p>
+            <p>
+                refugio en el exilio y cuna de nuestra redención.
+            </p>
+        </div>
+        <div class="prayer-conclusion">
+            <p>En el Nombre del Mashíaj Yeshúa,</p>
+            <p>Amén.</p>
+        </div>
+    </div>
+<footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya7.html">Continuar con la Aliyá 7</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
