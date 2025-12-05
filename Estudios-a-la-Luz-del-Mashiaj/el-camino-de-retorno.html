@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EL CAMINO DE RETORNO YESHÚA HAMASHIAJ</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>EL CAMINO DE RETORNO YESHÚA HAMASHIAJ</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El llamado a "salir" de estructuras religiosas o gentiles para
+          caminar con el Elohim de Israel es fundamental y se basa en el
+          concepto de Teshuvá (arrepentimiento/retorno) y la unidad profética
+          en Yeshúa HaMashíaj. Este camino no es de cambio de religión, sino de
+          restauración a la fe original dada a Israel y extendida a las
+          naciones.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>1. El Fundamento: El Llamado a la Teshuvá y la Obra de Yeshúa</h2>
+
+      <div class="section-container">
+        <p>
+          El camino comienza con el reconocimiento de
+          <span class="hebrew-term">יְהוָה</span> como el único Elohim, tal
+          como se revela a Israel.
+        </p>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              Teshuvá (Arrepentimiento y Retorno):
+            </div>
+            <p>
+              La Teshuvá es la primera respuesta al llamado de
+              <span class="hebrew-term">יְהוָה</span>. Implica un cambio de
+              mentalidad y de dirección en la vida, dejando atrás las
+              tradiciones y doctrinas de los hombres para aferrarse a la Torá.
+              Yeshúa mismo inició su ministerio predicando este mensaje:
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Marcos 1:15</div>
+            <div class="scripture">
+              "Y decía: Se ha cumplido el tiempo, y el Reino de Elohim se ha
+              acercado; ¡haced Teshuvá, y creed en la Buena Noticia!"
+            </div>
+            <p>
+              Este es el punto de partida para toda persona, sin importar su
+              procedencia religiosa.
+            </p>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              El Pacto por medio de Yeshúa HaMashíaj:
+            </div>
+            <p>
+              El Brit Hadashah establece que los gentiles (las naciones) son
+              injertados en el olivo de Israel por medio de la fe en Yeshúa. El
+              llamado no es a una nueva fe, sino a la fe de Israel, a través del
+              Mashíaj.
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Romanos 11:17</div>
+            <div class="scripture">
+              "Si las ramas naturales fueron cortadas, y tú, siendo olivo
+              silvestre, fuiste injertado en lugar de ellas, y has llegado a ser
+              copartícipe de la raíz y de la rica savia del olivo, entonces
+              debes tener cuidado y permanecer en la bondad de Adonai."
+            </div>
+            <p class="highlight">El olivo es el pueblo de Israel.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>2. El Patrón para Caminar: La Torá Viviente</h2>
+
+      <div class="section-container">
+        <p>
+          "Caminar con el Elohim de Israel" significa adoptar Su forma de vida,
+          que es la Torá, enseñada y ejemplificada por Yeshúa HaMashíaj.
+        </p>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">La Torá es Eterna:</div>
+            <p>
+              La Torá, las instrucciones de
+              <span class="hebrew-term">יְהוָה</span>, no fue abolida. Yeshúa
+              es el cumplimiento vivo, no el destructor de la Torá.
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Mateo 5:17</div>
+            <div class="scripture">
+              "No penséis que he venido para abrogar la Torá o a los Profetas;
+              no he venido para abrogar, sino para cumplir."
+            </div>
+            <p>
+              El estudio de la Torá se convierte entonces en el mapa para el
+              creyente.
+            </p>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">Separación y Santidad (Kadosh):</div>
+            <p>
+              El concepto de "salir" está íntimamente ligado a la santidad, que
+              en hebreo es Kadosh (apartado). Se trata de apartarse de lo común
+              o impuro para dedicarse al servicio de
+              <span class="hebrew-term">יְהוָה</span>. Esto implica dejar atrás
+              las tradiciones que anulan o contradicen los mandamientos de la
+              Torá.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>3. La Meta Profética: Un Pueblo Unido</h2>
+
+      <div class="section-container">
+        <p>
+          Este retorno no es para crear otra denominación, sino para participar
+          en la restauración final de Israel, conocida como la reunión de
+          Efraim (las diez tribus dispersas entre las naciones) con Judá.
+        </p>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">El Retorno de Efraim:</div>
+            <p>
+              Muchas profecías en el Tanaj hablan de la reunión de las dos casas
+              de Israel. La persona que viene de un trasfondo gentil y se aferra
+              a la Torá y al Mashíaj, está participando en este cumplimiento
+              profético.
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Jeremías 31:1</div>
+            <div class="scripture">
+              "En aquel tiempo, dice <span class="hebrew-term">יְהוָה</span>, Yo
+              seré Elohim para todas las familias de Israel, y ellas serán mi
+              pueblo."
+            </div>
+            <p>
+              Esta promesa se extiende a quienes se han unido al Pacto de
+              Yeshúa.
+            </p>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">Una Sola Nación:</div>
+            <p>El propósito final es la unidad bajo un solo Rey.</p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Ezequiel 37:22</div>
+            <div class="scripture">
+              "Y los haré una nación en la tierra, en los montes de Israel, y un
+              rey será para todos ellos, y nunca más serán dos naciones, ni
+              nunca más serán divididos en dos reinos."
+            </div>
+            <p class="highlight">Yeshúa HaMashíaj es este único Rey.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p class="highlight">
+          El proceso para una persona que busca este camino es:
+        </p>
+        <ul>
+          <li>
+            <strong>Teshuvá</strong> (arrepentimiento y abandono de doctrinas
+            humanas)
+          </li>
+          <li>
+            <strong>Fe en Yeshúa HaMashíaj</strong> (quien es el Adonai de
+            Israel)
+          </li>
+          <li>
+            <strong>Integración en el caminar de la Torá</strong> (obediencia a
+            los mandamientos, Shabat y Fiestas de
+            <span class="hebrew-term">יְהוָה</span>)
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>La Tevilá: El Sello de la Teshuvá</h2>
+
+      <div class="section-container">
+        <p>
+          Es una verdad profunda que la Tevilá (inmersión en agua) en el Nombre
+          de Yeshúa HaMashíaj es el acto de sellar la Teshuvá y unirse al
+          corazón del Eterno. Este acto es el símbolo de la muerte a la vida
+          anterior y la resurrección a una nueva vida de obediencia a la Torá,
+          injertándonos proféticamente en la ciudadanía de Israel, tal como se
+          revela en el libro de Efesios.
+        </p>
+      </div>
+
+      <h3>La Separación y la Sangre del Pacto</h3>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            El apóstol Shaúl, al dirigirse a los creyentes que venían de las
+            naciones, establece la condición previa a la obra de Yeshúa. Ellos
+            estaban en una posición de separación y extrañeza con respecto al
+            Pacto de <span class="hebrew-term">יְהוָה</span>.
+          </p>
+
+          <div class="prophetic-title">Lejos de la Ciudadanía de Israel:</div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Efesios 2:12</div>
+          <div class="scripture">
+            "Que en aquel tiempo estabais sin Mashíaj, alienados de la
+            Ciudadanía de Israel, y ajenos a los pactos de la promesa, sin
+            esperanza y sin Elohim en el mundo."
+          </div>
+          <div class="explanation">
+            <p class="prophetic-title">Análisis:</p>
+            <p>
+              Estar "sin Mashíaj" implicaba estar fuera de la esfera de
+              redención de <span class="hebrew-term">יְהוָה</span>. Estar
+              "alienados de la Ciudadanía de Israel" significa que las naciones
+              no compartían el mismo estatus, las promesas, ni el mapa (la Torá)
+              dado a Israel. La salvación y el plan de
+              <span class="hebrew-term">יְהוָה</span> siempre han tenido como
+              centro a Israel.
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Acercados por la Sangre de Yeshúa:
+          </div>
+          <p>
+            El cambio radical se produce a través de la obra redentora de Yeshúa
+            HaMashíaj en el madero. Su sangre establece el Nuevo Pacto (Brit
+            Hadashah), que tiene el propósito de restaurar y unir.
+          </p>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Efesios 2:13</div>
+          <div class="scripture">
+            "Pero ahora en Yeshúa HaMashíaj, vosotros que en otro tiempo
+            estabais lejos, habéis sido acercados por la sangre del Mashíaj."
+          </div>
+          <div class="explanation">
+            <p class="prophetic-title">Análisis:</p>
+            <p>
+              La sangre de Yeshúa es el medio por el cual
+              <span class="hebrew-term">יְהוָה</span> perdona los pecados y
+              elimina la barrera (la enemistad) que existía entre las naciones y
+              la fe de Israel. No es la creación de una fe nueva, sino el acceso
+              a la fe original.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h3>La Tevilá y la Unidad con el Corazón del Eterno</h3>
+
+      <div class="section-container">
+        <p>
+          La Tevilá en el Nombre de Yeshúa HaMashíaj es la declaración pública
+          y espiritual de que la persona ha aceptado esta obra y ha sido
+          injertada en el cuerpo del Mashíaj, que es Israel restaurado. Es un
+          acto de fe que simboliza la limpieza de la vida gentil y la entrada a
+          la Casa de Israel.
+        </p>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              Derribando el Muro de Separación:
+            </div>
+            <p>
+              El Mashíaj ha hecho de dos (Israel y las naciones que creen) un
+              solo hombre nuevo.
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Efesios 2:14-16</div>
+            <div class="scripture">
+              "Porque Él es nuestra paz, que de ambos pueblos hizo uno,
+              derribando la pared intermedia de separación, aboliendo en Su
+              carne la enemistad, la Torá de los mandamientos expresados en
+              ordenanzas, para crear en Sí mismo de los dos un solo y nuevo
+              hombre, haciendo la paz, y mediante el madero reconciliar con
+              Elohim a ambos en un solo cuerpo, matando en él la enemistad."
+            </div>
+            <div class="explanation">
+              <p class="prophetic-title">Análisis:</p>
+              <p>
+                El "muro de separación" era la enemistad creada por la
+                desobediencia y las ordenanzas religiosas humanas, no la Torá
+                misma, la cual es santa. Yeshúa abolió la enemistad y las
+                separaciones que impedían la unidad, permitiendo que las naciones
+                se unan a Israel en obediencia a la Torá que el Mashíaj vino a
+                magnificar. El objetivo es un "nuevo hombre," un solo pueblo,
+                cuyo corazón late al ritmo de la Torá de
+                <span class="hebrew-term">יְהוָה</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <p class="highlight">Conclusión:</p>
+        <p>
+          Al hacer Tevilá en Yeshúa HaMashíaj, la persona no solo sella el
+          arrepentimiento de sus pecados, sino que también es vestida con la
+          justicia de Yeshúa e introducida a la Ciudadanía de Israel. Este es el
+          cumplimiento de la profecía de las naciones fluyendo hacia la Torá de
+          <span class="hebrew-term">יְהוָה</span>, unificadas en el cuerpo del
+          Mashíaj. La inmersión es el sello espiritual de que ahora somos
+          "cercanos," hemos abandonado la condición de extraños y somos parte del
+          pueblo del Eterno, herederos de las promesas de Israel.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>
+        Yeshúa HaMashíaj: El Único Camino de Regreso y la Llave de Restauración
+      </h2>
+
+      <div class="section-container">
+        <p>
+          La pregunta toca la esencia del plan redentor de
+          <span class="hebrew-term">יְהוָה</span> en Yeshúa HaMashíaj: Él es el
+          único camino de regreso y la llave para que toda persona, sea de Israel
+          de nacimiento o gentil, pueda ser restaurada y contada como parte de Su
+          pueblo.
+        </p>
+      </div>
+
+      <h3>1. El Mashíaj como el Camino de Regreso y Restauración</h3>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            Yeshúa HaMashíaj no solo pagó el precio por el pecado, sino que
+            también derribó la barrera de la muerte, la desobediencia y la
+            separación. Él es el Sacerdote Kadosh (Santo) que abrió el camino al
+            lugar más íntimo de la presencia de
+            <span class="hebrew-term">יְהוָה</span>.
+          </p>
+
+          <div class="prophetic-title">Mediador del Pacto de Sangre:</div>
+          <p>
+            La sangre de Yeshúa establece el Brit Hadashah (Nuevo Pacto), que
+            hace posible la reconciliación total. Su obra en el madero
+            fue el sacrificio perfecto y sin mancha.
+          </p>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Hebreos 9:12</div>
+          <div class="scripture">
+            "No por sangre de machos cabríos ni de becerros, sino por Su propia
+            sangre, entró una vez para siempre en el Lugar Kadosh, habiendo
+            obtenido eterna redención."
+          </div>
+          <div class="explanation">
+            <p class="prophetic-title">Análisis:</p>
+            <p>
+              Al derramar Su propia sangre, Yeshúa cumplió el patrón de la Torá
+              y, simultáneamente, abrió un acceso directo y permanente a
+              <span class="hebrew-term">יְהוָה</span>, lo que antes solo era
+              posible anualmente por medio del sumo sacerdote de Israel.
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Rescate Profético:</div>
+          <p>
+            Yeshúa es la puerta, el camino y la verdad que nos saca del exilio
+            espiritual y nos guía a la restauración completa: la obediencia a la
+            Torá con el corazón transformado.
+          </p>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Juan 14:6</div>
+          <div class="scripture">
+            "Yo soy el camino, y la verdad, y la vida; nadie viene al Padre sino
+            por Mí."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h3>2. La Inclusión en el Pueblo de Israel por medio de Yeshúa</h3>
+
+      <div class="section-container">
+        <p>
+          La restauración no es simplemente perdón de pecados; es la restitución
+          de la persona a la posición de ciudadano dentro de la Casa de Israel,
+          tal como se mencionó en Efesios 2. El Mashíaj es la piedra angular que
+          une a Judá (la casa del sur) y a Efraim/Gentiles (la casa del norte
+          dispersa entre las naciones).
+        </p>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">El Injerto en el Olivo:</div>
+            <p>
+              El proceso por el cual una persona de las naciones se convierte en
+              parte del pueblo de <span class="hebrew-term">יְהוָה</span> es
+              conocido como el "injerto." Esto no significa reemplazar a Israel,
+              sino unirse a Israel.
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Romanos 11:17</div>
+            <div class="scripture">
+              "Si algunas de las ramas del olivo natural (Israel) fueron
+              desgajadas, y tú, siendo olivo silvestre (gentil), fuiste injertado
+              entre ellas, y has llegado a ser copartícipe de la raíz y de la
+              rica savia del olivo, entonces has sido incorporado a la promesa de
+              Israel."
+            </div>
+            <div class="explanation">
+              <p class="prophetic-title">Análisis:</p>
+              <p>
+                La "raíz" y la "rica savia" son las promesas dadas a los
+                patriarcas, la Torá y el Mashíaj. Ser parte del olivo significa
+                adoptar la fe, la herencia y el caminar de Israel.
+              </p>
+            </div>
+          </div>
+
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              La Unificación Profética (Un Nuevo Hombre):
+            </div>
+            <p>
+              Yeshúa hizo de ambos grupos (judío y gentil creyente) un solo
+              cuerpo. El Mashíaj se convierte en la identidad que anula las
+              viejas divisiones.
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Efesios 2:19</div>
+            <div class="scripture">
+              "Así que ya no sois extraños ni advenedizos, sino conciudadanos de
+              los kadoshim (santos), y miembros de la familia de Elohim."
+            </div>
+            <div class="explanation">
+              <p class="prophetic-title">Análisis:</p>
+              <p>
+                Ya no somos forasteros, sino que hemos recibido la ciudadanía
+                completa en el Reino de
+                <span class="hebrew-term">יְהוָה</span>. Esto implica participar
+                en las Fiestas, el Shabat y la obediencia a la Torá, no por
+                obligación de ley, sino por amor al Rey y como evidencia de la
+                Teshuvá y la fe en el Mashíaj.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conclusion">
+        <p class="highlight">Conclusión Final:</p>
+        <p>Cada persona puede ser "Israel" en el sentido espiritual y profético al:</p>
+        <ul>
+          <li>
+            Aceptar la Sangre de Yeshúa como el único medio de redención.
+          </li>
+          <li>
+            Practicar la Teshuvá (retorno) a los caminos de
+            <span class="hebrew-term">יְהוָה</span>.
+          </li>
+          <li>
+            Ser injertado por la fe en el Mashíaj, uniéndose a la Ciudadanía de
+            Israel y a las promesas del Pacto.
+          </li>
+        </ul>
+        <p>
+          De esta manera, la persona se convierte en parte del "resto" que es
+          restaurado, cumpliendo el propósito de
+          <span class="hebrew-term">יְהוָה</span> de tener un solo pueblo para
+          Sí, viviendo bajo Su Torá y esperando el regreso de Su Mashíaj.
+        </p>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>Tefiláh de Retorno y Restauración en Yeshúa HaMashíaj</h2>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Inicio y Adoración</div>
+          <div class="prayer-text">
+            <p>
+              <span class="highlight">Baruj Atá <span class="hebrew-term">יְהוָה</span> Eloheinu Melej HaOlam.</span>
+              Bendito eres Tú, <span class="hebrew-term">יְהוָה</span>, nuestro
+              Elohim, Rey del Universo.
+            </p>
+            <p>
+              Adonai <span class="hebrew-term">יְהוָה</span>, me presento ante Ti
+              en el Nombre Kadosh (Santo) de Tu Hijo, Yeshúa HaMashíaj. Reconozco
+              que Tú eres el Elohim de Avraham, Yitzjak y Ya'akov, el único
+              Elohim de Israel, y que Tu Torá es verdad eterna.
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Confesión y Teshuvá (Arrepentimiento)</div>
+          <div class="prayer-text">
+            <p>
+              Confieso que he estado lejos de Tu Ciudadanía de Israel, ajeno a
+              Tus Pactos y a Tus mandamientos. He caminado en las tradiciones y
+              doctrinas de hombres (sean gentiles o religiosas) que me han
+              alejado de Tu corazón y de la pureza de Tu Torá.
+            </p>
+            <p>
+              Te pido perdón por mi desobediencia y por haber ignorado el
+              glorioso destino que has puesto sobre Tu pueblo.
+            </p>
+            <p>
+              Líbrame de todo espíritu de ceguera y de todo engaño que me impida
+              ver que Yeshúa es el Mashíaj prometido, el cumplimiento de los
+              Profetas y de la Torá.
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Aceptación de Yeshúa y el Pacto de Sangre
+          </div>
+          <div class="prayer-text">
+            <p>
+              <span class="hebrew-term">יְהוָה</span>, creo que Tu Hijo Yeshúa
+              HaMashíaj vino en carne, murió en el madero por mis pecados, y
+              resucitó en Shabat para darme vida y justicia.
+            </p>
+            <p>
+              Por Su sangre preciosa vertida, clamo ser limpiado y acercado a Ti.
+              Acepto que Él es mi único Adon y mi Sumo Sacerdote, y por medio de
+              Él he sido injertado en el Olivo de Israel, tal como está escrito.
+            </p>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Efesios 2:13</div>
+            <div class="scripture">
+              "Pero ahora en Yeshúa HaMashíaj, vosotros que en otro tiempo
+              estabais lejos, habéis sido acercados por la sangre del Mashíaj."
+            </div>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Compromiso de Obediencia y Restauración
+          </div>
+          <div class="prayer-text">
+            <p>
+              Ruach HaKodesh, te pido que escribas Tu Torá en mi corazón y en mi
+              mente. Ayúdame a practicar el Shabat y a guardar Tus Fiestas según
+              Tu instrucción, porque este es el caminar de Tu pueblo.
+            </p>
+            <p>
+              <span class="hebrew-term">יְהוָה</span>, no quiero ser más un
+              extraño ni un advenedizo, sino un conciudadano de Israel y un
+              miembro de Tu familia (Efesios 2:19). Guíame para vivir una vida de
+              santidad (Kedushá) y de Teshuvá diaria, esperando el regreso de
+              nuestro Adonai Yeshúa HaMashíaj.
+            </p>
+            <p>
+              Restaura mi corazón y mi mente para ser uno contigo, y para amar y
+              honrar a Tu pueblo Israel, en cuya herencia he sido incluido por
+              Gracia.
+            </p>
+          </div>
+        </div>
+
+        <div class="prayer-conclusion">
+          <p class="highlight">
+            Amén. Ken Yehi Ratzón (Así sea Tu voluntad).
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          <strong>Esta oración es el inicio de un camino;</strong> la fe debe ser
+          acompañada por el estudio de la Torá y la obediencia práctica a los
+          mandamientos de <span class="hebrew-term">יְהוָה</span>.
+        </p>
+      </div>
+    </div>
+        <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia
+                        Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a>
+                </p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
+
