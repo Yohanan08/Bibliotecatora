@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>El Reino del Eterno vs. La Falsificación Religiosa</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        html<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Reino del Eterno vs. La Falsificación Religiosa</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+      .translation {
+        margin: 10px 0;
+      }
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+      .section-container {
+        margin-bottom: 25px;
+      }
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+      strong {
+        color: #000;
+      }
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+      li {
+        margin-bottom: 8px;
+      }
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+      .arrow {
+        color: #555;
+        margin: 0 5px;
+      }
+      .hebrew-term {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        display: inline-block;
+        margin: 0 3px;
+      }
+      .question {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .answer {
+        margin-bottom: 15px;
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>👑 El Reino del Eterno vs. La Falsificación Religiosa</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          La pregunta que haces es de profunda importancia, ya que toca el
+          núcleo de la restauración de Yisra'el y la verdadera senda del
+          Mashíaj. El proyecto de Yeshúa HaMashíaj no fue establecer una nueva
+          religión, sino restaurar el Reino de
+          <span class="hebrew-term">יְהוָה</span> en la tierra, que está
+          inseparablemente ligado a la Torá y al pacto con Su pueblo.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>El Desvío: La Confusión de Bavel y la Falsificación del Reino</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El concepto de una "falsificación del Reino por medio de la religión"
+          puede ser entendido a través del evento de Bavel (Babel), narrado en
+          la Parashá Nóaj.
+        </p>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            La Intención Humana (Bavel): La Torre de Soberbia
+          </div>
+          <p>
+            El hombre, después del Diluvio, buscó construir una torre "cuya
+            cúspide llegue al cielo" (Génesis 11:4). Esto representa el intento
+            humano de alcanzar a Elohím por medios propios, estableciendo su
+            propia unidad y nombre (una religión centrada en el hombre) en lugar
+            de obedecer la orden de <span class="hebrew-term">יְהוָה</span> de
+            esparcirse y llenar la tierra. La consecuencia fue la confusión del
+            lenguaje y la dispersión.
+          </p>
+          <p>
+            La religión, en su sentido de "sistema hecho por el hombre", a
+            menudo se convierte en esa "torre" que busca la salvación a través
+            de la obediencia a preceptos y tradiciones humanas, desviándose de
+            la Torá de <span class="hebrew-term">יְהוָה</span>.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            La Torre del Reino (Yeshúa): El Refugio Divino
+          </div>
+          <p>
+            Las Sagradas Escrituras nos enseñan que
+            <span class="hebrew-term">יְהוָה</span> mismo levantó una Torre de
+            Salvación en Su Hijo. Como se afirma en el Tanaj:
+          </p>
+
+          <div class="verse-container">
+            <div class="verse-number">Mishlé / Proverbios 18:10</div>
+            <div class="scripture">
+              "El Nombre de Adonái <span class="hebrew-term">יְהוָה</span> es
+              Torre fuerte; a ella corre el justo y es levantado."
+            </div>
+          </div>
+
+          <p>
+            El Reino no es una torre de soberbia levantada por el hombre
+            (religión), sino el refugio y la Torre fuerte provista por
+            <span class="hebrew-term">יְהוָה</span>: Yeshúa HaMashíaj.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          La falsificación religiosa (el "cristianismo" entendido como una
+          religión separada de la Torá y de Yisra'el) a menudo confunde la
+          Torre de Bavel (salvación por obras/tradiciones humanas) con la Torre
+          de Yeshúa (salvación por gracia mediante la fe obediente en el
+          Mashíaj). Al rechazar o anular la Torá, se separa de la base del
+          Reino de <span class="hebrew-term">יְהוָה</span>.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>📜 El Verdadero Reino Basado en las Escrituras</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El Reino de <span class="hebrew-term">יְהוָה</span> no es una
+          religión, sino un gobierno y una forma de vida cuyo plano es la Torá.
+        </p>
+      </div>
+
+      <h3>La Torá: El Plano del Reino</h3>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Rectitud y Perfección</div>
+          <p>
+            Nóaj es descrito como un "varón justo, perfecto en sus
+            generaciones" (Génesis 6:9). La palabra hebrea
+            <span class="highlight">tamim</span> (perfecto) implica integridad
+            y plenitud, reflejando la observancia de la voluntad de Elohím, es
+            decir, la Torá. El Reino se obtiene viviendo bajo la instrucción de
+            la Torá.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Promesa del Retorno</div>
+          <p>
+            Los Profetas anunciaron el regreso al pacto y a la Torá como
+            condición para el Reino:
+          </p>
+
+          <div class="verse-container">
+            <div class="verse-number">Yejezquel / Ezequiel 36:26-27</div>
+            <div class="scripture">
+              "Y os daré un corazón nuevo, y pondré un espíritu nuevo dentro de
+              vosotros; y quitaré de vuestra carne el corazón de piedra, y os
+              daré un corazón de carne. Y pondré mi Ruaj dentro de vosotros, y
+              haré que andéis en mis estatutos, y guardéis mis preceptos, y los
+              pongáis por obra."
+            </div>
+          </div>
+
+          <p>
+            El Reino es la manifestación de la Torá escrita en el corazón por el
+            Ruaj HaKodesh.
+          </p>
+        </div>
+      </div>
+
+      <h3>La Piedra Angular del Reino: Yeshúa HaMashíaj</h3>
+
+      <div class="prophetic-content">
+        <p>
+          Yeshúa es el Rey de Yisra'el y el pleno cumplimiento de la Torá. Él
+          es el lenguaje puro del Reino que restaura la comunicación entre el
+          cielo y la tierra.
+        </p>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento de la Torá</div>
+          <p>Yeshúa no vino a abolir el Reino (la Torá y los Profetas) sino a cumplirlos:</p>
+
+          <div class="verse-container">
+            <div class="verse-number">Mateo 5:17</div>
+            <div class="scripture">
+              "No penséis que he venido a abolir la Torá o los Profetas; no he
+              venido a abolir, sino a cumplir."
+            </div>
+          </div>
+
+          <p>
+            Su enseñanza demuestra cómo la Torá debe ser vivida no solo
+            externamente (religión) sino con la intención del corazón.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Arca de Salvación</div>
+          <p>
+            En la Parashá Nóaj, el Arca fue el medio de salvación a través del
+            juicio. El Brit Hadashah nos revela que Yeshúa HaMashíaj es el Arca
+            del Cordero, el Noaj eterno (Reflexión de Hebreos 4:1–11; 1 Kefa /
+            Pedro 3:20-21). Él es el único camino para ser preservado por gracia
+            y entrar al Reino.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>🙏 Cómo se Obtiene el Reino a Través de Yeshúa HaMashíaj</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El Reino de <span class="hebrew-term">יְהוָה</span> se obtiene por
+          gracia a través de la fe obediente en Yeshúa HaMashíaj.
+        </p>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. La Puerta de la Teshuvá (Arrepentimiento)
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Mateo 4:17</div>
+            <div class="scripture">
+              "Haced Teshuvá (arrepentíos), porque el Reino de los cielos se ha
+              acercado."
+            </div>
+          </div>
+
+          <p>
+            La teshuvá es un retorno al camino de la Torá, con un corazón
+            dispuesto y humillado.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. La Fe en el Nombre de Yeshúa</div>
+          <p>
+            El Reino se fundamenta en el Nombre del Mashíaj. Como se mencionó,
+            Su Nombre es la Torre Fuerte. El creyente corre a Él y es levantado
+            (Mishlé 18:10). La fe es el ancla que nos une al Arca del Cordero,
+            siendo cubiertos por la sangre del Pacto eterno.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. La Obra del Ruaj HaKodesh</div>
+          <p>
+            Es el Ruaj HaKodesh quien implanta en nosotros la Torah de la Verdad
+            y la Vida (Reflexión de la Braja al final de la Porción de la Torá).
+            Él es quien restaura el lenguaje puro del Reino, que es la alabanza
+            a Yeshúa HaMashíaj.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p class="highlight">La diferencia vital es:</p>
+        <ul>
+          <li>
+            <span class="highlight">Falsificación (Religión):</span> El hombre
+            intenta llegar al cielo (la cúspide) por medio de sus propias obras
+            (la torre) y tradiciones, resultando en confusión.
+          </li>
+          <li>
+            <span class="highlight">Reino (Yeshúa):</span> El hombre corre a la
+            Torre de <span class="hebrew-term">יְהוָה</span> (Yeshúa), es salvo
+            por gracia, y el Ruaj HaKodesh lo capacita para andar en la Torá y
+            así manifestar el gobierno de
+            <span class="hebrew-term">יְהוָה</span> en la tierra.
+          </li>
+        </ul>
+      </div>
+
+      <div class="conclusion">
+        <p>
+          El objetivo final es que Yisra'el sea restaurado en unidad, para que
+          Adonái <span class="hebrew-term">יְהוָה</span> sea Rey sobre toda la
+          tierra, y Su Nombre sea Uno (Zejaryah / Zacarías 14:9).
+        </p>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>🌊 1. El Reino en el Cántico de Moshé (Shirát HaYám)</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          Tu pregunta conecta dos de las profecías más poderosas sobre el
+          establecimiento del Reino de
+          <span class="hebrew-term">יְהוָה</span>: el Cántico de Moshé y la
+          Piedra no Cortada de Daniel. Ambos pasajes apuntan a Yeshúa HaMashíaj
+          como el Rey Soberano, el único capaz de establecer un Reino eterno.
+        </p>
+        <p>
+          El Cántico que Moshé y los Hijos de Yisra'el cantaron después de que
+          <span class="hebrew-term">יְהוָה</span> ahogara a los egipcios en el
+          Mar Rojo (Éxodo 15) es una proclamación profética del Reino de
+          <span class="hebrew-term">יְהוָה</span> sobre la tierra.
+        </p>
+      </div>
+
+      <h3>El Pasaje Clave</h3>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 15:18</div>
+        <div class="scripture">
+          "Adonái <span class="hebrew-term">יְהוָה</span> reinará por siempre y
+          para siempre."
+        </div>
+        <div class="translation">
+          El clímax y propósito de la liberación y el juicio es la entronización
+          de <span class="hebrew-term">יְהוָה</span>.
+        </div>
+      </div>
+
+      <h3>Conexión con el Reino</h3>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. Guerra y Juicio como Precedentes
+          </div>
+          <p>
+            El cántico celebra cómo <span class="hebrew-term">יְהוָה</span>, el
+            "Varón de Guerra" (Éxodo 15:3), destruyó al enemigo. Esto establece
+            un patrón profético: la manifestación del Reino de
+            <span class="hebrew-term">יְהוָה</span> siempre implica el juicio
+            sobre los reinos y poderes que se oponen a Su voluntad. El Mar Rojo
+            fue el juicio inicial, y la victoria allí fue la base para la
+            proclamación del Reino.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Entronización y el Templo</div>
+          <p>La victoria se celebra con la promesa de la morada de <span class="hebrew-term">יְהוָה</span>:</p>
+
+          <div class="verse-container">
+            <div class="verse-number">Éxodo 15:17</div>
+            <div class="scripture">
+              "Lo llevarás y lo plantarás en el monte de tu heredad, en el lugar
+              que preparaste, oh <span class="hebrew-term">יְהוָה</span>, para
+              tu morada; en el Santuario, Adonái, que tus manos han afirmado."
+            </div>
+          </div>
+
+          <p>
+            El Reino es, por lo tanto, inseparable de la presencia (Shejináh) de
+            <span class="hebrew-term">יְהוָה</span> entre Su pueblo, cuyo centro
+            es el Santuario (Beit HaMikdash). Este es el Reino que Yeshúa viene
+            a restaurar.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>⛰️ 2. El Reino en la Piedra No Cortada de Daniel</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          El sueño de Nevujadnézar, interpretado por el Profeta Daniel, describe
+          una estatua compuesta por cuatro metales (oro, plata, bronce y hierro
+          mezclado con barro), que representan la sucesión de los reinos
+          mundanos (Babilonia, Medo-Persia, Grecia y Roma/el Reino final).
+        </p>
+      </div>
+
+      <h3>El Pasaje Clave</h3>
+
+      <div class="verse-container">
+        <div class="verse-number">Daniel 2:34-35</div>
+        <div class="scripture">
+          "Estabas mirando hasta que una piedra fue cortada no con mano, la cual
+          hirió a la imagen en sus pies de hierro y de barro cocido, y los
+          desmenuzó. Entonces se desmenuzaron el hierro, el barro cocido, el
+          bronce, la plata y el oro juntamente, y fueron como el tamo de las
+          eras del verano, y se los llevó el viento, y ningún lugar se encontró
+          para ellos. Mas la piedra que hirió a la imagen fue hecha un gran
+          monte que llenó toda la tierra."
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Daniel 2:44-45</div>
+        <div class="scripture">
+          "Y en los días de estos reyes, el Elohím de los cielos levantará un
+          reino que no será jamás destruido, ni será el reino dejado a otro
+          pueblo; desmenuzará y consumirá a todos estos reinos, pero él
+          permanecerá para siempre. De la manera que viste que del monte fue
+          cortada una piedra no con mano..."
+        </div>
+        <div class="translation">
+          La visión establece que un quinto reino, de origen divino, pondrá fin
+          a todos los reinos humanos.
+        </div>
+      </div>
+
+      <h3>Conexión con el Reino</h3>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Origen Sobrenatural</div>
+          <p>
+            La frase <span class="highlight">"piedra fue cortada no con mano"</span>
+            enfatiza que este Reino no es una obra humana, sino un acto directo
+            de <span class="hebrew-term">יְהוָה</span>. Se opone directamente a
+            los reinos y las falsificaciones religiosas hechas por el hombre (la
+            "torre" o el "reino" humano).
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Universalidad y Eternidad</div>
+          <p>
+            La Piedra se convierte en un "gran monte que llenó toda la tierra".
+            Esto es la realización profética de Éxodo 15:18:
+            <span class="hebrew-term">יְהוָה</span> reinará por siempre y para
+            siempre y Su Reino será universal, estableciendo Su soberanía sobre
+            todas las naciones.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h2>🔗 El Cumplimiento Profético en Yeshúa HaMashíaj</h2>
+
+    <div class="content-container">
+      <div class="section-container">
+        <p>
+          Estos dos pasajes se unen en la persona de Yeshúa HaMashíaj, quien es
+          el Rey Victorioso y la Piedra Angular del Reino.
+        </p>
+      </div>
+
+      <h3>El Rey Victorioso</h3>
+
+      <div class="prophetic-content">
+        <p>
+          El Cántico de Moshé glorifica a
+          <span class="hebrew-term">יְהוָה</span> como el Rey que destruye a los
+          enemigos. Yeshúa es la manifestación de este Rey.
+        </p>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Profecía del Tanaj y Cumplimiento en el Brit Hadashah
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Éxodo 15:18</div>
+            <div class="scripture">
+              "Adonái reinará por siempre"
+            </div>
+            <div class="arrow">→</div>
+            <div class="verse-number">Mateo 28:18</div>
+            <div class="scripture">
+              Yeshúa fue entronizado: "El cielo y la tierra me han sido
+              entregados a mí." Él es el Rey de Reyes.
+            </div>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Éxodo 15:4</div>
+            <div class="scripture">
+              Juicio sobre los enemigos
+            </div>
+            <div class="arrow">→</div>
+            <div class="verse-number">Colosenses 2:15</div>
+            <div class="scripture">
+              Victoria sobre la muerte y el pecado: Por el madero, Yeshúa
+              despojó a los principados y potestades, triunfando sobre ellos.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>La Piedra de Cimiento</h3>
+
+      <div class="prophetic-content">
+        <p>Yeshúa es identificado directamente como la Piedra profetizada.</p>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Profecía del Tanaj y Cumplimiento en el Brit Hadashah
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Daniel 2:34</div>
+            <div class="scripture">
+              "Piedra no con mano"
+            </div>
+            <div class="arrow">→</div>
+            <div class="verse-number">Lucas 1:35</div>
+            <div class="scripture">
+              El nacimiento del Mashíaj: Su concepción por el Ruaj HaKodesh es
+              el acto "no con mano", el origen sobrenatural que establece el
+              Reino.
+            </div>
+          </div>
+
+          <div class="verse-container">
+            <div class="verse-number">Daniel 2:35</div>
+            <div class="scripture">
+              "La Piedra... hecha un gran monte"
+            </div>
+            <div class="arrow">→</div>
+            <div class="verse-number">Mateo 21:42</div>
+            <div class="scripture">
+              La Piedra Angular: Yeshúa mismo se identifica con la profecía de
+              la piedra rechazada que se convierte en la principal: "La piedra
+              que los edificadores desecharon, Ésta ha llegado a ser la cabeza
+              del ángulo."
+            </div>
+          </div>
+        </div>
+
+        <div class="explanation">
+          <p>
+            Al ser la Piedra no cortada, Yeshúa es el Reino de
+            <span class="hebrew-term">יְהוָה</span> que destruirá a todos los
+            reinos humanos (las falsificaciones), y Su Reino de Torá y Paz
+            llenará toda la tierra, cumpliendo la profecía del Cántico de Moshé.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="conclusion">
+      <p class="prayer-text">
+        <strong>Yeshúa la Toraviviente</strong> | Todos los recursos kedoshim
+        para tu crecimiento en el mashiaj Judío Adonai Yeshúa Hamashiaj
+      </p>
+      <p class="prayer-conclusion">
+        Para más recursos visita:
+        <a href="https://ia-interactiva.vercel.app/" target="_blank"
+          >https://ia-interactiva.vercel.app/</a
+        >
+      </p>
+    </div>
+<footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia
+                        Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a>
+                </p>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
