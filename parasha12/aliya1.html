@@ -1,0 +1,1996 @@
+	<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12. Parashá Vayechi (ויחי) –  Génesis 47:28-48:9</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+       12. Parashá Vayechi (ויחי) Aliyáh 1: (Génesis 47:28-48:9) Yaakov vive en Egipto por 17 años y bendice a los hijos de Yosef. 
+        <p>
+       Haftaráh: 1 Reyes 2:1-12 (David da instrucciones a Salomón antes de morir).
+        </p>
+        <p>
+        Brit Hadasháh: Hebreos 11:21 (La bendición de Yaakov a los hijos de Yosef).
+        </p>
+      </h1>
+      <h1>Punto 1. Génesis 47:28 - 48:9</h1>
+    <div class="content-container">
+        <h2>📜 Texto Interlineal y Trasfondo Histórico</h2>
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:28</div>
+                <div class="hebrew">
+                    וַיְחִי יַעֲקֹב בְּאֶרֶץ מִצְרַיִם שְׁבַע עֶשְׂרֵה שָׁנָה וַיְהִי יְמֵי יַעֲקֹב שְׁנֵי חַיָּיו שֶׁבַע שָׁנִים
+                    וְאַרְבָּעִים וּמְאַת שָׁנָה:
+                </div>
+                <div class="transliteration">
+                    Vay'jí Ya'akóv b’érets Mitzráyim shéva esréh shanáh, vay'hí y'méi Ya'akóv shnéi jayáv
+                    shéva shaním v'arba'ím u'mé'at shanáh.
+                </div>
+                <div class="literal-translation">
+                    Y vivió Ya'akóv en la tierra de Mitzráyim diecisiete años; y fueron los días de
+                    Ya'akóv, los años de su vida, siete años y cuarenta y cien años.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:29</div>
+                <div class="hebrew">
+                    וַיִּקְרְבוּ יְמֵי יִשְׂרָאֵל לָמוּת וַיִּקְרָא לִבְנוֹ לְיוֹסֵף וַיֹּאמֶר לוֹ אִם־נָא מָצָאתִי חֵן
+                    בְּעֵינֶיךָ שִׂים־נָא יָדְךָ תַּחַת יְרֵכִי וְעָשִׂיתָ עִמָּדִי חֶסֶד וֶאֱמֶת אַל־נָא
+                    תִקְבְּרֵנִי בְּמִצְרָיִם:
+                </div>
+                <div class="transliteration">
+                    Vayik'r'vú y'méi Yisra'él lámut vayik'rá livnó l'Yoséf vayómer lo im-ná mátzati jén
+                    b'einéicha sím-ná yad'já tájat y'rejí v'asíta imadí jésed ve'emét al-ná
+                    tik'b'réni b'Mitzráyim.
+                </div>
+                <div class="literal-translation">
+                    Y se acercaron los días de Yisra'él para morir, y llamó a su hijo, a Yoséf, y le
+                    dijo: Si, por favor, he hallado favor en tus ojos, pon, por favor, tu mano debajo de
+                    mi muslo y harás conmigo bondad y verdad, por favor, no me sepultes en Mitzráyim
+                    (Egipto).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:30</div>
+                <div class="hebrew">
+                    וְשָׁכַבְתִּי עִם־אֲבֹתַי וּנְשָׂאתַנִי מִמִּצְרַיִם וּקְבַרְתַּנִי בִּקְבֻרָתָם וַיֹּאמֶר
+                    אָנֹכִי אֶעֱשֶׂה כִּדְבָרֶךָ:
+                </div>
+                <div class="transliteration">
+                    V'shajávti im avotáy un'satáni miMitzráyim u'k'vartáni bik'vuratam vayómer anojí e'eséh
+                    kid'varéja.
+                </div>
+                <div class="literal-translation">
+                    Y cuando yo yazca con mis padres, me llevarás de Mitzráyim (Egipto) y me sepultarás
+                    en la sepultura de ellos. Y él dijo: Yo haré conforme a tu palabra.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 47:31</div>
+                <div class="hebrew">
+                    וַיֹּאמֶר הִשָּׁבְעָה לִי וַיִּשָּׁבַע לוֹ וַיִּשְׁתַּחוּ יִשְׂרָאֵל עַל־רֹאשׁ הַמִּטָּה:
+                </div>
+                <div class="transliteration">
+                    Vayómer hishav'áh li vayishavá lo vayishtajú Yisra'él al-rósh hamitáh.
+                </div>
+                <div class="literal-translation">
+                    Y él dijo: Júrame, y le juró. Y se postró Yisra'él sobre la cabeza del lecho.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:1</div>
+                <div class="hebrew">
+                    וַיְהִי אַחֲרֵי הַדְּבָרִים הָאֵלֶּה וַיֹּאמֶר לְיוֹסֵף הִנֵּה אָבִיךָ חֹלֶה וַיִּקַּח
+                    אֶת־שְׁנֵי בָנָיו עִמּוֹ אֶת־מְנַשֶּׁה וְאֶת־אֶפְרָיִם:
+                </div>
+                <div class="transliteration">
+                    Vay'hí ajaréi had'varím ha'éleh vayómer l'Yoséf hinéh avíja joléch vayikáj et-shnéi
+                    vanáv imó et-M'nashéh v'et-Efráyim.
+                </div>
+                <div class="literal-translation">
+                    Y aconteció después de estas palabras, y le dijeron a Yoséf: He aquí tu padre está
+                    enfermo. Y tomó a sus dos hijos con él: a M'nashéh y a Efráyim.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:2</div>
+                <div class="hebrew">
+                    וַיַּגֵּד לְיַעֲקֹב וַיֹּאמֶר הִנֵּה בִּנְךָ יוֹסֵף בָּא אֵלֶיךָ וַיִּתְחַזֵּק יִשְׂרָאֵל
+                    וַיֵּשֶׁב עַל־הַמִּטָּה:
+                </div>
+                <div class="transliteration">
+                    Vayagéd l'Ya'akóv vayómer hinéh bin'já Yoséf bá eléija vayitjazék Yisra'él vayéshév
+                    al-hamitáh.
+                </div>
+                <div class="literal-translation">
+                    Y le fue dicho a Ya'akóv, diciendo: He aquí tu hijo Yoséf viene a ti. Y se fortaleció
+                    Yisra'él y se sentó sobre el lecho.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:3</div>
+                <div class="hebrew">
+                    וַיֹּאמֶר יַעֲקֹב אֶל־יוֹסֵף אֵל שַׁדַּי נִרְאָה אֵלַי בְּלוּז בְּאֶרֶץ כְּנַעַן וַיְבָרֶךְ
+                    אֹתִי:
+                </div>
+                <div class="transliteration">
+                    Vayómer Ya'akóv el-Yoséf El Shadái nir'áh eláy b'Luz b'érets K'na'an vay'varéj otí.
+                </div>
+                <div class="literal-translation">
+                    Y dijo Ya'akóv a Yoséf: El Shadái se apareció a mí en Luz en la tierra de K'na'an, y
+                    me bendijo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:4</div>
+                <div class="hebrew">
+                    וַיֹּאמֶר אֵלַי הִנְנִי מַפְרְךָ וְהִרְבִּיתִךָ וּנְתַתִּיךָ לִקְהַל עַמִּים וְנָתַתִּי
+                    אֶת־הָאָרֶץ הַזֹּאת לְזַרְעֲךָ אַחֲרֶיךָ אֲחֻזַּת עוֹלָם:
+                </div>
+                <div class="transliteration">
+                    Vayómer eláy hinnéni mafr'já v'hirbitíja un'tatíja lik'hál amím v'natatí et-ha'árets
+                    hazót l'zar'ajá ajaréija ajuzát olám.
+                </div>
+                <div class="literal-translation">
+                    Y me dijo: Heme aquí, yo te haré fructífero y te multiplicaré, y te pondré por
+                    congregación de pueblos, y daré la tierra esta a tu descendencia después de ti en
+                    posesión perpetua.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:5</div>
+                <div class="hebrew">
+                    וְעַתָּה שְׁנֵי בָנֶיךָ הַנּוֹלָדִים לְךָ בְּאֶרֶץ מִצְרַיִם עַד־בֹּאִי אֵלֶיךָ
+                    מִצְרַיְמָה לִי־הֵם אֶפְרַיִם וּמְנַשֶּׁה כִּרְאוּבֵן וְשִׁמְעוֹן יִהְיוּ־לִי:
+                </div>
+                <div class="transliteration">
+                    V'atáh shnéi vanéija hannoladím l'já b'érets Mitzráyim ad-boí eléija Mitzráy'mah li-hém
+                    Efráyim u'M'nashéh kir'uvén v'Shim'ón yihyú-li.
+                </div>
+                <div class="literal-translation">
+                    Y ahora, tus dos hijos, los nacidos para ti en la tierra de Mitzráyim (Egipto) antes
+                    de mi venida a ti a Mitzráyim (Egipto), míos son; Efráyim y M'nashéh, como R'uvén y
+                    Shim'ón serán para mí.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:6</div>
+                <div class="hebrew">
+                    וּמוֹלַדְתְּךָ אֲשֶׁר הוֹלַדְתָּ אַחֲרֵיהֶם לְךָ יִהְיוּ עַל שֵׁם אֲחֵיהֶם יִקָּרְאוּ
+                    בְּנַחֲלָתָם:
+                </div>
+                <div class="transliteration">
+                    U'moladt'já ashér holádt ajaréihem l'já yihyú al shém ajéihém yikáre'ú b'najalatam.
+                </div>
+                <div class="literal-translation">
+                    Y tu descendencia que engendraste después de ellos, tuyos serán, por el nombre de sus
+                    hermanos serán llamados en su heredad.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:7</div>
+                <div class="hebrew">
+                    וַאֲנִי בְּבֹאִי מִפַּדָּן מֵתָה עָלַי רָחֵל בְּאֶרֶץ כְּנַעַן בַּדֶּרֶךְ בְּעוֹד
+                    כִּבְרַת־אֶרֶץ לָבֹא אֶפְרָתָה וָאֶקְבְּרֶהָ שָׁם בְּדֶרֶךְ אֶפְרָת הִוא בֵּית לָחֶם:
+                </div>
+                <div class="transliteration">
+                    Va'aní b'voí miPadán métah aláy Rajél b'érets K'na'an badérej b'od kivrát-érets lavó
+                    Efrátah va'ekb'réha shám b'dérekj Efrát hi Béit Lájem.
+                </div>
+                <div class="literal-translation">
+                    Y yo, al venir de Padán, murió cerca de mí Rajél en la tierra de K'na'an en el
+                    camino, cuando todavía faltaba una porción de tierra para llegar a Efratá, y la
+                    sepulté allí en el camino de Efrat, la que es Béit Lájem (Belén).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:8</div>
+                <div class="hebrew">
+                    וַיַּרְא יִשְׂרָאֵל אֶת־בְּנֵי יוֹסֵף וַיֹּאמֶר מִי־אֵלֶּה:
+                </div>
+                <div class="transliteration">
+                    Vayár Yisra'él et-b'néi Yoséf vayómer mi-éleh.
+                </div>
+                <div class="literal-translation">
+                    Y vio Yisra'él a los hijos de Yoséf y dijo: ¿Quiénes son estos?
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Génesis 48:9</div>
+                <div class="hebrew">
+                    וַיֹּאמֶר יוֹסֵף אֶל־אָבִיו בָּנַי הֵם אֲשֶׁר נָתַן־לִי אֱלֹהִים בָּזֶה וַיֹּאמֶר קָחֶם־נָא
+                    אֵלַי וַאֲבָרֲכֵם:
+                </div>
+                <div class="transliteration">
+                    Vayómer Yoséf el-avív banáy hém ashér natán-li Elohím bazéh vayómer kajém-ná eláy
+                    va'avarajém.
+                </div>
+                <div class="literal-translation">
+                    Y dijo Yoséf a su padre: Mis hijos son ellos, que me ha dado Elohím en este lugar. Y
+                    dijo: Tráelos, por favor, a mí y los bendeciré.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2> Análisis Mesiánico y Profético</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Fe de Ya'akóv y el Pacto</div>
+                    <p>
+                        En esta porción de la Torá vemos cómo Ya'akóv, ahora llamado
+                        <span class="highlight">Yisra'él</span>, cerca del fin de sus días, establece el
+                        pacto de fidelidad con su hijo Yoséf para ser sepultado en la tierra de
+                        <span class="highlight">K'na'an</span> junto a sus padres (Génesis 47:29-30). Este
+                        acto crucial subraya su fe inquebrantable en la promesa de
+                        <span class="hebrew-term">יְהוָה</span> (YHWH) de entregar esa tierra a su
+                        descendencia. Morir en Mitzráyim (Egipto) era solo temporal; su descanso final
+                        debía ser en la Tierra Prometida, un testimonio de la resurrección y de la
+                        promesa eterna.
+                    </p>
+                    <p>
+                        La frase clave "harás conmigo
+                        <span class="highlight">jésed ve'emét</span> (bondad y verdad)" (Génesis 47:29) es
+                        una expresión de amor incondicional y fidelidad que, en el contexto bíblico,
+                        refleja el carácter mismo de <span class="hebrew-term">יְהוָה</span>.
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Adopción de Efráyim y M'nashéh</div>
+                    <p>
+                        Ya'akóv se apropia de <span class="highlight">Efráyim</span> y
+                        <span class="highlight">M'nashéh</span> como si fueran sus propios hijos directos
+                        (Génesis 48:5), elevándolos al estatus de tribus completas dentro de Yisra'él.
+                        </p>
+                        <ul class="list-styles">
+                            <li><span class="point-letter">A.</span> Este acto profético duplica la herencia de Yoséf, el primogénito de Rajél.</li>
+                            <li><span class="point-letter">B.</span> Convierte a Yoséf en la fuente de dos tribus, anticipando su influencia dominante en el futuro del pueblo.</li>
+                            <li><span class="point-letter">C.</span> Prepara el escenario para la bendición profética del Mashíaj que vendrá a través de Efráyim y que unificará a la Casa de Yisra'él y a la Casa de Yehudá (Jeremías 31:18-20, Oseas 11:1-11).</li>
+                        </ul>
+                    <p>
+                        El reconocimiento de Yoséf y sus hijos como líderes de las futuras tribus de
+                        Yisra'él es un eco de la visión de Yoséf como el líder mesiánico que vendría a
+                        servir a su pueblo antes del Mashíaj de la línea de Yehudá.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <h1>
+        Génesis 47:28-48:9 - Cumplimiento Profético en Yeshúa HaMashíaj
+    </h1>
+    <h2>La Última Aliyá de Vayigash</h2>
+
+    <div class="content-container">
+        <p>
+            El pasaje de Génesis 47:28-48:9 contiene una profunda revelación
+            profética que se cumple de manera central en
+            <span class="highlight">Yeshúa HaMashíaj</span>. Esta porción trata
+            sobre la bendición de los hijos de Yoséf y la adopción de Efráyim y
+            M'nashéh como primogénitos, prefigurando la reunificación de las
+            doce tribus bajo el Mashíaj.
+        </p>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>
+                I. Cumplimiento Profético en el Mashíaj: El Reposo y la Redención
+                del Primogénito
+            </h1>
+            <p>
+                La aplicación espiritual de esta aliyá se centra en dos temas
+                esenciales: el <span class="highlight">Reposo de la Fe</span> y
+                la <span class="highlight">Adopción de los Extranjeros</span>
+                como coherederos. Ya'akóv, al borde de la muerte, se fortalece y
+                se sienta sobre su lecho (Génesis 48:2), un símbolo del descanso
+                del Shabat y de la fe en la promesa de la Resurrección y la
+                Tierra.
+            </p>
+
+            <div class="explanation">
+                <p>
+                    El cumplimiento profético en Yeshúa se manifiesta en la
+                    Bendición de Efráyim y M'nashéh:
+                </p>
+
+                <div class="prophetic-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Profecía del Tanaj (Verso)</th>
+                                <th>Explicación del Cumplimiento</th>
+                                <th>
+                                    Cumplimiento en el Brit Hadashah (Verso -
+                                    Peshita)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Génesis 48:5 - "Ahora, tus dos hijos... míos
+                                    son; Efráyim y M'nashéh, como R'uvén y
+                                    Shim'ón serán para mí."
+                                </td>
+                                <td>
+                                    Este acto profético simboliza la
+                                    <span class="highlight"
+                                        >Adopción de las Naciones</span
+                                    >
+                                    (los "hijos" de Yoséf nacidos en el exilio,
+                                    Mitzráyim) y su elevación a la herencia
+                                    completa de Yisra'él. Yoséf mismo, al ser el
+                                    primogénito rechazado y luego exaltado, es un
+                                    prototipo de Yeshúa.
+                                </td>
+                                <td>
+                                    Romanos 8:15 - "Porque no recibisteis el
+                                    espíritu de esclavitud para estar otra vez en
+                                    temor, sino que recibisteis el
+                                    <span class="highlight"
+                                        >Espíritu de Adopción</span
+                                    >, por el cual clamamos: ¡Abba, Padre!"
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Génesis 47:30 - "me llevarás de Mitzráyim y
+                                    me sepultarás en la sepultura de ellos."
+                                </td>
+                                <td>
+                                    La fe de Ya'akóv en ser sepultado en la
+                                    Tierra Prometida (K'na'an) subraya la
+                                    promesa de la <span class="highlight">Resurrección</span>. Su cuerpo descansa en la
+                                    tierra, esperando el cumplimiento final de la
+                                    promesa.
+                                </td>
+                                <td>
+                                    Hebreos 11:22 - "Por la
+                                    <span class="highlight">fe Yoséf</span>, al
+                                    morir, hizo mención de la salida de los hijos
+                                    de Yisra'él, y dio mandamiento acerca de sus
+                                    huesos." (Nota: Aunque este verso habla de
+                                    Yoséf, el principio es idéntico: la fe en el
+                                    cumplimiento de la promesa de la Tierra y la
+                                    resurrección).
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>II. Conexión con los Profetas (Tanaj)</h1>
+            <p>
+                Los profetas del Tanaj expanden el concepto de la doble porción y
+                la restauración de las tribus dispersas, cuyo liderazgo recae
+                finalmente en la Casa de Yoséf (Efráyim) y en la Casa de Yahudáh
+                (Yeshúa).
+            </p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">
+                        Profeta Yirmiyáhu (Jeremías):
+                    </div>
+                    <div class="scripture">
+                        Yirmiyáhu 31:9 - "...Porque yo soy para Yisra'él un
+                        Padre, y <span class="highlight">Efráyim es mi primogénito</span>."
+                    </div>
+                    <p>
+                        <strong>Conexión:</strong> Ya'akóv eleva a Efráyim a la
+                        categoría de primogénito (Génesis 48:5). Yirmiyáhu toma
+                        esta profecía para señalar que la restauración final de
+                        las tribus dispersas será liderada por Efráyim, el hijo
+                        adoptado y bendecido. Esto apunta a
+                        <span class="highlight">Yeshúa</span>, quien es el
+                        <span class="highlight">Primogénito de entre los muertos</span>
+                        (Colosenses 1:18) y el Reconciliador que une a Yahudáh
+                        (Su linaje terrenal) y Efráyim (las tribus dispersas /
+                        las naciones adoptadas).
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">
+                        Profeta Yejezqél (Ezequiel):
+                    </div>
+                    <div class="scripture">
+                        Yejezqél 37:19 - "Así dice Adonai
+                        <span class="hebrew-term">יְהוָה</span>: He aquí, yo tomo
+                        la vara de Yoséf (que está en mano de Efráyim), y a las
+                        tribus de Yisra'él sus compañeros, y las pondré con la
+                        vara de Yahudáh, y las haré <span class="highlight">una sola vara</span>, y serán una en
+                        mi mano."
+                    </div>
+                    <p>
+                        <strong>Conexión:</strong> La adopción de Efráyim y
+                        M'nashéh es el origen de la división de Yoséf en dos
+                        tribus, que más tarde se convierte en el Reino del Norte
+                        (Casa de Yoséf/Efráyim). El cumplimiento final está en
+                        <span class="highlight">Yeshúa</span>, el Buen Pastor
+                        (Juan 10:16), quien viene a unir a las dos casas de
+                        Yisra'él bajo un solo cetro, como el único Adon.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>
+                III. Conexión con el Brit Hadashah (Peshita Aramea)
+            </h1>
+            <p>
+                El acto de Ya'akóv postrándose sobre la cabeza de su lecho
+                (Génesis 47:31) es un profundo acto de adoración y fe en la
+                promesa de <span class="hebrew-term">יְהוָה</span>, que encuentra
+                su máxima expresión en la fe en
+                <span class="highlight">Yeshúa HaMashíaj</span> y su obra de
+                redención:
+            </p>
+
+            <div class="explanation">
+                <h3>La Exaltación de la Fe sobre la Visión:</h3>
+                <div class="verse-container">
+                    <div class="verse-number">Génesis 48:9</div>
+                    <div class="hebrew">וַיֹּאמֶר מִי־אֵלֶּה</div>
+                    <div class="transliteration">
+                        Vayómer mí-éleh? (Él preguntó: ¿Quiénes son estos?)
+                    </div>
+                    <div class="translation">
+                        Ya'akóv pregunta: "¿Quiénes son estos?" (porque su vista
+                        estaba débil). Yoséf se los presenta para que los
+                        bendiga. La bendición de Ya'akóv no se basa en lo que
+                        ve, sino en la promesa de Adonai que recuerda (Génesis
+                        48:3-4).
+                    </div>
+                </div>
+                <div class="verse-container">
+                    <div class="verse-number">2 Corintios 5:7 (Peshita)</div>
+                    <div class="aramaic">
+                        ܒܡܗܝܡܢܘܬܐ ܓܝܪ ܡܗܠܟܝܢܢ ܘܠܐ ܒܚܙܘܐ.
+                    </div>
+                    <div class="literal-translation">
+                        Porque por fe andamos, y no por lo que vemos (por
+                        visión).
+                    </div>
+                </div>
+                <p>
+                    <strong>Aplicación:</strong> La vida mesiánica se basa en la
+                    <span class="highlight">fe en las promesas del Pacto</span>,
+                    no en las circunstancias visibles o la prosperidad inmediata
+                    en el exilio (Mitzráyim). La fe de Ya'akóv en la resurrección
+                    y la Tierra es la misma fe que nos permite vivir sabiendo que
+                    Yeshúa HaMashíaj regresará.
+                </p>
+
+                <div class="section-divider"></div>
+
+                <h3>La Autoridad para Bendecir y Adoptar:</h3>
+                <div class="verse-container">
+                    <div class="verse-number">Génesis 48:5</div>
+                    <div class="hebrew">
+                        וְעַתָּה שְׁנֵי בָנֶיךָ הַנּוֹלָדִים לְךָ בְּאֶרֶץ מִצְרַיִם
+                        עַד־בֹּאִי אֵלֶיךָ מִצְרַיְמָה לִי־הֵם אֶפְרַיִם וּמְנַשֶּׁה
+                        כִּרְאוּבֵן וְשִׁמְעוֹן יִהְיוּ־לִי
+                    </div>
+                    <div class="transliteration">
+                        V'atáh sh'né vanéija hanoladím l'já b'éretz Mitzráyim
+                        ad-boí eléija Mitzráyimah, li-hem Efráyim um'nashéh
+                        kir'uvén v'shim'ón yihyú-li.
+                    </div>
+                    <div class="translation">
+                        Y ahora, tus dos hijos, que te nacieron en la tierra de
+                        Mitzráyim antes de que yo viniera a ti a Mitzráyim, míos
+                        son; Efráyim y M'nashéh, como R'uvén y Shim'ón serán para
+                        mí. (Ya'akóv ejerce su autoridad patriarcal para adoptar
+                        y bendecir a los hijos de Yoséf).
+                    </div>
+                </div>
+                <div class="verse-container">
+                    <div class="verse-number">Juan 1:12 (Peshita)</div>
+                    <div class="aramaic">
+                        ܠܰܐܝܠܶܝܢ ܕ݁ܶܝܢ ܕ݁ܩܰܒ݁ܠܽܘܗܝ ܝܰܗ݈ܒ݂ ܠܗܽܘܢ ܫܽܘܠܛܳܢܳܐ ܕ݁ܰܒ݂ܢܰܝܳܐ
+                        ܕ݁ܰܐܠܳܗܳܐ ܢܶܗܘܽܘܢ ܠܰܐܝܠܶܝܢ ܕ݁ܰܡܗܰܝܡܢܺܝܢ ܒ݁ܰܫܡܶܗ܂
+                    </div>
+                    <div class="literal-translation">
+                        Pero a cuantos le recibieron, les dio autoridad para ser
+                        llamados hijos de Elohím; a los que creen en Su Nombre.
+                    </div>
+                </div>
+                <p>
+                    <strong>Aplicación:</strong> Yeshúa, el verdadero
+                    <span class="highlight">Primogénito</span> (Colosenses 1:15)
+                    y el Mesías de Yisra'él, ejerce la
+                    <span class="highlight">autoridad de Adonai para adoptar</span>
+                    a todos los que creen en Él, sean de Yahudáh o de las
+                    naciones (simbolizadas por Efráyim y M'nashéh), haciéndonos
+                    coherederos con Él de la herencia eterna.
+                </p>
+            </div>
+        </div>
+        <h1>📖 Punto 2. Haftaráh: 1 Reyes 2:1-12 (David da instrucciones a Salomón antes de morir).</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>📜 Últimas Palabras y Mandatos de David a Salomón</h2>
+            <p>
+                Este pasaje narra las palabras finales del Rey David a su hijo y sucesor,
+                Salomón (<span class="highlight">Sh'lomóh</span>). El énfasis principal
+                está en la <span class="highlight">obediencia a la Torá</span> como
+                fundamento del reinado, un eco de la Alianza Davídica que apunta al
+                reinado eterno del Mesías.
+            </p>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:1</div>
+                <div class="hebrew">
+                    וַיִּקְרְבוּ יְמֵי דָוִיד לָמוּת וַיְצַו אֶת־שְׁלֹמֹה בְנוֹ לֵאמֹר:
+                </div>
+                <div class="transliteration">
+                    Vayik'r'vú y'méi Davíd lámut vay'tzáv et-Sh'lomóh v'nóh lémor.
+                </div>
+                <div class="translation">
+                    Y se acercaron los días de David para morir, y mandó a Sh'lomóh
+                    (Salomón) su hijo, diciendo:
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:2</div>
+                <div class="hebrew">
+                    אָנֹכִי הֹלֵךְ בְּדֶרֶךְ כָּל־הָאָרֶץ וְחָזַקְתָּ וְהָיִיתָ לְאִישׁ:
+                </div>
+                <div class="transliteration">
+                    Anójí holéj b'dérekj kol-ha'árets v'jazáktá v'hayítá l'ísh.
+                </div>
+                <div class="translation">
+                    Yo voy por el camino de toda la tierra; y sé fuerte y sé varón.
+                </div>
+                <p class="literal-translation">
+                    <span class="highlight">"Sé varón"</span>: una instrucción de
+                    carácter, no solo de edad, implicando actuar con valentía y
+                    madurez.
+                </p>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:3</div>
+                <div class="hebrew">
+                    וְשָׁמַרְתָּ אֶת־מִשְׁמֶרֶת יְהוָה אֱלֹהֶיךָ לָלֶכֶת בִּדְרָכָיו
+                    לִשְׁמֹר חֻקֹּתָיו מִצְוֺתָיו וּמִשְׁפָּטָיו וְעֵדֹתָיו כַּכָּתוּב
+                    בְּתוֹרַת מֹשֶׁה לְמַעַן תַּשְׂכִּיל אֵת כָּל־אֲשֶׁר תַּעֲשֶׂה וְאֵת
+                    כָּל־אֲשֶׁר תִּפְנֶה שָׁם:
+                </div>
+                <div class="transliteration">
+                    V'shamártá et-míshméret יהוה Elohéicha lálékjet bidrájáv lishmór
+                    jukótáv mitzvotáv umishpatáv v'edótáv kakatúv b'Torát Moshéh
+                    l'má'an taskíl ét kol-ashér ta'aséh v'ét kol-ashér tifnéh shám.
+                </div>
+                <div class="translation">
+                    Y guardarás el mandato de <span class="highlight">יהוה</span> tu
+                    Elohím, para andar en Sus caminos, para guardar Sus estatutos, Sus
+                    mandamientos, Sus decretos y Sus testimonios, como está escrito en
+                    la Torá de Moshéh, para que seas prosperado en todo cuanto hagas y
+                    en todo aquello a lo que te vuelvas allí.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:4</div>
+                <div class="hebrew">
+                    לְמַעַן יָקִים יְהוָה אֶת־דְּבָרוֹ אֲשֶׁר דִּבֶּר עָלַי לֵאמֹר
+                    אִם־יִשְׁמְרוּ בָנֶיךָ אֶת־דַּרְכָּם לָלֶכֶת לְפָנַי בֶּאֱמֶת
+                    בְּכָל־לְבָבָם וּבְכָל־נַפְשָׁם לֵאמֹר לֹא־יִכָּרֵת לְךָ אִישׁ
+                    מֵעַל כִּסֵּא יִשְׂרָאֵל:
+                </div>
+                <div class="transliteration">
+                    L'má'an yakím יהוה et-d'varó ashér dibér aláy lémor
+                    im-yishm'rú vanéicha et-darkám lálékjet l'fanáy be'emét
+                    b'jól-l'vavám uv'jól-nafjám lémor lo-yikharét l'já ísh me'ál kisé
+                    Yisra'él.
+                </div>
+                <div class="translation">
+                    Para que <span class="highlight">יהוה</span> cumpla Su palabra que
+                    habló acerca de mí, diciendo: 'Si guardaren tus hijos su camino,
+                    para andar delante de Mí en verdad, con todo su corazón y con toda
+                    su alma,' diciendo: 'No te faltará varón sobre el trono de
+                    Yisra'él.'
+                </div>
+            </div>
+
+            <div class="explanation">
+                <h3 style="text-align: left">
+                    🔑 La Condición del Pacto y la Esperanza Mesiánica
+                </h3>
+                <p>
+                    <span class="point-letter">A.</span> La promesa de un linaje real
+                    continuo (2 Samuel 7:12-16) está condicionada a la <strong
+                        >obediencia a la Torá</strong
+                    >
+                    (verso 4). Salomón, y sus descendientes, deben andar en el camino
+                    de יהוה con <span class="highlight">verdad</span> (
+                    <span class="hebrew-term">אֱמֶת</span> / <span class="hebrew-term"
+                        >Emet</span
+                    >) y con <span class="highlight">todo su corazón y alma</span>.
+                </p>
+                <p>
+                    <span class="point-letter">B.</span> El fallo del linaje de David
+                    a mantener esta obediencia estricta lleva a la eventual caída del
+                    reino. Esto enfatiza la necesidad de un <strong
+                        >Hijo de David</strong
+                    >
+                    perfecto, <span class="highlight">Yeshúa HaMashíaj</span>, quien
+                    sí cumplió toda la Torá, asegurando así la permanencia de Su
+                    trono:
+                </p>
+                <div class="scripture">
+                    "Él será grande, y será llamado Hijo del Altísimo; y Adonai Elohim
+                    le dará el trono de David su padre; y reinará sobre la casa de
+                    Jacob para siempre, y su reino no tendrá fin." (Lucas 1:32-33).
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>⚖️ Mandatos de Justicia Personal</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:5</div>
+                <div class="hebrew">
+                    וְגַם אַתָּה יָדַעְתָּ אֵת אֲשֶׁר־עָשָׂה לִי יוֹאָב בֶּן־צְרוּיָה
+                    אֲשֶׁר עָשָׂה לִשְׁנֵי שָׂרֵי צִבְאוֹת יִשְׂרָאֵל לְאַבְנֵר בֶּן־נֵר
+                    וְאֶת־עֲמָשָׂא בֶן־יֶתֶר אֲשֶׁר הֲרָגָם וַיָּשֶׂם דְּמֵי מִלְחָמָה
+                    בְּשָׁלֹם וַיִּתֵּן דְּמֵי מִלְחָמָה בַּחֲגֹרָתוֹ אֲשֶׁר עַל־מָתְנָיו
+                    וּבְנַעֲלוֹ אֲשֶׁר בְּרַגְלָיו:
+                </div>
+                <div class="transliteration">
+                    V'gam atáh yadátá ét ashér-asáh li Yoáv ben-Tz'ruyáh ashér asáh
+                    lishnéi saréi tziv'ót Yisra'él l'Avnér ben-Nér v'et Amasá ben-Yéter
+                    ashér haragám vayásem d'méi miljamáh b'shalóm vayitén d'méi
+                    miljamáh bajagorató ashér ál-motnó uv'na'aló ashér b'ragláiv.
+                </div>
+                <div class="translation">
+                    Y también tú sabes lo que me hizo Yoáv, hijo de Tz'ruyáh, lo que
+                    hizo a dos jefes de los ejércitos de Yisra'él, a Avnér, hijo de
+                    Nér, y a Amasá, hijo de Yéter, a quienes mató, y puso sangre de
+                    guerra en paz, y puso sangre de guerra en su cinto que estaba sobre
+                    sus lomos, y en su sandalia que estaba en sus pies.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:6</div>
+                <div class="hebrew">
+                    וְעָשִׂיתָ כְּחָכְמָתֶךָ וְלֹא־תוֹרֵד שֵׂיבָתוֹ בְּשָׁלֹם שְׁאוֹל:
+                </div>
+                <div class="transliteration">
+                    V'asítá k'jojmatéja v'ló-toréd seivató b'shalóm sh'ól.
+                </div>
+                <div class="translation">
+                    Y harás conforme a tu sabiduría, y no dejarás descender sus canas
+                    en paz al <span class="highlight">Sh'ól</span> (sepulcro).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:7</div>
+                <div class="hebrew">
+                    וְלִבְנֵי בַרְזִלַּי הַגִּלְעָדִי תַּעֲשֶׂה־חֶסֶד וְהָיוּ בְּאֹכְלֵי
+                    שֻׁלְחָנֶךָ כִּי־כֵן קָרְבוּ אֵלַי בְּבָרְחִי מִפְּנֵי אַבְשָׁלוֹם
+                    אָחִיךָ:
+                </div>
+                <div class="transliteration">
+                    V'livnéi Barziláy haGil'adí ta'aséh-jésed v'hayú b'ojléi
+                    shuljánéja kí-jén karvú eláy b'var'jí mip'néi Avshalóm ajíja.
+                </div>
+                <div class="translation">
+                    Pero a los hijos de Barzilái haGil'adí les harás
+                    <span class="highlight">jésed</span> (misericordia/bondad), y
+                    estarán entre los que comen en tu mesa, porque así se acercaron a
+                    mí cuando yo huía de delante de Avshalóm, tu hermano.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:8</div>
+                <div class="hebrew">
+                    וְהִנֵּה עִמְּךָ שִׁמְעִי בֶן־גֵּרָא בֶּן־הַיְמִינִי מִבַּחֻרִים
+                    וְהוּא קִלְלַנִי קְלָלָה נִמְרֶצֶת בְּיוֹם לֶכְתִּי מַחֲנָיִם
+                    וְהוּא־יָרַד לִקְרָאתִי הַיַּרְדֵּן וָאֶשָּׁבַע לוֹ בַּיְהוָה לֵאמֹר
+                    אִם־אֲמִיתְךָ בֶּחָרֶב:
+                </div>
+                <div class="transliteration">
+                    V'hinéh imm'já Shim'í ven-Gérá ben-haY'miní miBajurím v'hú kil'laní
+                    k'laláh nimrétzet b'yom lejtí Majanáim v'hú-yarád likratí
+                    haYardén va'esháva lo baיהוה lémor im amit'já bajárev.
+                </div>
+                <div class="translation">
+                    Y he aquí, contigo está Shim'í, hijo de Guerá, hijo de haY'miní (el
+                    Benjamita), de Bajurim, y él me maldijo con maldición violenta el
+                    día que yo iba a Majanáim. Y él descendió a encontrarme en el
+                    Yardén (Jordán), y le juré por <span class="highlight">יהוה</span>
+                    diciendo: 'No te mataré con espada.'
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:9</div>
+                <div class="hebrew">
+                    וְעַתָּה אַל־תְּנַקֵּהוּ כִּי אִישׁ חָכָם אָתָּה וְיָדַעְתָּ אֵת
+                    אֲשֶׁר תַּעֲשֶׂה־לּוֹ וְהוֹרַדְתָּ אֶת־שֵׂיבָתוֹ בְּדָם שְׁאוֹל:
+                </div>
+                <div class="transliteration">
+                    V'atáh al-t'nakéhu kí ísh jajám átáh v'yadátá ét ashér ta'aséh-ló
+                    v'horádtá et-seivató b'dam sh'ól.
+                </div>
+                <div class="translation">
+                    Y ahora, no lo tendrás por inocente, porque varón sabio eres tú, y
+                    sabrás lo que le has de hacer, y harás descender sus canas con
+                    sangre al <span class="highlight">Sh'ól</span> (sepulcro).
+                </div>
+            </div>
+
+            <div class="explanation">
+                <h3 style="text-align: left">
+                    ⚔️ Justicia y <span class="highlight">Jésed</span> (Bondad)
+                </h3>
+                <p>
+                    <span class="point-letter">A.</span> David instruye a Salomón sobre
+                    la necesidad de la <span class="highlight">justicia</span>:
+                    castigar el mal (Yoáv y Shim'í) y recompensar la
+                    <span class="highlight">bondad</span> (los hijos de Barzilái).
+                </p>
+                <p>
+                    <span class="point-letter">B.</span> El mandato de "no dejar
+                    descender en paz al sepulcro" (v. 6 y 9) no es un acto de venganza
+                    personal, sino la restauración de la <strong
+                        >justicia divina y terrenal</strong
+                    >
+                    que David, por sus promesas o por razones políticas, no pudo
+                    ejecutar en vida. Salomón, cuyo nombre significa "Paz", debe
+                    establecer la paz real a través de la justicia.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>🕊️ Conclusión del Reinado de David e Inicio de Salomón</h2>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:10</div>
+                <div class="hebrew">
+                    וַיִּשְׁכַּב דָּוִד עִם־אֲבֹתָיו וַיִּקָּבֵר בְּעִיר דָּוִיד:
+                </div>
+                <div class="transliteration">
+                    Vayishkáv Davíd im-avotáv vayikavér b'Ir Davíd.
+                </div>
+                <div class="translation">
+                    Y durmió David con sus padres, y fue sepultado en la Ciudad de
+                    David.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:11</div>
+                <div class="hebrew">
+                    וְהַיָּמִים אֲשֶׁר מָלַךְ דָּוִד עַל־יִשְׂרָאֵל אַרְבָּעִים שָׁנָה
+                    בְּחֶבְרוֹן מָלַךְ שֶׁבַע שָׁנִים וּבִירוּשָׁלַיִם מָלַךְ שְׁלֹשִׁים
+                    וְשָׁלֹשׁ שָׁנִים:
+                </div>
+                <div class="transliteration">
+                    V'hayámim ashér málaj Davíd al-Yisra'él arbá'ím shanáh b'Jevrón
+                    málaj shéva shaním uv'Yirushaláyim málaj sh'loshím v'shalósh
+                    shaním.
+                </div>
+                <div class="translation">
+                    Y los días que reinó David sobre Yisra'él, cuarenta años; en
+                    Jevrón reinó siete años, y en Yirushaláyim reinó treinta y tres
+                    años.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:12</div>
+                <div class="hebrew">
+                    וּשְׁלֹמֹה יָשַׁב עַל כִּסֵּא דָּוִיד אָבִיו וַתִּכֹּן מַלְכוּתוֹ
+                    מְאֹד:
+                </div>
+                <div class="transliteration">
+                    USh'lomóh yasháv ál kisé Davíd avív vatíkón maljutó m'ód.
+                </div>
+                <div class="translation">
+                    Y Sh'lomóh se sentó sobre el trono de David su padre, y su reino
+                    fue establecido fuertemente.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="prophetic-content">
+        <h2> Perspectiva Mesiánica de 1 Reyes 2:1-12</h2>
+        <div class="prophetic-section">
+            <div class="prophetic-title">
+                1. El Trono de la Promesa: David $\rightarrow$ Salomón $\rightarrow$
+                Yeshúa
+            </div>
+            <p>
+                El traspaso del trono de David a Salomón es un
+                <span class="highlight">patrón profético</span> del verdadero Hijo de
+                David, <span class="highlight">Yeshúa HaMashíaj</span>:
+            </p>
+            <ul>
+                <li>
+                    <strong>Continuidad Legal:</strong> Salomón (el de la Paz) se
+                    sienta en el <span class="highlight">trono de David</span> (v. 12).
+                    Yeshúa, por linaje, hereda legalmente este mismo trono, Su reino
+                    establecido es el único eterno.
+                </li>
+                <li>
+                    <strong>Requisito de Obediencia:</strong> La condición de la
+                    permanencia del trono (v. 4) es la perfecta obediencia a la Torá.
+                    Salomón falló, pero Yeshúa cumplió la Torá
+                    <span class="highlight">con todo Su corazón y alma</span>,
+                    asegurando que Su reino nunca será cortado (Isaías 9:6-7).
+                </li>
+            </ul>
+        </div>
+        <div class="prophetic-section">
+            <div class="prophetic-title">
+                2. El Rey Sabio y Justo: La Sombra de Yeshúa
+            </div>
+            <p>
+                David insta a Salomón: "Y harás
+                <span class="highlight">conforme a tu sabiduría</span>" (v. 6, 9).
+            </p>
+            <ul>
+                <li>
+                    Salomón se hizo famoso por su sabiduría y su capacidad para juzgar
+                    y establecer la justicia, trayendo un período de paz (Shalóm) en
+                    Israel.
+                </li>
+                <li>
+                    <span class="highlight">Yeshúa</span> es la encarnación de la
+                    verdadera Sabiduría de Elohim (1 Corintios 1:30), quien no solo
+                    ejecuta el juicio justo (como lo hizo Salomón con Yoáv y Shim'í),
+                    sino que también dispensa la
+                    <span class="highlight">bondad inmerecida (<span
+                        class="hebrew-term">Jésed</span
+                    >)</span>
+                    a quienes confían en Él.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h1>1 Reyes 2:1-12: Las Últimas Palabras de David a Salomón</h1>
+
+    <div class="content-container">
+        <h2>Introducción Mesiánica</h2>
+        <p>La porción de 1 Reyes 2:1-12, que contiene las últimas palabras de David a su hijo Salomón (<span class="highlight">Sh'lomóh</span>), es profundamente mesiánica. David está transmitiendo la soberanía del trono de <span class="highlight">Yisra'él</span>, un trono que es eterno, y por lo tanto, apunta directamente al Reinado de <span class="highlight">Yeshúa HaMashíaj</span>, el Hijo de David.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>I. Cumplimiento Profético en el Mashíaj: El Trono Establecido</h1>
+        <div class="explanation">
+            <p>La aplicación espiritual de esta <span class="highlight">aliyá</span> se centra en el Reinado del <span class="highlight">Mashíaj</span> y la <span class="highlight">Obediencia Absoluta a la Torá</span> como base de ese Reino. David instruye a Salomón a "ser fuerte y sé varón" (1 Reyes 2:2) y a guardar la <span class="highlight">Torá</span> (1 Reyes 2:3), vinculando directamente el trono a la fidelidad al Pacto de <span class="hebrew-term">יְהוָה</span>.</p>
+            <p>El cumplimiento profético en <span class="highlight">Yeshúa</span> se manifiesta en la Promesa Condicional del Trono de David y su establecimiento final.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>El Mandato y la Promesa de David (1 Reyes 2:1-4)</h2>
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:4</div>
+                <div class="hebrew">לְמַעַן יָקִים יְהוָה אֶת־דְּבָרוֹ אֲשֶׁר דִּבֶּר עָלַי לֵאמֹר אִם־יִשְׁמְרוּ בָנֶיךָ אֶת־דַּרְכָּם לָלֶכֶת לְפָנַי בֶּאֱמֶת בְּכָל־לְבָבָם וּבְכָל־נַפְשָׁם לֵאמֹר לֹא־יִכָּרֵת לְךָ אִישׁ מֵעַל כִּסֵּא יִשְׂרָאֵל׃</div>
+                <div class="transliteration">Lema'an yaqím Adonái et-devaró ashér dibér aláy lemór im-yishmerú vanéyja et-darjám laléjet lefanáy be'emét bejol-levavám uvjol-nafshám lemór lo-yikkarét lejá ísh me'ál kissé Yisra'él.</div>
+                <div class="translation">Para que <span class="highlight">יְהוָה</span> cumpla Su palabra que habló acerca de mí, diciendo: 'Si tus hijos guardan su camino, para andar delante de mí en verdad, con todo su corazón y con toda su alma, diciendo: 'No te faltará varón sobre el trono de <span class="highlight">Yisra'él</span>'.</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Promesa del Trono y Condición</div>
+                    <p>Esta es una referencia a la promesa incondicional de 2 Samuel 7:12-16, donde <span class="hebrew-term">יְהוָה</span> jura que un descendiente de David reinará por siempre. La condición es para los hijos temporales (Salomón), pero la promesa eterna es para el <span class="highlight">Mashíaj</span>.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Cumplimiento en el Brit Hadashah</div>
+                    <div class="scripture">Lucas 1:32-33 (Peshita) - "Él será grande, y será llamado Hijo del Altísimo; y el <span class="highlight">Adón Elohím</span> le dará el trono de David su padre; y reinará sobre la casa de Ya'akóv por los siglos, y su Reino no tendrá fin."</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:3</div>
+                <div class="hebrew">וְשָׁמַרְתָּ אֶת־מִשְׁמֶרֶת יְהוָה אֱלֹהֶיךָ לָלֶכֶת בִּדְרָכָיו לִשְׁמֹר חֻקֹּתָיו מִצְוֹתָיו וּמִשְׁפָּטָיו וְעֵדְוֹתָיו כַּכָּתוּב בְּתוֹרַת מֹשֶׁה לְמַעַן תַּשְׂכִּיל אֵת כָּל־אֲשֶׁר־תַּעֲשֶׂה וְאֵת כָּל־אֲשֶׁר־תִּפְנֶה שָׁם׃</div>
+                <div class="transliteration">Ve-shamartá et-mishméret Adonái Elohéyja laléjet bidrajáv lishmór juqotáv mitzvotáv umishpatáv ve'edvotáv kakkátuv beTorát Moshéh lema'an taskíl et kol-ashér ta'aséh ve'et kol-ashér tifnéh sham.</div>
+                <div class="translation">...para andar en Sus caminos, para guardar Sus estatutos, Sus mandamientos y Sus decretos, tal como está escrito en la <span class="highlight">Torá de Moshéh</span>, para que seas prosperado en todo lo que hagas y dondequiera que vayas.</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Obediencia Perfecta a la Torá</div>
+                    <p>El Mesías debe ser aquel que camine en obediencia perfecta a la <span class="highlight">Torá</span>. Salomón falló en esto, pero <span class="highlight">Yeshúa</span>, el Hijo de David, cumplió la <span class="highlight">Torá</span> en su totalidad, siendo el único digno de establecer el trono eterno.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Cumplimiento en el Brit Hadashah</div>
+                    <div class="scripture">Mateo 5:17 - "No he venido a abrogar la <span class="highlight">Torá</span> y los Profetas, sino a dar cumplimiento."</div>
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:6, 9</div>
+                <div class="translation">David instruye a Salomón para ejercer juicio justo (dar a cada uno según sus obras: Yoáv y Shim'í).</div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Juez Justo y Rey</div>
+                    <p>Salomón ejerció su sabiduría para establecer la justicia y eliminar el mal que David no pudo juzgar. Esto prefigura a <span class="highlight">Yeshúa</span> como el <span class="highlight">Juez Justo y Rey</span>, cuyo reino se establece sobre la verdad y la justicia.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Cumplimiento en el Brit Hadashah</div>
+                    <div class="scripture">Apocalipsis 19:11 - "Y vi el cielo abierto, y he aquí un caballo blanco; y el que lo montaba se llamaba Fiel y Verdadero, y en justicia juzga y pelea."</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>II. Conexión con los Profetas (Tanaj)</h1>
+        <div class="explanation">
+            <p>Los profetas reafirman la promesa del linaje de David y describen la naturaleza del <span class="highlight">Rey Mashíaj</span> que se sentará en ese trono, cumpliendo la esencia de las instrucciones dadas a Salomón.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>Profeta Yeshayáhu (Isaías)</h3>
+            <div class="verse-container">
+                <div class="scripture">Yeshayáhu 9:6 - "Porque un niño nos ha nacido, un Hijo nos ha sido dado, y el principado estará sobre Su hombro; y se llamará Su Nombre Admirable, Consejero, <span class="highlight">Elohím Fuerte</span>, Padre Eterno, Príncipe de Paz."</div>
+            </div>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Rey de Paz (Shalóm)</div>
+                    <p>La transferencia del reino a Salomón, quien significa "<span class="highlight">Paz</span>" (<span class="highlight">Shalóm</span>), es un destello del Rey final que traerá la verdadera <span class="highlight">paz mesiánica</span> y cuyo reino será eterno, cumpliendo plenamente el linaje y el carácter prometido.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>Profeta Zekaryáhu (Zacarías)</h3>
+            <div class="verse-container">
+                <div class="scripture">Zekaryáhu 9:9 - "Alégrate mucho, hija de Tzión; da voces de júbilo, hija de Yirushaláyim; he aquí que tu Rey viene a ti, Justo y Salvador, humilde y cabalgando sobre un asno..."</div>
+            </div>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Rey Justo y Humilde</div>
+                    <p>El establecimiento del reino de David es un presagio del <span class="highlight">Rey Justo</span>. Las instrucciones de David a Salomón son un llamado a la justicia y la fidelidad (1 Reyes 2:3). <span class="highlight">Yeshúa</span> es el Rey que entra en <span class="highlight">Yirushaláyim</span> cumpliendo la profecía de Zacarías como el Rey justo y humilde, estableciendo el trono en el <span class="highlight">Ruach HaKodesh</span>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>III. Conexión con el Brit Hadashah (Peshita Aramea)</h1>
+        <div class="explanation">
+            <p>El <span class="highlight">Brit Hadashah</span> confirma que <span class="highlight">Yeshúa</span> es la culminación y el cumplimiento de la línea real de David, y que el trono prometido a Su linaje se cumple solo en Él de manera eterna.</p>
+        </div>
+
+        <div class="section-container">
+            <h3>La Eterna Sucesión del Trono</h3>
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:12</div>
+                <div class="translation">Y <span class="highlight">Sh'lomóh</span> se sentó sobre el trono de David su padre, y su reino fue establecido fuertemente. (La instalación temporal del reino.)</div>
+            </div>
+            <div class="verse-container">
+                <div class="verse-number">Hechos 2:30</div>
+                <div class="aramaic">ܕܒܝܬ ܕܝܢ ܢܒܝܐ ܗܘ ܘܝܕܥ ܕܒܡܘܡܬܐ ܝܡܐ ܠܗ ܐܠܗܐ ܕܡܢ ܦܐܪܐ ܕܟܪܣܗ ܢܩܝܡ ܡܫܝܚܐ ܘܢܬܒ ܥܠ ܟܘܪܣܝܗ ܀</div>
+                <div class="transliteration">D'bhaith dayn n'bhiya hoo w'yedha' d'bh'mowmtha y'ma leh elaha d'man p'ara d'karsayh n'qim Mshikha w'nethab 'al koorsayh.</div>
+                <div class="translation">Pero siendo profeta, y sabiendo que <span class="highlight">Elohím</span> le había jurado con juramento que del fruto de su lomo, en cuanto a la carne, levantaría a <span class="highlight">HaMashíaj</span> para que se sentase sobre su trono.</div>
+            </div>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Aplicación</div>
+                    <p>El Apóstol <span class="highlight">Kefa</span> (Pedro) afirma que la promesa del trono de David no se cumplió completamente en Salomón, sino que resucitó y exaltó a <span class="highlight">Yeshúa</span> para sentarse en Su trono a la diestra de <span class="highlight">Adonai</span>, donde reinará por siempre.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>El Mandato de Ser Varón (Hombre Fuerte)</h3>
+            <div class="verse-container">
+                <div class="verse-number">1 Reyes 2:2</div>
+                <div class="translation">David a Salomón: "sé fuerte y sé varón." (Llamada a la valentía moral y la disciplina en la <span class="highlight">Torá</span>.)</div>
+            </div>
+            <div class="verse-container">
+                <div class="verse-number">1 Corintios 16:13</div>
+                <div class="aramaic">ܐܬܬܥܝܪܘ ܘܩܘܡܘ ܒܗܝܡܢܘܬܐ ܘܐܬܚܝܠܘ ܘܐܬܚܙܩܘ ܀</div>
+                <div class="transliteration">Itt'a'iru w'qumu bh'haymonutha w'ethkhaylu w'ethkhzaqu.</div>
+                <div class="translation">Velad, estad firmes en la fe, haced esfuerzo y sed fuertes.</div>
+            </div>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Aplicación para el Creyente</div>
+                    <p>La instrucción de David es un llamado para todo creyente en el <span class="highlight">Mashíaj</span>. La verdadera fuerza y virilidad no es física, sino la fuerza moral y espiritual que viene de la <span class="highlight">obediencia a la Torá de Yeshúa HaMashíaj</span>, que es el <span class="highlight">Camino</span>, la <span class="highlight">Verdad</span> y la <span class="highlight">Vida</span>.</p>
+                    <div class="conclusion">
+                        <p><strong>El Camino del Mashíaj es un camino de fuerza espiritual:</strong></p>
+                        <ul>
+                            <li><span class="point-letter">A.</span> <span class="highlight">Velar</span>: Estar alerta a las trampas.</li>
+                            <li><span class="point-letter">B.</span> <span class="highlight">Estar Firmes</span>: Permanecer arraigados en la fe mesiánica.</li>
+                            <li><span class="point-letter">C.</span> <span class="highlight">Ser Fuertes</span>: Obtener la fuerza (<span class="highlight">chayil</span>) de <span class="hebrew-term">יְהוָה</span> a través de la obediencia.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Punto 3. Brit Hadasháh: Hebreos 11:21 (La bendición de Yaakov a los hijos de Yosef).</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2 class="prophetic-title">Texto Arameo (Peshita)</h2>
+            <div class="verse-container">
+                <div class="verse-number">Hebreos 11:21</div>
+                <div class="aramaic">
+                    ܒܡܗܝܡܢܘܬܐ ܝܥܩܘܒ ܟܕ ܡܝܬ ܒܪܟ ܠܬܪ̈ܝܢ ܒܢ̈ܘܗܝ ܕܝܘܣܦ ܘܣܓܕ ܥܠ ܪ̈ܝܫ ܚܘܛܪܗ܀
+                </div>
+                <div class="transliteration">
+                    B'maymanutha Ya'qov kad mit barekh l'trayeen banoy d'Yosef
+                    w'sghad al reesh khuṭreh.
+                </div>
+                <div class="literal-translation">
+                    Por la fe Ya'qov, cuando moría, bendijo a los dos hijos de
+                    Yoséf y se postró sobre la cabeza de su bastón (o cayado).
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="explanation">
+            <h2 class="prophetic-title">
+                Comentario Mesiánico y Contexto Histórico
+            </h2>
+            <p>
+                Esta porción es de suma importancia, ya que resume con precisión
+                dos actos de fe de Ya'akóv (Jacobo) registrados en el Tanaj
+                (<strong class="highlight">Génesis 48:9-20</strong> y
+                <strong class="highlight">47:31</strong>, respectivamente),
+                poniendo énfasis en que la bendición y la adoración fueron
+                realizadas bajo el principio de la fe en las promesas de
+                <span class="hebrew-term">יְהוָה</span> (YHWH).
+            </p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <h3 class="prophetic-title">
+                        El Énfasis en la Fe
+                    </h3>
+                    <p>
+                        El escritor de Hebreos destaca la frase
+                        <strong class="highlight">"Por la fe"</strong>
+                        (<span class="aramaic">ܒܡܗܝܡܢܘܬܐ</span> -
+                        <span class="transliteration">B'maymanutha</span>),
+                        conectando las acciones finales de Ya'akóv con la
+                        confianza absoluta en el plan de redención y las
+                        promesas de la Tierra.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong class="point-letter">A.</strong>
+                            <strong class="highlight"
+                                >La Bendición de Efraín y Manasés:</strong
+                            >
+                            Ya'akóv, aunque ciego y debilitado, actuó con
+                            claridad profética. Cruza sus manos para darle la
+                            primogenitura a Efraín, el menor. Este acto no fue
+                            arbitrario, sino guiado por la fe en la soberanía de
+                            <span class="hebrew-term">אֱלֹהִים</span> (Elohim),
+                            prefigurando un orden divino que a menudo subvierte
+                            el orden natural (el menor sobre el mayor,
+                            anticipando la primacía del Mesías).
+                        </li>
+                        <li>
+                            <strong class="point-letter">B.</strong>
+                            <strong class="highlight"
+                                >El Acto de Postrarse:</strong
+                            >
+                            El acto de adoración registrado en
+                            Génesis 47:31 se realizó
+                            <span class="highlight">"sobre la cabeza de su bastón"</span>. La LXX (Septuaginta) y la Peshita
+                            usan la preposición 'al (על) - sobre/en. El bastón
+                            (<span class="hebrew-term">מַטֶּה</span> -
+                            <span class="transliteration">matteh</span>) era un
+                            símbolo de autoridad, apoyo y, en el contexto
+                            mesiánico, puede representar el apoyo del pastor
+                            (<em class="highlight">Yahshúa</em>), el Mesías.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="prophetic-section">
+                    <h3 class="prophetic-title">Conexión Mesiánica</h3>
+                    <p>
+                        El bastón o cayado es un elemento recurrente en la
+                        narrativa profética. Ya'akóv, al adorar apoyado en su
+                        cayado, no solo daba gracias por la fidelidad pasada,
+                        sino que también miraba hacia el futuro:
+                    </p>
+                    <ul class="prophetic-content">
+                        <li>
+                            <strong class="point-letter">1.</strong>
+                            <strong class="highlight"
+                                >El Bastón de la Promesa:</strong
+                            >
+                            Su bastón representaba el viaje de su vida, desde que
+                            cruzó el Jordán "solo con mi bastón" (Génesis 32:10)
+                            hasta convertirse en una gran nación. Este viaje es
+                            un modelo del camino de fe.
+                        </li>
+                        <li>
+                            <strong class="point-letter">2.</strong>
+                            <strong class="highlight"
+                                >El Cetro de Judá:</strong
+                            >
+                            Aunque José era el bendecido en este momento
+                            específico, la adoración final de Ya'akóv es un
+                            testimonio de fe en la continuidad de las promesas,
+                            incluyendo el Mesías de la línea de Judá
+                            (Génesis 49:10 - El cetro no se apartará de Judá).
+                            La fe de Ya'akóv se centró en la futura consumación
+                            del plan de
+                            <span class="hebrew-term">יְהוָה</span>.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        h1>Hebreos 11:21 - La Fe de Ya'akóv y el Comentario Mesiánico</h1>
+
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">Hebreos 11:21</div>
+            <div class="translation">
+                "Por la fe Ya'qov, cuando moría, bendijo a los dos hijos de Yoséf y se postró sobre la cabeza de su bastón (o cayado)."
+            </div>
+            <p>Este pasaje encapsula la culminación de la vida de fe de Ya'akóv y sirve como un profundo comentario mesiánico sobre la autoridad del moribundo patriarca y la adoración profética.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>I. Comentario Mesiánico en Yeshúa HaMashíaj</h2>
+            <p>La fe de Ya'akóv, al final de sus días en Mitzráyim (Egipto), apunta a Yeshúa HaMashíaj de dos maneras fundamentales:</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Bendición que Define la Herencia (Génesis 48)</div>
+                    <p>Ya'akóv, guiado por la <span class="highlight">fe</span> y no por su vista débil, transfiere la herencia de la primogenitura a los hijos de Yoséf (Efráyim y M'nashéh), elevándolos al estatus de tribus completas. Este acto es un ejercicio de la autoridad delegada por <span class="highlight">יְהוָה</span>, anticipando la soberanía del Mashíaj.</p>
+                    <ul>
+                        <li><span class="highlight">Yeshúa es el Autor de la Fe</span> (Hebreos 12:2). Así como Ya'akóv ejerció su autoridad para redefinir la herencia de Yisra'él, Yeshúa ejerce la autoridad para adoptar a los creyentes de las naciones (simbolizados por Efráyim y M'nashéh, nacidos en el exilio) y hacerlos coherederos con la Casa de Yahudáh, en el verdadero y eterno Yisra'él.</li>
+                    </ul>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Postración y la Esperanza (Génesis 47:31)</div>
+                    <p>La postración de Ya'akóv sobre la cabeza de su cayado es el acto final de adoración a <span class="highlight">יְהוָה</span> antes de morir. Él adora al no temer a Mitzráyim, sino al creer en la promesa de la Resurrección y la Tierra.</p>
+                    <ul>
+                        <li><span class="highlight">El Madero de la Adoración:</span> El bastón (cayado) es un símbolo de apoyo y autoridad, pero en el contexto mesiánico, Yeshúa transformó el instrumento de humillación (el madero) en el instrumento de salvación y adoración. Ya'akóv se apoya y adora, esperando el reposo; nosotros nos apoyamos y adoramos a Yeshúa, quien nos da el reposo verdadero (Mateo 11:28).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>II. Conexión con los Profetas y Profecías Cumplidas</h2>
+            <p>El acto de Ya'akóv se conecta directamente con la profecía del Mesías, particularmente en el contexto del pastoreo y el cetro.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Profecía del Tanaj (Verso)</th>
+                        <th>Explicación del Cumplimiento</th>
+                        <th>Cumplimiento en el Brit Hadashah (Verso - Peshita)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Génesis 48:15 (Línea de la aliyá referenciada) - "...El Elohím en cuya presencia anduvieron mis padres, Avraham e Itzjak; el Elohím que me pastorea desde que existo hasta este día."</td>
+                        <td>David mismo, como prototipo de Yeshúa (el Pastor-Rey), profetiza del cayado de mando. El cayado (<span class="hebrew-term" lang="he">מַטֶּה</span> <span class="arrow">/</span> <span class="hebrew-term" lang="he">מִשְׁעֶנֶת</span>) es el símbolo del Pastor Justo que guía y bendice.</td>
+                        <td>Juan 10:11 - "Yo soy el Pastor Bueno. El Pastor Bueno da Su vida por Sus ovejas."</td>
+                    </tr>
+                    <tr>
+                        <td>Bamidbar (Números) 24:17 (Balaam) - "Una estrella saldrá de Ya'akóv, y se levantará un cetro de Yisra'él..."</td>
+                        <td>El cayado o bastón es un <span class="highlight">cetro de autoridad</span>. Ya'akóv, al postrarse, reconoce la soberanía de <span class="highlight">יְהוָה</span> sobre su linaje. Yeshúa es el cumplimiento de este cetro real y eterno.</td>
+                        <td>Apocalipsis 22:16 - "Yo, Yeshúa, he enviado mi ángel... Yo soy la Raíz y el Linaje de David, la Estrella resplandeciente de la mañana."</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>III. Aplicación Espiritual Conectada con la Aliyá</h2>
+            <p>La aliyá de Génesis 47:28-48:9, que relata esta bendición, nos enseña sobre la perseverancia de la fe en el exilio:</p>
+
+            <div class="explanation">
+                <p><span class="point-letter">A.</span> <span class="highlight">La Fe que Trasciende la Muerte:</span> Ya'akóv, aunque en Mitzráyim y a punto de morir, se enfoca en la promesa de la Tierra (Génesis 47:29). La fe de Ya'akóv, el padre de Yisra'él, se sostiene en la visión del futuro y de la resurrección, no en la realidad de la tumba egipcia.</p>
+                <p><span class="point-letter">B.</span> <span class="highlight">La Adoración Genuina:</span> El acto de postrarse (Génesis 47:31) es la prueba de que, para el creyente, la verdadera herencia no es material, sino la relación con <span class="highlight">יְהוָה</span>. En la fe en Yeshúa HaMashíaj, la vida del creyente se define por la adoración y la certeza de que el destino final es con Adonai, no en el mundo temporal.</p>
+                <p><span class="point-letter">C.</span> <span class="highlight">El Espíritu de Adopción:</span> Al adoptar a Efráyim y M'nashéh, Ya'akóv nos muestra que la línea del pacto puede extenderse y redefinirse por la gracia de <span class="highlight">יְהוָה</span>. Esto profetiza la obra del Ruach HaKodesh, que nos permite clamar a Adonai como Abba (Padre) a través de la adopción en Yeshúa HaMashíaj (Romanos 8:15).</p>
+            </div>
+        </div>
+        <h1>PUNTO 4 — CONTEXTO HISTÓRICO Y CULTURAL (Bereshit 47:28–48:9)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2 class="prophetic-title">4.1. Periodo Histórico del Relato</h2>
+            <p>La Aliyáh se sitúa en la última etapa de la vida de Ya‘aqov <strong class="hebrew-term">יַעֲקֹב</strong> en Mitsráyim (Egipto), durante el segundo año o tercero del hambre ya mitigado gracias a la administración de Yosef <strong class="hebrew-term">יוֹסֵף</strong>. El texto indica que Ya‘aqov vivió 17 años en Mitsráyim (Bereshit 47:28), lo cual ubica su muerte alrededor del año 2255 AM (aprox. 1700–1680 a.e.c. en cronologías internas tradicionales del judaísmo antiguo, no arqueológicas modernas).</p>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">4.2. Egipto en tiempos de Yosef</h2>
+            <p>Los especialistas ubican este periodo dentro del dominio de los Hicsos (<span class="highlight">heqa-khasut</span>), gobernantes semitas que ocuparon el delta oriental, lo que explica:</p>
+            <ul>
+                <li>La favorable recepción de Yosef como administrador.</li>
+                <li>La posibilidad de que la familia de Ya‘aqov viviera en Goshen <strong class="hebrew-term">גֹּשֶׁן</strong>, una zona semita.</li>
+                <li>La movilidad pastoral libre en el delta.</li>
+            </ul>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <p class="prophetic-title">Arqueológicamente, Avaris (Tell el-Dab‘a), identificada con Goshen, presenta:</p>
+                    <ul>
+                        <li>Población mayoritariamente semita.</li>
+                        <li>Enterramientos y estructuras típicas de Siria-Palestina.</li>
+                        <li>Evidencias de economía pastoril.</li>
+                    </ul>
+                    <p>Esto se alinea con la presencia de los hijos de Ya‘aqov, sus rebaños y su clan.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">4.3. Cultura y ritual de adopción en Oriente Próximo</h2>
+            <p>En la Aliyáh, Ya‘aqov adopta a los hijos de Yosef —Efrayim <strong class="hebrew-term">אֶפְרַיִם</strong> y Menashsheh <strong class="hebrew-term">מְנַשֶּׁה</strong>— como propios (Bereshit 48:5). Este acto corresponde a prácticas documentadas en:</p>
+            <ul>
+                <li>Textos de Nuzi (Mesopotamia).</li>
+                <li>Código de Hammurabi, §§ 170–171.</li>
+                <li>Cartas de Mari.</li>
+            </ul>
+            <p>La adopción implicaba:</p>
+            <ul>
+                <li>Transferencia de derechos de herencia.</li>
+                <li>Elevación del adoptado al nivel del hijo primogénito real.</li>
+                <li>Identidad tribal plena.</li>
+            </ul>
+            <p>Por lo tanto, la adopción de Efrayim y Menashsheh explica por qué en Israel existen trece tribus tribales territoriales sin contar a Leví.</p>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">4.4. Bendiciones patriarcales</h2>
+            <p>En el antiguo Cercano Oriente, la bendición final del patriarca:</p>
+            <ul>
+                <li>Era un acto legal vinculante.</li>
+                <li>Tenía carácter profético.</li>
+                <li>Implicaba transferencia de autoridad espiritual.</li>
+                <li>Sellaba la identidad del clan.</li>
+            </ul>
+            <p>Ya‘aqov bendice a los hijos de Yosef cruzando sus manos, lo cual culturalmente muestra:</p>
+            <ul>
+                <li>Libertad profética.</li>
+                <li>Inversión de patrones culturales (el menor sobre el mayor), fenómeno reiterado en Bereshit.</li>
+                <li>Revelación divina guiando la historia.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">4.5. Dimensión espiritual y mesiánica del momento</h2>
+            <p>La escena ocurre poco antes de la muerte del patriarca, un motivo frecuente en la literatura antigua:</p>
+            <ul>
+                <li>Revelación de futuro.</li>
+                <li>Transmisión del destino del pueblo.</li>
+                <li>Afirmación del pacto con Elohím.</li>
+            </ul>
+            <p>Este tipo de escenas aparece en textos de Ugarit, Nuzi y las Crónicas Reales de Asiria.</p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 5 — ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS (Bereshit 47:28–48:9)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2 class="prophetic-title">5.1. Estructura literaria</h2>
+            <p>La sección tiene cuatro movimientos:</p>
+            <ul>
+                <li>47:28 <span class="arrow">—</span> Declaración de los años vividos y anuncio de la cercanía de la muerte.</li>
+                <li>47:29–31 <span class="arrow">—</span> Ya‘aqov pide a Yosef juramentar sobre el sepulcro en Majpeláh <strong class="hebrew-term">מַחְפֵּלָה</strong>.</li>
+                <li>48:1–7 <span class="arrow">—</span> Yosef lleva a sus hijos; Ya‘aqov recuerda la promesa del “El-Shadday” en Luz.</li>
+                <li>48:8–9 <span class="arrow">—</span> Ya‘aqov identifica a Efrayim y Menashsheh.</li>
+            </ul>
+            <p>La narrativa alterna entre:</p>
+            <ul>
+                <li>Memoria histórica.</li>
+                <li>Confesión profética.</li>
+                <li>Acto legal (adopción).</li>
+                <li>Preparación para la bendición mesiánica.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">5.2. Temas principales</h2>
+            <p class="point-letter">(a) El pacto patriarcal continúa</p>
+            <p>Ya‘aqov afirma que el “El-Shadday <strong class="hebrew-term">אֵל שַׁדַּי</strong>” se le apareció en Luz y le dio la promesa de multiplicación. Al adoptar a los hijos de Yosef, expande el pacto.</p>
+            <p class="point-letter">(b) La primogenitura espiritual</p>
+            <p>Aunque Reuvén era el primogénito físico, Yosef recibe el <span class="highlight">doble porción</span> a través de sus dos hijos. Esta doble porción es una señal profética de realeza y autoridad.</p>
+            <p class="point-letter">(c) Cruce de manos</p>
+            <p>El acto profético de Ya‘aqov (que será desarrollado en la siguiente Aliyáh) inicia en esta.</p>
+            <p class="point-letter">(d) Reconocimiento del sufrimiento</p>
+            <p>Ya‘aqov menciona la muerte de Rajel <strong class="hebrew-term">רָחֵל</strong> (48:7) como elemento clave en su identidad y en el destino de Yosef.</p>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">5.3. Comentario Rabínico (fuentes principales)</h2>
+            <div class="explanation">
+                <p class="question">Rashi</p>
+                <div class="answer">Rashi afirma que Ya‘aqov actuó por <span class="highlight">inspiración divina</span> al adoptar a los hijos de Yosef. No fue sentimentalismo paternal, sino visión profética.</div>
+
+                <p class="question">Ramban</p>
+                <div class="answer">El Ramban ve en este acto algo mayor: es la transferencia de la <span class="highlight">línea mesiánica “norte–sur”</span>. De Menashsheh y Efrayim surgirían las tensiones entre el reino del norte y la esperanza futura de reunificación mesiánica (Ezeqiel 37).</div>
+
+                <p class="question">Midrash Bereshit Rabbah</p>
+                <div class="answer">El midrash señala que Ya‘aqov vio en Efrayim a <span class="highlight">Yehoshúa bin Nun</span>, futuro conquistador de la tierra, y en Menashsheh al organizador administrativo. Ambos roles son mesiánicos: conquista y gobierno.</div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">5.4. Comentario Judío Mesiánico</h2>
+            <div class="prophetic-content">
+                <p class="prophetic-title">a) Ya‘aqov bendice “con el Nombre”</p>
+                <p>Aunque este punto se desarrolla más en 48:15–16, inicia ya en 48:8–9. En la tradición hebrea y aramea, la bendición patriarcal implica la invocación del Nombre de Elohím. Según la comprensión mesiánica:</p>
+                <ul>
+                    <li>El Nombre invocado por Ya‘aqov está unido a la manifestación futura de <span class="highlight">Yeshúa haMashíaj</span>.</li>
+                    <li>El pacto patriarcal se cumple en Él como <strong class="hebrew-term">מריא</strong> <span class="arrow">—</span> el <span class="highlight">Adonái יהוה</span> revelado en carne, según expone el documento citado.</li>
+                </ul>
+
+                <p class="prophetic-title">b) Efrayim como figura profética del Mashíaj</p>
+                <p>Efrayim, el menor, toma el lugar del mayor; Yeshúa también toma un lugar que el mundo no esperaba:</p>
+                <ul>
+                    <li>El Mesías sufriente antes que el Mesías reinante.</li>
+                </ul>
+
+                <p class="prophetic-title">c) Yosef como tipo mesiánico</p>
+                <p>Yosef es el “<span class="highlight">Mashíaj ben Yosef</span>” en la tradición rabínica posterior. Esta Aliyáh anticipa este patrón:</p>
+                <p class="literal-translation">Rechazo <span class="arrow">→</span> Exaltación <span class="arrow">→</span> Salvación <span class="arrow">→</span> Reconciliación <span class="arrow">→</span> Multiplicación.</p>
+                <p>Esto es paralelo a Yeshúa haMashíaj.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 6 — ANÁLISIS PROFUNDO DE LA ALIYÁH (47:28–48:9)</h1>
+    <div class="content-container">
+        <h2 class="prophetic-title">6.1. Análisis verso a verso</h2>
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <p class="prophetic-title">47:28</p>
+                <p>Ya‘aqov vivió 17 años en Mitsráyim. Este número es simbólico:</p>
+                <ul>
+                    <li><span class="highlight">17</span> son los años que Yosef vivió con Ya‘aqov antes de ser vendido; ahora Elohím le devuelve ese tiempo.</li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">47:29</p>
+                <p>El mandato de no enterrarlo en Egipto está ligado a:</p>
+                <ul>
+                    <li>Identidad del pacto.</li>
+                    <li>Rechazo a la idolatría egipcia.</li>
+                    <li>Reconexión con la Tierra Prometida.</li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">47:30–31</p>
+                <p>El juramento “pon tu mano debajo de mi muslo” alude al <span class="highlight">brit miláh</span>, el signo del pacto.</p>
+                <ul>
+                    <li>Aquí, Ya‘aqov hace que Yosef jure por Elohím.</li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">48:1–2</p>
+                <p>Ya‘aqov es informado de que Yosef viene; el texto usa el verbo <span class="highlight">hitpael “se fortaleció”</span> para sentarse, un acto de reverencia y preparación espiritual.</p>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">48:3–4</p>
+                <p>Ya‘aqov recuerda la aparición del “El-Shadday”. Este recuerdo vincula:</p>
+                <ul>
+                    <li>La tierra.</li>
+                    <li>La descendencia.</li>
+                    <li>El destino mesiánico.</li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">48:5–6</p>
+                <p>La adopción de Efrayim y Menashsheh es legal, profética y espiritual.</p>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">48:7</p>
+                <p>El recuerdo de Rajel es importante porque:</p>
+                <ul>
+                    <li>De ella debió nacer el heredero.</li>
+                    <li>El dolor de Ya‘aqov se convierte en bendición para Yosef.</li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <p class="prophetic-title">48:8–9</p>
+                <p>Ya‘aqov pregunta “¿Quiénes son estos?” no por ignorancia, sino para iniciar el <span class="highlight">acto ritual</span>.</p>
+                <ul>
+                    <li>Es una fórmula legal: identificar a quienes serán bendecidos.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 7 — TEMA MÁS RELEVANTE DE LA ALIYÁH</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2 class="prophetic-title">7.1. Tema central</h2>
+            <p>La continuidad del pacto a través de la <span class="highlight">adopción profética</span> y la <span class="highlight">transferencia de la primogenitura espiritual</span>.</p>
+            <p>Este tema combina:</p>
+            <ul>
+                <li>Identidad tribal.</li>
+                <li>Pacto de la tierra.</li>
+                <li>Destino mesiánico.</li>
+                <li>Reordenamiento del plan divino.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">7.2. Importancia en la Toráh</h2>
+            <p>En Bereshit, el Eterno reorganiza la línea de elección:</p>
+            <ul>
+                <li>Abel sobre Caín.</li>
+                <li>Shet sobre otros hijos.</li>
+                <li>Shem sobre Jafet.</li>
+                <li>Yitsjaq sobre Ishmael.</li>
+                <li>Ya‘aqov sobre Esav.</li>
+                <li>Yosef sobre Reuvén.</li>
+                <li>Efrayim sobre Menashsheh.</li>
+            </ul>
+            <p>Esto no rompe el monoteísmo; revela que Elohím elige según su voluntad, <span class="highlight">no según costumbre humana</span>.</p>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">7.3. Relación con Yeshúa haMashíaj</h2>
+            <p>El tema de elección del menor apunta al Mashíaj:</p>
+            <ul>
+                <li>El “siervo sufriente” exaltado.</li>
+                <li>El rechazado que se convierte en piedra angular.</li>
+                <li>El humilde que recibe el Nombre sobre todo nombre (Peshitta: llamado <strong class="hebrew-term">מריא</strong> Maryah, <strong class="highlight">Adonái יהוה</strong>, según el documento citado).</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">7.4. Conexión con los Moedim</h2>
+            <p>La escena conecta con <span class="highlight">Shavuot</span>, fiesta de la herencia y multiplicación:</p>
+            <ul>
+                <li>Transferencia de promesa.</li>
+                <li>Anticipación de la reunificación de las tribus.</li>
+                <li>Manifestación del Ruaj HaKodesh otorgando la herencia espiritual.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>PUNTO 8 — DESCUBRIENDO AL MASHÍAJ EN LA ALIYÁH</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2 class="prophetic-title">8.1. Tipologías</h2>
+            <p class="question">Ya‘aqov = el padre que bendice</p>
+            <div class="answer">
+                Representa a Elohím como origen de la bendición.
+                <p class="literal-translation">En el Brit Hadashá, Yeshúa revela al Padre como uno con Él (Peshitta: “Yo y el Padre somos Ejad”).</p>
+            </div>
+
+            <p class="question">Yosef = figura del Mashíaj ben Yosef</p>
+            <div class="answer">Rechazado por sus hermanos, exaltado entre goyim, preserva la vida del pueblo.</div>
+
+            <p class="question">Efrayim = figura del Mashíaj victorioso</p>
+            <div class="answer">El menor exaltado: símbolo del liderazgo mesiánico.</div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">8.2. Sombras proféticas</h2>
+            <p>El <span class="highlight">cruce de manos</span> anticipa el madero del Mashíaj. Representa:</p>
+            <ul>
+                <li>Inversión de expectativas humanas.</li>
+                <li>Reconciliación de la humanidad.</li>
+                <li>Unión entre líneas de bendición.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">8.3. Paralelismos lingüísticos</h2>
+            <p>El nombre Efrayim (raíz <strong class="hebrew-term">פרה</strong> “fructificar”) conecta con:</p>
+            <ul>
+                <li>“Yo soy la vid verdadera” (Yojanan 15, Peshitta aramea).</li>
+                <li>Fruto abundante del Mashíaj.</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">8.4. Midrashim Mesiánicos</h2>
+            <p>Midrash Tanjuma Yashan relaciona <span class="highlight">Efrayim</span> con redención futura.</p>
+        </div>
+
+        <div class="section-container">
+            <h2 class="prophetic-title">8.5. Cumplimiento en el Brit Hadashá</h2>
+            <div class="prophetic-content">
+                <p>En la Peshitta:</p>
+                <ul>
+                    <li>Yeshúa es proclamado <strong class="hebrew-term">מריא</strong> Maryah, <span class="highlight">Adonái יהוה</span> (Lucas 2:11 y otros).</li>
+                    <li>Shaúl habla de la reunificación de Israel bajo el Mashíaj (Romanos 11).</li>
+                    <li>Efrayim representa a las “<span class="highlight">multitudes de naciones</span>”, que encuentran identidad plena en Yeshúa haMashíaj.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h1>PUNTO 9 — MIDRASHIM, TARGUMIM Y TEXTOS FUENTE (Bereshit 47:28–48:9)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <h2>9.1. Midrashim Relevantes</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Midrash Bereshit Rabbah 96:3–5</div>
+                    <p>Comenta que Ya‘aqov vivió en Mitsráyim con la misma plenitud espiritual que en la Tierra Prometida. Esto muestra que la presencia de Elohím no se limita a un territorio, anticipando la realidad revelada en el Mashíaj, donde la presencia divina habita plenamente en Él.</p>
+                    <p>El midrash afirma que los 17 años finales de Ya‘aqov fueron los más tranquilos de su vida. La tradición lo interpreta como una “reparación” espiritual dada por el Eterno. Esto conecta con Yosef, quien también vivió 17 años con su padre antes de ser vendido. El Mashíaj también repara lo perdido y devuelve lo que fue arrancado por el sufrimiento.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Midrash Tanjuma, Vayejí 5</div>
+                    <p>Interpreta la adopción de Efrayim y Menashsheh como una “corona doble”, es decir, la doble porción propia del primogénito. En la tradición mesiánica, esto apunta a Yeshúa haMashíaj como el Primogénito de toda la creación (Peshitta, Colosenses 1), quien recibe plenitud y la transmite a sus hermanos.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Midrash Lekaj Tov</div>
+                    <p>Afirma que Ya‘aqov vio en Efrayim el futuro liderazgo espiritual (Yehoshúa bin Nun), y en Menashsheh la estabilidad del gobierno. Ambos elementos se encuentran plenamente en Yeshúa haMashíaj, quien es tanto Sumo Sacerdote eterno como Rey en poder.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>9.2. Targumim</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Targum Onkelos a Bereshit 48:5</div>
+                    <p>Traduce la adopción de Efrayim y Menashsheh como un acto legal irrevocable. Subraya que serán “como Reuvén y Shim‘on”.</p>
+                    <p>Esto muestra la autoridad profética de Ya‘aqov, prefigurando la autoridad absoluta del Mashíaj como <span class="hebrew-term">מריא</span> (Maryah), tal como enseña La Divinidad de Yeshúa .</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Targum Pseudo-Yonatán 47:29</div>
+                    <p>Añade que Ya‘aqov ordena explícitamente no ser enterrado en Egipto para no estar asociado con prácticas idólatras. Este rechazo de la idolatría es paralelo a la misión del Mashíaj de restaurar la pureza del pacto.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Targum Yerushalmi 48:7</div>
+                    <p>Explica que la mención de Rajel es un acto de amor y dolor que influye en el destino de Yosef. Según la tradición mesiánica, Yeshúa también actúa movido por amor y sufrimiento redentor.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>9.3. Textos Fuente Adicionales</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Rollo de la Guerra (Qumrán, 1QM)</div>
+                    <p>Enfatiza la figura del líder escatológico que reúne a las tribus. Esto se relaciona con Ya‘aqov integrando a Efrayim y Menashsheh, anticipando la reunificación final bajo el Mashíaj.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Documentos de Mari y Nuzi</div>
+                    <p>Confirman la autenticidad histórica y cultural del acto de adopción legal que realiza Ya‘aqov. En la teología mesiánica, la adopción de los creyentes en Yeshúa (Romanos 8) sigue un patrón similar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>PUNTO 10 — MANDAMIENTOS O PRINCIPIOS ENCONTRADOS</h1>
+    <div class="content-container">
+        <p>Aunque esta sección no contiene mitzvot explícitas legales, sí contiene principios espirituales que la Toráh enseña a través del ejemplo de los patriarcas:</p>
+        <div class="section-container">
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">10.1. Principio de fidelidad al pacto</div>
+                    <p>Ya‘aqov exige ser enterrado en Majpeláh, mostrando lealtad al pacto con Avraham y Yitsjaq.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">10.2. Principio de transmisión de fe</div>
+                    <p>Ya‘aqov enseña a Yosef cómo preservar las promesas. El creyente en Yeshúa transmite la fe a las generaciones venideras.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">10.3. Principio de identidad en Elohím</div>
+                    <p>La adopción de Efrayim y Menashsheh enseña que la verdadera identidad se recibe del Eterno, no solo de la sangre. En el Mashíaj, la identidad espiritual es otorgada por su unión con Él como <span class="hebrew-term">מריא</span> (Maryah).</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">10.4. Principio de honra a los padres</div>
+                    <p>Yosef honra a Ya‘aqov cumpliendo sus pedidos.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">10.5. Principio de discernimiento espiritual</div>
+                    <p>Ya‘aqov distingue proféticamente el destino de los hijos, un modelo para vivir guiados por el Ruaj HaKodesh.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>PUNTO 11 — PREGUNTAS DE REFLEXIÓN (CON RESPUESTAS EN EL MASHÍAJ)</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <div class="question">1. ¿Qué significa que Ya‘aqov insistiera en no ser enterrado en Egipto?</div>
+            <div class="answer">Respuesta: Significa fidelidad al pacto; del mismo modo, el creyente en Yeshúa debe vivir con identidad en su Reino, no en las estructuras de este mundo.</div>
+
+            <div class="question">2. ¿Por qué adopta Ya‘aqov a Efrayim y Menashsheh?</div>
+            <div class="answer">Respuesta: Para expandir la promesa. En el Mashíaj, Elohím también adopta a las naciones (Efrayim = “multitud”) en su pueblo por medio de Yeshúa.</div>
+
+            <div class="question">3. ¿Cómo se revela la soberanía de Elohím en esta Aliyáh?</div>
+            <div class="answer">Respuesta: Él elige al menor sobre el mayor. Así Yeshúa, humilde, se convierte en el exaltado por el Padre como <span class="hebrew-term">מריא</span> (Maryah).</div>
+
+            <div class="question">4. ¿Qué enseña el cruce de manos de Ya‘aqov?</div>
+            <div class="answer">Respuesta: Que la bendición no sigue la lógica humana. La obra del Mashíaj también sorprende al mundo: el siervo sufriente es el Rey eterno.</div>
+
+            <div class="question">5. ¿Cómo se conecta la historia de Ya‘aqov con la esperanza futura?</div>
+            <div class="answer">Respuesta: La integración de Efrayim y Menashsheh anticipa la reunificación de Israel bajo el Mashíaj, tema central de la profecía (Ezeqiel 37).</div>
+        </div>
+    </div>
+
+    <h1>PUNTO 12 — RESUMEN DE LA ALIYÁH</h1>
+    <div class="content-container">
+        <div class="section-container">
+            <p>En Bereshit 47:28–48:9, Ya‘aqov, cercano a la muerte, llama a Yosef para transmitirle instrucciones finales. Le pide ser enterrado en Majpeláh, reafirmando la continuidad del pacto ancestral. Luego adopta a los hijos de Yosef, Efrayim y Menashsheh, dándoles un estatus igual al de sus propios hijos. Este acto es profético: asegura la doble porción de Yosef y anticipa la futura multiplicación del pueblo.</p>
+            <p>Ya‘aqov recuerda la promesa del El-Shadday en Luz, declarando que Elohím lo hizo fructificar y lo multiplicará. Reconoce a los hijos de Yosef como herederos directos del pacto. Esta Aliyáh establece la base de la organización tribal de Israel y muestra que el pacto se sostiene por la gracia y elección divina.</p>
+            <div class="conclusion">
+                <p>En la perspectiva mesiánica, todo apunta a Yeshúa haMashíaj, quien reúne, adopta, restaura y cumple las promesas de multiplicación y redención.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>PUNTO 13 — TEFILÁH DE LA ALIYÁH</h1>
+    <div class="content-container">
+        <div class="prayer-text">
+            <p><span class="highlight">Adonái</span> <span class="hebrew-term">יהוה</span>, Elohím de Avraham, Yitsjaq y Ya‘aqov,</p>
+            <p>Tú que te revelaste a los patriarcas como El-Shadday y que cumpliste cada palabra dada a ellos,</p>
+            <p>permítenos caminar en fidelidad al pacto como lo hizo Ya‘aqov al final de su vida.</p>
+            <p>Enséñanos a reconocer las bendiciones que fluyen de Ti,</p>
+            <p>y a transmitirlas a nuestras generaciones como él lo hizo con Yosef, Efrayim y Menashsheh.</p>
+            <p>Purifica nuestro corazón para que nuestra identidad esté en Ti</p>
+            <p>y no en las estructuras de Mitsráyim.</p>
+            <p>Haznos fructificar como Efrayim</p>
+            <p>y danos la memoria fiel de Menashsheh que no olvida Tu pacto.</p>
+            <p><span class="highlight">Yeshúa haMashíaj</span>, Tú que eres <span class="hebrew-term">מריא</span> (Maryah),</p>
+            <p>manifiesta en nosotros la adopción espiritual que proviene de tu obra,</p>
+            <p>haznos uno en Tu Nombre y guía nuestra vida por el Ruaj HaKodesh.</p>
+            <p>Reúnenos como prometiste,</p>
+            <p>y que vivamos cada día con la certeza de que la bendición del Padre</p>
+            <p>se cumple plenamente en Ti, Uno y Ejad con Él.</p>
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya2.html">Continuar con la Aliyá 2</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
