@@ -1,0 +1,2015 @@
+	<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 1:1-17</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+       13. Parashá Shemot (שמות) – Aliyáh 1: (Éxodo 1:1-17) Opresión de los hijos de Israel en Egipto y el decreto del faraón. 
+        <p>
+       Haftaráh: Isaías 27:6-28:13 (Redención de Israel desde el exilio).
+        </p>
+        <p>
+        Brit Hadasháh: Hechos 7:17-19 (La multiplicación del pueblo en Egipto).
+        </p>
+      </h1>
+      <h1>Punto 1. Shemot (Éxodo) Capítulo 1</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>Introducción: La Multiplicación de Israel en Egipto</h2>
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:1</div>
+          <div class="hebrew">
+            וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ
+            בָּאוּ
+          </div>
+          <div class="transliteration">
+            Ve'éleh shemót benei Yisra'él habaím Mitsráyemah ét Ya'akóv ish
+            uvetó bá'u.
+          </div>
+          <div class="literal-translation">
+            Y estos son los nombres de los hijos de Israel, los que vinieron a
+            Mitzráyim (Egipto), con Ya'akov (Jacob), cada varón y su casa
+            vinieron.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:2</div>
+          <div class="hebrew">רְאוּבֵן שִׁמְעוֹן לֵוִי וִיהוּדָה</div>
+          <div class="transliteration">
+            Re'uvén, Shim'ón, Leví viYhudáh.
+          </div>
+          <div class="literal-translation">
+            Re'uvén (Rubén), Shim'ón (Simeón), Leví (Leví), y Yhudáh (Judá).
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:3</div>
+          <div class="hebrew">יִשָּׂשכָר זְבוּלֻן וּבְנְיָמִן</div>
+          <div class="transliteration">Yisajár Zevulún uvenYamín.</div>
+          <div class="literal-translation">
+            Yisajár (Isacar), Zevulún (Zabulón), y Benjamín.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:4</div>
+          <div class="hebrew">דָּן וְנַפְתָּלִי גָּד וְאָשֵׁר</div>
+          <div class="transliteration">Dan veNaftalí, Gad veAshér.</div>
+          <div class="literal-translation">
+            Dan (Dan), y Naftalí (Neftalí), Gad (Gad), y Asher (Aser).
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:5</div>
+          <div class="hebrew">
+            וַיְהִי כָּל־נֶפֶשׁ יֹצְאֵי יֶרֶךְ־יַעֲקֹב שִׁבְעִים נָפֶשׁ וְיוֹסֵף הָיָה
+            בְמִצְרָיִם
+          </div>
+          <div class="transliteration">
+            Vayehí kol-néfesh yotze'éi yérej Ya'akóv shiv'ím náfesh, veYoséf
+            hayáh veMitzráyim.
+          </div>
+          <div class="literal-translation">
+            Y fue toda alma saliente del muslo de Ya'akov setenta almas, y Yosef
+            (José) estaba en Mitzráyim.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="section-container">
+        <h2>Muerte de una Generación y Crecimiento de Israel</h2>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:6</div>
+          <div class="hebrew">וַיָּמָת יוֹסֵף וְכָל־אֶחָיו וְכֹל הַדּוֹר הַהוּא</div>
+          <div class="transliteration">
+            Vayamót Yoséf vejol-ejáv vejol hadór hahú.
+          </div>
+          <div class="literal-translation">
+            Y murió Yosef, y todos sus hermanos, y toda aquella generación.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:7</div>
+          <div class="hebrew">
+            וּבְנֵי יִשְׂרָאֵל פָּרוּ וַיִּשְׁרְצוּ וַיִּרְבּוּ וַיַּעַצְמוּ בִּמְאֹד מְאֹד
+            וַתִּמָּלֵא הָאָרֶץ אֹתָם
+          </div>
+          <div class="transliteration">
+            Uvenéi Yisra'él parú vayishretzú vayirbú vaya'atzmú bi-me'ód me'ód
+            va-timmaléh ha'áretz otám.
+          </div>
+          <div class="literal-translation">
+            Pero los hijos de Israel fructificaron, y se multiplicaron
+            abundantemente, y se hicieron muchos y muy poderosos, y se llenó de
+            ellos la tierra.
+          </div>
+        </div>
+
+        <div class="explanation">
+          <h3>La Señal Profética de la Multiplicación</h3>
+          <p>
+            El crecimiento explosivo de Israel (<span class="highlight"
+              >פָּרוּ וַיִּשְׁרְצוּ</span
+            >
+            -
+            <span class="hebrew-term">parú vayishretzú</span>, "fructificaron y
+            se multiplicaron abundantemente") no es solo un hecho demográfico,
+            sino el cumplimiento de la promesa de
+            <strong
+              >Elohím</strong
+            >
+            a Abraham y Ya'akov.
+          </p>
+          <div class="prophetic-content">
+            <div class="prophetic-section">
+              <div class="prophetic-title">
+                A. La Semilla de Abraham y Mashiach:
+              </div>
+              <p>
+                La descendencia incontable prometida a Abraham es un tipo de la
+                multiplicación del pueblo de
+                <strong
+                  >Elohim</strong
+                >
+                a través de
+                <strong
+                  >Yeshúa</strong
+                >, el
+                <strong
+                  >Mashiach</strong
+                >
+                (Mesías). La persecución en Mitzráyim (Egipto) solo provocó una
+                mayor expansión, tal como la persecución a la Iglesia Primitiva
+                resultó en su crecimiento.
+              </p>
+            </div>
+            <div class="prophetic-section">
+              <div class="prophetic-title">B. La Fuerza de Israel:</div>
+              <p>
+                El texto dice que se hicieron
+                <span class="highlight">"muy poderosos"</span>
+                (<span class="hebrew-term">vaya'atzmú bi-me'ód me'ód</span>).
+                Esta fuerza reside en la promesa y el pacto, no en su poder
+                militar.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="section-container">
+        <h2>El Nuevo Rey y la Estrategia de la Opresión</h2>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:8</div>
+          <div class="hebrew">
+            וַיָּקָם מֶלֶךְ חָדָשׁ עַל־מִצְרָיִם אֲשֶׁר לֹא־יָדַע אֶת־יוֹסֵף
+          </div>
+          <div class="transliteration">
+            Vayákom mélej jadásh 'al-Mitzráyim ashér lo-yadá' et-Yoséf.
+          </div>
+          <div class="literal-translation">
+            Y se levantó un rey nuevo sobre Mitzráyim, el cual no conoció a
+            Yosef.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:9</div>
+          <div class="hebrew">
+            וַיֹּאמֶר אֶל־עַמּוֹ הִנֵּה עַם בְּנֵי יִשְׂרָאֵל רַב וְעָצוּם מִמֶּנּוּ
+          </div>
+          <div class="transliteration">
+            Vayómer el-'amó hinéh 'am benei Yisra'él rav ve'atzúm miménu.
+          </div>
+          <div class="literal-translation">
+            Y dijo a su pueblo: He aquí, el pueblo de los hijos de Israel es más
+            numeroso y más fuerte que nosotros.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:10</div>
+          <div class="hebrew">
+            הָבָה נִתְחַכְּמָה לוֹ פֶּן־יִרְבֶּה וְהָיָה כִּי־תִקְרֶאנָה מִלְחָמָה
+            וְנוֹסַף גַּם־הוּא עַל־שֹׂנְאֵינוּ וְנִלְחַם בָּנוּ וְעָלָה מִן־הָאָרֶץ
+          </div>
+          <div class="transliteration">
+            Haváh nitjakemáh lo pen-yirbéh vehayáh ki-tikrenáh miljamáh ve-nosáf
+            gam-hú 'al-son'éinu ve-niljám bánu ve-'aláh min-ha'áretz.
+          </div>
+          <div class="literal-translation">
+            Ea, seamos astutos con él, no sea que se multiplique, y suceda que
+            cuando venga una guerra, él también se una a nuestros enemigos y
+            pelee contra nosotros, y suba (se vaya) de la tierra.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:11</div>
+          <div class="hebrew">
+            וַיָּשִׂימוּ עָלָיו שָׂרֵי מִסִּים לְמַעַן עַנֹּתוֹ בְּסִבְלֹתָם וַיִּבֶן
+            עָרֵי מִסְכְּנוֹת לְפַרְעֹה אֶת־פִּתֹם וְאֶת־רַעַמְסֵס
+          </div>
+          <div class="transliteration">
+            Vayashímu 'aláv saréi misím lema'an 'anotó ve-sivlotám vayíven 'aréi
+            miskenót le-Far'óh ét-Pitóm ve'ét-Ra'amsés.
+          </div>
+          <div class="literal-translation">
+            Y pusieron sobre él (el pueblo) príncipes de tributo para afligirlo
+            con sus cargas; y edificó ciudades de provisiones para el Faraón: a
+            Pitóm y a Ra'amsés.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:12</div>
+          <div class="hebrew">
+            וְכַאֲשֶׁר יְעַנּוּ אֹתוֹ כֵּן יִרְבֶּה וְכֵן יִפְרֹץ וַיָּקֻצוּ מִפְּנֵי
+            בְּנֵי יִשְׂרָאֵל
+          </div>
+          <div class="transliteration">
+            Veja'ashér ye'anú otó ken yirbéh vején yifrótz vayakútzu mipnéi benei
+            Yisra'él.
+          </div>
+          <div class="literal-translation">
+            Pero cuanto más lo afligían, tanto más se multiplicaba y tanto más
+            crecía, y se hastiaron (tuvieron asco) de los hijos de Israel.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:13</div>
+          <div class="hebrew">וַיַּעֲבִדוּ מִצְרַיִם אֶת־בְּנֵי יִשְׂרָאֵל בְּפָרֶךְ</div>
+          <div class="transliteration">
+            Vaya'avidú Mitzráyim ét-benei Yisra'él be-fárej.
+          </div>
+          <div class="literal-translation">
+            Y los Mitzrím (egipcios) hicieron servir a los hijos de Israel con
+            dureza (tiránicamente).
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:14</div>
+          <div class="hebrew">
+            וַיְמָרְרוּ אֶת־חַיֵּיהֶם בַּעֲבֹדָה קָשָׁה בְּחֹמֶר וּבִלְבֵנִים
+            וּבְכָל־עֲבֹדָה בַּשָּׂדֶה אֵת כָּל־עֲבֹדָתָם אֲשֶׁר עָבְדוּ בָהֶם בְּפָרֶךְ
+          </div>
+          <div class="transliteration">
+            Vaymarerú ét-jayéhem ba'avodáh kasháh bejómer uvilvením
+            uvjol-'avodáh ba-sadéh ét kol-'avodatam ashér 'avedú váhem be-fárej.
+          </div>
+          <div class="literal-translation">
+            Y amargaron sus vidas con trabajo duro, en barro y en ladrillos, y en
+            todo servicio del campo; todo su trabajo en que los hicieron servir
+            fue con dureza.
+          </div>
+        </div>
+
+        <div class="explanation">
+          <h3>Mitzráyim (Egipto) como Símbolo del Mundo y la Opresión</h3>
+          <p>
+            La opresión de Par'óh (Faraón) es un arquetipo de la esclavitud al
+            pecado y al sistema mundial.
+          </p>
+          <div class="prophetic-content">
+            <div class="prophetic-section">
+              <div class="prophetic-title">
+                A. El Rey que no "Conoció" a Yosef:
+              </div>
+              <p>
+                El nuevo rey
+                <span class="highlight"
+                  >"el cual no conoció a Yosef"</span
+                >
+                (v. 8) simboliza una era que ha olvidado la salvación anterior.
+                <strong
+                  >Yosef</strong
+                >
+                es un tipo de
+                <strong
+                  >Mashiach</strong
+                >, quien salvó a Mitzráyim. El rechazo a
+                <strong
+                  >Yeshúa</strong
+                >
+                 lleva a la opresión espiritual.
+              </p>
+            </div>
+            <div class="prophetic-section">
+              <div class="prophetic-title">B. Opresión y Multiplicación:</div>
+              <p>
+                El versículo 12 revela una paradoja divina:
+                <span class="scripture">
+                  "cuanto más lo afligían, tanto más se multiplicaba y tanto más
+                  crecía"
+                </span>
+                .
+              </p>
+              <ul>
+                <li>
+                  <span class="point-letter">i.</span> El plan del enemigo
+                  (satanás/Par'óh) es frustrado por
+                  <strong
+                    >Elohim</strong
+                  >.
+                </li>
+                <li>
+                  <span class="point-letter">ii.</span> En la era del
+                  <strong
+                    >Mashiach</strong
+                  >, el sufrimiento (la "dureza" o
+                  <span class="hebrew-term">be-fárej</span>) a menudo refina y
+                  multiplica a Su pueblo (Hechos 8:4).
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="section-container">
+        <h2>El Plan Genocida y la Valentía de las Parteras</h2>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:15</div>
+          <div class="hebrew">
+            וַיֹּאמֶר מֶלֶךְ מִצְרַיִם לַמְיַלְּדֹת הָעִבְרִיֹּת אֲשֶׁר שֵׁם הָאַחַת
+            שִׁפְרָה וְשֵׁם הַשֵּׁנִית פּוּעָה
+          </div>
+          <div class="transliteration">
+            Vayómer mélej Mitzráyim la-meyaldót ha-'ivriyót ashér shem ha-aját
+            Shifráh ve-shem ha-shenít Pu'áh.
+          </div>
+          <div class="literal-translation">
+            Y dijo el rey de Mitzráyim a las parteras hebreas, cuyo nombre de una
+            era Shifráh, y el nombre de la segunda Pu'áh.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:16</div>
+          <div class="hebrew">
+            וַיֹּאמֶר בְּיַלֶּדְכֶן אֶת־הָעִבְרִיּוֹת וּרְאִיתֶן עַל־הָאֳבְנָיִם
+            אִם־בֵּן הוּא וַהֲמִתֶּן אֹתוֹ וְאִם־בַּת הִיא וָחָיָה
+          </div>
+          <div class="transliteration">
+            Vayómer be-yaledjén ét-ha-'ivriyót u-re'itén 'al-ha'ovnáyim im-ben hú
+            va-hamitén otó ve'im-bat hi va-jayáh.
+          </div>
+          <div class="literal-translation">
+            Y dijo: Cuando asistáis a las hebreas al parir, y las veáis sobre
+            las piedras de parir, si es hijo varón, le daréis muerte, y si es
+            hija mujer, entonces vivirá.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot 1:17</div>
+          <div class="hebrew">
+            וַתִּירֶאןָ הַמְיַלְּדֹת אֶת־הָאֱלֹהִים וְלֹא עָשׂוּ כַּאֲשֶׁר דִּבֶּר
+            אֲלֵיהֶן מֶלֶךְ מִצְרָיִם וַתְּחַיֶּיןָ אֶת־הַיְלָדִים
+          </div>
+          <div class="transliteration">
+            Va-tirána ha-meyaldót ét-ha'Elohím veló 'asú ka'ashér dibér alehén
+            mélej Mitzráyim va-tejayéina ét-ha-yeladím.
+          </div>
+          <div class="literal-translation">
+            Y las parteras temieron a Elohím, y no hicieron como les había
+            mandado el rey de Mitzráyim, sino que dejaron vivir a los niños.
+          </div>
+        </div>
+
+        <div class="explanation">
+          <h3>La Supremacía del Temor a Elohim</h3>
+          <p>
+            El conflicto entre el mandato terrenal y el mandato divino.
+          </p>
+          <div class="prophetic-content">
+            <div class="prophetic-section">
+              <div class="prophetic-title">A. Temor a Elohím:</div>
+              <p>
+                La frase clave es
+                <span class="highlight"
+                  >"Y las parteras temieron a Elohím"</span
+                >. Este temor es la raíz de la sabiduría (Proverbios 9:10) y la
+                obediencia. Su desobediencia al Faraón fue obediencia al
+                <strong
+                  >Creador</strong
+                >.
+              </p>
+            </div>
+            <div class="prophetic-section">
+              <div class="prophetic-title">B. Salvación del Varón:</div>
+              <p>
+                El intento de matar a los varones hebreos es un precursor de los
+                intentos de
+                <strong
+                  >satanás</strong
+                >
+                a lo largo de la historia de destruir la simiente de la mujer, la
+                línea del
+                <strong
+                  >Mashiach</strong
+                >
+                (Mesías).
+              </p>
+              <ul>
+                <li>
+                  <span class="point-letter">Origen:</span> Génesis 3:15, la
+                  enemistad entre la simiente de la mujer y la simiente de la
+                  serpiente.
+                </li>
+                <li>
+                  <span class="point-letter">Paralelo Mesiánico:</span> El rey
+                  <strong
+                    >Herodes</strong
+                  >
+                  intentando matar al niño
+                  <strong
+                    >Yeshúa</strong
+                  >
+                  (Mateo 2:16-18) es una repetición de este mismo plan demoníaco
+                  para evitar la redención.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1>La Porción de la Torá de Shemot (Éxodo) 1:1-17</h1>
+
+    <div class="content-container">
+        <p>
+            La porción de la Torá de Shemot (Éxodo) 1:1-17, que narra la multiplicación del pueblo de Israel en Mitzráyim (Egipto) y el subsiguiente plan opresivo del Faraón, es profundamente profética, revelando el conflicto eterno entre la simiente de la mujer y la simiente de la serpiente, que culmina en Yeshúa HaMashíaj.
+        </p>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+            <p>
+                Esta aliyá (subida) de la Torá ilustra una profecía de cumplimiento dual: la supervivencia milagrosa de Israel a la opresión y el patrón del ataque del enemigo contra el plan de redención, que se repite en el Brit Hadashah.
+            </p>
+
+            <div class="prophetic-content">
+                <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="padding: 10px; border: 1px solid #ddd;">Pasaje Profético (Tanaj)</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Explicación del Cumplimiento</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">Pasaje del Brit Hadashah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Shemot (Éxodo) 1:7</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <div class="literal-translation">(y se multiplicaban y crecían mucho)</div>
+                                La promesa de multiplicación de Israel a pesar de la opresión es un cumplimiento directo de la promesa dada a Avraham, Yitzjak y Ya'akov, asegurando la continuidad de la línea mesiánica. Este crecimiento milagroso, que irritó al Faraón, prefigura la expansión imparable del Reino de Adonai y la simiente de Yeshúa a pesar de la persecución del mundo.
+                            </td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                Romanos 9:6-8
+                                <div class="scripture">
+                                    (Pues no todos los que descienden de Israel son israelitas, ni por ser descendientes de Avraham son todos hijos, sino: En Yitzjak te será llamada descendencia...)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Shemot (Éxodo) 1:16</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <div class="literal-translation">(Si es hijo varón, le daréis muerte, y si es hija mujer, entonces vivirá)</div>
+                                La orden del Faraón de matar a todos los niños varones hebreos al nacer es un ataque satánico directo contra la simiente que produciría al Redentor. Este intento de genocidio se cumple proféticamente en el intento de Herodes de matar a Yeshúa. Herodes, al igual que el Faraón, es un tipo del enemigo que busca destruir al Mashíaj de Adonai a través de la matanza de infantes.
+                            </td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                Matityah (Mateo) 2:16
+                                <div class="scripture">
+                                    (Entonces Herodes, al ver que había sido engañado por los Sabios, se enojó mucho, y mandó matar a todos los niños varones en Bet Lechem [Belén] y en todos sus alrededores, de dos años para abajo...)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;">Shemot (Éxodo) 1:17</td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                <div class="literal-translation">(Y las parteras temieron a Elohím, y no hicieron como les había mandado el rey de Mitzráyim...)</div>
+                                El temor de las parteras a <span class="highlight">Elohím</span> y su desobediencia al Faraón (dejar vivir a los niños) aseguró la supervivencia de Moshe, el liberador. Este acto de fidelidad prefigura la protección divina sobre el Mashíaj y su iglesia de las maquinaciones del dragón (el enemigo), quien busca devorar a la "simiente" redentora.
+                            </td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">
+                                Revelación 12:4-5
+                                <div class="scripture">
+                                    (Y el dragón se puso delante de la mujer que estaba para dar a luz, a fin de devorar al hijo tan pronto como naciese. Y ella dio a luz un hijo varón, el cual regirá a todas las naciones con cetro de hierro...)
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con los Profetas (Tanaj)</h2>
+            <p>
+                Los Profetas del Tanaj reafirman el plan de Adonai de redimir a su pueblo de la opresión, estableciendo el mismo patrón de salvación que culmina en <span class="highlight">Yeshúa</span>:
+            </p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Hoshea (Oseas) 11:1</div>
+                    <div class="scripture">"De Mitzráyim (Egipto) llamé a mi hijo."</div>
+                    <p>
+                        Esta profecía se refiere originalmente a la salida de Israel de la esclavitud, pero es citada en el Brit Hadashah (Matityah 2:15) como el retorno de Yeshúa y su familia de Mitzráyim. Esto establece a Yeshúa como el verdadero y definitivo "<span class="highlight">Hijo</span>" de Adonai, reviviendo la experiencia de Israel en su propia vida.
+                    </p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Yeshayah (Isaías) 52:4-5</div>
+                    <p>
+                        Yeshayah conecta la opresión de Mitzráyim con la opresión sufrida por Israel posteriormente, asegurando que Adonai intervendrá para redimir a Su pueblo y "Mi Nombre es continuamente blasfemado todo el día" por causa de la opresión. Esta profecía de redención por el "<span class="highlight">siervo sufriente</span>" se cumple en Yeshúa.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con el Brit Hadashah (Peshita Aramea)</h2>
+            <p>
+                El Brit Hadashah, tomando como base la Peshita, conecta esta narrativa de opresión y preservación directamente con la vida de Yeshúa HaMashíaj:
+            </p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Matityah (Mateo) 2:13</div>
+                    <div class="aramaic" style="text-align: right;">ܩܘܡ ܕܒܪ ܠܛܠܝܐ ܘܠܐܡܗ ܘܥܪܘܩ ܠܟ ܠܡܨܪܝܢ ܘܗܘܝ ܬܡܢ ܥܕܡܐ ܕܐܡܪ ܐܢܐ ܠܟ ܙܥܘܪܐ ܓܝܪ ܒܥܐ ܗܪܘܕܣ ܠܡܛܠܝܐ ܠܡܘܒܕܘܬܗ</div>
+                    <div class="literal-translation">"Levántate, toma al niño y a su madre y huye a Mitzráyim, y permanece allí hasta que yo te diga, porque Herodes buscará al niño para destruirlo."</div>
+                    <p>
+                        Así como Israel fue oprimido y tuvo que huir, Yeshúa también tuvo que huir a <span class="highlight">Mitzráyim</span> para escapar del decreto de muerte, repitiendo el patrón de preservación divina de la línea mesiánica.
+                    </p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Hechos (Hechos) 7:17-19</div>
+                    <p>
+                        El mártir Estéfanos, en su discurso, resume esta aliyá de Shemot, identificando al Faraón como el opresor que intentó destruir al pueblo:
+                        <div class="scripture">
+                            "Cuando se acercaba el tiempo de la promesa que Adonai había jurado a Avraham, el pueblo creció y se multiplicó en Mitzráyim, hasta que se levantó otro rey en Mitzráyim que no conocía a Yosef. Este usó el engaño contra nuestro pueblo e hizo mal a nuestros padres para que expusieran a sus hijos para que no vivieran."
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Aplicación Espiritual Conectada a la Aliyá</h2>
+            <p>
+                La aplicación espiritual central de Shemot 1:1-17 para la vida del creyente mesiánico se enfoca en la perseverancia y la obediencia en medio de la persecución.
+            </p>
+
+            <div class="explanation">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Fe en la Multiplicación Divina (Shemot 1:7)</div>
+                    <p>
+                        <span class="point-letter">Aplicación:</span> El enemigo (representado por el Faraón) intentará oprimir al pueblo de Adonai (la <span class="highlight">Kehiláh</span> o congregación) para detener su crecimiento y testimonio (su fruto). Sin embargo, la promesa de Adonai prevalece. El crecimiento no es por fuerza humana, sino por el poder del <span class="highlight">Ruach HaKodesh</span>, que hace que el pueblo de Yeshúa "fructifique y se multiplique" a pesar de la adversidad.
+                    </p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Carácter de Yeshúa como Preservador (Shemot 1:17)</div>
+                    <p>
+                        <span class="point-letter">Aplicación:</span> Las parteras hebreas temieron más a <span class="highlight">Elohím</span> que al rey. Este temor no es cobardía, sino reverencia que lleva a la obediencia justa. <span class="highlight">Yeshúa HaMashíaj</span> es el Liberador que fue preservado de niño para poder preservarnos a nosotros. El creyente está llamado a mostrar valentía y obediencia a la Torá por encima de los decretos del mundo.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <h1>Punto 2. Haftaráh: Isaías 27:6-28:13 (Redención de Israel desde el exilio).</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 27:6</div>
+                <div class="hebrew">הַבָּאִים יַשְׁרֵשׁ יַעֲקֹב יָצִיץ וּפָרַח יִשְׂרָאֵל וּמָלְאוּ פְנֵי תֵבֵל תְּנוּבָה</div>
+                <div class="transliteration">Habá'ím yashrésh Ya'akóv, yatzítz ufarách Yisra'él, umal'ú fenéi tevél tenu-váh.</div>
+                <div class="translation">Traducción Literal: Los que vendrán harán arraigar a Ya'akov; echará brotes y florecerá Yisra'el, y llenarán la faz del mundo con fruto.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 27:7</div>
+                <div class="hebrew">הַכְּמַכַּת מַכֵּהוּ הִכָּהוּ אִם־כְּהֶרֶג הֲרֻגָיו הֹרָג</div>
+                <div class="transliteration">Hak-ma-kat mak-kéhu hik-káhu im-ke-héreg harugáv horág?</div>
+                <div class="translation">Traducción Literal: ¿Acaso lo hirió (Adonai) como la herida de quien lo hirió (a Israel)? ¿O acaso fue matado como la matanza de sus muertos?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 27:8</div>
+                <div class="hebrew">בְּסַאסְּאָה שִׁלְּחֶנָּה רִידָהּ הָגָה בְּרוּחַ קָשָׁה בְּיוֹם קָדִים</div>
+                <div class="transliteration">Be-sa'sa'áh shil-lejjénah rí-dah, hagáh be-rúaj kasháh be-yóm qadím.</div>
+                <div class="translation">Traducción Literal: Con medida la enviaste (a Israel) al destierro. Quitó Su mano. Gemía Él (el pueblo) con viento fuerte, en día de oriente.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 27:9</div>
+                <div class="hebrew">לָכֵן בְּזֹאת יְכֻפַּר עֲו‍ֹן יַעֲקֹב וְזֶה כָּל־פְּרִי הָסִר חַטָּאתוֹ בְּשׂוּמוֹ כָּל־אַבְנֵי מִזְבֵּחַ כְּאַבְנֵי־גִיר מְנֻפָּצוֹת לֹא־יָקֻמוּ אֲשֵׁרִים וְחַמָּנִים</div>
+                <div class="transliteration">Lajén bezót yejupár 'avón Ya'akóv, vezéh kol-perí hasír jattatoh, be-súmo kol-avnéi mizbéaj ke-avnéi-gír menupatzót, lo-yaqúmu asherím ve-jammaním.</div>
+                <div class="translation">Traducción Literal: Por tanto, con esto será expiada la iniquidad de Ya'akov; y este será todo el fruto de quitar su pecado: cuando ponga todas las piedras del altar como piedras de cal pulverizadas, no se levantarán las imágenes de Aserá ni los altares de incienso.</div>
+            </div>
+
+            <div class="explanation">
+                <h3>Análisis de Expiación y Redención</h3>
+                <p>El verso 9 establece una conexión directa entre la expiación (<span class="highlight">Yejupár 'avón Ya'akóv</span>) y la eliminación de la idolatría. La expiación se completa cuando las piedras del altar (símbolo de culto) se rompen como cal (destrucción de la idolatría), lo cual es un fruto esencial para <span class="highlight">quitar su pecado</span>.</p>
+                <ul>
+                    <li><span class="point-letter">A.</span> La purificación no es solo ritual, sino también práctica, eliminando los <span class="hebrew-term">אֲשֵׁרִים</span> (Asherim) y <span class="hebrew-term">וְחַמָּנִים</span> (Jammanim).</li>
+                    <li><span class="point-letter">B.</span> Este proceso prefigura la obra mesiánica de <span class="highlight">Yeshúa</span>, quien ofrece la expiación final, permitiendo la verdadera purificación del pueblo y su posterior retorno.</li>
+                </ul>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 27:10</div>
+                <div class="hebrew">כִּי עִיר בְּצוּרָה בָּדָד נָוֶה מְשֻׁלָּח וְנֶעֱזָב כַּמִּדְבָּר שָׁם יִרְעֶה עֵגֶל וְשָׁם יִרְבָּץ וְכִלָּה סְעִפֶּיהָ</div>
+                <div class="transliteration">Ki 'ír betzuráh badád náveh, meshullájh ve-ne'ezáv ka-midbár; sham yir'éh 'éguel vesham yirbátz ve-jil-láh se'i-péha.</div>
+                <div class="translation">Traducción Literal: Porque la ciudad fortificada está solitaria, una morada enviada lejos y abandonada como el desierto; allí pacerá el becerro, y allí se acostará, y acabará sus ramas.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 27:11</div>
+                <div class="hebrew">בִּיבֹשׁ קְצִירָהּ תִּשָּׁבַרְנָה נָשִׁים בָּאוֹת מְאוֹרְרוֹת אוֹתָהּ כִּי לֹא עַם בִּינוֹת הוּא עַל־כֵּן לֹא־יְרַחֲמֶנּוּ עֹשֵׂהוּ וְיֹצְרוֹ לֹא יְחֻנֶּנּוּ</div>
+                <div class="transliteration">Bi-vósh qetzírah tishavárnah; nashím ba'ót me'orerót otáh; ki lo 'am binót hu, 'al-kén lo yerajaménu 'oséhu ve-yotzeró lo yejunénu.</div>
+                <div class="translation">Traducción Literal: Al secarse su cosecha, serán quebradas; mujeres que vienen la encenderán (el fuego); porque no es pueblo de entendimiento, por tanto, Aquel que lo hizo no tendrá misericordia de él, y Aquel que lo formó no tendrá piedad de él.</div>
+            </div>
+            
+            <div class="section-divider"></div>
+
+            <div class="prophetic-content">
+                <h2>El Recogimiento Final de Israel</h2>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Promesa del Reencuentro (27:12-13)</div>
+                    <div class="verse-container">
+                        <div class="verse-number">Yeshayah 27:12</div>
+                        <div class="hebrew">וְהָיָה בַּיּוֹם הַהוּא יַחְבֹּט יְהוָה מִשִּׁבֹּלֶת הַנָּהָר עַד־נַחַל מִצְרָיִם וְאַתֶּם תְּלֻקְּטוּ לְאַחַד אֶחָד בְּנֵי יִשְׂרָאֵל</div>
+                        <div class="transliteration">Ve-hayáh ba-yóm ha-hú, yajbót <span class="highlight">יהוה</span> mi-shibbólet ha-nahár 'ad-Nájhal Mitzráyim; ve-'atém teluqqetú le-'ajád ejád benei Yisra'él.</div>
+                        <div class="translation">Traducción Literal: Y será <span class="highlight">en aquel día</span>, que יהוה golpeará (trillará) desde la corriente del Río (Éufrates) hasta el arroyo de Mitzráyim; y ustedes serán recogidos <span class="highlight">uno a uno</span>, oh hijos de Yisra'el.</div>
+                    </div>
+
+                    <div class="verse-container">
+                        <div class="verse-number">Yeshayah 27:13</div>
+                        <div class="hebrew">וְהָיָה בַּיּוֹם הַהוּא יִתָּקַע שׁוֹפָר גָּדוֹל וּבָאוּ הָאֹבְדִים בְּאֶרֶץ אַשּׁוּר וְהַנִּדָּחִים בְּאֶרֶץ מִצְרָיִם וְהִשְׁתַּחֲווּ לַיְהוָה בְּהַר הַקֹּדֶשׁ בִּירוּשָׁלָ‍ִם</div>
+                        <div class="transliteration">Ve-hayáh ba-yóm ha-hú yit-taqá' <span class="highlight">shofár gadól</span>; u-vá'u ha-ovdím be'eretz Ashúr ve-han-nid-dajím be'eretz Mitzráyim, ve-hishtajavú la-<span class="highlight">יהוה</span> be-Har ha-Qódesh bi-Yerushaláyim.</div>
+                        <div class="translation">Traducción Literal: Y será <span class="highlight">en aquel día</span> que será tocado un <span class="highlight">gran shofár (trompeta)</span>; y vendrán los perdidos en la tierra de Ashúr (Asiria) y los desterrados en la tierra de Mitzráyim (Egipto), y se postrarán ante יהוה en el Monte de la Santidad en Yerushaláyim (Jerusalén).</div>
+                    </div>
+
+                    <div class="explanation">
+                        <h4>Interpretación Mesiánica del 'Gran Shofár'</h4>
+                        <p>El toque del <span class="hebrew-term">שׁוֹפָר גָּדוֹל</span> (Shofár Gadól) es un símbolo escatológico de la redención final de Israel y su reunión. La profecía es clara: el recogimiento será personal (<span class="highlight">uno a uno</span>) y universal (desde Asiria hasta Egipto).</p>
+                        <ul>
+                            <li>Este evento apunta a los <span class="highlight">Últimos Días</span>, culminando con la manifestación del Mesías.</li>
+                            <li>La tradición judía mesiánica ve esto como la restauración de las <span class="highlight">Doce Tribus</span> a la tierra de Israel, bajo el gobierno del Mesías Yeshúa.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Yeshayah (Isaías) Capítulo 28</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:1</div>
+                <div class="hebrew">הוֹי עֲטֶרֶת גֵּאוּת שִׁכֹּרֵי אֶפְרַיִם וְצִיץ נֹבֵל צְבִי תִפְאַרְתּוֹ אֲשֶׁר עַל־רֹאשׁ גֵּיא שְׁמָנִים הֲלוּמֵי יָיִן</div>
+                <div class="transliteration">Hói 'atérét ge'út shikkórei Efráyim, vetzítz novél tzeví tif'artó, ashér 'al-rósh gei shemaním, halúmei yayín.</div>
+                <div class="translation">Traducción Literal: ¡Ay de la corona de soberbia de los borrachos de Efráyim, y de la flor que se marchita, el esplendor de su hermosura, que está sobre la cabeza del valle fértil, de los vencidos por el vino!</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:2</div>
+                <div class="hebrew">הִנֵּה חָזָק וְאַמִּץ לָאדוֹן כְּסַחְרֶמֶת בָּרָד שֹׁעֵר קָטֶב כְּזֶרֶם מַיִם כַּבִּירִים שֹׁטְפִים הִנִּיחַ לָאָרֶץ בְּיָד</div>
+                <div class="transliteration">Hinéh jazáq ve'ammítz la'Adón, ke-sájeremet barád sho'ér qátev, ke-zérem máyim kabbirím shotefím, hin-níaj la'áretz beyád.</div>
+                <div class="translation">Traducción Literal: He aquí, fuerte y poderoso tiene Adonai (alguien); como tormenta de granizo, tempestad destructora, como torrente de aguas poderosas que desbordan, lo arrojará por tierra con violencia.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:3</div>
+                <div class="hebrew">בְּרַגְלַיִם תֵּרָמַס עֲטֶרֶת גֵּאוּת שִׁכּוֹרֵי אֶפְרָיִם</div>
+                <div class="transliteration">Be-ragláyim teramás 'atérét ge'út shikkórei Efráyim.</div>
+                <div class="translation">Traducción Literal: Con los pies será hollada la corona de soberbia de los borrachos de Efráyim.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:4</div>
+                <div class="hebrew">וְהָיְתָה צִיצַת נֹבֵל צְבִי תִפְאַרְתּוֹ אֲשֶׁר עַל־רֹאשׁ גֵּיא שְׁמָנִים כְּבִכּוּרָהּּ בְּטֶרֶם קַיִץ אֲשֶׁר יִרְאֶה הָרֹאֶה אוֹתָהּ בְּעוֹדֶנָּה בְּכַפּוֹ יִבְלָעֶנָּה</div>
+                <div class="transliteration">Ve-hayetáh tzítzat novél tzeví tif'artó, ashér 'al-rósh gei shemaním, ki-víkuráh betérem qáyitz; ashér yir'éh ha-ró'éh otáh, be'odénah be-kappó yivla'énah.</div>
+                <div class="translation">Traducción Literal: Y será la flor que se marchita, el esplendor de su hermosura, que está sobre la cabeza del valle fértil, como el primer higo temprano antes del verano, el cual el que lo ve, en cuanto está en su mano, se lo come.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:5</div>
+                <div class="hebrew">בַּיּוֹם הַהוּא יִהְיֶה יְהוָה צְבָאוֹת לַעֲטֶרֶת צְבִי וְלִצְפִירַת תִּפְאָרָה לִשְׁאָר עַמּוֹ</div>
+                <div class="transliteration">Ba-yóm ha-hú yihyéh <span class="highlight">יהוה Tzeva'ót</span> la-'atérét tzeví ve-litzfirát tif'aráh li-sh'ár 'ammó.</div>
+                <div class="translation">Traducción Literal: <span class="highlight">En aquel día</span>, יהוה Tzva'ót (de los Ejércitos) será por corona de esplendor y por diadema de hermosura al remanente de Su pueblo.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:6</div>
+                <div class="hebrew">וּלְרוּחַ מִשְׁפָּט לַיּוֹשֵׁב עַל־הַמִּשְׁפָּט וְלִגְבוּרָה מְשִׁיבֵי מִלְחָמָה לַשָּׁעַר</div>
+                <div class="transliteration">U-le-rúaj mishpát la-yoshév 'al-ha-mishpát, ve-ligvuráh meshivéi miljamáh la-shá'ar.</div>
+                <div class="translation">Traducción Literal: Y por espíritu de juicio al que se sienta a juzgar, y por fuerza a los que hacen retroceder la batalla a la puerta.</div>
+            </div>
+
+            <div class="prophetic-content">
+                <h2>El Contraste: Juicio y Gloria Mesiánica</h2>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Promesa al Remanente (28:5-6)</div>
+                    <p>Mientras que Efráyim (el Reino del Norte) es condenado por su soberbia y embriaguez (28:1-4), el verso 5 introduce un cambio radical: <span class="highlight">יהוה Tzva'ót</span> mismo se convierte en la <span class="highlight">corona de esplendor</span> para el remanente de Su pueblo. Esto anticipa la era mesiánica.</p>
+                    <p>El Mesías, como agente de Adonai:</p>
+                    <ul>
+                        <li>Traerá un <span class="highlight">espíritu de juicio</span> perfecto (mishpát).</li>
+                        <li>Será la <span class="highlight">fuerza</span> para la victoria final.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:7</div>
+                <div class="hebrew">וְגַם־אֵלֶּה בַּיַּיִן שָׁגוּ וּבַשֵּׁכָר תָּעוּ כֹּהֵן וְנָבִיא שָׁגוּ בַשֵּׁכָר נִבְלְעוּ מִן־הַיַּיִן תָּעוּ מִן־הַשֵּׁכָר שָׁגוּ בָּרֹאֶה פָּקוּ פְּלִילִיָּה</div>
+                <div class="transliteration">Ve-gam-'éleh ba-yáyin shagu u-va-shejár tá'u; kohén ve-naví shagu ba-shejár, nivle'ú min-ha-yáyin, tá'u min-ha-shejár, shagu va-ro'éh, paqú pelilíyah.</div>
+                <div class="translation">Traducción Literal: Y también estos se han desviado por el vino, y por la bebida embriagante han errado; sacerdote y profeta se han desviado por la bebida embriagante, han sido tragados por el vino, han errado por la bebida embriagante, se han desviado en la visión, tropiezan en el juicio.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:8</div>
+                <div class="hebrew">כִּי כֹּל שֻׁלְחָנוֹת מָלְאוּ קִיא צֹאָה בְּלִי מָקוֹם</div>
+                <div class="transliteration">Ki jol shuljánót male'ú qí tzo'áh belí maqóm.</div>
+                <div class="translation">Traducción Literal: Porque todas las mesas están llenas de vómito asqueroso, sin lugar limpio.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:9</div>
+                <div class="hebrew">אֶת־מִי יוֹרֶה דֵעָה וְאֶת־מִי יָבִין שְׁמוּעָה גְּמוּלֵי מֵחָלָב עַתִּיקֵי מִשָּׁדַיִם</div>
+                <div class="transliteration">Et-mí yoréh de'áh? Ve'et-mí yavín shemu'áh? Gemuléi me-jálav, 'attiqéi mi-shaddáyim.</div>
+                <div class="translation">Traducción Literal: ¿A quién enseñará conocimiento? ¿Y a quién hará entender la noticia? ¿A los destetados de la leche, a los apartados de los pechos?</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:10</div>
+                <div class="hebrew">כִּי צַו לָצָו צַו לָצָו קַו לָקָו קַו לָקָו זְעֵיר שָׁם זְעֵיר שָׁם</div>
+                <div class="transliteration">Ki <span class="highlight">tzav la-tzav, tzav la-tzav, qav la-qav, qav la-qav, ze'éir sham, ze'éir sham</span>.</div>
+                <div class="translation">Traducción Literal: Porque es mandamiento sobre mandamiento, mandamiento sobre mandamiento, línea sobre línea, línea sobre línea, un poquito aquí, un poquito allí.</div>
+            </div>
+
+            <div class="explanation">
+                <h3>El Concepto de <span class="hebrew-term">צַו לָצָו</span> y su uso Mesiánico</h3>
+                <p>El verso 10, con su repetición rítmica de <span class="highlight">Tzav la-tzav</span> (mandamiento sobre mandamiento) y <span class="highlight">Qav la-qav</span> (línea sobre línea), es la burla de los líderes corruptos a la enseñanza del profeta. La acusan de ser demasiado simple, como si estuviera hablando a niños.</p>
+                <p>Sin embargo, Adonai responde a esta burla transformando su escarnio en juicio:</p>
+                <div class="verse-container">
+                    <div class="verse-number">Yeshayah 28:11</div>
+                    <div class="hebrew">כִּי בְּלַעֲגֵי שָׂפָה וּבְלָשׁוֹן אַחֶרֶת יְדַבֵּר אֶל־הָעָם הַזֶּה</div>
+                    <div class="transliteration">Ki ve-la'aguéi safáh u-velashón ajéret yedabér el-ha-'am hazéh.</div>
+                    <div class="translation">Traducción Literal: Ciertamente, con <span class="highlight">tartamudeo de labios y en otra lengua</span> hablará a este pueblo.</div>
+                </div>
+                <p>La "otra lengua" sería la de sus conquistadores. El <span class="highlight">Brit Jadashá (Nuevo Testamento)</span> cita Yeshayah 28:11-12 en 1 Corintios 14:21, aplicándolo al don de lenguas como señal para los incrédulos. Esto establece una conexión profética directa: la incomprensión de la Torah (<span class="highlight">Tzav la-tzav</span>) lleva a que el juicio de Adonai se manifieste a través de señales que no entenderán.</p>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:12</div>
+                <div class="hebrew">אֲשֶׁר אָמַר אֲלֵיהֶם זֹאת הַמְּנוּחָה הָנִיחוּ לֶעָיֵף וְזֹאת הַמַּרְגֵּעָה וְלֹא אָבוּא שְׁמוֹעַ</div>
+                <div class="transliteration">Ashér amár alehém: zót ha-<span class="highlight">menujáh</span>, haníju le-'ayéf, ve-zót ha-margue'áh. Ve-ló avú shmó'a.</div>
+                <div class="translation">Traducción Literal: Al cual dijo: Esta es la <span class="highlight">menujá (el reposo)</span>, den descanso al cansado, y esta es la tranquilidad; mas no quisieron escuchar.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 28:13</div>
+                <div class="hebrew">וְהָיְתָה לָהֶם דְּבַר־יְהוָה צַו לָצָו צַו לָצָו קַו לָקָו קַו לָקָו זְעֵיר שָׁם זְעֵיר שָׁם לְמַעַן יֵלְכוּ וְכָשְׁלוּ אָחוֹר וְנִשְׁבָּרוּ וְנוֹקְשׁוּ וְנִלְכָּדוּ</div>
+                <div class="transliteration">Ve-hayetáh la-hém devar-<span class="highlight">יהוה</span> tzav la-tzav, tzav la-tzav, qav la-qav, qav la-qav, ze'éir sham, ze'éir sham, le-ma'an yeljú ve-jashlú ajór ve-nishbarú ve-noqshú ve-nilkadú.</div>
+                <div class="translation">Traducción Literal: Y les será la palabra de יהוה mandamiento sobre mandamiento, mandamiento sobre mandamiento, línea sobre línea, línea sobre línea, un poquito aquí, un poquito allí; para que vayan y caigan de espaldas, y sean quebrantados, y enlazados, y apresados.</div>
+            </div>
+        </div>
+    </div>
+    <h1>La porción de Yeshayah (Isaías) 27:6-28:13</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h2>Visión General de la Profecía</h2>
+            <p>La porción de Yeshayah (Isaías) 27:6-28:13 es una profunda profecía que entrelaza la restauración final de Israel con la venida del Mashíaj. Muestra el juicio de Adonai sobre la soberbia y la falta de discernimiento, contrastándolo con Su promesa de ser la verdadera Corona y el Fundamento seguro para el remanente.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+            <p>Esta sección profética se cumple en <strong>Yeshúa HaMashíaj</strong> como la Roca angular y el Juez perfecto, la antítesis de los líderes religiosos embriagados por su propia sabiduría, que rechazaron Su mensaje de reposo.</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Yeshayah 27:6</div>
+                    <p class="translation">La promesa de que Israel "echará brotes y florecerá... y llenarán la faz del mundo con fruto" se cumple en la expansión del Reino Mesiánico de Yeshúa HaMashíaj a través de Su remanente fiel.</p>
+                    <p class="scripture">Romanos 11:12 (...y llenarán la faz del mundo con fruto.) El fruto de Israel, la salvación, se extiende a todas las naciones por medio del Mashíaj, quien es la raíz y el tallo de Yesé. (Y si su caída es la riqueza del mundo, y su disminución es la riqueza de las naciones, ¡cuánto más su plenitud!)</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Yeshayah 28:5</div>
+                    <p class="translation">יהוה Tzva'ót promete ser la "<strong class="highlight">corona de esplendor y diadema de hermosura al remanente de Su pueblo</strong>."</p>
+                    <p class="scripture">1 Kefa (Pedro) 5:4 (...יהוה Tzva'ót será por corona de esplendor...) Esta es una profecía de que Adonai mismo, en la persona de Yeshúa HaMashíaj, será la única gloria y autoridad del pueblo redimido. (Y cuando se manifieste el Pastor supremo, recibiréis la corona inmarcesible de la gloria.)</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Yeshayah 28:10</div>
+                    <p class="translation">El mensaje de Adonai (mandamiento sobre mandamiento, línea sobre línea) era rechazado con burla por los líderes, quienes lo consideraban demasiado simple o para niños.</p>
+                    <p class="literal-translation">(...<span class="hebrew-term">tzav la-tzav, tzav la-tzav, qav la-qav</span>...)</p>
+                    <p class="scripture">1 Corintios 1:23 Este método simple de enseñanza, rechazado por los sabios de la época, se convierte en el estándar de predicación del Brit Hadashah, que es locura para el mundo, pero poder de Adonai. (Mas nosotros predicamos al Mashíaj ejecutado, para los judíos ciertamente piedra de tropiezo, y para los gentiles locura.)</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Yeshayah 28:11-12</div>
+                    <p class="translation">Adonai anuncia que hablará al pueblo a través de "<strong class="highlight">tartamudeo de labios y en otra lengua</strong>" porque rechazaron Su mensaje de reposo (<span class="hebrew-term">menujá</span>).</p>
+                    <p class="scripture">1 Corintios 14:21 (Ciertamente, con tartamudeo de labios y en otra lengua hablará a este pueblo...) El Ruach HaKodesh confirma esta profecía en el Brit Hadashah, donde el don de lenguas sirve como señal de juicio y advertencia para aquellos que rechazan la verdad revelada en Yeshúa. (En la Torá está escrito: En otras lenguas y con otros labios hablaré a este pueblo, y ni aun así me escucharán, dice Adonai.)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con los Profetas (Tanaj)</h2>
+            <p>Otros profetas del Tanaj amplían el tema del juicio a los líderes negligentes y la promesa de un remanente fiel que encuentra su fundamento solo en Adonai:</p>
+            <ul>
+                <li>
+                    <strong class="prophetic-title">Yejézqel (Ezequiel) 34:2-3:</strong> Condena directa a los pastores de Israel, similar al juicio sobre los sacerdotes y profetas embriagados de Yeshayah 28:7, por no cuidar al rebaño, sino pastorearse a sí mismos. La crítica de Yeshayah a los líderes religiosos por su borrachera y su falta de entendimiento profético (28:7-8) es un lamento constante en los profetas.
+                </li>
+                <li>
+                    <strong class="prophetic-title">Mijah (Miqueas) 4:7:</strong> Refuerza el concepto del <strong class="highlight">remánte (<span class="hebrew-term">she’ar</span>)</strong> mencionado en Yeshayah 27:12 y 28:5. "Y haré de la que cojea un remanente, y de la que fue expulsada una nación fuerte; y יהוה reinará sobre ellos en el monte Tzión desde ahora y para siempre." Adonai se glorificará en los pocos que permanezcan.
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con el Brit Hadashah (Peshita Aramea)</h2>
+            <p>El Brit Hadashah confirma que Yeshúa HaMashíaj es el cumplimiento de la roca fundamental y el ofrecimiento de reposo, que fue rechazado por los líderes religiosos.</p>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1 Kefa (Pedro) 2:6-8</div>
+                    <p class="translation">Kefa cita directamente el pasaje de la Roca Fundamento que sigue a esta aliyá (Yeshayah 28:16) y lo aplica inconfundiblemente a Yeshúa: "Porque dice la Escritura: He aquí, pongo en Tzión una <strong class="highlight">Piedra, elegida, preciosa y fundamental</strong>, y el que crea en ella no será avergonzado... una Piedra de tropiezo y una Roca de escándalo." Los líderes de Israel se tropezaron en la misma Roca (Yeshúa) que Adonai había puesto como fundamento.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Matityah (Mateo) 11:28-29</div>
+                    <p class="translation">La oferta de reposo (<span class="hebrew-term">menujá</span>) que fue rechazada por los líderes en Yeshayah 28:12 es ofrecida directamente por Yeshúa HaMashíaj, el único que puede dar el verdadero descanso de la Torá y de la vida: "Venid a mí todos los que estáis trabajados y cargados, y <strong class="highlight">yo os daré descanso</strong>. Tomad mi yugo sobre vosotros y aprended de mí, que soy manso y humilde de corazón, y hallaréis descanso para vuestras almas."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Aplicación Espiritual Conectada a la Aliyá</h2>
+            <p>Esta porción de Yeshayah enseña que el camino hacia la restauración prometida (27:6) se logra mediante el rechazo a la soberbia humana y la aceptación del reposo y la instrucción divina.</p>
+
+            <div class="explanation">
+                <ul>
+                    <li>
+                        <span class="point-letter">A.</span> <strong class="prophetic-title">Rechazo a la Soberbia (Yeshayah 28:1-8):</strong> La "corona de soberbia de los borrachos de Efráyim" representa a todo liderazgo (tanto secular como religioso) que confía en su propia fuerza, riqueza o entendimiento. La aplicación es renunciar a la "borrachera espiritual" de la autosuficiencia y el orgullo doctrinal, que impide discernir la verdad simple de la Torá y el Mashíaj.
+                    </li>
+                    <li>
+                        <span class="point-letter">B.</span> <strong class="prophetic-title">Aceptación de la Instrucción Progresiva (Yeshayah 28:10):</strong> El creyente mesiánico debe adoptar la humildad del niño destetado (28:9), dispuesto a recibir la instrucción de Adonai de forma gradual: <span class="hebrew-term">tzav la-tzav</span> (mandamiento sobre mandamiento). El discipulado en Yeshúa requiere paciencia y la voluntad de aprender continuamente los fundamentos de la Torá y el Brit Hadashah.
+                    </li>
+                    <li>
+                        <span class="point-letter">C.</span> <strong class="prophetic-title">El Fundamento del Mashíaj (Yeshayah 28:16):</strong> Aunque no está en la aliyá exacta, el mensaje culmina en la promesa de la Roca segura. La aplicación espiritual es que el único refugio de las tormentas del juicio y la única base para la vida eterna es <strong class="highlight">Yeshúa HaMashíaj, la Roca preciosa de Tzión</strong>. El creyente debe edificar su vida y su fe solo sobre Él.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>Ejemplo de Verso (Yeshayah 28:10)</h1>
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 28:10</div>
+            <div class="hebrew">כִּי צַו לָצָו צַו לָצָו קַו לָקָו קַו לָקָו זְעֵיר שָׁם זְעֵיר שָׁם</div>
+            <div class="transliteration">Ki tzav la-tzav tzav la-tzav qav la-qav qav la-qav ze'er sham ze'er sham</div>
+            <div class="translation">Porque (es) mandamiento sobre mandamiento, mandamiento sobre mandamiento, línea sobre línea, línea sobre línea, un poquito allí, un poquito allí.</div>
+            <div class="literal-translation">*(Traducción literal interlineal para ejemplificar la burla de los líderes, que consideraban la enseñanza simple y repetitiva.)*</div>
+        </div>
+    </div>
+    <h1>Punto 3. Brit Hadasháh: Hechos 7:17-19 (La multiplicación del pueblo en Egipto).</h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>El Discurso de Esteban</h2>
+        <div class="verse-container">
+          <div class="verse-number">Hechos 7:17</div>
+          <div class="aramaic">
+            ܟܕ ܕܢܚܝܢ ܗܘܘ ܕܝܢ ܙܒܢܐ ܕܡܘܠܟܢܐ ܗܘ ܕܐܠܗܐ ܕܐܫܬܒܥ ܠܐܒܪܗܡ ܪܒܐ ܗܘܐ ܥܡܐ ܘܤܓܝ ܒܡܨܪܝܢ܀
+          </div>
+          <div class="transliteration">
+            Ked da-njin ha-waw dain zabná da-mowlekáná hu da-Aláha da-esh-tabá' le-Ab-ráhám,
+            rabá ha-wá 'amá we-ságí ba-Mez-ráyín.
+          </div>
+          <div class="translation">
+            <span class="highlight">Traducción Literal:</span> Pero cuando se acercaba el tiempo de la
+            promesa, aquella de Elohím, la que Él juró a Avraham, el pueblo creció y se
+            multiplicó en Mitzráyim (Egipto).
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Hechos 7:18</div>
+          <div class="aramaic">ܥܕܡܐ ܕܩܡ ܡܠܟܐ ܐܚܪܢܐ ܕܠܐ ܝܕܥ ܗܘܐ ܠܝܘܤܦ܀</div>
+          <div class="transliteration">
+            Ad-má da-qam málká aj-ráná da-lá yad-á' ha-wá le-Yóséf.
+          </div>
+          <div class="translation">
+            <span class="highlight">Traducción Literal:</span> Hasta que se levantó otro rey, el cual no
+            conocía a Yosef (José).
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Hechos 7:19</div>
+          <div class="aramaic">
+            ܗܢܐ ܒܢܟܠܐ ܓܡܪ ܥܠ ܫܪܒܬܢ ܘܐܒܐܫ ܠܐܒܗܬܢ ܘܫܕܝ ܝܠܘܕܝܗܘܢ ܕܠܐ ܢܚܘܢ܀
+          </div>
+          <div class="transliteration">
+            Háná be-neklá gamar 'al shar-bat-án wa-ba'ásh le-aba-hát-án wa-shad-í ya-lu-dái-hón da-lá
+            ne-jún.
+          </div>
+          <div class="translation">
+            <span class="highlight">Traducción Literal:</span> Este, con engaño, actuó astutamente contra
+            nuestro linaje, e hizo mal a nuestros padres, y expuso a sus hijos para que no
+            vivieran.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h3>Análisis Mesiánico del Pasaje</h3>
+      <div class="explanation">
+        <p>
+          Esteban, en su defensa ante el Sanedrín, está rastreando la historia de Israel para
+          mostrar la fidelidad de <strong>Elohím</strong> y, al mismo tiempo, la persistente
+          <span class="highlight">resistencia del pueblo</span> hacia los mensajeros divinos,
+          prefigurando su rechazo a Yeshúa.
+        </p>
+        <ul>
+          <li>
+            <span class="point-letter">A.</span> La referencia a la
+            <span class="highlight">"promesa que Él juró a Avraham"</span> (v. 17) subraya la
+            naturaleza inmutable del pacto, que es la base de la esperanza mesiánica. El Mesías
+            proviene del linaje de Avraham.
+          </li>
+          <li>
+            <span class="point-letter">B.</span> El crecimiento del pueblo en
+            <span class="highlight">Mitzráyim (Egipto)</span>, a pesar de la opresión, es un
+            patrón de
+            <span class="highlight">supervivencia sobrenatural</span> que se repite en la historia
+            judía y se ve reflejado en el nacimiento y la preservación de Yeshúa.
+          </li>
+          <li>
+            <span class="point-letter">C.</span> El <span class="highlight">"otro rey"</span> que
+            <span class="highlight">"no conocía a Yosef"</span> (v. 18) es un arquetipo del
+            gobernante que se opone a los planes de Elohím y a Su pueblo. Yosef (José) mismo es
+            un
+            <span class="highlight">tipo del Mesías</span>: rechazado por sus hermanos, vendido,
+            luego exaltado y se convierte en el salvador de aquellos que lo rechazaron.
+          </li>
+          <li>
+            <span class="point-letter">D.</span> El
+            <span class="highlight">engaño y la astucia</span> (v. 19) del Faraón (el rey) para
+            destruir a los niños varones es un paralelo directo con el intento de Herodes de
+            matar a Yeshúa en su infancia.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Conexión Profética y Mesiánica</div>
+          <p>
+            Esteban establece un patrón: <span class="highlight">rechazo</span> seguido de
+            <span class="highlight">salvación</span>, que culmina en Yeshúa el Mesías.
+          </p>
+          <p class="scripture">
+            <strong>Hechos 7:17-19</strong>
+            <span class="arrow">→</span> Los patriarcas fueron a Egipto.
+            <span class="arrow">→</span> El pueblo creció. <span class="arrow">→</span> Surgió
+            opresión. <span class="arrow">→</span> Intento de destruir la simiente de la promesa.
+          </p>
+          <p>
+            Esto refleja: <span class="highlight">El Mesías Yeshúa fue a Egipto</span> (Mateo
+            2:13-15) como un niño para
+            <span class="highlight">escapar de la masacre</span>, cumpliendo así el patrón de
+            preservación divina del linaje davídico y del mismo Mesías.
+          </p>
+        </div>
+      </div>
+    </div>
+    <h1>Hechos (Ma'aséi Shlijím) 7:17-19</h1>
+
+    <div class="content-container">
+        <p>
+            El pasaje de Hechos (Ma'aséi Shlijím) 7:17-19 es parte del poderoso sermón de Estéfanos
+            ante el Sanedrín. Estéfanos no solo narra la historia de Israel, sino que la utiliza
+            proféticamente para mostrar la constante rebelión de los líderes religiosos contra los
+            enviados de Adonai, prefigurando el rechazo de <span class="highlight">Yeshúa HaMashíaj</span>.
+        </p>
+    </div>
+
+    <div class="content-container">
+        <h2>Versos Interlineales</h2>
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">7:17</div>
+                <div class="aramaic">ܟ݁ܰܕ݂ ܕ݁ܶܝܢ ܡܶܛܳܬ݂ ܗܘܳܬ݂ ܥܕ݁ܳܢܳܐ ܕ݁ܡܽܘܠܟ݁ܳܢܳܐ ܗܰܝ ܕ݁ܰܐܠܳܗܳܐ ܐܰܘܡܺܝ ܗ̱ܘܳܐ ܠܰܐܒ݂ܪܳܗܳܡ ܪܰܒ݂ ܗ̱ܘܳܐ ܥܰܡܳܐ ܘܶܐܬ݂ܬ݁ܰܪܒ݁ܺܝ ܒ݁ܡܶܨܪܶܝܢ܂</div>
+                <div class="transliteration">Kad deyn met'at hwá 'eđāná dmulkānā hay d'alāhā 'awmī hwā labrām rab hwā 'amā w'ettarbī bmeṣreyn.</div>
+                <div class="translation">Cuando (se) acercaba el tiempo de la promesa, aquella que Elohím juró a Avraham, creció el pueblo y se multiplicó en Mitzráyim (Egipto).</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">7:18</div>
+                <div class="aramaic">ܥܰܕ݂ܡܳܐ ܕ݁ܩܳܡ ܡܰܠܟ݁ܳܐ ܐ̱ܚܪܺܢܳܐ ܥܰܠ ܡܶܨܪܶܝܢ ܗܰܘ ܕ݁ܠܳܐ ܝܳܕ݂ܰܥ ܗ̱ܘܳܐ ܠܝܳܘܣܶܦ݂܂</div>
+                <div class="transliteration">'ađmā dqām malkā aḥrīnā 'al meṣreyn haw dlā yāda' hwā lywsep.</div>
+                <div class="translation">Hasta que se levantó un rey otro sobre Mitzráyim, aquel que no conocía a Yosef.</div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">7:19</div>
+                <div class="aramaic">ܘܰܥܒ݂ܶܕ݂ ܥܰܠ ܥܰܡܰܢ ܒ݁ܢܶܟ݂ܠܳܐ ܘܰܒ݂ܝܳܫܬ݁ܳܐ ܘܰܡܫܰܠܶܐ ܗ̱ܘܳܐ ܠܛܰܠܳܝܶܗ ܕ݁ܠܳܐ ܢܶܚܝܽܘܢ܂</div>
+                <div class="transliteration">W'aḇeđ 'al 'aman bneklā waḇyāšttā wamšalē hwā lṭalayēh dlā neḥyūn.</div>
+                <div class="translation">Y actuó sobre nuestro linaje con engaño (astucia) y maldad, y expuso a sus hijos para que no vivieran.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h1>Comentario Mesiánico en Yeshúa HaMashíaj</h1>
+        <p>
+            El comentario mesiánico sobre Hechos 7:17-19 se centra en cómo este episodio del Faraón
+            prefigura el conflicto eterno entre la luz y las tinieblas, y cómo
+            <span class="highlight">Yeshúa</span> es el cumplimiento del plan de preservación de Adonai.
+        </p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Cumplimiento de la Promesa (<span class="hebrew-term">Mowlkáná</span>):</div>
+                <p>
+                    Hechos 7:17 afirma que la multiplicación de Israel ocurrió cuando
+                    <span class="highlight">"se acercaba el tiempo de la promesa, aquella de Elohím, la que Él juró a Avraham."</span>
+                    Esto establece un principio clave: Adonai siempre cumple Su pacto, incluso en medio de la esclavitud.
+                </p>
+                <p>
+                    <span class="highlight">Yeshúa HaMashíaj</span> es la promesa mayor, la simiente prometida a Avraham
+                    (Gálatas 3:16). Su nacimiento y ministerio llegaron en el cumplimiento perfecto del tiempo. Así como la promesa de
+                    multiplicación se aceleró en Mitzráyim, la promesa de redención se cumplió históricamente en Yeshúa.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Opresor y el Engaño (<span class="hebrew-term">Neklá</span>):</div>
+                <p>
+                    Hechos 7:18-19 describe al Faraón como el <span class="highlight">"otro rey"</span> que
+                    <span class="highlight">"no conocía a Yosef"</span> y que, con
+                    <span class="hebrew-term">"engaño"</span> (<span class="highlight">neklá</span> en arameo), buscó destruir el linaje.
+                    Este Faraón actúa como un tipo (prefiguración) del enemigo (<span class="hebrew-term">HaSatán</span>) y de los poderes
+                    terrenales y religiosos que se oponen al plan de Adonai.
+                </p>
+                <ul>
+                    <li>
+                        <strong>El rechazo a Yeshúa:</strong> Este patrón se repite en el Brit Hadashah: los líderes religiosos de la época,
+                        embriagados por el orgullo (como los de Yeshayah 28), actuaron con engaño para buscar la muerte de Yeshúa, a quien no
+                        reconocieron, al igual que el Faraón no reconoció la obra salvadora de Yosef. El decreto de Herodes (Matityah 2:16)
+                        contra los niños varones es el cumplimiento más directo de esta profecía histórica.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Preservación a Través del Juicio:</div>
+                <p>
+                    La porción de Hechos 7:19 narra que el Faraón <span class="highlight">"expuso a sus hijos para que no vivieran."</span>
+                    Este intento de genocidio, que buscaba detener la línea del Mashíaj, fracasó. Moshe fue preservado.
+                </p>
+                <p>
+                    <span class="highlight">Yeshúa, el Preservado y Preservador:</span> Yeshúa fue preservado de la matanza de Herodes y,
+                    finalmente, de la tumba. Él es el liberador que no solo escapa de la muerte, sino que la vence. Él es la garantía de que, a
+                    pesar de los decretos de muerte del mundo, el pueblo de Adonai será preservado en Su Reino.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Conexión con los Profetas y la Aliyá</h2>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Conexión con los Profetas (Tanaj)</div>
+                <p>La conexión profética es con la gran narrativa de exilio y retorno.</p>
+                <ul>
+                    <li>
+                        <strong>Shemot (Éxodo) 1:17 (Aliyá de la Torá):</strong> Estéfanos está citando la historia que comienza esta porción de
+                        la Torá. La desobediencia de las parteras (que <span class="highlight">"temieron a Elohím"</span>) es el primer acto de
+                        resistencia fiel que asegura la supervivencia del pueblo.
+                    </li>
+                    <li>
+                        <strong>Yirmeyah (Jeremías) 31:3-4:</strong> Aunque el pueblo sufre la opresión (tanto en Mitzráyim como en el exilio),
+                        Adonai reafirma Su amor eterno:
+                        <div class="scripture">
+                            "Con amor eterno te he amado; por tanto, te prolongué Mi misericordia. De nuevo te edificaré, y serás edificada, oh
+                            virgen de Yisra'el."
+                        </div>
+                        La multiplicación en Mitzráyim es la demostración inicial de esta fidelidad incondicional, que culmina en la edificación
+                        de la <span class="hebrew-term">Kehiláh</span> (congregación) de Yeshúa.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Profecías Cumplidas en la Porción (Hechos 7:17-19)</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pasaje Profético (Tanaj)</th>
+                            <th>Explicación de Cumplimiento</th>
+                            <th>Pasaje del Brit Hadashah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Bereshit (Génesis) 46:3 (
+                                <span class="literal-translation"
+                                    >...Yo Soy El, Elohím, el Elohím de tu padre; no temas descender a Mitzráyim, porque allí te haré una gran
+                                    nación</span
+                                >)
+                            </td>
+                            <td>
+                                La promesa de multiplicación de Ya'akov en Mitzráyim, que el Faraón buscó revertir. El versículo de Hechos
+                                confirma que la multiplicación (la "gran nación") se dio en Mitzráyim, cumpliendo la promesa y, a la vez,
+                                encendiendo el odio del Faraón.
+                            </td>
+                            <td>Hechos 7:17 (El pueblo creció y se multiplicó en Mitzráyim).</td>
+                        </tr>
+                        <tr>
+                            <td>Shemot (Éxodo) 1:9-10 (<span class="literal-translation">Ea, seamos astutos con él, no sea que se multiplique...</span>)</td>
+                            <td>
+                                El consejo astuto del Faraón para destruir a la "simiente". Estéfanos resume este plan como
+                                <span class="highlight">"con engaño, actuó astutamente contra nuestro linaje,"</span> confirmando la malicia
+                                satánica detrás del intento de genocidio.
+                            </td>
+                            <td>Hechos 7:19 (Este, con engaño, actuó astutamente contra nuestro linaje...).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Aplicación Espiritual</h2>
+        <div class="explanation">
+            <p>La aplicación espiritual de este pasaje en el <span class="highlight">Mashíaj Yeshúa</span> es doble:</p>
+            <ul>
+                <li>
+                    <span class="point-letter">A.</span>
+                    <strong>Confianza en la Fidelidad de Adonai:</strong> Adonai siempre cumplirá Sus promesas a Su pueblo. Si Yeshúa, la
+                    promesa central, fue preservado de la muerte decretada por Herodes (el "otro rey" mesiánico), entonces Su pueblo tiene la
+                    seguridad de la preservación espiritual a pesar de la opresión que pueda venir del mundo.
+                </li>
+                <li>
+                    <span class="point-letter">B.</span>
+                    <strong>Identificación con el Sufrimiento del Mashíaj:</strong> Así como Israel se multiplicó bajo opresión, la
+                    <span class="hebrew-term">Kehiláh</span> de Yeshúa a menudo crece más fuerte y se purifica en medio de la persecución. El
+                    creyente mesiánico debe entender que la oposición es una señal de que la promesa de Adonai está a punto de cumplirse en sus
+                    vidas.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h1>📜 PUNTO 4</h1>
+
+    <div class="content-container">
+      <h2>Contexto Histórico y Cultural de Éxodo (Shemot) 1:1–17</h2>
+
+      <div class="section-container">
+        <h3>1. Marco histórico general</h3>
+        <p>
+          Éxodo 1:1–17 se sitúa en la transición crítica entre el final del período
+          patriarcal y el inicio de la formación nacional de Israel. El texto
+          presupone los acontecimientos narrados en Bereshit (Génesis) 46–50,
+          donde Ya‘akov y su descendencia descienden a Mitsráyim (Egipto) bajo la
+          protección de Yosef.
+        </p>
+        <p>
+          El pasaje refleja un período posterior, cuando:
+        </p>
+        <ul>
+          <li>Yosef ya ha muerto</li>
+          <li>Toda su generación ha desaparecido</li>
+          <li>
+            Surge un nuevo rey (<span class="highlight">melekh jadásh</span>) que
+            “no conoció a Yosef”
+          </li>
+        </ul>
+        <p>
+          Esto corresponde históricamente a un cambio dinástico, muy
+          probablemente el paso de una dinastía favorable a pueblos semitas (como
+          los hicsos) a una dinastía nativa egipcia hostil.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>2. Contexto egipcio y arqueológico</h3>
+        <p>Desde la perspectiva egipcia:</p>
+        <ul>
+          <li>
+            Los hebreos eran un pueblo semita asentado en Goshen, una región
+            fértil del delta oriental del Nilo
+          </li>
+          <li>
+            Los egipcios veían a los semitas como potenciales enemigos internos
+            en caso de invasión extranjera
+          </li>
+          <li>
+            El temor expresado en Éxodo 1:10 es estratégico y político, no solo
+            étnico
+          </li>
+        </ul>
+        <p>La esclavitud descrita no comienza inmediatamente como brutal, sino como:</p>
+        <ul>
+          <li>Trabajo forzado estatal</li>
+          <li>
+            Construcción de ciudades de almacenamiento: Pitom y Ra‘amsés
+          </li>
+          <li>Un sistema de opresión progresiva</li>
+        </ul>
+        <p>
+          Este patrón coincide con prácticas documentadas del Imperio Nuevo
+          egipcio, donde poblaciones extranjeras eran usadas como mano de obra
+          controlada.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>3. Dimensión cultural y social</h3>
+        <p>En la cosmovisión egipcia:</p>
+        <ul>
+          <li>El faraón era considerado una encarnación divina</li>
+          <li>
+            La multiplicación de Israel amenazaba el orden cósmico egipcio
+            (<span class="highlight">ma‘at</span>)
+          </li>
+          <li>
+            El control de la natalidad hebrea era una medida de “estabilidad
+            nacional”
+          </li>
+        </ul>
+        <p>
+          Las parteras hebreas (Shifráh y Pu‘áh) representan una resistencia
+          civil basada en el temor a Elohím, no en rebelión armada.
+        </p>
+      </div>
+    </div>
+
+    <h1>📖 PUNTO 5</h1>
+
+    <div class="content-container">
+      <h2>
+        Estudio, Comentarios y Conexiones Proféticas de Éxodo 1:1–17
+      </h2>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p class="prophetic-title">1. Comentario judío clásico</p>
+          <p>
+            <span class="highlight">Rashí</span> observa que el texto vuelve a
+            enumerar los nombres de los hijos de Israel para mostrar que, aunque
+            oprimidos, seguían siendo contados y amados por
+            <span class="highlight">Adonái</span> יהוה.
+          </p>
+          <p>
+            <span class="highlight">Sforno</span> destaca que la opresión surge
+            precisamente como reacción al cumplimiento de la bendición:
+          </p>
+          <div class="scripture">
+            “Fructificaron y se multiplicaron en gran manera”
+          </div>
+          <p>
+            <span class="highlight">Midrash Shemot Rabbah</span> enseña que
+            mientras Mitsráyim intentaba reducirlos, Elohím aceleraba su
+            crecimiento, mostrando que la redención nace en medio de la opresión.
+          </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <p class="prophetic-title">2. Conexión profética</p>
+          <p>Este pasaje cumple y desarrolla:</p>
+          <ul>
+            <li>
+              <span class="scripture">Bereshit 15:13–14</span>: la profecía dada
+              a Avraham sobre la aflicción y posterior redención
+            </li>
+          </ul>
+          <p>El patrón profético de:</p>
+          <p>
+            Elección <span class="arrow">→</span> Oposición
+            <span class="arrow">→</span> Aflicción <span class="arrow">→</span>
+            Intervención divina
+          </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <p class="prophetic-title">3. Comentario judío mesiánico</p>
+          <p>Desde una lectura mesiánica:</p>
+          <ul>
+            <li>
+              El intento de destruir a los niños varones es un ataque contra la
+              <span class="highlight">simiente prometida</span>
+            </li>
+            <li>
+              El faraón actúa como figura arquetípica del
+              <span class="highlight">opresor escatológico</span>
+            </li>
+            <li>
+              El temor de las parteras a Elohím anticipa el principio del Reino:
+              <span class="highlight">obedecer a Elohím antes que a los hombres</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h1>🔍 PUNTO 6</h1>
+
+    <div class="content-container">
+      <h2>Análisis Profundo de la Aliyáh (Éxodo 1:1–17)</h2>
+
+      <div class="section-container">
+        <h3>1. Estructura literaria</h3>
+        <p>La Aliyáh se divide en cuatro movimientos:</p>
+        <ul>
+          <li>Enumeración de Israel (v.1–5)</li>
+          <li>Multiplicación sobrenatural (v.6–7)</li>
+          <li>Oposición política (v.8–14)</li>
+          <li>Decreto de muerte y resistencia piadosa (v.15–17)</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>2. Análisis lingüístico clave</h3>
+        <ul>
+          <li>
+            “<span class="highlight">Vayishretsú</span>” (y se multiplicaron en
+            enjambres): término usado también para criaturas vivientes en
+            Bereshit 1, sugiriendo vida impartida por Elohím
+          </li>
+          <li>
+            “<span class="highlight">Yir’at Elohím</span>” (temor de Elohím): no
+            es miedo, sino lealtad absoluta al Creador
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>3. Análisis teológico</h3>
+        <p>
+          La opresión no es señal de abandono, sino de
+          <span class="highlight">propósito redentor en gestación</span>. La
+          narrativa prepara el escenario para la revelación del Nombre divino en
+          Éxodo 3.
+        </p>
+      </div>
+    </div>
+
+    <h1>🧭 PUNTO 7</h1>
+
+    <div class="content-container">
+      <h2>Tema Más Relevante de la Aliyáh (Éxodo 1:1–17)</h2>
+      <p class="prophetic-title">
+        Tema central:
+        <span class="highlight"
+          >La vida preservada por Elohím frente al sistema de muerte</span
+        >
+      </p>
+      <p>Este pasaje enseña que:</p>
+      <ul>
+        <li>
+          Cuando el pueblo del pacto crece conforme a la promesa, el sistema del
+          mundo responde con opresión
+        </li>
+        <li>
+          Elohím gobierna incluso sobre los decretos de los poderosos
+        </li>
+        <li>
+          La redención comienza con mujeres fieles, no con ejércitos
+        </li>
+      </ul>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>Conexión con Yeshúa haMashíaj</h3>
+        <ul>
+          <li>
+            El decreto del faraón contra los niños anticipa el
+            <span class="highlight">decreto de Herodes</span>
+          </li>
+          <li>
+            Ambos intentan destruir al libertador antes de que se manifieste
+          </li>
+          <li>
+            Elohím preserva la vida que traerá redención
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h1>✡️ PUNTO 8</h1>
+
+    <div class="content-container">
+      <h2>Descubriendo al Mashíaj en la Aliyáh (Éxodo 1:1–17)</h2>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p class="prophetic-title">1. Tipologías mesiánicas</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Sombra mesiánica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Faraón</td>
+                <td>Poder que se opone al Reino</td>
+              </tr>
+              <tr>
+                <td>Niños hebreos</td>
+                <td>Simiente redentora</td>
+              </tr>
+              <tr>
+                <td>Parteras</td>
+                <td>Guardianes de la vida</td>
+              </tr>
+              <tr>
+                <td>Multiplicación</td>
+                <td>Vida que no puede ser detenida</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <p class="prophetic-title">2. Patrones redentores (Tavnitot)</p>
+          <ul>
+            <li>Oposición satánica al plan divino</li>
+            <li>Preservación milagrosa de la vida</li>
+            <li>Redención que nace en secreto</li>
+          </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <p class="prophetic-title">3. Cumplimiento en el Brit Hadasháh</p>
+          <ul>
+            <li>
+              <span class="highlight">Yeshúa haMashíaj</span> es la vida
+              encarnada que ningún decreto humano puede destruir
+            </li>
+            <li>
+              Él es el cumplimiento de la promesa hecha a Avraham
+            </li>
+            <li>
+              En Él, <span class="highlight">Adonái יהוה</span> se manifiesta como
+              Libertador definitivo
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section-container">
+        <h1>📚 PUNTO 9</h1>
+        <div class="content-container">
+            <h2>Midrashim, Targumim y Textos Fuentes de Éxodo (Shemot) 1:1–17</h2>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Midrashim relevantes</div>
+                    <p><span class="point-letter">🔹</span> <span class="highlight">Shemot Rabbah 1:7</span></p>
+                    <p>El Midrash comenta que Israel “se multiplicó como peces”, señalando que:</p>
+                    <blockquote>
+                        Así como los peces están protegidos bajo el agua del ojo maligno,
+                        Israel fue preservado bajo la aparente opresión de Mitsráyim.
+                    </blockquote>
+                    <p>Este Midrash enseña que la opresión fue el velo bajo el cual Elohím ocultó Su plan redentor.</p>
+
+                    <div class="section-divider"></div>
+
+                    <p><span class="point-letter">🔹</span> <span class="highlight">Shemot Rabbah 1:13–16</span></p>
+                    <p>Sobre Shifráh y Pu‘áh:</p>
+                    <ul>
+                        <li>Una tradición identifica a <span class="highlight">Shifráh con Yojéved</span> y a <span class="highlight">Pu‘áh con Miriam</span></li>
+                        <li>El Midrash afirma que ellas clamaban (<span class="highlight">po‘ot</span>) por los niños, de ahí el nombre Pu‘áh</li>
+                        <li>Elohím las “edificó casas”, interpretadas como <span class="highlight">linajes sacerdotales y reales</span></li>
+                    </ul>
+                    <p>Esto anticipa que la redención comienza con fidelidad silenciosa, no con poder político.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Targumim</div>
+                    <p><span class="point-letter">🔹</span> <span class="highlight">Targum Onkelos</span></p>
+                    <p>Refuerza la idea de multiplicación por decreto divino, no por capacidad humana, destacando que el crecimiento fue “más allá de lo natural”.</p>
+
+                    <div class="section-divider"></div>
+
+                    <p><span class="point-letter">🔹</span> <span class="highlight">Targum Pseudo-Jonatán</span></p>
+                    <p>Añade que el faraón consultó con astrólogos, quienes vieron que el libertador de Israel sería castigado por agua, lo que explica posteriormente el decreto contra los niños.</p>
+                    <p>Esto conecta con el patrón profético:</p>
+                    <p class="literal-translation">el enemigo percibe el nacimiento del redentor antes que el pueblo mismo.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. Textos fuentes adicionales</div>
+                    <ul>
+                        <li>Tradiciones del período del Segundo Templo reflejan la idea de Mitsráyim como arquetipo del exilio</li>
+                        <li>Escritos judíos antiguos describen la esclavitud como el <span class="highlight">“horno”</span> donde Israel fue formado como nación</li>
+                    </ul>
+                    <p>Sin recurrir a misticismo, estos textos coinciden en un punto central:</p>
+                    <p class="literal-translation">la identidad de Israel se forja en la aflicción, pero es revelada en la redención.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-container">
+        <h1>📜 PUNTO 10</h1>
+        <div class="content-container">
+            <h2>Mandamientos, Principios y Valores en Éxodo (Shemot) 1:1–17</h2>
+
+            <div class="prophetic-content">
+                <p>Aunque el texto no presenta mitzvot explícitas, sí establece principios eternos:</p>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">1. Temor a Elohím sobre autoridad humana</div>
+                    <p>Las parteras obedecen a Elohím antes que al faraón.</p>
+                    <p><span class="highlight">Principio:</span></p>
+                    <p class="literal-translation">La obediencia al Creador es superior a cualquier decreto humano.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">2. Preservación de la vida</div>
+                    <p>El rechazo a matar a los niños establece el valor supremo de la vida humana.</p>
+                    <p><span class="highlight">Principio:</span></p>
+                    <p class="literal-translation">Toda vida es sagrada porque porta propósito redentor.</p>
+                </div>
+
+                <div class="prophetic-section">
+                    <div class="prophetic-title">3. Resistencia justa</div>
+                    <p>No toda resistencia es violenta; la fidelidad silenciosa es una forma legítima de obediencia.</p>
+                    <p><span class="highlight">Aplicación mesiánica:</span></p>
+                    <p class="literal-translation">Yeshúa haMashíaj encarna este principio al vencer no con espada, sino con obediencia perfecta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-container">
+        <h1>❓ PUNTO 11</h1>
+        <div class="content-container">
+            <h2>Preguntas de Reflexión con Respuestas en el Mashíaj</h2>
+            <h3>(Éxodo 1:1–17)</h3>
+
+            <div class="explanation">
+                <div class="section-container">
+                    <div class="question">1. ¿Por qué la multiplicación de Israel provoca temor en Mitsráyim?</div>
+                    <div class="answer">
+                        <span class="highlight">Respuesta en el Mashíaj:</span>
+                        Porque la vida que proviene de Elohím amenaza todo sistema basado en muerte. Yeshúa es esa vida manifestada.
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">2. ¿Qué revela el temor de las parteras a Elohím?</div>
+                    <div class="answer">
+                        <span class="highlight">Respuesta en el Mashíaj:</span>
+                        Revela la misma obediencia que Yeshúa mostró al Padre, aun frente a la muerte.
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">3. ¿Por qué Elohím usa mujeres para iniciar la redención?</div>
+                    <div class="answer">
+                        <span class="highlight">Respuesta en el Mashíaj:</span>
+                        Porque la redención no comienza en el poder humano, sino en la fidelidad. Así también, Yeshúa vino en humildad.
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">4. ¿Qué enseña este texto sobre la opresión?</div>
+                    <div class="answer">
+                        <span class="highlight">Respuesta en el Mashíaj:</span>
+                        Que la opresión no detiene el plan divino; lo acelera hacia su cumplimiento.
+                    </div>
+                </div>
+
+                <div class="section-container">
+                    <div class="question">5. ¿Cómo se manifiesta aquí la esperanza mesiánica?</div>
+                    <div class="answer">
+                        <span class="highlight">Respuesta en el Mashíaj:</span>
+                        En que la vida preservada anuncia al Libertador venidero, quien es Yeshúa haMashíaj, Uno con Adonái <span class="hebrew-term">יהוה</span>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-container">
+        <h1>📖 PUNTO 12</h1>
+        <div class="content-container">
+            <h2>Resumen de la Aliyáh</h2>
+            <h3>Éxodo (Shemot) 1:1–17</h3>
+
+            <div class="conclusion">
+                <ul>
+                    <li>Israel desciende como familia y emerge como nación</li>
+                    <li>La bendición de multiplicación se cumple poderosamente</li>
+                    <li>Mitsráyim responde con opresión sistemática</li>
+                    <li>Elohím levanta mujeres temerosas para preservar la vida</li>
+                    <li>La redención comienza antes de que el libertador sea revelado</li>
+                </ul>
+
+                <p><span class="highlight">Resumen mesiánico:</span></p>
+                <p class="literal-translation">La Aliyáh enseña que la redención ya está en marcha aun cuando parece ausente, y que Elohím gobierna la historia para revelar a Su Mashíaj.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="section-container">
+        <h1>🙏 PUNTO 13</h1>
+        <div class="content-container">
+            <h2>Tefiláh (Oración) de la Aliyáh</h2>
+            <h3>Éxodo (Shemot) 1:1–17</h3>
+
+            <div class="explanation">
+                <p class="prayer-text">
+                    Adonái <span class="hebrew-term">יהוה</span>,
+                    <br>
+                    Elohím de Avraham, de Yitsjak y de Ya‘akov,
+                    <br>
+                    te damos gracias porque aun en la opresión
+                    <br>
+                    Tú haces florecer la vida.
+                    <br><br>
+                    Enséñanos a temerte como lo hicieron las parteras,
+                    <br>
+                    a obedecerte aun cuando el mundo ordena lo contrario,
+                    <br>
+                    y a confiar en que Tu plan redentor
+                    <br>
+                    no puede ser detenido por decreto humano.
+                    <br><br>
+                    Reconocemos que Tú mismo te manifestaste
+                    <br>
+                    como Libertador en Yeshúa haMashíaj,
+                    <br>
+                    Uno contigo, Ejad,
+                    <br>
+                    vida eterna revelada en medio de la aflicción.
+                    <br><br>
+                    Fortalece nuestra emunáh,
+                    <br>
+                    haznos guardianes de la vida,
+                    <br>
+                    y prepáranos para caminar en Tu redención
+                    <br>
+                    hasta su plenitud.
+                </p>
+                <p class="prayer-conclusion">Amén.</p>
+            </div>
+        </div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya2.html">Continuar con la Aliyá 2</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

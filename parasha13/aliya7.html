@@ -1,0 +1,1335 @@
+	<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 5:1-6:1</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+       13. Parashá Shemot (שמות) – Aliyáh 7: (Éxodo 5:1-6:1) Moshé y Aharón ante Faraón, quien endurece su corazón. 
+        <p>
+       Haftaráh: Ezequiel 29:1-21 (El juicio contra el faraón).
+        </p>
+        <p>
+        Brit Hadasháh: Romanos 9:14-18 (El endurecimiento del corazón de Faraón).
+        </p>
+      </h1>
+      <h1>Punto 1. Shemot (Éxodo) Capítulo 5</h1>
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:1</div>
+            <div class="hebrew">וְאַחַר בָּאוּ מֹשֶׁה וְאַהֲרֹן וַיֹּאמְרוּ אֶל־פַּרְעֹה כֹּה־אָמַר יְהוָה אֱלֹהֵי יִשְׂרָאֵל שַׁלַּח אֶת־עַמִּי וְיָחֹגּוּ לִי בַּמִּדְבָּר</div>
+            <div class="transliteration">Ve-'ajhár bá'u Moshéh ve-'Aharón vayyo'merú 'el-Par'ó: Koh-'ámar יהוה Elohéi Yisra'él: Shállajh ét-'ammí ve-yajhóggu lí va-mmidbár.</div>
+            <div class="translation">Traducción Literal: Y después vinieron Moshéh y Aharón, y dijeron a Par'ó (Faraón): Así dice יהוה, el Elohéi de Yisra'el: Deja ir a Mi pueblo para que Me celebren fiesta (yajhóggu) en el desierto.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:2</div>
+            <div class="hebrew">וַיֹּאמֶר פַּרְעֹה מִי יְהוָה אֲשֶׁר אֶשְׁמַע בְּקֹלוֹ לְשַׁלַּח אֶת־יִשְׂרָאֵל לֹא יָדַעְתִּי אֶת־יְהוָה וְגַם אֶת־יִשְׂרָאֵל לֹא אֲשַׁלֵּחַ</div>
+            <div class="transliteration">Vayyómer Par'ó: Mí יהוה ashér eshmá' be-qoló, le-shallajh ét-Yisra'él? Ló yadá'tí ét-יהוה, ve-gam ét-Yisra'él ló ashalléajh.</div>
+            <div class="translation">Traducción Literal: Y dijo Par'ó: ¿Quién es יהוה para que escuche Su voz, para dejar ir a Yisra'el? No conozco a יהוה, y también a Yisra'el no lo dejaré ir.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:3</div>
+            <div class="hebrew">וַיֹּאמְרוּ אֱלֹהֵי הָעִבְרִים נִקְרָא עָלֵינוּ נֵלְכָה־נָּא דֶּרֶךְ שְׁלֹשֶׁת יָמִים בַּמִּדְבָּר וְנִזְבְּחָה לַיהוָה אֱלֹהֵינוּ פֶּן־יִפְגָּעֵנוּ בַּדֶּבֶר אוֹ בֶחָרֶב</div>
+            <div class="transliteration">Vayyo'merú: Elohéi ha-'Ivriyyím niqrá 'aléinu; nelkhah-nna dérej shloshét yamím ba-mmidbár, ve-nizbejhá la-יהוה Elohéinu, pen-yifga'énu vad-déver o ve-jhárev.</div>
+            <div class="translation">Traducción Literal: Y dijeron: El Elohéi de los 'Ivriyyím (hebreos) se ha encontrado con nosotros; vayamos, por favor, camino de tres días en el desierto, y sacrifiquemos a יהוה nuestro Elohéi, no sea que nos alcance con peste o con espada.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:4</div>
+            <div class="hebrew">וַיֹּאמֶר אֲלֵהֶם מֶלֶךְ מִצְרַיִם לָמָּה מֹשֶׁה וְאַהֲרֹן תַּפְרִיעוּ אֶת־הָעָם מִמַּעֲשָׂיו לְכוּ לְסִבְלֹתֵיכֶם</div>
+            <div class="transliteration">Vayyómer 'aléihém mélej Mitzráyim: Lámmáh Moshéh ve-'Aharón tafrí'u ét-ha-'am mi-mma'asáv? Lejhu le-sivlótéijhém.</div>
+            <div class="translation">Traducción Literal: Y les dijo el rey de Mitzráyim: ¿Por qué Moshéh y Aharón perturbáis al pueblo de sus trabajos? Id a vuestras cargas.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:5</div>
+            <div class="hebrew">וַיֹּאמֶר פַּרְעֹה הֵן־רַבִּים עַתָּה עַם־הָאָרֶץ וְהִשְׁבַּתֶּם אֹתָם מִסִּבְלֹתָם</div>
+            <div class="transliteration">Vayyómer Par'ó: Hén-rabbím 'attáh 'am-ha'áretz, ve-hishbattém otám mi-ssivlótám.</div>
+            <div class="translation">Traducción Literal: Y dijo Par'ó: He aquí, muchos son ahora el pueblo de la tierra, y los detenéis de sus cargas.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:6</div>
+            <div class="hebrew">וַיְצַו פַּרְעֹה בַּיּוֹם הַהוּא אֶת־הַנֹּגְשִׂים בָּעָם וְאֶת־שֹׁטְרָיו לֵאמֹר</div>
+            <div class="transliteration">Vaytzáv Par'ó bay-yom ha-hhú 'ét-hannogshím ba-'am ve-'ét-shoteráv le'mor:</div>
+            <div class="translation">Traducción Literal: Y mandó Par'ó en aquel día a los capataces sobre el pueblo y a sus oficiales, diciendo:</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:7</div>
+            <div class="hebrew">לֹא תֹאסִפוּן לָתֵת תֶּבֶן לָעָם לִלְבֹּן הַלְּבֵנִים כִּתְמוֹל שִׁלְשֹׁם הֵם יֵלְכוּ וְקֹשְׁשׁוּ לָהֶם תֶּבֶן</div>
+            <div class="transliteration">Ló tosifún latét téven la-'am lilbón hal-levením, ki-tmol shilshóm; hém yelkhú ve-qoshshú lahém téven.</div>
+            <div class="translation">Traducción Literal: No añadiréis a dar paja al pueblo para hacer ladrillos, como ayer y anteayer; ellos irán y recogerán ellos mismos paja.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:8</div>
+            <div class="hebrew">וְאֶת־מַתְכֹּנֶת הַלְּבֵנִים אֲשֶׁר הֵם עֹשִׂים תְּמוֹל שִׁלְשֹׁם תָּשִׂימוּ עֲלֵיהֶם לֹא תִגְרְעוּ מִמֶּנּוּ כִּי נִרְפִּים הֵם עַל־כֵּן הֵם צֹעֲקִים לֵאמֹר נֵלְכָה נִזְבְּחָה לֵאלֹהֵינוּ</div>
+            <div class="transliteration">Ve-'ét-matkónet hal-levením ashér hém 'osím tmol shilshóm tasímu 'aléihém, ló tigre'u mimmennú, kí nirpím hém; 'al-kén hém tzo'aqím le'mor: Nelkhah nizbejhá le-'Elohéinu.</div>
+            <div class="translation">Traducción Literal: Y la medida de los ladrillos que ellos hacen ayer y anteayer, la pondréis sobre ellos; no reduciréis de ella, porque son perezosos (nirpím) ellos; por eso ellos claman diciendo: Vayamos, sacrifiquemos a nuestro Elohéi.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:9</div>
+            <div class="hebrew">תִּכְבַּד הָעֲבֹדָה עַל־הָאֲנָשִׁים וְיַעֲשׂוּ־בָהּ וְאַל יִשְׁעוּ בְּדִבְרֵי־שָׁקֶר</div>
+            <div class="transliteration">Tikhbad ha-'avodáh 'al-ha-'anashím ve-ya'asú-váh, ve-'al yish'u be-divréi-sháqer.</div>
+            <div class="translation">Traducción Literal: Sea pesada la labor sobre los hombres y trabajen en ella, y no se ocupen en palabras de mentira (sháqer).</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:10</div>
+            <div class="hebrew">וַיֵּצְאוּ נֹגְשֵׂי הָעָם וְשֹׁטְרָיו וַיֹּאמְרוּ אֶל־הָעָם לֵאמֹר כֹּה אָמַר פַּרְעֹה אֵינֶנִּי נֹתֵן לָכֶם תֶּבֶן</div>
+            <div class="transliteration">Vayyeztze'ú nogshéi ha-'am ve-shoteráv vayyo'merú 'el-ha-'am le'mor: Koh ámar Par'ó: Einénní notén lajhém téven.</div>
+            <div class="translation">Traducción Literal: Y salieron los capataces del pueblo y sus oficiales, y hablaron al pueblo diciendo: Así dice Par'ó: Yo no estoy dando a vosotros paja.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:11</div>
+            <div class="hebrew">אַתֶּם לְכוּ קְחוּ לָכֶם תֶּבֶן מֵאֲשֶׁר תִּמְצָאוּ כִּי אֵין נִגְרָע מֵעֲבֹדַתְכֶם דָּבָר</div>
+            <div class="transliteration">Attém lejhu qejhú lajhém téven me-'ashér timtzá'u, kí 'éin nigrá' me-'avodattjhém davár.</div>
+            <div class="translation">Traducción Literal: Vosotros id, tomad para vosotros paja de donde encontréis, porque no es reducido de vuestro trabajo cosa alguna.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:12</div>
+            <div class="hebrew">וַיָּפֶץ הָעָם בְּכָל־אֶרֶץ מִצְרָיִם לְקֹשֵׁשׁ קַשׁ לִתְבֶּן</div>
+            <div class="transliteration">Vayyáfetz ha-'am be-khol-'éretz Mitzráyim le-qoshésh qash li-tven.</div>
+            <div class="translation">Traducción Literal: Y se dispersó el pueblo por toda la tierra de Mitzráyim para recoger rastrojo en lugar de paja.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:13</div>
+            <div class="hebrew">וְהַנֹּגְשִׂים אָצִים לֵאמֹר כַּלּוּ מַעֲשֵׂיכֶם דְּבַר־יוֹם בְּיוֹמוֹ כַּאֲשֶׁר בְּהְיוֹת הַתֶּבֶן</div>
+            <div class="transliteration">Ve-hannogshím atzím le'mor: Kallú ma'aseijhém devar-yom be-yomó ka-'ashér bi-hyot hat-téven.</div>
+            <div class="translation">Traducción Literal: Y los capataces apresuraban diciendo: Terminad vuestras obras, la tarea de cada día en su día, como cuando había paja.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:14</div>
+            <div class="hebrew">וַיֻּכּוּ שֹׁטְרֵי בְּנֵי יִשְׂרָאֵל אֲשֶׁר שָׂמוּ עֲלֵהֶם נֹגְשֵׂי פַרְעֹה לֵאמֹר מַדּוּעַ לֹא כִלִּיתֶם חָקְכֶם לִבְּנֹת כִּתְמוֹל שִׁלְשֹׁם גַּם תְּמוֹל גַּם הַיּוֹם</div>
+            <div class="transliteration">Vayyukú shotréi benei Yisra'él ashér sámu 'aléihém nogshéi Far'ó le'mor: Maddúa' ló khillitém jhoq-khém livnót ki-tmol shilshóm, gam tmol gam hay-yom?</div>
+            <div class="translation">Traducción Literal: Y fueron golpeados los oficiales de los hijos de Yisra'el que habían puesto sobre ellos los capataces de Par'ó, diciendo: ¿Por qué no terminasteis vuestra cuota de ladrillos como ayer y anteayer, tanto ayer como hoy?</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:15</div>
+            <div class="hebrew">וַיָּבֹאוּ שֹׁטְרֵי בְּנֵי יִשְׂרָאֵל וַיִּצְעֲקוּ אֶל־פַּרְעֹה לֵאמֹר לָמָּה תַעֲשֶׂה כֹה לַעֲבָדֶיךָ</div>
+            <div class="transliteration">Vayyávó'u shotréi benei Yisra'él vayyitz'aqú 'el-Par'ó le'mor: Lámmáh ta'aséh khoh la-'avadéijhá?</div>
+            <div class="translation">Traducción Literal: Y vinieron los oficiales de los hijos de Yisra'el y clamaron a Par'ó diciendo: ¿Por qué haces así a tus siervos?</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:16</div>
+            <div class="hebrew">תֶּבֶן אֵין נִתָּן לַעֲבָדֶיךָ וּלְבֵנִים אֹמְרִים לָנוּ עֲשׂוּ וְהִנֵּה עֲבָדֶיךָ מֻכִּים וְחָטָאת עַמֶּךָ</div>
+            <div class="transliteration">Téven 'éin nittán la-'avadéijhá, u-l'vením omrím lánu 'asú; ve-hinnéh 'avadéijhá mukkím, ve-jhatá'at 'ammékha.</div>
+            <div class="translation">Traducción Literal: Paja no se da a tus siervos, y ladrillos nos dicen: Haced; y he aquí, tus siervos son golpeados, y el pecado es de tu pueblo.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:17</div>
+            <div class="hebrew">וַיֹּאמֶר נִרְפִּים אַתֶּם נִרְפִּים עַל־כֵּן אַתֶּם אֹמְרִים נֵלְכָה נִזְבְּחָה לַיהוָה</div>
+            <div class="transliteration">Vayyómer: Nirpím attém, nirpím; 'al-kén attém omrím: Nelkháh nizbejhá la-יהוה.</div>
+            <div class="translation">Traducción Literal: Y dijo: Perezosos (nirpím) sois, perezosos; por eso vosotros decís: Vayamos, sacrifiquemos a יהוה.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:18</div>
+            <div class="hebrew">וְעַתָּה לְכוּ עִבְדוּ וְתֶבֶן לֹא־יִנָּתֵן לָכֶם וְתֹכֶן לְבֵנִים תִּתֵּנוּ</div>
+            <div class="transliteration">Ve-'attáh lejhu 'ivdú, ve-téven ló-yinnatén lajhém, ve-tójhen levením titténu.</div>
+            <div class="translation">Traducción Literal: Y ahora id, trabajad; y paja no se os dará, mas la medida de ladrillos entregaréis.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:19</div>
+            <div class="hebrew">וַיִּרְאוּ שֹׁטְרֵי בְנֵי יִשְׂרָאֵל אֹתָם בְּרָע לֵאמֹר לֹא־תִגְרְעוּ מִלִּבְנֵיכֶם דְּבַר־יוֹם בְּיוֹמוֹ</div>
+            <div class="transliteration">Vayyir'ú shotréi venei Yisra'él otám be-rá' le'mor: Ló-tigre'u mi-llivnéijhém devar-yom be-yomó.</div>
+            <div class="translation">Traducción Literal: Y vieron los oficiales de los hijos de Yisra'el que estaban ellos en mal (problemas), al decir: No reduciréis de vuestros ladrillos, la tarea de cada día en su día.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:20</div>
+            <div class="hebrew">וַיִּפְגְּעוּ אֶת־מֹשֶׁה וְאֶת־אַהֲרֹן נִצָּבִים לִקְרָאתָם בְּצֵאתָם מֵאֵת פַּרְעֹה</div>
+            <div class="transliteration">Vayyifge'u ét-Moshéh ve-'ét-'Aharón nitzzavím liqra'tám be-tze'tám me-'ét Par'ó.</div>
+            <div class="translation">Traducción Literal: Y se encontraron con Moshéh y Aharón, que estaban parados para recibirlos, al salir ellos de la presencia de Par'ó.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:21</div>
+            <div class="hebrew">וַיֹּאמְרוּ אֲלֵהֶם יֵרֶא יְהוָה עֲלֵיכֶם וְיִשְׁפֹּט אֲשֶׁר הִבְאַשְׁתֶּם אֶת־רֵיחֵנוּ בְּעֵינֵי פַרְעֹה וּבְעֵינֵי עֲבָדָיו לָתֶת חֶרֶב בְּיָדָם לְהָרְגֵנוּ</div>
+            <div class="transliteration">Vayyo'merú 'aléihém: Yére' יהוה 'aléijhém ve-yishpót, ashér hiv'ashtém ét-reijhénu be-'einéi Far'ó u-ve-'einéi 'avadáv, latét jhérev be-yadám le-horgénu.</div>
+            <div class="translation">Traducción Literal: Y les dijeron: Mire יהוה sobre vosotros y juzgue, porque hicisteis heder nuestro olor (reijhénu) a los ojos de Par'ó y a los ojos de sus siervos, dando una espada en sus manos para matarnos.</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:22</div>
+            <div class="hebrew">וַיָּשָׁב מֹשֶׁה אֶל־יְהוָה וַיֹּאמַר אֲדֹנָי לָמָה הֲרֵעֹתָה לָעָם הַזֶּה לָמָּה זֶּה שְׁלַחְתָּנִי</div>
+            <div class="transliteration">Vayyasháv Moshéh 'el-יהוה vayyómar: Adonái, lámmáh hare'otáh la-'am haz-zéh? Lámmáh zéh shlajhttání?</div>
+            <div class="translation">Traducción Literal: Y regresó Moshéh a יהוה y dijo: Adonái, ¿por qué has hecho mal a este pueblo? ¿Por qué esto me has enviado?</div>
+        </div>
+        <div class="verse-container">
+            <div class="verse-number">Shemot 5:23</div>
+            <div class="hebrew">וּמֵאָז בָּאתִי אֶל־פַּרְעֹה לְדַבֵּר בִּשְׁמֶךָ הֵרַע לָעָם הַזֶּה וְהַצֵּל לֹא־הִצַּלְתָּ אֶת־עַמֶּךָ</div>
+            <div class="transliteration">U-me'áz bá'tí 'el-Par'ó le-dabbér bi-shmékha, héra' la-'am haz-zéh, ve-hatztzél ló-hitzzaltá ét-'ammékha.</div>
+            <div class="translation">Traducción Literal: Y desde que vine a Par'ó para hablar en Tu Nombre, ha hecho mal a este pueblo, y librar no has librado a Tu pueblo.</div>
+        </div>
+    </div>
+    <h1 class="section-divider"></h1>
+    <h1>Shemot (Éxodo) Capítulo 6</h1>
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">Shemot 6:1</div>
+            <div class="hebrew">וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה עַתָּה תִרְאֶה אֲשֶׁר אֶעֱשֶׂה לְפַרְעֹה כִּי בְיָד חֲזָקָה יְשַׁלְּחֵם וּבְיָד חֲזָקָה יְגָרְשֵׁם מֵאַרְצוֹ</div>
+            <div class="transliteration">Vayyómer יהוה 'el-Moshéh: 'Attáh tir'éh ashér e'eséh le-Far'ó; kí ve-yád jhazáqáh yeshallj-ém u-ve-yád jhazáqáh yegarshem me-'artzó.</div>
+            <div class="translation">Traducción Literal: Y dijo יהוה a Moshéh: Ahora verás lo que haré a Par'ó; porque con mano fuerte los dejará ir, y con mano fuerte los echará de Su tierra.</div>
+        </div>
+    </div>
+    <h1>La porción de Shemot (Éxodo) 5:1-6:1 marca el inicio del conflicto directo entre la autoridad de יהוה  y el poder de Par'ó (Faraón), y destaca la primera crisis de fe de Israel y de Moshéh. Proféticamente, revela la necesidad de una Redención Poderosa (Yad Jazakáh) que supera tanto la incredulidad del opresor como la desesperación del oprimido.</h1>
+
+    <div class="content-container">
+        <h2>Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+
+        <div class="section-container">
+            <h1>1. La Confrontación de Autoridades (5:2)</h1>
+            <p>La primera palabra de Par'ó es: "¿Quién es יהוה  para que escuche Su voz...?" Esto encapsula la rebelión de la humanidad contra el Creador.</p>
+            <div class="prophetic-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipología (Par'ó)</th>
+                            <th>Cumplimiento Mesiánico en Yeshúa</th>
+                            <th>Pasaje del Brit Hadashah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"No conozco a יהוה.."</td>
+                            <td>Par'ó representa el adversario del Reino de יהוה  y la incredulidad del mundo que rechaza la autoridad divina.</td>
+                            <td>Juan 14:9</td>
+                        </tr>
+                        <tr>
+                            <td>(..el rechazo de la deidad)</td>
+                            <td>El Mashíaj Yeshúa vino a revelar el Nombre y el rostro de $\text{יהוה}$. El rechazo a Yeshúa es el rechazo al Padre.</td>
+                            <td>(El que Me ha visto a Mí, ha visto al Padre.)</td>
+                        </tr>
+                        <tr>
+                            <td>"Deja ir a Mi pueblo para que Me celebren fiesta (yajhóggu)..." (5:1)</td>
+                            <td>El propósito de la liberación (la Aliyá de Egipto) es la adoración y el servicio ('avodáh) a $\text{יהוה}$.</td>
+                            <td>Romanos 12:1</td>
+                        </tr>
+                        <tr>
+                            <td>(...para que Me celebren fiesta)</td>
+                            <td>Yeshúa, a través de Su sacrificio, nos libera de la esclavitud del pecado para que podamos ofrecerle una adoración ('avodáh) de sacrificio vivo y santo.</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h1>2. La Respuesta a la Aflicción Aumentada (5:22-6:1)</h1>
+            <p>Después de que la labor de Israel empeora ("paja no se da", 5:16), Moshéh clama a יהוה en desesperación. La respuesta de יהוה es una promesa de intervención decisiva.</p>
+
+            <div class="explanation">
+                <p><span class="point-letter">A.</span> La Crisis de Moshéh (5:23): Moshéh se siente fracasado, pues su intercesión solo trajo más mal. Esto demuestra la insuficiencia de la mediación humana sin la revelación total de $\text{יהוה}$.</p>
+                <p><span class="point-letter">B.</span> El Cumplimiento en Yeshúa (6:1): La respuesta de יהוה es la promesa de la "mano fuerte" (Yad Jazakáh).</p>
+                <p>Yeshúa es la Yad Jazakáh: La liberación de Israel de Egipto es el modelo para toda la redención. Yeshúa ejecuta la liberación final no por persuasión humana (como Moshéh al inicio), sino por Su poder soberano manifestado en Su resurrección y en Su victoria sobre la muerte. La Yad Jazakáh se cumple en la obra redentora de Yeshúa.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Conexión con los Profetas y la Aliyá</h2>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Conexión con el Tanaj (Profetas)</div>
+                    <p><strong>Yeshayah (Isaías) 52:10:</strong> La profecía sobre el brazo (zeró'a) de $\text{יהוה}$.</p>
+                    <p><strong>Conexión:</strong> "Ha desnudado יהוה el brazo de Su santidad a los ojos de todas las naciones, y todos los confines de la tierra verán la salvación (<span class="highlight">yeshú'ah</span>) de nuestro Elohím." La promesa de la "mano fuerte" (<span class="highlight">Yad Jazakáh</span>) en 6:1 es el comienzo de la manifestación del brazo poderoso de יהוה  que culmina en la salvación (Yeshú'ah) que trae el Mashíaj Yeshúa.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Conexión con la Aliyá</div>
+                    <p><strong>La Lucha antes de la Aliyá:</strong> El aumento de la aflicción (ladrillos sin paja, 5:7-9) representa la intensificación de la oposición espiritual y mundana justo antes de la liberación final.</p>
+                    <p><strong>Aplicación:</strong> La Aliyá (liberación/ascenso espiritual) no es fácil. El enemigo intenta desanimar a los creyentes justo antes del triunfo (5:21, el pueblo culpa a Moshéh). La aplicación espiritual es que el camino hacia la libertad y el servicio a יהוה a menudo es precedido por la prueba máxima de fe, donde la única solución es la intervención de la Yad Jazakáh del Mashíaj.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h2>Profecías Cumplidas en la Porción (Tipos Mesiánicos)</h2>
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">Moshéh como el Intercesor Desanimado (5:22-23)</div>
+                    <p>Moshéh, el primer mediador, falla al deprimirse ante el primer revés.</p>
+                    <p><strong>Cumplimiento en Yeshúa:</strong> Yeshúa es el Intercesor Perfecto (Romanos 8:34; Hebreos 7:25). A diferencia de Moshéh, Yeshúa nunca se desanima, pues Su intercesión está basada no en la Ley, sino en Su sacrificio ya completado, lo que garantiza la victoria y la liberación prometida.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">El Cautiverio como Juicio de Par'ó</div>
+                    <p>Par'ó trata la adoración a יהוה como "palabras de mentira (<span class="highlight">sháqer</span>)" y pereza (<span class="highlight">nirpím</span>, 5:9, 17).</p>
+                    <p><strong>Cumplimiento en Yeshúa:</strong> La redención a través de Yeshúa es la única verdad que refuta la mentira (sháqer) del mundo. El precio que יהוה paga (el sacrificio de Yeshúa) demuestra que el llamado al servicio no es pereza, sino la voluntad del Todopoderoso.</p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Promesa Fundamental</div>
+                    <p>El pasaje culmina con la afirmación de que la liberación vendrá por "mano fuerte" (6:1). Este es el sello de la obra del Mashíaj, cuya victoria es total e irreversible, echando fuera al opresor por Su propio poder.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Punto 2. Haftaráh: Ezequiel 29:1-21 (El juicio contra el faraón).</h1>
+
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:1</div>
+            <div class="hebrew">בַּשָּׁנָה הָעֲשִׂירִית בַּחֹדֶשׁ הָעֲשִׂירִי בִּשְׁנֵים עָשָׂר לַחֹדֶשׁ הָיָה דְבַר־יְהוָה אֵלַי לֵאמֹר</div>
+            <div class="transliteration">Fonética: Bash-shánáh ha-'asirít ba-jhódesh ha-'asirí bi-shneim 'asár la-jhódesh, hayáh devar-יהוה 'éláy le'mor.</div>
+            <div class="translation">Traducción Literal: En el año el décimo, en el mes el décimo, en el doceavo del mes, fue palabra de יהוה a mí, diciendo:</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:2</div>
+            <div class="hebrew">בֶּן־אָדָם שִׂים פָּנֶיךָ עַל־פַּרְעֹה מֶלֶךְ־מִצְרַיִם וְהִנָּבֵא עָלָיו וְעַל־מִצְרַיִם כֻּלָּהּ</div>
+            <div class="transliteration">Fonética: Ben-'adám sím panéijha 'al-Par'ó mélej-Mitzráyim, ve-hinnávé 'aláv ve-'al-Mitzráyim kullaáh.</div>
+            <div class="translation">Traducción Literal: Hijo de Adám (Hombre), pon tu rostro contra Par'ó (Faraón), rey de Mitzráyim (Egipto), y profetiza contra él y contra Mitzráyim toda ella.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:3</div>
+            <div class="hebrew">דַּבֵּר וְאָמַרְתָּ כֹּה־אָמַר אֲדֹנָי יְהוָה הִנְנִי עָלֶיךָ פַּרְעֹה מֶלֶךְ־מִצְרַיִם הַתַּנִּים הַגָּדוֹל הָרֹבֵץ בְּתוֹךְ יְאֹרָיו אֲשֶׁר אָמַר לִי יְאֹרִי וַאֲנִי עֲשִׂיתִנִי</div>
+            <div class="transliteration">Fonética: Dabbér ve-'amartá: Koh-'ámar Adonái יהוה: Hinnéní 'aléijha Par'ó mélej-Mitzráyim, hat-tanním hag-gadól ha-rovétz be-tójh ye'oráv, ashér ámar: Lí ye'orí va-'aní 'asitíní.</div>
+            <div class="translation">Traducción Literal: Habla y dirás: Así dice Adonái יהוה: He aquí, Yo estoy contra ti, Par'ó, rey de Mitzráyim, el gran monstruo (tanním) que yace en medio de sus ríos (ye'oráv), que dijo: Mío es mi río, y yo lo hice.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:4</div>
+            <div class="hebrew">וְנָתַתִּי חַחִים בִּלְחָיֶיךָ וְהִדְבַּקְתִּי דְגַת־יְאֹרֶיךָ בְּקַשְׂקְשֹׂתֶיךָ וְהַעֲלִיתִיךָ מִתּוֹךְ יְאֹרֶיךָ וְאֵת כָּל־דְּגַת־יְאֹרֶיךָ בְּקַשְׂקְשֹׂתֶיךָ תִּדְבָּק</div>
+            <div class="transliteration">Fonética: Ve-natattí jhajhím bi-ljháyeykha, ve-hidbaqtí deghat-ye'oréijha be-qasqesóteijha, ve-ha'alítíjha mit-tójh ye'oréijha, ve-'ét kol-deghat-ye'oréijha be-qasqesóteijha tidbáq.</div>
+            <div class="translation">Traducción Literal: Y pondré anzuelos en tus mandíbulas, y pegaré los peces de tus ríos a tus escamas, y te sacaré de en medio de tus ríos, y a todos los peces de tus ríos a tus escamas se pegarán.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:5</div>
+            <div class="hebrew">וְנִטַּשְׁתִּיךָ מִדְבָּרָה אוֹתְךָ וְאֵת כָּל־דְּגַת יְאֹרֶיךָ עַל־פְּנֵי הַשָּׂדֶה תִּפֹּול לֹא תֵאָסֵף וְלֹא תִקָּבֵץ לְחַיַּת הָאָרֶץ וּלְעוֹף הַשָּׁמַיִם נְתַתִּיךָ לְאָכְלָה</div>
+            <div class="transliteration">Fonética: Ve-nittashtíjha midbáráh otjá, ve-'ét kol-deghat ye'oréijha; 'al-penéi hassádé tippol, ló te'asséf ve-ló tiqqavétz; le-jhayyat ha'áretz u-le-'óf hash-shamáyim netattíjha le-'ojhláh.</div>
+            <div class="translation">Traducción Literal: Y te arrojaré al desierto, a ti y a todos los peces de tus ríos; sobre la faz del campo caerás, no serás recogido ni serás juntado; a la bestia de la tierra y al ave de los cielos te di por comida.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:6</div>
+            <div class="hebrew">וְיָדְעוּ כָּל־יֹשְׁבֵי מִצְרַיִם כִּי אֲנִי יְהוָה עַל הֱיוֹתָם מִשְׁעֶנֶת קָנֶה לְבֵית יִשְׂרָאֵל</div>
+            <div class="transliteration">Fonética: Ve-yáde'ú kol-yoshvéi Mitzráyim kí 'aní יהוה, 'al heyotám mish'énet qanéh le-véit Yisra'él.</div>
+            <div class="translation">Traducción Literal: Y sabrán todos los habitantes de Mitzráyim que Yo soy יהוה, por cuanto fueron apoyo de caña (mish'énet qanéh) para la Casa de Yisra'el.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:7</div>
+            <div class="hebrew">בְּתָפְשׂם בְּךָ בְכַף יָד לִיפֹּועוּ וּבְבֹאָם עָלֶיךָ בְּכָל־כָּתֵף תִּבָּקַע וְהַעֲמַדְתָּ לָהֶם כָּל־מָתְנַיִם</div>
+            <div class="transliteration">Fonética: Be-tófssám be-khá ve-jhaf yád lífpo'u, u-ve-vo'ám 'aléijha ve-khol-khatéf tibbáqa'; ve-ha'amattá lahém kol-motnáyim.</div>
+            <div class="translation">Traducción Literal: Cuando te agarraron con la palma de la mano, te rompiste, y cuando vinieron sobre ti con todo hombro, les hiciste cojear toda cadera.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:8</div>
+            <div class="hebrew">לָכֵן כֹּה־אָמַר אֲדֹנָי יְהוָה הִנְנִי מֵבִיא עָלֶיךָ חֶרֶב וְהִכְרַתִּי מִמֵּךְ אָדָם וּבְהֵמָה</div>
+            <div class="transliteration">Fonética: Lakhén koh-'ámar Adonái יהוה: Hinnéní meví 'aléijha jhérev, ve-hikh-rattí mimmékh 'adám u-vhemáh.</div>
+            <div class="translation">Traducción Literal: Por tanto, así dice Adonái יהוה: He aquí, Yo estoy trayendo sobre ti espada, y cortaré de ti hombre y bestia.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:9</div>
+            <div class="hebrew">וְהָיְתָה אֶרֶץ מִצְרַיִם לְחָרְבָּה וּשְׁמָמָה וְיָדְעוּ כִּי־אֲנִי יְהוָה יַעַן אָמַר יְאֹר לִי וַאֲנִי עָשִׂיתִי</div>
+            <div class="transliteration">Fonética: Ve-haytáh 'éretz Mitzráyim le-jhorbáh u-shmamáh, ve-yáde'ú kí-'aní יהוה, ya'an ámar: Ye'or lí va-'aní 'asíti.</div>
+            <div class="translation">Traducción Literal: Y será la tierra de Mitzráyim para ruina y desolación, y sabrán que Yo soy יהוה, por cuanto dijo: El río es mío y yo lo hice.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:10</div>
+            <div class="hebrew">לָכֵן הִנְנִי אֵלֶיךָ וְאֶל־יְאֹרֹתֶיךָ וְנָתַתִּי אֶת־אֶרֶץ מִצְרַיִם לְחָרְבוֹת חֹרֶב שְׁמָמָה מִמִּגְדֹּל סְוֵנֵה וְעַד־גְּבוּל כּוּשׁ</div>
+            <div class="transliteration">Fonética: Lakhén hinnéní 'éleijha ve-'el-ye'orotéijha, ve-natattí 'ét-'éretz Mitzráyim le-jharvót jhérev shmamáh, mi-mmigdól Sevén-eh ve-'ad-g'vúl Kush.</div>
+            <div class="translation">Traducción Literal: Por tanto, he aquí, Yo estoy contra ti y contra tus ríos, y pondré a la tierra de Mitzráyim en ruinas de ruina, desolación, desde Migdól Sevéneh y hasta la frontera de Kush (Etiopía).</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:11</div>
+            <div class="hebrew">לֹא תַעֲבָר בָּהּ רֶגֶל אָדָם וְרֶגֶל בְּהֵמָה לֹא תַעֲבָר־בָּהּ וְלֹא תֵשֵׁב אַרְבָּעִים שָׁנָה</div>
+            <div class="transliteration">Fonética: Ló ta'avór báh régel 'adám, ve-régel behemáh ló ta'avór-báh, ve-ló teshév 'arba'ím shánáh.</div>
+            <div class="translation">Traducción Literal: No pasará por ella pie de hombre, ni pie de bestia pasará por ella, y no será habitada cuarenta años.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:12</div>
+            <div class="hebrew">וְנָתַתִּי אֶת־אֶרֶץ מִצְרַיִם שְׁמָמָה בְּתוֹךְ אֲרָצוֹת נְשַׁמּוֹת וְעָרֶיהָ בְּתוֹךְ עָרִים מָחֳרָבוֹת תִּהְיֶיןָ שְׁמָמָה אַרְבָּעִים שָׁנָה וַהֲפִיצֹתִי אֶת־מִצְרַיִם בַּגּוֹיִם וְזֵרִיתִים בָּאֲרָצוֹת</div>
+            <div class="transliteration">Fonética: Ve-natattí 'ét-'éretz Mitzráyim shmamáh be-tójh 'aratzót neshámmot, ve-'aréihá be-tójh 'arím mojhoravót tihyeináh shmamáh 'arba'ím shánáh; va-hafítzotí 'ét-Mitzráyim bag-goyím ve-zeiritím ba-'aratzót.</div>
+            <div class="translation">Traducción Literal: Y pondré a la tierra de Mitzráyim en desolación en medio de tierras desoladas, y sus ciudades en medio de ciudades destruidas estarán en desolación cuarenta años; y dispersaré a Mitzráyim entre las naciones (goyím) y los esparciré por las tierras.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:13</div>
+            <div class="hebrew">כִּי כֹּה־אָמַר אֲדֹנָי יְהוָה מִקֵּץ אַרְבָּעִים שָׁנָה אֲקַבֵּץ אֶת־מִצְרַיִם מִן־הָעַמִּים אֲשֶׁר נָפֹצוּ שָׁמָּה</div>
+            <div class="transliteration">Fonética: Kí khoh-'ámar Adonái יהוה: Miq-qétz 'arba'ím shánáh 'aqabbétz 'ét-Mitzráyim min-ha-'ammím ashér nafótzú shámmáh.</div>
+            <div class="translation">Traducción Literal: Porque así dice Adonái יהוה: Al final de cuarenta años, Yo reuniré a Mitzráyim de los pueblos adonde fueron dispersados allí.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:14</div>
+            <div class="hebrew">וְשַׁבְתִּי אֶת־שְׁבוּת מִצְרַיִם וַהֲשִׁבֹתִי אֹתָם אֶרֶץ פַּתְרוֹס עַל־אֶרֶץ מְכוּרָתָם וְהָיוּ שָׁם מַמְלָכָה שְׁפָלָה</div>
+            <div class="transliteration">Fonética: Ve-shavtí 'ét-shevút Mitzráyim va-hashivótí otám 'éretz Patrós 'al-'éretz mekhurattám, ve-hayú shám mamlakháh shefáláh.</div>
+            <div class="translation">Traducción Literal: Y haré volver el cautiverio de Mitzráyim y los haré regresar a la tierra de Patrós, a la tierra de su origen, y serán allí un reino humilde (shefáláh).</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:15</div>
+            <div class="hebrew">מִשְׁפַּל הַמְּמָלָכוֹת תִּהְיֶה וְלֹא־תִתְנַשֵּׂא עוֹד עַל־הַגּוֹיִם וְהִמְעַטְתִּים לְבִלְתִּי רְדוֹת בַּגּוֹיִם</div>
+            <div class="transliteration">Fonética: Mi-shpal ham-memalakhót tihyéh, ve-ló-titnassé' 'od 'al-hag-goyím, ve-him'attím le-viltí redót bag-goyím.</div>
+            <div class="translation">Traducción Literal: Más humilde que los reinos será, y no se exaltará más sobre las naciones (goyím), y los disminuiré para que no dominen sobre las naciones.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:16</div>
+            <div class="hebrew">וְלֹא־יִהְיֶה עוֹד לְבֵית יִשְׂרָאֵל לְמִבְטָח מַזְכִּיר עָוֹן בִּפְנוֹתָם אֲלֵיהֶם וְיָדְעוּ כִּי אֲנִי אֲדֹנָי יְהוָה</div>
+            <div class="transliteration">Fonética: Ve-ló-yihyéh 'od le-véit Yisra'él le-mivtájh, mazkír 'avón bi-fnotám 'aléihém, ve-yáde'ú kí 'aní Adonái יהוה.</div>
+            <div class="translation">Traducción Literal: Y no será más para la Casa de Yisra'el una confianza, que recuerde iniquidad ('avón) al volverse ellos a Mitzráyim, y sabrán que Yo soy Adonái יהוה.</div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:17</div>
+            <div class="hebrew">וַיְהִי בְּעֶשְׂרִים וָשֶׁבַע שָׁנָה בָּרִאשׁוֹן בְּאֶחָד לַחֹדֶשׁ הָיָה דְבַר־יְהוָה אֵלַי לֵאמֹר</div>
+            <div class="transliteration">Fonética: Vayehí ve-'esrím va-shéva' shánáh ba-rishón be-'ejhád la-jhódesh, hayáh devar-יהוה 'éláy le'mor.</div>
+            <div class="translation">Traducción Literal: Y sucedió en veintisiete años, en el primero, en el primero del mes, fue palabra de יהוה a mí, diciendo:</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:18</div>
+            <div class="hebrew">בֶּן־אָדָם נְבוּכַדְרֶאצַּר מֶלֶךְ־בָּבֶל הֶעֱבִיד אֶת־חֵילוֹ עֲבֹדָה גְדֹלָה אֶל־צֹר כָּל־רֹאשׁ מֻקְרָח וְכָל־כָּתֵף מְרוּטָה וְשָׂכָר לֹא־הָיָה לוֹ וּלְחֵילוֹ מִצֹּר עַל־הָעֲבֹדָה אֲשֶׁר עָבַד עָלֶיהָ</div>
+            <div class="transliteration">Fonética: Ben-'adám, Nevukhadretzzár mélej-Bavél he'evíd 'ét-jheló 'avodáh gedoláh 'el-Tzór; kol-ró'sh muqrájh ve-khol-khatéf merutáh, ve-sákhár ló-hayáh ló u-le-jheló mit-Tzór 'al-ha-'avodáh ashér 'ávad 'aléihá.</div>
+            <div class="translation">Traducción Literal: Hijo de Adám, Nevujhadretzzar (Nabucodonosor), rey de Bavél (Babilonia), hizo servir a su ejército un trabajo grande contra Tzór (Tiro); toda cabeza rapada y todo hombro pelado; y recompensa no hubo para él ni para su ejército de Tzór, por el trabajo que trabajó contra ella.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:19</div>
+            <div class="hebrew">לָכֵן כֹּה־אָמַר אֲדֹנָי יְהוָה הִנְנִי נֹתֵן לִנְבוּכַדְרֶאצַּר מֶלֶךְ־בָּבֶל אֶת־אֶרֶץ מִצְרָיִם וְנָשָׂא אֶת־הֲמוֹנָהּ וְשָׁלַל שְׁלָלָהּ וּבָזַז בִּזָּתָהּ וְהָיְתָה שָׂכָר לְחֵילוֹ</div>
+            <div class="transliteration">Fonética: Lakhén koh-'ámar Adonái יהוה: Hinnéní notén li-Nevukhadretzzár mélej-Bavél 'ét-'éretz Mitzráyim, ve-nasá' 'ét-hamonáh, ve-shálal shlaláh u-vázaz bizzatáh, ve-haytáh sákhár le-jheló.</div>
+            <div class="translation">Traducción Literal: Por tanto, así dice Adonái יהוה: He aquí, Yo estoy dando a Nevujhadretzzar, rey de Bavél, la tierra de Mitzráyim, y él tomará su multitud, y despojará su botín, y saqueará su saqueo, y será recompensa para su ejército.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:20</div>
+            <div class="hebrew">שְׂכָרוֹ אֲשֶׁר עָבַד בָּהּ נָתַתִּי לוֹ אֶת־אֶרֶץ מִצְרָיִם אֲשֶׁר לֹא־עָשָׂה לִי נְאֻם אֲדֹנָי יְהוָה</div>
+            <div class="transliteration">Fonética: Skháro ashér 'ávad báh, natattí ló 'ét-'éretz Mitzráyim, ashér ló-'asáh lí, neum Adonái יהוה.</div>
+            <div class="translation">Traducción Literal: Su recompensa que trabajó en ella, le di a él la tierra de Mitzráyim, porque no hizo para Mí, declaración de Adonái יהוה.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yejezquel 29:21</div>
+            <div class="hebrew">בַּיּוֹם הַהוּא אַצְמִיחַ קֶרֶן לְבֵית יִשְׂרָאֵל וּלְךָ אֶתֵּן פִּתְחוֹן־פֶּה בְּתוֹכָם וְיָדְעוּ כִּי־אֲנִי יְהוָה</div>
+            <div class="transliteration">Fonética: Bay-yom ha-hhú atz-míajh qéren le-véit Yisra'él, u-lekhá 'ettén pitjhón-peh be-tókhám, ve-yáde'ú kí-'aní יהוה.</div>
+            <div class="translation">Traducción Literal: En aquel día haré brotar (atz-míajh) un Cuerno (qéren) para la Casa de Yisra'el, y a ti te daré abertura de boca (pitjhón-peh) en medio de ellos, y sabrán que Yo soy יהוה.</div>
+        </div>
+    </div>
+    <h1>La porción de Yejezquel (Ezequiel) 29:1-21 es una profecía de juicio contra Mitzráyim (Egipto) por su arrogancia y por ser un apoyo engañoso para Israel. Sin embargo, el pasaje culmina con una poderosa promesa de restauración para el pueblo de יהוה , centrada en el crecimiento de un Cuerno Mesiánico.</h1>
+
+    <div class="content-container">
+        <h2>Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+        <p>Esta profecía conecta el juicio sobre el poder mundano (Egipto) con la restauración de la autoridad real en Israel.</p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. El Juicio sobre el Gran Monstruo (29:3-5)</div>
+                <p>Par'ó (Faraón) es comparado con el "gran <span class="highlight">Tanním</span>" (monstruo o cocodrilo) que se arroga la creación, diciendo: "Mío es mi río, y yo lo hice" (29:3). יהוה promete sacarlo de su dominio con "anzuelos" (<span class="highlight">jhajhím</span>).</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipología (El Tanním / Par'ó)</th>
+                            <th>Cumplimiento Mesiánico en Yeshúa</th>
+                            <th>Pasaje del Brit Hadashah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>El Tanním arrogante</td>
+                            <td>Yeshúa, el Poder de יהוה , es quien destruye la soberanía de este "dios de este mundo".</td>
+                            <td>2 Corintios 4:4</td>
+                        </tr>
+                        <tr>
+                            <td>(...dijo: Mío es mi río, y yo lo hice)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Pondré anzuelos en tus mandíbulas (29:4)</td>
+                            <td>La victoria de יהוה sobre el mal es total y se ejecuta con poder. Yeshúa despojó a los poderes y principados (Colosenses 2:15).</td>
+                            <td>Apocalipsis 20:2</td>
+                        </tr>
+                        <tr>
+                            <td>(...sacándolo de su dominio)</td>
+                            <td>La autoridad del Mashíaj es la que captura y ata al Tanním (la serpiente antigua o dragón).</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. La Falacia de la Caña Rota (29:6, 16)</div>
+                <p>Egipto fue una "muleta" (<span class="highlight">mish'énet</span>) en la que Israel intentó apoyarse, pero que se demostró ser una "caña" débil que se rompe y hiere la mano.</p>
+                <p><strong>Conexión Profética:</strong> El juicio sobre Egipto es una lección para Israel: la confianza en cualquier poder que no sea יהוה  lleva a la iniquidad y al fracaso. La promesa es que Egipto "no será más para la Casa de Yisra'el una confianza" (29:16).</p>
+                <p><strong>Cumplimiento en Yeshúa:</strong> Yeshúa es la Roca de Israel (Isaías 8:14), el único fundamento seguro. El Mashíaj ofrece un apoyo que no se rompe. Confiar en Yeshúa (el único <span class="highlight">Mivtájh</span> o "confianza" segura) cumple la advertencia profética de no buscar ayuda en el mundo (Egipto/Babilonia).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. El Brotamiento del Cuerno Mesiánico (29:21)</div>
+                <p>La profecía culmina con el anuncio de la restauración: "En aquel día haré brotar (<span class="highlight">atz-míajh</span>) un Cuerno (<span class="highlight">Qéren</span>) para la Casa de Yisra'el."</p>
+                <p><strong>Conexión Profética:</strong></p>
+                <ul>
+                    <li><span class="highlight">Qéren</span> (Cuerno): Simboliza la fuerza, el poder y la realeza, especialmente la realeza mesiánica (Salmos 132:17).</li>
+                    <li><span class="highlight">Atz-míajh</span> (Hacer brotar): Este verbo es crucial y se usa para el Renuevo o Vástago mesiánico (<span class="highlight">Tzémajh</span>) en otros profetas (Jeremías 23:5; Zacarías 3:8).</li>
+                </ul>
+                <p><strong>Cumplimiento en Yeshúa:</strong></p>
+                <div class="scripture">Brit Hadashah: Lucas 1:68-69 cita directamente esta promesa mesiánica en el cántico de Zejarías: "Bendito יהוה Elohéi de Yisra'el, que ha visitado y hecho redención a Su pueblo, y nos levantó un Cuerno de salvación (<span class="highlight">qéren yeshú'ah</span>) en la casa de David Su siervo."</div>
+                <p>Yeshúa es el Cuerno (el poder real) que יהוה levanta en la línea davídica, el <span class="highlight">Tzémajh</span> que restaura la autoridad real de Israel tras el exilio.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Aplicación Espiritual Conectada a la Aliyá</h2>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Rechazo a la Falsa Seguridad (29:6):</div>
+                <p><strong>Aplicación:</strong> La Aliyá espiritual requiere dejar de apoyarse en la "caña rota" de las estructuras mundanas, el poder económico (el Nilo de Egipto), o las filosofías humanas. La fe en Yeshúa es una Aliyá de la confianza en uno mismo y en el mundo a la confianza exclusiva en el Mashíaj como único fundamento.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Propósito del Juicio (29:19-20):</div>
+                <p>La riqueza de Egipto es entregada a Nabucodonosor como pago por su labor. El juicio de יהוה  tiene un propósito claro y un tiempo definido (los 40 años de desolación, 29:11-13).</p>
+                <p><strong>Aplicación:</strong> Los juicios y las dificultades del mundo (incluidos los exilios históricos) son instrumentos en la mano de $\text{יהוה}$. El creyente debe ver el juicio como parte del plan soberano que despeja el camino para la Restauración y el Brotamiento del Cuerno Mesiánico. La Aliyá a la Tierra y al Reino es parte de este plan de <span class="highlight">Teshuvá</span> (retorno).</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Restauración de la Voz Profética (29:21):</div>
+                <p> יהוה promete a Yejezquel: "a ti te daré abertura de boca (<span class="highlight">pitjhón-peh</span>) en medio de ellos." La voz del profeta se silencia durante el juicio (Ezequiel 3:26), pero se restaura para el anuncio de la redención.</p>
+                <p><strong>Aplicación:</strong> El <span class="highlight">pitjhón-peh</span> es la liberación para proclamar la Palabra. La manifestación del Mashíaj (el Cuerno) siempre va acompañada de la restauración de la autoridad para profetizar y enseñar Su Nombre. La Aliyá no es solo física, sino el retorno de la Voz Profética de יהוה  a Su pueblo a través del <span class="highlight">Ruajh HaQódesh</span>, que Yeshúa derramó sobre Su Knesset.</p>
+            </div>
+        </div>
+    </div>
+    <h1>Punto 3. Brit Hadasháh: Romanos 9:14-18 (El endurecimiento del corazón de Faraón).</h1>
+
+    <div class="content-container">
+        
+        <h1>Rómáyé 9:14</h1>
+        <div class="verse-container">
+            <div class="verse-number">Rómáyé 9:14</div>
+            <div class="aramaic">ܡܢܐ ܗܟܝܠ ܢܐܡܪ ܕܠܘ ܥܘܠܐ ܗܘ ܠܘܬ ܐܠܗܐ ܚܤ</div>
+            <div class="transliteration">Fonética: Mánná hakhíl né'mar, de-ló 'awlá hú lawáth Alláh? Jhas.</div>
+            <div class="literal-translation">Traducción Literal: ¿Qué pues diremos? ¿Que no injusticia ('awlá) es con Elohím? ¡Lejos sea! (Absolutamente no).</div>
+            <div class="hebrew"></div>
+            <div class="translation"></div>
+        </div>
+
+        <h1>Rómáyé 9:15</h1>
+        <div class="verse-container">
+            <div class="verse-number">Rómáyé 9:15</div>
+            <div class="aramaic">ܗܟܢܐ ܓܝܪ ܐܡܪ ܠܡܘܫܐ ܐܪܚܡ ܥܠ ܐܝܢܐ ܕܡܪܚܡ ܐܢܐ ܘܐܚܘܢ ܠܐܝܢܐ ܕܐܚܘܢ</div>
+            <div class="transliteration">Fonética: Hakhná guír 'ámar le-Móshé: Arjham 'al 'aíná de-mríkhham áná, we-'ajhón le-'aíná de-'ajhón.</div>
+            <div class="literal-translation">Traducción Literal: Así pues dice a Moshéh: Tendré misericordia (arjham) sobre quien Yo tengo misericordia, y me compadeceré (ajhón) de quien Me compadezco.</div>
+            <div class="hebrew"></div>
+            <div class="translation"></div>
+        </div>
+
+        <h1>Rómáyé 9:16</h1>
+        <div class="verse-container">
+            <div class="verse-number">Rómáyé 9:16</div>
+            <div class="aramaic">ܠܐ ܗܟܝܠ ܒܐܝܕܝ ܡܢ ܕܨܒܐ ܘܠܐ ܒܐܝܕܝ ܡܢ ܕܪܗܛ ܐܠܐ ܒܐܝܕܝ ܐܠܗܐ ܡܪܚܡܢܐ</div>
+            <div class="transliteration">Fonética: Lá hakhíl be-'idái mán de-tzvá, wa-lá be-'idái mán de-rhátt, 'ellá be-'idái Alláh marjhemná.</div>
+            <div class="literal-translation">Traducción Literal: No, por lo tanto, por la mano de quien quiere, ni por la mano de quien corre, sino por la mano de Elohím el Misericordioso.</div>
+            <div class="hebrew"></div>
+            <div class="translation"></div>
+        </div>
+
+        <h1>Rómáyé 9:17</h1>
+        <div class="verse-container">
+            <div class="verse-number">Rómáyé 9:17</div>
+            <div class="aramaic">ܐܡܪ ܓܝܪ ܟܬܒܐ ܠܦܪܥܘܢ ܕܠܗܕܐ ܐܩܝܡܬܟ ܕܢܚܘܐ ܒܟܝܠ ܚܝܠܝ ܘܢܬܟܪܙ ܫܡܝ ܒܟܠܗ ܐܪܥܐ</div>
+            <div class="transliteration">Fonética: Ámar guír Kthává le-Fár'aon: Le-hadá aqímattákh, de-ne-jhúwá be-khíl jháilí, we-néthkraz shmí be-khúlláh 'ar'á.</div>
+            <div class="literal-translation">Traducción Literal: Dice pues la Escritura a Par'ó (Faraón): Para esto te levanté, para que muestre en ti Mi Poder (jháilí), y sea proclamado Mi Nombre (shmí) en toda la tierra.</div>
+            <div class="hebrew"></div>
+            <div class="translation"></div>
+        </div>
+
+        <h1>Rómáyé 9:18</h1>
+        <div class="verse-container">
+            <div class="verse-number">Rómáyé 9:18</div>
+            <div class="aramaic">ܡܕܝܢ ܥܠ ܡܢ ܕܨܒܐ ܡܪܚܡ ܘܥܠ ܡܢ ܕܨܒܐ ܡܩܫܐ</div>
+            <div class="transliteration">Fonética: Me-deín 'al mán de-tzvá mríkhham, we-'al mán de-tzvá maqshá.</div>
+            <div class="literal-translation">Traducción Literal: Por lo tanto, sobre quien Él quiere, tiene misericordia, y sobre quien Él quiere, endurece.</div>
+            <div class="hebrew"></div>
+            <div class="translation"></div>
+        </div>
+
+    </div>
+    <h1>La porción de Rómáyé (Romanos) 9:14-18 aborda la profunda pregunta de la justicia y soberanía de יהוה  en Su elección, un tema crucial para entender por qué la mayoría de Israel rechazó a Yeshúa. Shaúl (Pablo) argumenta que la redención nunca se basó en el mérito humano, sino en la pura misericordia y el propósito divino, demostrado tipológicamente en la historia de Moshéh y Par'ó (Faraón).</h1>
+
+    <div class="content-container">
+        <h2>Comentario Mesiánico en Yeshúa HaMashíaj</h2>
+        <p>Shaúl utiliza dos pasajes centrales del Tanaj para probar que la elección de יהוה  es incondicional y soberana, lo cual se cumple en la elección de Yeshúa como el centro del Pacto.</p>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h3 class="prophetic-title">1. El Fundamento de la Misericordia (9:15)</h3>
+                <p>Shaúl cita a Shemot (Éxodo) 33:19, la declaración de יהוה  a Moshéh tras el becerro de oro.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Profecía (Shemot 33:19)</th>
+                            <th>Cumplimiento Mesiánico en Yeshúa</th>
+                            <th>Pasaje del Brit Hadashah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Tendré misericordia sobre quien Yo tengo misericordia, y me compadeceré de quien Me compadezco."</td>
+                            <td>
+                                <p>Esta declaración establece que la Misericordia (rajham) no es un derecho adquirido, sino un regalo soberano basado en la voluntad de $\text{יהוה}$.</p>
+                                <p>La única base de la salvación (Yeshú'ah) en el Mashíaj es la misericordia de יהוה , no las obras de justicia que hayamos hecho (9:16: "No... por la mano de quien quiere, ni por la mano de quien corre").</p>
+                            </td>
+                            <td>Tito 3:5</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>(Nos salvó, no por obras de justicia que nosotros hubiéramos hecho, sino por Su misericordia.)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="translation">Centralidad de Yeshúa: Yeshúa es la manifestación suprema y el canal de esa misericordia soberana. La elección de יהוה  se enfoca en Su Hijo, y todos los que son elegidos para la misericordia lo son en Él.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-section">
+                <h3 class="prophetic-title">2. El Propósito del Endurecimiento (9:17)</h3>
+                <p>Shaúl cita a Shemot (Éxodo) 9:16, donde יהוה  explica Su propósito para levantar a Par'ó.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipología (El Endurecimiento de Par'ó)</th>
+                            <th>Cumplimiento Mesiánico en Yeshúa</th>
+                            <th>Pasaje del Brit Hadashah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>"Para esto te levanté, para que muestre en ti Mi Poder (jháilí), y sea proclamado Mi Nombre (shmí) en toda la tierra."</td>
+                            <td>
+                                <p>La incredulidad y la resistencia (el endurecimiento) no frustran el plan de יהוה , sino que lo magnifican. El juicio sobre Par'ó sirvió para revelar el Poder y el Nombre de יהוה a todas las naciones.</p>
+                                <p>El rechazo de Yeshúa por parte de los líderes de Israel no fue un accidente, sino parte del plan soberano de יהוה para que, a través de Su Ejecución y resurrección, Su Poder se manifestara y Su Nombre fuera proclamado a las naciones (goyím).</p>
+                            </td>
+                            <td>Hechos 4:27-28</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>(...para hacer lo que Tu mano y Tu consejo habían antes determinado que sucediera.)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="translation">La Soberanía de Yeshúa: Yeshúa es el centro de este propósito dual: a través de Su obra, se ejerce la misericordia (a los que creen) y se manifiesta el poder soberano (a los que resisten, mostrando que יהוה es el Juez supremo).</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>Conexión con los Profetas y la Aliyá</h2>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <h3 class="prophetic-title">Conexión con los Profetas</h3>
+                <p class="scripture">Yeshayah (Isaías) 6:9-10: El mandato de endurecer el corazón del pueblo.</p>
+                <p><strong>Conexión:</strong> La decisión de יהוה de endurecer (9:18) no es un concepto nuevo. יהוה endurece a Par'ó para un propósito redentor (la liberación de Israel). Similarmente, una porción de Israel fue endurecida (Romanos 11:25) para permitir que la misericordia de יהוה  se extendiera a los goyím, antes de su futura Aliyá nacional.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-section">
+                <h3 class="prophetic-title">Aplicación Espiritual Conectada a la Aliyá</h3>
+
+                <p class="question">Reconocimiento de la Soberanía (Malkhut): El pasaje confronta el orgullo humano que cree poder ganar la redención.</p>
+                <div class="answer">
+                    <p><strong>Aplicación:</strong> La verdadera Aliyá (ascenso espiritual) comienza con la humilde aceptación de la soberanía de $\text{יהוה}$. No se trata de "correr" más fuerte o "querer" más (9:16), sino de recibir la misericordia ofrecida libremente por Yeshúa. El creyente, sabiendo que no merece la misericordia, se rinde al plan del Mashíaj.</p>
+                </div>
+
+                <p class="question">El Propósito en el Rechazo: El endurecimiento de Par'ó facilitó la liberación de Israel (la primera Aliyá).</p>
+                <div class="answer">
+                    <p><strong>Aplicación:</strong> El "endurecimiento" temporal de Israel (la resistencia a Yeshúa) ha servido para que la Luz de las Naciones (Yeshúa) ilumine el mundo gentil. La Aliyá final de Israel (el regreso y la conversión) está intrínsecamente ligada al cumplimiento del tiempo de los goyím. El juicio (endurecimiento) es un medio temporal para la misericordia final.</p>
+                </div>
+
+                <p class="question">El Nombre Proclamado: El propósito final del juicio sobre Par'ó es que el Nombre de יהוה  sea conocido en toda la tierra.</p>
+                <div class="answer">
+                    <p><strong>Aplicación:</strong> La misión mesiánica (proclamar el Nombre/Shém de Yeshúa, Su Jháilí o poder) es el resultado directo de la soberanía de יהוה manifestada tanto en la misericordia como en el juicio. Nuestra Aliyá es llevar ese Nombre, manifestando Su poder y Su misericordia, a todas las naciones.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>📜 PUNTO 4</h1>
+    <div class="content-container">
+        <h2>Contexto Histórico y Cultural de Éxodo (Shemot) 5:1–6:1</h2>
+        <div class="section-container">
+            <h3 class="prophetic-title">1. Audiencia real y protocolo imperial egipcio</h3>
+            <p>La comparecencia de Moshé y Aharón ante el faraón (5:1) se da dentro de un marco político altamente ritualizado. En Mitsráyim:</p>
+            <ul>
+                <li>El faraón era considerado encarnación viviente de la divinidad</li>
+                <li>Ninguna deidad extranjera tenía autoridad reconocida sobre él</li>
+                <li>Una demanda en nombre de otro soberano divino era vista como desafío directo al orden cósmico</li>
+                <li>Decir “Así dice Adonái יהוה, Elohím de Israel” no es una petición religiosa inocente, sino una proclamación de soberanía rival.</li>
+            </ul>
+        </div>
+        <div class="section-container">
+            <h3 class="prophetic-title">2. Trabajo forzado y control económico</h3>
+            <p>La intensificación del trabajo (ladrillos sin paja) refleja una práctica documentada:</p>
+            <ul>
+                <li>El sistema egipcio utilizaba cuotas de producción para someter poblaciones</li>
+                <li>Quitar la paja sin reducir la cuota era castigo administrativo estándar</li>
+                <li>El objetivo no era eficiencia, sino quebrantamiento moral</li>
+                <li>Culturalmente, el trabajo excesivo era visto como forma legítima de dominación.</li>
+            </ul>
+        </div>
+        <div class="section-container">
+            <h3 class="prophetic-title">3. Liderazgo intermediario: capataces hebreos</h3>
+            <p>Los nogesím (capataces) hebreos actuaban como intermediarios:</p>
+            <ul>
+                <li>Representaban a la autoridad egipcia ante su propio pueblo</li>
+                <li>Eran responsables de cumplir cuotas imposibles</li>
+                <li>Su castigo público buscaba dividir al pueblo desde dentro</li>
+                <li>Este sistema fomentaba culpa interna y rechazo del liderazgo redentor.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>📖 PUNTO 5</h1>
+    <div class="content-container">
+        <h2>Estudio, Comentarios y Conexiones Proféticas</h2>
+        <h3>Éxodo (Shemot) 5:1–6:1</h3>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Comentario judío clásico</div>
+                <p>Rashí explica que el faraón niega conocer a Adonái יהוה no por ignorancia, sino por rechazo consciente de Su autoridad.</p>
+                <p>Ibn Ezra observa que el empeoramiento de la situación prueba al pueblo y a Moshé, revelando quién confía verdaderamente en la palabra divina.</p>
+                <p>Sforno destaca que el clamor contra Moshé muestra la fragilidad de la fe cuando la redención no es inmediata.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Conexiones proféticas</div>
+                <p>Este pasaje desarrolla un patrón profético constante:</p>
+                <ul>
+                    <li>La proclamación del Reino precede a la oposición</li>
+                    <li>La liberación comienza con aparente retroceso</li>
+                    <li>Elohím reafirma Su promesa en el momento de mayor quebranto</li>
+                </ul>
+                <p>Esto se conecta con Bereshit 15:14 y anticipa la revelación plena de poder en las plagas.</p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Comentario judío mesiánico</div>
+                <p>Moshé aparece como mediador rechazado, acusado de empeorar la situación.</p>
+                <p>Este patrón anticipa al Mashíaj, cuya proclamación inicial provoca resistencia y división antes de la redención visible.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>🔍 PUNTO 6</h1>
+    <div class="content-container">
+        <h2>Análisis Profundo de la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 5:1–6:1</h3>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Estructura literaria</div>
+                <ul>
+                    <li>Proclamación divina ante el faraón (5:1–2)</li>
+                    <li>Rechazo y burla del faraón (5:3–5)</li>
+                    <li>Decreto de intensificación del trabajo (5:6–9)</li>
+                    <li>Queja del pueblo y de los capataces (5:10–19)</li>
+                    <li>Rechazo del liderazgo de Moshé (5:20–21)</li>
+                    <li>Clamor de Moshé a Elohím (5:22–23)</li>
+                    <li>Respuesta divina de reafirmación (6:1)</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Análisis lingüístico clave</div>
+                <ul>
+                    <li>“Mi Adonái?”: negación absoluta de autoridad divina</li>
+                    <li>“Tavnit avodatam”: endurecimiento sistemático del trabajo</li>
+                    <li>“Atá tir’eh” (Ahora verás): transición profética hacia la intervención divina</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Teología del texto</div>
+                <p>El texto enseña que:</p>
+                <ul>
+                    <li>La redención no comienza con alivio, sino con confrontación</li>
+                    <li>La fe es probada antes de ser vindicada</li>
+                    <li>Elohím actúa cuando toda esperanza humana colapsa</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>🧭 PUNTO 7</h1>
+    <div class="content-container">
+        <h2>Tema Más Relevante de la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 5:1–6:1</h3>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Tema central: La proclamación del Reino provoca oposición antes de la liberación</div>
+                <p>Este pasaje enseña que:</p>
+                <ul>
+                    <li>Declarar la autoridad de Elohím confronta al poder del mundo</li>
+                    <li>El rechazo inicial no invalida el llamado</li>
+                    <li>La promesa divina se reafirma en el quebranto</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Conexión con Yeshúa haMashíaj</div>
+                <ul>
+                    <li>Yeshúa proclamó el Reino y enfrentó rechazo inmediato</li>
+                    <li>Sus seguidores esperaban alivio, pero vino oposición</li>
+                    <li>La victoria se manifestó después de la aparente derrota</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>✡️ PUNTO 8</h1>
+    <div class="content-container">
+        <h2>Descubriendo al Mashíaj en la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 5:1–6:1</h3>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Tipologías mesiánicas</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Elemento</th>
+                            <th>Sombra mesiánica</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Moshé rechazado</td>
+                            <td>Mashíaj rechazado</td>
+                        </tr>
+                        <tr>
+                            <td>Endurecimiento del yugo</td>
+                            <td>Intensificación de la oposición</td>
+                        </tr>
+                        <tr>
+                            <td>Clamor del mediador</td>
+                            <td>Intercesión del Redentor</td>
+                        </tr>
+                        <tr>
+                            <td>“Ahora verás”</td>
+                            <td>Revelación del poder redentor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Patrones redentores (Tavnitot)</div>
+                <ul>
+                    <li>Proclamación del Reino</li>
+                    <li>Rechazo y opresión aumentada</li>
+                    <li>Crisis de fe</li>
+                    <li>Reafirmación divina</li>
+                    <li>Liberación inevitable</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Cumplimiento en el Brit Hadasháh</div>
+                <p>Yeshúa haMashíaj es:</p>
+                <ul>
+                    <li>El Mediador rechazado por los poderes establecidos</li>
+                    <li>El que enfrenta la oposición del sistema</li>
+                    <li>Adonái יהוה revelado como Libertador, Ejad</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h1>📚 PUNTO 9<br>Midrashim, Targumim y Textos Fuentes<br>Éxodo (Shemot) 5:1–6:1</h1>
+
+    <div class="content-container">
+        <h2>1. Midrashim relevantes</h2>
+        <div class="section-container">
+            <p><span class="point-letter">🔹</span> Shemot Rabbah 5:14</p>
+            <div class="explanation">
+                <p>El Midrash enseña que cuando el faraón dice:</p>
+                <p>“¿Quién es Adonái יהוה para que yo oiga Su voz?”</p>
+                <p>no expresa ignorancia, sino arrogancia teológica. El faraón se presenta como autosuficiente, negando toda autoridad superior.</p>
+                <p>El Midrash añade que este desafío verbal provoca la revelación progresiva del poder divino, pues Elohím se da a conocer precisamente cuando es negado.</p>
+            </div>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">🔹</span> Shemot Rabbah 5:18–19</p>
+            <div class="explanation">
+                <p>Sobre el endurecimiento del trabajo, el Midrash explica que Elohím permitió el aumento del yugo para separar a los verdaderos fieles de los que solo esperaban alivio inmediato.</p>
+                <div class="scripture">
+                    <p>“La redención distingue entre fe basada en promesa y fe basada en comodidad.”</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">🔹</span> Shemot Rabbah 6:1</p>
+            <div class="explanation">
+                <p>El Midrash conecta la respuesta divina “Ahora verás lo que haré” con la idea de que la salvación comienza cuando la esperanza humana se agota por completo.</p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>2. Targumim</h2>
+        <div class="section-container">
+            <p><span class="point-letter">🔹</span> Targum Onkelos</p>
+            <div class="explanation">
+                <p>Traduce la negación del faraón de manera enfática, reforzando que su rechazo es consciente y deliberado. La respuesta divina en 6:1 es presentada como acción inmediata y decisiva, no futura indefinida.</p>
+            </div>
+        </div>
+        <div class="section-container">
+            <p><span class="point-letter">🔹</span> Targum Pseudo-Jonatán</p>
+            <div class="explanation">
+                <p>Amplía el texto indicando que:</p>
+                <ul>
+                    <li>Elohím permitió el endurecimiento para manifestar Su poder con mayor claridad</li>
+                    <li>La liberación no sería gradual, sino forzada por mano poderosa</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2>3. Textos fuentes del Segundo Templo</h2>
+        <div class="explanation">
+            <p>Tradiciones judías antiguas ven este episodio como:</p>
+            <ul>
+                <li>El primer choque directo entre el Reino de Elohím y el poder del mundo</li>
+                <li>El momento en que el éxodo deja de ser promesa y se convierte en confrontación histórica</li>
+                <li>Un modelo de cómo las potencias humanas se auto-condenan al resistir la voluntad divina</li>
+            </ul>
+        </div>
+    </div>
+
+    <h1>📜 PUNTO 10<br>Mandamientos, Principios y Valores<br>Éxodo (Shemot) 5:1–6:1</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h3>1. Proclamar la autoridad de Elohím sin temor</h3>
+            <p>Moshé y Aharón hablan en nombre de Adonái יהוה aun frente al rechazo.</p>
+            <p><strong>Principio eterno:</strong></p>
+            <div class="scripture">
+                <p>La verdad no se adapta al poder; confronta al poder.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>2. Perseverar cuando la situación empeora</h3>
+            <p>El aumento del sufrimiento no invalida la promesa.</p>
+            <p><strong>Principio:</strong></p>
+            <div class="scripture">
+                <p>La fidelidad no depende de resultados inmediatos.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>3. Llevar el clamor directamente a Elohím</h3>
+            <p>Moshé no se defiende ante el pueblo; clama a Elohím.</p>
+            <p><strong>Aplicación mesiánica:</strong></p>
+            <div class="scripture">
+                <p>Yeshúa haMashíaj llevó la incomprensión y el rechazo directamente al Padre.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>4. Reconocer que la redención es obra divina</h3>
+            <p>“Ahora verás lo que Yo haré”.</p>
+            <p><strong>Principio:</strong></p>
+            <div class="scripture">
+                <p>La liberación no es producto de negociación humana, sino de intervención soberana.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>❓ PUNTO 11<br>Preguntas de Reflexión con Respuestas en el Mashíaj<br>Éxodo (Shemot) 5:1–6:1</h1>
+
+    <div class="content-container">
+        <div class="section-container">
+            <div class="question">1. ¿Por qué la situación empeora después del llamado de redención?</div>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Porque el Reino confronta al sistema antes de reemplazarlo. Yeshúa también provocó oposición antes de la victoria.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">2. ¿Qué revela la frase “No conozco a Adonái יהוה”?</div>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Revela rebelión consciente. Yeshúa enfrentó la misma negación por parte de los poderes religiosos y políticos.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">3. ¿Por qué el pueblo culpa a Moshé?</div>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Porque el sufrimiento nubla la fe. Yeshúa también fue rechazado cuando no cumplió expectativas inmediatas.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">4. ¿Qué enseña el clamor de Moshé?</div>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Que el mediador verdadero se vuelve a Elohím, no al pueblo. Yeshúa intercede continuamente ante el Padre.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <div class="question">5. ¿Qué significa “Ahora verás”?</div>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Es la transición de promesa a acción. En Yeshúa, la salvación pasa del anuncio al cumplimiento.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>📖 PUNTO 12<br>Resumen de la Aliyáh<br>Éxodo (Shemot) 5:1–6:1</h1>
+
+    <div class="content-container">
+        <ul>
+            <li>Moshé y Aharón proclaman la palabra de Adonái יהוה</li>
+            <li>El faraón rechaza Su autoridad</li>
+            <li>La opresión se intensifica</li>
+            <li>El pueblo se desanima y rechaza al mediador</li>
+            <li>Moshé clama a Elohím</li>
+            <li>Elohím responde con promesa de acción inmediata</li>
+        </ul>
+        <div class="prophetic-content">
+            <div class="prophetic-title">Resumen mesiánico:</div>
+            <div class="prophetic-section">
+                <p>La Aliyáh revela que la redención comienza con confrontación, y que Elohím reafirma Su promesa cuando la fe es más probada.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>🙏 PUNTO 13<br>Tefiláh (Oración) de la Aliyáh<br>Éxodo (Shemot) 5:1–6:1</h1>
+
+    <div class="content-container">
+        <div class="prayer-text">
+            <p>Adonái יהוה,</p>
+            <p>Elohím soberano sobre toda autoridad,</p>
+            <p>Tú que reinas aun cuando Tu Nombre es negado,</p>
+            <p>Fortalece nuestra emunáh</p>
+            <p>cuando la obediencia parece traer oposición,</p>
+            <p>cuando el yugo se endurece</p>
+            <p>y la esperanza humana se debilita.</p>
+            <p>Reconocemos que Tú te revelaste plenamente</p>
+            <p>como Libertador en Yeshúa haMashíaj,</p>
+            <p>Uno contigo, Ejad,</p>
+            <p>quien venció el rechazo y la muerte</p>
+            <p>para traer redención verdadera.</p>
+            <p>Enséñanos a perseverar,</p>
+            <p>a clamar a Ti en medio del quebranto,</p>
+            <p>y a confiar en que Tu palabra se cumplirá</p>
+            <p>porque Tú has dicho:</p>
+            <p>“Ahora verás lo que Yo haré”.</p>
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../index.html">Ir al contenido de las 54 parashot</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

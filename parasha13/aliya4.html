@@ -1,0 +1,2566 @@
+	<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 3:1-15</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+       13. Parashá Shemot (שמות) – Aliyáh 4: (Éxodo 3:1-15) Moshé recibe el llamado de Elohím en la zarza ardiente. 
+        <p>
+       Haftaráh: Isaías 40:1-26 (La revelación del poder de Elohím).
+        </p>
+        <p>
+        Brit Hadasháh: Juan 8:58 (Yeshúa revela Su eternidad: «Antes que Abraham fuera, Yo soy»).
+        </p>
+      </h1>
+      <h1>Punto 1. SHEMOT (ÉXODO) CAPÍTULO 3</h1>
+
+    <div class="content-container">
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:1</div>
+        <div class="hebrew">
+          וּמֹשֶׁה הָיָה רֹעֶה אֶת־צֹאן יִתְרוֹ חֹתְנוֹ כֹּהֵן מִדְיָן וַיִּנְהַג אֶת־הַצֹּאן אַחַר הַמִּדְבָּר וַיָּבֹא אֶל־הַר הָאֱלֹהִים חֹרֵבָה
+        </div>
+        <div class="transliteration">
+          U-Moshéh hayáh ro'éh ét-tzó'n Yitró jhotnó, kohén Midyán, vayyinhag ét-hattzó'n ajhár hammidbár, vayyavó el-har ha'Elohím Jhorévah.
+        </div>
+        <div class="translation">
+          Y Moshéh estaba pastoreando las ovejas de Yitró (Jetro), su suegro, sacerdote de Midyán; y condujo el rebaño tras el desierto, y llegó al monte de ha'Elohím, Jhorév (Horeb).
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:2</div>
+        <div class="hebrew">
+          וַיֵּרָא מַלְאַךְ יְהוָה אֵלָיו בְּלַבַּת־אֵשׁ מִתּוֹךְ הַסְּנֶה וַיַּרְא וְהִנֵּה הַסְּנֶה בֹּעֵר בָּאֵשׁ וְהַסְּנֶה אֵינֶנּוּ אֻכָּל
+        </div>
+        <div class="transliteration">
+          Vayyérá mal'ájh יהוה eláv be-lavvat-ésh mittójh hassnéh, vayyar ve-hinnéh hassnéh bo'ér ba'ésh, ve-hassnéh éinennu ukkál.
+        </div>
+        <div class="translation">
+          Y se apareció el ángel de <span class="highlight">יהוה</span> a él en una llama de fuego de en medio de la zarza; y vio, y he aquí, la zarza ardía en el fuego, mas la zarza no se consumía.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:3</div>
+        <div class="hebrew">
+          וַיֹּאמֶר מֹשֶׁה אָסֻרָה נָּא וְאֶרְאֶה אֶת־הַמַּרְאֶה הַגָּדֹל הַזֶּה מַדּוּעַ לֹא־יִבְעַר הַסְּנֶה
+        </div>
+        <div class="transliteration">
+          Vayyómer Moshéh: Asuráh nna ve'er'éh ét-hammar'éh haggadól hazéh, madúa' ló-yiv'ar hassnéh?
+        </div>
+        <div class="translation">
+          Y dijo Moshéh: Me acercaré ahora, y veré esta gran visión, ¿por qué no se quema la zarza?
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:4</div>
+        <div class="hebrew">
+          וַיַּרְא יְהוָה כִּי סָר לִרְאוֹת וַיִּקְרָא אֵלָיו אֱלֹהִים מִתּוֹךְ הַסְּנֶה וַיֹּאמֶר מֹשֶׁה מֹשֶׁה וַיֹּאמֶר הִנֵּנִי
+        </div>
+        <div class="transliteration">
+          Vayyar' יהוה kí sar lir'ót vayyiqrá eláv Elohím mittójh hassnéh vayyómer: Moshéh, Moshéh! Vayyómer: Hinnéni.
+        </div>
+        <div class="translation">
+          Y vio <span class="highlight">יהוה</span> que se apartaba para mirar, y llamó a él <span class="highlight">Elohím</span> de en medio de la zarza, y dijo: ¡Moshéh, Moshéh! Y él dijo: Heme aquí.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:5</div>
+        <div class="hebrew">
+          וַיֹּאמֶר אַל־תִּקְרַב הֲלֹם שַׁל־נְעָלֶיךָ מֵעַל רַגְלֶיךָ כִּי הַמָּקוֹם אֲשֶׁר אַתָּה עוֹמֵד עָלָיו אַדְמַת־קֹדֶשׁ הוּא
+        </div>
+        <div class="transliteration">
+          Vayyómer: 'Al-tiqráv halóm, shal-ne'aléejhá me'al ragléjhá, kí hammáqóm ashér attáh 'oméd 'aláv 'admat-qódesh hu.
+        </div>
+        <div class="translation">
+          Y dijo: No te acerques aquí; quita tus sandalias de sobre tus pies, porque el lugar sobre el cual tú estás parado, tierra de santidad (<span class="highlight">qódesh</span>) es él.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:6</div>
+        <div class="hebrew">
+          וַיֹּאמֶר אָנֹכִי אֱלֹהֵי אָבִיךָ אֱלֹהֵי אַבְרָהָם אֱלֹהֵי יִצְחָק וֵאלֹהֵי יַעֲקֹב וַיַּסְתֵּר מֹשֶׁה פָּנָיו כִּי יָרֵא מֵהַבִּיט אֶל־הָאֱלֹהִים
+        </div>
+        <div class="transliteration">
+          Vayyómer: Anójhí Elohéi avíjha, Elohéi Avrahám, Elohéi Yitzjháq, ve'Elohéi Ya'akóv. Vayyasstér Moshéh panáv, kí yáré me-habbít el-ha'Elohím.
+        </div>
+        <div class="translation">
+          Y dijo: Yo soy el <span class="highlight">Elohéi</span> de tu padre, el Elohéi de Avraham, el Elohéi de Yitzjak, y el Elohéi de Ya'akov. Y cubrió Moshéh su rostro, porque temió mirar al <span class="highlight">ha'Elohím</span>.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:7</div>
+        <div class="hebrew">
+          וַיֹּאמֶר יְהוָה רָאֹה רָאִיתִי אֶת־עֳנִי עַמִּי אֲשֶׁר בְּמִצְרָיִם וְאֶת־צַעֲקָתָם שָׁמַעְתִּי מִפְּנֵי נֹגְשָׂיו כִּי יָדַעְתִּי אֶת־מַכְאֹבָיו
+        </div>
+        <div class="transliteration">
+          Vayyómer יהוה: Ra'óh ra'ítí ét-'oní 'ammí ashér be-Mitzráyim, ve'ét-tza'aqatám shamá'ti mi-penéi nogesáv, kí yadá'ti ét-majhováv.
+        </div>
+        <div class="translation">
+          Y dijo <span class="highlight">יהוה</span>: Viendo he visto la aflicción de Mi pueblo que está en Mitzráyim (Egipto), y he oído su clamor a causa de sus opresores, porque he conocido sus dolores.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:8</div>
+        <div class="hebrew">
+          וָאֵרֵד לְהַצִּילוֹ מִיַּד מִצְרַיִם וּלְהַעֲלֹתוֹ מִן־הָאָרֶץ הַהִוא אֶל־אֶרֶץ טוֹבָה וּרְחָבָה אֶל־אֶרֶץ זָבַת חָלָב וּדְבָשׁ אֶל־מְקוֹם הַכְּנַעֲנִי וְהַחִתִּי וְהָאֱמֹרִי וְהַפְּרִזִּי וְהַחִוִּי וְהַיְבוּסִי
+        </div>
+        <div class="transliteration">
+          Va'eréd le-hatztziló mi-yyad Mitzráyim ule-ha'alotó min-ha'áretz ha-hí hi el-'éretz tovah urjhávah, el-'éretz zavat jhaláv udvash, el-meqóm hak-kena'aní ve-hajjittí ve-ha'emórí ve-hap-prizzí ve-hajhivví ve-hayvusí.
+        </div>
+        <div class="translation">
+          Y descendí para librarlo de la mano de Mitzráyim, y para hacerlo subir de aquella tierra a una tierra buena y espaciosa, a una tierra que fluye leche y miel, al lugar del kena'aní (cananeo), del jhití (hitita), del emorí (amorreo), del prizí (ferezeo), del jhiví (heveo) y del yvusí (jebuseo).
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:9</div>
+        <div class="hebrew">
+          וְעַתָּה הִנֵּה צַעֲקַת בְּנֵי־יִשְׂרָאֵל בָּאָה אֵלָי וְגַם־רָאִיתִי אֶת־הַלַּחַץ אֲשֶׁר מִצְרַיִם לֹחֲצִים אֹתָם
+        </div>
+        <div class="transliteration">
+          Ve-'attáh hinnéh tza'aqat benéi-Yisra'él bá'áh éláy, ve-gam-ra'ítí ét-hallájhatz ashér Mitzráyim lojhatzím otám.
+        </div>
+        <div class="translation">
+          Y ahora, he aquí, el clamor de los hijos de Yisra'el ha llegado a Mí, y también he visto la opresión con que Mitzráyim los oprime.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:10</div>
+        <div class="hebrew">
+          וְעַתָּה לְכָה וְאֶשְׁלָחֲךָ אֶל־פַּרְעֹה וְהוֹצֵא אֶת־עַמִּי בְנֵי־יִשְׂרָאֵל מִמִּצְרָיִם
+        </div>
+        <div class="transliteration">
+          Ve-'attáh lejhá ve'eshlajajhá el-Par'óh ve-hotzé ét-'ammí venéi-Yisra'él mi-Mitzráyim.
+        </div>
+        <div class="translation">
+          Y ahora, ve, y Yo te enviaré al Faraón, para que saques a Mi pueblo, a los hijos de Yisra'el, de Mitzráyim.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:11</div>
+        <div class="hebrew">
+          וַיֹּאמֶר מֹשֶׁה אֶל־הָאֱלֹהִים מִי אָנֹכִי כִּי אֵלֵךְ אֶל־פַּרְעֹה וְכִי אוֹצִיא אֶת־בְּנֵי יִשְׂרָאֵל מִמִּצְרָיִם
+        </div>
+        <div class="transliteration">
+          Vayyómer Moshéh el-ha'Elohím: Mí anójhí kí éléj el-Par'óh ve-jí otzí ét-benéi Yisra'él mi-Mitzráyim?
+        </div>
+        <div class="translation">
+          Y dijo Moshéh a ha'Elohím: ¿Quién soy yo para que vaya al Faraón, y para que saque yo a los hijos de Yisra'el de Mitzráyim?
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:12</div>
+        <div class="hebrew">
+          וַיֹּאמֶר כִּי אֶהְיֶה עִמָּךְ וְזֶה־לְּךָ הָאוֹת כִּי אָנֹכִי שְׁלַחְתִּיךָ בְּהוֹצִיאֲךָ אֶת־הָעָם מִמִּצְרַיִם תַּעַבְדוּן אֶת־הָאֱלֹהִים עַל הָהָר הַזֶּה
+        </div>
+        <div class="transliteration">
+          Vayyómer: Kí eh-yéh 'immájh, ve-zéh-lekhá ha'ót kí anójhí shelajhtíjha: Be-hotzí'ajhá ét-ha'am mi-Mitzráyim ta'avdún ét-ha'Elohím 'al ha-hár ha-zéh.
+        </div>
+        <div class="translation">
+          Y Él dijo: Ciertamente Yo estaré contigo; y esta te será la señal de que Yo te he enviado: Cuando saques al pueblo de Mitzráyim, servirán ustedes a <span class="highlight">ha'Elohím</span> sobre este monte.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:13</div>
+        <div class="hebrew">
+          וַיֹּאמֶר מֹשֶׁה אֶל־הָאֱלֹהִים הִנֵּה אָנֹכִי בָא אֶל־בְּנֵי יִשְׂרָאֵל וְאָמַרְתִּי לָהֶם אֱלֹהֵי אֲבוֹתֵיכֶם שְׁלָחַנִי אֲלֵיכֶם וְאָמְרוּ־לִי מַה־שְּׁמוֹ מָה אֹמַר אֲלֵהֶם
+        </div>
+        <div class="transliteration">
+          Vayyómer Moshéh el-ha'Elohím: Hinnéh anójhí vá el-benéi Yisra'él ve'amartí lahém: Elohéi avotéijhém shelajhaní aléijhém, ve'amrú-lí: Mah-shemó? Mah ómar aléihém?
+        </div>
+        <div class="translation">
+          Y dijo Moshéh a ha'Elohím: He aquí, yo voy a los hijos de Yisra'el, y les diré: El Elohéi de vuestros padres me ha enviado a vosotros. Y me dirán: ¿Cuál es Su Nombre? ¿Qué diré a ellos?
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:14</div>
+        <div class="hebrew">
+          וַיֹּאמֶר אֱלֹהִים אֶל־מֹשֶׁה אֶהְיֶה אֲשֶׁר אֶהְיֶה וַיֹּאמֶר כֹּה תֹאמַר לִבְנֵי יִשְׂרָאֵל אֶהְיֶה שְׁלָחַנִי אֲלֵיכֶם
+        </div>
+        <div class="transliteration">
+          Vayyómer Elohím el-Moshéh: Eh-yéh Ashér Eh-yéh. Vayyómer: Koh tomár li-vn-éi Yisra'él: Eh-yéh shelajhaní aléijhém.
+        </div>
+        <div class="translation">
+          Y dijo Elohím a Moshéh: <span class="highlight">Yo seré (Eh-yéh) el que Yo seré (Ashér Eh-yéh)</span>. Y dijo: Así dirás a los hijos de Yisra'el: <span class="highlight">Yo seré (Eh-yéh)</span> me ha enviado a vosotros.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 3:15</div>
+        <div class="hebrew">
+          וַיֹּאמֶר עוֹד אֱלֹהִים אֶל־מֹשֶׁה כֹּה־תֹאמַר אֶל־בְּנֵי יִשְׂרָאֵל יְהוָה אֱלֹהֵי אֲבֹתֵיכֶם אֱלֹהֵי אַבְרָהָם אֱלֹהֵי יִצְחָק וֵאלֹהֵי יַעֲקֹב שְׁלָחַנִי אֲלֵיכֶם זֶה־שְּׁמִי לְעֹלָם וְזֶה זִכְרִי לְדֹר דֹּר
+        </div>
+        <div class="transliteration">
+          Vayyómer 'ód Elohím el-Moshéh: Koh-tomár el-benéi Yisra'él: יהוה Elohéi avotéijhém, Elohéi Avrahám, Elohéi Yitzjháq ve'Elohéi Ya'akóv shelajhaní aléijhém. Zéh-shemí le-'olám ve-zéh zikhrí le-dor dor.
+        </div>
+        <div class="translation">
+          Y dijo además Elohím a Moshéh: Así dirás a los hijos de Yisra'el: <span class="highlight">יהוה</span>, el Elohéi de vuestros padres, el Elohéi de Avraham, el Elohéi de Yitzjak, y el Elohéi de Ya'akov me ha enviado a vosotros. Este es <span class="highlight">Mi Nombre para siempre</span>, y este Mi recuerdo de generación en generación.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="explanation">
+      <h2>Análisis Mesiánico de la Zarza Ardiente y el Nombre Divino</h2>
+      <div class="section-container">
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              1. La Zarza Ardiente: Símbolo de Presencia Pura
+            </div>
+            <p>
+              El fenómeno de la zarza ardiente (<span class="hebrew-term">הַסְּנֶה</span> -
+              <span class="highlight">hassnéh</span>) que no se consume (v. 2) es una imagen poderosa. El fuego bíblico a menudo representa la
+              <span class="highlight">santidad</span> de Elohim. El hecho de que no consuma a la zarza (que puede representar a Israel, un arbusto humilde)
+              indica que la Presencia Divina (el Ángel de <span class="highlight">יהוה</span>) está en medio de la aflicción (el fuego de Egipto)
+              <span class="highlight">sin destruirlos</span>, sino santificándolos.
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">2. El "Ángel de יהוה" y Su Naturaleza</div>
+            <p>
+              En Shemot 3:2, quien se aparece es el "Ángel de <span class="highlight">יהוה</span>" (
+              <span class="hebrew-term">מַלְאַךְ יְהוָה</span>). Sin embargo, en el verso 4, es <span class="highlight">Elohím</span> quien llama a Moshéh
+              desde la zarza, y en el verso 6, es <span class="highlight">יהוה</span> quien se identifica. Este patrón en las Escrituras sugiere que el
+              <span class="highlight">Ángel de <span class="hebrew-term">יהוה</span></span> no es un simple mensajero, sino una manifestación pre-encarnada del
+              propio Elohim, a menudo identificada por los teólogos mesiánicos como el <span class="highlight">Mesías Yeshúa</span>. Él es la Palabra de Elohim
+              que se hace visible para Su pueblo.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">3. La Revelación del Nombre: <span class="highlight">Eh-yéh Ashér Eh-yéh</span></div>
+            <p>
+              Moshéh pregunta por el Nombre (v. 13), y la respuesta es profunda (v. 14):
+              <span class="highlight">Eh-yéh Ashér Eh-yéh</span> (<span class="hebrew-term">אֶהְיֶה אֲשֶׁר אֶהְיֶה</span>).
+            </p>
+            <ul>
+              <li>
+                <span class="point-letter">A</span> La traducción más común es "Yo Soy el que Soy", pero literalmente es
+                <span class="literal-translation">"Yo seré el que Yo seré"</span>, o "Yo resultaré ser lo que resultaré ser".
+              </li>
+              <li>
+                <span class="point-letter">B</span> Este nombre no describe una esencia estática, sino una <span class="highlight">presencia activa y dinámica</span>. Elohim es el
+                <span class="highlight">Existente</span> y el <span class="highlight">Actuante</span>, Quien se manifestará fielmente en el futuro tal como
+                lo es ahora. En el contexto de la liberación, significa: "Yo seré vuestro Libertador, vuestro Sustentador, vuestro Redentor."
+              </li>
+              <li>
+              <span class="point-letter">C</span> La forma abreviada <span class="highlight">Eh-yéh</span> (Yo Seré) es la que Moshéh debe dar a Israel. La raíz de
+                <span class="hebrew-term">אֶהְיֶה</span> (Eh-yéh) está conectada con el Nombre inefable de cuatro letras (<span class="highlight">יהוה</span> -
+                <span class="hebrew-term">YHWH</span>/Yahwéh), el cual se revela inmediatamente después (v. 15).
+              </li>
+              <li>
+              <span class="point-letter">D</span> <span class="highlight">Yeshúa el Mesías</span> hace eco de esta verdad cuando se identifica a sí mismo
+                en el Nuevo Pacto con "Yo Soy" (Ej. Juan 8:58: "Antes que Avraham fuese, Yo Soy"), afirmando Su eternidad y Su identidad como la manifestación del
+                <span class="highlight">Eh-yéh</span>.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="conclusion">
+        <h3>Punto de Reflexión Mesiánica</h3>
+        <p>
+          El Monte Horeb es el lugar donde Elohim revela Su Nombre de Pacto,
+          <span class="highlight">יהוה</span>. El mensaje fundamental es la
+          <span class="highlight">fidelidad inmutable</span> de Elohim: Él es el
+          <span class="highlight">Elohéi de Avraham, Yitzjak, y Ya'akov</span> (v. 6), lo que significa que Su pacto con ellos sigue vigente. La liberación
+          de Egipto es un modelo de la <span class="highlight">redención final</span> que el Mesías Yeshúa llevaría a cabo, liberando a Su pueblo de la
+          esclavitud del pecado y conduciéndolos a la Tierra Prometida, la vida eterna.
+        </p>
+      </div>
+    </div>
+    <h1>Análisis Mesiánico de Shemot (Éxodo) 3:1-15</h1>
+
+    <div class="content-container">
+        <p>La porción de Shemot (Éxodo) 3:1-15, que narra la revelación de $\text{יהוה}$ a Moshéh en la zarza ardiente, es uno de los pasajes más profundos en la revelación de la naturaleza de $\text{יהוה}$ y el llamado a la redención. Este evento es una profecía mesiánica ineludible, que establece la identidad y la misión de Yeshúa HaMashíaj.</p>
+    </div>
+
+    <h1>Cumplimiento Profético en el Mashíaj Yeshúa</h1>
+
+    <div class="content-container">
+        <p>Esta aliyá es la matriz para el concepto de la <span class="highlight">Shejináh (Presencia Divina)</span> que se revela en humildad para redimir a Su pueblo.</p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Evento Profético (Zarza Ardiente)</div>
+                <p>La zarza (snéh), un arbusto común y humilde, arde con fuego divino sin ser consumida. Esto simboliza la manifestación de la gloria de $\text{יהוה}$ (Fuego) en un receptáculo frágil (Zarza). (3:2)</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Explicación del Cumplimiento en Yeshúa HaMashíaj</div>
+                <p>Yeshúa es la Shejináh de Elohím que habitó en un cuerpo humano humilde, pero que no fue consumido por el pecado ni por la corrupción. En Él, la plenitud de la Deidad reside corporalmente.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Pasaje del Brit Hadashah</div>
+                <p class="scripture">Juan 1:14: (Y la Palabra se hizo carne, y habitó (shaján) entre nosotros, y vimos Su gloria, gloria como del unigénito del Padre...)</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">La Revelación del Nombre (3:14)</div>
+                <p>$\text{יהוה}$ se revela como <span class="highlight">Eh-yéh Ashér Eh-yéh</span> ("Yo Seré el que Yo Seré" o "Yo Soy el que Soy"). Esto es la esencia de la existencia eterna.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Explicación del Cumplimiento en Yeshúa HaMashíaj</div>
+                <p>Yeshúa, en el Brit Hadashah, reclama este Nombre divino para Sí mismo, utilizando el equivalente en griego, <span class="highlight">Egō Eimi</span> (Yo Soy), afirmando Su preexistencia y Deidad. <span class="hebrew-term" lang="he">אֶהְיֶה</span> (Eh-yéh) es la raíz de $\text{יהוה}$.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Pasaje del Brit Hadashah</div>
+                <p class="scripture">Juan 8:58: (Yeshúa les dijo: De cierto, de cierto os digo: Antes que Avraham fuera, <span class="highlight">Yo Soy</span>.)</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">El Elohéi de los Padres (3:6, 15)</div>
+                <p>La misión se basa en el pacto con los patriarcas, probando que $\text{יהוה}$ es un Elohím de fidelidad y de vivos.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Explicación del Cumplimiento en Yeshúa HaMashíaj</div>
+                <p>Yeshúa cita este mismo pasaje para probar la resurrección y la vida eterna, confirmando que Su misión es la continuación del pacto.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Pasaje del Brit Hadashah</div>
+                <p class="scripture">Matityah (Mateo) 22:32: (No es Elohím de muertos, sino de vivos.)</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>Conexión con los Profetas (Tanaj)</h1>
+
+    <div class="content-container">
+        <p>El evento de la zarza y el llamado de Moshéh es el arquetipo del profeta y el libertador de Israel:</p>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Yeshayah (Isaías) 63:9</div>
+                <p>La declaración de $\text{יהוה}$ "Viendo he visto la aflicción de Mi pueblo... y he conocido sus dolores. Y descendí para librarlo" (3:7-8) es el espíritu del Salvador.</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Conexión Mesiánica</div>
+                <p>Yeshayah afirma: "En toda la angustia de ellos, Él fue angustiado, y el ángel de Su presencia los salvó; en Su amor y en Su clemencia Él los redimió..." La <span class="highlight">Shejináh de $\text{יהוה}$</span> desciende y participa de la aflicción de Su pueblo, un acto culminante en Yeshúa.</p>
+            </div>
+            <div class="section-divider"></div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Malajhí (Malaquías) 3:1</div>
+                <p>Anuncia la venida del <span class="highlight">Mensajero del Pacto</span> (Moshéh es el primero, Yeshúa el definitivo).</p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">Conexión Mesiánica</div>
+                <p>"He aquí, Yo envío Mi mensajero, el cual preparará el camino delante de Mí; y vendrá súbitamente a Su Templo Adón a quien vosotros buscáis, y el <span class="highlight">Mal'ajh HaBerit</span> (Mensajero del Pacto) a quien deseáis." Yeshúa cumple este rol como el Mensajero y Ángel (Mal'ajh) de $\text{יהוה}$ que viene a Su Templo para redimir y juzgar.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>Conexión con el Brit Hadashah (Peshita Aramea)</h1>
+
+    <div class="content-container">
+        <p>El Brit Hadashah no solo confirma la deidad de Yeshúa a través del Nombre, sino Su superioridad sobre Moshéh, el primer enviado.</p>
+
+        <div class="section-container">
+            <h3>Hebreos (Ivráyim) 3:1-6</h3>
+            <p>El Brit Hadashah contrasta la fidelidad de Moshéh (el enviado, <span class="highlight">shalíaj</span>) con la de Yeshúa (el Hijo y Sumo Sacerdote).</p>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">Cumplimiento Profético y Contraste</div>
+                <p>Moshéh fue un <span class="highlight">shalíaj</span> (enviado, 3:10) fiel en la casa, pero Yeshúa es el <span class="highlight">Constructor de la casa</span>. El pasaje de Hebreos reconoce que el llamado de Moshéh fue divinamente autorizado, pero su autoridad era derivada; Yeshúa, por otro lado, posee la autoridad inherente del Nombre <span class="highlight">Eh-yéh</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>Shemot (Éxodo) 3:1-15 - Texto Interlineal</h1>
+
+    <div class="content-container">
+        <div class="verse-container">
+            <div class="verse-number">3:1</div>
+            <div class="hebrew" lang="he">וּמֹשֶׁה הָיָה רֹעֶה אֶת־צֹאן יִתְרוֹ חֹתְנוֹ כֹּהֵן מִדְיָן וַיִּנְהַג אֶת־הַצֹּאן אַחַר הַמִּדְבָּר וַיָּבֹא אֶל־הַר הָאֱלֹהִים חֹרֵבָה׃</div>
+            <div class="transliteration">U'Moshéh hayáh ro'éh et-tzón Yitró jotnó kohén Midyán vayinhág et-hatzón ajár hamidbár vayavó el-har HaElohím Jorévah.</div>
+            <div class="translation">Y Moshéh estaba pastoreando el rebaño de Yitró, su suegro, sacerdote de Midyán, y condujo el rebaño detrás del desierto, y llegó a la montaña de Elohím, Horeb.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">3:2</div>
+            <div class="hebrew" lang="he">וַיֵּרָא מַלְאַךְ יְהוָה אֵלָיו בְּלַבַּת־אֵשׁ מִתּוֹךְ הַסְּנֶה וַיַּרְא וְהִנֵּה הַסְּנֶה בֹּעֵר בָּאֵשׁ וְהַסְּנֶה אֵינֶנּוּ אֻכָּל׃</div>
+            <div class="transliteration">Vayérá Mal'ajh $\text{יהוה}$ eláv b'labát-ésh mitój hasenéh vayár v'hinéh hasenéh bo'ér baésh v'hasenéh einénu ukál.</div>
+            <div class="translation">Y apareció el Ángel de $\text{יהוה}$ a él en una llama de fuego de en medio de la zarza, y miró, y he aquí, la zarza ardía en el fuego, mas la zarza no se consumía.</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">3:5</div>
+            <div class="hebrew" lang="he">וַיֹּאמֶר אַל־תִּקְרַב הֲלֹם שַׁל־נְעָלֶיךָ מֵעַל רַגְלֶיךָ כִּי הַמָּקוֹם אֲשֶׁר אַתָּה עוֹמֵד עָלָיו אַדְמַת־קֹדֶשׁ הוּא׃</div>
+            <div class="transliteration">Vayómer ál-tiqráv halóm shal-n'aléiha me'ál raglékha kí hamakóm ashér atáh oméd aláv admát-qódesh hu.</div>
+            <div class="translation">Y dijo: No te acerques aquí; quita tu calzado de sobre tus pies, porque el lugar donde tú estás parado es tierra santa (qódesh).</div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">3:14</div>
+            <div class="hebrew" lang="he">וַיֹּאמֶר אֱלֹהִים אֶל־מֹשֶׁה אֶהְיֶה אֲשֶׁר אֶהְיֶה וַיֹּאמֶר כֹּה תֹאמַר לִבְנֵי יִשְׂרָאֵל אֶהְיֶה שְׁלָחַנִי אֲלֵיכֶם׃</div>
+            <div class="transliteration">Vayómer Elohím el-Moshéh Eh-yéh Ashér Eh-yéh vayómer kóh tomár liVnéi Yisra'él Eh-yéh shelajhaní aléikhém.</div>
+            <div class="translation">Y dijo Elohím a Moshéh: YO SERÉ EL QUE YO SERÉ. Y dijo: Así dirás a los hijos de Israel: YO SERÉ me ha enviado a vosotros.</div>
+        </div>
+    </div>
+
+    <h1>Aplicación Espiritual Conectada a la Aliyá</h1>
+
+    <div class="content-container">
+        <div class="explanation">
+            <h3>La Revelación a Moshéh: Humildad y Santidad</h3>
+
+            <div class="section-container">
+                <div class="prophetic-title">Remover las Sandalias (3:5)</div>
+                <p>La orden de quitarse el calzado indica la necesidad de purificación. El calzado simboliza a menudo el caminar, la propiedad y lo que se ensucia con la tierra (el mundo).</p>
+                <p><strong>Aplicación:</strong> Para acercarse a Yeshúa, el "lugar de santidad" supremo, debemos despojarnos de toda confianza en nuestras propias obras, méritos y de la suciedad de este mundo (<span class="highlight">qódesh</span>). El creyente en el Mashíaj debe buscar la santidad para poder morar en Su presencia.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section-container">
+                <div class="prophetic-title">La Transformación en el Desierto (3:1)</div>
+                <p>Moshéh pasó cuarenta años en el desierto pastoreando antes de su llamado.</p>
+                <p><strong>Aplicación:</strong> El "desierto" (<span class="highlight">midbár</span>) es el lugar de preparación y humildad. El Mashíaj nos llama después de que hemos sido quebrantados de nuestro orgullo (el orgullo egipcio de Moshéh) y nos hemos convertido en pastores de la grey de $\text{יהוה}$. La aplicación es la <span class="highlight">paciencia</span> y la <span class="highlight">sumisión</span> al proceso de purificación de $\text{יהוה}$ antes de recibir un llamado o una misión de redención.</p>
+            </div>
+        </div>
+    </div>
+    <h1>Punto 2. Haftaráh: Isaías 40:1-26 (La revelación del poder de Elohím).</h1>
+
+    <div class="content-container">
+        <h2>La Promesa del Consuelo y la Redención</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:1</div>
+            <div class="hebrew">נַחֲמוּ נַחֲמוּ עַמִּי יֹאמַר אֱלֹהֵיכֶם</div>
+            <div class="transliteration">
+                Najhamú, najhamú 'ammí, yó'mar Eloheijhém.
+            </div>
+            <div class="translation">
+                Consuelen, consuelen a Mi pueblo, dice vuestro Elohéi.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:2</div>
+            <div class="hebrew">
+                דַּבְּרוּ עַל־לֵב יְרוּשָׁלִַם וְקִרְאוּ אֵלֶיהָ כִּי מָלְאָה צְבָאָהּ כִּי נִרְצָה עֲוֺנָהּ כִּי כִפְלַיִם לָקְחָה מִיַּד יְהוָה בְּכָל־חַטֹּאתֶיהָ
+            </div>
+            <div class="transliteration">
+                Dabbrú 'al-léb Yerushalayim ve-qir'ú eléihah, kí mal'áh
+                tzva'áh, kí nirtzá 'avonáh, kí khifláyim laqjhá mi-yyad יהוה
+                be-khol-jhattó'téiha.
+            </div>
+            <div class="translation">
+                Hablen al corazón de Yerushalayim (Jerusalén), y proclamen a
+                ella que se ha cumplido su tiempo de guerra (servicio), que su
+                iniquidad ha sido perdonada (aceptada), que doble ha recibido
+                de la mano de יהוה por todos sus pecados.
+            </div>
+        </div>
+
+        <div class="explanation">
+            <p>
+                Este es el inicio de la segunda sección de Isaías (a menudo
+                llamado el "Libro del Consuelo"). El doble "
+                <span class="highlight">Najhamú</span>" (Consuelen) enfatiza la
+                seguridad y la inmensidad del consuelo de
+                <span class="highlight">יהוה</span>. El castigo de
+                <span class="highlight">Yerushalayim</span> ha terminado; el
+                término "
+                <span class="hebrew-term">צְבָאָהּ</span>" (<span
+                    class="transliteration"
+                    >tzva'áh</span
+                >
+                - su servicio/tiempo de guerra) y "
+                <span class="hebrew-term">נִרְצָה</span>" (<span
+                    class="transliteration"
+                    >nirtzá</span
+                >
+                - ha sido aceptada/perdonada) sugieren que la deuda ha sido
+                pagada, allanando el camino para la redención.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>La Voz que Clama en el Desierto</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:3</div>
+            <div class="hebrew">
+                קוֹל קוֹרֵא בַּמִּדְבָּר פַּנּוּ דֶּרֶךְ יְהוָה יַשְּׁרוּ בָּעֲרָבָה מְסִלָּה לֵאלֹהֵינוּ
+            </div>
+            <div class="transliteration">
+                Qól qoré vam-midbár: Pannú dérej יהוה, yashshrú va-'araváh
+                mesilláh le'Elohéinu.
+            </div>
+            <div class="translation">
+                Voz que clama en el desierto: ¡Preparen el camino de יהוה,
+                allanen en la 'araváh (llanura) una calzada para nuestro
+                Elohéi!
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:4</div>
+            <div class="hebrew">
+                כָּל־גֶּיא יִנָּשֵׂא וְכָל־הַר וְגִבְעָה יִשְׁפָּלוּ וְהָיָה הֶעָקֹב לְמִישׁוֹר וְהָרְכָסִים לְבִקְעָה
+            </div>
+            <div class="transliteration">
+                Kol-gei yinnasé, ve-khol-har ve-giv'áh yishpálu, ve-hayáh
+                he-'aqóv le-mishór, ve-har-khasím le-viq'áh.
+            </div>
+            <div class="translation">
+                Todo valle será levantado, y todo monte y colina serán bajados;
+                y lo torcido será para llanura, y los lugares escabrosos para
+                valle.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:5</div>
+            <div class="hebrew">
+                וְנִגְלָה כְּבוֹד יְהוָה וְרָאוּ כָל־בָּשָׂר יַחְדָּו כִּי פִּי יְהוָה דִּבֵּר
+            </div>
+            <div class="transliteration">
+                Ve-nigláh khevod יהוה, ve-ra'ú khol-basár yajhdáv, kí pí יהוה
+                dibbér.
+            </div>
+            <div class="translation">
+                Y se revelará la K'vod (Gloria) de יהוה, y verá toda carne
+                juntamente, porque la boca de יהוה ha hablado.
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">A.</span> Cumplimiento en
+                    <span class="highlight">Yahjánan HaMatbil</span> (Juan el
+                    Bautista)
+                </div>
+                <p>
+                    El Nuevo Pacto (Brit Jadashá) identifica esta "Voz" (
+                    <span class="hebrew-term">קוֹל</span>) con
+                    <span class="highlight">Juan el Bautista</span>, quien
+                    preparó el camino para el
+                    <span class="highlight">Mashíaj Yeshúa</span>.
+                    <span class="highlight">Yeshúa</span> es la encarnación de
+                    <span class="highlight">יהוה</span> (Elohéi) viniendo a Su
+                    pueblo. La preparación del camino implica un arrepentimiento
+                    profundo para remover los obstáculos espirituales (montes de
+                    orgullo, valles de desesperación).
+                </p>
+                <div class="scripture">
+                    Mateo 3:3, Marcos 1:3, Lucas 3:4-6, Juan 1:23.
+                </div>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">B.</span> La Revelación de la
+                    Gloria
+                </div>
+                <p>
+                    La manifestación de la
+                    <span class="highlight">K'vod (Gloria) de יהוה</span> es el
+                    objetivo. En el Mesías, esta Gloria se reveló, y será
+                    plenamente vista por "
+                    <span class="highlight">toda carne juntamente</span>" en Su
+                    segunda venida (Tito 2:13).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>La Fragilidad del Hombre vs. la Palabra Eterna</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:6</div>
+            <div class="hebrew">
+                קוֹל אֹמֵר קְרָא וְאָמַר מָה אֶקְרָא כָּל־הַבָּשָׂר חָצִיר וְכָל־חַסְדּוֹ כְּצִיץ הַשָּׂדֶה
+            </div>
+            <div class="transliteration">
+                Qól omér: Qerá! Ve'amár: Mah eqrá? Kol-habasár jhatzír, ve-khol-jhasdó
+                ke-tzítz hassadéh.
+            </div>
+            <div class="translation">
+                Voz que dice: ¡Proclama! Y dijo: ¿Qué proclamaré? Toda carne es
+                hierba, y toda su bondad (jésed) como flor del campo.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:7</div>
+            <div class="hebrew">
+                יָבֵשׁ חָצִיר נָבֵל צִיץ כִּי רוּחַ יְהוָה נָשְׁבָה בּוֹ אָכֵן חָצִיר הָעָם
+            </div>
+            <div class="transliteration">
+                Yavésh jhatzír, navél tzítz, kí rúajh יהוה násh-vá bó; akhén
+                jhatzír ha-'am.
+            </div>
+            <div class="translation">
+                Se seca la hierba, se marchita la flor, porque el Ruajh
+                (Espíritu) de יהוה sopló en ella; ciertamente hierba es el
+                pueblo.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:8</div>
+            <div class="hebrew">
+                יָבֵשׁ חָצִיר נָבֵל צִיץ וּדְבַר־אֱלֹהֵינוּ יָקוּם לְעוֹלָם
+            </div>
+            <div class="transliteration">
+                Yavésh jhatzír, navél tzítz, u-dvar-Elohéinu yaqúm le-'olám.
+            </div>
+            <div class="translation">
+                Se seca la hierba, se marchita la flor, mas la Palabra (D'var)
+                de nuestro Elohéi se levantará para siempre.
+            </div>
+        </div>
+
+        <div class="explanation">
+            <p>
+                Este contraste es fundamental: la vida humana es temporal y
+                frágil como la hierba (<span class="hebrew-term">חָצִיר</span>),
+                pero el <span class="highlight">D'var (Palabra) de Elohéi</span>
+                es eterno y permanente. El
+                <span class="highlight">Mesías</span> es identificado en el
+                Nuevo Pacto como esta
+                <span class="highlight">Palabra Viviente</span> (Juan 1:1, 14),
+                la única base sólida para la esperanza en la fugacidad de la
+                existencia humana.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>El Advenimiento del Soberano Pastor</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:9</div>
+            <div class="hebrew">
+                עַל הַר גָּבֹהַ עֲלִי־לָךְ מְבַשֶּׂרֶת צִיּוֹן הָרִימִי בַכֹּחַ קוֹלֵךְ מְבַשֶּׂרֶת יְרוּשָׁלִָם הָרִימִי אַל־תִּירָאִי אִמְרִי לְעָרֵי יְהוּדָה הִנֵּה אֱלֹהֵיכֶם
+            </div>
+            <div class="transliteration">
+                'Al har gavóha' 'alí-láj me-vasséret Tziyyón, harími vakh-kóajh
+                qoléj me-vasséret Yerushalayim, harími 'al-tirá'í, imrí le-'aréi
+                Yehudáh: Hinnéh Eloheijhém!
+            </div>
+            <div class="translation">
+                Sobre un monte alto, sube tú, que anuncias buenas nuevas a
+                Tziyyón (Sion). Alza con fuerza tu voz, que anuncias buenas
+                nuevas a Yerushalayim. Alza, no temas; di a las ciudades de
+                Yehudáh: ¡He aquí, vuestro Elohéi!
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:10</div>
+            <div class="hebrew">
+                הִנֵּה אֲדֹנָי יְהוִה בְּחָזָק יָבוֹא וּזְרֹעוֹ מֹשְׁלָה לוֹ הִנֵּה שְׂכָרוֹ אִתּוֹ וּפְעֻלָּתוֹ לְפָנָיו
+            </div>
+            <div class="transliteration">
+                Hinnéh Adonái יהוה be-jhazáq yavó, u-zró'ó moshláláh ló; hinnéh
+                skharó ittó u-fe'ullató le-fanáv.
+            </div>
+            <div class="translation">
+                He aquí, Adonái יהוה con poder vendrá, y Su brazo le dominará;
+                he aquí, Su recompensa está con Él, y Su obra delante de Él.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:11</div>
+            <div class="hebrew">
+                כְּרֹעֶה יֵרְעֶה עֶדְרוֹ בִּזְרֹעוֹ יְקַבֵּץ טְלָאִים וּבְחֵיקוֹ יִשָּׂא עָלוֹת יְנַהֵל
+            </div>
+            <div class="transliteration">
+                Ke-ró'eh yir'éh 'edró, bi-zró'ó ye-qabbétz tela'ím u-ve-jheiqó
+                yissá, 'alót ye-nahél.
+            </div>
+            <div class="translation">
+                Como pastor Él apacentará Su rebaño; en Su brazo reunirá los
+                corderos, y en Su seno los llevará; a las paridas guiará
+                suavemente.
+            </div>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">C.</span> El Mesías como
+                    <span class="highlight">Adonái יהוה</span> y Pastor
+                </div>
+                <p>
+                    El verso 10 usa "
+                    <span class="highlight">Adonái יהוה</span>", un título de
+                    Soberanía y Deidad, indicando que el que viene no es solo un
+                    mensajero, sino <span class="highlight">Elohéi mismo</span>.
+                    El Mesías Yeshúa se presenta con autoridad (poder, dominio) y
+                    trae consigo la recompensa (Juicio y Salvación). El contraste
+                    es notable:
+                </p>
+                <ul>
+                    <li>
+                        <span class="highlight">Verso 10:</span> Viene con
+                        <span class="highlight">Poder</span> (Juez, Rey).
+                    </li>
+                    <li>
+                        <span class="highlight">Verso 11:</span> Viene con
+                        <span class="highlight">Misericordia</span> (Pastor,
+                        Cuidador).
+                    </li>
+                </ul>
+                <p>
+                    La imagen del pastor (
+                    <span class="hebrew-term">כְּרֹעֶה</span>) es una de las más
+                    importantes para el Mesías (Salmo 23, Juan 10:11). Él
+                    cuida personalmente a los débiles (corderos) y a los
+                    necesitados (ovejas paridas), mostrando la ternura de
+                    <span class="highlight">Elohéi</span>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>La Incomparable Grandeza del Creador</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:12</div>
+            <div class="hebrew">
+                מִי־מָדַד בְּשָׁעֳלוֹ מַיִם וְשָׁמַיִם בַּזֶּרֶת תִּכֵּן וְכָל בַּשָּׁלִשׁ עֲפַר הָאָרֶץ וְשָׁקַל בַּפֶּלֶס הָרִים וּגְבָעוֹת בְּמֹאזְנָיִם
+            </div>
+            <div class="transliteration">
+                Mí-mádad be-shó'aló máyim, ve-shamáyim baz-zéret tikkén, ve-khal
+                bash-shálish 'afár ha'áretz, ve-sháqal bap-péles harím
+                u-gva'ót be-moznáyim?
+            </div>
+            <div class="translation">
+                ¿Quién midió las aguas en el hueco de Su mano, y los cielos con
+                Su palmo calibró, y contuvo el polvo de la tierra en un tercio
+                de medida, y pesó los montes con balanza y las colinas con
+                pesas?
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:13</div>
+            <div class="hebrew">
+                מִי־תִכֵּן אֶת־רוּחַ יְהוָה וְאִישׁ עֲצָתוֹ יוֹדִיעֶנּוּ
+            </div>
+            <div class="transliteration">
+                Mí-tikkén ét-Rúajh יהוה, ve-'ísh 'atzató yodi'ennu?
+            </div>
+            <div class="translation">
+                ¿Quién conoció el Ruajh (Espíritu) de יהוה, o como hombre de Su
+                consejo Lo enseñó?
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:14</div>
+            <div class="hebrew">
+                אֶת־מִי נוֹעָץ וַיְבִינֵהוּ וַיְלַמְּדֵהוּ בְּאֹרַח מִשְׁפָּט וַיְלַמְּדֵהוּ דַּעַת וְדֶרֶךְ תְּבוּנוֹת יוֹדִיעֶנּוּ
+            </div>
+            <div class="transliteration">
+                Et-mí no'átz vayevinéhu, vayelammedéhu be-'órajh mishpát,
+                vayelammedéhu dá'at ve-dérej tevunót yodi'ennu?
+            </div>
+            <div class="translation">
+                ¿A quién consultó para que le hiciera entender, y Le enseñara en
+                el camino del mishpát (juicio/justicia), y Le enseñara el
+                conocimiento y Le mostrara la senda del entendimiento?
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:15</div>
+            <div class="hebrew">
+                הֵן גּוֹיִם כְּמַר מִדְלִי וּכְשַׁחַק מֹאזְנַיִם נֶחְשָׁבוּ הֵן אִיִּים כַּדַּק יִטּוֹל
+            </div>
+            <div class="transliteration">
+                Hén goyím ke-mar midlí, u-khshájhaq moznáyim nejhshávu; hén
+                iyyím kaddaq yittól.
+            </div>
+            <div class="translation">
+                He aquí, las naciones son como gota de un cubo, y como polvo
+                fino de balanza son contadas; he aquí, las islas como polvo
+                levantará.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:16</div>
+            <div class="hebrew">
+                וּלְבָנוֹן אֵין דֵּי בָּעֵר וְחַיָּתוֹ אֵין דֵּי עוֹלָה
+            </div>
+            <div class="transliteration">
+                U-le-Vanon éin dei va'ér, ve-jhayyató éin dei 'oláh.
+            </div>
+            <div class="translation">
+                Y el Líbano no es suficiente para quemar, ni sus animales son
+                suficientes para ofrenda ('oláh) de ascensión.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:17</div>
+            <div class="hebrew">
+                כָּל־הַגּוֹיִם כְּאַיִן נֶגְדּוֹ מֵאֶפֶס וָתֹהוּ נֶחְשְׁבוּ לוֹ
+            </div>
+            <div class="transliteration">
+                Kol-hag-goyím ke-'áyin negdó, me-'éfes va-tóhu nejhshevú ló.
+            </div>
+            <div class="translation">
+                Todas las naciones como nada son delante de Él, como inexistentes
+                y tóhu (vacío, caos) son contadas para Él.
+            </div>
+        </div>
+
+        <div class="explanation">
+            <p>
+                Los versos 12-17 afirman la
+                <span class="highlight">Omnipotencia y Omnisciencia</span> de
+                <span class="highlight">יהוה</span>. Nadie Le dio consejo, pues
+                Él es el Creador que mide el universo con Sus manos y pesa la
+                tierra.
+            </p>
+            <ul>
+                <li>
+                    El <span class="highlight">Ruajh יהוה</span> (Espíritu de
+                    יהוה) no puede ser sondeado ni instruido por el hombre
+                    (Verso 13). Este es un argumento contra el orgullo humano.
+                </li>
+                <li>
+                    Las naciones (
+                    <span class="hebrew-term">גוֹיִם</span>) y sus reinos son
+                    insignificantes para Él (gota, polvo fino). La creación es
+                    tan vasta que ni siquiera todos los recursos del Líbano (una
+                    región famosa) podrían proporcionar un sacrificio digno de
+                    Él.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>La Locura de la Idolatría</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:18</div>
+            <div class="hebrew">
+                וְאֶל־מִי תְּדַמְּיוּן אֵל וּמַה־דְּמוּת תַּעַרְכוּ לוֹ
+            </div>
+            <div class="transliteration">
+                Ve-'el-mí tedammeyún Él, u-mah demút ta'arjú ló?
+            </div>
+            <div class="translation">
+                ¿Y a quién asemejarán a Él, y qué semejanza compararán con Él?
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:19</div>
+            <div class="hebrew">
+                הַפֶּסֶל נָסַךְ חָרָשׁ וְצֹרֵף בַּזָּהָב יְרַקְּעֶנּוּ וּרְתֻקוֹת כֶּסֶף צוֹרֵף
+            </div>
+            <div class="transliteration">
+                Happésel násajh jharásh, ve-tzoréf baz-zaháv yeraqqe'ennu,
+                u-retuqót késef tzoréf.
+            </div>
+            <div class="translation">
+                ¿La imagen labrada? El artesano la funde, y el orfebre con oro
+                la reviste, y cadenas de plata el orfebre (le) suelda.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:20</div>
+            <div class="hebrew">
+                הַמְסֻכָּן תְּרוּמָה עֵץ לֹא־יִרְקַב יִבְחָר חָרָשׁ חָכָם יְבַקֶּשׁ־לוֹ לְהָכִין פֶּסֶל לֹא יִמּוֹט
+            </div>
+            <div class="transliteration">
+                Hammessukkán terumáh 'étz ló-yirqáv yivjhár, jharásh jhajhám
+                yevaqqésh-ló, le-hajhín pésel ló yimmót.
+            </div>
+            <div class="translation">
+                ¿El empobrecido (en ofrenda)? Elige madera que no se pudra,
+                busca un artesano sabio para sí, para preparar una imagen
+                labrada que no se mueva.
+            </div>
+        </div>
+
+        <div class="explanation">
+            <p>
+                El profeta ridiculiza la <span class="highlight">idolatría</span>
+                al contrastar la inmensidad del Creador con la fragilidad de un
+                ídolo hecho por manos humanas. La deidad del hombre es algo que
+                necesita ser fabricado, revestido de oro y asegurado para que
+                "
+                <span class="highlight">no se mueva</span>" (Verso 20),
+                mientras que <span class="highlight">יהוה</span> es el Soberano
+                inmutable (Verso 22).
+            </p>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>El Creador de Toda Autoridad</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:21</div>
+            <div class="hebrew">
+                הֲלוֹא תֵדְעוּ הֲלוֹא תִשְׁמָעוּ הֲלוֹא הֻגַּד מֵרֹאשׁ לָכֶם הֲלוֹא הֲבִינֹתֶם מוֹסְדוֹת הָאָרֶץ
+            </div>
+            <div class="transliteration">
+                Ha-ló ted'ú, ha-ló tishmá'u? Ha-ló huggad me-ró'sh lajhém?
+                Ha-ló havinótem mosdót ha'áretz?
+            </div>
+            <div class="translation">
+                ¿Acaso no sabéis? ¿Acaso no oís? ¿Acaso no se os ha dicho desde
+                el principio? ¿Acaso no habéis entendido los fundamentos de la
+                tierra?
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:22</div>
+            <div class="hebrew">
+                הַיֹּשֵׁב עַל־חוּג הָאָרֶץ וְיֹשְׁבֶיהָ כַּחֲגָבִים הַנּוֹטֶה כַדֹּק שָׁמַיִם וַיִּמְתָּחֵם כָּאֹהֶל לָשָׁבֶת
+            </div>
+            <div class="transliteration">
+                Hayyoshév 'al-júg ha'áretz, ve-yoshvéiha ka-jaghávim; hannóteh
+                khaddóq shamáyim vayyimtajhém ka-'óhel lashávet.
+            </div>
+            <div class="translation">
+                El que se sienta sobre el círculo de la tierra, cuyos
+                habitantes son como langostas; el que extiende como un velo los
+                cielos, y los despliega como tienda para morar.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:23</div>
+            <div class="hebrew">
+                הַנּוֹתֵן רוֹזְנִים לְאָיִן שֹׁפְטֵי אֶרֶץ כַּתֹּהוּ עָשָׂה
+            </div>
+            <div class="transliteration">
+                Hannóten rozením le-'áyin, shofetéi éretz kattóhu 'asáh.
+            </div>
+            <div class="translation">
+                El que hace volver a la nada a los príncipes, y a los jueces de
+                la tierra como tóhu (caos, vacío) los hace.
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:24</div>
+            <div class="hebrew">
+                אַף לֹא נִטָּעוּ אַף לֹא זֹרָעוּ אַף לֹא־שֹׁרֵשׁ בָּאָרֶץ גִּזְעָם וְאַף נָשַׁף בָּהֶם וַיִּבָשׁוּ וּסְעָרָה כַּקַּשׁ תִּשָּׂאֵם
+            </div>
+            <div class="transliteration">
+                Af ló nittá'u, af ló zora'u, af ló-shorésh ba'áretz giz'ám;
+                ve-'af náshaf bahém vayyiváshu, u-se'aráh khaqqásh tissa'ém.
+            </div>
+            <div class="translation">
+                Apenas son plantados, apenas son sembrados, apenas echa raíz en
+                la tierra su tallo, y ya Él sopla sobre ellos, y se secan, y la
+                tempestad como paja los lleva.
+            </div>
+        </div>
+
+        <div class="explanation">
+            <p>
+                Este segmento culmina la descripción de la supremacía de
+                <span class="highlight">יהוה</span>.
+            </p>
+            <ul>
+                <li>
+                    El "
+                    <span class="highlight">círculo de la tierra</span>" (
+                    <span class="hebrew-term">חוּג הָאָרֶץ</span>) es un
+                    recordatorio del conocimiento primordial de Su creación.
+                </li>
+                <li>
+                    Los <span class="highlight">Gobernantes y Príncipes</span>
+                    son tan efímeros como la hierba (Verso 6-7), y son reducidos
+                    a "
+                    <span class="highlight">nada</span>" (
+                    <span class="hebrew-term">לְאָיִן</span>) y "
+                    <span class="highlight">tóhu</span>" (Verso 23) por Su
+                    aliento, mostrando Su control total sobre la historia
+                    humana.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>La Gloria Eterna del Qadósh (Santo)</h2>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:25</div>
+            <div class="hebrew">
+                וְאֶל־מִי תְּדַמְּיוּנִי וְאֶשְׁוֶה יֹאמַר קָדוֹשׁ
+            </div>
+            <div class="transliteration">
+                Ve-'el-mí tedammeyúni ve'eshvéh, yó'mar Qadósh.
+            </div>
+            <div class="translation">
+                ¿Y a quién Me asemejaréis y seré igualado? dice el Qadósh
+                (Santo).
+            </div>
+        </div>
+
+        <div class="verse-container">
+            <div class="verse-number">Yeshayah 40:26</div>
+            <div class="hebrew">
+                שְׂאוּ מָרוֹם עֵינֵיכֶם וּרְאוּ מִי־בָרָא אֵלֶּה הַמּוֹצִיא בְמִסְפָּר צְבָאָם לְכֻלָּם בְּשֵׁם יִקְרָא מֵרֹב אוֹנִים וְאַמִּיץ כֹּחַ אִישׁ לֹא נֶעְדָּר
+            </div>
+            <div class="transliteration">
+                Se'ú maróm 'einéijhém u-re'ú mí-bará 'élleh? Hammotzí
+                ve-misspár tzva'ám; le-khullám be-shém yiqrá; me-róv oním
+                ve-'ammítz kóajh ísh ló ne'dár.
+            </div>
+            <div class="translation">
+                ¡Alcen a lo alto vuestros ojos, y vean! ¿Quién creó estos? El
+                que saca por cuenta a su ejército (celestial); a todos por
+                nombre llama; por la grandeza de Su vigor y la fuerza de Su
+                poder, ni uno falta.
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <div class="prophetic-title">
+                Resumen Profético del Capítulo 40
+            </div>
+            <p>
+                El Capítulo 40 de Yeshayah es el cimiento para toda la profecía
+                mesiánica subsiguiente. Proclama:
+            </p>
+            <ul>
+                <li>
+                    <strong>Consuelo (Versos 1-2):</strong> La iniquidad ha
+                    sido pagada y el Mesías traerá la redención.
+                </li>
+                <li>
+                    <strong>La Persona del Mesías (Versos 3, 10-11):</strong> Él
+                    es <span class="highlight">יהוה</span> (Elohéi) viniendo a
+                    Su pueblo, precedido por un heraldo (Juan el Bautista), y
+                    vendrá como
+                    <span class="highlight">Pastor Soberano</span>.
+                </li>
+                <li>
+                    <strong>La Incomparabilidad de Elohéi (Versos 12-26):</strong>
+                    El poder, la majestad y la eternidad de
+                    <span class="highlight">יהוה</span> son el argumento final
+                    contra la idolatría y la incredulidad. El Creador, que
+                    llama a cada estrella por su nombre, tiene un plan perfecto
+                    y eterno para Su pueblo.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h1>
+      Yeshayah (Isaías) 40:1-26: La Porción del Consuelo y la Revelación del
+      Redentor
+    </h1>
+
+    <p>
+      La porción de Yeshayah (Isaías) 40:1-26 marca el inicio de la segunda mitad
+      del libro y es una de las declaraciones proféticas más ricas del Tanaj. Es
+      el anuncio del Consuelo, la revelación del ETERNO como Redentor, y contiene
+      profecías directas sobre el ministerio del Mashíaj Yeshúa y Su precursor.
+    </p>
+
+    <div class="section-divider"></div>
+
+    <h2>Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+
+    <div class="content-container">
+      <h3>1. La Voz que Clama en el Desierto (40:3-5)</h3>
+      <p>
+        Esta es una profecía de doble cumplimiento: el retorno del exilio
+        babilónico y la llegada del Mashíaj.
+      </p>
+
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">Yeshayah 40:3-5</div>
+          <div class="hebrew">
+            קוֹל קוֹרֵא בַּמִּדְבָּר פַּנּוּ דֶּרֶךְ יְהוָה יַשְּׁרוּ בָּעֲרָבָה מְסִלָּה
+            לֵאלֹהֵינוּ: כָּל־גֵּיא יִנָּשֵׂא וְכָל־הַר וְגִבְעָה יִשְׁפָּלוּ
+            וְהָיָה הֶעָקֹב לְמִישׁוֹר וְהָרְכָסִים לְבִקְעָה: וְנִגְלָה כְּבוֹד
+            יְהוָה וְרָאוּ כָל־בָּשָׂר יַחְדָּו כִּי פִי יְהוָה דִּבֵּר:
+          </div>
+          <div class="transliteration">
+            Kol koré bammidbar, pannú dérekh Adonái, yashshérú va'araváh
+            messilláh le'Elohéinu. Kol-géi yinnassé vekhol-har vegiv'áh yishpálú,
+            veháyáh he'aqóv lemishór veharekhassím leviq'áh. Veniglát kevód
+            Adonái, verá'ú khol-bassar yaḥdáv, ki fí Adonái dibbér.
+          </div>
+          <div class="translation">
+            ¡Voz que clama en el desierto: ¡Preparen el camino de יהוה! ¡Allanen
+            en la 'araváh una calzada para nuestro Elohéi! Todo valle será
+            levantado, y todo monte y colina será bajado; lo torcido será
+            enderezado, y lo escabroso será llanura. Y se revelará la K'vod
+            (Gloria) de יהוה, y verá toda carne juntamente; porque la boca de
+            יהוה ha hablado.
+          </div>
+        </div>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">Profecía (Yeshayah 40:3-5)</div>
+            <p>
+              "Voz que clama en el desierto: ¡Preparen el camino de
+              <span class="highlight">יהוה</span>..."
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              Cumplimiento Mesiánico en Yeshúa
+            </div>
+            <p>
+              Esta voz es identificada con
+              <span class="highlight">Yojanán el Sumergidor</span> (Juan el
+              Bautista). Su misión fue preparar a Israel para recibir al Mashíaj,
+              quien es el mismo <span class="highlight">יהוה</span> que viene a
+              Su pueblo.
+            </p>
+            <div class="scripture">Marcos 1:2-4</div>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              El llamado a allanar el camino espiritual
+            </div>
+            <p>
+              (...allanen en la 'araváh una calzada para nuestro Elohéi!) El
+              llamado a allanar el camino no es geográfico, sino espiritual.
+              Significa el arrepentimiento (<span class="highlight">Teshuvá</span>)
+              necesario para que el pueblo esté listo para la revelación de
+              Yeshúa. (Voz del que clama en el desierto: Preparad el camino del
+              Adón...)
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">La Revelación de la K'vod</div>
+            <p>
+              "Y se revelará la <span class="highlight">K'vod</span> (Gloria) de
+              <span class="highlight">יהוה</span>, y verá toda carne
+              juntamente..." La Gloria de
+              <span class="highlight">יהוה</span> se manifestó en la persona de
+              <span class="highlight">Yeshúa HaMashíaj</span>. Quienes vieron a
+              Yeshúa, vieron al Padre (Juan 14:9).
+            </p>
+            <div class="scripture">
+              Juan 1:14 (Y la Palabra se hizo carne, y habitó entre nosotros, y
+              vimos Su gloria...)
+            </div>
+            <p>
+              (...verá toda carne juntamente) La manifestación final de la
+              <span class="highlight">K'vod</span> será en Su Segunda Venida,
+              cuando "todo ojo le verá" (Revelación 1:7).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h3>2. El Pastor Divino y el Redentor (40:10-11)</h3>
+      <p>
+        El ETERNO es revelado como el Redentor que viene con poder y con
+        compasión pastoral.
+      </p>
+
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">Yeshayah 40:10-11</div>
+          <div class="hebrew">
+            הֵן אֲדֹנָי יְהוִה בְּחָזָק יָבוֹא וּזְרֹעוֹ מֹשְׁלָה לוֹ הִנֵּה שְׂכָרוֹ
+            אִתֹּו וּפְעֻלָּתוֹ לְפָנָיו: כְּרֹעֶה עֶדְרוֹ יִרְעֶה בִּזְרֹעוֹ יְקַבֵּץ
+            טְלָאִים וּבְחֵיקוֹ יִשָּׂא עָלֹות יְנַהֵל:
+          </div>
+          <div class="transliteration">
+            Hen Adonái יהוה beḥazáq yavo, uzero'ó mosheláh lo, hinné śeḫaró ittó
+            ufe'ullató lefanáv. Ke ro'eh 'edró yir'eh, bizro'ó yeqabbéṣ ṭela'ím
+            u veḥéqó yiśśá 'alót yenahel.
+          </div>
+          <div class="translation">
+            He aquí, Adonái יהוה con poder vendrá, y Su brazo le dominará; he
+            aquí que Su recompensa está con Él, y Su paga delante de Él. Como
+            pastor Él apacentará Su rebaño; en Su brazo reunirá los corderos, y
+            en Su seno los llevará; guiará suavemente a las que amamantan.
+          </div>
+        </div>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">Profecía (Yeshayah 40:10-11)</div>
+            <p>
+              "He aquí, Adonái <span class="highlight">יהוה</span> con poder
+              vendrá, y Su brazo le dominará..."
+            </p>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">
+              Cumplimiento Mesiánico en Yeshúa: Poder y Recompensa
+            </div>
+            <p>
+              <span class="highlight">Yeshúa</span> ejerce la soberanía y el
+              poder de <span class="highlight">יהוה</span>. La recompensa (
+              <span class="hebrew-term">שְׂכָרוֹ</span> $skharó$) con Él es la vida
+              eterna y el juicio.
+            </p>
+            <div class="scripture">
+              Revelación 22:12 (...Su recompensa está con Él...)(He aquí, Yo
+              vengo pronto, y Mi galardón (<span class="hebrew-term">שְׂכָרוֹ</span>)
+              conmigo, para recompensar a cada uno según sea su obra.)
+            </div>
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">El Buen Pastor</div>
+            <p>
+              "Como pastor Él apacentará Su rebaño; en Su brazo reunirá los
+              corderos..."
+            </p>
+            <p>
+              <span class="highlight">Yeshúa</span> cumple la profecía del Pastor
+              de Israel, mostrando la naturaleza de la deidad que no solo juzga,
+              sino que redime con ternura.
+            </p>
+            <div class="scripture">
+              Juan 10:11, 14 (...en Su seno los llevará...) Yeshúa se declara a
+              Sí mismo: "Yo soy el buen Pastor... y Mis ovejas oyen Mi voz, y Yo
+              las conozco, y Me siguen." El Mesías es la encarnación del cuidado
+              pastoral divino.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h3>3. El D'var Elohéinu (La Palabra de Nuestro Elohéi) (40:8)</h3>
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">Yeshayah 40:8</div>
+          <div class="hebrew">וְדְבַר־אֱלֹהֵינוּ יָקוּם לְעוֹלָם:</div>
+          <div class="transliteration">Udevar 'Elohéinu yaqúm le'olám.</div>
+          <div class="translation">
+            Pero la Palabra (<span class="highlight">D'var</span>) de nuestro
+            Elohéi se levantará para siempre.
+          </div>
+        </div>
+
+        <div class="explanation">
+          <p>
+            <strong>Cumplimiento:</strong> Esta <span class="highlight">D'var</span>
+            eterna se hizo carne en <span class="highlight">Yeshúa</span>. Él es
+            la Palabra imperecedera que contrasta con la fragilidad de la carne
+            ("toda carne es hierba", 40:6-7). La Palabra de Yeshúa es la
+            autoridad final que permanece cuando toda la gloria humana y los
+            reinos de la tierra se secan.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>Conexión con la Autoridad de יהוה (40:12-26)</h2>
+      <p>
+        La segunda mitad de la aliyá establece la soberanía absoluta de
+        <span class="highlight">יהוה</span>, preguntando: "¿A quién asemejarán a
+        Él?" (40:18, 25).
+      </p>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Conexión Profética</div>
+          <p>
+            El énfasis en la incomprensibilidad y omnipotencia de
+            <span class="highlight">יהוה</span> (el que "mide las aguas en el
+            hueco de Su mano", 40:12) conecta directamente con profetas como Job
+            (Job 38:4) y Amos. La función es destruir la idolatría (40:19-20) y
+            la confianza en la sabiduría humana (40:23).
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Aplicación en Yeshúa</div>
+          <p>
+            Al atribuirse el Nombre "Yo Soy" (Juan 8:58) y reclamar la autoridad
+            sobre el Shabbat, <span class="highlight">Yeshúa</span> se identifica
+            con este Elohím inigualable de Yeshayah 40. El Mashíaj es la
+            manifestación de la Deidad a quien ninguna imagen ni concepto humano
+            puede asemejar.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>Aplicación Espiritual Conectada a la Aliyá</h2>
+      <p>
+        La esencia de Yeshayah 40 es el Consuelo (
+        <span class="hebrew-term">נַחֲמוּ</span> $Naḥhamú$) a través de la presencia
+        del Mashíaj.
+      </p>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Consuelo por la Expiación (40:1-2)</div>
+          <p>
+            El mensaje comienza con el anuncio de que "su iniquidad ha sido
+            perdonada" y que ha "recibido doble" castigo por sus pecados.
+          </p>
+          <div class="explanation">
+            <p>
+              <strong>Aplicación:</strong> El consuelo mesiánico es la seguridad
+              de la expiación lograda por <span class="highlight">Yeshúa</span>.
+              Él es el Siervo Sufriente (Isaías 53), cuya muerte y resurrección
+              pagaron la deuda de Israel y de la humanidad. El creyente descansa
+              en el perdón completo que trae el <span class="highlight">Najhamú</span>
+              de <span class="highlight">יהוה</span>.
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Confianza en la Palabra Eterna (40:6-8)
+          </div>
+          <p>
+            La vida humana es frágil como la hierba, pero la
+            <span class="highlight">D'var Elohéinu</span> permanece.
+          </p>
+          <div class="explanation">
+            <p>
+              <strong>Aplicación:</strong> La vida espiritual solo puede
+              construirse sobre la Roca inmutable, que es la Palabra viva de
+              <span class="highlight">יהוה</span>, <span class="highlight">Yeshúa</span>.
+              La aplicación es quitar el foco de nuestra fragilidad (nuestra
+              "carne") y ponerla en la permanencia de Yeshúa y Sus promesas,
+              porque Él es la Palabra que se levanta para siempre.
+            </p>
+          </div>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            La Aliyá Espiritual Eterna (40:3-5)
+          </div>
+          <p>
+            El "allanamiento del camino" es el llamado a preparar el corazón para
+            el encuentro con <span class="highlight">יהוה</span>.
+          </p>
+          <div class="explanation">
+            <p>
+              <strong>Aplicación:</strong> La <span class="highlight">Aliyá</span>
+              (ascenso o retorno) más importante es la espiritual. La profecía
+              nos exige remover los obstáculos de orgullo ("montes") y la
+              desesperación ("valles") en nuestro espíritu, para que el Mesías
+              pueda manifestar Su <span class="highlight">K'vod</span> en
+              nosotros.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h1>Punto 3. Brit Hadasháh: Juan 8:58 (Yeshúa revela Su eternidad: «Antes que Abraham fuera, Yo soy»).</h1>
+
+  <div class="content-container">
+    <h2>Yojanán 8:58</h2>
+
+    <div class="verse-container">
+      <div class="verse-number">Verso 58</div>
+
+      <div class="aramaic">
+        ܐܡܪ ܠܗܘܢ ܝܫܘܥ ܐܡܝܢ ܐܡܝܢ ܐܡܪ ܐܢܐ ܠܟܘܢ ܕܩܕܡ ܕܢܗܘܐ ܐܒܪܗܡ ܐܢܐ ܐܝܬܝ
+      </div>
+
+      <div class="transliteration">
+        Fonética: Á-mar le-hón Yéshú'a: Amén, amén (De cierto, de cierto), á-mar aná
+        le-jón, de-q'dám de-néh-wá Ávrahám, aná ít-í.
+      </div>
+
+      <div class="translation">
+        Traducción Literal: Dijo a ellos Yeshúa: Amén, amén (De cierto, de cierto), Yo os digo, que antes de que fuera Avraham, <span class="highlight">Yo Soy/Yo he sido/Yo Existo</span>.
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h3>Nota Mesiánica sobre la Traducción y Contexto</h3>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Análisis de la Frase Clave: "Aná Ítí"
+          </div>
+          <p>
+            La frase aramea <span class="hebrew-term">ܐܢܐ ܐܝܬܝ</span> (aná ítí)
+            es la traducción directa del <span class="highlight">Egō Eimi</span>
+            (ἐγώ εἰμι) del griego. Es crucial para entender la identidad de Yeshúa
+            .
+          </p>
+          <ul>
+            <li>
+              <strong>Significado Literal:</strong> "Yo existo" o "Yo soy".
+            </li>
+            <li>
+              <strong>Implicación Gramatical:</strong> En lugar de usar un
+              tiempo pasado simple (como "Yo fui"), Yeshúa usa una expresión que
+              indica una <span class="highlight">existencia atemporal y
+              continua</span>.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Conexión con el Tetragrámaton (<span class="hebrew-term">יהוה</span>)
+          </div>
+          <p>
+            Esta declaración resuena directamente con la revelación dada a Moshé
+            (Moisés) en Shemot (Éxodo) 3:14:
+          </p>
+          <div class="scripture">
+            Y dijo Elohim a Moshé: <span class="hebrew-term">אֶהְיֶה אֲשֶׁר אֶהְיֶה</span>
+            (Eh-yéh Ashér Eh-yéh - Yo Soy el que Soy/Yo seré el que Seré). Y dijo:
+            Así dirás a los hijos de Israel: <span class="hebrew-term">אֶהְיֶה</span>
+            (Eh-yéh - Yo Soy) me envió a vosotros.
+          </div>
+          <p>
+            Al declarar "Antes de que fuera Avraham, <span class="highlight">Yo
+            Soy</span>" (aná ítí), Yeshúa no solo afirma su preexistencia, sino
+            que asume para sí el Nombre y el atributo de la
+            <span class="highlight">Eternidad Divina</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <h1>
+        Yeshúa Declara Su Deidad y Preexistencia: Yojanán (Juan) 8:58
+    </h1>
+    <p>
+        El pasaje de Yojanán (Juan) 8:58, donde Yeshúa declara
+        <span class="highlight">"antes de que fuera Avraham, aná ítí (Yo Soy/Yo
+            Existo)"</span>, es una de las afirmaciones más importantes de Su
+        Deidad y preexistencia en el Brit Hadashah. Este versículo encapsula el
+        clímax de una disputa teológica con los líderes judíos, y es la
+        respuesta definitiva de Yeshúa sobre Su identidad.
+    </p>
+
+    <div class="content-container">
+        <h2>El Verso Interlineal</h2>
+        <div class="verse-container">
+            <div class="verse-number">Juan 8:58</div>
+            <div class="hebrew">אָמֵן אָמֵן אֲנִי אֹמֵר לָכֶם, בְּטֶרֶם שֶׁהָיָה
+                אַבְרָהָם, אֲנָא אִיתִי.</div>
+            <div class="transliteration">Amén, amén, aní omér lajém, beterem
+                shehayáh Avrahám, aná ítí.</div>
+            <div class="translation">De cierto, de cierto les digo: antes de que
+                fuera Avraham, Yo Soy/Yo Existo.</div>
+            <div class="literal-translation">
+                Literalmente (griego): dijo a ellos Yeshúa: amén amén digo a
+                ustedes antes Avraham llegar a ser Yo Soy.
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Comentario Mesiánico en Yeshúa HaMashíaj</h2>
+        <div class="explanation">
+            <p>
+                La declaración <span class="highlight">"aná ítí" (Yo Soy)</span>
+                es una referencia directa y deliberada a la autorevelación de
+                <strong class="hebrew-term">יהוה</strong> a Moshéh en Shemot
+                (Éxodo) 3:14:
+                <strong class="hebrew-term">אֶהְיֶה אֲשֶׁר אֶהְיֶה</strong>
+                (<span class="transliteration">Eh-yéh Ashér Eh-yéh</span>, Yo
+                Seré/Soy el que Yo Seré/Soy).
+            </p>
+        </div>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">A.</span> Reclamación de la
+                    Deidad Eterna:
+                </div>
+                <ul>
+                    <li>
+                        Yeshúa no dijo: "Antes de que fuera Avraham, Yo fui" (en
+                        pasado), lo cual simplemente afirmaría que existió antes
+                        de Avraham (como los profetas que existieron antes de
+                        él).
+                    </li>
+                    <li>
+                        Al usar la forma presente y absoluta
+                        <span class="highlight">"aná ítí" (Yo Soy/Yo
+                            Existo)</span>, Yeshúa anula el tiempo. Él se
+                        identifica como la Esencia Eterna de
+                        <strong class="hebrew-term">יהוה</strong>, el ser que no
+                        está sujeto a las limitaciones cronológicas de la
+                        creación. Él es el <strong class="highlight">Eh-yéh</strong>
+                        del Tanaj.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">B.</span> La Respuesta de la
+                    Multitud:
+                </div>
+                <p>
+                    La reacción inmediata de Sus oyentes —tomar piedras para
+                    apedrearlo (Juan 8:59)— confirma que comprendieron
+                    perfectamente la implicación de Su declaración: Yeshúa se
+                    estaba igualando a <strong class="hebrew-term">יהוה</strong>.
+                    Según la Torá, reclamar la Deidad era blasfemia castigada con
+                    la lapidación (Vayiqrá / Levítico 24:16).
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">C.</span> La Primacía del Mashíaj
+                    sobre el Pacto:
+                </div>
+                <p>
+                    La pregunta anterior de los líderes fue: "¿Acaso eres mayor
+                    que nuestro padre Avraham?" (8:53). Yeshúa responde
+                    afirmativamente, no solo mayor en honor, sino anterior en
+                    existencia. Avraham es el padre del pacto, pero Yeshúa es el
+                    Dador preexistente del pacto. Él es la fuente de la cual
+                    Avraham recibió la promesa.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Conexión con los Profetas y la Aliyá</h2>
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">A.</span> Conexión con el Tanaj
+                    (Profetas)
+                </div>
+                <p class="scripture">
+                    <strong class="highlight">Shemot (Éxodo) 3:14 (Aliyá):</strong>
+                    Como se mencionó, este es el cumplimiento literal y
+                    lingüístico de la autorrevelación del Nombre.
+                </p>
+                <p>
+                    <span class="highlight">Profecía Cumplida:</span> Yeshúa es
+                    la <strong class="hebrew-term">Shejináh</strong>
+                    (Presencia) que se reveló a Moshéh. La zarza ardiente reveló
+                    que <strong class="hebrew-term">יהוה</strong> existe de
+                    manera inmutable; Yeshúa en Su humanidad revela que Él es esa
+                    misma existencia inmutable.
+                </p>
+                <p class="scripture">
+                    <strong class="highlight">Yeshayah (Isaías) 43:10-11:</strong>
+                    El profeta Yeshayah usa la frase deíctica "Yo Soy Él" para
+                    describir la unicidad de <strong class="hebrew-term">יהוה</strong>.
+                </p>
+                <p>
+                    <span class="highlight">Conexión:</span> "Antes de Mí no fue
+                    formado El (Elohim), ni lo será después de Mí. Yo, Yo Soy
+                    <strong class="hebrew-term">יהוה</strong>, y fuera de Mí no
+                    hay salvador." Cuando Yeshúa dice <strong class="highlight">"Yo
+                        Soy"</strong>, Él reclama la exclusividad y la autoridad
+                    salvadora que Yeshayah atribuye solo a
+                    <strong class="hebrew-term">יהוה</strong>.
+                </p>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    <span class="point-letter">B.</span> Conexión con el Brit
+                    Hadashah
+                </div>
+                <p class="scripture">
+                    <strong class="highlight">Revelación (Jizayon) 1:8,
+                        17:</strong> Yeshúa reafirma esta identidad al final de
+                    los tiempos.
+                </p>
+                <p>
+                    <span class="highlight">Cumplimiento:</span> El Mashíaj se
+                    identifica a Sí mismo con el lenguaje de la eternidad: "Yo
+                    Soy el Alfa y la Omega, el Principio y el Fin, dice Adón
+                    <strong class="hebrew-term">יהוה</strong>... Yo Soy el Primero
+                    y el Último." Este lenguaje de existencia total y absoluta es
+                     el eco directo de <strong class="highlight">"Yo Soy"</strong>
+                    (Juan 8:58).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+        <h2>Aplicación Espiritual</h2>
+        <div class="explanation">
+            <p>
+                La comprensión de Yojanán 8:58 es fundamental para la fe
+                mesiánica:
+            </p>
+
+            <div class="section-container">
+                <div class="question">La Supremacía de Yeshúa:</div>
+                <div class="answer">
+                    Si Yeshúa es <strong class="highlight">"aná ítí"</strong>,
+                    entonces Él no es solo un profeta, un maestro, o un mesías
+                    temporal. Él es la autoridad eterna sobre toda la Torá y toda
+                    la profecía.
+                    <ul>
+                        <li>
+                            <strong class="highlight">Aplicación:</strong> Nuestra
+                            obediencia a Yeshúa no se basa en el seguimiento de un
+                            hombre sabio, sino en la sumisión al
+                            <strong class="highlight">Elohím eterno</strong> que
+                            se hizo carne. La certeza de nuestra redención se
+                            basa en que el Redentor es
+                            <strong class="highlight">Eh-yéh</strong>, Quien no
+                            puede fallar.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-container">
+                <div class="question">La Vida Verdadera antes de la Vida
+                    Conocida:</div>
+                <div class="answer">
+                    El contraste es entre el tiempo (Avraham fue) y la eternidad
+                    (<strong class="highlight">Yo Soy</strong>). Avraham vivió
+                    por fe en la promesa de <strong class="hebrew-term">יהוה</strong>;
+                    nosotros vivimos por fe en la manifestación de esa Promesa.
+                    <ul>
+                        <li>
+                            <strong class="highlight">Aplicación:</strong> El
+                            camino espiritual (<strong class="hebrew-term">Dérej</strong>)
+                            para el creyente es dejar de buscar el significado en
+                            las cosas temporales ("Avraham fue") y anclarse en la
+                            realidad eterna del Mashíaj
+                            (<strong class="highlight">"Yo Soy"</strong>). Solo
+                            en Él se encuentra el verdadero descanso
+                            (<strong class="hebrew-term">Shabbat</strong>) y la
+                            vida eterna prometida.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>📜 PUNTO 4</h1>
+
+    <div class="content-container">
+        <h2>Contexto Histórico y Cultural de Éxodo (Shemot) 3:1–15</h2>
+
+        <div class="section-container">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. El desierto como espacio de revelación</div>
+                <p>
+                    Éxodo 3:1–15 se sitúa en Jorev, “el monte de Elohím”, identificado tradicionalmente con el área del Sinaí.
+                    En el mundo antiguo, los desiertos no eran solo espacios de peligro, sino también:
+                </p>
+                <ul>
+                    <li>Lugares de purificación y encuentro divino</li>
+                    <li>Territorios fuera del control imperial</li>
+                    <li>Escenarios donde la autoridad humana se disuelve</li>
+                </ul>
+                <p>
+                    Moshé, como pastor en Midián, representa al hombre despojado de poder político, preparado para recibir
+                    revelación.
+                </p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. El monte sagrado y la cosmovisión semita</div>
+                <p>En la cultura semita antigua:</p>
+                <ul>
+                    <li>Los montes eran considerados puntos de contacto entre el cielo y la tierra</li>
+                    <li>La santidad del lugar no era intrínseca, sino resultado de la presencia divina</li>
+                </ul>
+                <p>
+                    Cuando Adonái <span class="hebrew-term">יהוה</span> declara el lugar como “tierra santa”, redefine la santidad no por geografía
+                    permanente, sino por Su manifestación activa.
+                </p>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. El fuego como símbolo cultural</div>
+                <p>El fuego en el Cercano Oriente antiguo simbolizaba:</p>
+                <ul>
+                    <li>Presencia divina</li>
+                    <li>Juicio y purificación</li>
+                    <li>Poder que no puede ser contenido</li>
+                </ul>
+                <p>
+                    La zarza que arde sin consumirse desafía la experiencia humana normal, indicando que la fuente del fuego
+                    no es natural, sino divina.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h1>📖 PUNTO 5</h1>
+
+    <div class="content-container">
+        <h2>Estudio, Comentarios y Conexiones Proféticas</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Comentario judío clásico</div>
+                <ul>
+                    <li>
+                        <strong class="highlight">Rashí</strong> explica que Elohím se revela en una zarza para mostrar que Él está con Israel
+                        en su aflicción, no en símbolos de poder.
+                    </li>
+                    <li>
+                        <strong class="highlight">Ibn Ezra</strong> observa que la revelación ocurre cuando Moshé se aparta para ver,
+                        enseñando que la revelación requiere atención y disposición interior.
+                    </li>
+                    <li>
+                        <strong class="highlight">Sforno</strong> enfatiza que el llamado de Moshé ocurre solo después de años de
+                        humildad y anonimato.
+                    </li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Conexiones proféticas</div>
+                <p>Este pasaje cumple y profundiza:</p>
+                <ul>
+                    <li>
+                        <strong class="highlight">Bereshit 15:13–14:</strong> Elohím ahora actúa para liberar
+                    </li>
+                    <li>
+                        <strong class="highlight">Bereshit 28:16–17:</strong> el lugar ordinario se convierte en casa de Elohím
+                    </li>
+                    <li>La revelación progresiva del Nombre divino</li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Comentario judío mesiánico</div>
+                <p>Desde una lectura mesiánica:</p>
+                <ul>
+                    <li>
+                        El <strong class="highlight">Malaj de Adonái</strong> que habla desde el fuego es manifestación visible del Elohím
+                        invisible
+                    </li>
+                    <li>
+                        La auto-revelación “<span class="highlight">Ehyeh Asher Ehyeh</span>” apunta a la existencia eterna y activa del Redentor
+                    </li>
+                    <li>
+                        El llamado de Moshé anticipa la misión del <strong class="highlight">Mashíaj</strong> como libertador definitivo
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>🔍 PUNTO 6</h1>
+
+    <div class="content-container">
+        <h2>Análisis Profundo de la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="section-container">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Estructura literaria</div>
+                <ul>
+                    <li>Pastoreo y llegada al monte (v.1)</li>
+                    <li>Aparición del fuego divino (v.2–3)</li>
+                    <li>Llamado personal: “Moshé, Moshé” (v.4)</li>
+                    <li>Santidad del lugar (v.5)</li>
+                    <li>Identificación divina con los patriarcas (v.6)</li>
+                    <li>Compasión por Israel (v.7–9)</li>
+                    <li>Comisión de Moshé (v.10–12)</li>
+                    <li>Revelación del Nombre divino (v.13–15)</li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Análisis lingüístico clave</div>
+                <ul>
+                    <li>
+                        “<span class="highlight">Malaj Adonái</span>”: mensajero que habla como Elohím mismo
+                    </li>
+                    <li>
+                        “<span class="highlight">Ehyeh Asher Ehyeh</span>”: “Seré el que Seré”, indicando presencia activa y eterna
+                    </li>
+                    <li>
+                        “<span class="highlight">Shemi le‘olam</span>”: Nombre para todas las generaciones
+                    </li>
+                </ul>
+            </div>
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Teología del texto</div>
+                <p>La revelación del Nombre no es abstracta, sino funcional:</p>
+                <ul>
+                    <li>Elohím se da a conocer como Aquel que actúa para redimir.</li>
+                    <li>La santidad precede a la misión, y la misión nace del encuentro.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>🧭 PUNTO 7</h1>
+
+    <div class="content-container">
+        <h2>Tema Más Relevante de la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="section-container">
+            <p>
+                Tema central:
+                <strong class="highlight">La auto-revelación de Elohím como Redentor presente</strong>
+            </p>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Este pasaje enseña que:</div>
+                <ul>
+                    <li>Elohím no es distante ni pasivo</li>
+                    <li>Su Nombre revela Su carácter activo</li>
+                    <li>La redención surge de Su iniciativa soberana</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">Conexión con Yeshúa haMashíaj</div>
+                <ul>
+                    <li>Yeshúa encarna el “<strong class="highlight">Yo Soy</strong>” revelado en el fuego</li>
+                    <li>En Él, Elohím se acerca al hombre sin consumirlo</li>
+                    <li>La redención se manifiesta plenamente en Su persona</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>✡️ PUNTO 8</h1>
+
+    <div class="content-container">
+        <h2>Descubriendo al Mashíaj en la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="section-container">
+            <div class="prophetic-section">
+                <div class="prophetic-title">1. Tipologías mesiánicas</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Elemento</th>
+                            <th>Sombra mesiánica</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Zarza ardiente</td>
+                            <td>Presencia divina en carne</td>
+                        </tr>
+                        <tr>
+                            <td>Fuego sin consumo</td>
+                            <td>Vida divina sin destrucción</td>
+                        </tr>
+                        <tr>
+                            <td>Malaj de Adonái</td>
+                            <td>Manifestación visible del Invisible</td>
+                        </tr>
+                        <tr>
+                            <td>“Ehyeh”</td>
+                            <td>Existencia eterna del Redentor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">2. Patrones redentores (Tavnitot)</div>
+                <ul>
+                    <li>Revelación progresiva del Nombre</li>
+                    <li>Cercanía divina sin anulación humana</li>
+                    <li>Llamado personal para misión redentora</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">3. Cumplimiento en el Brit Hadasháh</div>
+                <p>Yeshúa haMashíaj es:</p>
+                <ul>
+                    <li>La manifestación del “<strong class="highlight">Ehyeh</strong>” eterno</li>
+                    <li>La presencia divina entre los hombres</li>
+                    <li>Adonái <span class="hebrew-term">יהוה</span> revelado como Redentor, <strong class="highlight">Ejad</strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <h1>📚 PUNTO 9</h1>
+
+    <div class="content-container">
+        <h2>Midrashim, Targumim y Textos Fuentes</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="section-container">
+            <div class="prophetic-title">1. Midrashim relevantes</div>
+            <div class="explanation">
+                <div class="section-container">
+                    <div class="point-letter">🔹</div>
+                    <strong>Shemot Rabbah 2:5</strong>
+                    <p>
+                        El Midrash enseña que Elohím eligió una
+                        <span class="highlight">zarza espinosa</span> para
+                        revelarse, y no un cedro majestuoso, para enseñar que:
+                    </p>
+                    <div class="scripture">
+                        “Yo estoy con él en la aflicción”.
+                    </div>
+                    <p>
+                        La zarza representa a Israel oprimido:
+                        <span class="highlight">arde, pero no es consumido</span>.
+                    </p>
+                    <p>
+                        Este Midrash establece que la <span class="highlight">Shejináh</span>
+                        acompaña al pueblo en su sufrimiento, no desde la
+                        distancia.
+                    </p>
+                </div>
+
+                <div class="section-container">
+                    <div class="point-letter">🔹</div>
+                    <strong>Shemot Rabbah 3:2</strong>
+                    <p>Sobre el llamado “Moshé, Moshé”:</p>
+                    <ul>
+                        <li>La doble mención indica <span class="highlight">amor y urgencia</span></li>
+                        <li>
+                            No hay separación entre el Moshé terrenal y su
+                            llamado celestial
+                        </li>
+                        <li>
+                            Este patrón se repite con Avraham y Ya‘akov, marcando
+                            llamados de
+                            <span class="highlight">misión redentora</span>.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-container">
+                    <div class="point-letter">🔹</div>
+                    <strong>Shemot Rabbah 3:6</strong>
+                    <p>
+                        El Midrash afirma que Elohím se identifica con los
+                        patriarcas para mostrar que la
+                        <span class="highlight">redención presente</span> está
+                        anclada en promesas pasadas, no en méritos actuales.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">2. Targumim</div>
+            <div class="explanation">
+                <div class="section-container">
+                    <div class="point-letter">🔹</div>
+                    <strong>Targum Onkelos</strong>
+                    <p>
+                        Traduce “Ehyeh Asher Ehyeh” sin
+                        <span class="highlight">interpretación filosófica</span>,
+                        preservando el misterio del Nombre como existencia activa
+                        y soberana.
+                    </p>
+                </div>
+
+                <div class="section-container">
+                    <div class="point-letter">🔹</div>
+                    <strong>Targum Pseudo-Jonatán</strong>
+                    <p>Expande el texto explicando que:</p>
+                    <ul>
+                        <li>
+                            Elohím dijo: “Yo Soy el que Seré con ustedes en esta
+                            aflicción y en las futuras”
+                        </li>
+                        <li>
+                            El Nombre revela
+                            <span class="highlight">presencia continua</span> a lo
+                            largo de la historia
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">3. Textos fuentes del Segundo Templo</div>
+            <div class="explanation">
+                <p>
+                    Tradiciones judías antiguas entienden este pasaje como:
+                </p>
+                <ul>
+                    <li>
+                        El momento fundacional del conocimiento del
+                        <span class="highlight">Nombre</span>
+                    </li>
+                    <li>
+                        La base de toda
+                        <span class="highlight">liberación futura</span>
+                    </li>
+                    <li>
+                        El punto donde Elohím se revela como
+                        <span class="highlight">Redentor histórico</span>, no solo
+                        Creador
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>📜 PUNTO 10</h1>
+
+    <div class="content-container">
+        <h2>Mandamientos, Principios y Valores</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="section-container">
+            <div class="prophetic-title">1. Reverencia ante la santidad</div>
+            <div class="explanation">
+                <p>
+                    “Quita tus sandalias” establece el principio de
+                    <span class="highlight">respeto absoluto</span> ante la
+                    presencia divina.
+                </p>
+                <div class="prophetic-title">Principio eterno:</div>
+                <div class="scripture">
+                    La cercanía con Elohím no elimina la reverencia; la
+                    profundiza.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">2. Escuchar el llamado divino</div>
+            <div class="explanation">
+                <p>
+                    Moshé responde: “<span class="highlight">Hinéni</span>” (Aquí
+                    estoy).
+                </p>
+                <div class="prophetic-title">Principio:</div>
+                <div class="scripture">
+                    La obediencia comienza con disponibilidad.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">3. Elohím se revela para redimir</div>
+            <div class="explanation">
+                <p>
+                    El Nombre es revelado en contexto de
+                    <span class="highlight">liberación</span>, no de
+                    especulación.
+                </p>
+                <div class="prophetic-title">Aplicación mesiánica:</div>
+                <div class="scripture">
+                    Yeshúa haMashíaj revela plenamente el Nombre mediante la
+                    redención.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>❓ PUNTO 11</h1>
+
+    <div class="content-container">
+        <h2>Preguntas de Reflexión con Respuestas en el Mashíaj</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="section-container">
+            <div class="question">
+                1. ¿Por qué Elohím se revela en una zarza humilde?
+            </div>
+            <div class="answer">
+                <div class="prophetic-title">Respuesta en el Mashíaj:</div>
+                <p>
+                    Porque la redención nace en la
+                    <span class="highlight">humildad</span>. Yeshúa se manifestó
+                    sin gloria externa, pero lleno de la presencia divina.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="question">
+                2. ¿Qué significa “Ehyeh Asher Ehyeh” para el creyente?
+            </div>
+            <div class="answer">
+                <div class="prophetic-title">Respuesta en el Mashíaj:</div>
+                <p>
+                    Significa que Elohím está <span class="highlight">presente y activo</span>. En Yeshúa, Él camina con Su pueblo.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="question">
+                3. ¿Por qué Moshé debe quitarse las sandalias?
+            </div>
+            <div class="answer">
+                <div class="prophetic-title">Respuesta en el Mashíaj:</div>
+                <p>
+                    Porque la redención comienza con
+                    <span class="highlight">santidad</span>. Yeshúa santifica a
+                    los que se acercan al Padre.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="question">
+                4. ¿Por qué Elohím menciona a los patriarcas?
+            </div>
+            <div class="answer">
+                <div class="prophetic-title">Respuesta en el Mashíaj:</div>
+                <p>
+                    Porque Él es fiel al
+                    <span class="highlight">pacto</span>. Yeshúa es el
+                    cumplimiento vivo de esas promesas.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="question">
+                5. ¿Cómo se revela la unidad de Elohím en este pasaje?
+            </div>
+            <div class="answer">
+                <div class="prophetic-title">Respuesta en el Mashíaj:</div>
+                <p>
+                    El que envía, el que habla y el que redime es
+                    <span class="highlight">Uno</span>, revelado plenamente en
+                    Yeshúa haMashíaj, <span class="highlight">Ejad</span>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <h1>📖 PUNTO 12</h1>
+
+    <div class="content-container">
+        <h2>Resumen de la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="section-container">
+            <div class="prophetic-title">Puntos clave:</div>
+            <ul>
+                <li>Elohím se revela en el desierto</li>
+                <li>La zarza arde sin consumirse</li>
+                <li>Moshé es llamado personalmente</li>
+                <li>El lugar es declarado santo</li>
+                <li>Elohím revela Su Nombre eterno</li>
+                <li>La misión redentora es anunciada</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <div class="prophetic-title">Resumen mesiánico:</div>
+            <p>
+                La Aliyáh revela que la redención comienza con la
+                <span class="highlight">revelación de quién es Elohím</span>, y
+                que ese mismo Elohím se manifiesta como <span class="highlight">Libertador</span> en Yeshúa haMashíaj.
+            </p>
+        </div>
+    </div>
+
+    <h1>🙏 PUNTO 13</h1>
+
+    <div class="content-container">
+        <h2>Tefiláh (Oración) de la Aliyáh</h2>
+        <h3>Éxodo (Shemot) 3:1–15</h3>
+
+        <div class="prayer-text">
+            <p>Adonái <span class="hebrew-term">יהוה</span>,</p>
+            <p>
+                Elohím eterno que habitas en la santidad
+                <br />
+                y te revelas en medio del sufrimiento,
+                <br />
+                Enséñanos a reconocer Tu presencia
+                <br />
+                en los lugares humildes,
+                <br />
+                a quitar nuestras sandalias
+                <br />
+                y a responder con un corazón dispuesto.
+            </p>
+            <p>
+                Te reconocemos como el “Ehyeh” eterno,
+                <br />
+                manifestado plenamente en Yeshúa haMashíaj,
+                <br />
+                Uno contigo, Ejad,
+                <br />
+                Redentor presente ayer, hoy y por las generaciones.
+            </p>
+            <p>
+                Haznos sensibles a Tu llamado,
+                <br />
+                firmes en Tu santidad,
+                <br />
+                y fieles a Tu misión redentora
+                <br />
+                hasta la plenitud de Tu Reino.
+            </p>
+        </div>
+
+        <div class="prayer-conclusion">Amén.</div>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya5.html">Continuar con la Aliyá 5</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

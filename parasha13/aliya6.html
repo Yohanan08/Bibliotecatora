@@ -1,0 +1,2329 @@
+	<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 4:18-31</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+       13. Parashá Shemot (שמות) – Aliyáh 6: (Éxodo 4:18-31) Moshé regresa a Egipto y es acompañado por Aharón. 
+        <p>
+       Haftaráh: Isaías 42:5-16 (El siervo de Adonái como luz a las naciones).
+        </p>
+        <p>
+        Brit Hadasháh: Hebreos 3:1-6 (Moshé y Yeshúa como líderes).
+        </p>
+      </h1>
+      <h1>Punto 1. Shemot (Éxodo) Capítulo 4</h1>
+
+    <div class="content-container">
+        <h2>📜 Versos 18-31: El Regreso y la Provisión</h2>
+
+        <div class="section-container">
+            <h3>Preparativos y Mandato Divino</h3>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:18</div>
+                <div class="hebrew">
+                    וַיֵּלֶךְ מֹשֶׁה וַיָּשָׁב אֶל־יֶתֶר חֹתְנוֹ וַיֹּאמֶר לוֹ אֵלְכָה נָּא
+                    וְאָשׁוּבָה אֶל־אַחַי אֲשֶׁר־בְּמִצְרַיִם וְאֶרְאֶה הַעוֹדָם חַיִּים
+                    וַיֹּאמֶר יִתְרוֹ לְמֹשֶׁה לֵךְ לְשָׁלוֹם
+                </div>
+                <div class="transliteration">
+                    Vayyélej Moshéh vayyasháv 'el-Yéter jhotnó, vayyómer ló:
+                    Élkhah-nna ve-'ashúvah 'el-'ajháy ashér bi-Mitzráyim
+                    ve-'er'éh ha-'odám jhayyím. Vayyómer Yitró le-Moshéh: Léj
+                    le-shalóm.
+                </div>
+                <div class="translation">
+                    Y fue Moshéh y regresó a Yéter (Yitró) su suegro, y le dijo:
+                    Iré, por favor, y regresaré a mis hermanos que están en
+                    Mitzráyim, y veré si todavía viven. Y dijo Yitró a Moshéh: Ve
+                    en paz (<span class="highlight">le-shalóm</span>).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:19</div>
+                <div class="hebrew">
+                    וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה בְּמִדְיָן לֵךְ שֻׁב מִצְרָיִם כִּי מֵתוּ
+                    כָּל־הָאֲנָשִׁים הַמְבַקְשִׁים אֶת־נַפְשֶׁךָ
+                </div>
+                <div class="transliteration">
+                    Vayyómer יהוה 'el-Moshéh be-Midyán: Léj shuv Mitzráyim, kí
+                    métu kol-ha-'anashím hammevaqshím ét-nafshekhá.
+                </div>
+                <div class="translation">
+                    Y dijo יהוה a Moshéh en Midyán: Ve, regresa a Mitzráyim,
+                    porque murieron todos los hombres que buscaban tu alma
+                    (<span class="highlight">néfesh</span>).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:20</div>
+                <div class="hebrew">
+                    וַיִּקַּח מֹשֶׁה אֶת־אִשְׁתּוֹ וְאֶת־בָּנָיו וַיַּרְכִּבֵם עַל־הַחֲמֹר
+                    וַיָּשָׁב אַרְצָה מִצְרָיִם וַיִּקַּח מֹשֶׁה אֶת־מַטֵּה הָאֱלֹהִים
+                    בְּיָדוֹ
+                </div>
+                <div class="transliteration">
+                    Vayyiqqájh Moshéh ét-'ishtó ve-'ét-banáv vayyarkivém
+                    'al-hajhamór, vayyasháv 'ártzáh Mitzráyim. Vayyiqqájh Moshéh
+                    ét-mattéh ha'Elohím be-yadó.
+                </div>
+                <div class="translation">
+                    Y tomó Moshéh a su esposa y a sus hijos, y los hizo cabalgar
+                    sobre el asno, y regresó a la tierra de Mitzráyim. Y tomó
+                    Moshéh la vara del Elohím en su mano.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:21</div>
+                <div class="hebrew">
+                    וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה בְּלֶכְתְּךָ לָשׁוּב מִצְרַיְמָה רְאֵה
+                    כָּל־הַמֹּפְתִים אֲשֶׁר שַׂמְתִּי בְיָדֶךָ וַעֲשִׂיתָם לִפְנֵי פַרְעֹה
+                    וַאֲנִי אֲחַזֵּק אֶת־לִבּוֹ וְלֹא יְשַׁלַּח אֶת־הָעָם
+                </div>
+                <div class="transliteration">
+                    Vayyómer יהוה 'el-Moshéh: Be-léjhtekhá lashúv Mitzráymah,
+                    re'éh kol-hammoftím ashér samtí ve-yadékha, va-'asitám lifnéi
+                    Par'ó; va-'aní ajhazzéq ét-libbó ve-ló yeshallajh ét-ha-'am.
+                </div>
+                <div class="translation">
+                    Y dijo יהוה a Moshéh: Cuando vayas a regresar a Mitzráyim,
+                    mira todos los prodigios (<span class="highlight"
+                        >moftím</span
+                    >) que puse en tu mano y hazlos delante de Par'ó (Faraón); y
+                    Yo endureceré su corazón, y no dejará ir al pueblo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:22</div>
+                <div class="hebrew">
+                    וְאָמַרְתָּ אֶל־פַּרְעֹה כֹּה אָמַר יְהוָה בְּנִי בְכֹרִי יִשְׂרָאֵל
+                </div>
+                <div class="transliteration">
+                    Ve-'amartá 'el-Par'ó: Koh ámar יהוה: Bení ve-khorí Yisra'él.
+                </div>
+                <div class="translation">
+                    Y dirás a Par'ó: Así dice יהוה: Mi hijo, Mi primogénito, es
+                    Yisra'el.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:23</div>
+                <div class="hebrew">
+                    וָאֹמַר אֵלֶיךָ שַׁלַּח אֶת־בְּנִי וְיַעַבְדֵנִי וַתְּמָאֵן לְשַׁלְּחוֹ
+                    הִנֵּה אָנֹכִי הֹרֵג אֶת־בִּנְךָ בְּכֹרֶכָה
+                </div>
+                <div class="transliteration">
+                    Va-'ómar éleijhá: Shállajh ét-bení ve-ya'avdéni,
+                    va-ttema'én le-shallj-ó; hinnéh anójhí horég ét-bin-khá
+                    be-khorékha.
+                </div>
+                <div class="translation">
+                    Y te dije: Deja ir a Mi hijo para que Me sirva; y rehusaste
+                    dejarlo ir; he aquí, Yo estoy matando a tu hijo, tu
+                    primogénito.
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>El Incidente en la Posada: Tzipporáh y la Sangre</h3>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:24</div>
+                <div class="hebrew">
+                    וַיְהִי בַדֶּרֶךְ בַּמָּלוֹן וַיִּפְגְּשֵׁהוּ יְהוָה וַיְבַקֵּשׁ הֲמִיתוֹ
+                </div>
+                <div class="transliteration">
+                    Vayehí vad-dérekh ba-mmalón, vayyifgshéhu יהוה vayvaqqésh
+                    hamit-ó.
+                </div>
+                <div class="translation">
+                    Y sucedió en el camino, en la posada, que se encontró con él
+                    יהוה y buscó matarlo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:25</div>
+                <div class="hebrew">
+                    וַתִּקַּח צִפֹּרָה צֹר וַתִּכְרֹת אֶת־עָרְלַת בְּנָהּ וַתַּגַּע לְרַגְלָיו
+                    וַתֹּאמֶר כִּי חֲתַן־דָּמִים אַתָּה לִי
+                </div>
+                <div class="transliteration">
+                    Vattiqqájh Tzipporáh tzór vattijhrót ét-'orlat benáh,
+                    vattaggá' le-ragláv, vattó'mer: Kí
+                    <span class="highlight">jhatán-damím</span> 'attáh lí.
+                </div>
+                <div class="translation">
+                    Y tomó Tzipporáh (Séfora) un pedernal y cortó el prepucio de
+                    su hijo, y tocó sus pies, y dijo: Ciertamente esposo de
+                    sangre (<span class="highlight">jhatán-damím</span>) eres
+                    para mí.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:26</div>
+                <div class="hebrew">
+                    וַיִּרֶף מִמֶּנּוּ אָז אָמְרָה חֲתַן דָּמִים לַמּוּלֹת
+                </div>
+                <div class="transliteration">
+                    Vayyíref mimmennú. Az ámeráh: Jhatán damím lam-mulót.
+                </div>
+                <div class="translation">
+                    Y se retiró de él. Entonces ella dijo: Esposo de sangre por
+                    causa de las circuncisiones.
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p>
+                    <span class="point-letter">A.</span> La importancia de la
+                    <span class="highlight">Brit Milah</span> (Pacto de la
+                    Circuncisión) es destacada aquí. Moshéh, el libertador de
+                    Yisra'el, había fallado en cumplir este mandamiento crucial
+                    dado a <span class="highlight">Avraham</span>, posiblemente
+                    por influencia o negligencia.
+                </p>
+                <p>
+                    <span class="point-letter">B.</span> El encuentro en la
+                    posada simboliza que el servicio a יהוה debe comenzar con la
+                    obediencia personal y familiar a Su Pacto. La sangre de la
+                    circuncisión fue el medio de <span class="highlight"
+                        >expiación</span
+                    >
+                    en esta instancia, recordando el pacto original.
+                </p>
+                <p>
+                    <span class="point-letter">C.</span> El término
+                    <span class="hebrew-term">חֲתַן־דָּמִים</span>
+                    (<span class="highlight">jhatán-damím</span> - esposo de
+                    sangre) es complejo. Algunos sugieren que <span
+                        class="hebrew-term"
+                        >חתן</span
+                    >
+                    (jhatán) puede estar relacionado con la palabra aramea para
+                    "circuncidar". No obstante, la acción de Tzipporáh
+                    salvaguardó a Moshéh.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>Reunión de Moshéh y Aharón, y la Respuesta de Yisra'el</h3>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:27</div>
+                <div class="hebrew">
+                    וַיֹּאמֶר יְהוָה אֶל־אַהֲרֹן לֵךְ לִקְרַאת מֹשֶׁה הַמִּדְבָּרָה
+                    וַיֵּלֶךְ וַיִּפְגְּשֵׁהוּ בְּהַר הָאֱלֹהִים וַיִּשַּׁק־לוֹ
+                </div>
+                <div class="transliteration">
+                    Vayyómer יהוה 'el-'Aharón: Léj liqrat Moshéh ha-mmidbáráh.
+                    Vayyélej vayyifgshéhu be-Har ha'Elohím vayyishsháq-ló.
+                </div>
+                <div class="translation">
+                    Y dijo יהוה a Aharón: Ve al encuentro de Moshéh en el
+                    desierto. Y fue y se encontró con él en el Monte del Elohím
+                    (Jorev), y lo besó.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:28</div>
+                <div class="hebrew">
+                    וַיַּגֵּד מֹשֶׁה לְאַהֲרֹן אֵת כָּל־דִּבְרֵי יְהוָה אֲשֶׁר שְׁלָחוֹ
+                    וְאֵת כָּל־הָאֹתֹת אֲשֶׁר צִוָּהוּ
+                </div>
+                <div class="transliteration">
+                    Vayyaggéd Moshéh le-'Aharón ét kol-divréi יהוה ashér shlajhó,
+                    ve-'ét kol-ha-'otót ashér tzivváhu.
+                </div>
+                <div class="translation">
+                    Y contó Moshéh a Aharón todas las palabras de יהוה por las
+                    cuales lo había enviado, y todas las señales que le había
+                    ordenado.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:29</div>
+                <div class="hebrew">
+                    וַיֵּלֶךְ מֹשֶׁה וְאַהֲרֹן וַיַּאַסְפוּ אֶת־כָּל־זִקְנֵי בְּנֵי
+                    יִשְׂרָאֵל
+                </div>
+                <div class="transliteration">
+                    Vayyélej Moshéh ve-'Aharón vayya'asfú ét kol-ziqnái benei
+                    Yisra'él.
+                </div>
+                <div class="translation">
+                    Y fueron Moshéh y Aharón y reunieron a todos los ancianos de
+                    los hijos de Yisra'el.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:30</div>
+                <div class="hebrew">
+                    וַיְדַבֵּר אַהֲרֹן אֵת כָּל־הַדְּבָרִים אֲשֶׁר דִּבֶּר יְהוָה
+                    אֶל־מֹשֶׁה וַיַּעַשׂ הָאֹתֹת לְעֵינֵי הָעָם
+                </div>
+                <div class="transliteration">
+                    Vayedabbér 'Aharón ét kol-had-devarím ashér dibbér יהוה
+                    'el-Moshéh, vayyá'as ha-'otót le-'einéi ha-'am.
+                </div>
+                <div class="translation">
+                    Y habló Aharón todas las palabras que יהוה había hablado a
+                    Moshéh, e hizo las señales a los ojos del pueblo.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Shemot 4:31</div>
+                <div class="hebrew">
+                    וַיַּאֲמֵן הָעָם וַיִּשְׁמְעוּ כִּי־פָקַד יְהוָה אֶת־בְּנֵי יִשְׂרָאֵל
+                    וְכִי רָאָה אֶת־עָנְיָם וַיִּקְּדוּ וַיִּשְׁתַּחֲוּוּ
+                </div>
+                <div class="transliteration">
+                    Vayya'amén ha-'am vayyishme'ú kí-faqád יהוה ét-benei Yisra'él,
+                    ve-khí ra'áh ét-'onyám; vayyiq-qedú vayyish-tajhavvú.
+                </div>
+                <div class="translation">
+                    Y creyó el pueblo y escucharon que יהוה había visitado
+                    (recordado) a los hijos de Yisra'el, y que había visto su
+                    aflicción; e inclinaron sus cabezas y se postraron.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="explanation">
+        <h2>🌟 Análisis Mesiánico y Temático</h2>
+
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    I. Yisra'el: El Primogénito de יהוה (Éxodo 4:22-23)
+                </div>
+                <p>
+                    La declaración "Mi hijo, Mi primogénito, es Yisra'el" es
+                    fundamental. Este título establece el vínculo de pacto único
+                    entre <span class="highlight">יהוה</span> y Su pueblo.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Paralelo Mesiánico:</strong> El concepto de
+                        "primogénito" se proyecta sobre el
+                        <span class="highlight">Mashíaj</span>. Yeshúa es
+                        llamado el "Primogénito de toda creación" (Colosenses
+                        1:15) y el "primogénito de entre los muertos" (Colosenses
+                        1:18).
+                    </li>
+                    <li>
+                        <strong>El Juicio Final:</strong> La advertencia a Faraón
+                        ("Yo estoy matando a tu hijo, tu primogénito") se cumple
+                        en la décima plaga. Esto ilustra el principio divino de
+                        la
+                        <span class="highlight">sustitución vicaria</span> (o
+                        "medida por medida" - <span class="hebrew-term"
+                            >midá kenégued midá</span
+                        >), donde el juicio a
+                        <span class="highlight">Egipto</span> (el mundo) es el
+                        precio por la liberación de
+                        <span class="highlight">Yisra'el</span> (el pueblo de
+                        יהוה).
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    II. El Símbolo de la Sangre y la Circuncisión
+                </div>
+                <p>
+                    El episodio en la posada (vs. 24-26) subraya que la
+                    <span class="highlight">obediencia al pacto</span> es más
+                    importante que el servicio, y es una precondición para este.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Circuncisión y el Nuevo Pacto:</strong> La
+                        circuncisión es un signo físico de separación y
+                        consagración. El Nuevo Pacto de
+                        <span class="highlight">Yeshúa</span> se centra en la
+                        "circuncisión del corazón" (Romanos 2:29), una limpieza
+                        interna del pecado que, al igual que la sangre de la
+                        circuncisión, es esencial para la vida.
+                    </li>
+                    <li>
+                        <strong>Jhatán-damím:</strong> La sangre aplicada a los
+                        pies de Moshéh (<span class="hebrew-term"
+                            >רגליו</span
+                        >) por Tzipporáh fue una ofrenda de pacto que
+                        <span class="highlight">expió</span> la falta de Moshéh
+                        y satisfizo la demanda divina. Esto prefigura la
+                        <span class="highlight">Sangre del Cordero</span>, que
+                        cubre el pecado y permite que el mensajero de יהוה cumpla
+                        su misión.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <div class="prophetic-title">
+                    III. La Respuesta del Pueblo (Éxodo 4:31)
+                </div>
+                <div class="scripture">
+                    "Y creyó el pueblo y escucharon que יהוה había visitado
+                    (recordado) a los hijos de Yisra'el, y que había visto su
+                    aflicción; e inclinaron sus cabezas y se postraron."
+                </div>
+                <p>
+                    La creencia del pueblo y su <span class="highlight"
+                        >postración</span
+                    >
+                    (adoración) es la respuesta ideal a la manifestación del
+                    Poder de יהוה (las señales) y Su
+                    <span class="highlight">fidelidad al pacto</span>
+                    (<span class="hebrew-term">פקד</span> - visitado/recordado).
+                </p>
+                <p>
+                    Esta respuesta es el eco de la reacción que se espera cuando
+                    el <span class="highlight">Mashíaj</span> se revela. Al ver
+                    las señales y escuchar el mensaje de
+                    <span class="highlight">salvación</span> (el "evangelio" del
+                    Reino), el pueblo responde con fe y adoración.
+                </p>
+            </div>
+        </div>
+    </div>
+    <h1>
+      Shemot (Éxodo) 4:18-31: Moshéh, el Primogénito de Israel y el Esposo de
+      Sangre
+    </h1>
+    <div class="content-container">
+      <p>
+        La porción de Shemot (Éxodo) 4:18-31 describe el viaje de regreso de
+        Moshéh a Egipto para iniciar la redención. Este pasaje es fundamental
+        porque establece el concepto de Israel como el Primogénito de יהוה
+        y contiene el misterioso episodio del "Esposo de Sangre", que es un
+        poderoso presagio de la redención mesiánica a través del pacto de sangre.
+      </p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Cumplimiento Profético en el Mashíaj Yeshúa</h1>
+
+    <div class="content-container">
+      <h2>1. Israel, el Hijo Primogénito (4:22-23)</h2>
+      <p>
+        La declaración de יהוה a Par'ó (Faraón) establece la relación
+        paternal: "Mi hijo, Mi primogénito, es Yisra'el." Esto define el
+        propósito de la redención.
+      </p>
+
+      <div class="section-container">
+        <h3>Versículos Clave</h3>
+        <div class="verse-container">
+          <div class="verse-number">Éxodo 4:22</div>
+          <div class="hebrew">וְאָמַרְתָּ אֶל־פַּרְעֹה כֹּה אָמַר יְהוָה בְּנִי בְּכֹרִי יִשְׂרָאֵל</div>
+          <div class="transliteration">v'amarta el-par'óh koh amar Adonái b'ní v'jorí Yisra'él.</div>
+          <div class="literal-translation">Y dirás a Faraón: Así dice יהוה : Mi hijo, Mi primogénito, es Israel.</div>
+        </div>
+        <div class="verse-container">
+          <div class="verse-number">Éxodo 4:23</div>
+          <div class="hebrew">וַתֵּאמֶר אֶל־פַּרְעֹה שַׁלַּח אֶת־בְּנִי וְיַעַבְדֵנִי וְאִם־מָאֵן אַתָּה לְשַׁלְּחוֹ הִנֵּה אָנֹכִי הֹרֵג אֶת־בִּנְךָ בְּכֹרֶךָ</div>
+          <div class="transliteration">v'tehmer el-par'óh shaláh et-b'ní v'yaavdéni v'im-maén atáh l'shal'hóh hinéh anójí horég et-binjá b'joréja.</div>
+          <div class="literal-translation">Y si te niegas a dejarlo ir, he aquí, Yo estoy matando a tu hijo, tu primogénito.</div>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Profecía (Israel como Primogénito)</div>
+          <p class="scripture">
+            "Mi hijo, Mi primogénito, es Yisra'el." (4:22)
+          </p>
+          <div class="explanation">
+            <p>
+              La identidad de Yeshúa como el
+              <strong class="highlight">Hijo Unigénito</strong> es la base de
+              esta relación. Él es el Primogénito perfecto que encarna la misión
+              de Israel. Yeshúa es también el Primogénito de entre los muertos
+              (Colosenses 1:18) y, por lo tanto, el
+              <strong class="highlight">Heredero de la promesa</strong> que
+              יהוה le hizo a Su hijo Israel.
+            </p>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Cumplimiento Mesiánico en Yeshúa</div>
+          <p class="scripture">Colosenses 1:15</p>
+          <div class="explanation">
+            <p>
+              "...el primogénito de toda la creación." La Redención por
+              Sustitución es evidente: Para liberar a Su primogénito Israel,
+              יהוה exige la vida del primogénito de Egipto.
+            </p>
+            <p class="scripture">Juan 3:16</p>
+            <p>
+              La muerte del primogénito egipcio es un
+              <strong class="highlight">tipo de la redención por
+                sustitución</strong>
+              (Pesaj/Pascua), culminada en el
+              <strong class="highlight">sacrificio de Yeshúa</strong>, el
+              Primogénito divino, para redimir a la humanidad de la muerte.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>2. La Prueba de Fuego y el Pacto de Sangre (4:24-26)</h2>
+      <p>
+        El encuentro de יהוה con Moshéh en la posada, buscando matarlo,
+        es una profecía de la
+        <strong class="highlight">necesidad de Sangre para la Expiación</strong>
+        y el cumplimiento de la Torá.
+      </p>
+
+      <div class="section-container">
+        <h3>Versículos Clave</h3>
+        <div class="verse-container">
+          <div class="verse-number">Éxodo 4:24</div>
+          <div class="hebrew">וַיְהִי בַדֶּרֶךְ בַּמָּלוֹן וַיִּפְגְּשֵׁהוּ יְהוָה וַיְבַקֵּשׁ הֲמִיתוֹ</div>
+          <div class="transliteration">vayhí vadérej bammalón vayifg'shéhu Adonái vayvakésh hamitó.</div>
+          <div class="literal-translation">Y sucedió en el camino, en la posada, que se encontró con él יהוה  y buscó matarlo.</div>
+        </div>
+        <div class="verse-container">
+          <div class="verse-number">Éxodo 4:25</div>
+          <div class="hebrew">וַתִּקַּח צִפֹּרָה צֹר וַתִּכְרֹת אֶת־עָרְלַת בְּנָהּ וַתַּגַּע לְרַגְלָיו וַתֹּאמֶר כִּי חֲתַן־דָּמִים אַתָּה לִי</div>
+          <div class="transliteration">vattiqáj Tziporáh tzóhr vattijrót et-'orlát b'náh vattaggá l'ragláiv vattóhmer ki jhatán-damím atáh lí.</div>
+          <div class="literal-translation">Y tomó Tziporá una piedra afilada, y cortó el prepucio de su hijo, y lo echó a sus pies [de Moshéh], y dijo: Esposo de sangre eres para mí.</div>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Misterio de la Posada</div>
+          <p class="scripture">
+            "Se encontró con él יהוה y buscó matarlo." (4:24)
+          </p>
+          <div class="explanation">
+            <p>
+              Moshéh, el mediador, estuvo a punto de morir por descuidar la
+              <strong class="highlight">Mitzvá de la Milá</strong>
+              (circuncisión) de su hijo. Esto subraya la seriedad de la Torá y
+              que la redención solo puede venir a través de la obediencia
+              perfecta o la expiación sustitutiva.
+            </p>
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Simbolismo Mesiánico en Yeshúa</div>
+          <p class="scripture">
+            "Esposo de sangre (<strong class="hebrew-term">Jhatán-damím</strong>)
+            eres para mí." (4:25)
+          </p>
+          <div class="explanation">
+            <p>
+              La sangre de la circuncisión de Tziporá salva a Moshéh. Esto
+              presagia la
+              <strong class="highlight">unión del Mesías con Su novia Israel</strong>
+              y la Knesset (Asamblea) a través de Su sangre.
+            </p>
+            <p>
+              Yeshúa es el
+              <strong class="hebrew-term">Jhatán</strong> (Novio) que
+              <strong class="highlight">derramó Su sangre</strong> para cumplir
+              las demandas del pacto de יהוה  y salvar a Su pueblo de la
+              muerte.
+            </p>
+            <p class="scripture">Efesios 5:25</p>
+            <p>
+              (Mashiaj amó a la congregación, y se entregó a Sí mismo por ella.)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Conexión con los Profetas y la Aliyá</h1>
+
+    <div class="content-container">
+      <h2>Yeshayah (Isaías) 42:1-4 (El Siervo Escogido)</h2>
+      <div class="section-container">
+        <p>
+          יהוה  llama a Israel Su siervo (4:20), pero la misión de
+          liberación es ejecutada por el Enviado.
+        </p>
+        <div class="explanation">
+          <p>
+            <strong class="prophetic-title">Conexión:</strong> La obediencia y el
+            envío de Moshéh (4:19) prefiguran al Siervo de יהוה,
+            <strong class="highlight">Yeshúa</strong>, quien es el Único perfecto
+            que cumplió la voluntad del Padre sin debilidad o fracaso.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>Malajhí (Malaquías) 3:1 (El Mensajero del Pacto)</h2>
+      <div class="section-container">
+        <div class="explanation">
+          <p>
+            <strong class="prophetic-title">Conexión:</strong> El "encuentro" en
+            la posada (4:24) es la aparición del Ángel de יהוה  o la
+            Presencia misma para hacer cumplir el pacto. Esto anticipa la venida
+            súbita del
+            <strong class="highlight">Mensajero del Pacto, Yeshúa</strong>, para
+            purificar a Su pueblo y restaurar la observancia de la Torá (la Milá
+            aquí simboliza la Ley completa).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <h1>Aplicación Espiritual Conectada a la Aliyá</h1>
+
+    <div class="content-container">
+      <h2>Obediencia Absoluta al Pacto (4:24-26)</h2>
+      <div class="explanation">
+        <p>
+          El incidente del "Esposo de Sangre" es una lección poderosa sobre la
+          necesidad de la
+          <strong class="highlight">obediencia inmediata a los mandatos de
+            יהוה </strong>, incluso para el mismo libertador.
+        </p>
+        <p>
+          <strong class="prophetic-title">Aplicación:</strong> Para el creyente
+          mesiánico, la fe en Yeshúa no anula la necesidad de la obediencia. La
+          <strong class="highlight">circuncisión del corazón</strong>
+          (Deuteronomio 30:6) que Yeshúa trae (Romanos 2:29) es el cumplimiento
+          espiritual de la Milá física. La Aliyá a la libertad solo puede
+          comenzar bajo el signo de la sangre y la obediencia al pacto.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>La Fe del Pueblo (4:31)</h2>
+      <div class="section-container">
+        <div class="verse-container">
+          <div class="verse-number">Éxodo 4:31</div>
+          <div class="hebrew">וַיַּאֲמֵן הָעָם וַיִּשְׁמְעוּ כִּי־פָקַד יְהוָה אֶת־בְּנֵי יִשְׂרָאֵל וְכִי רָאָה אֶת־עָנְיָם וַיִּקְּדוּ וַיִּשְׁתַּחֲוּוּ</div>
+          <div class="transliteration">vayya'amén ha'ám vayishm'ú ki-fáqad Adonái et-b'néi Yisra'él v'ji raáh et-'on-yám vayyik'dú vayyish-tajhavvú.</div>
+          <div class="literal-translation">Y creyó el pueblo y escucharon que יהוה había visitado (recordado) a los hijos de Israel y que había visto su aflicción, e inclinaron sus cabezas y se postraron.</div>
+        </div>
+        <div class="explanation">
+          <p>
+            <strong class="prophetic-title">Aplicación:</strong> La visita
+            (<strong class="hebrew-term">paqád</strong>) de יהוה  siempre
+            trae dos respuestas:
+            <strong class="highlight">fe (Emunáh) y postración
+              (hish-tajhavváh)</strong>. El pueblo creyó en la redención y adoró.
+          </p>
+          <p>
+            <strong class="prophetic-title">Conexión Mesiánica:</strong> La
+            manifestación de las señales de Yeshúa (el cumplimiento de la
+            <strong class="hebrew-term">paqídáh</strong> final de יהוה
+            está diseñada para provocar fe y adoración en el corazón del pueblo,
+            reconociendo que יהוה ha visto su aflicción y ha enviado a Su
+            Redentor.
+            <strong class="highlight">La Aliyá hacia la libertad en el Mashíaj
+              es un acto de adoración.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <h2>El Equipo Mesiánico (4:27-30)</h2>
+      <div class="explanation">
+        <p>
+          La reunión de Moshéh (el líder) y Aharón (el portavoz) en el Monte del
+          Elohím simboliza la
+          <strong class="highlight">unidad del liderazgo redentor</strong>.
+        </p>
+        <p>
+          <strong class="prophetic-title">Aplicación:</strong> Yeshúa cumple
+          ambas funciones en Su persona, pero nos ha dado la Knesset
+          (Asamblea/Iglesia) para llevar a cabo Su misión. El
+          <strong class="highlight">"beso" de reunión</strong> entre Moshéh y
+          Aharón simboliza la unidad y el apoyo mutuo que son esenciales para el
+          ministerio del Mashíaj en la tierra.
+        </p>
+      </div>
+    </div>
+    <h1>Punto 2. Haftaráh: Isaías 42:5-16 (El siervo de Adonái como luz a las naciones).</h1>
+    <h2>El Siervo de יהוה: Luz para las Naciones</h2>
+
+    <div class="content-container">
+        <div class="section-container">
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:5</div>
+                <div class="hebrew">
+                    כֹּה־אָמַר הָאֵל יְהוָה בּוֹרֵא שָׁמַיִם וְנוֹטֵיהֶם רֹקַע הָאָרֶץ וְצֶאֱצָאֶיהָ נֹתֵן נְשָׁמָה לָעָם עָלֶיהָ וְרוּחַ לַהֹלְכִים בָּהּ
+                </div>
+                <div class="transliteration">
+                    Koh-'ámar ha-'Él יהוה, boré shamáyim ve-notéihém, roqé' ha'áretz ve-tzee'etzá'éihá, notén neshamáh la-'am 'aléihá, ve-rúajh la-holkhím báh.
+                </div>
+                <div class="translation">
+                    Así dice el El (Elohim) <span class="highlight">יהוה</span>, Creador de los cielos y el que los despliega, el que extiende la tierra y lo que de ella brota, el que da <span class="highlight">neshamáh</span> (aliento de vida) al pueblo sobre ella, y <span class="highlight">rúajh</span> (espíritu) a los que caminan en ella:
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:6</div>
+                <div class="hebrew">
+                    אֲנִי יְהוָה קְרָאתִיךָ בְצֶדֶק וְאַחֲזֵק בְּיָדֶךָ וְאֶצָּרְךָ וְאֶתֶּנְךָ לִבְרִית עָם לְאוֹר גּוֹיִם
+                </div>
+                <div class="transliteration">
+                    Aní יהוה qra'tíjhá ve-tzédeq, ve-'ajhazéq be-yadéjhá, ve-'etzzor-khá ve-'ettén-khá <span class="highlight">li-vrít 'am</span> <span class="highlight">le-'ór goyím</span>.
+                </div>
+                <div class="translation">
+                    Yo <span class="highlight">יהוה</span> te llamé en justicia (<span class="hebrew-term">צֶדֶק</span> - tzédeq), y te sostendré con Tu mano, y te guardaré, y te daré por <span class="highlight">Pacto del pueblo</span> (li-vrít 'am), por <span class="highlight">Luz de las naciones</span> (le-'ór goyím).
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:7</div>
+                <div class="hebrew">
+                    לִפְקֹחַ עֵינַיִם עִוְרוֹת לְהוֹצִיא מִמַּסְגֵּר אֲסִיר לְיֹשְׁבֵי חֹשֶׁךְ מִבֵּית כֶּלֶא
+                </div>
+                <div class="transliteration">
+                    Lifqójh 'eináyim 'ivrót, le-hotzí mim-masguér assír, le-yoshvéi jhjóshekh mi-bbeit kéle'.
+                </div>
+                <div class="translation">
+                    Para abrir <span class="highlight">ojos ciegos</span>, para sacar de la prisión a los cautivos, y de la casa de la cárcel a los que moran en oscuridad.
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p>
+                    <span class="point-letter">A.</span>
+                    Los versos 5-7 introducen al <span class="highlight">Siervo de יהוה</span> (El Mesías) como el agente escogido por el Creador para una misión trascendental.
+                </p>
+                <p>
+                    <span class="point-letter">B.</span>
+                    La función principal es ser <span class="highlight">"Pacto del pueblo"</span> (Israel) y <span class="highlight">"Luz de las naciones"</span> (Goyim), lo cual expande la promesa de salvación más allá de Israel.
+                </p>
+                <p>
+                    <span class="point-letter">C.</span>
+                    El Mesías, Yeshúa, es la manifestación de este pacto y luz, cumpliendo la profecía de abrir los ojos (espiritual y físicamente) a los ciegos y liberar a los cautivos de la oscuridad del pecado y la ignorancia.
+                </p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>La Soberanía y la Nueva Obra de יהוה</h3>
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:8</div>
+                <div class="hebrew">
+                    אֲנִי יְהוָה הוּא שְׁמִי וּכְבוֹדִי לְאַחֵר לֹא־אֶתֵּן וּתְהִלָּתִי לַפְּסִילִים
+                </div>
+                <div class="transliteration">
+                    Aní יהוה hú shmí, u-khvodí le-'ajh-ér ló-'ettén, u-tehillatí lap-pesilím.
+                </div>
+                <div class="translation">
+                    Yo <span class="highlight">יהוה</span>, ese es Mi Nombre; y Mi <span class="highlight">K'vod</span> (Gloria) a otro no daré, ni Mi alabanza a las imágenes esculpidas.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:9</div>
+                <div class="hebrew">
+                    הָרִאשׁוֹנוֹת הִנֵּה־בָאוּ וַחֲדָשׁוֹת אֲנִי מַגִּיד בְּטֶרֶם תִּצְמַחְנָה אַשְׁמִיעַ אֶתְכֶם
+                </div>
+                <div class="transliteration">
+                    Ha-rishonót hinnéh-vá'u, va-jhadashót aní maggíd, be-térem titzmajhnáh ash-mía' étjhém.
+                </div>
+                <div class="translation">
+                    Las cosas primeras, he aquí, han venido; y <span class="highlight">cosas nuevas</span> Yo anuncio, antes que broten os las hago oír.
+                </div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Proclamación de la Exclusividad Divina</div>
+                    <p>
+                        El verso 8 es una declaración rotunda de la unidad y soberanía de <span class="highlight">יהוה</span>. Nadie comparte Su Gloria (<span class="hebrew-term">כָּבוֹד</span> - K'vod). Esto prepara el escenario para la "cosa nueva" que está por venir.
+                    </p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Novedad Mesiánica</div>
+                    <p>
+                        La "cosa nueva" (verso 9) se refiere al cumplimiento de las promesas del Pacto a través del Siervo sufriente (capítulos 42, 53). Esta es la nueva era de la redención que incluye a las naciones, un plan que <span class="highlight">יהוה</span> revela antes de que ocurra.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>Cántico Nuevo y Victoria del Guerrero</h3>
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:10</div>
+                <div class="hebrew">
+                    שִׁירוּ לַיהוָה שִׁיר חָדָשׁ תְּהִלָּתוֹ מִקְצֵה הָאָרֶץ יוֹרְדֵי הַיָּם וּמְלֹאוֹ אִיִּים וְיֹשְׁבֵיהֶם
+                </div>
+                <div class="transliteration">
+                    Shíru la-יהוה shir jhadásh, tehillató miq-tzéh ha'áretz, yordéi hayyám u-meló'ó, iyyím ve-yoshvéihém.
+                </div>
+                <div class="translation">
+                    Canten a <span class="highlight">יהוה</span> un <span class="highlight">cántico nuevo</span>, Su alabanza desde el extremo de la tierra; los que descienden al mar y su plenitud, las islas y sus habitantes.
+                </div>
+            </div>
+
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:13</div>
+                <div class="hebrew">
+                    יְהוָה כַּגִּבּוֹר יֵצֵא כְּאִישׁ מִלְחָמוֹת יָעִיר קִנְאָה יָרִיעַ אַף־יַצְרִיחַ עַל־אֹיְבָיו יִתְגַּבָּר
+                </div>
+                <div class="transliteration">
+                    יהוה kag-gibbór yetzé, ke-'ísh miljhamót ya'ír qin'áh, yaría' af-yatzríajh, 'al-'oyeváv yitgabbár.
+                </div>
+                <div class="translation">
+                    <span class="highlight">יהוה como un Gíbbór (Guerrero) saldrá</span>, como hombre de batallas excitará celo; gritará, también clamará con fuerza, sobre Sus enemigos prevalecerá.
+                </div>
+            </div>
+
+            <div class="explanation">
+                <p>
+                    <span class="point-letter">D.</span>
+                    El <span class="highlight">"cántico nuevo"</span> (verso 10) es la respuesta de gozo universal (islas, desierto, habitantes de la roca) por la obra redentora del Siervo.
+                </p>
+                <p>
+                    <span class="point-letter">E.</span>
+                    El verso 13, que describe a <span class="highlight">יהוה</span> como un <span class="highlight">Guerrero</span> (<span class="hebrew-term">גִּבּוֹר</span> - Gibbór) que prevalece sobre sus enemigos, es una transición. Muestra que la redención a través del Siervo (cap. 42:1-7) culminará en la justicia y el juicio divinos.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>La Manifestación de la Misericordia y el Juicio</h3>
+            <div class="verse-container">
+                <div class="verse-number">Yeshayah 42:16</div>
+                <div class="hebrew">
+                    וְהוֹלַכְתִּי עִוְרִים בְּדֶרֶךְ לֹא יָדָעוּ בִּנְתִיבוֹת לֹא־יָדְעוּ אַדְרִיכֵם אָשִׂים מַחְשָׁךְ לִפְנֵיהֶם לָאוֹר וּמַעֲקַשִּׁים לְמִישׁוֹר אֵלֶּה הַדְּבָרִים עֲשִׂיתִם וְלֹא עֲזַבְתִּים
+                </div>
+                <div class="transliteration">
+                    Ve-holájhtí 'ivríím be-dérej ló yadá'u, bi-ntivót ló-yad'ú adrIkhém; asímm majhshájh lifneihém la-'ór, u-ma'aqashshím le-mishór; 'élleh had-devarím 'asitím ve-ló 'azavtím.
+                </div>
+                <div class="translation">
+                    Y <span class="highlight">guiaré a los ciegos</span> por camino que no conocieron, por sendas que no supieron los conduciré; pondré la oscuridad delante de ellos por luz, y los lugares torcidos por llanura. <span class="highlight">Estas son las cosas que hice, y no los abandoné</span>.
+                </div>
+            </div>
+
+            <div class="prophetic-content">
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Restauración del Ciego</div>
+                    <p>
+                        El Siervo (Mesías Yeshúa) no solo es la luz, sino el <span class="highlight">Guía</span> que lleva a los "ciegos" (tanto Israel como las naciones) a través de un camino que desconocen. Este es el camino de la salvación y el arrepentimiento, que convierte la oscuridad (<span class="hebrew-term">מַחְשָׁךְ</span> - majhshájh) en luz.
+                    </p>
+                </div>
+                <div class="prophetic-section">
+                    <div class="prophetic-title">La Fidelidad Eterna</div>
+                    <p>
+                        La frase final, <span class="highlight">"no los abandoné"</span>, es un sello de la fidelidad de <span class="highlight">יהוה</span> a Su pueblo, incluso en su ceguera y exilio espiritual. La obra del Mesías asegura esta fidelidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <h1>ANÁLISIS MESIÁNICO: YESHAYAH (ISAÍAS) 42:5-16</h1>
+
+    <div class="content-container">
+      <div class="section-container">
+        <h2>El Siervo de יהוה (Eved יהוה): El Mashíaj Redentor</h2>
+        <p>
+          La porción de Yeshayah (Isaías) 42:5-16 contiene el segundo de los
+          Cantos del Siervo de יהוה (Eved יהוה), un texto
+          profético crucial que transiciona el concepto del Siervo de Israel
+          corporativo al Siervo individual y Redentor—el <span class="highlight">Mashíaj</span>. Este
+          pasaje describe el llamamiento, la misión y el poder del Mesías.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>Cumplimiento Profético en el Mashíaj Yeshúa</h2>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">
+              1. El Llamamiento del Siervo y el Nuevo Pacto (42:6)
+            </h3>
+            <p>
+              יהוה  llama al Siervo y lo establece como el Pacto del
+              pueblo y la Luz de las Naciones.
+            </p>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Profecía del Siervo</th>
+                  <th>Cumplimiento Mesiánico en Yeshúa</th>
+                  <th>Pasaje del Brit Hadashah</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    "Yo יהוה te llamé en
+                    <span class="highlight">justicia (tzédeq)</span>... y te daré
+                    por <span class="highlight">Pacto del pueblo</span> (li-vrít
+                    'am)"
+                  </td>
+                  <td>
+                    Yeshúa es la encarnación del Nuevo Pacto (Brit Hadashah), que
+                    fue establecido por Su propia sangre. Él no solo administra
+                    el pacto, sino que es el pacto mismo.
+                  </td>
+                  <td>
+                    Lucas 22:20 (<br />
+                    <span class="scripture"
+                      >Esta copa es el nuevo pacto en Mi sangre, que por vosotros
+                      se derrama.</span
+                    >)
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    "...por <span class="highlight">Luz de las naciones</span>
+                    (le-'ór goyím)."
+                  </td>
+                  <td>
+                    Yeshúa cumple la misión cósmica de Israel, llevando la
+                    revelación de יהוה a todo el mundo. Su luz es la
+                    manifestación de la <span class="highlight">K'vod</span>
+                    (Gloria) de יהוה.
+                  </td>
+                  <td>
+                    Juan 8:12 (<br />
+                    <span class="scripture"
+                      >Yo soy la luz del mundo; el que Me sigue, no andará en
+                      oscuridad, sino que tendrá la luz de la vida.</span
+                    >)
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">
+              2. La Misión de Liberación Mesiánica (42:7)
+            </h3>
+            <p>
+              El propósito específico del Siervo es la liberación de la ceguera y
+              la cautividad.
+            </p>
+
+            <ul>
+              <li>
+                <strong
+                  >Abrir ojos ciegos:
+                  <span class="arrow">→</span>
+                </strong>
+                El cumplimiento literal se ve en los milagros de sanación de
+                Yeshúa (Marcos 8:22-25; Juan 9:6-7), que simbolizan la
+                restauración de la visión espiritual (Juan 9:39). El Mashíaj
+                cura la ceguera causada por el pecado y la ignorancia de la
+                Torá.
+              </li>
+              <li>
+                <strong
+                  >Sacar de la prisión a los cautivos / a los que moran en
+                  oscuridad: <span class="arrow">→</span></strong
+                >
+                <span class="highlight">Profecía cumplida:</span> Yeshúa leyó
+                Yeshayah 61:1 en la sinagoga de Natzeret (Nazaret) y declaró que
+                se había cumplido en Él (Lucas 4:18-21). La liberación de la
+                cárcel no es solo física, sino la liberación del cautiverio del
+                pecado y la muerte.
+              </li>
+            </ul>
+          </div>
+
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">
+              3. El Nuevo Cántico y la Gloria de יהוה (42:8, 10)
+            </h3>
+            <p>
+              La declaración "Mi <span class="highlight">K'vod</span> (Gloria) a
+              otro no daré" es seguida por el llamado a "Canten a יהוה
+              un <span class="highlight">cántico nuevo</span>" desde todas las
+              naciones.
+            </p>
+            <p>
+              <strong
+                >Conexión Mesiánica: <span class="arrow">→</span>
+              </strong>
+              La K'vod de יהוה se manifestó plenamente en Yeshúa (Juan
+              1:14). La revelación del Mashíaj es la razón de que las naciones
+              (<span class="highlight">goyím</span>) puedan unirse a Israel para
+              adorar a יהוה. El "cántico nuevo" es el de la Redención
+              lograda por Yeshúa, que une a la Tierra y las "islas" (los
+              gentiles) en una misma alabanza.
+            </p>
+            <p>
+              <strong
+                >Brit Hadashah: <span class="arrow">→</span>
+              </strong>
+              Revelación 5:9 describe a los redimidos cantando un cántico nuevo
+              al Cordero que fue inmolado, confirmando la visión profética de
+              Yeshayah 42:10 de una adoración universal centrada en el Redentor.
+            </p>
+          </div>
+
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">
+              4. La Guía de los Ciegos (42:16)
+            </h3>
+            <p>
+              יהוה promete guiar a los ciegos por caminos desconocidos,
+              transformando la oscuridad en luz y lo torcido en llanura.
+            </p>
+            <p>
+              <strong
+                >Cumplimiento: <span class="arrow">→</span>
+              </strong>
+              Yeshúa es el <span class="highlight">Guía y el Camino</span> (Juan
+              14:6). Él lleva a Israel (y a la humanidad) a través del exilio y
+              la ceguera espiritual a un conocimiento que antes no tenían. El
+              viaje de la fe es un camino que humanamente no se conoce, pero el
+              Mashíaj lo allana.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>Yeshayah (Isaías) 42:5-7 - Versos Interlineales</h2>
+        <div class="verse-container">
+          <div class="verse-number">Yeshayah 42:5</div>
+          <div class="hebrew">כֹּה-אָמַר הָאֵל יהוה בֹּורֵא הַשָּׁמַיִם וְנֹטֵיהֶם רֹקַע הָאָרֶץ וְצֶאֱצָאֶיהָ נֹתֵן נְשָׁמָה לָעָם עָלֶיהָ וְרוּחַ לַהֹלְכִים בָּהּ׃</div>
+          <div class="transliteration">Koh-'Amar Ha'El יהוה  Boré HaShamayim v'Notéyhem, Rokéa Ha'áretz v'tze'etzá'eyha, Notén Neshamáh la'am 'aléyha v'Rúakh laHolkhím bah.</div>
+          <div class="translation">Así dijo el Elohim יהוה, Creador de los cielos y el que los extiende, el que cimienta la tierra y su descendencia, el que da alma al pueblo sobre ella, y espíritu a los que caminan en ella.</div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yeshayah 42:6</div>
+          <div class="hebrew">אֲנִי יהוה קְרָאתִיךָ בְצֶדֶק וְאַחְזֵק בְּיָדֶךָ וְאֶצָּרְךָ וְאֶתֶּנְךָ לִבְרִית עָם לְאֹור גּוֹיִם׃</div>
+          <div class="transliteration">Aní יהוה  K'ratíkha v'tzédeq, v'Akhzék b'yadeka, v'Etzárka v'Etenká li-vrít 'am l'ór goyím.</div>
+          <div class="translation">Yo יהוה  te llamé en justicia, y te sostendré de tu mano; te guardaré y te daré por Pacto del pueblo, por Luz de las naciones.</div>
+          <div class="explanation">
+            <p>
+              <strong
+                >Comentario Mesiánico:</strong
+              >
+              El llamado <span class="hebrew-term">בְצֶדֶק</span>
+              (b'tzédeq - en justicia) indica que la elección del Siervo es
+              perfecta y justa. Él es el <span class="highlight">Pacto</span>
+              mismo (<span class="hebrew-term">לִבְרִית עָם</span>), no solo un
+              mediador, y es la <span class="highlight">Luz</span> (l'ór) para
+              los gentiles (<span class="hebrew-term">גּוֹיִם</span>) tal como se
+              cumplió en Yeshúa.
+            </p>
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Yeshayah 42:7</div>
+          <div class="hebrew">לִפְקֹחַ עֵינַיִם עִוְרֹות לְהֹוצִיא מִמַּסְגֵּר אָסִיר מִבֵּית כֶּלֶא יֹשְׁבֵי חֹשֶׁךְ׃</div>
+          <div class="transliteration">Lifkóakh 'eynayim 'ivrót, lehotzí mimmasguér asír, mibéyt kéle yoshvéy khóshakh.</div>
+          <div class="translation">Para abrir los ojos ciegos, para sacar de la prisión a los cautivos, de la cárcel a los que moran en oscuridad.</div>
+          <div class="explanation">
+            <p>
+              <strong
+                >Comentario Mesiánico:</strong
+              >
+              Este verso es citado por Yeshúa en la sinagoga de Nazaret (Lucas
+              4:18). La misión es doble: sanación física (ojos ciegos) y
+              liberación espiritual (prisión de la oscuridad/pecado). El Siervo
+              es el liberador final.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>Aplicación Espiritual y Aliyá</h2>
+
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">
+              El Carácter del Siervo (Eved) y la Aliyá
+            </h3>
+            <p>
+              El Siervo se distingue por la
+              <span class="highlight">justicia (tzédeq)</span> y el ser el
+              portador de la Luz.
+            </p>
+            <p>
+              <strong
+                >Aplicación: <span class="arrow">→</span>
+              </strong>
+              La <span class="highlight">Aliyá</span> (ascenso o retorno
+              espiritual) para el creyente significa imitar el carácter del
+              Mashíaj. Somos llamados a ser luz en el exilio (el mundo), guiando
+              a aquellos que están ciegos ('ivríím). Nuestro testimonio y
+              nuestras acciones de justicia son la manifestación de que el Pacto
+              de Yeshúa está vivo en nosotros.
+            </p>
+          </div>
+
+          <div class="prophetic-section">
+            <h3 class="prophetic-title">
+              El Parto del Juicio (42:13-14)
+            </h3>
+            <p>
+              יהוה  se revela primero como un Guerrero
+              (<span class="highlight">Gíbbór</span>) que clama como una mujer de
+              parto.
+            </p>
+            <p>
+              <strong
+                >Aplicación: <span class="arrow">→</span>
+              </strong>
+              El "callar desde el tiempo antiguo" (42:14) ha terminado; la
+              redención final es un acto doloroso de juicio contra el enemigo (el
+              "parto"). La aplicación espiritual es tener paciencia en la
+              aflicción, sabiendo que el silencio de יהוה es una
+              contención temporal antes de Su intervención poderosa. La ira y el
+              juicio de יהוה (Su Gíbbór) son necesarios para traer la
+              nueva creación (el cántico nuevo).
+            </p>
+          </div>
+          <h1>Punto 3. Brit Hadasháh: Hebreos 3:1-6 (Moshé y Yeshúa como líderes).</h1>
+
+    <div class="content-container">
+      <div class="verse-container">
+        <div class="verse-number">Ibráyé 3:1</div>
+        <div class="aramaic">
+          ܡܛܠ ܗܢܐ ܐܚܝ ܩܕܝܫ̈ܐ ܫܘܬܦ̈ܐ ܕܩܪܝܢܐ ܕܠܥܠ ܚܙܘܗܝ ܠܫܠܝܚܐ ܘܠܪܒ ܟܗ̈ܢܐ
+          ܕܬܘܕܝܬܢ ܝܫܘܥ ܡܫܝܚܐ
+        </div>
+        <div class="transliteration">
+          Mettól haná ajháy qadíshé shutáfé de-qeryáná de-le'ál, jhezúhí
+          le-shlijhá u-le-rav kahná de-tawdítán Yéshú'a Meshíjhha.
+        </div>
+        <div class="literal-translation">
+          Traducción Literal: Por causa de esta, **hermanos santos**,
+          participantes del llamamiento de arriba, miradle al **Enviado**
+          (<span class="highlight">Shlijhá</span>) y al **Jefe de Sacerdotes**
+          (<span class="highlight">Rav kahná</span>) de nuestra confesión,
+          <span class="highlight">Yeshúa el Mashíaj</span>.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Ibráyé 3:2</div>
+        <div class="aramaic">
+          ܕܡܗܝܡܢ ܗܘܐ ܠܡܢ ܕܥܒܕܗ ܐܝܟ ܡܘܫܐ ܒܟܠܗ ܒܝܬܗ
+        </div>
+        <div class="transliteration">
+          De-mháyeman hawá le-mán de-'avdéh, 'aich Móshé be-khúllé beitéh.
+        </div>
+        <div class="literal-translation">
+          Traducción Literal: Que **fiel** era a Aquel que lo hizo
+          (estableció), como **Moshéh** en toda Su
+          <span class="highlight">Casa</span> (<span class="highlight"
+            >beitéh</span
+          >).
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Ibráyé 3:3</div>
+        <div class="aramaic">
+          ܫܘܒܚܐ ܕܝܢ ܠܗܢܐ ܝܬܝܪ ܡܢ ܡܘܫܐ ܗܘܐ ܐܝܟܢܐ ܕܝܬܝܪ ܝܩܪܐ ܗܘܐ ܠܒܢܐ ܡܢ
+          ܒܝܬܗ
+        </div>
+        <div class="transliteration">
+          Shuvjhá deín le-háná yattír mín Móshé hawá, 'aicháná de-yattír íqqará
+          hawá le-vná mín beitéh.
+        </div>
+        <div class="literal-translation">
+          Traducción Literal: **Gloria** (<span class="highlight">Shuvjhá</span
+          >) entonces a **Este**, más grande que Moshéh era, así como más
+          **honor** era al constructor que a Su <span class="highlight">Casa</span
+          > (<span class="highlight">beitéh</span>).
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Ibráyé 3:4</div>
+        <div class="aramaic">
+          ܟܠ ܒܝܬܐ ܓܝܪ ܡܢ ܐܢܫ ܡܬܥܒܕ ܐܠܗܐ ܕܝܢ ܗܘ ܕܒܢܐ ܟܠ
+        </div>
+        <div class="transliteration">
+          Kul béittá guír mín 'ánash mett'avéd, Alláh deín hú de-vná kul.
+        </div>
+        <div class="literal-translation">
+          Traducción Literal: Toda **Casa** pues por alguien es hecha, pero
+          <span class="highlight">Elohím</span> es Aquel que construyó
+          **todo**.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Ibráyé 3:5</div>
+        <div class="aramaic">
+          ܘܡܘܫܐ ܐܝܟ ܥܒܕܐ ܡܗܝܡܢ ܗܘܐ ܒܟܠܗ ܒܝܬܗ ܠܣܗܕܘܬܐ ܕܐܝܠܝܢ ܕܥܬܝܕܢ ܗܘܝ
+          ܠܡܬܡܠܠܘ
+        </div>
+        <div class="transliteration">
+          U-Móshé 'aich 'avdá mháyeman hawá be-khúllé beitéh, le-sahdúthá
+          de-'ailléin de-'attídan hawáy le-metmallelú.
+        </div>
+        <div class="literal-translation">
+          Traducción Literal: Y **Moshéh** como **siervo** (<span
+            class="highlight"
+            >'avdá</span
+          >) **fiel** era en toda Su <span class="highlight">Casa</span> (<span
+            class="highlight"
+            >beitéh</span
+          >), para **testimonio** de aquellas (cosas) que estaban preparadas para
+          ser habladas.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Ibráyé 3:6</div>
+        <div class="aramaic">
+          ܡܫܝܚܐ ܕܝܢ ܐܝܟ ܒܪܐ ܥܠ ܒܝܬܗ ܕܐܝܬܝܢܢ ܚܢܢ ܒܝܬܗ ܐܢ ܥܕܡܐ ܠܐܚܪܬܐ
+          ܫܪܝܪܘܬܐ ܘܫܘܒܗܪܐ ܕܣܒܪܢ ܢܟܒܕ
+        </div>
+        <div class="transliteration">
+          Meshíjhha deín 'aich brá 'ál beitéh, de-'íttéinan jhnán beitéh, 'én
+          'admá le-ajhértá shríráthá we-shuvhárá de-sevrán nekhbád.
+        </div>
+        <div class="literal-translation">
+          Traducción Literal: El <span class="highlight">Mashíaj</span> entonces
+          como **Hijo** (<span class="highlight">brá</span>) sobre Su
+          <span class="highlight">Casa</span> (<span class="highlight"
+            >beitéh</span
+          >), que somos **nosotros** Su
+          <span class="highlight">Casa</span> (<span class="highlight"
+            >beitéh</span
+          >), si hasta el fin la **firmeza** y la **gloria** de nuestra
+          **esperanza** honraremos.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="content-container">
+      <h2>Análisis y Comentario Mesiánico</h2>
+
+      <div class="explanation">
+        <div class="section-container">
+          <p>
+            El autor de
+            <span class="highlight">Ibráyé (Hebreos)</span> establece
+            inmediatamente la superioridad de Yeshúa HaMashíaj sobre **Moshéh**
+            (Moisés), una figura central y venerable en el judaísmo.
+          </p>
+          <p>
+            El pasaje llama a los creyentes a considerar a Yeshúa como:
+          </p>
+          <ul>
+            <li>
+              <strong class="point-letter">A.</strong> El
+              <span class="highlight">Shlijhá</span> (**Enviado** o Apóstol),
+              aquel que es comisionado por el Padre para una misión específica.
+            </li>
+            <li>
+              <strong class="point-letter">B.</strong> El
+              <span class="highlight">Rav Kahná</span> (**Jefe de Sacerdotes** o
+              Sumo Sacerdote), el mediador de nuestra confesión o pacto.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Comparación: Mashíaj como Hijo vs. Moshéh como Siervo (vv. 2-6)
+          </div>
+          <p>
+            La argumentación central se basa en la metáfora de la **Casa** (<span
+              class="hebrew-term"
+              >בַּיִת</span
+            >
+            - *Báit* o <span class="highlight">beitéh</span> en arameo).
+          </p>
+          <ul>
+            <li>
+              <strong>Moshéh</strong> fue fiel **en** toda Su Casa (la Casa de
+              Elohím, es decir, el pueblo de Israel y su servicio), pero como
+              <span class="highlight">siervo</span> ('avdá), preparando el
+              terreno para lo que vendría (v. 5).
+            </li>
+            <li>
+              **Yeshúa HaMashíaj** es fiel **sobre** Su Casa, pero como
+              <span class="highlight">Hijo</span> (brá). Él no es solo parte de
+              la estructura; Él es el <span class="highlight">constructor</span>
+              (v. 3-4), y por lo tanto, tiene una gloria y un honor mucho mayor.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Identidad de la "Casa"</div>
+          <p>
+            El verso 6 aclara la identidad de esta 'Casa' en el contexto del
+            Nuevo Pacto:
+          </p>
+          <div class="scripture">
+            "...que somos **nosotros** Su Casa (<span class="highlight"
+              >beitéh</span
+            >)..." (Ibráyé 3:6)
+          </div>
+          <p>
+            Los creyentes en Yeshúa son la <span class="highlight">Casa</span
+            >, la asamblea de Elohím, sobre la cual el Hijo tiene plena
+            autoridad. La condición para permanecer como Su Casa es la
+            <strong
+              >firmeza y la gloria de nuestra esperanza hasta el fin</strong
+            >.
+          </p>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h3>Puntos Clave para Reflexión</h3>
+        <div class="section-container">
+          <div class="question">
+            ¿Cómo Yeshúa es superior a Moshéh en su función de mediador?
+          </div>
+          <div class="answer">
+            Moshéh era un <span class="highlight">siervo</span> dentro de la Casa
+            de Elohím (la Antigua Dispensación de la Torá), mientras que Yeshúa
+            es el <span class="highlight">Hijo</span>, el constructor y dueño de
+            la Casa (la Nueva Dispensación de la Gracia y la Verdad). El siervo
+            da testimonio de lo que vendrá; el Hijo es la realidad de ese
+            testimonio.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <div class="question">
+            ¿Cuál es el significado del título Rav Kahná (Jefe de Sacerdotes)?
+          </div>
+          <div class="answer">
+            Yeshúa no es un sumo sacerdote aarónico, sino que opera bajo la orden
+            de
+            <span class="highlight">Melej-Tzedek</span>. Este título arameo lo
+            presenta como el principal intercesor y mediador que ha entrado al
+            Lugar Santísimo celestial con Su propia sangre, haciendo posible la
+            "confesión" (o <span class="highlight">tawdítán</span>) de la
+            fe para Sus seguidores.
+          </div>
+        </div>
+      </div>
+      <h1>
+      Ibráyé (Hebreos) 3:1-6
+    </h1>
+    <div class="content-container">
+      <div class="section-container">
+        <h2>
+          Introducción
+        </h2>
+        <p>
+          La porción de Ibráyé (Hebreos) 3:1-6 es una exégesis crucial del Brit
+          Hadashah que establece la supremacía de <span class="highlight">Yeshúa HaMashíaj</span> sobre
+          Moshéh (Moisés), el más grande profeta y mediador del Tanaj. El autor
+          hebreo lo logra mediante un contraste tipológico entre el
+          <span class="highlight">"Siervo"</span> fiel y el
+          <span class="highlight">"Hijo"</span> constructor de la Casa.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h2>
+          Comentario Mesiánico en Yeshúa HaMashíaj
+        </h2>
+        <p>
+          El pasaje presenta a Yeshúa con tres títulos redentores:
+        </p>
+        <ul>
+          <li>
+            <span class="highlight">El Enviado (Shlijhá):</span> (v. 1) Yeshúa
+            es el Apóstol/Enviado definitivo de יהוה al mundo. Su misión
+            no fue solo predicar, sino ser el cumplimiento de la Palabra.
+          </li>
+          <li>
+            <span class="highlight">El Jefe de Sacerdotes (Rav Kahná):</span> (v.
+            1) Su rol es mediar el Pacto, pero a diferencia del Sacerdocio
+            Levítico, Él es la ofrenda y el mediador perfecto, según el orden de
+            Malki-Tzédeq (Hebreos 7).
+          </li>
+          <li>
+            <span class="highlight">El Hijo (Brá):</span> (v. 6) Este es el
+            título clave de Su superioridad. Él no es meramente parte de la Casa
+            de יהוה , sino el Heredero y Constructor de esa Casa.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="section-container">
+        <h3>
+          Ibráyé (Hebreos) 3:1-6
+        </h3>
+        <p class="literal-translation">
+          Texto de la Peshitta Aramea (Fuente original que se usa en el comentario).
+        </p>
+
+        <div class="verse-container">
+          <div class="verse-number">
+            Hebreos 3:1
+          </div>
+          <div class="aramaic">
+            ܡܶܟܺܝܠ ܐܰܚܰܝ ܩܰܕܺܝܫܶܐ ܘܰܫܠܺܝ̈ܚܶܐ ܕܰܩܪܺܝ̈ܬܳܐ ܕܠܶܥܠܳܐ ܚܙܰܘ ܠܰܫܠܺܝܚܳܐ ܘܰܠܪܰܒ ܟܳܗܢ̈ܶܐ ܕܝܽܘܕܳܝܳܐ ܕܰܡܰܣܗܶܕ ܝܶܫܽܘܥ ܡܫܺܝܚܳܐ܀
+          </div>
+          <div class="transliteration">
+            Mekíl aḥáy qadíshé wa-shlíḥé de-qeríyátá de-le‘lá ḥezaw la-shlíḥá wa-l-rav kahnáné de-yúdayá da-msahéd Yeshú‘ Mshíḥá.
+          </div>
+          <div class="translation">
+            Por lo tanto, hermanos santos y participantes del llamamiento de arriba, considerad al Enviado y Jefe de Sacerdotes de nuestra confesión, Yeshúa el Mesías.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">
+            Hebreos 3:2
+          </div>
+          <div class="aramaic">
+            ܕܡܗܰܝܡܰܢ ܗ̱ܘܳܐ ܠܡܳܪܶܗ ܕܰܥܒܰܕܶܗ ܐܰܝܟܰܢܳܐ ܕܳܐܦ ܡܽܘܫܶܐ ܒܟܽܠܶܗ ܒܰܝܬܶܗ܀
+          </div>
+          <div class="transliteration">
+            Da-mhayman hwá la-Márêh da-‘vádeh aykaná d’áf Mushé ba-kuléh beitéh.
+          </div>
+          <div class="translation">
+            El cual fue fiel a Quien lo hizo, así como también Moshéh en toda Su casa.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">
+            Hebreos 3:3
+          </div>
+          <div class="aramaic">
+            ܠܰܗܘܳܢ ܓܶܝܪ ܝܰܬܺܝܪܳܐܝܺܬ ܫܽܘܒܚܳܐ ܫܳܘܶܐ ܗ̱ܘܳܐ ܕܰܢܫܰܒܰܚ ܛܳܒ ܡܶܢ ܡܽܘܫܶܐ ܒܕܰܐܝܟܰܢܳܐ ܕܝܰܬܺܝܪ ܢܰܟܦܳܐ ܡܶܢ ܒܰܝܬܳܐ ܗ̱ܽܘ ܒܳܢܶܐܗ̇܀
+          </div>
+          <div class="transliteration">
+            Lahwán géyr yatírá’ít shuvḥá sháwé hwá dan-shavvaḥ ṭáv men Mushé bd’aykaná d-yatír nakfá men beytá hú báneh.
+          </div>
+          <div class="translation">
+            Porque aquel era digno de más gloria que Moshéh, por cuanto el que edifica la casa tiene más honor que la casa.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">
+            Hebreos 3:4
+          </div>
+          <div class="aramaic">
+            ܟܽܠ ܒܰܝܬܳܐ ܓܶܝܪ ܡܶܢ ܐ̱ܢܳܫ ܡܶܬܒܢܶܐ ܐܰܠܳܗܳܐ ܕܶܝܢ ܗ̱ܽܘ ܒܳܢܶܐ ܟܽܠ܀
+          </div>
+          <div class="transliteration">
+            Kul beytá géyr men násh met-bané Aláhá déyn hú báné kul.
+          </div>
+          <div class="translation">
+            Porque toda casa es construida por alguien, pero Elohim es quien construye todas las cosas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">
+            Hebreos 3:5
+          </div>
+          <div class="aramaic">
+            ܘܡܽܘܫܶܐ ܐܰܝܟ ܥܰܒܕܳܐ ܡܗܰܝܡܰܢ ܗ̱ܘܳܐ ܒܟܽܠܶܗ ܒܰܝܬܶܗ ܘܰܠܣܳܗܕܽܘܬܳܐ ܕܰܐܝܠܶܝܢ ܕܰܥܬܺܝܕܳܢ ܗ̱ܘܰܝ ܕܢܶܬܡܰܠܠܳܢ܀
+          </div>
+          <div class="transliteration">
+            U-Mushé ayk ‘avdá mhayman hwá ba-kuléh beitéh wa-l-sáhdútá d’ayléyn da-‘tídán hway dn-etmalán.
+          </div>
+          <div class="translation">
+            Y Moshéh, como <span class="highlight">siervo</span>, fue fiel en toda Su Casa, para testimonio de las cosas que habían de ser habladas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">
+            Hebreos 3:6
+          </div>
+          <div class="aramaic">
+            ܡܫܺܝܚܳܐ ܕܶܝܢ ܐܰܝܟ ܒܪܳܐ ܥܰܠ ܒܰܝܬܶܗ ܕܺܐܝܬܰܝܢܰܢ ܚܢܰܢ ܒܰܝܬܶܗ ܐܶܢ ܥܕܰܡܳܐ ܠܰܐܟܳܐ ܫܪܺܝܪܽܘܬܳܐ ܘܰܫܒܳܗܳܐ ܕܣܶܒܪܰܢ ܢܶܚܛܰܪ܀
+          </div>
+          <div class="transliteration">
+            Mshíḥá déyn ayk <span class="highlight">brá</span> ‘al beitéh de-‘íttéinan ḥnán beitéh en ‘damá l’aká shríráthá wa-shbáhá de-sevrán neḥṭar.
+          </div>
+          <div class="translation">
+            Pero el Mesías es como <span class="highlight">Hijo</span> sobre Su Casa; que somos nosotros Su Casa, si hasta el fin la firmeza y la gloria de nuestra esperanza honraremos.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <div class="section-container">
+          <h2>
+            1. La Superioridad de Yeshúa sobre Moshéh (v. 2-5)
+          </h2>
+          <p>
+            El texto reconoce la fidelidad de Moshéh, el
+            <span class="hebrew-term">עבדא</span> (<span class="transliteration">'avdá</span>,
+            siervo), quien fue fiel en toda la "Casa de יהוה (4:2), pero
+            contrasta su función con la de Yeshúa.
+          </p>
+          <ul>
+            <li>
+              <strong>Moshéh era siervo ('avdá):</strong> Su función era ser fiel
+              en administrar y dar testimonio de la Ley de la Casa.
+            </li>
+            <li>
+              <strong>Yeshúa es Hijo (brá):</strong> Su función es ser el Dueño y
+              Arquitecto de la Casa.
+            </li>
+          </ul>
+          <p>
+            El cumplimiento profético es que el Mashíaj no es una figura
+            sucesora, sino una figura trascendente. Si Moshéh fue el mediador del
+            primer Pacto, Yeshúa es la persona y la esencia del Nuevo Pacto, la
+            manifestación viva de la Deidad que creó y sostiene la Casa.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="explanation">
+        <div class="section-container">
+          <h2>
+            2. La Identidad de la Casa (v. 6)
+          </h2>
+          <p>
+            La "Casa" (<span class="highlight">beitéh</span>) de יהוה es
+            identificada claramente: "<span class="highlight">que somos nosotros Su Casa</span>"
+            (<span class="transliteration">de-'íttéinan jhnán beitéh</span>).
+          </p>
+          <div class="prophetic-content">
+            <div class="prophetic-section">
+              <div class="prophetic-title">
+                Cumplimiento Mesiánico
+              </div>
+              <p>
+                La Knesset (Asamblea de creyentes) es la nueva realidad profética
+                de la Casa de יהוה (el Templo). Yeshúa reemplaza el
+                Tabernáculo y el Templo físico (construcciones de siervos) al
+                convertirse Él mismo en el lugar de habitación de יהוה
+                (Juan 2:19-21) y al hacer de Sus seguidores el Templo espiritual
+                (Efesios 2:20-22).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="prophetic-content">
+        <h2>
+          Conexión con los Profetas y la Aliyá
+        </h2>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Conexión con el Tanaj (Profetas)
+          </div>
+          <p>
+            <strong>Devarim (Deuteronomio) 18:15:</strong> La profecía del
+            "Profeta como yo".
+          </p>
+          <div class="scripture">
+            Conexión: La superioridad de Yeshúa (Hebreos 3:3) establece que Él es
+            el cumplimiento definitivo del Profeta prometido a Israel, siendo más
+            que un profeta: es el <span class="highlight">Hijo y Dueño</span> de
+            la profecía.
+          </div>
+          <p>
+            <strong>Zejaryah (Zacarías) 6:12-13:</strong> Profecía sobre el
+            Hombre llamado Retoño que construirá el Templo de יהוה.
+          </p>
+          <div class="scripture">
+            Profecía Cumplida: Yeshúa, el Mesías, cumple este rol al construir Su
+            Casa (la Knesset). El Templo material (la Casa de Moshéh) fue
+            reemplazado por la Casa espiritual, construida y gobernada por el
+            <span class="highlight">Sacerdote-Rey</span>.
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Conexión con la Aliyá
+          </div>
+          <p>
+            La <span class="highlight">aliyá</span> (ascenso o retorno) en este
+            pasaje está vinculada a la Esperanza (<span class="transliteration">sevrán</span>) y la entrada al Descanso de
+            יהוה.
+          </p>
+          <ul>
+            <li>
+              <strong>El Llamamiento de Arriba (v. 1):</strong> El "llamamiento
+              de arriba" (<span class="transliteration">qeryáná de-le'ál</span>)
+              es una referencia a la <span class="highlight">Aliyá celestial</span>,
+              nuestra ciudadanía y herencia en el Reino.
+              <p class="answer">
+                Aplicación: יהוה llamó a Moshéh a subir al Monte Sinaí
+                (Shemot 24:12); יהוה  llama al creyente a ascender a una
+                vocación celestial. Yeshúa, el Rav Kahná, facilita esta Aliyá de
+                la vocación a través de Su sacrificio.
+              </p>
+            </li>
+            <li>
+              <strong>Perseverancia hasta el Fin (v. 6):</strong> "...si hasta el
+              fin la firmeza y la gloria de nuestra esperanza honraremos."
+              <p class="answer">
+                Aplicación: El autor usa la experiencia de la generación del
+                desierto, que fracasó en su aliyá al no entrar en la Tierra
+                Prometida por incredulidad (el tema principal de Hebreos 3). La
+                aplicación espiritual es que la verdadera Aliyá a la Casa y al
+                Descanso de יהוה se asegura por la
+                <span class="highlight">firmeza</span> (<span class="transliteration">shríráthá</span>) en la esperanza
+                mesiánica. La fe en Yeshúa nos hace coherederos y miembros
+                permanentes de la Casa que Él mismo construyó y supervisa.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <h1>📜 PUNTO 4</h1>
+    <h2>Contexto Histórico y Cultural de Éxodo (Shemot) 4:18–31</h2>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h3 class="prophetic-title">1. Retorno del libertador desde el exilio</h3>
+            <p>Éxodo 4:18–31 describe el retorno oficial de Moshé a Mitsráyim, cerrando el ciclo de preparación en Midián. En el mundo antiguo, regresar al lugar del cual se había huido por causa de muerte implicaba:</p>
+            <ul>
+                <li>Riesgo legal y político extremo</li>
+                <li>Reconciliación implícita con el pasado</li>
+                <li>Aceptación total de una misión que podía costar la vida</li>
+            </ul>
+            <p>Culturalmente, este regreso marca el paso de pastor anónimo a enviado divino.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">2. Circuncisión y pacto en el mundo semita</h3>
+            <p>El episodio de la circuncisión de su hijo revela un trasfondo pactal profundo:</p>
+            <ul>
+                <li>La circuncisión era la señal del pacto de Avraham</li>
+                <li>Omitirla implicaba exclusión del pacto</li>
+                <li>Ningún enviado podía representar al Elohím del pacto sin vivir bajo sus términos</li>
+            </ul>
+            <p>Este pasaje afirma que la redención nacional no puede separarse de fidelidad personal al pacto.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">3. Encuentro profético en el camino</h3>
+            <p>El encuentro entre Moshé y Aharón refleja una práctica antigua:</p>
+            <blockquote class="scripture">la confirmación de un llamado mediante testigos y reunión pública.</blockquote>
+            <p>El pueblo cree cuando oye las palabras y ve las señales.</p>
+        </div>
+    </div>
+
+    <h1>📖 PUNTO 5</h1>
+    <h2>Estudio, Comentarios y Conexiones Proféticas</h2>
+    <h3>Éxodo (Shemot) 4:18–31</h3>
+
+    <div class="content-container">
+        <div class="section-container prophetic-content">
+            <div class="prophetic-section">
+                <h3 class="prophetic-title">1. Comentario judío clásico</h3>
+                <ul>
+                    <li>Rashí explica que la amenaza de muerte contra Moshé se debió a la demora en circuncidar a su hijo, priorizando el viaje sobre el pacto.</li>
+                    <li>Ibn Ezra subraya que el ataque ocurre “en el camino”, indicando que el camino de la obediencia incompleta es peligroso.</li>
+                    <li>Sforno señala que el pueblo creyó no solo por las señales, sino porque reconocieron que Elohím había visitado su aflicción.</li>
+                </ul>
+            </div>
+
+            <div class="prophetic-section">
+                <h3 class="prophetic-title">2. Conexiones proféticas</h3>
+                <p>Este pasaje conecta con:</p>
+                <ul>
+                    <li>Bereshit 17: la señal del pacto</li>
+                    <li>Yehoshúa 5: renovación del pacto antes de entrar a la tierra</li>
+                </ul>
+                <p>Patrón profético: <strong class="highlight">pacto <span class="arrow">→</span> misión <span class="arrow">→</span> redención</strong></p>
+            </div>
+
+            <div class="prophetic-section">
+                <h3 class="prophetic-title">3. Comentario judío mesiánico</h3>
+                <p>Moshé representa al mediador que debe alinearse plenamente con el pacto antes de liberar.</p>
+                <p>Esto anticipa al <strong class="highlight">Mashíaj</strong>, quien cumple perfectamente el pacto, sin omisión alguna.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>🔍 PUNTO 6</h1>
+    <h2>Análisis Profundo de la Aliyáh</h2>
+    <h3>Éxodo (Shemot) 4:18–31</h3>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h3 class="prophetic-title">1. Estructura literaria</h3>
+            <ul>
+                <li>Despedida de Yitróh (v.18)</li>
+                <li>Confirmación divina del retorno (v.19–20)</li>
+                <li>Declaración del primogénito de Elohím (v.22–23)</li>
+                <li>Incidente de la circuncisión (v.24–26)</li>
+                <li>Encuentro con Aharón (v.27)</li>
+                <li>Confirmación ante los ancianos (v.29–31)</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">2. Análisis lingüístico clave</h3>
+            <ul>
+                <li>“<span class="hebrew-term">Bení bejorí Yisrael</span>”: Israel como primogénito de Elohím</li>
+                <li>“<span class="hebrew-term">Damím</span>”: sangre del pacto como protección</li>
+                <li>“<span class="hebrew-term">Vaya’amen ha‘am</span>”: el pueblo creyó, respuesta de fe colectiva</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">3. Teología del texto</h3>
+            <p>El texto enseña que:</p>
+            <ul>
+                <li>La autoridad espiritual exige fidelidad pactal</li>
+                <li>La redención comienza en obediencia personal</li>
+                <li>La fe del pueblo surge cuando reconoce la visitación divina</li>
+            </ul>
+        </div>
+    </div>
+
+    <h1>🧭 PUNTO 7</h1>
+    <h2>Tema Más Relevante de la Aliyáh</h2>
+    <h3>Éxodo (Shemot) 4:18–31</h3>
+
+    <div class="content-container">
+        <h3 class="prophetic-title highlight">Tema central: El pacto como requisito previo para la redención</h3>
+        <p>Este pasaje enseña que:</p>
+        <ul>
+            <li>No hay misión sin pacto</li>
+            <li>No hay autoridad sin obediencia</li>
+            <li>La redención colectiva requiere integridad personal</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h3 class="prophetic-title">Conexión con Yeshúa haMashíaj</h3>
+        <p>Yeshúa es el Hijo primogénito revelado</p>
+        <p>Él cumple el pacto en plenitud</p>
+        <p>Su sangre establece redención eterna</p>
+    </div>
+
+    <h1>✡️ PUNTO 8</h1>
+    <h2>Descubriendo al Mashíaj en la Aliyáh</h2>
+    <h3>Éxodo (Shemot) 4:18–31</h3>
+
+    <div class="content-container">
+        <div class="section-container">
+            <h3 class="prophetic-title">1. Tipologías mesiánicas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Elemento</th>
+                        <th>Sombra mesiánica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Moshé enviado</td>
+                        <td>Mashíaj enviado</td>
+                    </tr>
+                    <tr>
+                        <td>Sangre del pacto</td>
+                        <td>Redención por sangre</td>
+                    </tr>
+                    <tr>
+                        <td>Primogénito</td>
+                        <td>Hijo revelado</td>
+                    </tr>
+                    <tr>
+                        <td>Fe del pueblo</td>
+                        <td>Respuesta al Enviado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">2. Patrones redentores (Tavnitot)</h3>
+            <ul>
+                <li>Llamado confirmado</li>
+                <li>Pacto restaurado</li>
+                <li>Misión activada</li>
+                <li>Fe despertada</li>
+            </ul>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3 class="prophetic-title">3. Cumplimiento en el Brit Hadasháh</h3>
+            <p>Yeshúa haMashíaj es:</p>
+            <ul>
+                <li>El Primogénito verdadero</li>
+                <li>El Mediador fiel del pacto</li>
+                <li><strong class="highlight">Adonái <span class="hebrew-term">יהוה</span></strong> manifestado como Redentor, <strong class="highlight">Ejad</strong></li>
+            </ul>
+        </div>
+    </div>
+    <h1>📚 PUNTO 9</h1>
+    <h1>Midrashim, Targumim y Textos Fuentes</h1>
+    <div class="content-container">
+        <p><strong>Éxodo (Shemot) 4:18–31</strong></p>
+
+        <div class="section-container">
+            <h3>1. Midrashim relevantes</h3>
+            <div class="explanation">
+                <div class="section-container">
+                    <p><span class="point-letter">🔹</span> <strong>Shemot Rabbah 5:5–8</strong></p>
+                    <p>El Midrash explica que el ataque contra Moshé en el camino (4:24) no fue arbitrario, sino una <span class="highlight">acusación legal celestial por haber demorado la circuncisión</span>. Se enseña que el mensajero del pacto no puede representar a Elohím mientras transgrede el pacto.</p>
+                    <blockquote class="scripture">
+                        “El libertador de Israel casi es eliminado por olvidar la señal del pacto.”
+                    </blockquote>
+                    <p>Este Midrash establece que la autoridad redentora exige <span class="highlight">alineación completa con el pacto de Avraham</span>.</p>
+                </div>
+                <div class="section-container">
+                    <p><span class="point-letter">🔹</span> <strong>Shemot Rabbah 5:9</strong></p>
+                    <p>Sobre Tziporáh:</p>
+                    <ul>
+                        <li>El Midrash la presenta como una mujer <span class="highlight">espiritualmente perceptiva</span></li>
+                        <li>Ella discierne la causa del peligro y <span class="highlight">actúa sin instrucción directa</span></li>
+                        <li>Es presentada como <span class="highlight">instrumento de salvación del enviado</span></li>
+                    </ul>
+                    <p>Esto revela que la redención frecuentemente avanza por medio de discernimiento femenino en momentos críticos.</p>
+                </div>
+                <div class="section-container">
+                    <p><span class="point-letter">🔹</span> <strong>Shemot Rabbah 5:12</strong></p>
+                    <p>Respecto a <span class="highlight">“Israel es Mi hijo primogénito”</span>:</p>
+                    <ul>
+                        <li>Elohím declara públicamente la identidad de Israel <span class="highlight">antes de la liberación</span></li>
+                        <li>La filiación <span class="highlight">precede a la redención</span></li>
+                        <li>Esto anticipa el lenguaje mesiánico de <span class="highlight">filiación revelada antes de la exaltación</span>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>2. Targumim</h3>
+            <div class="explanation">
+                <div class="section-container">
+                    <p><span class="point-letter">🔹</span> <strong>Targum Onkelos</strong></p>
+                    <p>Traduce el incidente del camino enfatizando que el peligro <span class="highlight">cesó inmediatamente después del acto de circuncisión</span>, subrayando la eficacia pactal de la obediencia.</p>
+                </div>
+                <div class="section-container">
+                    <p><span class="point-letter">🔹</span> <strong>Targum Pseudo-Jonatán</strong></p>
+                    <p>Amplía el texto indicando que:</p>
+                    <ul>
+                        <li>Un mensajero celestial <span class="highlight">tomó forma amenazante</span></li>
+                        <li>La <span class="highlight">sangre del pacto</span> actuó como señal de liberación</li>
+                    </ul>
+                    <p>Esto conecta directamente con el principio de <span class="highlight">sangre como señal de protección redentora</span>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>3. Textos fuentes del Segundo Templo</h3>
+            <div class="explanation">
+                <p>Tradiciones judías antiguas ven en este pasaje:</p>
+                <ul>
+                    <li>Un <span class="highlight">precedente para la redención futura</span></li>
+                    <li>Un modelo de cómo la <span class="highlight">fidelidad personal impacta el destino colectivo</span></li>
+                    <li>La afirmación de que <span class="highlight">ningún líder está por encima del pacto</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>📜 PUNTO 10</h1>
+    <h1>Mandamientos, Principios y Valores</h1>
+    <div class="content-container">
+        <p><strong>Éxodo (Shemot) 4:18–31</strong></p>
+
+        <div class="section-container">
+            <h3>1. Fidelidad al pacto</h3>
+            <p>La circuncisión no es opcional para el enviado.</p>
+            <p><strong>Principio eterno:</strong></p>
+            <blockquote class="scripture">
+                No hay autoridad espiritual sin <span class="highlight">obediencia pactal</span>.
+            </blockquote>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>2. Responsabilidad familiar</h3>
+            <p>La omisión ocurre dentro del hogar del enviado.</p>
+            <p><strong>Principio:</strong></p>
+            <blockquote class="scripture">
+                La redención pública comienza con <span class="highlight">orden espiritual privado</span>.
+            </blockquote>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>3. Reconocer a Israel como primogénito</h3>
+            <p>La <span class="highlight">identidad precede a la liberación</span>.</p>
+            <p><strong>Aplicación mesiánica:</strong></p>
+            <blockquote class="scripture">
+                Yeshúa haMashíaj revela plenamente la <span class="highlight">filiación</span> antes de la redención consumada.
+            </blockquote>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-container">
+            <h3>4. La fe nace al reconocer la visitación divina</h3>
+            <p>El pueblo cree cuando oye que Elohím ha visitado su aflicción.</p>
+            <p><strong>Principio:</strong></p>
+            <blockquote class="scripture">
+                La verdadera fe responde al encuentro con la <span class="highlight">presencia divina</span>.
+            </blockquote>
+        </div>
+    </div>
+
+    <h1>❓ PUNTO 11</h1>
+    <h1>Preguntas de Reflexión con Respuestas en el Mashíaj</h1>
+    <div class="content-container">
+        <p><strong>Éxodo (Shemot) 4:18–31</strong></p>
+
+        <div class="section-container">
+            <p class="question">1. ¿Por qué Elohím confronta a Moshé antes de la misión pública?</p>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Porque el enviado debe estar <span class="highlight">alineado con el pacto</span>. Yeshúa cumplió el pacto sin falla alguna.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">2. ¿Qué enseña la sangre aplicada por Tziporáh?</p>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Que la redención opera mediante <span class="highlight">sangre pactal</span>. Yeshúa establece redención eterna mediante Su sangre.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">3. ¿Por qué Israel es llamado primogénito antes de ser liberado?</p>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Porque la <span class="highlight">identidad no depende de la circunstancia</span>. En Yeshúa, la filiación es revelada antes de la exaltación.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">4. ¿Qué papel tiene Aharón en este pasaje?</p>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>Confirmar públicamente el llamado. Yeshúa también fue <span class="highlight">confirmado por testigos</span>.</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <p class="question">5. ¿Cómo se manifiesta aquí la unidad de Elohím?</p>
+            <div class="answer">
+                <p><strong>Respuesta en el Mashíaj:</strong></p>
+                <p>El que llama, confronta, salva y envía es <span class="highlight">Uno</span>, revelado plenamente en Yeshúa haMashíaj, <span class="highlight">Ejad</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>📖 PUNTO 12</h1>
+    <h1>Resumen de la Aliyáh</h1>
+    <div class="content-container">
+        <p><strong>Éxodo (Shemot) 4:18–31</strong></p>
+        <div class="section-container">
+            <h3>Puntos clave:</h3>
+            <ul>
+                <li>Moshé recibe permiso para regresar</li>
+                <li>Elohím reafirma Su propósito redentor</li>
+                <li>Israel es declarado primogénito</li>
+                <li>El pacto es restaurado mediante sangre</li>
+                <li>Aharón confirma el llamado</li>
+                <li>El pueblo cree y se postra</li>
+            </ul>
+        </div>
+        <div class="prophetic-content">
+            <div class="prophetic-section">
+                <p class="prophetic-title">Resumen mesiánico:</p>
+                <p>La Aliyáh enseña que la redención comienza con <span class="highlight">fidelidad al pacto</span>, y que Elohím revela a Su Enviado <span class="highlight">antes de manifestar la liberación</span>.</p>
+            </div>
+        </div>
+    </div>
+
+    <h1>🙏 PUNTO 13</h1>
+    <h1>Tefiláh (Oración) de la Aliyáh</h1>
+    <div class="content-container">
+        <p><strong>Éxodo (Shemot) 4:18–31</strong></p>
+
+        <div class="prayer-text">
+            <p>Adonái <span class="hebrew-term">יהוה</span>,</p>
+            <p>Elohím del pacto eterno,</p>
+            <p>Tú que llamas, confrontas y restauras</p>
+            <p>antes de enviar a Tus siervos,</p>
+            <p>Examina nuestros caminos</p>
+            <p>y alínealos con Tu pacto,</p>
+            <p>límpianos de toda obediencia parcial</p>
+            <p>y haznos íntegros delante de Ti.</p>
+            <p>Reconocemos que Tú te manifestaste plenamente</p>
+            <p>como Redentor fiel en <span class="highlight">Yeshúa haMashíaj</span>,</p>
+            <p>Uno contigo, <span class="highlight">Ejad</span>,</p>
+            <p>Primogénito revelado para salvación.</p>
+            <p>Despierta nuestra fe,</p>
+            <p>haznos sensibles a Tu visitación,</p>
+            <p>y llévanos a caminar en obediencia completa</p>
+            <p>hasta la plenitud de Tu redención.</p>
+        </div>
+
+        <p class="prayer-conclusion">Amén.</p>
+    </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya7.html">Continuar con la Aliyá 7</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
