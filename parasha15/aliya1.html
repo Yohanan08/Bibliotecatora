@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 10:1-11</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        15. Parashá Bo (בא) Aliyáh 1: (Éxodo 10:1-11) Plaga de langostas como
+        castigo para Egipto.
+        <p>
+          Haftaráh: Jeremías 46:13-28 (Profecía de destrucción sobre Egipto).
+        </p>
+        <p>Brit Hadasháh: Apocalipsis 9:3-4 (Langostas en el juicio final).</p>
+      </h1>
+      <h1>Punto 1. Shemot (Éxodo) 10:1-11</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:1</div>
+          <div class="hebrew">
+            וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה בֹּא אֶל־פַּרְעֹה כִּי־אֲנִי
+            הִכְבַּדְתִּי אֶת־לִבּוֹ וְאֶת־לֵב עֲבָדָיו לְמַעַן שִׁתִי אֹתֹתַי
+            אֵלֶּה בְּקִרְבּוֹ׃
+          </div>
+          <div class="transliteration">
+            Vayómer יְהוָה el-Moshéh bo el-Par'oh ki-aní hikbádti et-libó
+            ve'et-lev avadáv lemá'an shití ototáy éleh bekirbó.
+          </div>
+          <div class="translation">
+            Traducción literal: Y dijo יְהוָה a Moshéh: "Ve a Par'oh, porque Yo
+            he endurecido su corazón y el corazón de sus siervos, para que Yo
+            pueda poner estas señales mías en medio de ellos."
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:2</div>
+          <div class="hebrew">
+            וּלְמַעַן תְּסַפֵּר בְּאָזְנֵי בִנְךָ וּבֶן־בִּנְךָ אֵת אֲשֶׁר
+            הִתְעַלַּלְתִּי בְּמִצְרַיִם וְאֶת־אֹתֹתַי אֲשֶׁר־שַׂמְתִּי בָם
+            וִידַעְתֶּם כִּי־אֲנִי יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Ulemá'an tesapér be'oznéy binjá uven-binjá et ashér hit'alálti
+            beMitsráyim ve'et-ototáy ashér-sámti vam vidatém ki-aní יְהוָה.
+          </div>
+          <div class="translation">
+            Traducción literal: "Y para que cuentes a oídos de tu hijo y del
+            hijo de tu hijo las cosas que hice en Mitsráyim, y mis señales que
+            puse en ellos; y sabrán que Yo soy יְהוָה."
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:3</div>
+          <div class="hebrew">
+            וַיָּבֹא מֹשֶׁה וְאַהֲרֹן אֶל־פַּרְעֹה וַיֹּאמְרוּ אֵלָיו כֹּה־אָמַר
+            יְהוָה אֱלֹהֵי הָעִבְרִים עַד־מָתַי מֵאַנְתָּ לֵעָנֹת מִפָּנָי
+            שַׁלַּח עַMִּי וְיַעַבְדֻנִי׃
+          </div>
+          <div class="transliteration">
+            Vayavó Moshéh ve'Aharón el-Par'oh vayomrú eláv koh-amár יְהוָה
+            Elohéy ha'Ivrim ad-matáy meánta le'anót mipanáy shaláj amí
+            veya'avdúni.
+          </div>
+          <div class="translation">
+            Traducción literal: Vinieron Moshéh y Aharón a Par'oh y le dijeron:
+            "Así ha dicho יְהוָה el Elohéy de los hebreos: '¿Hasta cuándo
+            rehusarás humillarte delante de Mí? Deja ir a mi pueblo para que me
+            sirva'."
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:4</div>
+          <div class="hebrew">
+            כִּי אִם־מָאֵן אַתָּה לְשַׁלֵּחַ אֶת־עַמִּי הִנְנִי מֵבִיא מָחָר
+            אַרְבֶּה בִּגְבֻלֶךָ׃
+          </div>
+          <div class="transliteration">
+            Ki im-maén atáh leshaléaj et-amí hinní meví majár arbéh bigvuléja.
+          </div>
+          <div class="translation">
+            Traducción literal: "Porque si tú rehúsas dejar ir a mi pueblo, he
+            aquí que mañana Yo traeré langostas en tu territorio."
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:5</div>
+          <div class="hebrew">
+            וְכִסָּה אֶת־עֵין הָאָרֶץ וְלֹא יוּכַל לִרְאֹת אֶת־הָאָרֶץ וְאָכַל
+            אֶת־יֶתֶר הַפְּלֵטָה הַנִּשְׁאֶרֶת לָכֶם מִן־הַבָּרָד וְאָכַל
+            אֶת־כָּל־הָעֵץ הַצֹּמֵחַ לָכֶם מִן־הַשָּׂדֶה׃
+          </div>
+          <div class="transliteration">
+            Vejisáh et-eyn ha'árets veló yujál lir'ót et-ha'árets veajál
+            et-yéter haplétah hanish'éret lajém min-habarád veajál et-kol-ha'éts
+            hatsoméaj lajém min-hasadéh.
+          </div>
+          <div class="translation">
+            Traducción literal: "Ellas cubrirán la faz de la tierra, de modo que
+            no se podrá ver la tierra; y comerán el resto de lo que escapó, lo
+            que os quedó del granizo, y comerán todo árbol que os brota en el
+            campo."
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:6</div>
+          <div class="hebrew">
+            וּמָלְאוּ בָתֶּיךָ וּבָתֵּי כָל־עֲבָדֶיךָ וּבָתֵּי כָל־מִצְרַיִם
+            אֲשֶׁר לֹא־רָאוּ אֲבֹתֶיךָ וַאֲבוֹת אֲבֹתֶיךָ מִיּוֹם הֱיוֹתָם
+            עַל־הָאֲדָמָה עַד הַיּוֹם הַזֶּה וַיִּפֶן וַיֵּצֵא מֵעִם פַּרְעֹה׃
+          </div>
+          <div class="transliteration">
+            Umal'ú vatéja uvatéy jol-avadéja uvatéy jol-Mitsráyim ashér lo-ra'ú
+            avotéja va'avót avotéja miyóm heyotám al-ha'adamáh ad hayóm hazéh
+            vayífen vayetsé me'ím Par'oh.
+          </div>
+          <div class="translation">
+            Traducción literal: "Y llenarán tus casas, y las casas de todos tus
+            siervos, y las casas de todos los egipcios; lo cual nunca vieron tus
+            padres ni tus abuelos desde el día que ellos estuvieron sobre la
+            tierra hasta hoy." Y él se volvió y salió de la presencia de Par'oh.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:7</div>
+          <div class="hebrew">
+            וַיֹּאמְרוּ עַבְדֵי פַרְעֹה אֵלָיו עַד־מָתַי יִהְיֶה זֶה לָנוּ
+            לְמוֹקֵשׁ שַׁלַּח אֶת־הָאֲנָשִׁים וְיַעַבְדוּ אֶת־יְהוָה אֱלֹהֵיהֶם
+            הַטֶּרֶם תֵּדַע כִּי אָבְדָה מִצְרָיִם׃
+          </div>
+          <div class="transliteration">
+            Vayomrú avdéy Par'oh eláv ad-matáy yihyéh zeh lánu lemokésh shaláj
+            et-ha'anashím veya'avdú et-יְהוָה Eloheihém hatérem tedá ki avdáh
+            Mitsráyim.
+          </div>
+          <div class="translation">
+            Traducción literal: Y los siervos de Par'oh le dijeron: "¿Hasta
+            cuándo será este hombre un lazo para nosotros? Deja ir a los hombres
+            para que sirvan a יְהוָה su Elohéy. ¿Aún no sabes que Mitsráyim está
+            destruida?"
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:8</div>
+          <div class="hebrew">
+            וַיּוּשַׁב אֶת־מֹשֶׁה וְאֶת־אַהֲרֹן אֶל־פַּרְעֹה וַיֹּאמֶר אֲלֵיהֶם
+            לְכוּ עִבְדוּ אֶת־יְהוָה אֱלֹהֵיכֶם מִי וָמִי הַהֹלְכִים׃
+          </div>
+          <div class="transliteration">
+            Vayusháv et-Moshéh ve'et-Aharón el-Par'oh vayómer aleihém lejú ivdú
+            et-יְהוָה Eloheijém mi vamí haholjím.
+          </div>
+          <div class="translation">
+            Traducción literal: Y Moshéh y Aharón fueron hechos volver a Par'oh,
+            el cual les dijo: "Id, servid a יְהוָה vuestro Elohéy. ¿Quiénes son
+            los que han de ir?"
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:9</div>
+          <div class="hebrew">
+            וַיֹּאמֶר מֹשֶׁה בִּנְעָרֵינוּ וּבִזְקֵנֵינוּ נֵלֵךְ בְּבָנֵינוּ
+            וּבִִבְנוֹתֵינוּ בְּצֹאנֵנוּ וּבִבְקָרֵנוּ נֵלֵךְ כִּי חַג־יְהוָה
+            לָנוּ׃
+          </div>
+          <div class="transliteration">
+            Vayómer Moshéh bin'aréynu uvizqenéynu neléj bevanéynu uvivnotéynu
+            betsonénu uvivqarénu neléj ki jag-יְהוָה lánu.
+          </div>
+          <div class="translation">
+            Traducción literal: Moshéh respondió: "Hemos de ir con nuestros
+            niños y con nuestros viejos, con nuestros hijos y con nuestras
+            hijas; con nuestras ovejas y con nuestras vacas hemos de ir; porque
+            es nuestra fiesta para יְהוָה."
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:10</div>
+          <div class="hebrew">
+            וַיֹּאמֶר אֲלֵיהֶם יְהִי כֵן יְהוָה עִמָּכֶם כַּאֲשֶׁר אֲשַׁלַּח
+            אֶתְכֶם וְאֶת־טַפְּכֶם רְאוּ כִּי רָעָה נֶגֶד פְּנֵיכֶם׃
+          </div>
+          <div class="transliteration">
+            Vayómer aleihém yehí jen יְהוָה imajém kaashér ashaláj etjém
+            ve'et-tapjém re'ú ki ra'áh négued penéijem.
+          </div>
+          <div class="translation">
+            Traducción literal: Y él les dijo: "¡Así sea יְהוָה con vosotros,
+            como yo os deje ir a vosotros y a vuestros niños! Mirad cómo el mal
+            está delante de vuestro rostro."
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:11</div>
+          <div class="hebrew">
+            לֹא כֵן לְכוּ־נָא הַגְּבָרִים וְעִבְדוּ אֶת־יְהוָה כִּי אֹתָהּ
+            אַתֶּם מְבַקְשִׁים וַיְגָרֶשׁ אֹתָם מֵאֵת פְּנֵי פַרְעֹה׃
+          </div>
+          <div class="transliteration">
+            Lo jen lejú-na hagvarím ve'ivdú et-יְהוָה ki otáh atém mevaqshím
+            vayugáresh otám me'ét penéy Par'oh.
+          </div>
+          <div class="translation">
+            Traducción literal: "No será así; id ahora vosotros los varones, y
+            servid a יְהוָה, pues esto es lo que vosotros pedisteis." Y los
+            echaron de la presencia de Par'oh.
+          </div>
+        </div>
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Shemot 10:1-2</div>
+          <div class="translation">
+            "Y dijo יְהוָה a Moshéh: 'Ve a Par'oh, porque Yo he endurecido su
+            corazón... para que cuentes a oídos de tu hijo y del hijo de tu hijo
+            las cosas que hice en Mitsráyim, y mis señales que puse en ellos; y
+            sabrán que Yo soy יְהוָה'."
+          </div>
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="explanation">
+        El endurecimiento del corazón de Par'oh y las señales (otot) que יְהוָה
+        realizó no fueron solo para la liberación física de Israel, sino que
+        prefiguraban la victoria definitiva sobre las tinieblas. En esta
+        porción, se anuncia la plaga de las langostas, que representa la
+        devastación total de los recursos del enemigo. Yeshúa HaMashíaj es el
+        cumplimiento de estas señales, pues Él vino a manifestar el poder de
+        יְהוָה sobre todo principado y potestad. Así como las señales en Egipto
+        sirvieron para que el Nombre de Adonai fuera exaltado y recordado por
+        generaciones, la resurrección de Yeshúa y Sus milagros son la señal
+        definitiva que nos permite conocer que Él es יְהוָה manifestado en
+        carne, trayendo juicio sobre el "Egipto espiritual" y libertad a Su
+        pueblo.
+      </div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Lúqas (Lucas) 11:20</div>
+          <div class="translation">
+            "Pero si por el dedo de Elohím expulso yo los demonios, ciertamente
+            el reino de Elohím ha llegado a vosotros."
+          </div>
+        </div>
+        <div class="explanation">
+          En la Peshita aramea, vemos que Yeshúa utiliza el término "el dedo de
+          Elohím" (Etzba de-Alaha), el mismo término que usaron los magos de
+          Egipto al reconocer el poder de יְהוָה en las plagas (Shemot 8:19).
+          Esto confirma que Yeshúa está operando con la misma autoridad que
+          liberó a Israel de Par'oh. Además, en Romiyim (Romanos) 9:17, Shaúl
+          cita precisamente este contexto de Shemot para explicar que Adonai
+          levantó a Par'oh para mostrar en él Su poder y para que Su Nombre sea
+          anunciado en toda la tierra, conectándolo directamente con el plan
+          redentor a través de HaMashíaj.
+        </div>
+      </div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Yoel (Joel) 2:25-27</div>
+          <div class="translation">
+            "Y os restituiré los años que comió la langosta... y conoceréis que
+            en medio de Israel estoy Yo, y que Yo soy יְהוָה vuestro Elohéy, y
+            no hay otro."
+          </div>
+        </div>
+        <div class="explanation">
+          El profeta Yoel conecta la plaga de langostas con el juicio del Día de
+          Adonai, pero también con la restauración final. Así como en Shemot 10
+          las langostas consumieron lo que quedaba del orgullo de Egipto, los
+          Neviím advierten que Adonai usará Su creación para humillar a las
+          naciones que se oponen a Su Reino, mientras que a Su pueblo le promete
+          que "sabrán que Yo soy יְהוָה", usando exactamente la misma frase de
+          Shemot 10:2.
+        </div>
+      </div>
+
+      <h1>5. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            La Señal de la Humillación del Enemigo
+          </div>
+          La profecía implícita de que ningún poder terrenal (Par'oh) puede
+          resistir el decreto de liberación de יְהוָה. Se cumple en Yeshúa al
+          despojar a los principados y potestades, triunfando sobre ellos en el
+          madero (Qolasiyim / Colosenses 2:15).
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Transmisión del Testimonio</div>
+          La orden de contar estas señales a los hijos se cumple en la Gran
+          Comisión, donde el testimonio de la victoria del Mashíaj sobre la
+          muerte es anunciado a todas las naciones para que reconozcan a Adonai.
+        </div>
+      </div>
+
+      <h1>6. Aplicación Espiritual a la Aliyáh</h1>
+      <div class="content-container">
+        La instrucción de esta Aliyáh nos enseña que el endurecimiento del
+        corazón es el juicio más severo de Adonai. Par'oh se negó a humillarse
+        (Shemot 10:3), lo que llevó a la ruina de su nación.
+        <br />Aplicación para el creyente:
+        <ul>
+          <li>
+            <strong>Humildad ante la Palabra:</strong> No debemos permitir que
+            nuestro corazón se endurezca ante las correcciones de Adonai. La
+            teshuvá (arrepentimiento) debe ser inmediata.
+          </li>
+          <li>
+            <strong>Identidad Familiar:</strong> Tenemos la responsabilidad de
+            discipular a nuestros hijos ("contar a oídos de tu hijo"),
+            asegurando que la próxima generación conozca no solo la historia,
+            sino el poder vivo de Adonai Yeshúa.
+          </li>
+          <li>
+            <strong>Servicio Total:</strong> En Shemot 10:9, Moshéh insiste en
+            que deben ir "niños, viejos, hijos, hijas, ovejas y vacas". Esto nos
+            enseña que nuestro servicio a Adonai no es parcial; todo lo que
+            somos y todo lo que tenemos (nuestra familia y bienes) debe estar
+            dedicado a Su servicio y a la celebración de Sus fiestas. No podemos
+            dejar nada en "Egipto".
+          </li>
+        </ul>
+      </div>
+      <h1>
+        Pubnto 2. Haftaráh: Jeremías 46:13-28 (Profecía de destrucción sobre
+        Egipto).
+      </h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:13</div>
+          <div class="hebrew">
+            הַדָּבָר אֲשֶׁר דִּבֶּר יְהוָה אֶל־יִרְמְיָהוּ הַנָּבִיא לָבוֹא
+            נְבוּכַדְרֶאצַּר מֶלֶךְ בָּבֶל לְהַכּוֹת אֶת־אֶרֶץ מִצְרָיִם׃
+          </div>
+          <div class="transliteration">
+            Haddavár ashér dibér יְהוָה el-Irmeyáhu hannaví lavó Nevujadrétsar
+            mélej Bavél lehakót et-érets Mitsráyim.
+          </div>
+          <div class="translation">
+            La palabra que habló יְהוָה al profeta Irmeyáhu acerca de la venida
+            de Nevujadrétsar, rey de Bavél, para herir la tierra de Mitsráyim.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:14</div>
+          <div class="hebrew">
+            הַגִּידוּ בְמִצְרַיִם וְהַשְׁמִיעוּ בְמִגְדּוֹל וְהַשְׁמִיעוּ בְנֹף
+            וּבְתַחְפַּנְחֵס אִמְרוּ הִתְיַצֵּב וְהָכֵן לָךְ כִּי־אָכְלָה חֶרֶב
+            סְבִיבֶיךָ׃
+          </div>
+          <div class="transliteration">
+            Haggídu veMitsráyim vehashmí'u veMigdól vehashmí'u veNof
+            uvetajpanjés imrú hityatsév vehajén laj ki-ajlá jérev sevivéja.
+          </div>
+          <div class="translation">
+            Anunciad en Mitsráyim y haced oír en Migdól; haced oír en Nof y en
+            Tajpanjés; decid: "Ponte en pie y prepárate, porque la espada
+            devorará a tu alrededor".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:15</div>
+          <div class="hebrew">
+            מַדּוּעַ נִסְחַף אַבִּירֶיךָ לֹא עָמַד כִּי יְהוָה הֲדָפוֹ׃
+          </div>
+          <div class="transliteration">
+            Madúa nisháf abbiréja lo amád ki יְהוָה hadafó.
+          </div>
+          <div class="translation">
+            ¿Por qué han sido derribados tus valientes? No se mantuvieron en pie
+            porque יְהוָה los empujó.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:16</div>
+          <div class="hebrew">
+            הִרְבָּה כּוֹשֵׁל גַּם־נָפַל אִישׁ אֶל־רֵעֵהוּ וַיֹּאמְרוּ קוּמָה
+            וְנָשֻׁבָה אֶל־עַמֵּנוּ וְאֶל־אֶרֶץ מוֹלַדְתֵּנוּ מִפְּנֵי חֶרֶב
+            הַיּוֹנָה׃
+          </div>
+          <div class="transliteration">
+            Hirbáh joshél gam-nafál ish el-re'éhu vayomrú kúmah venashúvah
+            el-amménu ve'el-érets moladténu mipenéy jérev hayyonáh.
+          </div>
+          <div class="translation">
+            Multiplicó a los que tropezaban; cada uno caía sobre su prójimo. Y
+            dijeron: "Levántate y volvamos a nuestro pueblo y a la tierra de
+            nuestro nacimiento, a causa de la espada opresora".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:17</div>
+          <div class="hebrew">
+            קָרְאוּ שָׁם פַּרְעֹה מֶלֶךְ־מִצְרַיִם שָׁאוֹן הֶעֱבִיר הַמּוֹעֵד׃
+          </div>
+          <div class="transliteration">
+            Qaré'u sham Par'ó mélej-Mitsráyim shaón he'evír hammo'éd.
+          </div>
+          <div class="translation">
+            Allí gritaron: "¡Par'ó rey de Mitsráyim es solo ruido; dejó pasar el
+            tiempo señalado!".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:18</div>
+          <div class="hebrew">
+            חַי־אָנִי נְאֻם־הַמֶּלֶךְ יְהוָה צְבָאוֹת שְׁמוֹ כִּי כְּתָבוֹר
+            בֶּהָרִים וּכְכַרְמֶל בַּיָּם יָבוֹא׃
+          </div>
+          <div class="transliteration">
+            Jay-aní ne'um-hammélej יְהוָה tsevaót shemó ki ketavór beharím
+            ujejar-mél bayyám yavó.
+          </div>
+          <div class="translation">
+            "Vivo Yo", dice el Rey, cuyo nombre es יְהוָה de los Ejércitos, "que
+            como el Tavor entre los montes y como el Karmél junto al mar, así
+            vendrá él".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:19</div>
+          <div class="hebrew">
+            כְּלֵי גוֹלָה עֲשִׂי לָךְ יוֹשֶׁבֶת בַּת־מִצְרָיִם כִּי־נֹף
+            לְשַׁמָּה תִהְיֶה וְנִצְּתָה מֵאֵין יוֹשֵׁב׃
+          </div>
+          <div class="transliteration">
+            Keléy goláh así laj yoshévet bat-Mitsráyim ki-Nof leshammáh tihyéh
+            venitsetáh me'éyn yoshév.
+          </div>
+          <div class="translation">
+            Hazte equipaje de cautiverio, hija que moras en Mitsráyim; porque
+            Nof será una desolación, será quemada y quedará sin morador.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:20</div>
+          <div class="hebrew">
+            עֶגְלָה יְפֵה־פִיָּה מִצְרָיִם קֶרֶץ מִצָּפוֹן בָּא בָא׃
+          </div>
+          <div class="transliteration">
+            Egláh yeféh-fiyyáh Mitsráyim qérets mitsafón ba va.
+          </div>
+          <div class="translation">
+            Mitsráyim es una novilla hermosa, pero el tábano del norte viene, ya
+            viene.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:21</div>
+          <div class="hebrew">
+            גַּם־שְׂכִרֶיהָ בְקִרְבָּהּ כְּעֶגְלֵי מַרְבֵּק כִּי־גַם־הֵמָּה
+            הִפְנוּ נָסוּ יַחְדָּו לֹא עָמָדוּ כִּי יוֹם אֵידָם בָּא עֲלֵיהֶם
+            עֵת פְּקֻדָּתָם׃
+          </div>
+          <div class="transliteration">
+            Gam-sejíreha veqirbáh ke'egléy marbéq ki-gam-hémmah hifnú násu
+            yajdáv lo amádu ki yom eydám ba aleihém et pequdatám.
+          </div>
+          <div class="translation">
+            También sus mercenarios en medio de ella son como becerros de
+            engorde; porque también ellos volvieron la espalda, huyeron juntos,
+            no se mantuvieron, porque el día de su calamidad vino sobre ellos,
+            el tiempo de su castigo.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:22</div>
+          <div class="hebrew">
+            קוֹלָהּ כַּנָּחָשׁ יֵלֵךְ כִּי־בְחַיִל יֵלֵכוּ וּבְקַרְדֻּמּוֹת
+            בָּאוּ לָהּ כְּחֹטְבֵי עֵצִים׃
+          </div>
+          <div class="transliteration">
+            Qoláh kannajásh yeléj ki-vejáyil yeléju uveqardummót bá'u lah
+            kejotvéy etsím.
+          </div>
+          <div class="translation">
+            Su voz irá como de serpiente; porque con ejército vendrán, y con
+            hachas vendrán a ella como cortadores de leña.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:23</div>
+          <div class="hebrew">
+            כָּרְתוּ יַעְרָהּ נְאֻם־יְהוָה כִּי לֹא יֵחָקֵר כִּי רַבּוּ
+            מֵאַרְבֶּה וְאֵין לָהֶם מִסְפָּר׃
+          </div>
+          <div class="transliteration">
+            Kartú ya'ráh ne'um-יְהוָה ki lo yejaqér ki rabbú me'arbéh ve'éyn
+            lahém mispár.
+          </div>
+          <div class="translation">
+            "Cortarán su bosque", dice יְהוָה, "aunque sea impenetrable; porque
+            son más numerosos que las langostas, no tienen número".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:24</div>
+          <div class="hebrew">
+            הֹבִישָׁה בַּת־מִצְרָיִם נִתְּנָה בְּיַד עַם־צָפוֹן׃
+          </div>
+          <div class="transliteration">
+            Hovíshah bat-Mitsráyim nitenáh beyád am-tsafón.
+          </div>
+          <div class="translation">
+            La hija de Mitsráyim será avergonzada; será entregada en mano del
+            pueblo del norte.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:25</div>
+          <div class="hebrew">
+            אָמַר יְהוָה צְבָאוֹת אֱלֹהֵי יִשְׂרָאֵל הִנְנִי פוֹקֵד אֶל־אָמוֹן
+            מִנֹּא וְעַל־פַּרְעֹה וְעַל־מִצְרַיִם וְעַל־אֱלֹהֶיהָ
+            וְעַל־מְלָכֶיהָ וְעַל־פַּרְעֹה וְעַל הַבֹּטְחִים בּוֹ׃
+          </div>
+          <div class="transliteration">
+            Amár יְהוָה tsevaót Elohéy Yisra'él hinní foqéd el-Amón miNó
+            ve'al-Par'ó ve'al-Mitsráyim ve'al-eloheihá ve'al-melajeihá
+            ve'al-Par'ó ve'al habotjím bo.
+          </div>
+          <div class="translation">
+            Dice יְהוָה de los Ejércitos, Elohéy de Yisra'él: "He aquí que Yo
+            castigo a Amón de No, y a Par'ó, y a Mitsráyim, y a sus dioses y a
+            sus reyes; a Par'ó y a los que confían en él".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:26</div>
+          <div class="hebrew">
+            וּנְתַתִּים בְּיַד מְבַקְשֵׁי נַפְשָׁם וּבְיַד נְבוּכַדְרֶאצַּר
+            מֶלֶךְ־בָּבֶל וּבְיַד־עֲבָדָיו וְאַחֲרֵי־כֵן תִּשְׁכֹּן
+            כִּימֵי־קֶדֶם נְאֻם־יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Unetattím beyád mevaqshéy nafshám uveyád Nevujadrétsar mélej-Bavél
+            uveyád-avadáv ve'ajarey-jén tishkón kiméy-qédem ne'um-יְהוָה.
+          </div>
+          <div class="translation">
+            "Y los entregaré en mano de los que buscan su vida, en mano de
+            Nevujadrétsar rey de Bavél y en mano de sus siervos; pero después
+            será habitada como en los días de antaño", dice יְהוָה.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:27</div>
+          <div class="hebrew">
+            וְאַתָּה אַל־תִּירָא עַבְדִּי יַעֲקֹב וְאַל־תֵּחַת יִשְׂרָאֵל כִּי
+            הִנְנִי מוֹשִׁיעֲךָ מֵרָחוֹק וְאֶת־זַרְעֲךָ מֵאֶרֶץ שִׁבְיָם וְשָׁב
+            יַעֲקוֹב וְשָׁקַט וְשַׁאֲנַן וְאֵין מַחֲרִיד׃
+          </div>
+          <div class="transliteration">
+            Ve'atáh al-tirá avdí Ya'aqóv ve'al-teját Yisra'él ki hinní moshiajá
+            merajóq ve'et-zar'ajá me'érets shivyám vesháv Ya'aqóv veshaqát
+            vesha'anán ve'éyn majaríd.
+          </div>
+          <div class="translation">
+            "Y tú no temas, siervo mío Ya'aqóv, ni desmayes, Yisra'él; porque he
+            aquí que Yo te salvo de lejos, y a tu descendencia de la tierra de
+            su cautiverio; y volverá Ya'aqóv, y descansará y estará tranquilo, y
+            no habrá quien lo espante".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 46:28</div>
+          <div class="hebrew">
+            אַתָּה אַל־תִּירָא עַבְדִּי יַעֲקֹב נְאֻם־יְהוָה כִּי אִתְּךָ אָנִי
+            כִּי אֶעֱשֶׂה כָלָה בְּכָל־הַגּוֹיִם אֲשֶׁר הִדַּחְתִּיךָ שָׁמָּה
+            וְאֹתְךָ לֹא־אֶעֱשֶׂה כָלָה וְיִסַּרְתִּיךָ לַמִּשְׁפָּט וְנַקֵּה
+            לֹא אֲנַקֶּךָ׃
+          </div>
+          <div class="transliteration">
+            Atáh al-tirá avdí Ya'aqóv ne'um-יְהוָה ki itejá aní ki e'eséh jaláh
+            bejól-haggoyím ashér hiddajtíja shámmah ve'otjá lo-e'eséh jaláh
+            veissartíja lammishpát venaqqéh lo anaqéka.
+          </div>
+          <div class="translation">
+            "Tú, siervo mío Ya'aqóv, no temas", dice יְהוָה, "porque Yo estoy
+            contigo; porque destruiré a todas las naciones a las cuales te
+            arrojé, pero a ti no te destruiré, sino que te castigaré con
+            justicia; de ninguna manera te dejaré sin castigo".
+          </div>
+        </div>
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj)</h1>
+      <div class="verse-container">
+        <div class="verse-number">Irmeyáh 46:27-28</div>
+        <div class="hebrew"></div>
+        <div class="transliteration"></div>
+        <div class="translation">
+          "Y tú no temas, siervo mío Ya'aqóv, ni desmayes, Yisra'él; porque he
+          aquí que Yo te salvo de lejos, y a tu descendencia de la tierra de su
+          cautiverio... porque Yo estoy contigo; porque destruiré a todas las
+          naciones a las cuales te arrojé, pero a ti no te destruiré..."
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="content-container">
+        <div class="explanation">
+          Esta porción describe el juicio de Adonai sobre Mitsráyim (Egipto) a
+          manos de Bavél, pero culmina con una promesa de salvación para el
+          remanente de Ya'aqóv. El cumplimiento máximo se halla en Yeshúa
+          HaMashíaj, quien es el Shaliaj (Enviado) de יְהוָה para recoger a los
+          dispersos de Yisra'él. Mientras las naciones que confían en su propio
+          poder son desoladas, Yeshúa se presenta como la "Torre de Salvación"
+          mencionada en las Escrituras. Él es quien ejecuta el juicio sobre los
+          dioses de este mundo (representados por Amón de No y Par'ó) y
+          establece el camino para que el remanente vuelva al reposo. Su
+          victoria sobre la muerte y el pecado es lo que garantiza que, aunque
+          Yisra'él sea disciplinado "con justicia", no sea destruido totalmente,
+          pues el Mashíaj es la garantía del Pacto Eterno.
+        </div>
+      </div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <div class="scripture">
+          Mattityáhu (Mateo) 2:15: "...y estuvo allí hasta la muerte de Herodes,
+          para que se cumpliese lo que dijo Adonai por medio del profeta, cuando
+          dijo: 'De Mitsráyim llamé a mi Hijo'."
+        </div>
+        <div class="explanation">
+          En la Peshita aramea, se enfatiza la conexión de Yeshúa con la salida
+          de Mitsráyim. Así como en Irmeyáh se profetiza el juicio sobre Egipto
+          y la preservación de Ya'aqóv, Yeshúa mismo tuvo que descender a Egipto
+          para luego ser llamado de vuelta, recapitulando la historia de la
+          nación y asegurando la redención. Además, en Lúqas (Lucas) 1:68-71, se
+          proclama que Adonai ha visitado y redimido a Su pueblo, salvándonos de
+          nuestros enemigos, cumpliendo así la promesa de "no temas, siervo mío
+          Ya'aqóv" que vemos en Irmeyáh 46:27.
+        </div>
+      </div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <div class="scripture">
+          Yisayáhu (Isaías) 43:1-5: "No temas, porque Yo te redimí; te puse
+          nombre, mío eres tú... Porque Yo soy יְהוָה tu Elohéy, el Qadosh de
+          Yisra'él, tu Salvador; a Mitsráyim he dado por tu rescate... No temas,
+          porque Yo estoy contigo."
+        </div>
+        <div class="explanation">
+          Los profetas mantienen un hilo conductor: el juicio sobre las naciones
+          es el trasfondo para la liberación de Yisra'él. Yisayáhu usa un
+          lenguaje idéntico al de Irmeyáh 46, reforzando que la presencia de
+          יְהוָה (Su Shejináh) es lo que impide que el pueblo sea consumido en
+          medio de las naciones. Esta presencia se manifiesta plenamente en el
+          Mashíaj, quien es "Immanu-El" (Elohím con nosotros).
+        </div>
+      </div>
+
+      <h1>5. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Juicio sobre los dioses ajenos:</div>
+          La derrota de Mitsráyim y Amón de No (v. 25) se cumplió históricamente
+          con la invasión babilónica, pero proféticamente señala la caída del
+          sistema idolátrico mundial ante el Reino del Mashíaj.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Preservación del Remanente:</div>
+          A pesar de las dispersiones, Yisra'él no ha sido exterminado como
+          otras naciones antiguas (Edom, Filistea). Esta es una profecía viva
+          que se cumple cada día y que verá su plenitud en el retorno físico y
+          espiritual de las tribus bajo el reinado de Yeshúa.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Retorno de la Cautividad:</div>
+          El Mashíaj Yeshúa comenzó la labor de "salvar de lejos" a la
+          descendencia de Ya'aqóv a través del anuncio de la Besoráh (Buenas
+          Nuevas), permitiendo que los exiliados espirituales regresen a la Torá
+          y al redil de Yisra'él.
+        </div>
+      </div>
+
+      <h1>6. Aplicación Espiritual a la Aliyáh</h1>
+      <div class="content-container">
+        <div class="explanation">
+          La Aliyáh de este pasaje nos confronta con la futilidad de confiar en
+          los sistemas del mundo. Mitsráyim, con su "voz de serpiente" y sus
+          guerreros "como becerros de engorde", representa la confianza en la
+          carne y la riqueza.
+        </div>
+        <div class="prophetic-title">Aplicación para el creyente:</div>
+        <ul>
+          <li>
+            <span class="highlight">No Temer al Mundo:</span> Dos veces se
+            repite "No temas, siervo mío Ya'aqóv". El creyente no debe desmayar
+            ante las crisis geopolíticas o económicas, pues nuestra salvación
+            viene "de lejos", del Reino de los Cielos.
+          </li>
+          <li>
+            <span class="highlight">Aceptar la Disciplina:</span> El versículo
+            28 dice: "Te castigaré con justicia". Debemos entender que las
+            pruebas en la vida del creyente son para corrección y purificación
+            (Musar), no para destrucción. El Mashíaj nos disciplina porque nos
+            ama como hijos del pacto.
+          </li>
+          <li>
+            <span class="highlight">Identidad en el Mashíaj:</span> Al igual que
+            Ya'aqóv es llamado "Mi siervo", nosotros encontramos nuestra
+            identidad y protección al servir a Adonai Yeshúa. Solo bajo Su
+            autoridad estamos seguros de que no seremos "consumidos" por las
+            naciones.
+          </li>
+        </ul>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Apocalipsis 9:3-4 (Langostas en el juicio
+        final).
+      </h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Gilyahna (Apocalipsis) 9:3</div>
+          <div class="aramaic">
+            וּמִן תַּנָּנָא נְפַקוּ קַמְצֵא עַל אַרְעָא וְאֶתְיְהֵב לְהוֹן
+            שׁוּלְטָנָא דְּאִית לְעַקְרַבֵּא דְּאַרְעָא׃
+          </div>
+          <div class="transliteration">
+            Fonética: Umin tannana nefaqu qamtse al ar'a ve'etyehev lehon
+            shultana d'it le'aqrabe d'ar'a.
+          </div>
+          <div class="translation">
+            Traducción literal: Y del humo salieron langostas sobre la tierra; y
+            se les dio poder, como tienen poder los escorpiones de la tierra.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Gilyahna (Apocalipsis) 9:4</div>
+          <div class="aramaic">
+            וְאֶתְאֲמַר לְהוֹן דְּלָא נַהְרָן לַעֲשְׁבָּא דְּאַרְעָא וְלָא לְכָל
+            יַרְקוּ וְלָא לְכָל אִילָן אֶלָּא אֵן לִבְנֵינָשָׁא אָיְלֵין
+            דְּלַיְת לְהוֹן חַתְמָא דַּיְהוָה בֵּית עַיְנַיְהוֹן׃
+          </div>
+          <div class="transliteration">
+            Fonética: Ve'et'amar lehon d'la nahran la'ashba d'ar'a vela lejol
+            yarqu vela lejol ilan ella en livneynasha aylin d'layt lehon jatma
+            da-יְהוָה beyt aynayhon.
+          </div>
+          <div class="translation">
+            Traducción literal: Y se les mandó que no dañasen a la hierba de la
+            tierra, ni a ninguna cosa verde, ni a ningún árbol, sino solamente a
+            los hombres que no tuviesen el sello de יְהוָה en sus frentes.
+          </div>
+        </div>
+      </div>
+
+      <h1>Conexión con las Sagradas Escrituras</h1>
+
+      <div class="explanation">
+        Este pasaje del Brit Hadashah conecta directamente con la octava plaga
+        de Mitsráyim (Egipto) que estudiamos en Shemot 10. Mientras que en el
+        Tanaj las langostas físicas devoraron toda la vegetación, en el juicio
+        de los últimos tiempos, estas "langostas" espirituales tienen prohibido
+        dañar la vegetación, enfocándose exclusivamente en aquellos que han
+        rechazado el sello de יְהוָה. Es fundamental notar que, así como en
+        Egipto el pueblo de Yisra'él en Goshén fue preservado de las plagas,
+        aquí en Gilyahna, el sello de יְהוָה funciona como la marca de
+        protección para los redimidos por la sangre del Mashíaj. La Peshita
+        revela que el juicio es selectivo y que la autoridad de estas entidades
+        está limitada por el decreto del Cielo.
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj / Brit Hadashah)</h1>
+      <div class="verse-container">
+        <div class="verse-number">Gilyahna 9:4 (Peshita)</div>
+        <div class="translation">
+          "Y se les mandó que no dañasen a la hierba de la tierra... sino
+          solamente a los hombres que no tuviesen el sello de יְהוָה en sus
+          frentes."
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="explanation">
+        En esta porción, vemos que el juicio de la quinta trompeta libera
+        huestes espirituales de maldad. Sin embargo, el cumplimiento de la
+        autoridad sobre este juicio reside en Yeshúa HaMashíaj. Él es quien
+        posee las llaves de la muerte y del Sheol, y es Su autoridad la que
+        limita el radio de acción de estos seres. El Mashíaj Yeshúa es el
+        ejecutor del sello de protección. Así como en la salida de Mitsráyim
+        (Egipto) la sangre del cordero en los postes de las puertas servía de
+        señal para que el destructor no entrara, Yeshúa es quien marca a Su
+        Kahal (comunidad) con el Ruaj HaKodesh. El cumplimiento profético aquí
+        es que Yeshúa separa lo santo de lo profano; mientras el mundo es
+        atormentado por las consecuencias de su rebelión, los que están en el
+        Mashíaj están preservados por el sello de Su Nombre.
+      </div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <div class="scripture">
+          Efesiyim (Efesios) 1:13: "En quien también vosotros, habiendo oído la
+          palabra de verdad... habiendo creído en Él, fuisteis sellados con el
+          Ruaj HaKodesh de la promesa."
+        </div>
+        La Peshita utiliza términos que conectan el "sello" (jatma) con la
+        propiedad y protección de Adonai. En Gilyahna 9:4, el sello de יְהוָה es
+        la única salvaguardia. Esto confirma que la redención en Yeshúa no es
+        solo para el perdón de pecados, sino para una preservación activa en los
+        momentos de los juicios finales sobre la tierra.
+      </div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <div class="scripture">
+          Yejezqel (Ezequiel) 9:4-6: "Y le dijo יְהוָה: Pasa por medio de la
+          ciudad... y ponles una marca en la frente a los hombres que gimen y
+          que claman a causa de todas las abominaciones... pero a todo aquel
+          sobre el cual hubiere la marca, no os acercaréis."
+        </div>
+        Esta es la conexión profética directa más impactante. El profeta
+        Yejezqel ve un juicio similar donde la instrucción es no tocar a los que
+        tienen la marca (en hebreo, la letra Tav, que en caracteres antiguos
+        tiene forma de madero o señal). Los Neviím establecen el patrón: antes del
+        juicio, Adonai siempre provee una marca de salvación para el remanente
+        fiel. Gilyahna 9 es la extensión apocalíptica de esta visión profética
+        de Yejezqel.
+      </div>
+
+      <h1>5. Conexión con la Aliyáh (Shemot 10:1-11)</h1>
+      <div class="content-container">
+        Existe una conexión intrínseca entre las langostas de Gilyahna y la
+        Aliyáh de Shemot que estudiamos anteriormente:
+        <ul>
+          <li>
+            <strong>Juicio Selectivo:</strong> En Shemot 10, las langostas
+            devoran todo lo de Egipto, pero no tocan Goshén. En Gilyahna, las
+            "langostas" espirituales no tocan a los sellados.
+          </li>
+          <li>
+            <strong>Propósito del Juicio:</strong> En la Aliyáh, יְהוָה dice que
+            hace estas señales para que "sepan que Yo soy יְהוָה". En Gilyahna,
+            los juicios buscan que los hombres reconozcan la soberanía de Adonai
+            y Su Mashíaj.
+          </li>
+          <li>
+            <strong>El Límite de la Naturaleza:</strong> Mientras que en la
+            Aliyáh las langostas comen "toda hierba", en Gilyahna se les ordena
+            explícitamente no dañar la hierba, indicando que este no es un
+            juicio contra la creación, sino contra la apostasía humana que ha
+            rechazado a Yeshúa.
+          </li>
+        </ul>
+      </div>
+
+      <h1>6. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Preservación del Remanente:</div>
+          Se cumple la promesa de que el pueblo de Adonai no sufrirá la ira
+          destinada a los hijos de desobediencia.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Manifestación de Poder:</div>
+          La profecía de que los poderes del abismo serían soltados pero
+          restringidos por el Cordero se manifiesta aquí, demostrando que Yeshúa
+          es Adon sobre toda la creación, visible e invisible.
+        </div>
+      </div>
+
+      <h1>7. Aplicación Espiritual</h1>
+      <div class="explanation">
+        La enseñanza para el creyente hoy es de urgencia y confianza:
+        <ul>
+          <li>
+            <strong>Asegurar el Sello:</strong> No debemos descansar en una
+            religiosidad externa, sino en la realidad interna del Ruaj HaKodesh
+            en nuestras vidas, que es el sello de יְהוָה.
+          </li>
+          <li>
+            <strong>Identidad de Goshén:</strong> Debemos vivir en el mundo pero
+            no ser del mundo. Nuestra "Goshén" espiritual es nuestra comunión
+            con Yeshúa y la obediencia a Su Torá.
+          </li>
+          <li>
+            <strong>Vigilancia:</strong> Así como en la Aliyáh se nos llamó a no
+            dejar nada en Egipto, aquí se nos llama a estar limpios de las
+            "abominaciones" para ser dignos de portar el sello de יְהוָה frente
+            a los juicios que vendrán.
+          </li>
+        </ul>
+      </div>
+      <h1>PUNTO 4. CONTEXTO HISTÓRICO Y CULTURAL Éxodo 10:1–11</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Contexto histórico egipcio</strong>
+          <p>
+            Éxodo 10 se sitúa en el clímax del conflicto entre Adonái יהוה y el
+            poder imperial de Mitsráyim. Las plagas no son eventos naturales
+            aislados, sino juicios dirigidos contra la cosmovisión egipcia, su
+            panteón y la figura divina del faraón.
+          </p>
+          <ul>
+            <li>
+              El faraón era considerado hijo de Ra, mediador entre los dioses y
+              los hombres.
+            </li>
+            <li>La plaga de la langosta (Éx 10:1–11) ataca directamente:</li>
+            <li>La economía agrícola</li>
+            <li>La estabilidad cósmica (maat)</li>
+            <li>La autoridad del faraón como garante del orden</li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>2. Contexto cultural: pedagogía generacional</strong>
+          <p>Éxodo 10:2 introduce un elemento único:</p>
+          <p class="scripture">
+            “para que cuentes a tu hijo y al hijo de tu hijo…”
+          </p>
+          <p>Esto refleja:</p>
+          <ul>
+            <li>Transmisión intergeneracional de la memoria redentora</li>
+            <li>
+              Educación oral hebrea frente a la cultura escrita elitista egipcia
+            </li>
+            <li>
+              Formación de una identidad nacional basada en intervención divina,
+              no en mitología
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>3. Contexto del Segundo Templo</strong>
+          <p>Durante el período del Segundo Templo:</p>
+          <ul>
+            <li>Éxodo 10 se interpretó como modelo escatológico</li>
+            <li>Qumrán veía las plagas como patrón del juicio final</li>
+            <li>
+              La dureza del corazón del faraón fue comparada con:
+              <ul>
+                <li>Reyes helenísticos</li>
+                <li>Autoridades opresoras de Israel</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>4. Marco teológico</strong>
+          <p>La frase:</p>
+          <p class="scripture">“Yo he endurecido su corazón”</p>
+          <p>No implica fatalismo, sino:</p>
+          <ul>
+            <li>Confirmación judicial de una rebelión persistente</li>
+            <li>
+              Principio legal hebreo: midá kenegued midá (medida por medida)
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        PUNTO 5. ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS Éxodo 10:1–11
+      </h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Comentario judío clásico</strong>
+          <ul>
+            <li>
+              Rashí: El endurecimiento permite manifestar señales para Israel,
+              no para Egipto.
+            </li>
+            <li>
+              Ibn Ezra: El faraón ya estaba decidido; Adonái fortalece su
+              decisión.
+            </li>
+            <li>
+              Midrash Shemot Rabbáh: Las plagas revelan la nulidad de los dioses
+              agrícolas.
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>2. Comentario judío mesiánico</strong>
+          <ul>
+            <li>Las plagas son tipos proféticos del juicio final.</li>
+            <li>
+              La langosta anticipa:
+              <ul>
+                <li>Joel 1–2</li>
+                <li>Apocalipsis 9 (desde perspectiva hebrea)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>3. Conexión profética</strong>
+          <p>La exigencia:</p>
+          <p class="scripture">“Deja ir a Mi pueblo para que Me sirva”</p>
+          <p>Apunta a:</p>
+          <ul>
+            <li>Libertad para avodáh (servicio espiritual)</li>
+            <li>
+              No solo liberación política, sino restauración del propósito
+              humano
+            </li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>4. Notas lingüísticas</strong>
+          <ul>
+            <li>“Bo” (בֹּא) = “Ven”</li>
+            <li>
+              No “ve”, sino invitación divina a Moshé a entrar en el juicio
+            </li>
+            <li>Implica cercanía revelacional</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 6. ANÁLISIS PROFUNDO DE LA ALIYÁH Éxodo 10:1–11</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Estructura literaria</strong>
+          <ul>
+            <li>Declaración divina (vv.1–2)</li>
+            <li>Advertencia profética (vv.3–6)</li>
+            <li>Crisis política egipcia (v.7)</li>
+            <li>Negociación falsa (vv.8–11)</li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>2. Crisis interna en Mitsráyim</strong>
+          <p>Los siervos del faraón dicen:</p>
+          <p class="scripture">
+            “¿Hasta cuándo será éste un lazo para nosotros?”
+          </p>
+          <p>Esto revela:</p>
+          <ul>
+            <li>Colapso de la autoridad divina del faraón</li>
+            <li>Reconocimiento implícito de la soberanía de Adonái</li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>3. La trampa de la negociación</strong>
+          <p>El faraón propone:</p>
+          <ul>
+            <li>Liberar solo a los hombres</li>
+            <li>Mantener cautivos a mujeres, niños y ganado</li>
+          </ul>
+          <p>Esto representa:</p>
+          <ul>
+            <li>Religión controlada</li>
+            <li>Espiritualidad sin totalidad</li>
+            <li>Servicio sin familia ni herencia</li>
+          </ul>
+          <p>Moshé reconoce y rechaza categóricamente.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 7. TEMA MÁS RELEVANTE DE LA ALIYÁH Éxodo 10:1–11</h1>
+
+      <div class="content-container">
+        <h2>
+          Tema central: LA SOBERANÍA TOTAL DE ADONÁI SOBRE LA HISTORIA Y LA
+          ADORACIÓN
+        </h2>
+
+        <div class="section-container">
+          <strong>1. No hay libertad parcial</strong>
+          <ul>
+            <li>El servicio a Adonái exige totalidad</li>
+            <li>No se negocia la identidad del pueblo</li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>2. Aplicación mesiánica</strong>
+          <p>El mismo patrón se ve en la obra de Yeshúa haMashíaj:</p>
+          <ul>
+            <li>No llama a una lealtad parcial</li>
+            <li>Exige entrega completa del ser</li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>3. Conexión con los Moedim</strong>
+          <ul>
+            <li>Esta Aliyáh prepara el camino para Pésaj</li>
+            <li>La redención precede al sacrificio</li>
+            <li>Sin libertad, no hay adoración verdadera</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 8. DESCUBRIENDO AL MASHÍAJ EN ÉXODO 10:1–11</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Tipología mesiánica</strong>
+          <p>Moshé como mediador → sombra de Yeshúa haMashíaj</p>
+          <p>Entra ante el poder opresor con palabra divina</p>
+        </div>
+
+        <div class="section-container">
+          <strong>2. Endurecimiento y revelación</strong>
+          <p>Así como:</p>
+          <ul>
+            <li>El faraón endurece su corazón</li>
+            <li>Las autoridades del Segundo Templo endurecieron el suyo</li>
+          </ul>
+          <p>Esto permitió:</p>
+          <ul>
+            <li>Manifestar señales</li>
+            <li>Revelar plenamente al Redentor</li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>3. Profecía implícita</strong>
+          <p>La exigencia de servicio total anticipa:</p>
+          <ul>
+            <li>La restauración del Reino</li>
+            <li>La redención final de Israel</li>
+          </ul>
+        </div>
+
+        <div class="section-container">
+          <strong>4. Patrón redentor</strong>
+          <ul>
+            <li>Opresión</li>
+            <li>Advertencia</li>
+            <li>Juicio</li>
+            <li>Liberación</li>
+          </ul>
+          <p>Este patrón culmina en:</p>
+          <p>
+            Yeshúa haMashíaj como Redentor final, revelando que: Adonái יהוה y
+            Yeshúa haMashíaj son Ejad, Uno.
+          </p>
+        </div>
+      </div>
+      <h1>PUNTO 9. MIDRASHIM, TARGUMIM Y TEXTOS FUENTES Éxodo 10:1–11</h1>
+
+      <div class="content-container">
+        <strong>1. Midrashim relevantes</strong>
+        <ul>
+          <li>
+            <strong>Shemot Rabbáh 13–14</strong>: Enseña que el endurecimiento
+            del corazón del faraón no fue arbitrario. Después de cinco plagas
+            rechazadas voluntariamente, Adonái confirma su decisión. Principio:
+            cuando el hombre cierra su corazón persistentemente, el cielo lo
+            sella.
+          </li>
+          <li>
+            <strong>Midrash Tanjumá, Bo</strong>: La langosta es descrita como
+            un ejército organizado, no un fenómeno caótico. Revela que Adonái
+            gobierna tanto lo visible como lo invisible. Se enfatiza la
+            pedagogía: las señales existen para ser narradas a las generaciones.
+          </li>
+          <li>
+            <strong>Pirkei deRabí Eliezer</strong>: La negativa del faraón de
+            liberar a los niños es vista como un ataque directo al futuro de
+            Israel. El enemigo siempre busca cortar la continuidad del pacto, no
+            solo la libertad presente.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>2. Targumim</strong>
+        <ul>
+          <li>
+            <strong>Targum Onkelos</strong>: Traduce “para que Me sirva” como
+            “para que sirvan delante de Mí”, subrayando un servicio espiritual y
+            consciente, no solo ritual. Refuerza que la redención tiene
+            propósito litúrgico y ético.
+          </li>
+          <li>
+            <strong>Targum Yonatán</strong>: Amplifica la advertencia sobre la
+            langosta, describiéndola como: “una señal temible enviada desde la
+            presencia de Adonái”. Introduce un lenguaje escatológico: lo
+            ocurrido en Mitsráyim es un patrón para juicios futuros.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>3. Textos fuente del Segundo Templo</strong>
+        <ul>
+          <li>
+            <strong>Qumrán (1QH y 4QExod):</strong> La plaga de la langosta se
+            conecta con el juicio final contra las naciones opresoras.
+          </li>
+          <li>
+            <strong>Literatura apocalíptica judía:</strong> La langosta
+            simboliza ejércitos disciplinados bajo autoridad celestial.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 10. MANDAMIENTOS, PRINCIPIOS Y VALORES Éxodo 10:1–11</h1>
+
+      <div class="content-container">
+        <p>
+          Aunque el texto no presenta una mitzvá formal numerada, contiene
+          principios fundamentales del pacto:
+        </p>
+        <strong>1. Principio de memoria generacional</strong>
+        <ul>
+          <li>
+            Mandato implícito: enseñar las obras redentoras a hijos y nietos.
+          </li>
+          <li>La fe no es privada; es hereditaria y comunitaria.</li>
+        </ul>
+        <strong>2. Principio de obediencia completa</strong>
+        <ul>
+          <li>No existe servicio parcial a Adonái.</li>
+          <li>
+            El pueblo entero, con niños, mujeres y recursos, pertenece al
+            Redentor.
+          </li>
+        </ul>
+        <strong>3. Principio de separación del sistema opresor</strong>
+        <ul>
+          <li>No negociar los términos del culto con poderes contrarios.</li>
+          <li>
+            El faraón representa toda autoridad que intenta definir cómo servir
+            a Adonái.
+          </li>
+        </ul>
+        <div class="explanation">
+          <strong>Aplicación en el Brit Hadasháh</strong>
+          <p>
+            Yeshúa haMashíaj llama a una entrega total. No acepta discípulos a
+            medias ni fe negociada.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        PUNTO 11. PREGUNTAS DE REFLEXIÓN CON RESPUESTAS EN EL MASHÍAJ Éxodo
+        10:1–11
+      </h1>
+
+      <div class="content-container">
+        <p>
+          <strong
+            >1. ¿Por qué Adonái desea que los hechos sean contados a los
+            hijos?</strong
+          >
+        </p>
+        <p>
+          Respuesta: Porque la redención no es solo histórica, sino formativa.
+          En Yeshúa haMashíaj, la memoria de la liberación se convierte en
+          identidad viva.
+        </p>
+
+        <p>
+          <strong
+            >2. ¿Qué representa la negativa del faraón a liberar a los
+            niños?</strong
+          >
+        </p>
+        <p>
+          Respuesta: El intento de destruir el futuro del pacto. Yeshúa protege
+          a los pequeños porque el Reino se perpetúa por ellos.
+        </p>
+
+        <p><strong>3. ¿Por qué Moshé rechaza la negociación?</strong></p>
+        <p>
+          Respuesta: Porque la obediencia a Adonái no admite términos humanos.
+          Yeshúa tampoco negocia el costo del discipulado.
+        </p>
+
+        <p>
+          <strong>4. ¿Qué revela la langosta sobre el poder de Adonái?</strong>
+        </p>
+        <p>
+          Respuesta: Que controla los ejércitos visibles e invisibles. En el
+          Mashíaj, esta autoridad se revela plenamente.
+        </p>
+
+        <p><strong>5. ¿Cómo se aplica hoy este texto al creyente?</strong></p>
+        <p>
+          Respuesta: Llamando a una fe íntegra, familiar y no fragmentada,
+          centrada en Yeshúa haMashíaj como Redentor total.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 12. RESUMEN DE LA ALIYÁH Éxodo 10:1–11</h1>
+
+      <div class="content-container">
+        <ul>
+          <li>Adonái envía a Moshé nuevamente ante el faraón.</li>
+          <li>Se declara el propósito pedagógico de las señales.</li>
+          <li>
+            Se anuncia la plaga de la langosta como juicio final sobre la
+            agricultura.
+          </li>
+          <li>Los siervos del faraón reconocer la derrota inminente.</li>
+          <li>El faraón ofrece una liberación parcial.</li>
+          <li>Moshé proclama una redención total.</li>
+          <li>El faraón rechaza y expulsa a Moshé.</li>
+        </ul>
+        <div class="explanation">
+          <strong>Aplicación en el Mashíaj:</strong>
+          <p>
+            La redención auténtica no admite términos incompletos. En Yeshúa
+            haMashíaj, la liberación es plena y definitiva.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 13. TEFILÁH DE LA ALIYÁH Éxodo 10:1–11</h1>
+
+      <div class="content-container">
+        <div class="prayer-text">
+          Adonái יהוה, Elohím Ejad, Tú que revelas Tu poder para que sea contado
+          de generación en generación, guárdanos de un corazón endurecido y
+          líbranos de una obediencia parcial. Enséñanos a servirte con todo
+          nuestro ser, con nuestros hijos, con nuestro futuro y con nuestra
+          herencia. Que no negociemos nuestra fidelidad ni aceptemos términos
+          impuestos por sistemas de opresión. Reconocemos que en Yeshúa
+          haMashíaj has manifestado Tu redención perfecta, para libertar
+          completamente a Tu pueblo y conducirnos a Tu servicio eterno.
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya2.html">Continuar con la Aliyá 2</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

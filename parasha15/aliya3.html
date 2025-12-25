@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 10:24-11:3</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        15. Parashá Bo (בא) Aliyáh 3: (Éxodo 10:24-11:3) Anuncio de la plaga
+        final y la preparación del éxodo.
+        <p>
+          Haftaráh: Jeremías 46:27-28 (La esperanza de Israel en medio del
+          juicio).
+        </p>
+        <p>Brit Hadasháh: Lucas 22:7-13 (Preparación para la Pesaj).</p>
+      </h1>
+      <h1>Punto 1. Shemot (Éxodo) 10:24 hasta 11:3</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:24</div>
+          <div class="hebrew">
+            וַיִּקְרָא פַרְעֹה אֶל־מֹשֶׁה וַיֹּאמֶר לְכוּ עִבְדוּ אֶת־יְהוָה רַק
+            צֹאנְכֶם וּבְקַרְכֶם יֻצָּג גַּם־טַפְּכֶם יֵלֵךְ עִמָּכֶם׃
+          </div>
+          <div class="transliteration">
+            Vayiqrá Par'ó el-Moshéh vayómer lejú ivdú et-יְהוָה raq tsonjém
+            uvqarjém yutság gam-tapjém yeléj imajém.
+          </div>
+          <div class="translation">
+            Traducción literal: Y llamó Par'ó a Moshéh y dijo: "Id, servid a
+            יְהוָה; solamente queden vuestras ovejas y vuestras vacas; también
+            vuestros niños vayan con vosotros".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:25</div>
+          <div class="hebrew">
+            וַיֹּאמֶר מֹשֶׁה גַּם־אַתָּה תִּתֵּן בְּיָדֵנוּ זְבָחִים וְעֹלֹת
+            וְעָשִׂינוּ לַיהוָה אֱלֹהֵינוּ׃
+          </div>
+          <div class="transliteration">
+            Vayómer Moshéh gam-atáh tittén beyadénu zevajím ve'olot ve'asínu
+            la-יְהוָה Eloheýnu.
+          </div>
+          <div class="translation">
+            Traducción literal: Y Moshéh respondió: "Tú también nos darás en
+            nuestras manos sacrificios y holocaustos para que sacrifiquemos a
+            יְהוָה nuestro Elohéy".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:26</div>
+          <div class="hebrew">
+            וְגַם־מִקְנֵנוּ יֵלֵךְ עִמָּנוּ לֹא תִשָּׁאֵר פַּרְסָה כִּי
+            מִמֶּנּוּ נִקַּח לַעֲבֹד אֶת־יְהוָה אֱלֹהֵינוּ וַאֲנַחְנוּ לֹא־נֵדַע
+            מַה־נַּעֲבֹד אֶת־יְהוָה עַד־בֹּאֵנוּ שָׁמָּה׃
+          </div>
+          <div class="transliteration">
+            Vegam-miqnénu yeléj immánu lo tish'aér parsáh ki mimménnu niqqáj
+            la'avód et-יְהוָה Eloheýnu va'anájnu lo-nedá mah-na'avód et-יְהוָה
+            ad-bo'énu shámmah.
+          </div>
+          <div class="translation">
+            Traducción literal: "Y también nuestro ganado irá con nosotros; no
+            quedará ni una pezuña; porque de él hemos de tomar para servir a
+            יְהוָה nuestro Elohéy, y nosotros no sabemos con qué hemos de servir
+            a יְהוָה hasta que lleguemos allá".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:27</div>
+          <div class="hebrew">
+            וַיְחַזֵּק יְהוָה אֶת־לֵב פַּרְעֹה וְלֹא אָבָה לְשַׁלְּחָם׃
+          </div>
+          <div class="transliteration">
+            Vayjazzéq יְהוָה et-lev Par'ó veló aváh leshallejám.
+          </div>
+          <div class="translation">
+            Traducción literal: Pero יְהוָה endureció el corazón de Par'ó, y no
+            quiso dejarlos ir.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:28</div>
+          <div class="hebrew">
+            וַיֹּאמֶר־לוֹ פַרְעֹה לֵךְ מֵעָלָי הִשָּׁמֶר לְךָ אַל־תֹּסֶף רְאוֹת
+            פָּנַי כִּי בְּיוֹם רְאֹתְךָ פָנַי תָּמוּת׃
+          </div>
+          <div class="transliteration">
+            Vayómer-lo Par'ó lej me'aláy hishamér lej al-tósef re'ót panáy ki
+            beyóm re'otjá fanáy tamút.
+          </div>
+          <div class="translation">
+            Traducción literal: Y le dijo Par'ó: "Retírate de mí; guárdate de no
+            ver más mi rostro, porque en el día que veas mi rostro, morirás".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 10:29</div>
+          <div class="hebrew">
+            וַיֹּאמֶר מֹשֶׁה כֵּן דִּבַּרְתָּ לֹא־אֹסִף עוֹד רְאוֹת פָּנֶיךָ׃
+          </div>
+          <div class="transliteration">
+            Vayómer Moshéh ken dibárta lo-ósif od re'ót panéyja.
+          </div>
+          <div class="translation">
+            Traducción literal: Y Moshéh respondió: "Bien has dicho; no veré más
+            tu rostro".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 11:1</div>
+          <div class="hebrew">
+            וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה עוֹד נֶגַע אֶחָד אָבִיא עַל־פַּרְעֹה
+            וְעַל־מִצְרַיִם אַחֲרֵי־כֵן יְשַׁלַּח אֶתְכֶם מִזֶּה כְּשַׁלְּחוֹ
+            כָּלָה גָּרֵשׁ יְגָרֵשׁ אֶתְכֶם מִזֶּה׃
+          </div>
+          <div class="transliteration">
+            Vayómer יְהוָה el-Moshéh od néga ejád aví al-Par'ó ve'al-Mitsráyim
+            ajarey-jén yeshalláj etjém mizzéh keshallejó kaláh garésh yegarísh
+            etjém mizzéh.
+          </div>
+          <div class="translation">
+            Traducción literal: Y dijo יְהוָה a Moshéh: "Una plaga más traeré
+            sobre Par'ó y sobre Mitsráyim; después de la cual él os dejará ir de
+            aquí; y cuando os deje ir, ciertamente os echará de aquí del todo".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 11:2</div>
+          <div class="hebrew">
+            דַּבֶּר־נָא בְּאָזְנֵי הָעָם וְיִשְׁאֲלוּ אִישׁ מֵאֵת רֵעֵהוּ
+            וְאִשָּׁה מֵאֵת רְעוּתָהּ כְּלֵי־כֶסֶף וּכְלֵי זָהָב׃
+          </div>
+          <div class="transliteration">
+            Dabér-na be'oznéy ha'ám veyish'alú ish me'ét re'éhu ve'isháh me'ét
+            re'utáh keléy-késef ukeléy zaháv.
+          </div>
+          <div class="translation">
+            Traducción literal: "Habla ahora a oídos del pueblo, y que cada
+            hombre pida a su vecino, y cada mujer a su vecina, objetos de plata
+            y objetos de oro".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 11:3</div>
+          <div class="hebrew">
+            וַיִּתֵּן יְהוָה אֶת־חֵן הָעָם בְּעֵינֵי מִצְרָיִם גַּם הָאִישׁ
+            מֹשֶׁה גָּדוֹל מְאֹד בְּאֶרֶץ מִצְרַיִם בְּעֵינֵי עַבְדֵי־פַרְעֹה
+            וּבְעֵינֵי הָעָם׃
+          </div>
+          <div class="transliteration">
+            Vayittén יְהוָה et-jen ha'ám be'eynéy Mitsráyim gam ha'ísh Moshéh
+            gadól meód be'érets Mitsráyim be'eynéy avdeý-Par'ó uve'eynéy ha'ám.
+          </div>
+          <div class="translation">
+            Traducción literal: Y יְהוָה dio gracia al pueblo en los ojos de los
+            egipcios. También el varón Moshéh era muy grande en la tierra de
+            Mitsráyim, a los ojos de los siervos de Par'ó y a los ojos del
+            pueblo.
+          </div>
+        </div>
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj)</h1>
+      <div class="verse-container">
+        <div class="verse-number">Shemot 10:26</div>
+        <div class="translation">
+          "Y también nuestro ganado irá con nosotros; no quedará ni una pezuña;
+          porque de él hemos de tomar para servir a יְהוָה nuestro Elohéy..."
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Shemot 11:3</div>
+        <div class="translation">
+          "Y יְהוָה dio gracia al pueblo en los ojos de los egipcios. También el
+          varón Moshéh era muy grande en la tierra de Mitsráyim..."
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="content-container">
+        <div class="explanation">
+          En esta porción, Moshéh establece que la redención debe ser total: "ni
+          una pezuña" se quedará atrás. Esto prefigura la obra perfecta de
+          Yeshúa HaMashíaj, quien no solo redime el alma, sino que Su sacrificio
+          tiene el poder de restaurar toda la creación y todas las áreas de la
+          vida del creyente. Yeshúa es el cumplimiento de la autoridad de
+          Moshéh. Así como Moshéh fue "muy grande" a los ojos de los egipcios
+          tras los juicios, Yeshúa es exaltado sobre todo principado y potestad
+          después de Su victoria en el madero. La "gracia" que el pueblo halló
+          para recibir los tesoros de Egipto prefigura las riquezas espirituales
+          y la herencia que recibimos en el Mashíaj al ser liberados del sistema
+          del mundo (Egipto espiritual).
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Efesiyim (Efesios) 4:8</div>
+          <div class="translation">
+            "Por lo cual dice: Subiendo a lo alto, llevó cautiva la cautividad,
+            y dio dones a los hombres."
+          </div>
+        </div>
+        <div class="explanation">
+          En la Peshita aramea, este pasaje conecta con la salida de Egipto. Así
+          como Israel salió con los tesoros (oro y plata) de sus opresores,
+          Yeshúa, al ascender victorioso, despojó a los poderes de las tinieblas
+          y otorgó "dones" y "gracia" a Su pueblo. La firmeza de Moshéh frente a
+          Par'ó al no negociar los términos de la adoración ("ni una pezuña") se
+          refleja en la enseñanza de Yeshúa en Mattityáhu (Mateo) 6:24, donde
+          establece que no se puede servir a dos señores. La redención exige una
+          entrega total.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Yisayáhu (Isaías) 60:5, 11</div>
+          <div class="translation">
+            "Entonces verás, y resplandecerás... porque se habrá vuelto a ti la
+            riqueza del mar, y las riquezas de las naciones hayan venido a ti...
+            para que sean traídas a ti las riquezas de las naciones."
+          </div>
+        </div>
+        <div class="explanation">
+          Los profetas visualizan la redención final (Geuláh) como un nuevo
+          Éxodo donde las naciones traen sus tesoros a Tsiyón. Lo que ocurrió en
+          Shemot 11:2-3, donde Israel recibe el oro y la plata, es el prototipo
+          profético que los Neviím utilizan para describir el Reino Mesiánico,
+          donde el Mashíaj Yeshúa gobernará y las riquezas de la tierra serán
+          dedicadas al servicio de יְהוָה.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>5. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Exaltación del Mediador</div>
+          La profecía de que Moshéh sería "grande" ante sus enemigos se cumple
+          en la exaltación de Yeshúa, ante quien toda rodilla se doblará,
+          incluso la de aquellos que lo traspasaron.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Despojo de los Enemigos</div>
+          La transferencia de riqueza de Egipto a Israel cumple la promesa hecha
+          a Avrahám en Bereshit 15:14 ("saldrán con gran riqueza") y profetiza
+          el triunfo final del Reino de Adonai sobre la economía del mundo.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Plaga Final Anunciada</div>
+          El anuncio de la última plaga (11:1) marca el fin del tiempo de gracia
+          para Par'ó, cumpliendo la palabra de que יְהוָה juzgaría a los dioses
+          de Egipto de manera definitiva.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>6. Aplicación Espiritual a la Aliyáh</h1>
+      <div class="content-container">
+        <div class="explanation">
+          Esta porción nos enseña sobre la integridad de nuestra fe y la
+          provisión divina.
+          <ul>
+            <li>
+              <strong>Sin Negociaciones (Ni una pezuña):</strong> Par'ó intentó
+              negociar que dejaran el ganado (v. 24). El adversario siempre
+              querrá que "dejemos algo" en el mundo (nuestras finanzas, ciertos
+              hábitos o áreas de nuestra familia). La aplicación espiritual es
+              que nuestro servicio a Yeshúa debe ser integral; no podemos dejar
+              ninguna parte de nuestra vida bajo el control del pecado.
+            </li>
+            <li>
+              <strong>La Gracia es Provisión:</strong> Adonai dio gracia al
+              pueblo para que no salieran con las manos vacías. En el Mashíaj,
+              tenemos la "gracia" para poseer lo que el enemigo nos robó. Todo
+              recurso que Adonai pone en nuestras manos debe tener un propósito
+              de Reino: "para servir a יְהוָה".
+            </li>
+            <li>
+              <strong>La Autoridad del Creyente:</strong> Moshéh no temió la
+              amenaza de muerte de Par'ó (v. 29). Cuando caminamos en la
+              voluntad de Adonai, adquirimos una estatura espiritual que incluso
+              el mundo debe reconocer. Nuestra seguridad no está en la
+              aprobación del "Egipto" actual, sino en la palabra que יְהוָה nos
+              ha dado.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <h1>
+        Punto 2. Haftaráh: Jeremías 46:27-28 (La esperanza de Israel en medio
+        del juicio).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Irmeyáh (Jeremías) 46:27</div>
+        <div class="hebrew">
+          וְאַתָּה אַל־תִּירָא עַבְדִּי יַעֲקֹב וְאַל־תֵּחַת יִשְׂרָאֵל כִּי
+          הִנְנִי מוֹשִׁיעֲךָ מֵרָחוֹק וְאֶת־זַרְעֲךָ מֵאֶרֶץ שִׁבְיָם וְשָׁב
+          יַעֲקוֹב וְשָׁקַט וְשַׁאֲנַן וְאֵין מַחֲרִיד׃
+        </div>
+        <div class="transliteration">
+          Ve'atáh al-tirá avdí Ya'aqóv ve'al-teját Yisra'él ki hinní moshiajá
+          merajóq ve'et-zar'ajá me'érets shivyám vesháv Ya'aqóv veshaqát
+          vesha'anán ve'éyn majaríd.
+        </div>
+        <div class="translation">
+          "Y tú no temas, siervo mío Ya'aqóv, ni desmayes, Yisra'él; porque he
+          aquí que Yo te salvo de lejos, y a tu descendencia de la tierra de su
+          cautiverio; y volverá Ya'aqóv, y descansará y estará tranquilo, y no
+          habrá quien lo espante".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Irmeyáh (Jeremías) 46:28</div>
+        <div class="hebrew">
+          אַתָּה אַל־תִּירָא עַבְדִּי יַעֲקֹב נְאֻם־יְהוָה כִּי אִתְּךָ אָנִי
+          כִּי אֶעֱשֶׂה כָלָה בְּכָל־הַגּוֹיִם אֲשֶׁר הִדַּחְתִּיךָ שָׁמָּה
+          וְאֹתְךָ לֹא־אֶעֱשֶׂה כָלָה וְיִסַּרְתִּיךָ לַמִּשְׁפָּט וְנַקֵּה לֹא
+          אֲנַקֶּךָ׃
+        </div>
+        <div class="transliteration">
+          Atáh al-tirá avdí Ya'aqóv ne'um-יְהוָה ki itejá aní ki e'eséh jaláh
+          bejól-haggoyím ashér hiddajtíja shámmah ve'otjá lo-e'eséh jaláh
+          veissartíja lammishpát venaqqéh lo anaqéka.
+        </div>
+        <div class="translation">
+          "Tú, siervo mío Ya'aqóv, no temas", dice יְהוָה, "porque Yo estoy
+          contigo; porque destruiré a todas las naciones a las cuales te arrojé,
+          pero a ti no te destruiré, sino que te castigaré con justicia; de
+          ninguna manera te dejaré sin castigo".
+        </div>
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh 46:27-28</div>
+          <div class="translation">
+            "Y tú no temas, siervo mío Ya'aqóv... porque he aquí que Yo te salvo
+            de lejos, y a tu descendencia de la tierra de su cautiverio...
+            porque Yo estoy contigo; porque destruiré a todas las naciones a las
+            cuales te arrojé, pero a ti no te destruiré..."
+          </div>
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="explanation">
+        Esta porción es una de las promesas más poderosas de preservación para
+        Yisra'él. El cumplimiento central se halla en Yeshúa HaMashíaj, quien es
+        el Goél (Redentor) enviado por יְהוָה para buscar y salvar lo que se
+        había perdido. Yeshúa es quien materializa la promesa de "Yo estoy
+        contigo" (Itejá Aní). Él es el Emanuel, la presencia misma de Adonai que
+        sostiene a Ya'aqóv en medio de la dispersión. El Mashíaj es la garantía
+        de que Yisra'él no será exterminado; mientras las grandes potencias
+        mundiales (como el antiguo Egipto o Babilonia) caen y desaparecen, el
+        pueblo del Pacto permanece porque Yeshúa, la raíz de David, vive. Su
+        sacrificio en el madero y Su resurrección aseguran que el juicio
+        ("castigaré con justicia") no sea para destrucción final, sino para
+        purificación y retorno.
+      </div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Mattityáhu (Mateo) 1:21-23</div>
+          <div class="translation">
+            "...y llamarás Su Nombre Yeshúa, porque Él salvará a Su pueblo de
+            sus pecados... He aquí, una virgen concebirá y dará a luz un hijo, y
+            llamarás Su nombre Emmanuel, que traducido es: Elohím con nosotros."
+          </div>
+        </div>
+        <div class="translation">
+          En la Peshita aramea, la conexión es directa con la promesa de Irmeyáh
+          46:28 (Itejá Aní - Yo estoy contigo). Yeshúa viene a cumplir la
+          salvación "de lejos" (merajóq), alcanzando a los dispersos de las diez
+          tribus y a Judá en las naciones. Asimismo, en Romiyim (Romanos)
+          11:1-2, el emissary Shaúl confirma que Elohím no ha desechado a Su
+          pueblo, cumpliendo la profecía de que Adonai no hará "consumación" o
+          destrucción total con Yisra'él.
+        </div>
+      </div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Amós 9:8-9</div>
+          <div class="translation">
+            "He aquí los ojos de Adonai יְהוָה están contra el reino pecador, y
+            yo lo asolaré de la faz de la tierra; mas no destruiré del todo la
+            casa de Ya'aqóv, dice יְהוָה... sacudiré la casa de Yisra'él entre
+            todas las naciones... y no caerá un granito en la tierra."
+          </div>
+        </div>
+        <div class="translation">
+          El profeta Amós refuerza la palabra de Irmeyáh: hay un juicio severo
+          contra el pecado ("el reino pecador"), pero una preservación milagrosa
+          para la "casa de Ya'aqóv". Esta es la "disciplina con juicio" que
+          menciona Irmeyáh 46:28. Los profetas coinciden en que la supervivencia
+          de Yisra'él es un milagro continuo que testifica de la fidelidad de
+          Adonai a Sus promesas mesiánicas.
+        </div>
+      </div>
+
+      <h1>5. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            La Supervivencia Sobrenatural de Yisra'él:
+          </div>
+          Se ha cumplido históricamente. Las naciones que oprimieron a Israel
+          (Egipto, Asiria, Babilonia, Roma) han pasado, pero el pueblo de
+          Ya'aqóv continúa, tal como prometió יְהוָה.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Retorno de la Cautividad:</div>
+          La profecía de "salvar de lejos" comenzó con el retorno de Babilonia,
+          pero se cumple en nuestros días con el Aliyáh (regreso físico) y el
+          despertar espiritual de los Benei Yisra'él hacia el Mashíaj Yeshúa.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Castigo con Justicia:</div>
+          Las diversas dispersiones (Galut) han servido como la disciplina
+          profetizada, pero nunca han llegado a la "consumación" o exterminio
+          del pueblo.
+        </div>
+      </div>
+
+      <h1>6. Aplicación Espiritual a la Aliyáh</h1>
+      <div class="content-container">
+        La enseñanza de Irmeyáh 46:27-28 nos brinda principios vitales para
+        nuestra vida en el Mashíaj:
+        <ul>
+          <li>
+            <strong>Vencer el Temor:</strong> La orden es "Al-Tirá" (No temas).
+            El creyente no debe temer a los cambios políticos, crisis económicas
+            o persecuciones, porque el Mashíaj ha prometido estar con nosotros
+            todos los días hasta el fin.
+          </li>
+          <li>
+            <strong>Aceptar la Corrección (Musar):</strong> Adonai dice que nos
+            castigará "con justicia" (Lammishpát). Debemos entender que cuando
+            pasamos por pruebas, no es porque Adonai nos haya abandonado, sino
+            porque nos está formando y limpiando para que seamos dignos de Su
+            Reino.
+          </li>
+          <li>
+            <strong>Seguridad en el Pacto:</strong> Nuestra seguridad no depende
+            de nuestra fuerza, sino de la fidelidad de Adonai. Él destruirá lo
+            que se opone a Su propósito en nosotros, pero a nosotros nos
+            preservará.
+          </li>
+          <li>
+            <strong>Reposo Futuro:</strong> La promesa de que Ya'aqóv
+            "descansará y estará tranquilo" se aplica hoy a nuestra paz interior
+            en Yeshúa y apunta al reposo milenario (Shabat Gadol) donde no habrá
+            más quien nos espante.
+          </li>
+        </ul>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Lucas 22:7-13 (Preparación para la Pesaj).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Lúqas (Lucas) 22:7</div>
+        <div class="aramaic">
+          וּמְטָא יוֹמָא דְּפַטִּירֵא דְּבֵܗ זָדֵק הֲוָא דְּנִתְכְּסֵס פִּסְחָא׃
+        </div>
+        <div class="transliteration">
+          Fonética: Umtá yomá defattiré devéh zadéq hvá denitkses Pisjá.
+        </div>
+        <div class="translation">
+          Traducción literal: Y llegó el día de los panes sin levadura, en el
+          cual era necesario que se sacrificara el Pésaj.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Lúqas (Lucas) 22:8</div>
+        <div class="aramaic">
+          וְשַׁדַּר יֵשׁוּעַ לְכֵיפָא וּלְיוֹחַנָּן וַאֲמַר לְהוֹן זִלוּ
+          טַיְּבוּ לַנ פִּסְחָא דְּנֶאֱכֹל׃
+        </div>
+        <div class="transliteration">
+          Fonética: Veshadár Yeshúa le-Keifá ul-Yojanán va'már lehon zilú tayébu
+          lan Pisjá dene'jól.
+        </div>
+        <div class="translation">
+          Traducción literal: Y envió Yeshúa a Keifá y a Yojanán, y les dijo:
+          "Id, preparad para nosotros el Pésaj para que lo comamos".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Lúqas (Lucas) 22:9</div>
+        <div class="aramaic">
+          הִנּוֹן דֵּין אֲמַרוּ לֵהּ אֵיכָּא צָבֵא אַנְתְּ דְּנַטַיֵּב׃
+        </div>
+        <div class="transliteration">
+          Fonética: Hinón deyn amrú leh ayká tsavé ant denatáyev.
+        </div>
+        <div class="translation">
+          Traducción literal: Ellos le dijeron: "¿Dónde quieres que lo
+          preparemos?".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Lúqas (Lucas) 22:10</div>
+        <div class="aramaic">
+          אָמַר לְהוֹן הָא מָא דְּעָאֵלִין אַנְתּוּן לַמְדִינְתָּא פָּגַע
+          בְּכוֹן גַּבְרָא דִּשְׁקִיל מָאנָא דְּמַיָּא זִלוּ בָּתְרֵהּ
+          לְבַיְתָּא דְּעָאֵל לֵהּ׃
+        </div>
+        <div class="transliteration">
+          Fonética: Amár lehon ha ma de'alín antún lamdínta pagá bejón gavrá
+          dishqíl maná demayá zilú batréh levaytá de'al leh.
+        </div>
+        <div class="translation">
+          Traducción literal: Él les dijo: "He aquí, al entrar en la ciudad, os
+          encontrará un hombre que lleva un cántaro de agua; seguidlo hasta la
+          casa donde entre".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Lúqas (Lucas) 22:11</div>
+        <div class="aramaic">
+          וַאֲמַרוּ לְמָרֵהּ דְּבַיְתָּא רַבַּן אָמַר לָךְ אֵיכָּא הוּא בֵּית
+          מַשְׁרְיָא אֵיכָּא דֶּאֱכֹל פִּסְחָא עַם תַּלְמִידַי׃
+        </div>
+        <div class="transliteration">
+          Fonética: Va'mru lemaré devaytá rabbán amár laj ayká hu beyt mashryá
+          ayká de'jól Pisjá am talmidáy.
+        </div>
+        <div class="translation">
+          Traducción literal: "Y decid al dueño de la casa: 'Nuestro Rabbán te
+          dice: ¿Dónde está el aposento donde he de comer el Pésaj con mis
+          talmidím?'".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Lúqas (Lucas) 22:12</div>
+        <div class="aramaic">
+          וְהוּא מְחַוֵּא לְכוֹן עִלִּיתָא רַבְּתָא דִּמְשַׁוְיָא תַּמָּן
+          טַיְּבוּ׃
+        </div>
+        <div class="transliteration">
+          Fonética: Vehú mejavé lejon illitá rabbetá dimshavyá tammán tayévu.
+        </div>
+        <div class="translation">
+          Traducción literal: "Y él os mostrará un aposento alto, grande y
+          dispuesto; preparadlo allí".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Lúqas (Lucas) 22:13</div>
+        <div class="aramaic">
+          וַאֲזַלוּ אֶשְׁכַּחוּ אֵיכַנָּא דַּאֲמַר לְהוֹן וְטַיְּבוּ פִּסְחָא׃
+        </div>
+        <div class="transliteration">
+          Fonética: Va'zalú eshkaju aykanná da'már lehon vetayévu Pisjá.
+        </div>
+        <div class="translation">
+          Traducción literal: Fueron, pues, y hallaron como les había dicho; y
+          prepararon el Pésaj.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h1>Conexión con las Sagradas Escrituras</h1>
+        <div class="translation">
+          Este pasaje es de suma importancia, pues muestra a Yeshúa como el
+          observador perfecto de la Torá, preparándose para cumplir el
+          mandamiento de Pésaj establecido en Shemot (Éxodo) 12. El "día de los
+          panes sin levadura" (Yomá defattiré) marca el inicio de la
+          conmemoración de la liberación de Egipto. La precisión de Yeshúa al
+          enviar a Sus talmidím revela Su autoridad profética. El "hombre con el
+          cántaro de agua" no era una coincidencia, sino una señal divina. Así
+          como el pueblo de Israel tuvo que preparar el cordero en Egipto antes
+          de la medianoche del juicio, Yeshúa prepara Su propio sacrificio como
+          el Cordero de יְהוָה que quita el pecado del mundo, transformando el
+          Seder de Pésaj en el memorial de Su Nuevo Pacto (Brit Hadashah).
+        </div>
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj / Brit Hadashah)</h1>
+      <div class="verse-container">
+        <div class="verse-number">Lúqas 22:7-8 (Peshita)</div>
+        <div class="translation">
+          "Y llegó el día de los panes sin levadura, en el cual era necesario
+          que se sacrificara el Pésaj. Y envió Yeshúa a Keifá y a Yojanán, y les
+          dijo: 'Id, preparad para nosotros el Pésaj para que lo comamos'."
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="explanation">
+        Yeshúa HaMashíaj es el cumplimiento pleno del sacrificio de Pésaj. En
+        este pasaje, vemos al Mashíaj no solo observando el mandamiento, sino
+        orquestando los eventos para convertirse Él mismo en el Cordero de
+        יְהוָה. Su autoridad se manifiesta al enviar a Sus talmidím con
+        instrucciones proféticas precisas. El cumplimiento radica en que Yeshúa,
+        siendo la Torá Viviente, valida la festividad de Pésaj y le da su
+        significado definitivo: la liberación no es ya solo de la esclavitud
+        física de Egipto, sino de la esclavitud espiritual del pecado y la
+        muerte. Él prepara la "Cena de Pesaj" como el memorial del Nuevo Pacto
+        (Brit Hadashah) que sería sellado con Su propia sangre.
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <div class="scripture">
+          Qolasiyim (Colosenses) 2:16-17: "Por tanto, nadie os juzgue en comida
+          o en bebida... o de días de fiesta... lo cual es sombra de lo que ha
+          de venir; pero el cuerpo es del Mashíaj."
+        </div>
+        En la Peshita aramea, se enfatiza que estas celebraciones son "sombras"
+        o tipos proféticos del Mashíaj. Lúqas 22:7-13 muestra el momento exacto
+        en que la "sombra" (el cordero ritual) se encuentra con la "sustancia"
+        (Yeshúa). Asimismo, en 1 Qorintiyim (Corintios) 5:7, Shaúl declara:
+        "Porque nuestro Pésaj, que es el Mashíaj, ya fue sacrificado por
+        nosotros", confirmando que la preparación en el aposento alto era el
+        preludio del sacrificio cósmico.
+      </div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <div class="scripture">
+          Zajaryáh (Zacarías) 9:9: "Alégrate mucho, hija de Tsiyón... he aquí tu
+          rey vendrá a ti, justo y salvador..."
+        </div>
+        Los profetas anunciaron la llegada de un Rey que traería salvación. La
+        conexión con Lúqas 22 reside en la humildad y el secreto con que el
+        Mashíaj prepara Su sacrificio. Además, Irmeyáh (Jeremías) 31:31
+        profetizó que Adonai haría un "Nuevo Pacto" con la casa de Yisra'él;
+        Yeshúa escoge precisamente el marco del Pésaj descrito en Lúqas para
+        instituir este pacto, uniendo la profecía con el cumplimiento histórico.
+      </div>
+
+      <h1>5. Conexión con la Aliyáh (Shemot 10:24 - 11:3)</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>La Urgencia de la Salida:</strong> En Shemot 11, יְהוָה
+            anuncia la plaga final y la libertad inminente. En Lúqas, Yeshúa
+            dice "era necesario" (zadéq hvá) que se sacrificara el Pésaj,
+            marcando el fin de la era de la esclavitud.
+          </li>
+          <li>
+            <strong>Provisión Sobrenatural:</strong> Así como Israel halló
+            gracia y recibió tesoros para su viaje (Shemot 11:3), los discípulos
+            hallaron un "aposento alto grande y dispuesto" (Lúqas 22:12) por
+            provisión divina, sin tener que pagar por él.
+          </li>
+          <li>
+            <strong>Separación de la Levadura:</strong> La Aliyáh de Shemot 10
+            muestra la separación definitiva de Egipto. Lúqas 22:7 menciona el
+            día de los "Panes sin Levadura" (fattiré), que espiritualmente
+            representa la pureza y la santidad necesarias para participar del
+            sacrificio del Mashíaj.
+          </li>
+        </ul>
+      </div>
+
+      <h1>6. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Obediencia del Mashíaj:</div>
+          Se cumple la profecía de que el Siervo de יְהוָה guardaría toda la
+          Ley. Yeshúa no omite el Pésaj, sino que lo eleva.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Señal del Hombre con el Cántaro:</div>
+          Es una profecía de corto alcance cumplida en el instante, demostrando
+          que Yeshúa conoce todos los detalles y que nada es accidental en el
+          plan de redención.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Institución del Memorial:</div>
+          Se cumple la promesa de que el Nombre de Adonai sería recordado y Su
+          salvación anunciada "de generación en generación".
+        </div>
+      </div>
+
+      <h1>7. Aplicación Espiritual</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Preparación del Corazón:</strong> Así como los discípulos
+            tuvieron que ir y "preparar", nosotros debemos preparar nuestro
+            interior para recibir al Mashíaj, eliminando la "levadura" (pecado)
+            de nuestras vidas.
+          </li>
+          <li>
+            <strong>Seguir la Guía de Yeshúa:</strong> El hombre con el cántaro
+            de agua representa la guía del Ruaj HaKodesh. Debemos seguir las
+            señales que el Mashíaj pone en nuestro camino para llegar al
+            "aposento alto" de Su comunión.
+          </li>
+          <li>
+            <strong>Adoración en Unidad:</strong> Yeshúa deseaba comer el Pésaj
+            con Sus talmidím. El sacrificio del Mashíaj no es solo individual,
+            sino que crea una comunidad (Kahal) unida por Su sangre.
+          </li>
+        </ul>
+      </div>
+      <h1>PUNTO 4. CONTEXTO HISTÓRICO Y CULTURAL<br />Éxodo 10:24–11:3</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Contexto histórico inmediato</div>
+          Este pasaje ocurre después de la oscuridad total y antes del anuncio
+          del juicio final: la muerte del primogénito. El faraón ya no gobierna
+          desde la fuerza, sino desde la desesperación política y espiritual.
+          <br /><br />
+          El imperio está colapsado:
+          <ul>
+            <li>Economía destruida</li>
+            <li>Autoridad desacreditada</li>
+            <li>Panteón derrotado</li>
+          </ul>
+          El faraón intenta su última negociación.
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Cultura religiosa egipcia</div>
+          El ganado representaba:
+          <ul>
+            <li>Poder económico</li>
+            <li>Capital religioso (sacrificios a los dioses)</li>
+            <li>Símbolo de estabilidad nacional</li>
+          </ul>
+          Al exigir que el ganado permanezca, el faraón intenta:
+          <ul>
+            <li>Retener control espiritual</li>
+            <li>Limitar el culto a Adonái</li>
+            <li>Condicionar la obediencia</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Contexto cultural hebreo</div>
+          Para Israel:
+          <ul>
+            <li>El sacrificio es inseparable del servicio</li>
+            <li>No se puede adorar sin lo que Adonái exige</li>
+            <li>La redención incluye recursos, familia y futuro</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">4. Perspectiva del Segundo Templo</div>
+          <ul>
+            <li>
+              Este pasaje se entendió como ruptura definitiva del diálogo con la
+              opresión
+            </li>
+            <li>El faraón cruza el punto de no retorno</li>
+            <li>Moshé se convierte en figura judicial, no negociadora</li>
+          </ul>
+        </div>
+      </div>
+
+      <h1>
+        PUNTO 5. ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS<br />Éxodo
+        10:24–11:3
+      </h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Comentario judío clásico</div>
+          <ul>
+            <li>
+              <strong>Rashí:</strong> el faraón intenta separar adoración de
+              sacrificio.
+            </li>
+            <li>
+              <strong>Ibn Ezra:</strong> Moshé responde con autoridad absoluta,
+              no diplomacia.
+            </li>
+            <li>
+              <strong>Sforno:</strong> el rechazo final del faraón provoca el
+              juicio irreversible.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Comentario judío mesiánico</div>
+          <ul>
+            <li>
+              El faraón representa el sistema que permite espiritualidad
+              controlada.
+            </li>
+            <li>Moshé proclama una obediencia sin concesiones.</li>
+            <li>Este patrón se repite en la revelación del Mashíaj.</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Conexiones proféticas</div>
+          <ul>
+            <li>
+              <strong>Isaías 1:</strong> adoración vacía sin obediencia total.
+            </li>
+            <li>
+              <strong>Malaquías 1:</strong> sacrificios retenidos o defectuosos
+              son despreciados.
+            </li>
+            <li>
+              <strong>Zacarías 14:</strong> adoración futura sin negociación
+              política.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">4. Notas lingüísticas</div>
+          <ul>
+            <li>
+              <strong>“Lo taisháer parsáh”</strong> – “no quedará ni una pezuña”
+            </li>
+            <li>Expresión hebrea de totalidad absoluta</li>
+            <li>Nada queda bajo dominio del opresor</li>
+          </ul>
+        </div>
+      </div>
+
+      <h1>PUNTO 6. ANÁLISIS PROFUNDO DE LA ALIYÁH<br />Éxodo 10:24–11:3</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Última negociación</div>
+          Faraón permite salir:
+          <ul>
+            <li>Hombres</li>
+            <li>Mujeres</li>
+            <li>Niños</li>
+          </ul>
+          Pero exige retener el ganado. Esto revela:
+          <ul>
+            <li>Rendición aparente</li>
+            <li>Control residual</li>
+            <li>Idolatría persistente</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Respuesta de Moshé</div>
+          Moshé declara:
+          <ul>
+            <li>No sabemos con qué serviremos</li>
+            <li>La obediencia precede al conocimiento completo</li>
+            <li>La fe camina antes de entender</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Ruptura final</div>
+          <ul>
+            <li>El faraón expulsa a Moshé</li>
+            <li>Amenaza de muerte</li>
+            <li>Se rompe toda mediación humana</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">4. Preparación para el juicio</div>
+          Adonái anuncia:
+          <ul>
+            <li>Favor sobrenatural hacia Israel</li>
+            <li>Elevación de Moshé ante Egipto</li>
+            <li>El juicio ya no puede evitarse</li>
+          </ul>
+        </div>
+      </div>
+
+      <h1>PUNTO 7. TEMA MÁS RELEVANTE DE LA ALIYÁH<br />Éxodo 10:24–11:3</h1>
+
+      <div class="content-container">
+        <h3>
+          Tema central:<br />LA REDENCIÓN NO ADMITE CONDICIONES NI RESERVAS
+        </h3>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. No existe adoración negociada</div>
+          <ul>
+            <li>Adonái exige totalidad</li>
+            <li>Lo que no se entrega se convierte en ídolo</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Dimensión teológica</div>
+          <ul>
+            <li>El sacrificio pertenece a Adonái</li>
+            <li>La vida, los recursos y el futuro son Suyos</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Aplicación mesiánica</div>
+          <ul>
+            <li>Yeshúa haMashíaj no acepta discipulado condicionado</li>
+            <li>El Reino demanda entrega completa</li>
+          </ul>
+        </div>
+      </div>
+
+      <h1>PUNTO 8. DESCUBRIENDO AL MASHÍAJ<br />EN ÉXODO 10:24–11:3</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Tipología mesiánica</div>
+          <ul>
+            <li>Moshé como mediador rechazado</li>
+            <li>Yeshúa haMashíaj como Mediador definitivo</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. “Ni una pezuña”</div>
+          <ul>
+            <li>Imagen profética de redención total</li>
+            <li>El Mashíaj libera completamente, no parcialmente</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Rechazo y juicio</div>
+          <ul>
+            <li>El faraón rechaza la palabra</li>
+            <li>Las autoridades rechazan al Mashíaj</li>
+            <li>El rechazo abre paso al juicio</li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">4. Elevación del Redentor</div>
+          <ul>
+            <li>Moshé es engrandecido ante Egipto</li>
+            <li>Yeshúa haMashíaj es exaltado ante las naciones</li>
+            <li>Adonái y el Mashíaj son Ejad, Uno</li>
+          </ul>
+        </div>
+      </div>
+      <h1>
+        PUNTO 9. MIDRASHIM, TARGUMIM Y TEXTOS FUENTES <br />Éxodo 10:24–11:3
+      </h1>
+
+      <div class="content-container">
+        <strong>1. Midrashim relevantes</strong>
+        <ul>
+          <li>
+            <strong>Shemot Rabbáh 14–15</strong>: Interpreta la frase “no
+            quedará ni una pezuña” como declaración legal de propiedad absoluta:
+            todo lo que Israel posee pertenece a Adonái. Enseña que el faraón
+            quiso retener el ganado para mantener dominio espiritual residual
+            sobre Israel.
+          </li>
+          <li>
+            <strong>Midrash Tanjumá, Bo</strong>: Presenta a Moshé ya no como
+            negociador, sino como mensajero judicial. El rechazo final del
+            faraón marca el cierre del tiempo de misericordia.
+          </li>
+          <li>
+            <strong>Pirkei deRabí Eliezer</strong>: Afirma que cuando el faraón
+            amenaza a Moshé, se sella el decreto del juicio final. El desprecio
+            a la palabra profética acelera la sentencia.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>2. Targumim</strong>
+        <ul>
+          <li>
+            <strong>Targum Onkelos</strong>: Traduce la negativa de Moshé con
+            lenguaje categórico, enfatizando que el servicio a Adonái no puede
+            definirse por anticipado por autoridad humana. Refuerza la idea de
+            obediencia dependiente de revelación, no de conveniencia.
+          </li>
+          <li>
+            <strong>Targum Yonatán</strong>: Añade que el favor de Israel ante
+            los egipcios fue dispuesto por decreto celestial. Presenta a Moshé
+            como figura exaltada por Adonái ante la nación opresora.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>3. Textos del período del Segundo Templo</strong>
+        <ul>
+          <li>
+            Escritos judíos interpretan este pasaje como modelo del fin del
+            exilio.
+          </li>
+          <li>
+            El endurecimiento final del opresor precede siempre a la
+            intervención redentora decisiva.
+          </li>
+          <li>Qumrán ve aquí el patrón de la guerra entre luz y tinieblas.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        PUNTO 10. MANDAMIENTOS, PRINCIPIOS Y VALORES <br />Éxodo 10:24–11:3
+      </h1>
+
+      <div class="content-container">
+        <strong>1. Principio de obediencia sin reservas</strong>
+        <ul>
+          <li>No se puede servir a Adonái reteniendo lo que Él demanda.</li>
+          <li>La redención verdadera incluye bienes, familia y futuro.</li>
+        </ul>
+
+        <strong>2. Principio de separación del sistema opresor</strong>
+        <ul>
+          <li>No se permite una fe supervisada por poderes contrarios.</li>
+          <li>El culto a Adonái es libre o no es culto.</li>
+        </ul>
+
+        <strong>3. Principio de honor al enviado de Adonái</strong>
+        <ul>
+          <li>Adonái engrandece a Moshé ante Egipto.</li>
+          <li>Rechazar al enviado equivale a rechazar al que envía.</li>
+        </ul>
+
+        <div class="explanation">
+          <strong>Aplicación en el Mashíaj</strong>
+          <p>
+            Yeshúa haMashíaj demanda una entrega total y confirma que la
+            obediencia parcial no produce Reino.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        PUNTO 11. PREGUNTAS DE REFLEXIÓN <br />CON RESPUESTAS EN EL MASHÍAJ
+        <br />Éxodo 10:24–11:3
+      </h1>
+
+      <div class="explanation">
+        <p>
+          <strong>1. ¿Por qué el faraón insiste en retener el ganado?</strong
+          ><br />
+          Respuesta: Porque el sistema opresor busca controlar los medios de
+          adoración. El Mashíaj libera incluso los recursos dedicados al
+          servicio de Adonái.
+        </p>
+        <p>
+          <strong>2. ¿Qué significa “no quedará ni una pezuña”?</strong><br />
+          Respuesta: Redención total. En Yeshúa haMashíaj no queda ningún
+          aspecto de la vida bajo dominio del opresor.
+        </p>
+        <p>
+          <strong
+            >3. ¿Por qué Moshé dice que no sabe con qué servirá a
+            Adonái?</strong
+          ><br />
+          Respuesta: Porque el servicio depende de revelación, no de
+          planificación humana. El Mashíaj guía paso a paso en obediencia viva.
+        </p>
+        <p>
+          <strong>4. ¿Qué revela la expulsión de Moshé por el faraón?</strong
+          ><br />
+          Respuesta: El rechazo definitivo de la verdad. De igual modo, el
+          rechazo del Mashíaj selló juicio sobre la incredulidad.
+        </p>
+        <p>
+          <strong>5. ¿Cómo se aplica hoy esta Aliyáh?</strong><br />
+          Respuesta: Llamando a una fe sin condiciones, donde todo es entregado
+          al gobierno del Mashíaj.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 12. RESUMEN DE LA ALIYÁH <br />Éxodo 10:24–11:3</h1>
+
+      <div class="content-container">
+        <ul>
+          <li>El faraón ofrece una última concesión parcial.</li>
+          <li>Exige retener el ganado.</li>
+          <li>Moshé proclama obediencia absoluta a Adonái.</li>
+          <li>Declara que no quedará nada bajo dominio egipcio.</li>
+          <li>El faraón rechaza violentamente la palabra.</li>
+          <li>Adonái anuncia favor sobrenatural sobre Israel.</li>
+          <li>Moshé es engrandecido ante Egipto.</li>
+        </ul>
+        <div class="explanation">
+          <strong>Aplicación en el Mashíaj:</strong>
+          <p>
+            La redención culmina cuando no se acepta ninguna condición impuesta
+            por la opresión. En Yeshúa haMashíaj, la liberación es completa.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 13. TEFILÁH DE LA ALIYÁH <br />Éxodo 10:24–11:3</h1>
+
+      <div class="content-container">
+        <div class="prayer-text">
+          Adonái יהוה,<br />
+          Elohím Ejad,<br />
+          reconocemos que todo lo que somos y tenemos<br />
+          te pertenece.<br />
+          Guárdanos de una obediencia fragmentada<br />
+          y líbranos de negociar lo que es santo.<br />
+          Enséñanos a caminar en fe,<br />
+          aun cuando no veamos todo el camino.<br />
+          Declaramos que, en Yeshúa haMashíaj,<br />
+          no queda nada bajo el dominio de la opresión.<br />
+          Tú nos has redimido por completo<br />
+          para servirte con libertad y verdad.
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya4.html">Continuar con la Aliyá 4</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 12:21-28</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        15. Parashá Bo (בא) Aliyáh 5: (Éxodo 12:21-28) Instrucciones de Moshé
+        sobre el Pesaj para los ancianos de Israel.
+        <p>Haftaráh: Jeremías 31:31-34 (El nuevo pacto).</p>
+        <p>Brit Hadasháh: Mateo 26:17-19 (Preparativos del Pesaj de Yeshúa).</p>
+      </h1>
+      <h1>Punto 1. Shemot (Éxodo) 12:21-28</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:21</div>
+          <div class="hebrew">
+            וַיִּקְרָא מֹשֶׁה לְכָל־זִקְנֵי יִשְׂרָאֵל וַיֹּאמֶר אֲלֵיהֶם
+            מִשְׁכוּ וּקְחוּ לָכֶם צֹאן לְמִשְׁפְּחֹתֵיכֶם וְשַׁחֲטוּ הַפָּסַח׃
+          </div>
+          <div class="transliteration">
+            Vayiqrá Moshéh lejól-ziqnéy Yisra'él vayómer aleihém mishjú uqjú
+            lajém tson lemishpejotéijem veshajatú happásaj.
+          </div>
+          <div class="translation">
+            Traducción literal: Entonces Moshéh llamó a todos los ancianos de
+            Yisra'él, y les dijo: "Sacad y tomad para vosotros ganado menor
+            según vuestras familias, y sacrificad el Pésaj".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:22</div>
+          <div class="hebrew">
+            וּלְקַחְתֶּם אֲגֻדַּת אֵזוֹב וּטְבַלְתֶּם בַּדָּם אֲשֶׁר־בַּסַּף
+            וְהִגַּעְתֶּם אֶל־הַמַּשְׁקוֹף וְאֶל־שְׁתֵּי הַמְּזוּזֹת מִן־הַדָּם
+            אֲשֶׁר בַּסָּף וְאַתֶּם לֹא תֵצְאוּ אִישׁ מִפֶּתַח־בֵּיתוֹ
+            עַד־בֹּקֶר׃
+          </div>
+          <div class="transliteration">
+            Ulqajtém agudát ezóv utvaltém badám ashér-bassáf vehigga'tém
+            el-hammashqóf ve'el-shetéy hammezuzót min-hadám ashér bassáf ve'atém
+            lo tets'ú ish mippétaj-beito ad-bóqer.
+          </div>
+          <div class="translation">
+            Traducción literal: "Y tomaréis un manojo de hisopo, y lo mojaréis
+            en la sangre que estará en el lebrillo, y untaréis el dintel y los
+            dos postes con la sangre que estará en el lebrillo; y ninguno de
+            vosotros saldrá de la puerta de su casa hasta la mañana".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:23</div>
+          <div class="hebrew">
+            וְעָבַר יְהוָה לִנְגֹּף אֶת־מִצְרַיִם וְרָאָה אֶת־הַדָּם
+            עַל־הַמַּשְׁקוֹף וְעַל שְׁתֵּי הַמְּזוּזֹת וּפָסַח יְהוָה
+            עַל־הַפֶּתַח וְלֹא יִתֵּן הַמַּשְׁחִית לָבֹא אֶל־בָּתֵּיכֶם
+            לִנְגֹּף׃
+          </div>
+          <div class="transliteration">
+            Ve'avár יְהוָה lingóf et-Mitsráyim verá'ah et-hadám al-hammashqóf
+            ve'al shetéy hammezuzót ufasáj יְהוָה al-happétaj veló yittén
+            hammashjít lavó el-battéijem lingóf.
+          </div>
+          <div class="translation">
+            Traducción literal: "Porque יְהוָה pasará para herir a los egipcios;
+            y cuando vea la sangre en el dintel y en los dos postes, יְהוָה
+            pasará de largo aquella puerta, y no dejará entrar al heridor en
+            vuestras casas para herir".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:24</div>
+          <div class="hebrew">
+            וּשְׁמַרְתֶּם אֶת־הַדָּבָר הַזֶּה לְחָק־לְךָ וּלְבָנֶיךָ עַד־עוֹלָם׃
+          </div>
+          <div class="transliteration">
+            Ushmartém et-haddavár hazzéh lejóq-lejá ulvanéyja ad-olám.
+          </div>
+          <div class="translation">
+            Traducción literal: "Guardaréis esto por estatuto para vosotros y
+            para vuestros hijos para siempre".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:25</div>
+          <div class="hebrew">
+            וְהָיָה כִּי־תָבֹאוּ אֶל־הָאָרֶץ אֲשֶׁר יִתֵּן יְהוָה לָכֶם
+            כַּאֲשֶׁר דִּבֵּר וּשְׁמַרְתֶּם אֶת־הָעֲבֹדָה הַזֹּאת׃
+          </div>
+          <div class="transliteration">
+            Vehayáh ki-tavó'u el-ha'árets ashér yittén יְהוָה lajém ka'ashér
+            dibbér ushmartém et-ha'avodáh hazzót.
+          </div>
+          <div class="translation">
+            Traducción literal: "Y cuando entréis en la tierra que יְהוָה os
+            dará, como Él dijo, guardaréis este servicio".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:26</div>
+          <div class="hebrew">
+            וְהָיָה כִּי־יֹאמְרוּ אֲלֵיכֶם בְּנֵיכֶם מָה הָעֲבֹדָה הַזֹּאת
+            לָכֶם׃
+          </div>
+          <div class="transliteration">
+            Vehayáh ki-yomrú aleijém benéijem mah ha'avodáh hazzót lajém.
+          </div>
+          <div class="translation">
+            Traducción literal: "Y cuando os dijeren vuestros hijos: '¿Qué es
+            este servicio vuestro?'".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:27</div>
+          <div class="hebrew">
+            וַאֲמַרְתֶּם זֶבַח־פֶּסַח הוּא לַיהוָה אֲשֶׁר פָּסַח עַל־בָּתֵּי
+            בְנֵי־יִשְׂרָאֵל בְּמִצְרַיִם בְּנָגְפּוֹ אֶת־מִצְרַיִם
+            וְאֶת־בָּתֵּינוּ הִצִּיל וַיִּקֹּד הָעָם וַיִּשְׁתַּחֲוּוּ׃
+          </div>
+          <div class="transliteration">
+            Va'amartém zévaj-Pésaj hu la-יְהוָה ashér pasáj al-battéy
+            venéy-Yisra'él beMitsráyim benogpó et-Mitsráyim ve'et-battéynu
+            hitsíl vayyiqqód ha'ám vayyishtajavú.
+          </div>
+          <div class="translation">
+            Traducción literal: "Responderéis: 'Es el sacrificio del Pésaj de
+            יְהוָה, el cual pasó de largo las casas de los hijos de Yisra'él en
+            Mitsráyim, cuando hirió a los egipcios y libró nuestras casas'".
+            Entonces el pueblo se inclinó y adoró.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Shemot (Éxodo) 12:28</div>
+          <div class="hebrew">
+            וַיֵּלְכוּ וַיַּעֲשׂוּ בְּנֵי יִשְׂרָאֵל כַּאֲשֶׁר צִוָּה יְהוָה
+            אֶת־מֹשֶׁה וְאַהֲרֹן כֵּן עָשׂוּ׃
+          </div>
+          <div class="transliteration">
+            Vayélejú vayya'asú benéy Yisra'él ka'ashér tsivváh יְהוָה et-Moshéh
+            ve'Aharón ken asú.
+          </div>
+          <div class="translation">
+            Traducción literal: Y los hijos de Yisra'él fueron e hicieron
+            puntualmente como יְהוָה había mandado a Moshéh y a Aharón.
+          </div>
+        </div>
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj)</h1>
+      <div class="verse-container">
+        <div class="verse-number">Shemot 12:22-23</div>
+        <div class="hebrew"></div>
+        <div class="transliteration"></div>
+        <div class="translation">
+          "Y tomaréis un manojo de hisopo, y lo mojaréis en la sangre... y
+          untaréis el dintel y los dos postes... porque יְהוָה pasará para herir
+          a los egipcios; y cuando vea la sangre... pasará de largo (ufasáj)
+          aquella puerta..."
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="content-container">
+        <p>
+          En esta porción, vemos la ejecución del ritual de Pésaj por parte de
+          los ancianos de Israel. El cumplimiento en Yeshúa HaMashíaj es el
+          fundamento de nuestra redención:
+        </p>
+        <ul>
+          <li>
+            <strong>La Sangre en el Umbral:</strong> La sangre aplicada en el
+            dintel y los postes formaba una protección contra el "heridor".
+            Yeshúa es la puerta de las ovejas, y Su sangre es el único sello que
+            protege al ser humano del juicio final contra el pecado.
+          </li>
+          <li>
+            <strong>El Hisopo (Ezóv):</strong> El uso del hisopo prefigura la
+            humildad. Yeshúa, siendo el Rey de gloria, se humilló a sí mismo
+            hasta la muerte. Curiosamente, en el madero, se le ofreció vinagre
+            en una rama de hisopo, conectando Su sacrificio directamente con el
+            ritual de Pésaj de esta Aliyáh.
+          </li>
+          <li>
+            <strong>La Permanencia en la Casa:</strong> La orden de "ninguno
+            saldrá de la puerta de su casa" (v. 22) enseña que la seguridad está
+            únicamente bajo la cobertura del Pacto. Yeshúa es nuestra "Casa" y
+            nuestro refugio; fuera de Él no hay seguridad ante el juicio divino.
+          </li>
+        </ul>
+      </div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="explanation">
+        <p>
+          <strong>Ivriyim (Hebreos) 9:19, 22:</strong> "Porque habiendo
+          anunciado Moshéh todos los mandamientos... tomó la sangre... con lana
+          escarlata e hisopo, y roció el mismo libro y a todo el pueblo... y sin
+          derramamiento de sangre no se hace remisión."
+        </p>
+        <p>
+          En la Peshita aramea, se enfatiza la eficacia de la sangre para la
+          purificación. La Aliyáh de Shemot 12 es el prototipo que Shaúl y el
+          autor de Hebreos utilizan para explicar que el sacrificio de Yeshúa no
+          fue un evento aislado, sino la culminación del servicio (avodáh) que
+          Adonai mandó a Israel. La sangre de Yeshúa "habla mejor que la de
+          Abel" porque no clama venganza, sino redención y protección.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <p>
+          <strong>Yejezqel (Ezequiel) 9:4-6:</strong> "Pasa por en medio de la
+          ciudad... y ponles una señal (Tav) en la frente a los hombres que
+          gimen... mas a todo aquel sobre el cual hubiere la señal, no os
+          acercaréis..."
+        </p>
+        <p>
+          El profeta Yejezqel utiliza la misma estructura del Pésaj: una señal
+          (la letra hebrea Tav, que antiguamente tenía forma de madero o marca)
+          que protege del ejecutor del juicio. Esta conexión profética refuerza
+          que Adonai siempre provee una señal de salvación para Su pueblo
+          remanente antes de ejecutar justicia sobre las naciones.
+        </p>
+      </div>
+
+      <h1>5. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Protección del Remanente</div>
+          <p>
+            Se cumplió la promesa de que יְהוָה libraría a Sus hijos (v. 27). En
+            cada generación, y supremamente en el Mashíaj, Adonai guarda a los
+            que confían en Su Palabra.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Estatuto Perpetuo (v. 24)</div>
+          <p>
+            Se cumple en el hecho de que Pésaj sigue siendo el eje central de la
+            fe de Israel y de la comunidad mesiánica, ahora con el entendimiento
+            pleno de la obra de Yeshúa.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            La Transmisión a los Hijos (v. 26-27)
+          </div>
+          <p>
+            La profecía de que los hijos preguntarían y el servicio se
+            mantendría se cumple en la preservación milagrosa de la identidad de
+            Israel y el crecimiento del movimiento mesiánico mundial que
+            reconoce al Cordero.
+          </p>
+        </div>
+      </div>
+
+      <h1>6. Aplicación Espiritual a la Aliyáh</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Obediencia Puntual (v. 28):</strong> El texto dice que
+            hicieron "como יְהוָה había mandado... así lo hicieron". La
+            aplicación espiritual es que la fe sin obras es muerta. No basta con
+            creer en la sangre; hay que obedecer la instrucción de Adonai y
+            aplicar Sus mandamientos a nuestra vida cotidiana.
+          </li>
+          <li>
+            <strong>Identidad de Adoradores:</strong> El pueblo, al oír sobre su
+            liberación, "se inclinó y adoró" (v. 27). Nuestra respuesta ante la
+            redención de Yeshúa debe ser una vida de adoración constante,
+            reconociendo que fuimos rescatados de la muerte.
+          </li>
+          <li>
+            <strong>El Rol de los Padres:</strong> La Aliyáh pone la
+            responsabilidad de la enseñanza en los padres (v. 26). En el
+            Mashíaj, debemos ser capaces de explicar a las nuevas generaciones
+            por qué celebramos las fiestas y cómo Yeshúa nos sacó de nuestro
+            propio "Egipto" espiritual.
+          </li>
+          <li>
+            <strong>No Salir de la Cobertura:</strong> Mantenerse dentro de la
+            casa hasta la mañana nos enseña a perseverar en la fe y en la
+            comunidad. En tiempos de oscuridad y juicio en el mundo, nuestra
+            única seguridad es permanecer "dentro" de la voluntad de Adonai,
+            cubiertos por los méritos de Yeshúa.
+          </li>
+        </ul>
+      </div>
+      <h1>Punto 2. Haftaráh: Jeremías 31:31-34 (El nuevo pacto).</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 31:31</div>
+          <div class="hebrew">
+            הִנֵּה יָמִים בָּאִים נְאֻם־יְהוָה וְכָרַתִּי אֶת־בֵּית יִשְׂרָאֵל
+            וְאֶת־בֵּית יְהוּדָה בְּרִית חֲדָשָׁה׃
+          </div>
+          <div class="transliteration">
+            Hinnéh yamím ba'ím ne'úm-יְהוָה vejarattí et-beýt Yisra'él
+            ve'ét-beýt Yehudáh berít jadasháh.
+          </div>
+          <div class="translation">
+            Traducción literal: "He aquí vienen días", dice יְהוָה, "en que haré
+            con la casa de Yisra'él y con la casa de Yehudáh un pacto nuevo".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 31:32</div>
+          <div class="hebrew">
+            לֹא כַבְּרִית אֲשֶׁר כָּרַתִּי אֶת־אֲבוֹתָם בְּיוֹם הֶחֱזִיקִי
+            בְיָדָם לְהוֹצִיאָם מֵאֶרֶץ מִצְרָיִם אֲשֶׁר־הֵמָּה הֵפֵרוּ
+            אֶת־בְּרִיתִי וְאָנֹכִי בָּעַלְתִּי בָם נְאֻם־יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Lo jabbrit ashér jarattí et-avotám beyóm hejeziqí veyadám lehotsi'ám
+            me'érets Mitsráyim ashér-hémmah heféru et-berití ve'anojí ba'álti
+            vam ne'úm-יְהוָה.
+          </div>
+          <div class="translation">
+            Traducción literal: "No como el pacto que hice con sus padres el día
+            que tomé su mano para sacarlos de la tierra de Mitsráyim; porque
+            ellos invalidaron mi pacto, aunque fui yo un marido para ellos",
+            dice יְהוָה.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 31:33</div>
+          <div class="hebrew">
+            כִּי זֹאת הַבְּרִית אֲשֶׁר אֶכְרֹת אֶת־בֵּית יִשְׂרָאֵל אַחֲרֵי
+            הַיָּמִים הָהֵם נְאֻם־יְהוָה נָתַתִּי אֶת־תּוֹרָתִי בְּקִרְבָּם
+            וְעַל־לִבָּם אֶכְתֲּבֶנָּה וְהָיִיתִי לָהֶם לֵאלֹהִים וְהֵמָּה
+            יִהְיוּ־לִי לְעָם׃
+          </div>
+          <div class="transliteration">
+            Ki zot habrit ashér ejrót et-beýt Yisra'él ajareý hayamím hahém
+            ne'úm-יְהוָה natátti et-Toratí beqirbám ve'al-libbám ejtavénnah
+            vehayíti lahém le'Elohím vehémmah yihyú-li le'ám.
+          </div>
+          <div class="translation">
+            Traducción literal: "Porque este es el pacto que haré con la casa de
+            Yisra'él después de aquellos días", dice יְהוָה: "Daré mi Toráh en
+            su interior, y en su corazón la escribiré; y yo seré para ellos por
+            Elohím, y ellos serán para mí por pueblo".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh (Jeremías) 31:34</div>
+          <div class="hebrew">
+            וְלֹא יְלַמְּדוּ עוֹד אִישׁ אֶת־רֵעֵהוּ וְאִישׁ אֶת־אָחִיו לֵאמֹר
+            דְּעוּ אֶת־יְהוָה כִּי־כֻלָּם יֵדְעוּ אוֹתִי לְמִקְטַנָּם
+            וְעַד־גְּדוֹלָם נְאֻם־יְהוָה כִּי אֶסְלַח לַעֲוֺנָם וּלְחַטָּאתָם
+            לֹא אֶזְכָּר־עוֹד׃
+          </div>
+          <div class="transliteration">
+            Veló yelammedú od ish et-re'éhu ve'ísh et-ajív lemór de'ú et-יְהוָה
+            ki-jullám yed'ú otí lemiqtannám ve'ad-gedolám ne'úm-יְהוָה ki esláj
+            la'avonám uljattatám lo ezkór-od.
+          </div>
+          <div class="translation">
+            Traducción literal: "Y no enseñará más ninguno a su prójimo, ni
+            ninguno a su hermano, diciendo: 'Conoced a יְהוָה'; porque todos me
+            conocerán, desde el más pequeño de ellos hasta el más grande", dice
+            יְהוָה, "porque perdonaré la maldad de ellos, y no me acordaré más
+            de su pecado".
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation">
+        [Image: Un corazón de carne sobre el cual se graban con fuego las letras
+        de la Toráh, simbolizando el Brit Jadasháh donde la instrucción de
+        יְהוָה es parte de la esencia del creyente]
+      </div>
+      <h1>1. El Pasaje Profético (Tanaj)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Irmeyáh 31:33</div>
+          <div class="hebrew"></div>
+          <div class="transliteration"></div>
+          <div class="translation">
+            "Daré mi Toráh en su interior, y en su corazón la escribiré; y yo
+            seré para ellos por Elohím, y ellos serán para mí por pueblo."
+          </div>
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="content-container">
+        <div class="explanation">
+          Yeshúa HaMashíaj es el mediador y el ejecutor del Nuevo Pacto. El
+          cumplimiento no consiste en la abolición de la Torá, sino en su
+          interiorización.
+          <ul>
+            <li>
+              <strong>El Mediador:</strong> Así como el primer pacto tuvo a
+              Moshéh, el Brit Jadasháh tiene a Yeshúa, quien con Su propia
+              sangre selló los términos de esta alianza eterna.
+            </li>
+            <li>
+              <strong>La Torá en el Corazón:</strong> Yeshúa, siendo la Torá
+              Viviente, permite que mediante el Ruaj HaKodesh (Espíritu Santo),
+              la instrucción de יְהוָה no sea una carga pesada de cumplir por
+              esfuerzo humano, sino un deseo natural que emana de un corazón
+              regenerado.
+            </li>
+            <li>
+              <strong>El Perdón de la Maldad:</strong> El v. 34 dice: "perdonaré
+              la maldad de ellos". Yeshúa cumplió esto al ser el sacrificio que
+              quita legalmente el pecado, permitiendo que יְהוָה "no se acuerde
+              más" de nuestras transgresiones.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Ivriyim (Hebreos) 8:6, 10</div>
+          <div class="hebrew"></div>
+          <div class="transliteration"></div>
+          <div class="translation">
+            "Pero ahora tanto mejor ministerio es el suyo, cuanto es mediador de
+            un mejor pacto... Por lo cual, este es el pacto que haré con la casa
+            de Yisra'él... pondré mis leyes en la mente de ellos, y sobre su
+            corazón las escribiré."
+          </div>
+        </div>
+        <div class="explanation">
+          En la Peshita aramea, se utiliza la palabra Diyatíqí
+          (Pacto/Testamento) para enfatizar que este acuerdo es inamovible.
+          Yeshúa, en la noche de Pésaj (Lúqas 22:20), declaró: "Esta copa es el
+          Nuevo Pacto en mi sangre", conectando directamente Su muerte con la
+          profecía de Irmeyáh. No es un pacto "nuevo" en el sentido de desechar
+          lo anterior, sino "renovado" y "fresco" (Jadasháh), devolviendo a
+          Israel a la intención original del Sinaí.
+        </div>
+      </div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Yejezqel (Ezequiel) 36:26-27</div>
+          <div class="hebrew"></div>
+          <div class="transliteration"></div>
+          <div class="translation">
+            "Os daré corazón nuevo... y pondré dentro de vosotros mi Espíritu, y
+            haré que andéis en mis estatutos..."
+          </div>
+        </div>
+        <div class="explanation">
+          Irmeyáh y Yejezqel son voces paralelas. Mientras Irmeyáh enfatiza la
+          escritura de la Torá en el corazón, Yejezqel enfatiza el cambio de
+          naturaleza (de piedra a carne). Ambos profetas apuntan a un tiempo
+          donde el conocimiento de יְהוָה no vendrá por imposición académica,
+          sino por una revelación espiritual directa provista por el Mashíaj.
+        </div>
+      </div>
+
+      <h1>5. Profecías Cumplidas en esta Porción</h1>
+      <div class="content-container">
+        <div class="prophetic-content">
+          <div class="prophetic-section">
+            <div class="prophetic-title">La Unidad de las Casas (v. 31)</div>
+            El pacto es con la "Casa de Yisra'él" y la "Casa de Yehudáh". Yeshúa
+            cumple esto al derribar la pared intermedia de separación y reunir a
+            los dispersos de las diez tribus con los de Judá en un solo cuerpo.
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">El Conocimiento Universal (v. 34)</div>
+            Aunque su cumplimiento pleno es milenario, hoy se cumple
+            parcialmente en que todo aquel que está en el Mashíaj conoce a
+            Adonai de manera personal, sin necesidad de intermediarios humanos
+            para acceder a Su presencia.
+          </div>
+          <div class="prophetic-section">
+            <div class="prophetic-title">La Remisión del Pecado</div>
+            La profecía de borrar el pecado se cumplió en el Gólgota, proveyendo
+            la base legal para que el hombre sea justificado delante de יְהוָה.
+          </div>
+        </div>
+      </div>
+
+      <h1>6. Aplicación Espiritual a la Aliyáh</h1>
+      <div class="content-container">
+        <div class="explanation">
+          La Aliyáh de este Nuevo Pacto nos llama a vivir desde adentro hacia
+          afuera:
+          <ul>
+            <li>
+              <strong>De la Letra al Espíritu:</strong> Ya no obedecemos por
+              miedo al castigo o por rito, sino porque la Torá de Yeshúa es
+              nuestro deleite. La aplicación espiritual es dejar que el Ruaj
+              HaKodesh guíe nuestras decisiones diarias basándose en la Palabra
+              escrita en nuestro interior.
+            </li>
+            <li>
+              <strong>Relación Intima:</strong> El v. 34 nos invita a "conocer"
+              (Da'at) a יְהוָה. Esto no es solo información intelectual, sino
+              una intimidad profunda. Nuestra aplicación es cultivar un tiempo a
+              solas con el Mashíaj cada día.
+            </li>
+            <li>
+              <strong>Vivir en el Perdón:</strong> Si יְהוָה no se acuerda más
+              de nuestros pecados en el Mashíaj, nosotros no debemos vivir bajo
+              condenación. Debemos caminar en la libertad de los hijos de
+              Elohím, sabiendo que el Brit Jadasháh nos ha limpiado
+              completamente.
+            </li>
+            <li>
+              <strong>Identidad como Pueblo:</strong> El pacto dice "Yo seré
+              para ellos por Elohím". Esto nos da una seguridad de pertenencia.
+              En medio de cualquier crisis, nuestra identidad está anclada en
+              que somos Su pueblo y Él es nuestro Pastor.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Mateo 26:17-19 (Preparativos del Pesaj de
+        Yeshúa).
+      </h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Mattityáhu (Mateo) 26:17</div>
+          <div class="aramaic">
+            וּבְיוֹמָא קַדְמָיָא דְּפַטִּירֵא קְרִבוּ תַּלְמִידֵא לְוָת יֵשׁוּעַ
+            וַאֲמַרוּ לֵהּ אֵיכָּא צָבֵא אַנְתּ דִּנְטַיֵּב לָךְ דְּתֶאֱכֹל
+            פִּסְחָא׃
+          </div>
+          <div class="transliteration">
+            Fonética: Uvyomá qadmáyā defattiré qrévu talmidé levát Yeshúa va'mrú
+            leh ayká tsavé ant dentáyev laj dete'jól Pisjá.
+          </div>
+          <div class="translation">
+            Traducción literal: Y en el primer día de los panes sin levadura, se
+            acercaron los talmidím a Yeshúa y le dijeron: "¿Dónde quieres que
+            preparemos para ti para que comas el Pésaj?".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Mattityáhu (Mateo) 26:18</div>
+          <div class="aramaic">
+            הוּא דֵּין אָמַר לְהוֹן זִלוּ לַמְדִינְתָּא לְוָת פְּלָן וַאֲמַרוּ
+            לֵהּ רַבַּן אָמַר זַבְנִי קְרִב לֵהּ לְוָתָךְ עָבֵד אֲנָא פִּסְחָא
+            עַם תַּלְמִידַי׃
+          </div>
+          <div class="transliteration">
+            Fonética: Hu deyn amár lehon zilú lamdínta levát pelán va'mrú leh
+            rabbán amár zavní qrev leh levátaj avéd aná Pisjá am talmidáy.
+          </div>
+          <div class="translation">
+            Traducción literal: Él, pues, les dijo: "Id a la ciudad, a tal
+            persona, y decidle: 'Nuestro Rabbán dice: Mi tiempo está cerca; en
+            tu casa haré el Pésaj con mis talmidím'".
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Mattityáhu (Mateo) 26:19</div>
+          <div class="aramaic">
+            וְתַלְמִידֵא עֲבַדוּ אֵיכַנָּא דִּפְקַד לְהוֹן יֵשׁוּעַ וְטַיֵּבוּ
+            פִּסְחָא׃
+          </div>
+          <div class="transliteration">
+            Fonética: Vetalmidé avadú aykanná difqád lehon Yeshúa vetayévu
+            Pisjá.
+          </div>
+          <div class="translation">
+            Traducción literal: Y los talmidím hicieron como Yeshúa les había
+            mandado, y prepararon el Pésaj.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Conexión con las Sagradas Escrituras</h1>
+
+      <div class="explanation">
+        Este pasaje es fundamental para entender la fidelidad de Yeshúa a las
+        instrucciones de יְהוָה dadas en la Torá. Al observar el Pésaj, Yeshúa
+        no solo cumple con el mandamiento de Shemot (Éxodo) 12, sino que
+        establece el escenario para Su propio sacrificio como el Cordero de
+        יְהוָה. La mención del "primer día de los panes sin levadura" (Yomá
+        qadmáyā defattiré) nos conecta con la purificación necesaria antes de la
+        redención. Yeshúa, al decir "mi tiempo está cerca", revela que Su
+        entrega es voluntaria y proféticamente puntual. Así como en la Aliyáh de
+        Shemot se preparó el cordero con anticipación, aquí los talmidím
+        preparan el lugar para que la Luz del Mundo celebre la libertad de
+        Israel antes de comprar esa misma libertad con Su propia vida.
+      </div>
+      <h1>1. El Pasaje Profético (Brit Hadashah)</h1>
+      <div class="verse-container">
+        <div class="verse-number">Mattityáhu 26:18 (Peshita)</div>
+        <div class="translation">
+          "...Mi tiempo está cerca; en tu casa haré el Pésaj con mis talmidím."
+        </div>
+      </div>
+
+      <h1>2. Explicación del Cumplimiento en Yeshúa</h1>
+      <div class="explanation">
+        En este pasaje, Yeshúa HaMashíaj se revela como el centro mismo del
+        Pésaj. El cumplimiento radica en que Él es el Cordero de יְהוָה que
+        estaba siendo "preparado" para el sacrificio definitivo.
+        <ul>
+          <li>
+            <strong>El Tiempo Designado:</strong> Cuando Yeshúa dice "Mi tiempo
+            (zavní) está cerca", se refiere al Kairós divino, el momento
+            profetizado desde la fundación del mundo para la redención. No es
+            una coincidencia cronológica, sino el cumplimiento del ciclo de las
+            fiestas (Moedím).
+          </li>
+          <li>
+            <strong>La Autoridad sobre el Pésaj:</strong> Yeshúa, como la Torá
+            Viviente, tiene la autoridad para ordenar la preparación del Pésaj.
+            Él no es un invitado más en la cena; Él es el anfitrión que
+            transformará los elementos del Seder (el pan y el vino) en
+            memoriales de Su propio cuerpo y sangre.
+          </li>
+        </ul>
+      </div>
+
+      <h1>3. Evidencia en el Brit Hadashah (Peshita)</h1>
+      <div class="content-container">
+        <strong>Yojanán (Juan) 13:1:</strong> "Antes de la fiesta del Pésaj,
+        sabiendo Yeshúa que su hora había llegado para que pasase de este mundo
+        al Padre..."
+        <p>
+          En la Peshita aramea, se enfatiza la consciencia mesiánica de Yeshúa
+          sobre Su misión. El pasaje de Mateo 26:17-19 muestra a los talmidím
+          actuando en obediencia bajo la instrucción del Mashíaj. Esta
+          obediencia es la que permite que se manifieste el cumplimiento de la
+          redención. La preparación del Pésaj en el aposento alto es la antesala
+          del cumplimiento de 1 Qorintiyim 5:7, donde se confirma que el Mashíaj
+          es nuestro Pésaj sacrificado.
+        </p>
+      </div>
+
+      <h1>4. Conexión con los Neviím (Profetas)</h1>
+      <div class="content-container">
+        <strong>Yisayáhu (Isaías) 53:7:</strong> "Como cordero fue llevado al
+        matadero..."<br />
+        <strong>Malají (Malaquías) 3:1:</strong> "...y vendrá súbitamente a su
+        templo el Adonái a quien vosotros buscáis..."
+        <p>
+          La conexión profética es profunda: los profetas anunciaron un
+          sacrificio que traería paz. El hecho de que Yeshúa envíe a preparar el
+          Pésaj en la ciudad de Yerushalayim conecta con la profecía de que la
+          redención debía salir de Tsiyón. El "tiempo cerca" de Yeshúa es el
+          cumplimiento de las "semanas" de Daniyel (Daniel) 9:26, donde se
+          profetizó que se quitaría la vida al Mashíaj, pero no por sí mismo.
+        </p>
+      </div>
+
+      <h1>5. Conexión con la Aliyáh (Shemot 12:1-20)</h1>
+      <div class="explanation">
+        Existe un paralelismo exacto entre la instrucción original de la Torá y
+        este evento en Mateo:
+        <ul>
+          <li>
+            <strong>La Selección del Cordero:</strong> En Shemot 12:3-6, el
+            cordero debía ser seleccionado el día diez del mes y guardado hasta
+            el catorce. En Mateo 26, Yeshúa entra en Su última semana en
+            Yerushalayim, siendo examinado y hallado sin mancha, preparándose
+            para el catorce de Nisán.
+          </li>
+          <li>
+            <strong>La Preparación (Tayévu):</strong> Los discípulos "prepararon
+            el Pésaj" (v. 19). Esto incluyó la eliminación del jametz
+            (levadura). Espiritualmente, esto representa la purificación
+            necesaria para que el Mashíaj habite en nosotros.
+          </li>
+          <li>
+            <strong>La Comunidad del Pacto:</strong> Así como en Egipto el Pésaj
+            se comía por familias, Yeshúa lo celebra con Sus talmidím,
+            estableciendo una nueva familia espiritual bajo el Nuevo Pacto (Brit
+            Jadashah).
+          </li>
+        </ul>
+      </div>
+
+      <h1>6. Profecías Cumplidas en esta Porción</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">La Fidelidad a la Torá</div>
+          Se cumple la profecía de que el Mashíaj guardaría perfectamente los
+          mandamientos (Tehilím 40:8). Yeshúa no anula el Pésaj, lo cumple y lo
+          dota de su significado máximo.
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Conocimiento Profético</div>
+          La instrucción de ir a "tal persona" (pelán) muestra que Yeshúa
+          conocía de antemano el lugar y la disposición del corazón del dueño de
+          la casa, cumpliendo la característica del profeta como Moshéh (Devarím
+          18:15).
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">El Cordero Sustituto</div>
+          Al preparar el Pésaj, Yeshúa está señalando que Él es el sustituto que
+          morirá para que la muerte "pase de largo" de Su pueblo.
+        </div>
+      </div>
+
+      <h1>7. Aplicación Espiritual</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Disponibilidad para el Mashíaj:</strong> El dueño de la casa
+            estuvo dispuesto a ceder su espacio para el Pésaj del Maestro.
+            Nuestra aplicación es: ¿Está nuestra "casa" (nuestra vida, familia,
+            recursos) disponible para que Yeshúa cumpla Su propósito en
+            nosotros?
+          </li>
+          <li>
+            <strong>Obediencia sin Cuestionar:</strong> Los talmidím hicieron
+            "como Yeshúa les había mandado". La bendición de la redención fluye
+            a través de la obediencia a las instrucciones específicas de la
+            Palabra.
+          </li>
+          <li>
+            <strong>Vivir en Tiempo de Redención:</strong> Al igual que Yeshúa
+            sabía que Su tiempo estaba cerca, nosotros debemos vivir con la
+            urgencia de que Su venida está a las puertas, preparando nuestro
+            "aposento alto" espiritual para el encuentro con el Rey.
+          </li>
+        </ul>
+      </div>
+      <h1>PUNTO 4. CONTEXTO HISTÓRICO Y CULTURAL Éxodo 12:21–28</h1>
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Contexto histórico inmediato</strong>
+          <p>
+            Este pasaje ocurre horas antes de la salida de Mitsráyim. Ya no es
+            Adonái hablando solo a Moshé, sino Moshé transmitiendo el mandato al
+            pueblo. La redención entra en su fase ejecutiva.
+          </p>
+          <ul>
+            <li>El tiempo es crítico: la noche del juicio se aproxima.</li>
+            <li>No hay margen para discusión teológica.</li>
+            <li>La obediencia determina vida o muerte.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>2. Liderazgo y estructura comunitaria</strong>
+          <p>Moshé convoca a los ancianos de Israel, estableciendo:</p>
+          <ul>
+            <li>Autoridad representativa</li>
+            <li>Transmisión ordenada del mandato</li>
+            <li>Responsabilidad comunitaria</li>
+          </ul>
+          <p>
+            Este modelo fue clave en el período del Segundo Templo y en
+            comunidades judías antiguas.
+          </p>
+        </div>
+        <div class="section-container">
+          <strong>3. Contexto cultural del rito</strong>
+          <ul>
+            <li>El sacrificio se realiza en el hogar.</li>
+            <li>
+              El hisopo se usa para aplicar la sangre:
+              <ul>
+                <li>Planta asociada con purificación</li>
+                <li>Humildad ritual frente al juicio</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>4. Dimensión pedagógica</strong>
+          <p>El mandato incluye enseñanza futura:</p>
+          <ul>
+            <li>“cuando vuestros hijos pregunten…”</li>
+            <li>La redención se convierte en memoria viva, no mito.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        PUNTO 5. ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS Éxodo 12:21–28
+      </h1>
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Comentario judío clásico</strong>
+          <ul>
+            <li>Rashí: enfatiza la urgencia; el pueblo actúa sin demora.</li>
+            <li>Ibn Ezra: el hisopo simboliza sumisión total.</li>
+            <li>Sforno: la sangre distingue obediencia de indiferencia.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>2. Comentario judío mesiánico</strong>
+          <ul>
+            <li>Moshé actúa como mediador fiel.</li>
+            <li>El pueblo responde en unidad.</li>
+            <li>El patrón se repite en la comunidad del Mashíaj.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>3. Conexiones proféticas</strong>
+          <ul>
+            <li>Isaías 52: anuncio de liberación inmediata.</li>
+            <li>Ezequiel 36: purificación con hisopo.</li>
+            <li>Zacarías 12: mirada al que fue herido.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>4. Notas lingüísticas</strong>
+          <ul>
+            <li>“Mashjú” (מִשְׁכוּ): “tomad” implica acción decisiva.</li>
+            <li>“Pésaj” vuelve a enfatizar protección activa.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 6. ANÁLISIS PROFUNDO DE LA ALIYÁH Éxodo 12:21–28</h1>
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Transición clave</strong>
+          <ul>
+            <li>De instrucción divina → obediencia humana.</li>
+            <li>La fe se convierte en acción colectiva.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>2. Prohibición de salir</strong>
+          <ul>
+            <li>Permanecer dentro es señal de confianza.</li>
+            <li>Fuera de la cobertura no hay protección.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>3. Responsabilidad intergeneracional</strong>
+          <ul>
+            <li>Los padres enseñan.</li>
+            <li>Los hijos preguntan.</li>
+            <li>La redención se perpetúa por testimonio.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>4. Respuesta del pueblo</strong>
+          <ul>
+            <li>“el pueblo se inclinó y adoró”</li>
+            <li>La adoración precede a la liberación visible.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 7. TEMA MÁS RELEVANTE DE LA ALIYÁH Éxodo 12:21–28</h1>
+      <div class="content-container">
+        <p>
+          <strong
+            >Tema central: LA OBEDIENCIA INMEDIATA COMO EXPRESIÓN DE FE</strong
+          >
+        </p>
+        <div class="section-container">
+          <strong>1. No basta conocer el mandato</strong>
+          <ul>
+            <li>Hay que ejecutarlo exactamente.</li>
+            <li>El retraso equivale a desobediencia.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>2. Dimensión comunitaria</strong>
+          <ul>
+            <li>La obediencia es colectiva.</li>
+            <li>Una casa desobediente pone en riesgo a todos.</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>3. Aplicación mesiánica</strong>
+          <ul>
+            <li>Yeshúa haMashíaj llama a obediencia activa.</li>
+            <li>La fe sin acción no preserva vida.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 8. DESCUBRIENDO AL MASHÍAJ EN ÉXODO 12:21–28</h1>
+      <div class="content-container">
+        <div class="section-container">
+          <strong>1. Moshé como figura del Mashíaj</strong>
+          <ul>
+            <li>Convoca</li>
+            <li>Instruye</li>
+            <li>Media</li>
+            <li>Conduce a obediencia salvadora</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>2. La sangre aplicada</strong>
+          <ul>
+            <li>No basta sacrificar</li>
+            <li>Hay que aplicar</li>
+            <li>Así también:</li>
+            <li>El sacrificio del Mashíaj debe recibirse</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>3. Permanecer dentro</strong>
+          <ul>
+            <li>Seguridad solo bajo la señal del pacto</li>
+            <li>En el Mashíaj hay refugio real</li>
+          </ul>
+        </div>
+        <div class="section-container">
+          <strong>4. Adoración antes de la salida</strong>
+          <ul>
+            <li>Israel adora antes de ver la libertad</li>
+            <li>El Mashíaj enseña confianza antes del cumplimiento visible</li>
+          </ul>
+        </div>
+      </div>
+      <h1>PUNTO 9. MIDRASHIM, TARGUMIM Y TEXTOS FUENTES Éxodo 12:21–28</h1>
+
+      <div class="content-container">
+        <strong>1. Midrashim relevantes</strong><br />
+        <strong>Shemot Rabbáh 17</strong>
+        <ul>
+          <li>
+            Enseña que Moshé convoca a los ancianos porque la redención requiere
+            liderazgo responsable, no masas desorganizadas.
+          </li>
+          <li>
+            El acto de inclinarse del pueblo indica aceptación plena del yugo
+            del Reino de Adonái antes de la liberación visible.
+          </li>
+        </ul>
+        <strong>Midrash Tanjumá, Bo</strong>
+        <p>El hisopo es resaltado como símbolo de humildad:</p>
+        <ul>
+          <li>Adonái exalta al que se humilla ante Su palabra.</li>
+          <li>
+            La prohibición de salir de la casa se interpreta como protección
+            espiritual absoluta dentro del pacto.
+          </li>
+        </ul>
+        <strong>Mekhilta deRabí Ishmael</strong>
+        <ul>
+          <li>
+            Subraya que la sangre debía ser aplicada conscientemente, no por
+            costumbre.
+          </li>
+          <li>
+            Enseña que la obediencia precisa distingue entre salvación y juicio.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>2. Targumim</strong><br />
+        <strong>Targum Onkelos</strong>
+        <ul>
+          <li>
+            Traduce la instrucción de Moshé con un énfasis legal: el mandato es
+            vinculante para toda la comunidad.
+          </li>
+          <li>
+            La palabra “Pésaj” es entendida como acción deliberada de
+            preservación divina.
+          </li>
+        </ul>
+        <strong>Targum Yonatán</strong>
+        <p>Amplía la instrucción hacia la transmisión futura:</p>
+        <ul>
+          <li>
+            los hijos preguntan porque la redención debe ser explicada, no
+            asumida.
+          </li>
+          <li>
+            Presenta la adoración del pueblo como respuesta anticipada a la
+            liberación.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>3. Textos del período del Segundo Templo</strong>
+        <ul>
+          <li>
+            Escritos judíos reflejan este pasaje como base de la liturgia
+            doméstica de Pésaj.
+          </li>
+          <li>
+            Qumrán entendía la permanencia dentro de la casa como permanecer en
+            la comunidad de la luz.
+          </li>
+          <li>
+            La obediencia inmediata es vista como señal del remanente fiel.
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 10. MANDAMIENTOS, PRINCIPIOS Y VALORES Éxodo 12:21–28</h1>
+
+      <div class="content-container">
+        <strong>1. Mandamiento de obediencia inmediata</strong>
+        <ul>
+          <li>El pueblo no debate ni retrasa la instrucción.</li>
+          <li>La obediencia precede a la experiencia de libertad.</li>
+        </ul>
+        <strong>2. Principio de cobertura pactual</strong>
+        <ul>
+          <li>
+            Permanecer dentro de la casa es permanecer bajo la señal del pacto.
+          </li>
+          <li>Salir equivale a exponerse al juicio.</li>
+        </ul>
+        <strong>3. Principio de transmisión generacional</strong>
+        <ul>
+          <li>El relato de la redención es obligación permanente.</li>
+          <li>La fe no se hereda sin enseñanza.</li>
+        </ul>
+        <strong>Aplicación en el Mashíaj</strong>
+        <ul>
+          <li>Yeshúa haMashíaj llama a obediencia concreta.</li>
+          <li>Permanecer en Él es permanecer en vida.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        PUNTO 11. PREGUNTAS DE REFLEXIÓN CON RESPUESTAS EN EL MASHÍAJ Éxodo
+        12:21–28
+      </h1>
+
+      <div class="content-container">
+        <p>
+          <strong>1. ¿Por qué Moshé convoca a los ancianos primero?</strong>
+        </p>
+        <div class="explanation">
+          Respuesta: Porque la redención se administra con responsabilidad. El
+          Mashíaj establece líderes que guían al pueblo en obediencia.
+        </div>
+
+        <p><strong>2. ¿Qué enseña el uso del hisopo?</strong></p>
+        <div class="explanation">
+          Respuesta: Que la redención opera en humildad. El Mashíaj se revela a
+          los que se rinden, no a los soberbios.
+        </div>
+
+        <p><strong>3. ¿Por qué no se debía salir de la casa?</strong></p>
+        <div class="explanation">
+          Respuesta: Porque fuera del pacto no hay protección. En el Mashíaj hay
+          refugio seguro.
+        </div>
+
+        <p><strong>4. ¿Por qué los hijos deben preguntar?</strong></p>
+        <div class="explanation">
+          Respuesta: Porque la fe se afirma mediante memoria viva. El Mashíaj se
+          revela por testimonio continuo.
+        </div>
+
+        <p><strong>5. ¿Qué revela la adoración antes de la salida?</strong></p>
+        <div class="explanation">
+          Respuesta: Que la fe confía antes de ver. El Mashíaj honra a quienes
+          creen antes del cumplimiento visible.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 12. RESUMEN DE LA ALIYÁH Éxodo 12:21–28</h1>
+
+      <div class="content-container">
+        <ul>
+          <li>Moshé convoca a los ancianos de Israel.</li>
+          <li>Instruye sobre el sacrificio del Cordero de Pésaj.</li>
+          <li>Ordena aplicar la sangre con hisopo.</li>
+          <li>Prohíbe salir de la casa hasta la mañana.</li>
+          <li>Establece la enseñanza a las futuras generaciones.</li>
+          <li>El pueblo responde con obediencia inmediata.</li>
+          <li>Israel se inclina y adora a Adonái.</li>
+        </ul>
+        <div class="conclusion">
+          <strong>Aplicación en el Mashíaj:</strong><br />
+          La redención se activa cuando la palabra es obedecida sin demora. En
+          Yeshúa haMashíaj, la fe obediente produce vida.
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>PUNTO 13. TEFILÁH DE LA ALIYÁH Éxodo 12:21–28</h1>
+
+      <div class="content-container">
+        <div class="prayer-text">
+          Adonái יהוה,<br />
+          Elohím Ejad,<br />
+          gracias por llamarnos a una obediencia viva<br />
+          que protege, salva y redime.<br />
+          Danos un corazón humilde como el hisopo,<br />
+          una fe que permanece bajo Tu señal<br />
+          y una voz fiel para enseñar a nuestros hijos<br />
+          las maravillas de Tu redención.<br />
+          Declaramos que en Yeshúa haMashíaj<br />
+          permanecemos seguros dentro del pacto,<br />
+          cubiertos por la sangre<br />
+          y guiados hacia la libertad verdadera.
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya6.html">Continuar con la Aliyá 6</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
