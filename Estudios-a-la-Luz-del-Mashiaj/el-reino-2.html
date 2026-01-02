@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>El Reino del Mashíaj en las Escrituras</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>El Reino del Mashíaj en las Escrituras</h1>
+
+<div class="content-container">
+    <p>Desde B'reishit (Génesis) hasta Daniel (Daniel) y Yeshayáhu (Isaías), las Escrituras revelan una visión unificada: el Reino eterno de Elohím será restaurado en la tierra a través de un descendiente de David, un rey justo, que reinará con equidad y traerá paz a Israel y a las naciones. Este Reino no es solo político, sino espiritual, eterno, justo y universal, cumpliendo el anhelo de restauración total para la humanidad y la creación. Ahora, te presento una selección de las profecías mesiánicas más importantes sobre el Reino, siguiendo una metodología temática y profunda.</p>
+</div>
+
+<h2>👑 Profecías Mesiánicas del Reino – Parte 1</h2>
+
+<h3>👑 Profecía del Reino #1 – Bereshit / Génesis 49:10</h3>
+
+<div class="verse-container">
+    <div class="verse-number">Bereshit 49:10</div>
+    <div class="hebrew">לֹא-יָסוּר שֵׁבֶט מִיהוּדָה, וּמְחֹקֵק מִבֵּין רַגְלָיו, עַד כִּי-יָבֹא שִׁילֹה, וְלוֹ יִקְּהַת עַמִּים.</div>
+    <div class="transliteration">Lo-yasúr shévet miYhudáh, uMejoqeq miBeyn ragláv, ‘ad ki-yavó Shilóh, velo yiqqehát ‘ammím.</div>
+    <div class="translation">No se apartará el cetro de Judá, ni el legislador de entre sus pies, hasta que venga Shiloh; y a él se congregarán los pueblos.</div>
+</div>
+
+<div class="explanation">
+    <strong>1. Contexto y Significado Profético</strong>
+    <p>Yaaqov (Jacob), antes de morir, profetiza sobre cada una de las tribus. En el caso de Yehudáh (Judá), declara que el "shévet" (cetro o bastón real) no se apartará de él, y que un gobernante nacerá de su linaje hasta que venga “Shilóh”, entendido por muchos sabios como un título mesiánico.</p>
+    <ul>
+        <li>“Shilóh” = "Aquel a quien pertenece" o "Aquel de quien es el derecho", interpretación conectada con Yejezqel (Ezequiel) 21:27.</li>
+        <li>Este pasaje establece la base del Reino Mesiánico davídico.</li>
+    </ul>
+    <strong>2. Cumplimiento en Yeshúa haMashíaj</strong>
+    <p>Según Luqá (Lucas) 3:23-38, Yeshúa es descendiente directo de Yehudáh y de David. El Reino prometido está en sus manos. Yeshúa proclamó: "Maljút Elohím qerováh" ("El Reino de Elohím se ha acercado") — Marqos 1:15. Él es el Shilóh profetizado, el heredero legítimo del trono, a quien "obedecerán los pueblos".</p>
+    <strong>3. Comentarios Rabínicos</strong>
+    <ul>
+        <li>Tárgum Onquelos: Traduce “Shilóh” como “el Mesías Rey”.</li>
+        <li>Midrash HaGadol: Interpreta el pasaje como una clara referencia a un redentor mesiánico.</li>
+        <li>El Zohar (1:25b) también vincula “Shilóh” con el Rey Mesías.</li>
+    </ul>
+</div>
+
+<h3>👑 Profecía del Reino #2 – 2 Shemuel / Samuel 7:12–13</h3>
+
+<div class="verse-container">
+    <div class="verse-number">2 Shemuel 7:12–13</div>
+    <div class="hebrew">וַהֲקִימֹתִי אֶת-זַרְעֲךָ אַחֲרֶיךָ... וְכֹנַנְתִּי אֶת-כִּסֵּא מַמְלַכְתּוֹ עַד-עוֹלָם.</div>
+    <div class="translation">...y levantaré después de ti a uno de tu linaje... y yo afirmaré para siempre el trono de su reino.</div>
+</div>
+
+<div class="explanation">
+    <strong>1. Contexto y Significado Profético</strong>
+    <p>Aquí se establece el famoso Pacto Davídico. Adonái promete que un descendiente de David se sentará en el trono “para siempre”. Esto no puede cumplirse en ningún monarca humano finito, sino en un Rey eterno.</p>
+    <strong>2. Cumplimiento en Yeshúa haMashíaj</strong>
+    <p>Como señala Matityahu (Mateo) 1, Yeshúa es ben-David. Él vino no solo a reinar en Yerushaláyim física, sino a instaurar un Reino eterno, de justicia y paz. En Hitgalut (Apocalipsis) 11:15 se proclama: "Ha llegado el Reino de nuestro Adon MarYah y de su Mashíaj, y él reinará por los siglos de los siglos".</p>
+</div>
+
+<h3>👑 Profecía del Reino #3 – Yeshayahu / Isaías 9:6-7</h3>
+
+<div class="verse-container">
+    <div class="verse-number">Yeshayahu 9:6-7</div>
+    <div class="hebrew">כִּי-יֶלֶד יֻלַּד-לָנוּ בֵּן נִתַּן-לָנוּ... לְמַרְבֵּה הַמִּשְׂרָה וּלְשָׁלוֹם אֵין-קֵץ עַל-כִּסֵּא דָוִד.</div>
+    <div class="translation">Porque un niño nos es nacido, hijo nos es dado... Lo dilatado de su imperio y la paz no tendrán límite, sobre el trono de David.</div>
+</div>
+
+<div class="explanation">
+    <strong>1. Contexto y Significado Profético</strong>
+    <p>Este texto profetiza el nacimiento de un niño, un hijo que será llamado: “Peleh Yo’etz, El Gibbor, Avi ‘Ad, Sar Shalom” (Maravilloso Consejero, Poderoso, Padre Eterno, Príncipe de Paz). Se le promete un gobierno eterno sobre el trono de David, establecido con justicia.</p>
+    <strong>2. Cumplimiento en Yeshúa haMashíaj</strong>
+    <p>Yeshúa nace como ese niño prometido, su Reino no es de este mundo (Yojanán 18:36), pero su autoridad espiritual reina en los corazones, y su regreso establecerá el Reino literal.</p>
+</div>
+
+<h3>👑 Profecía del Reino #4 – Daniyyel / Daniel 2:44</h3>
+
+<div class="verse-container">
+    <div class="verse-number">Daniyyel 2:44</div>
+    <div class="aramaic">וּבְיוֹמֵיהוֹן דִּי מַלְכַיָּא אִנּוּן יְקִים אֱלָהּ שְׁמַיָּא מַלְכוּ דִּי לְעָלְמִין לָא תִתְחַבַּל.</div>
+    <div class="transliteration">“U’biméi malkhaya illén yeqím Elahh shemayya malkhú di le‘almín la titchabbal...”</div>
+    <div class="translation">Y en los días de estos reyes el Dios del cielo levantará un reino que no será jamás destruido...</div>
+</div>
+
+<div class="explanation">
+    <strong>1. Contexto Profético</strong>
+    <p>Daniel interpreta el sueño de Nabucodonosor. En los días de los reinos humanos, el Elohím de los cielos levantará un Reino que jamás será destruido.</p>
+    <strong>2. Cumplimiento en Yeshúa haMashíaj</strong>
+    <p>Ese Reino ya fue iniciado con la venida de Yeshúa, como declaró: "El Reino de Elohím está entre vosotros" — Luqá 17:21. Pero también se cumplirá en su regreso, cuando destrone a los poderes de este mundo.</p>
+</div>
+
+<div class="prophetic-content">
+    <div class="prophetic-section">
+        <div class="prophetic-title">RESPUESTAS PROFUNDAS A LAS 5 PREGUNTAS SOBRE EL REINO DEL MASHÍAJ</div>
+        <p><strong>1. ¿Cómo se conecta el Reino de David con el Reino del Cielo proclamado por Yeshúa?</strong></p>
+        <p>El Reino de David fue una manifestación terrenal y política del reinado de Elohím. Yeshúa haMashíaj es ben-David. Su Reino trasciende lo terrenal: Maljút haShamáyim. Es la consumación celestial del Reino de David.</p>
+        <p><strong>2. ¿Qué significa realmente que el Reino “no tendrá fin”? ¿Es literal o espiritual?</strong></p>
+        <p>Tiene dos dimensiones: Literal (trono en Tsiyón) y Espiritual (justicia y verdad eterna). No tiene fin porque el Rey no muere.</p>
+        <p><strong>3. ¿Por qué Yeshúa enseñó tanto sobre el Reino en parábolas?</strong></p>
+        <p>Las parábolas (mashalím) ocultan verdades a los arrogantes y las revelan a los humildes. Exigen emunah y teshuváh.</p>
+        <p><strong>4. ¿Qué relación tiene “Shilóh” con otros títulos mesiánicos como “Ben David”?</strong></p>
+        <p>Shilóh es un nombre secreto de Mashíaj Ben David. Ambos apuntan a un descendiente real con autoridad eterna.</p>
+        <p><strong>5. ¿Qué visión del Reino se presenta en los escritos de Qumrán y en el Zohar?</strong></p>
+        <p>En Qumrán se esperaba un Reino escatológico y santo. El Zohar describe al Mashíaj como el "pastor fiel" que restaura el equilibrio entre el cielo y la tierra.</p>
+    </div>
+</div>
+
+<div class="explanation">
+    <h3>Conclusión: Un Reino de Eternidad, Justicia y Restauración</h3>
+    <p>Todas las fuentes convergen en la expectativa de un Reino eterno, espiritual y real, que se manifiesta en el Mashíaj rey, sacerdote, redentor y juez justo. Ese Rey es Yeshúa haMashíaj.</p>
+    <div class="prayer-text">
+        Avínu Malkénu, Rey eterno, abre nuestros ojos para ver tu Reino presente entre nosotros y para anhelar con pasión su manifestación plena. Que nuestros corazones estén sometidos a la autoridad de Melej haMashíaj, y que nuestras vidas reflejen su justicia, paz y compasión.
+    </div>
+    <div class="prayer-conclusion">— En el nombre de Yeshúa haMashíaj, Amén.</div>
+</div>
+
+<h2>👑 Profecías Mesiánicas del Reino – Parte 2</h2>
+
+<h3>👑 Profecía del Reino #5 – Tehilím / Salmo 2:6-9</h3>
+
+<div class="verse-container">
+    <div class="verse-number">Tehilím 2:6-9</div>
+    <div class="hebrew">וַאֲנִי נָסַכְתִּי מַלְכִּי, עַל-צִיּוֹן הַר-קָדְשִׁי... בְּנִי אַתָּה, אֲנִי הַיּוֹם יְלִדְתִּיךָ.</div>
+    <div class="translation">Pero yo he puesto mi rey sobre Sion, mi santo monte... Mi hijo eres tú; yo te engendré hoy.</div>
+</div>
+
+<div class="explanation">
+    <strong>1. Contexto y Significado Profético</strong>
+    <p>Describe la rebelión de las naciones contra el Ungido de Adonái (Meshijó). Este es el anuncio real del Reino mesiánico universal sobre todas las naciones del mundo.</p>
+    <strong>2. Cumplimiento en Yeshúa haMashíaj</strong>
+    <p>Citado en Hechos 13:33 y Hebreos 1:5. Yeshúa es el Rey entronizado. "Nashqú bar" (Besen al Hijo) es un llamado a rendirse a Su autoridad.</p>
+</div>
+
+<h3>👑 Profecía del Reino #6 – Tehilím / Salmo 110:1-4</h3>
+
+<div class="verse-container">
+    <div class="verse-number">Tehilím 110:1-4</div>
+    <div class="hebrew">נְאֻם יְהוָה לַאדֹנִי, שֵׁב לִימִינִי... אַתָּה-כֹהֵן לְעוֹלָם, עַל-דִּבְרָתִי מַלְכִּי-צֶדֶק.</div>
+    <div class="translation">Jehová dijo a mi Señor: Siéntate a mi diestra... Tú eres sacerdote para siempre según el orden de Melquisedec.</div>
+</div>
+
+<div class="explanation">
+    <strong>1. Contexto y Significado Profético</strong>
+    <p>Un diálogo celestial donde Adonái ordena a “Adoní” sentarse a Su diestra. Declara que este Rey será Sacerdote para siempre según el orden de Malkitzédeq.</p>
+    <strong>2. Cumplimiento en Yeshúa haMashíaj</strong>
+    <p>Yeshúa cita este Salmo en Matityahu 22:44. Aquí se fusiona el Reino y el Sacerdocio en una sola figura: Yeshúa, el Rey-Pastor-Sacerdote eterno.</p>
+</div>
+
+<div class="prophetic-content">
+    <div class="prophetic-section">
+        <div class="prophetic-title">RESPUESTAS A LAS 5 PREGUNTAS SOBRE SALMOS Y DANIEL</div>
+        <p><strong>1. ¿Por qué el Salmo 2 es tan central?</strong> Es el manifiesto real mesiánico que presenta la autoridad universal del Mashíaj.</p>
+        <p><strong>2. ¿Qué significa sentarse “a la diestra”?</strong> Posición de poder y autoridad suprema, compartiendo el gobierno divino.</p>
+        <p><strong>3. ¿Cómo puede alguien ser Rey y Kohen al mismo tiempo?</strong> Siguiendo el orden de Malkitzédeq, que une ambos roles para restaurar la humanidad.</p>
+        <p><strong>4. ¿Por qué en el Salmo se llama al Rey “Elohím”?</strong> Implica que el Mashíaj participa en la naturaleza divina.</p>
+        <p><strong>5. ¿Qué relación hay entre el “Hijo del Hombre” de Daniel 7 y la autoridad del Reino?</strong> Revela a Yeshúa como Rey entronizado que recibe dominio eterno del cielo.</p>
+    </div>
+</div>
+
+<h2>👑 Profecías Mesiánicas del Reino – Parte 3</h2>
+
+<h3>👑 Profecía del Reino #9 – Yeshayáhu / Isaías 11:1-10</h3>
+
+<div class="verse-container">
+    <div class="verse-number">Yeshayáhu 11:1-2</div>
+    <div class="hebrew">וְיָצָא חֹטֶר מִגֵּזַע יִשָׁי, וְנֵצֶר מִשָּׁרָשָׁיו יִפְרֶה. וְנָחָה עָלָיו רוּחַ יְהוָה...</div>
+    <div class="translation">Saldrá una vara del tronco de Isaí, y un vástago retoñará de sus raíces. Y reposará sobre él el Espíritu de Jehová...</div>
+</div>
+
+<div class="explanation">
+    <strong>1. Contexto y Significado Profético</strong>
+    <p>Describe un “renuevo” (nétzer) del tronco de Yishai. Profetiza un Reino de justicia, equidad y paz sobrenatural donde el conocimiento de Adonái llenará la tierra.</p>
+    <strong>2. Cumplimiento en Yeshúa haMashíaj</strong>
+    <p>Yeshúa es el “Nétzer”, el Nazareno. Su Reino restaura la creación y defiende a los pobres.</p>
+</div>
+
+<div class="prophetic-content">
+    <div class="prophetic-section">
+        <div class="prophetic-title">RESPUESTAS A PREGUNTAS SOBRE ISAÍAS, EZEQUIEL Y ZACARÍAS</div>
+        <p><strong>1. ¿Implicaciones del comienzo humilde?</strong> El Reino nace de la humildad (nétzer) y se extiende desde el corazón hacia afuera.</p>
+        <p><strong>2. ¿Restauración de las dos casas de Israel?</strong> La unión de Yehudáh y Efráyim bajo un solo pastor, Yeshúa.</p>
+        <p><strong>3. ¿Por qué Sukot en el Reino?</strong> Representa la morada de Elohím con su pueblo y la cosecha final de las naciones.</p>
+        <p><strong>4. ¿Relación con el Templo?</strong> El Santuario será el centro visible de la presencia divina en el Reino eterno.</p>
+        <p><strong>5. ¿Unión del Reino espiritual y físico?</strong> Comienza en el corazón y se manifestará físicamente en el regreso de Yeshúa a Yerushaláyim.</p>
+    </div>
+</div>
+
+<div class="explanation">
+    <div class="prayer-text">
+        Avínu Malkeinu, te damos gracias por el Nétzer, el retoño de Yishai, por el Pastor que guía a tus ovejas, y por el Rey que vendrá sobre el Har haZetim. Haznos partícipes de tu Reino hoy.
+    </div>
+    <div class="prayer-conclusion">— Amén.
+        <p class="prayer-conclusion">
+            <a href="https://ia-interactiva.vercel.app/">Yeshúa la Toraviviente | todos los recursos kedoshim para tu crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj</a>
+        </p>
+        <footer>
+                <p><a href="https://bibliatorahviviente.github.io/recursos/">+Recursos del Ministerio Judío Mesiánico de
+                        Biblia
+                        Toráh Viviente Para Maestros, Traductores y Estudiantes:
+                        https://bibliatorahviviente.github.io/recursos/</a>
+                </p>
+                </div>
+            </footer>
+    </main>
+
+    <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+    <script src="../index.js"></script>
+
+</body>
+
+</html>
