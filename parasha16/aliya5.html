@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 15:27-16:10</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        16. Parashá Beshalaj (בשלח) Aliyáh 5: (Éxodo 15:27-16:10) Viaje al
+        desierto de Sin y la provisión de maná.
+        <p>
+          Haftaráh: Isaías 63:7-64:12 (Recuerdo de las misericordias de Elohím).
+        </p>
+
+        <p>
+          Brit Hadasháh: Juan 6:30-35 (Yeshúa como el verdadero pan del cielo).
+        </p>
+      </h1>
+      <h1>Punto 1. Éxodo 15:27-16:10</h1>
+
+      <h1>Parte 1: El Oasis de Elim (Shemot 15:27)</h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 15:27</div>
+        <div class="hebrew">
+          וַיָּבֹאוּ אֵילִמָה וְשָׁם שְׁתֵּים עֶשְׂרֵה עֵינֹת מַיִם וְשִׁבְעִים
+          תְּמָרִים וַיַּחֲנוּ־שָׁם עַל־הַמָּיִם
+        </div>
+        <div class="transliteration">
+          Fonética: Vayavo-u Elimah vesham sheteym esrey eynot mayim veshiv-im
+          temarim vayajanu-sham al-hamayim.
+        </div>
+        <div class="translation">
+          Traducción: Y llegaron a Elim, donde había doce fuentes de aguas y
+          setenta palmeras; y acamparon allí junto a las aguas. 🌴
+        </div>
+      </div>
+
+      <h1>Parte 2: El Desierto de Sin y la Murmuración (Shemot 16:1-3)</h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:1</div>
+        <div class="hebrew">
+          וַיִּסְעוּ מֵאֵילִם וַיָּבֹאוּ כָּל־עֲדַת בְּנֵי־יִשְׂרָאֵל
+          אֶל־מִדְבַּר־סִין אֲשֶׁר בֵּין־אֵילִם וּבֵין סִינָי בַּחֲמִשָּׁה
+          עָשָׂר יוֹם לַחֹדֶשׁ הַשֵּׁנִי לְצֵאתָם מֵאֶרֶץ מִצְרָיִם
+        </div>
+        <div class="transliteration">
+          Fonética: Vayis-u me'Elim vayavo-u jol-adat beney-Yisrael
+          el-Midbar-Sin asher beyn-Elim uveyn Sinay bajamishah asar yom lajodesh
+          hasheni letzetam me'eretz Mitzrayim.
+        </div>
+        <div class="translation">
+          Traducción: Y partieron de Elim, y toda la congregación de los hijos
+          de Israel llegó al desierto de Sin, que está entre Elim y Sinaí, a los
+          quince días del segundo mes después de su salida de la tierra de
+          Egipto.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:2</div>
+        <div class="hebrew">
+          וַיִּלִּינוּ כָּל־עֲדַת בְּנֵי־יִשְׂרָאֵל עַל־מֹשֶׁה וְעַל־אַהֲרֹן
+          בַּמִּדְבָּר
+        </div>
+        <div class="transliteration">
+          Fonética: Vayillinu jol-adat beney-Yisrael al-Mosheh veal-Aharon
+          bamidbar.
+        </div>
+        <div class="translation">
+          Traducción: Y toda la congregación de los hijos de Israel murmuró
+          contra Mosheh y contra Aarón en el desierto.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:3</div>
+        <div class="hebrew">
+          וַיֹּאמְרוּ אֲלֵיהֶם בְּנֵי יִשְׂרָאֵל מִי־יִתֵּן מוּתֵנוּ
+          בְיַד־יְהוָה בְּאֶרֶץ מִצְרַיִם בְּשִׁבְתֵּנוּ עַל־סִיר הַבָּשָׂר
+          בְּאָכְלֵנוּ לֶחֶם לָשֹׂבַע כִּי־הוֹצֵאתֶם אֹתָנוּ אֶל־הַמִּדְבָּר
+          הַזֶּה לְהָמִית אֶת־כָּל־הַקָּהָל הַזֶּה בָּרָעָב
+        </div>
+        <div class="transliteration">
+          Fonética: Vayomru aleyhem beney Yisrael mi-yiten mutenu veyad-יְהוָה
+          be'eretz Mitzrayim beshivtenu al-sir habasar be'ojlenu lejem lasova
+          ki-hotzetem otanu el-hamidbar hazeh lehamit et-jol-hajahal hazeh
+          bara'av.
+        </div>
+        <div class="translation">
+          Traducción: Y les decían los hijos de Israel: ¡Ojalá hubiéramos muerto
+          por mano de יְהוָה en la tierra de Egipto, cuando nos sentábamos a las
+          ollas de carne, cuando comíamos pan hasta saciarnos; pues nos habéis
+          sacado a este desierto para mantener de hambre a toda esta multitud!
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:4</div>
+        <div class="hebrew">
+          וַיֹּאמֶר יְהוָה אֶל־מֹשֶׁה הִנְנִי מַמְטיר לָכֶם לֶחֶם
+          מִן־הַשָּׁמָיִם וְיָצָא הָעָם וְלָקְטוּ דְּבַר־יוֹם בְּיוֹמוֹ לְמַעַן
+          אֲנַסֶּנּוּ הֲיֵלֵךְ בְּתוֹרָתִי אִם־לֹא
+        </div>
+        <div class="transliteration">
+          Fonética: Vayomer יְהוָה el-Mosheh hinni mamtir lajem lejem
+          min-hashamayim veyatza ha'am velaqtu devar-yom beyomo lema'an
+          anassennu hayelej beTorati im-lo.
+        </div>
+        <div class="translation">
+          Traducción: Entonces יְהוָה dijo a Mosheh: He aquí yo os haré llover
+          pan del cielo; y el pueblo saldrá, y recogerá diariamente la porción
+          de un día, para que yo lo pruebe si anda en Mi Torá, o no. 🍞
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:5</div>
+        <div class="hebrew">
+          וְהָיָה בַּיּוֹם הַשִּׁשִּׁי וְהֵכִינוּ אֵת אֲשֶׁר־יָבִיאוּ וְהָיָה
+          מִשְׁנֶה עַל אֲשֶׁר יִלְקְטוּ יוֹם יוֹם
+        </div>
+        <div class="transliteration">
+          Fonética: Vehayah bayom hashishi vehejinu et asher-yaviu vehayah
+          mishneh al asher yilqetu yom yom.
+        </div>
+        <div class="translation">
+          Traducción: Mas en el sexto día prepararán lo que hubieren
+          introducido, y será el doble de lo que solían recoger cada día.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:6</div>
+        <div class="hebrew">
+          וַיֹּאמֶר מֹשֶׁה וְאַהֲרֹן אֶל־כָּל־בְּנֵי יִשְׂרָאֵל עֶרֶב
+          וִידַעְתֶּם כִּי יְהוָה הוֹצִיא אֶתְכֶם מֵאֶרֶץ מִצְרָיִם
+        </div>
+        <div class="transliteration">
+          Fonética: Vayomer Mosheh veAharon el-kol-beney Yisrael erev vida'tem
+          ki יְהוָה hotzi etjem me'eretz Mitzrayim.
+        </div>
+        <div class="translation">
+          Traducción: Y dijeron Mosheh y Aarón a todos los hijos de Israel: A la
+          tarde sabréis que יְהוָה os ha sacado de la tierra de Egipto.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:7</div>
+        <div class="hebrew">
+          וּבֹקֶר וּרְאִיתֶם אֶת־כְּבוֹד יְהוָה בְּשָׁמְעוֹ אֶת־תְּלֻנֹּתֵיכֶם
+          עַל־יְהוָה וְנַחְנוּ מָה כִּי תַלִּינוּ עָלֵינוּ
+        </div>
+        <div class="transliteration">
+          Fonética: Uvoqer ure'item et-kevod יְהוָה besham-o et-telunnoteyjem
+          al-יְהוָה venajnu mah ki tallinu aleynu.
+        </div>
+        <div class="translation">
+          Traducción: Y a la mañana veréis la gloria de יְהוָה, porque Él ha
+          oído vuestras murmuraciones contra יְהוָה; porque nosotros, ¿qué
+          somos, para que vosotros murmuréis contra nosotros?
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:8</div>
+        <div class="hebrew">
+          וַיֹּאמֶר מֹשֶׁה בְּתֵת יְהוָה לָכֶם בָּעֶרֶב בָּשָׂר לֶאֱכֹל וְלֶחֶם
+          בַּבֹּקֶר לִשְׂבֹּעַ בִּשְׁמֹעַ יְהוָה אֶת־תְּלֻנֹּתֵיכֶם
+          אֲשֶׁר־אַתֶּם מַלִּינִים עָלָיו וְנַחְנוּ מָה לֹא־עָלֵינוּ
+          תְלֻנֹּתֵיכֶם כִּי עַל־יְהוָה
+        </div>
+        <div class="transliteration">
+          Fonética: Vayomer Mosheh betet יְהוָה lajem ba'erev basar le'ejol
+          velejem baboqer lisbo'a bishmo'a יְהוָה et-telunnoteyjem asher-atem
+          mallinim alav venajnu mah lo-aleynu telunnoteyjem ki al-יְהוָה.
+        </div>
+        <div class="translation">
+          Traducción: Y dijo Mosheh: יְהוָה os dará carne para comer a la tarde,
+          y pan a la mañana para saciaros; porque יְהוָה ha oído vuestras
+          murmuraciones con que habéis murmurado contra Él; porque nosotros,
+          ¿qué somos? Vuestras murmuraciones no son contra nosotros, sino contra
+          יְהוָה.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:9</div>
+        <div class="hebrew">
+          וַיֹּאמֶר מֹשֶׁה אֶל־אַהֲרֹן אֱמֹר אֶל־כָּל־עָדַת בְּנֵי יִשְׂרָאֵל
+          קִרְבוּ לִפְנֵי יְהוָה כִּי שָׁמַע אֵת תְּלֻנֹּתֵיכֶם
+        </div>
+        <div class="transliteration">
+          Fonética: Vayomer Mosheh el-Aharon emor el-kol-adat beney Yisrael
+          qirvu lifney יְהוָה ki shama et telunnoteyjem.
+        </div>
+        <div class="translation">
+          Traducción: Y dijo Mosheh a Aarón: Di a toda la congregación de los
+          hijos de Israel: Acercaos a la presencia de יְהוָה, porque Él ha oído
+          vuestras murmuraciones.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Éxodo 16:10</div>
+        <div class="hebrew">
+          וַיְהִי כְּדַבֵּר אַהֲרֹן אֶל־כָּל־עֲדַת בְּנֵי־יִשְׂרָאֵל וַיִּפְנוּ
+          אֶל־הַמִּדְבָּר וְהִנֵּה כְּבוֹד יְהוָה נִרְאָה בֶּעָנָן
+        </div>
+        <div class="transliteration">
+          Fonética: Vayhi kedabber Aharon el-kol-adat beney-Yisrael vayifnu
+          el-hamidbar vehinneh kevod יְהוָה nir-ah be'anan.
+        </div>
+        <div class="translation">
+          Traducción: Y ocurrió que mientras hablaba Aarón a toda la
+          congregación de los hijos de Israel, miraron hacia el desierto, y he
+          aquí la gloria de יְהוָה apareció en la nube. ☁️
+        </div>
+      </div>
+
+      <h1>El Contraste del Corazón 🌴 vs 🏜️</h1>
+
+      <div class="explanation">
+        Fíjate en el número de fuentes (12) y palmeras (70) en Elim. Estos
+        números son simbólicos en Israel (las tribus y las naciones). Después de
+        este descanso perfecto, el pueblo entra en el desierto de Sin y surge la
+        queja.
+      </div>
+      <h1>1. Cumplimiento profético en el Mashíaj 🕊️</h1>
+      <div class="content-container">
+        <p>
+          En el versículo 4, יְהוָה dice: "He aquí Yo os haré llover pan del
+          cielo".
+        </p>
+        <ul>
+          <li>
+            <strong>El Pan Verdadero:</strong> Este "pan del cielo" (el Maná) es
+            la sombra profética más clara de Yeshúa. Así como el Maná descendió
+            para dar vida física a Israel en un lugar de muerte (el desierto),
+            Yeshúa descendió del cielo para dar vida eterna al mundo.
+          </li>
+          <li>
+            <strong>La Provisión Diaria:</strong> El hecho de que debían
+            recogerlo diariamente subraya que la relación con el Mashíaj no es
+            un evento de una sola vez, sino un sustento continuo. 🍞
+          </li>
+        </ul>
+      </div>
+
+      <h1>2. Conexión con los profetas 🎺</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Ieshayáh (Isaías) 48:21:</strong> El profeta recuerda cómo
+            Adonai proveyó en el desierto: "No tuvieron sed cuando los llevó por
+            los desiertos; les hizo brotar agua de la roca". Los profetas usan
+            estos eventos para asegurar a Israel que Adonai siempre restaurará y
+            sostendrá a Su pueblo, sin importar cuán "seco" sea el camino.
+          </li>
+          <li>
+            <strong>NehemYah (Nehemías) 9:15:</strong> En una oración de
+            arrepentimiento nacional, se menciona el pan del cielo como una
+            prueba de la bondad de Elohím frente a la rebelión del pueblo.
+          </li>
+        </ul>
+      </div>
+
+      <h1>3. Conexión con el Brit Hadashá 📖</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Juan 6:32-35:</strong> Yeshúa mismo explica esta conexión
+            directamente: "No fue Moshé quien os dio el pan del cielo, sino mi
+            Padre... Yo soy el pan de vida".
+          </li>
+          <li>
+            <strong>Apocalipsis 2:17:</strong> Menciona el "Maná escondido" como
+            una recompensa para el que vence, vinculando la provisión del
+            desierto con la gloria eterna en el Reino.
+          </li>
+        </ul>
+      </div>
+
+      <h1>4. Profecías cumplidas ✅</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>La Manifestación de la Gloria (v. 10):</strong> "Y he aquí
+            la gloria de יְהוָה apareció en la nube". Se cumplió la promesa de
+            que Adonai no abandonaría a Israel a pesar de sus quejas. Su
+            presencia se hizo visible para confirmar que Él es quien los guía.
+            ☁️
+          </li>
+          <li>
+            <strong>El Ciclo del Shabat:</strong> La instrucción del Maná
+            introdujo la observancia práctica del Shabat antes de llegar al
+            Sinaí, cumpliendo el propósito de apartar a Israel como un pueblo
+            santo.
+          </li>
+        </ul>
+      </div>
+
+      <h1>5. Aplicación espiritual 🌱</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>De la Queja a la Confianza:</strong> Israel miró hacia atrás
+            a las "ollas de carne" de Egipto (v. 3), prefiriendo la esclavitud
+            con comida que la libertad con fe. Nuestra aplicación es aprender a
+            no dejar que nuestras necesidades físicas nublen nuestra visión de
+            la liberación que ya hemos recibido.
+          </li>
+          <li>
+            <strong>La Prueba de la Toráh (v. 4):</strong> Adonai dice que el
+            Maná es para "probar si anda en Mi Toráh o no". La provisión no es
+            solo para saciarnos, sino para ver si confiamos lo suficiente como
+            para seguir Sus instrucciones (como no recoger de más).
+          </li>
+        </ul>
+      </div>
+      <h1>
+        Punto 2. Haftaráh: Isaías 63:7-64:12 (Recuerdo de las misericordias de
+        Elohím).
+      </h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:7</div>
+          <div class="hebrew">
+            חַסְדֵי יְהוָה אַזְכִּיר תְּהִלֹּת יְהוָה כְּעַל כֹּל
+            אֲשֶׁר-גְּמָלָנוּ יְהוָה וְרַב-טוּב לְבֵית יִשְׂרָאֵל
+            אֲשֶׁר-גְּמָלָם כְּרַחֲמָיו וּכְרֹב חֲסָדָיו
+          </div>
+          <div class="transliteration">
+            Jasdey יְהוָה azkir tehilot יְהוָה ke’al kol asher-gemalanu יְהוָה
+            verav-tuv leveyth Yisrael asher-gemalam kerajamav ujerov jasadav.
+          </div>
+          <div class="translation">
+            Las misericordias de יְהוָה recordaré, las alabanzas de יְהוָה,
+            conforme a todo lo que nos ha dado יְהוָה, y la mucha bondad hacia
+            la casa de Israel, que les otorgó según Sus compasiones y según la
+            multitud de Sus misericordias. 💖
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:8</div>
+          <div class="hebrew">
+            וַיֹּאמֶר אַךְ-עַMִּי הֵMָּה בָּנִים לֹא יְשַׁקֵּרוּ וַיְהִי לָהֶם
+            לְמוֹשִׁיעַ
+          </div>
+          <div class="transliteration">
+            Vayomer aj-ammi hemmah banim lo yeshaqqeru vayhi lahem leMoshia.
+          </div>
+          <div class="translation">
+            Pues dijo: Ciertamente ellos son Mi pueblo, hijos que no mentirán; y
+            Él fue para ellos por Salvador. 🛡️
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:9</div>
+          <div class="hebrew">
+            בְּכָל-צָרָתָם לוֹ צָר וּמַלְאַךְ פָּנָיו הוֹשִׁיעָם בְּאַהֲבָתוֹ
+            וּבְחֶמְלָתוֹ הוּא גְאָלָם וַיְנַטְּלֵם וַיְנַשְּׂאֵם כָּל-יְמֵי
+            עוֹלָם
+          </div>
+          <div class="transliteration">
+            Bejol-tzaratam lo tzar umal’aj panav hoshi’am be’ahavato uvejemlato
+            hu ge’alam vayenattalem vayenas’em kol-yemey olam.
+          </div>
+          <div class="translation">
+            En toda angustia de ellos Él fue angustiado, y el Ángel de Su
+            Presencia los salvó; en Su amor y en Su clemencia Él los redimió, y
+            los trajo y los levantó todos los días de la antigüedad.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:10</div>
+          <div class="hebrew">
+            וְהֵמָּה מָרוּ וְעִצְּבוּ אֶת-רוּחַ קָדְשׁוֹ וַיֵּהָפֵךְ לָהֶם
+            לְאוֹיֵב הוּא נִלְחַם-בָּם
+          </div>
+          <div class="transliteration">
+            Vehemmah maru ve’itzebu et-Ruaj Qodsho vayyehafek lahem le’oyev hu
+            niljam-bam.
+          </div>
+          <div class="translation">
+            Pero ellos fueron rebeldes y afligieron a Su Espíritu de Santidad
+            (Ruaj HaKodesh); por lo cual Él se les volvió enemigo y Él mismo
+            peleó contra ellos.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:11</div>
+          <div class="hebrew">
+            וַיִּזְכֹּר יְמֵי-עוֹלָם מֹשֶׁה עַמּוֹ אַיֵּה הַמַּעֲלֵם מִיָּם אֵת
+            רֹעֵי צֹאנוֹ אַיֵּה הַשָּׂם בְּקִרְבּוֹ אֶת-רוּחַ קָדְשׁוֹ
+          </div>
+          <div class="transliteration">
+            Vayizkor yemey-olam Mosheh ammo ayyeh hamma’alem miyyam et ro’ey
+            tzonu ayyeh hassam beqirbo et-Ruaj Qodsho.
+          </div>
+          <div class="translation">
+            Entonces su pueblo recordó los días antiguos, de Moshé: ¿Dónde está
+            el que los hizo subir del mar con los pastores de su rebaño? ¿Dónde
+            está el que puso en medio de él Su Espíritu de Santidad (Ruaj
+            HaKodesh)? 🌊
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:12</div>
+          <div class="hebrew">
+            מוֹלִיךְ לִימִין מֹשֶׁה זְרוֹעַ תִּפְאַרְתּוֹ בּוֹקֵעַ מַיִם
+            מִפְּנֵיהֶם לַעֲשׂוֹת לוֹ שֵׁם עוֹלָם
+          </div>
+          <div class="transliteration">
+            Molik limin Mosheh zero’a tif’arto boqe’a mayim mippenehem la’asot
+            lo shem olam.
+          </div>
+          <div class="translation">
+            ¿El que guió a la diestra de Moshé con el brazo de Su gloria; el que
+            dividió las aguas delante de ellos, haciéndose un Nombre eterno?
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:13</div>
+          <div class="hebrew">
+            מוֹלִיכָם בַּתְּהֹמוֹת כַּסּוּס בַּמִּדְבָּר לֹא יִכָּשֵׁלוּ
+          </div>
+          <div class="transliteration">
+            Molikam battehomot kassus bammidbar lo yikkashelu.
+          </div>
+          <div class="translation">
+            ¿El que los condujo por los abismos, como un caballo por el
+            desierto, para que no tropezaran? 🐎
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:14</div>
+          <div class="hebrew">
+            כַּבְּהֵמָה בַּבִּקְעָה תֵרֵד רוּחַ יְהוָה תְּנִיחֶנּוּ כֵּן
+            נִהַגְתָּ עַמְּךָ לַעֲשׂוֹת לְךָ שֵׁם תִּפְאָרֶת
+          </div>
+          <div class="transliteration">
+            Kabbehemah babbiq’ah tered Ruaj יְהוָה tenijennu ken nihagta ammeka
+            la’asot leka shem tif’aret.
+          </div>
+          <div class="translation">
+            Como el ganado que desciende al valle, el Espíritu de יְהוָה les dio
+            reposo; así guiaste a Tu pueblo, para hacerte un Nombre glorioso.
+          </div>
+        </div>
+      </div>
+
+      <h1>Parte 3: Súplica por la Intervención Divina (Isaías 63:15-19)</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:15</div>
+          <div class="hebrew">
+            הַבֵּט מִשָּׁמַיִם וּרְאֵה מִזְּבֻל קָדְשְׁךָ וְתִפְאַרְתֶּךָ אַיֵּה
+            קִנְאָתְךָ וּגְבוּרֹתֶךָ הֲמוֹן מֵעֶיךָ וְרַחֲמֵיךָ אֵלַי
+            הִתְאַפָּקוּ
+          </div>
+          <div class="transliteration">
+            Habbet mishshamayim ure’eh mizzebul qodsheka vetif’arteka ayyeh
+            qin’ateka ugeburoteka hamon me’eyka verajameyka elay hit’appaqu.
+          </div>
+          <div class="translation">
+            Mira desde el cielo, y contempla desde la morada de Tu santidad y de
+            Tu gloria: ¿Dónde están Tu celo y Tus proezas? La conmoción de Tus
+            entrañas y Tus compasiones para conmigo se han restringido. ☁️
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:16</div>
+          <div class="hebrew">
+            כִּי-אַתָּה אָבִינוּ כִּי אַבְרָהָם לֹא יְדָעָנוּ וְיִשְׂרָאֵל לֹא
+            יַכִּירָנוּ אַתָּה יְהוָה אָבִינוּ גֹּאֲלֵנוּ מֵעוֹלָם שְׁמֶךָ
+          </div>
+          <div class="transliteration">
+            Ki-attah Avinu ki Avraham lo yeda’anu veYisrael lo yakkiranu attah
+            יְהוָה Avinu Go’alenu me’olam shemeka.
+          </div>
+          <div class="translation">
+            Pues Tú eres nuestro Padre, aunque Avraham no nos conozca, e Israel
+            (Ya'akov) no nos reconozca; Tú, oh יְהוָה, eres nuestro Padre;
+            nuestro Redentor perpetuo es Tu Nombre.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:17</div>
+          <div class="hebrew">
+            לָמָּה תַתְעֵנוּ יְהוָה מִדְּרָכֶיךָ תַּקְשִׁיחַ לִבֵּנוּ
+            מִיִּרְאָתֶךָ שׁוּב לְמַעַן עֲבָדֶיךָ שִׁבְטֵי נַחֲלָתֶךָ
+          </div>
+          <div class="transliteration">
+            Lammah tat’enu יְהוָה middarakeyka taqshiaj libbenu miyyir’ateka
+            shuv lema’an abadeyka shivtey najalateka.
+          </div>
+          <div class="translation">
+            ¿Por qué, oh יְהוָה, nos has hecho errar de Tus caminos, y
+            endureciste nuestro corazón a Tu temor? Vuélvete por amor de Tus
+            siervos, por las tribus de Tu heredad.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:18</div>
+          <div class="hebrew">
+            לַמִּצְעָר יָרְשׁוּ עַם-קָדְשֶׁךָ צָרֵינוּ בּוֹסְסוּ מִקְדָּשֶׁךָ
+          </div>
+          <div class="transliteration">
+            Lammitz’ar yareshu am-qodsheka tzareynu bosesu miqdasheka.
+          </div>
+          <div class="translation">
+            Por poco tiempo poseyó el lugar Tu pueblo santo; nuestros enemigos
+            han pisoteado Tu Santuario. 🏛️
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 63:19</div>
+          <div class="hebrew">
+            הָיִינוּ מֵעוֹלָם לֹא-מָשַׁלְתָּ בָּם לֹא-נִקְרָא שִׁמְךָ עֲלֵיהֶם
+          </div>
+          <div class="transliteration">
+            Hayinu me’olam lo-mashalta bam lo-niqra shemeka aleyhem.
+          </div>
+          <div class="translation">
+            Hemos venido a ser como aquellos sobre quienes nunca señoreaste,
+            sobre quienes nunca fue invocado Tu Nombre.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:1</div>
+          <div class="hebrew">
+            לוּא-קָרַעְתָּ שָׁמַיִם יָרַדְתָּ מִפָּנֶיךָ הָרִים נָזֹלּוּ
+          </div>
+          <div class="transliteration">
+            Lu-qarata shamayim yaradta mippaneyka harim nazolu.
+          </div>
+          <div class="translation">
+            ¡Oh, si rompieras los cielos y descendieras, y ante Tu presencia se
+            escurrieran los montes! ☁️
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:2</div>
+          <div class="hebrew">
+            כִּקְדֹחַ אֵשׁ הֲמָסִים מַיִם תִּבְעֶה-אֵשׁ לְהוֹדִיעַ שִׁמְךָ
+            לְצָרֶיךָ מִפָּנֶיךָ גּוֹיִם יִרְגָּזוּ
+          </div>
+          <div class="transliteration">
+            Kiqdoaj esh hamasim mayim tiveh-esh lehodi’a shimka letzareyka
+            mippaneyka goyim yirggazu.
+          </div>
+          <div class="translation">
+            Como fuego que abrasa los matorrales, fuego que hace hervir las
+            aguas, para hacer conocido Tu Nombre a Tus enemigos, y que las
+            naciones tiemblen delante de Tu presencia. 🔥
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:3</div>
+          <div class="hebrew">
+            בַּעֲשׂוֹתְךָ נוֹרָאוֹת לֹא נְקַוֶּה יָרַדְתָּ מִפָּנֶיךָ הָרִים
+            נָזֹלּוּ
+          </div>
+          <div class="transliteration">
+            Ba’asotka nora’ot lo neqavveh yaradta mippaneyka harim nazolu.
+          </div>
+          <div class="translation">
+            Cuando hiciste cosas terribles cuales nunca esperábamos,
+            descendiste; fluyeron los montes delante de Tu presencia.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:4</div>
+          <div class="hebrew">
+            וּמֵעוֹלָם לֹא-שָׁמְעוּ לֹא הֶאֱזִינוּ עַיִן לֹא-רָאֲתָה אֱלֹהִים
+            זוּלָתְךָ יַעֲשֶׂה לִמְחַכֵּה-לוֹ
+          </div>
+          <div class="transliteration">
+            Ume’olam lo-shamu lo he’ezinu ayin lo-ra’atah Elohim zulateka
+            ya’aseh limjakkeh-lo.
+          </div>
+          <div class="translation">
+            Ni nunca oyeron, ni oídos percibieron, ni ojo vio a un Elohím fuera
+            de Ti, que hiciese algo por aquel que en Él espera. ✨
+          </div>
+        </div>
+      </div>
+
+      <h1>Parte 5: Confesión y el Alfarero (Isaías 64:5-12)</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:5</div>
+          <div class="hebrew">
+            פָּגַעְתָּ אֶת-שָׂשׂ וְעֹשֵׂה צֶדֶק בִּדְרָכֶיךָ יִזְכְּרוּךָ
+            הֵן-אַתָּה קָצַפְתָּ וַנֶּחֱטָא בָּהֶם עוֹלָם וְנִוָּשֵׁעַ
+          </div>
+          <div class="transliteration">
+            Paga’ta et-sas ve’oseh tzedeq bidrakeyka yizkeruka hen-attah
+            qatzafta vannejeta bahem olam venivvashe’a.
+          </div>
+          <div class="translation">
+            Saliste al encuentro del que con alegría hacía justicia, de los que
+            se acordaban de Ti en Tus caminos; he aquí, Tú te enojaste porque
+            pecamos; en esos caminos hemos permanecido largo tiempo, ¿y seremos
+            salvos?
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:6</div>
+          <div class="hebrew">
+            וַנְּהִי כַטָּמֵא כֻּלָּנוּ וּכְבֶגֶד עִדִּים כָּל-צִדְקֹתֵינוּ
+            וַנָּבֶל כֶּעָלֶה כֻּלָּנוּ וַעֲוֹנֵנוּ כָּרוּחַ יִשָּׂאֻנוּ
+          </div>
+          <div class="transliteration">
+            Vannehi jattame kullanu ujveged iddim kol-tzidqoteynu vannavel
+            ke’aleh kullanu va’avonenu karuaj yissa’unu.
+          </div>
+          <div class="translation">
+            Todos nosotros somos como suciedad, y todas nuestras justicias como
+            trapo de inmundicia; y caímos todos nosotros como la hoja, y
+            nuestras maldades nos llevaron como viento. 🍂
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:8</div>
+          <div class="hebrew">
+            וְעַתָּה יְהוָה אָבִינוּ אָתָּה אֲנַחְנוּ הַחֹמֶר וְאַתָּה יֹצְרֵנוּ
+            וּמַעֲשֵׂה יָדְךָ כֻּלָּנוּ
+          </div>
+          <div class="transliteration">
+            Ve’attah יְהוָה Avinu attah anajnu jajomer ve’attah yotzerenu
+            uma’aseh yadeka kullanu.
+          </div>
+          <div class="translation">
+            Ahora pues, oh יְהוָה, Tú eres nuestro Padre; nosotros somos el
+            barro, y Tú el que nos formaste (nuestro Alfarero); así que obra de
+            Tus manos somos todos nosotros. 🏺
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Isaías 64:12</div>
+          <div class="hebrew">
+            הַעַל-אֵלֶּה תִתְאַפַּק יְהוָה תֶּחֱשֶׁה וּתְעַנֵּנוּ עַד-מְאֹד
+          </div>
+          <div class="transliteration">
+            Ha’al-elleh tit’appaq יְהוָה tejesheh ute’annenu ad-me’od.
+          </div>
+          <div class="translation">
+            ¿Te contenerás, oh יְהוָה, ante estas cosas? ¿Callarás y nos
+            afligirás sobremanera?
+          </div>
+        </div>
+      </div>
+      <h1>1. Cumplimiento profético en el Mashíaj 🏹</h1>
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">63:9</div>
+          <div class="hebrew"></div>
+          <div class="transliteration"></div>
+          <div class="translation">
+            "En toda angustia de ellos Él fue angustiado, y el Ángel de Su faz
+            los salvó".
+          </div>
+        </div>
+        <p>
+          <strong>La Empatía del Mashíaj:</strong> Esta es una de las
+          descripciones más conmovedoras de la naturaleza de Yeshúa. El Mashíaj
+          no es un espectador lejano; Él se identifica tanto con Su pueblo que
+          Su propia "faz" o "presencia" es la que trae la salvación.
+        </p>
+        <p>
+          <strong>El Redentor:</strong> El texto dice que "en Su amor y en Su
+          clemencia Él los redimió". Yeshúa cumple esto al cargar con nuestras
+          transgresiones para rescatarnos de la "esclavitud" espiritual.
+        </p>
+      </div>
+
+      <h1>2. Conexión con los profetas 🎺</h1>
+      <div class="content-container">
+        <p>
+          Ieshayáh utiliza un lenguaje que resuena con otros profetas que
+          clamaron por la intervención divina:
+        </p>
+        <ul>
+          <li>
+            <strong>Mijáh (Miqueas) 7:18-19:</strong> Al igual que Ieshayáh,
+            Mijáh exalta la misericordia de Adonai que olvida la rebelión del
+            remanente de Su heredad.
+          </li>
+          <li>
+            <strong>Habacuc 3:</strong> La descripción de Adonai "rompiendo los
+            cielos" (64:1) conecta con la visión de Habacuc de la gloria de
+            Elohím cubriendo los cielos y la tierra temblando ante Su paso.
+          </li>
+        </ul>
+      </div>
+
+      <h1>3. Conexión con el Brit Hadasháh 📖</h1>
+      <div class="content-container">
+        <p>
+          <strong>Romanos 3:10-12 y 1 Corintios 2:9:</strong> Shaúl (Pablo) cita
+          indirectamente o alude a los conceptos de Isaías 64:4 ("Ni el oído
+          percibió, ni ojo vio...") y 64:6 ("Todos nosotros somos como
+          suciedad...").
+        </p>
+        <p>
+          Estos pasajes en el Brit Hadasháh confirman que la justicia propia del
+          hombre es insuficiente y que solo a través de la revelación del
+          Espíritu podemos comprender lo que Adonai ha preparado para los que le
+          aman.
+        </p>
+      </div>
+
+      <h1>4. Profecías cumplidas ✅</h1>
+      <div class="content-container">
+        <p>
+          <strong>La Preservación del Remanente:</strong> A pesar de la
+          confesión de pecado en el capítulo 64, la existencia misma de Israel
+          hoy es cumplimiento de que Adonai es nuestro "Padre" y "Alfarero"
+          (64:8). Él no ha desechado permanentemente la obra de Sus manos.
+        </p>
+        <p>
+          <strong>El Salvador enviado:</strong> Se cumplió la promesa de un
+          Salvador (Moshía) que no solo sacaría a Israel de una nación física,
+          sino que los levantaría de su condición espiritual.
+        </p>
+      </div>
+
+      <h1>5. Aplicación espiritual 🌱</h1>
+      <div class="content-container">
+        <p>
+          <strong>El Alfarero y el Barro:</strong> La imagen de Isaías 64:8 es
+          vital: "Nosotros somos el barro, y Tú nuestro alfarero". La aplicación
+          espiritual es la rendición. Debemos permitir que las manos de Adonai
+          den forma a nuestra vida, incluso cuando el proceso de "moldeo" sea
+          doloroso o implique "romper" nuestras estructuras viejas. 🏺
+        </p>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Juan 6:30-35 (Yeshúa como el verdadero pan del
+        cielo).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 30</div>
+        <div class="aramaic">
+          אָמְרִין לֵהּ מָנָא אָתָא עָבֵד אַנְתְּ דְּנֶחְזֵא וּנְהַיְמֶן בָּךְ
+          מָנָא סָעַר אַנְתְּ.
+        </div>
+        <div class="transliteration">
+          Amrín leh: maná atá 'avéd ant dénejzé vnéhaymén bak? Maná sá'ar ant?
+        </div>
+        <div class="translation">
+          Le dijeron: "¿Qué señal haces Tú para que veamos y creamos en Ti? ¿Qué
+          obra realizas?".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 31</div>
+        <div class="aramaic">
+          אֲבָהָתַן מַנָּא אֲכַלוּ בְּמַדְבְּרָא אֵיכַנָּא דִּכְתִיב דְּלַחְמָא
+          מִן שְׁמַיָּא יַה݇ב לְהוֹן לְמֶאכַל.
+        </div>
+        <div class="transliteration">
+          Avahátan manná akálu bemadvrá aykanná dejtív: delajmá min shmayyá yahb
+          lehón lemejkál.
+        </div>
+        <div class="translation">
+          "Nuestros padres comieron el maná en el desierto, como está escrito:
+          'Pan del cielo les dio a comer'".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 32</div>
+        <div class="aramaic">
+          אָמַר לְהוֹן יֵשׁוּעַ אַמִּין אַמִּין אָמַר אֲנָא לְכוֹן דְּלָא הֲוָא
+          מֹשֶׁה יַה݇ב לְכוֹן לַחְמָא min שְׁמַיָּא אֶלָּא אָבִי יָהֵב לְכוֹן
+          לַחְמָא דְּקוּשְׁתָּא מִן שְׁמַיָּא.
+        </div>
+        <div class="transliteration">
+          Amár lehón Yeshúa: amín amín amár aná lejón, delá hvá Moshé yahb lejón
+          lajmá min shmayyá, ellá Aví yahév lejón lajmá dequshtá min shmayyá.
+        </div>
+        <div class="translation">
+          Yeshúa les dijo: "Amén, amén os digo: No fue Moshé quien os dio el pan
+          del cielo, sino mi Padre os da el pan de la verdad del cielo".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 33</div>
+        <div class="aramaic">
+          לַחְמֵהּ גֵּיר דַּאלָהָא אִיתָוהִי הוּא דְּנָחֵת מִן שְׁמַיָּא וְיָהֵב
+          חַיֵּא לְעָלְמָא.
+        </div>
+        <div class="transliteration">
+          Lajméh gueyr d'Alahá itáuhy hu denajét min shmayyá vyahév jayyé
+          le'almá.
+        </div>
+        <div class="translation">
+          "Porque el pan de Elohím es Aquel que desciende del cielo y da vida al
+          mundo".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 34</div>
+        <div class="aramaic">
+          אָמְרִין לֵהּ מָרַן בְּכָל זְבַן הַב לַן לַחְמָא הָנָא.
+        </div>
+        <div class="transliteration">
+          Amrín leh: Marán, bejól zván hav lan lajmá haná.
+        </div>
+        <div class="translation">
+          Le dijeron: "Nuestro Adón, danos siempre este pan".
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 35</div>
+        <div class="aramaic">
+          אָמַר לְהוֹן יֵשׁוּעַ אֶנָא אֲנָא לַחְמָא דְּחַיֵּא מַן דְּאָתֵא
+          לְוָתִי לָא נִכְפַּן וּמַן דִּמְהַיְמֶן בִּי לָא נִצְהֵא לְעָלַם.
+        </div>
+        <div class="transliteration">
+          Amár lehón Yeshúa: Ená aná lajmá dejayyé; man de-até lvatí la nijpán,
+          vman dimhaymén bi la nitshé le'alám.
+        </div>
+        <div class="translation">
+          Yeshúa les dijo: "Yo soy el pan de vida; el que viene a mí no tendrá
+          hambre, y el que cree en mí no tendrá sed jamás".
+        </div>
+      </div>
+      <h1>1. Comentario Mesiánico en el Mashíaj 🕊️</h1>
+
+      <div class="content-container">
+        <p>
+          En este diálogo, la multitud pide una señal similar a la del Maná en
+          el desierto. Yeshúa responde desplazando la atención de un milagro
+          físico pasado a una realidad espiritual presente: Él mismo.
+        </p>
+        <ul>
+          <li>
+            <strong>El Maná como Sombra:</strong> El Maná era una provisión
+            temporal para un hambre física. Yeshúa se presenta como el "Pan de
+            Vida" (Lajmá dejayyé), lo cual indica que Él es la sustancia eterna
+            que el Maná solo prefiguraba.
+          </li>
+          <li>
+            <strong>Origen Divino:</strong> Al decir que el Padre da el "Pan de
+            la Verdad" del cielo, Yeshúa afirma su origen celestial y su misión
+            como el emisario directo de Elohím para la redención de Israel.
+          </li>
+        </ul>
+      </div>
+
+      <h1>2. Profecías Cumplidas ✅</h1>
+
+      <div class="content-container">
+        <p>
+          Este pasaje es el cumplimiento de la expectativa de un "Nuevo Éxodo":
+        </p>
+        <ul>
+          <li>
+            <strong>El Profeta como Moisés:</strong> Según Deuteronomio 18:15,
+            se esperaba un profeta que, como Moisés, traería provisión. Al
+            multiplicar los panes (contexto previo a Juan 6:30) y luego
+            explicarse como el Pan, Yeshúa cumple la función del Redentor que
+            sustenta al pueblo.
+          </li>
+          <li>
+            <strong>Saciando el Hambre Espiritual:</strong> Se conecta con
+            Isaías 55:1-2, donde se invita a los sedientos y hambrientos a venir
+            por comida que realmente sacia. Yeshúa proclama en el verso 35 que
+            en Él esta invitación se hace realidad.
+          </li>
+        </ul>
+      </div>
+
+      <h1>3. Aplicación Espiritual 🌱</h1>
+
+      <div class="content-container">
+        <p>La enseñanza central aquí es la dependencia total:</p>
+        <ul>
+          <li>
+            <strong>Venir y Creer:</strong> Yeshúa establece dos condiciones:
+            "el que viene a mí" y "el que cree en mí". No es un consumo físico,
+            sino una unión espiritual de confianza y cercanía constante.
+          </li>
+          <li>
+            <strong>Satisfechos en Él:</strong> En un mundo que busca saciarse
+            con logros, posesiones o ritos, este pasaje nos llama a encontrar
+            nuestra satisfacción plena en la persona del Mashíaj.
+          </li>
+        </ul>
+      </div>
+      <h1>🔹 PUNTO 4</h1>
+      <div class="content-container">
+        <h2>CONTEXTO HISTÓRICO Y CULTURAL</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <strong>1. Elim: oasis y pedagogía divina</strong>
+        <p>Elim aparece como un oasis perfecto:</p>
+        <ul>
+          <li>doce fuentes de agua,</li>
+          <li>setenta palmeras.</li>
+        </ul>
+        <p>En la cultura semítica antigua:</p>
+        <ul>
+          <li>doce = estructura tribal,</li>
+          <li>setenta = totalidad de liderazgo.</li>
+        </ul>
+        <p>Elim simboliza:</p>
+        <ul>
+          <li>provisión completa antes de la prueba.</li>
+        </ul>
+        <p>Históricamente, no es el destino, sino una pausa pedagógica.</p>
+        <strong>2. El desierto de Sin y la economía de subsistencia</strong>
+        <p>El desierto de Sin representa:</p>
+        <ul>
+          <li>ausencia de recursos,</li>
+          <li>ruptura total con el sistema económico de Mitsráyim.</li>
+        </ul>
+        <p>Israel debe aprender:</p>
+        <ul>
+          <li>a no depender de graneros,</li>
+          <li>sino de la provisión diaria de Adonái יהוה.</li>
+        </ul>
+        <p>Esto rompe la mentalidad esclava basada en raciones.</p>
+        <strong>3. Murmuración como fenómeno sociocultural</strong>
+        <p>Las quejas del pueblo no son rebeldía organizada, sino:</p>
+        <ul>
+          <li>ansiedad colectiva,</li>
+          <li>miedo a la escasez.</li>
+        </ul>
+        <p>
+          En sociedades liberadas recientemente, la inseguridad alimentaria
+          produce:
+        </p>
+        <ul>
+          <li>idealización del pasado opresivo.</li>
+        </ul>
+        <strong>4. Gloria visible y liderazgo</strong>
+        <p>
+          Éxodo 16:10 describe la gloria de Adonái יהוה manifestándose ante el
+          pueblo.
+        </p>
+        <p>En el mundo antiguo:</p>
+        <ul>
+          <li>la manifestación visible legitimaba liderazgo,</li>
+          <li>confirmaba que Moshéh y Aharón hablaban por mandato divino.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 5</h1>
+      <div class="content-container">
+        <h2>ESTUDIO, COMENTARIOS Y CONEXIONES PROFÉTICAS</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <strong>1. Comentario textual clave</strong>
+        <p>“Toda la congregación murmuró”</p>
+        <p>Los comentaristas señalan:</p>
+        <ul>
+          <li>unanimidad en la queja,</li>
+          <li>pero no en la fe.</li>
+        </ul>
+        <p>Esto resalta la paciencia divina.</p>
+        <p>“Pan del cielo”</p>
+        <p>El lenguaje no es metafórico:</p>
+        <ul>
+          <li>es provisión sobrenatural,</li>
+          <li>diaria,</li>
+          <li>suficiente.</li>
+        </ul>
+        <strong>2. Comentarios rabínicos</strong>
+        <p>Rashi afirma:</p>
+        <ul>
+          <li>“El pueblo no confiaba en el mañana”.</li>
+        </ul>
+        <p>Ibn Ezra observa:</p>
+        <ul>
+          <li>la prueba no era hambre, sino dependencia.</li>
+        </ul>
+        <strong>3. Conexiones proféticas</strong>
+        <p>Los Profetas interpretan el maná como:</p>
+        <ul>
+          <li>señal de cuidado paternal,</li>
+          <li>modelo de provisión futura.</li>
+        </ul>
+        <strong>4. Conexión con el Brit Hadasháh</strong>
+        <p>Yeshúa haMashíaj declara:</p>
+        <ul>
+          <li>“Yo soy el pan que descendió del cielo”.</li>
+        </ul>
+        <p>No como repetición del maná,</p>
+        <ul>
+          <li>sino como su cumplimiento eterno.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 6</h1>
+      <div class="content-container">
+        <h2>ANÁLISIS PROFUNDO DE LA ALIYÁH</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <strong>1. Análisis estructural</strong>
+        <ul>
+          <li>Abundancia en Elim (15:27)</li>
+          <li>Murmuración en Sin (16:1–3)</li>
+          <li>Promesa del maná (16:4–5)</li>
+          <li>Revelación de la gloria divina (16:6–10)</li>
+        </ul>
+        <p>La provisión precede a la obediencia.</p>
+        <strong>2. Análisis teológico</strong>
+        <p>Este texto enseña que:</p>
+        <ul>
+          <li>Adonái יהוה prueba sin abandonar,</li>
+          <li>disciplina sin destruir.</li>
+        </ul>
+        <strong>3. Análisis mesiánico</strong>
+        <p>Yeshúa:</p>
+        <ul>
+          <li>alimenta multitudes,</li>
+          <li>enseña dependencia diaria,</li>
+          <li>se presenta como sustento eterno.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 7</h1>
+      <div class="content-container">
+        <h2>TEMA MÁS RELEVANTE DE LA ALIYÁH</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <div class="explanation">
+          <p class="highlight">📌 TEMA CENTRAL</p>
+          <p>“La provisión divina forma confianza diaria”</p>
+        </div>
+        <strong>Importancia en la Toráh</strong>
+        <p>La Toráh enseña que:</p>
+        <ul>
+          <li>la libertad requiere dependencia correcta,</li>
+          <li>no autonomía absoluta.</li>
+        </ul>
+        <strong>Conexión con Yeshúa haMashíaj</strong>
+        <p>El Mashíaj no solo salva:</p>
+        <ul>
+          <li>sostiene,</li>
+          <li>alimenta,</li>
+          <li>acompaña cada día.</li>
+        </ul>
+        <strong>Conexión con los Moedim</strong>
+        <p>Este pasaje se conecta con:</p>
+        <ul>
+          <li>el caminar post-Pésaj,</li>
+          <li>la preparación hacia Shavuot.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 8</h1>
+      <div class="content-container">
+        <h2>DESCUBRIENDO AL MASHÍAJ EN LA ALIYÁH</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <div class="prophetic-content">
+          <div class="prophetic-title">1. Tipologías mesiánicas</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Elemento</th>
+                <th>Revelación mesiánica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Elim</td>
+                <td>Descanso en el Redentor</td>
+              </tr>
+              <tr>
+                <td>Desierto</td>
+                <td>Dependencia</td>
+              </tr>
+              <tr>
+                <td>Maná</td>
+                <td>Sustento celestial</td>
+              </tr>
+              <tr>
+                <td>Gloria visible</td>
+                <td>Presencia del Mashíaj</td>
+              </tr>
+              <tr>
+                <td>Murmuración</td>
+                <td>Necesidad de fe</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prophetic-content">
+          <div class="prophetic-title">2. Patrones redentores</div>
+          <ul>
+            <li>Escasez → provisión</li>
+            <li>Queja → revelación</li>
+            <li>Hambre → pan del cielo</li>
+          </ul>
+        </div>
+        <div class="prophetic-content">
+          <div class="prophetic-title">
+            3. Revelación de la identidad divina
+          </div>
+          <p>Adonái יהוה se revela como:</p>
+          <ul>
+            <li>Proveedor,</li>
+            <li>Padre paciente,</li>
+            <li>Sustentador diario.</li>
+          </ul>
+          <p>
+            En el testimonio arameo, MarYah es quien alimenta a Su pueblo, y ese
+            mismo Nombre es revelado en Yeshúa haMashíaj.
+          </p>
+          <p>No hay división:</p>
+          <ul>
+            <li>Ejad.</li>
+          </ul>
+        </div>
+        <div class="explanation">
+          <div class="prophetic-title">4. Reflexión mesiánica final</div>
+          <p>
+            El Mashíaj no solo redime del pasado, no solo sostiene el presente y
+            asegura el mañana.
+          </p>
+          <p>La fe madura se alimenta cada día del Pan verdadero.</p>
+        </div>
+      </div>
+      <h1>🔹 PUNTO 9</h1>
+      <div class="content-container">
+        <h2>MIDRASHIM, TARGUMIM Y TEXTOS FUENTE</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Midrashim clásicos</div>
+          <strong>🔸 Mejilta deRabí Ishmael – Beshalaj</strong>
+          <p>
+            La Mejilta explica que Elim no fue solo descanso físico, sino
+            enseñanza espiritual.
+          </p>
+          <ul>
+            <li>
+              Las doce fuentes corresponden a las tribus, y las setenta palmeras
+              a los ancianos de Israel.
+            </li>
+          </ul>
+          <p>El Midrash enseña:</p>
+          <div class="scripture">
+            “El pueblo fue fortalecido primero, para luego ser probado”.
+          </div>
+          <p>La provisión antecede a la prueba.</p>
+          <strong>🔸 Shemot Rabbah 25:1–3</strong>
+          <p>
+            Shemot Rabbah afirma que la murmuración en el desierto de Sin
+            reveló:
+          </p>
+          <ul>
+            <li>un corazón aún atado a Mitsráyim,</li>
+            <li>una memoria selectiva del pasado.</li>
+          </ul>
+          <p>
+            El Midrash señala que el maná no fue solo alimento, sino disciplina
+            de confianza diaria.
+          </p>
+          <strong>🔸 Midrash Tanjuma</strong>
+          <p>
+            Tanjuma conecta el pan del cielo con la Toráh misma, afirmando que:
+          </p>
+          <div class="scripture">
+            “Así como el maná descendía cada día, la instrucción divina sostiene
+            al alma diariamente”.
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Targumim arameos</div>
+          <strong>🔸 Targum Onkelos</strong>
+          <p>Onkelos traduce “haré llover pan” enfatizando:</p>
+          <ul>
+            <li>acción directa de Adonái יהוה,</li>
+            <li>provisión literal y diaria.</li>
+          </ul>
+          <p>El texto elimina cualquier posibilidad de intermediarios.</p>
+          <strong>🔸 Targum Pseudo-Jonatán</strong>
+          <p>Amplía afirmando que:</p>
+          <ul>
+            <li>el pan descendía preparado según la necesidad de cada uno,</li>
+            <li>
+              la gloria de Adonái יהוה era visible mientras el pueblo se reunía.
+            </li>
+          </ul>
+          <p>
+            Aquí se percibe una anticipación mesiánica de provisión personal y
+            colectiva.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Textos del Segundo Templo</div>
+          <strong>🔸 Literatura de Qumrán</strong>
+          <p>En Qumrán, el maná es interpretado como:</p>
+          <ul>
+            <li>alimento de los justos en el desierto final,</li>
+            <li>señal de la comunidad fiel sostenida por Elohím.</li>
+          </ul>
+          <p>
+            El desierto es visto como lugar de purificación y dependencia
+            absoluta.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 10</h1>
+      <div class="content-container">
+        <h2>MANDAMIENTOS, PRINCIPIOS Y VALORES</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. Principios fundamentales revelados
+          </div>
+          <p>
+            <span class="highlight"
+              >📌 Principio 1: Dependencia diaria de la provisión divina</span
+            >
+          </p>
+          <p>La Toráh enseña que:</p>
+          <ul>
+            <li>no se vive del acopio,</li>
+            <li>sino de la confianza diaria.</li>
+          </ul>
+          <p>
+            <span class="highlight"
+              >📌 Principio 2: La murmuración revela falta de emunáh</span
+            >
+          </p>
+          <p>La queja no es solo verbal, es espiritual:</p>
+          <ul>
+            <li>pone en duda el carácter del Redentor.</li>
+          </ul>
+          <p>
+            <span class="highlight"
+              >📌 Principio 3: Adonái יהוה prueba sin abandonar</span
+            >
+          </p>
+          <p>La prueba no contradice la fidelidad divina, la revela.</p>
+          <p>
+            <span class="highlight"
+              >📌 Principio 4: La gloria precede a la provisión</span
+            >
+          </p>
+          <p>Antes del alimento, el pueblo ve la gloria de Adonái יהוה.</p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Aplicación en el Brit Hadasháh</div>
+          <p>Yeshúa haMashíaj enseña:</p>
+          <ul>
+            <li>a orar por el pan diario,</li>
+            <li>a confiar sin ansiedad,</li>
+            <li>a alimentarse de la Palabra viva.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 11</h1>
+      <div class="content-container">
+        <h2>PREGUNTAS DE REFLEXIÓN CON RESPUESTAS EN EL MASHÍAJ</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <div class="explanation">
+          <p>
+            <strong
+              >1. ¿Por qué el pueblo murmuró después de haber visto tantos
+              milagros?</strong
+            >
+          </p>
+          <p>
+            Respuesta en el Mashíaj: Porque la fe aún estaba en formación.
+            Yeshúa también enseña que el corazón necesita ser transformado día a
+            día.
+          </p>
+          <p><strong>2. ¿Qué enseña Elim antes del desierto de Sin?</strong></p>
+          <p>
+            Respuesta en el Mashíaj: Que el descanso es provisión, pero no
+            destino. El Mashíaj fortalece antes de enseñar dependencia.
+          </p>
+          <p>
+            <strong>3. ¿Qué representa el maná en la vida espiritual?</strong>
+          </p>
+          <p>
+            Respuesta en el Mashíaj: Dependencia diaria del sustento divino.
+            Yeshúa es el Pan verdadero que sostiene cada día.
+          </p>
+          <p>
+            <strong
+              >4. ¿Por qué Adonái יהוה revela Su gloria antes del
+              alimento?</strong
+            >
+          </p>
+          <p>
+            Respuesta en el Mashíaj: Porque la presencia es más importante que
+            la provisión. Yeshúa revela al Padre antes de suplir la necesidad.
+          </p>
+          <p>
+            <strong>5. ¿Qué transforma la murmuración en confianza?</strong>
+          </p>
+          <p>
+            Respuesta en el Mashíaj: La revelación constante del carácter fiel
+            del Redentor.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 12</h1>
+      <div class="content-container">
+        <h2>RESUMEN DE LA ALIYÁH</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Resumen exegético</div>
+          <ul>
+            <li>Israel llega a Elim y descansa.</li>
+            <li>Entra al desierto de Sin.</li>
+            <li>El pueblo murmura por alimento.</li>
+            <li>Adonái יהוה promete pan del cielo.</li>
+            <li>La gloria divina se manifiesta ante la congregación.</li>
+          </ul>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Resumen mesiánico</div>
+          <p>Esta Aliyáh revela:</p>
+          <ul>
+            <li>que el Redentor no abandona,</li>
+            <li>que la provisión acompaña al proceso,</li>
+            <li>que el Mashíaj sostiene a Su pueblo día a día.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔹 PUNTO 13</h1>
+      <div class="content-container">
+        <h2>TEFILÁH – ORACIÓN DE LA ALIYÁH</h2>
+        <h3>Éxodo 15:27–16:10</h3>
+        <div class="prayer-text">
+          Avinú Malkeinu, Adonái יהוה, Elohím Ejad, Te damos gracias porque Tú
+          eres nuestro Sustentador fiel. Aun cuando murmuramos, Tú provees con
+          paciencia. Enséñanos a depender de Ti cada día y a no vivir de
+          recuerdos del pasado, sino de Tu provisión presente. Revela Tu gloria
+          en medio de nuestras necesidades y forma en nosotros un corazón
+          confiado y obediente. Reconocemos que Tú eres el mismo que alimentó a
+          Israel en el desierto, el mismo MarYah revelado en Yeshúa haMashíaj,
+          nuestro Pan vivo y nuestra esperanza diaria. Guíanos a caminar contigo
+          en fe constante.
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya6.html">Continuar con la Aliyá 6</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
