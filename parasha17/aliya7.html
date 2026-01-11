@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shemot (שמות) – Éxodo 20:15-23</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family: "Estrangelo Edessa", "Serto Jerusalem",
+          "East Syriac Adiabene", "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        17. Parashá Yitró (יתרו) – Aliyáh 7: (Éxodo 20:15-23) Instrucciones
+        adicionales sobre la idolatría y el altar.
+        <p>
+          Haftaráh: Isaías 42:5-21 (Elohím como el único digno de adoración).
+        </p>
+
+        <p>
+          Brit Hadasháh: Juan 4:19-24 (La adoración en espíritu y en verdad).
+        </p>
+      </h1>
+      <h1>Punto 1. Shemot 20:15-23</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">15</div>
+          <div class="hebrew">
+            וְכָל-הָעָם רֹאִים אֶת-הַקּוֹלֹת וְאֶת-הַלַּפִּידִם וְאֵת קוֹל
+            הַשֹּׁפָר וְאֶת-הָהָר עָשֵׁן וַיַּרְא הָעָם וַיָּנֻעוּ וַיַּעַמְדוּ
+            מֵרָחֹק׃
+          </div>
+          <div class="transliteration">
+            Vejól-ha'ám ro'ím et-hakkolót ve'et-hallappidím ve'ét kol hashshofár
+            ve'et-hahár ashén vayyár ha'ám vayyánu'u vayya'amdú merajók.
+          </div>
+          <div class="translation">
+            Todo el pueblo percibía los truenos y los relámpagos, el sonido del
+            shofar y el monte que humeaba; y al ver esto el pueblo, temblaron y
+            se mantuvieron a lo lejos.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">16</div>
+          <div class="hebrew">
+            וַיֹּאמְרוּ אֶל-מֹשֶׁה דַּבֵּר-אַתָּה עִמָּנוּ וְנִשְׁמָעָה
+            וְאל-יְדַבֵּר עִמָּנוּ אֱלֹהִים פֶּן-נָמוּת׃
+          </div>
+          <div class="transliteration">
+            Vayyomrú el-Moshéh dabbér-attáh immánu venishmá'ah ve'ál-yedabbér
+            immánu Elohím pen-namút.
+          </div>
+          <div class="translation">
+            Y dijeron a Moshéh: Habla tú con nosotros y escucharemos; pero no
+            hable Elohím con nosotros, para que no muramos.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">17</div>
+          <div class="hebrew">
+            וַיֹּאמֶר מֹשֶׁה אֶל-הָעָם אַל-תִּירָאוּ כִּי לְבַעֲבוּר נַסּוֹת
+            אֶתְכֶם בָּא הָאֱלֹהִים וּבַעֲבוּר תִּהְיֶה יִרְאָתוֹ עַל-פְּנֵיכֶם
+            לְבִלְתִּי תֶחֱטָאוּ׃
+          </div>
+          <div class="transliteration">
+            Vayyómer Moshéh el-ha'ám al-tirá'u ki leva'avúr nassót etjém ba
+            ha'Elohím uva'avúr tihyéh yir'ató al-penéyjém leviltí tejetá'u.
+          </div>
+          <div class="translation">
+            Moshéh respondió al pueblo: No teman; pues Elohím ha venido para
+            probarlos, y para que Su temor esté ante ustedes, para que no
+            pequen.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">18</div>
+          <div class="hebrew">
+            וַיַּעֲמֹד הָעָם מֵרָחֹק וּמֹשֶׁה נִגַּשׁ אֶל-הָעֲרָפֶל אֲשֶׁר-שָׁם
+            הָאֱלֹהִים׃
+          </div>
+          <div class="transliteration">
+            Vayya'amód ha'ám merajók uMoshéh niggásh el-ha'arafel ashér-sham
+            ha'Elohím.
+          </div>
+          <div class="translation">
+            El pueblo se mantuvo a lo lejos, mientras Moshéh se acercó a la
+            densa nube donde estaba Elohím.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">19</div>
+          <div class="hebrew">
+            וַיֹּאמֶר יְהוָה אֶל-מֹשֶׁה כֹּה תֹאמַר אֶל-בְּנֵי יִשְׂרָאֵל אַתֶּם
+            רְאִיתֶם כִּי מִן-הַשָּׁמַיִם דִּבַּרְתִּי עִמָּכֶם׃
+          </div>
+          <div class="transliteration">
+            Vayyómer יְהוָה el-Moshéh: Koh tomár el-benéy Yisra'él attém re'itém
+            ki min-hashshamáyim dibbartí immájém.
+          </div>
+          <div class="translation">
+            יְהוָה dijo a Moshéh: Así dirás a los hijos de Yisra'el: Ustedes han
+            visto que he hablado con ustedes desde el cielo.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">20</div>
+          <div class="hebrew">
+            לֹא תַעֲשׂוּן אִתִּי אֱלֹהֵי כֶסֶף וֵאלֹהֵי זָהָב לֹא תַעֲשׂוּ
+            לָכֶם׃
+          </div>
+          <div class="transliteration">
+            Lo ta'asún ittí elohéy jésef velohéy zaháv lo ta'asú lajém.
+          </div>
+          <div class="translation">
+            No hagan junto a Mí dioses de plata, ni dioses de oro se harán para
+            ustedes.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">21</div>
+          <div class="hebrew">
+            מִזְבַּח אֲדָמָה תַּעֲשֶׂה-לִּי וְזָבַחְתָּ עָלָיו אֶת-עֹלֹתֶיךָ
+            וְאֶת-שְׁלָמֶיךָ אֶת-צֹאנְךָ וְאֶת-בְּקָרֶךָ בְּכָל-הַמָּקוֹם אֲשֶׁר
+            אַזְכִּיר אֶת-שְׁמִי אָבוֹא אֵלֶיךָ וּבֵרַכְתִּיךָ׃
+          </div>
+          <div class="transliteration">
+            Mizbaj adamáh ta'aséh-li vezavajtá aláv et-olotéyja ve'et-shelaméyja
+            et-tzonjá ve'et-bekaréyja bejól-hammakóm ashér azkír et-shemí avó
+            eléyja uverajtíja.
+          </div>
+          <div class="translation">
+            Un altar de tierra harás para Mí, y sacrificarás sobre él tus
+            holocaustos y tus sacrificios de paz, tus ovejas y tus vacas; en
+            cualquier lugar donde Yo haga recordar Mi Nombre, vendré a ti y te
+            bendeciré.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">22</div>
+          <div class="hebrew">
+            וְאִם-מִזְבַּח אֲבָנִים תַּעֲשֶׂה-לִּי לֹא-תִבְנֶה אֶתְהֶן גָּזִית
+            כִּי חַרְבְּךָ הֵנַפְתָּ עָלֶיהָ וַתְּחַלְלֶהָ׃
+          </div>
+          <div class="transliteration">
+            Ve'ím-mizbaj avaním ta'aséh-li lo-tivnéh ethén gazít ki jarbejá
+            henáfta aléyha vattéjallelehá.
+          </div>
+          <div class="translation">
+            Y si me haces un altar de piedras, no las labres de cantería; porque
+            si alzas tu herramienta sobre ellas, las profanarás.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">23</div>
+          <div class="hebrew">
+            וְלֹא-תַעֲלֶה בְמַעֲלֹת עַל-מִזְבְּחִי אֲשֶׁר לֹא-תִגָּלֶה
+            עֶרְוָתְךָ עָלָיו׃
+          </div>
+          <div class="transliteration">
+            Veló-ta'aléh vema'alót al-mizbejí ashér lo-tiggalléh ervatjá aláv.
+          </div>
+          <div class="translation">
+            Y no subirás por gradas a Mi altar, para que tu desnudez no se
+            descubra sobre él.
+          </div>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Impacto Profético</div>
+          La reacción del pueblo ante la teofanía del Sinaí revela la necesidad
+          absoluta de un Mediador perfecto que pueda entrar en la densa nube de
+          la gloria divina sin morir. Moshéh fue una sombra, pero Yeshúa
+          HaMashíaj es el cumplimiento; Él es quien no solo se acerca a la
+          presencia, sino que emana de ella para traernos la instrucción de
+          vida. La orden de no fabricar dioses de metal y construir un altar
+          sencillo de tierra o piedra ruda profetiza que la verdadera redención
+          no vendría por el artificio humano o la gloria externa, sino por el
+          sacrificio de Yeshúa, la Roca no labrada por mano humana. Él es el
+          Altar y el Sacrificio que permite que Adonai recuerde Su Nombre en
+          nosotros, trayendo la bendición eterna sobre el remanente de Israel y
+          las naciones que se acercan a través del Nuevo Pacto.
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El estremecimiento del pueblo ante la teofanía del Sinaí y su ruego
+          para que Moshéh actuara como mediador halla su cumplimiento definitivo
+          en la persona de Yeshúa HaMashíaj. El pueblo, consciente de su propia
+          impureza frente a la santidad de Elohím, reconoció que la comunicación
+          directa con la Deidad en Su gloria absoluta resultaría en la muerte
+          del hombre caído. Yeshúa es el cumplimiento de ese anhelo por un
+          Mediador que no solo transmita las palabras, sino que pueda habitar en
+          la densa nube (arafel) de la presencia divina y, al mismo tiempo,
+          extender Su mano a la humanidad. Él es el Profeta mayor que Moshéh,
+          quien entra en el fuego del juicio y sale victorioso para hablarnos
+          con voz de gracia.
+        </p>
+        <p>
+          En Yeshúa HaMashíaj se materializa el propósito de la prueba
+          mencionada en el texto: que el temor de Elohím esté ante nosotros para
+          que no pequen. Yeshúa no solo es el portador del temor santo, sino que
+          es la justicia de Elohím personificada que capacita al hombre para
+          cumplir la Torá. Mientras que en el Sinaí el pueblo se mantuvo a lo
+          lejos por terror, en el Mashíaj la distancia ha sido abolida. Él es
+          quien, siendo MarYah manifestado, se acerca a la densa oscuridad de
+          nuestra condición humana para iluminarla con Su luz admirable,
+          cumpliendo la promesa de que Elohím moraría entre Su pueblo de manera
+          permanente y redentora.
+        </p>
+        <p>
+          La instrucción sobre el altar de tierra y de piedras no labradas es
+          una profecía gestual del sacrificio de Yeshúa HaMashíaj. El altar de
+          tierra simboliza Su encarnación, el momento en que la Divinidad se
+          unió a la sustancia de Adám para ofrecerse como sacrificio perfecto.
+          Yeshúa es la "piedra no cortada por manos humanas", aquel cuya obra de
+          redención no admite el artificio de la cantería legalista ni el
+          esfuerzo de las herramientas humanas. El cumplimiento radica en que Su
+          sacrificio es suficiente por sí mismo; cualquier intento de "labrar" o
+          añadir mérito humano al sacrificio de Yeshúa es, en realidad, profanar
+          la pureza de Su obra en el madero.
+        </p>
+        <p>
+          Finalmente, la prohibición de subir por gradas para no descubrir la
+          desnudez apunta al orden sacerdotal que Yeshúa restaura. El hombre, en
+          su intento de subir por sus propios peldaños de justicia religiosa,
+          solo descubre su propia vergüenza y pecado. Yeshúa cumple la función
+          de ser el Altar supremo donde la desnudez del hombre es cubierta por
+          Sus vestiduras de salvación. Él es el único que subió a la altura de
+          la santidad divina sin descubrir mancha alguna, convirtiéndose en el
+          fundamento sobre el cual Israel y las naciones pueden acercarse a
+          Elohím sin ser confundidos por la exposición de su propia iniquidad.
+        </p>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          Los Neviím resonaron con el clamor del pueblo en el Sinaí al
+          profetizar sobre el tiempo en que Adonai enviaría a Su Mensajero del
+          Pacto. Ieshaiah (Isaías) contempló al Mashíaj como aquel que llevaría
+          nuestras debilidades y por cuyas llagas seríamos sanados, actuando
+          como el mediador que el pueblo solicitó bajo el estruendo de los
+          relámpagos. La conexión profética establece que la distancia que el
+          pueblo puso entre ellos y el monte sería cerrada por el "Brazo de
+          Adonai", quien descendería de los cielos no para aterrar, sino para
+          consolar a Tziyón. Yeshúa es la voz que los profetas anunciaron que
+          hablaría paz a Su pueblo y a Sus santos.
+        </p>
+        <p>
+          Ezequiel conectó la visión de la nube espesa y el fuego envolvente con
+          la Merkabáh o el carro celestial de la gloria divina. Los profetas
+          entendieron que la presencia de Elohím en el desierto era una señal de
+          Su soberanía sobre todas las naciones, pero que esa gloria demandaba
+          una purificación que solo el Mashíaj podría efectuar. La conexión con
+          los Neviím resalta que el altar de piedras no labradas prefigura la
+          Roca de Israel mencionada por los profetas, aquel cimiento sobre el
+          cual se edificaría el nuevo Templo espiritual. Yeshúa es la Piedra que
+          desecharon los edificadores, pero que Adonai puso por cabeza del
+          ángulo, cumpliendo el diseño arquitectónico de la salvación.
+        </p>
+        <p>
+          Iermeyahu (Jeremías) profetizó sobre el Nuevo Pacto donde la voz de
+          Elohím no causaría terror de muerte, sino que sería un deleite interno
+          escrito en las tablas del corazón. Esta conexión profética vincula el
+          ruego del Sinaí ("no hable Elohím con nosotros") con la resolución
+          mesiánica donde conocer a Adonai es la herencia de todos, desde el
+          menor hasta el mayor. Yeshúa es quien elimina el velo de la nube
+          espesa, permitiendo que la revelación que antes era externa y
+          aterradora se convierta en una relación íntima y transformadora. Los
+          profetas vieron en Yeshúa al Pastor que habla con suavidad pero con la
+          autoridad del trueno celestial que estremeció el monte.
+        </p>
+        <p>
+          ZacarYah también aporta a esta conexión al hablar del día en que "en
+          cualquier lugar donde Yo haga recordar Mi Nombre, vendré a ti". Esta
+          promesa, dada originalmente para el altar de tierra, se expande
+          proféticamente hacia la era mesiánica donde el Nombre de Yeshúa es
+          invocado en todas las naciones. La conexión con los Neviím asegura que
+          la bendición prometida en el Sinaí fluye a través de Yeshúa hacia todo
+          lugar de adoración verdadera. Los profetas comprendieron que el altar
+          sencillo del desierto era la sombra del sacrificio del Mashíaj, cuyo
+          Nombre es el único que trae la bendición eterna y la presencia real de
+          Elohím a la humanidad redimida.
+        </p>
+      </div>
+
+      <h1>Conexión con el Brit Jadashá</h1>
+
+      <div class="content-container">
+        <p>
+          El Brit Jadashá establece una conexión orgánica con Shemot 20 al
+          presentar a Yeshúa HaMashíaj como la Palabra hecha carne que habitó
+          entre nosotros. El emisario Iojanán (Juan) aclara que aunque la Torá
+          fue dada por medio de Moshéh, la gracia y la verdad vinieron por
+          Yeshúa HaMashíaj. Esta conexión revela que Yeshúa es la respuesta al
+          temor del pueblo; Él es Elohím hablando con nosotros "cara a cara" sin
+          que muramos, porque Su humanidad sirve de velo protector para Su
+          gloria. En el Brit Jadashá, el estruendo del Sinaí se convierte en el
+          "haced esto en memoria de Mí", transformando el altar de sacrificio en
+          una mesa de comunión y vida.
+        </p>
+        <p>
+          Shaúl de Tarso, en la carta a los Hebreos, conecta explícitamente el
+          Sinaí con el Monte de Tziyón, explicando que no nos hemos acercado al
+          fuego y a la oscuridad que causó que Moshéh dijera "estoy aterrado y
+          temblando". La conexión con el Brit Jadashá nos muestra que en Yeshúa
+          nos hemos acercado a la Yerushaláim celestial y a la sangre de la
+          aspersión que habla mejor que la de Habél. Yeshúa es el Mediador de un
+          Pacto mejor, cuya sangre no pide venganza desde la tierra, sino que
+          otorga perdón desde el cielo. Él es quien ha entrado en la verdadera
+          densa nube del santuario celestial para aparecer por nosotros ante el
+          rostro de Elohím.
+        </p>
+        <p>
+          La instrucción sobre no subir por gradas al altar halla su eco en la
+          enseñanza del Brit Jadashá sobre la futilidad de las obras de la carne
+          para la justificación. Los emisarios de Yeshúa advirtieron
+          constantemente contra el orgullo de subir por escalones de legalismo
+          humano para intentar alcanzar el favor divino. La conexión resalta que
+          en Yeshúa, nuestra desnudez espiritual es cubierta por Su justicia
+          perfecta, no por nuestros esfuerzos por ascender a la santidad. Al
+          estar en el Mashíaj, estamos sobre el Altar que santifica la ofrenda,
+          y nuestra aceptación depende totalmente de Su perfección y no de
+          nuestra capacidad para escalar peldaños religiosos.
+        </p>
+        <p>
+          Finalmente, la advertencia contra los dioses de plata y oro se conecta
+          con la enseñanza de Yeshúa sobre la imposibilidad de servir a dos
+          señores. En el Brit Jadashá, la idolatría es identificada no solo con
+          estatuas, sino con la avaricia y el amor al dinero, que son los
+          "dioses de plata" modernos. Yeshúa restaura la adoración exclusiva
+          exigida en el Sinaí, llamando a Su pueblo a una devoción radical que
+          no admite mezclas con el materialismo del mundo. La conexión con el
+          Brit Jadashá es una llamada a la pureza del culto, donde Yeshúa es el
+          único centro y donde Su sacrificio es el único fundamento para recibir
+          la bendición del Padre.
+        </p>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          Se cumple en este pasaje la profecía de que Adonai hablaría desde el
+          cielo de una manera que Israel pudiera testificar de Su autoridad. Al
+          decir "Ustedes han visto que he hablado con ustedes desde el cielo",
+          Adonai sella la validez de Su instrucción, la cual Yeshúa HaMashíaj
+          ratificó al declarar que ni una jota ni una tilde pasaría de la Torá.
+          Yeshúa cumplió la profecía de ser la Voz celestial que descendió a la
+          tierra, validando cada palabra dada en el Sinaí y dándole su pleno
+          cumplimiento en el Espíritu. Su vida es la prueba histórica de que
+          Elohím no solo habló, sino que intervino físicamente para guiar a Su
+          pueblo hacia la libertad eterna.
+        </p>
+        <p>
+          Se ha cumplido la profecía sobre el Mediador fiel que puede entrar en
+          la presencia de Elohím y permanecer vivo para interceder por el
+          pueblo. Mientras que Moshéh solo pudo entrar temporalmente en la densa
+          nube, Yeshúa HaMashíaj entró en la gloria eterna tras Su resurrección,
+          cumpliendo Su rol como el Kohen Gadol eterno. Se cumple la palabra de
+          que "vendría un Mediador entre Elohím y los hombres", aquel que une
+          ambos mundos en Su sola persona. Yeshúa es el cumplimiento de la
+          esperanza de Israel de no ser consumido por la santidad divina, pues
+          Él ha provisto la cobertura necesaria para que podamos morar en la luz
+          de Adonai.
+        </p>
+        <p>
+          La profecía del altar de piedras no labradas se cumple en la
+          naturaleza del sacrificio de Yeshúa, el cual fue planeado desde antes
+          de la fundación del mundo sin intervención de la voluntad humana. Se
+          cumple la profecía de Daniel sobre la "piedra cortada, no con mano",
+          que hiere la estatua de los reinos humanos e instaura un Reino que no
+          será jamás destruido. Yeshúa es ese altar no labrado, cuya muerte en
+          el madero fue el evento central de la historia que no necesitó de la
+          "herramienta" del hombre para ser eficaz. Su sacrificio es puro y
+          suficiente, cumpliendo el diseño de un culto que no depende del
+          artificio humano sino de la obediencia del Hijo.
+        </p>
+        <p>
+          Finalmente, se cumple la profecía de la bendición ligada al recuerdo
+          del Nombre de Adonai. Yeshúa es el Nombre sobre todo nombre en el cual
+          el Padre ha hecho recordar Su esencia y Su misericordia. Se cumple la
+          promesa: "vendré a ti y te bendeciré", pues en Yeshúa, Elohím ha
+          venido a nosotros (Emmanuel) para bendecirnos con toda bendición
+          espiritual en los lugares celestiales. Cada lugar donde el Nombre de
+          Yeshúa es invocado en fe se convierte en un punto de encuentro con la
+          gloria del Sinaí, pero bajo la administración de la gracia. El
+          cumplimiento profético asegura que la bendición de Abraham alcanza a
+          las familias de la tierra a través del altar que es el Mashíaj.
+        </p>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          La aplicación espiritual de Shemot 20:15-23 nos llama a cultivar un
+          temor reverente ante la majestad de Yeshúa HaMashíaj, reconociendo que
+          nuestra cercanía a Elohím no es por familiaridad ligera, sino por la
+          mediación de Su sangre. Debemos aplicar el principio de la prueba
+          divina en nuestras vidas, entendiendo que las circunstancias difíciles
+          son permitidas por Yeshúa para refinar nuestro carácter y para que Su
+          temor nos preserve de pecar. La aplicación práctica es buscar a Yeshúa
+          como nuestro único refugio en medio del estruendo del mundo, confiando
+          en que Su voz nos guía a través de la densa nube de la incertidumbre
+          hacia la claridad de Su Reino.
+        </p>
+        <p>
+          Debemos aplicar la sencillez del altar de tierra y piedras no labradas
+          a nuestra propia adoración y servicio. La aplicación espiritual es
+          rechazar todo intento de presentarnos ante Elohím basándonos en
+          nuestros logros, talentos o "cantería" religiosa. Yeshúa nos llama a
+          una fe desnuda de artificios, donde nuestro sacrificio de alabanza sea
+          genuino y dependa totalmente de Su gracia. Al servir a Yeshúa, no
+          debemos "alzar nuestra herramienta" sobre la obra de Su Espíritu,
+          intentando mejorar con esfuerzo carnal lo que Él ya ha perfeccionado.
+          La humildad es la base del altar donde el Mashíaj se complace en
+          descender para bendecirnos.
+        </p>
+        <p>
+          Es fundamental aplicar la advertencia contra la idolatría interna,
+          destruyendo los dioses de plata y oro que compiten por el trono de
+          nuestro corazón. En el seguimiento de Yeshúa, la aplicación espiritual
+          consiste en una vigilancia constante sobre nuestras prioridades,
+          asegurando que nada opaque la preeminencia del Mashíaj. Debemos
+          recordar que Yeshúa nos habló desde el cielo y que Su palabra tiene
+          autoridad final sobre nuestras posesiones y afectos. Al invocar Su
+          Nombre en santidad, estamos garantizando que nuestra vida sea el lugar
+          donde Adonai se hace presente, trayendo la prosperidad del alma que
+          solo emana de Su bendición mesiánica.
+        </p>
+        <p>
+          Finalmente, la aplicación espiritual nos convoca a aceptar la
+          mediación de Yeshúa con gratitud, reconociendo que sin Él no podríamos
+          subsistir ante la santidad de Elohím. Debemos aplicar una obediencia
+          pronta a la instrucción de la Torá Viviente, sabiendo que Yeshúa nos
+          ha cubierto para que no seamos avergonzados. Nuestra aplicación
+          definitiva es vivir como un pueblo que ha escuchado la voz celestial y
+          que ha sido transformado por el encuentro en el monte. Al caminar con
+          Yeshúa, nos convertimos en altares vivientes donde el Nombre de Adonai
+          יְהוָה es glorificado, reflejando Su santidad ante las naciones y
+          preparando el camino para Su retorno triunfal a Yerushaláim.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          La Torá nos enseña que el terror del Sinaí fue el pedagogo que nos
+          señaló la necesidad de Yeshúa HaMashíaj como nuestro único Mediador y
+          Altar eterno. No hay redención fuera del sacrificio de la Roca no
+          labrada, ni hay bendición fuera del Nombre que Yeshúa ha manifestado a
+          Su pueblo. El celo de יְהוָה de los ejércitos garantiza que la voz que
+          tronó en el desierto es la misma que hoy nos llama a la salvación y
+          que pronto juzgará a las naciones con justicia. Es tiempo de acercarse
+          a la densa nube con fe en el Mashíaj, reconociendo que en Él la
+          santidad de Elohím se ha convertido en nuestra herencia y nuestra vida
+          por los siglos de los siglos.
+        </p>
+      </div>
+      <h1>
+        Punto 2. Haftaráh: Isaías 42:5-21 (Elohím como el único digno de
+        adoración).
+      </h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">42:5</div>
+          <div class="hebrew">
+            כֹּה־אָמַר הָאֵל יְהוָה בּוֹרֵא הַשָּׁמַיִם וְנוֹטֵיהֶם רֹקַע
+            הָאָרֶץ וְצֶאֱצָאֶיהָ נֹתֵן נְשָׁמָה לָעָם עָלֶיהָ וְרוּחַ
+            לַהֹלְכִים בָּהּ׃
+          </div>
+          <div class="transliteration">
+            Koh-amár ha'Él יְהוָה boré hashamáyim venotéyhem roká ha'áretz
+            vetze'etza'éyha notén neshamáh la'ám aléyha verúaj laholjím bah.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Así dice el El יְהוָה, el que crea los cielos y
+            los despliega, el que extiende la tierra y sus productos, el que da
+            aliento al pueblo que hay en ella, y espíritu a los que por ella
+            andan.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:6</div>
+          <div class="hebrew">
+            אֲנִי יְהוָה קְרָאתִיךָ בְצֶדֶק וְאַחְזֵק בְּיָדֶךָ וְאֶצָּרְךָ
+            וְאֶתֶּנְךָ לִבְרִית עָם לְאוֹר גּוֹיִם׃
+          </div>
+          <div class="transliteration">
+            Aní יְהוָה keratíja betzédek ve'ajzék beyadéja ve'etzarjá ve'ettenjá
+            livrít am le'ór goyím.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Yo יְהוָה te he llamado en justicia, y te
+            sostendré por la mano; te guardaré y te pondré por pacto al pueblo,
+            por luz de las naciones.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:7</div>
+          <div class="hebrew">
+            לִפְקֹחַ עֵינַיִם עִוְרוֹת לְהוֹצִיא מִמַּסְגֵּר אַסִּיר mibbéyt
+            kéle yoshvéy jóshej.
+          </div>
+          <div class="transliteration">
+            Lifkóaj eynáyim ivrót lehotzí mimmásguer assír mibbéyt kéle yoshvéy
+            jóshej.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Para que abras los ojos de los ciegos, para que
+            saques de la cárcel a los presos, y de la casa de prisión a los que
+            moran en tinieblas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:8</div>
+          <div class="hebrew">
+            אֲנִי יְהוָה הוּא שְׁמִי וּכְבוֹדִי לְאַחֵר לֹא־אֶתֵּן וּתְהִלָּתִי
+            לַפְּסִילִים׃
+          </div>
+          <div class="transliteration">
+            Aní יְהוָה hu shemí ujevodí le'ajér lo-ettén utehillatí lappessilím.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Yo soy יְהוָה; este es Mi nombre; y a otro no
+            daré Mi gloria, ni Mi alabanza a esculturas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:9</div>
+          <div class="hebrew">
+            הָרִאשֹׁנוֹת הִנֵּה־בָאוּ וַחֲדָשׁוֹת אֲנִי מַגִּיד בְּטֶרֶם
+            תִּצְמַחְנָה אַשְׁמִיעַ אֶתכֶם׃
+          </div>
+          <div class="transliteration">
+            Harishonót hinnéh-vá'u vejadashót aní maggíd betérem titzmájnah
+            ashmía etjém.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: He aquí se cumplieron las cosas primeras, y Yo
+            anuncio cosas nuevas; antes que salgan a luz, Yo os las haré saber.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:10</div>
+          <div class="hebrew">
+            שִׁירוּ לַיהוָה שִׁיר חָדָשׁ תְּהִלָּתוֹ מִקְצֵה הָאָרֶץ יוֹרְדֵי
+            הַיָּם וּמְלֹאוֹ אִיִּים וְיֹשְׁבֵיהֶם׃
+          </div>
+          <div class="transliteration">
+            Shíru la-יְהוָה shir jadásh tehillató miktzé ha'áretz yoredéy hayyám
+            umelo'ó iyím veyoshvéyhem.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Cantad a יְהוָה cántico nuevo, Su alabanza desde
+            el fin de la tierra; los que descendéis al mar, y cuanto hay en él,
+            las costas y los moradores de ellas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:11</div>
+          <div class="hebrew">
+            יִשְׂאוּ מִדְבָּר וְעָרָיו חֲצֵרִים תֵּשֵׁב קֵדָר יָרֹנּוּ יֹשְׁבֵי
+            סֶלַע מֵרֹאשׁ הָרִים יִצְוָחוּ׃
+          </div>
+          <div class="transliteration">
+            Yiss'ú midbár ve'aráv jatzerím teshév Kedár yarónnu yoshvéy Séla
+            merósh harím yitzváju.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Alcen la voz el desierto y sus ciudades, las
+            aldeas donde habita Kedár; canten los moradores de Séla, y desde la
+            cumbre de los montes den voces de júbilo.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:12</div>
+          <div class="hebrew">
+            יָשִׂימוּ לַיהוָה כָּבוֹד וּתְהִלָּתוֹ בָּאִיִּים יַגִּידוּ׃
+          </div>
+          <div class="transliteration">
+            Yassímu la-יְהוָה kavód utehillató ba'iyím yaggídu.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Den gloria a יְהוָה, y anuncien Su alabanza en
+            las costas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:13</div>
+          <div class="hebrew">
+            יְהוָה כַּגִּבּוֹר יֵצֵא כְּאִישׁ מִלְחָמוֹת יָעִיר קִנְאָה יָרִיעַ
+            אַף־יַצְרִיחַ עַל־אֹיְבָיו יִתְגַּבָּר׃
+          </div>
+          <div class="transliteration">
+            יְהוָה kaggibbór yetzé ke'ísh miljamót ya'ír kin'áh yaría
+            af-yatzríaj al-oyváv yitgabbár.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: יְהוָה saldrá como gigante, y como hombre de
+            guerra despertará celo; gritará, voceará, prevalecerá sobre Su
+            enemigos.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:14</div>
+          <div class="hebrew">
+            הֶחֱשֱׁיתִי מֵעוֹלָם אַחֲרִישׁ אֶתְאַפָּק כַּיּוֹלֵדָה אֶפְעֶה
+            אֶשֹּׁם וְאֶשְׁאַף יָחַד׃
+          </div>
+          <div class="transliteration">
+            Hejeshéyti me'olám ajarísh et'appák kayyoledáh ef'éh eshshóm
+            ve'esh'áf yájad.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Desde hace mucho he callado, He guardado
+            silencio y Me he detenido; daré voces como la que está de parto;
+            asolaré y devoraré juntamente.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:15</div>
+          <div class="hebrew">
+            אַחֲרִיב הָרִים וּגְבָעוֹת וְכָל־עֶשְׂבָּם אוֹבִישׁ וְשַׂמְתִּי
+            נְהָרוֹת לָאִיִּים וַאֲגַמִּים אוֹבִישׁ׃
+          </div>
+          <div class="transliteration">
+            Ajarív harím ugueva'ót vejól-esvám ovísh vessamtí neharót la'iyím
+            va'agammím ovísh.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Convertiré en soledad montes y collados, haré
+            secar toda su hierba; los ríos tornaré en islas, y secaré los
+            estanques.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:16</div>
+          <div class="hebrew">
+            וְהוֹלַכְתִּי עִוְרִים בְּדֶרֶךְ לֹא יָדָעוּ בִּנְתִיבוֹת
+            לֹא־יָדְעוּ אַדְרִיכֵם אֲהַפֵּךְ מַחְשָׁךְ לִפְנֵיהֶם לָאוֹר
+            וּמַעֲקַשִּׁים לְמישׁוֹר אֵלֶּה הַדְּבָרִים עֲשִׂיתִם וְלֹא
+            עֲזַבְתִּים׃
+          </div>
+          <div class="transliteration">
+            Veholajtí ivrím bedérej lo yadá'u bintivót lo-yade'ú adrijém ahaféj
+            majsháj lifnéyhem la'ór uma'akashshím lemishór élleh haddevavím
+            assitím veló azavtím.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Y guiaré a los ciegos por camino que no sabían,
+            les haré andar por sendas que no habían conocido; delante de ellos
+            tornaré las tinieblas en luz, y los escabrosos caminos en llanura.
+            Estas cosas les haré, y no los desampararé.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:17</div>
+          <div class="hebrew">
+            נָסֹגוּ אָחוֹר יֵבֹשׁוּ בֹשֶׁת הַבֹּטְחִים בַּפֶּסֶל הָאֹמְרִים
+            לְמַסֵּכָה אַתֶּם אֱלֹהֵינוּ׃
+          </div>
+          <div class="transliteration">
+            Nassógu ajór yevóshu vóshet habbotjím bappéssel ha'omerím
+            lammasséjah attém elohéynu.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Serán vueltos atrás y en extremo confundidos los
+            que confían en esculturas, y dicen a las estatuas de fundición:
+            Vosotros sois nuestros elohim.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:18</div>
+          <div class="hebrew">
+            הַחֵרְשִׁים שְׁמָעוּ וְהַעִוְרִים הַבִּיטוּ לִרְאוֹת׃
+          </div>
+          <div class="transliteration">
+            Hajereshím shemá'u veha'ivrím habbítu lir'ót.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Sordos, oíd, y vosotros, ciegos, mirad para ver.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:19</div>
+          <div class="hebrew">
+            מִי עִוֵּר כִּי אִם־עַבְדִּי וְחֵרֵשׁ כְּמַלְאָכִי אֶשְׁלָח מִי
+            עִוֵּר כִּמְשֻׁלָּם וְעִוֵּר כְּעֶבֶד יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Mi ivvér ki im-avdí vejeresh kemal'ají eshláj mi ivvér kimshullám
+            ve'ivvér ke'éved יְהוָה.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: ¿Quién es ciego, sino Mi siervo? ¿Quién es
+            sordo, como Mi mensajero que envié? ¿Quién es ciego como el que es
+            perfecto, y ciego como el siervo de יְהוָה?
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:20</div>
+          <div class="hebrew">
+            רָאוֹת רַבּוֹת וְלֹא תִשְׁמֹר פָּקוֹחַ אָזְנַיִם וְלֹא יִשְׁמָע׃
+          </div>
+          <div class="transliteration">
+            Ra'ót rabbót veló tishmór pakóaj oznáyim veló yishmá.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: Que ve muchas cosas y no advierte, que abre los
+            oídos y no oye.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">42:21</div>
+          <div class="hebrew">
+            יְהוָה חָפֵץ לְמַעַן צִדְקוֹ יַגְדִּיל תּוֹרָה וְיַאְדִּיר׃
+          </div>
+          <div class="transliteration">
+            יְהוָה jafétz lemá'an tzidkó yaguídil Toráh veya'adír.
+          </div>
+          <div class="literal-translation">
+            Traducción literal: יְהוָה se complació por amor de Su justicia en
+            magnificar la Torá y engrandecerla.
+          </div>
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Impacto Profético</div>
+          Este pasaje es una de las declaraciones más profundas sobre el
+          ministerio de Yeshúa HaMashíaj. Él es el Siervo de יְהוָה llamado en
+          justicia para ser "pacto al pueblo y luz de las naciones" (v. 6).
+          Yeshúa cumplió literalmente la misión de abrir los ojos de los ciegos
+          y libertar a los cautivos de las tinieblas espirituales. Su obra no
+          fue para Su propia gloria, sino para manifestar el Nombre del Padre.
+          La máxima expresión de este cumplimiento se encuentra en el versículo
+          21: Yeshúa magnificó la Torá y la engrandeció, no para abolirla, sino
+          para darle su pleno significado mediante Su obediencia perfecta.
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          La declaración inicial de este pasaje establece que el Creador de los
+          cielos y de la tierra es quien llama a Su Siervo, y este llamado halla
+          su cumplimiento absoluto en Yeshúa HaMashíaj. Él es el Siervo escogido
+          que no solo actúa en nombre de la Deidad, sino que es la manifestación
+          visible del poder creativo y redentor de Elohím. Yeshúa cumple la
+          función de ser el sostenido por la mano del Padre para establecer la
+          justicia en la tierra, una justicia que no es humana ni temporal, sino
+          divina y eterna. Al ser llamado en tzédek (justicia), Yeshúa se
+          convierte en el estándar moral y legal por el cual toda la creación
+          será juzgada y restaurada según el diseño original del Reino.
+        </p>
+        <p>
+          Yeshúa cumple la profecía de ser puesto como "pacto al pueblo" (livrít
+          am), lo cual indica que Él no es simplemente un mensajero del pacto,
+          sino la sustancia misma del acuerdo eterno entre Elohím y la
+          humanidad. En Su propio cuerpo y mediante Su sangre, Yeshúa ratifica
+          las promesas hechas a los patriarcas, unificando a las doce tribus de
+          Israel bajo una nueva administración de gracia. El cumplimiento
+          profético radica en que Yeshúa es el único puente capaz de sostener la
+          santidad de la instrucción divina y la fragilidad del hombre,
+          convirtiéndose en el garante de que el pacto nunca más será
+          quebrantado por la infidelidad humana.
+        </p>
+        <p>
+          La misión de ser "luz de las naciones" (le'ór goyím) se materializa en
+          la expansión del conocimiento de la Torá a través del ministerio de
+          Yeshúa. Antes de Su venida, la luz de la revelación estaba concentrada
+          en Tziyón, pero en el Mashíaj, las fronteras se rompen para iluminar a
+          aquellos que habitaban en regiones de sombra de muerte. Yeshúa cumple
+          esta función al disipar las tinieblas de la idolatría pagana y revelar
+          la verdadera naturaleza del Padre a todas las familias de la tierra.
+          Su cumplimiento no es una sugerencia ética, sino una invasión gloriosa
+          de la luz divina en un mundo sumergido en el caos espiritual.
+        </p>
+        <p>
+          Finalmente, Yeshúa cumple la profecía de abrir los ojos de los ciegos
+          y libertar a los cautivos de la prisión de las tinieblas. Esto se
+          verificó no solo en Sus milagros físicos, sino fundamentalmente en la
+          liberación de la ceguera espiritual que impedía al hombre reconocer su
+          origen y su destino en Elohím. Yeshúa es quien rompe los grillos del
+          pecado y saca a Su pueblo de la casa de servidumbre espiritual,
+          trasladándolos a la libertad del Reino de la luz. El cumplimiento de
+          este pasaje asegura que en el Mashíaj, la humanidad tiene acceso a una
+          visión renovada y a una libertad que trasciende las limitaciones del
+          mundo físico.
+        </p>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          La conexión de este pasaje con los Neviím es estructural, pues resuena
+          con la voz de todos los profetas que anunciaron la venida de un
+          Redentor que restauraría el orden teocrático. Ieshaiah conecta la
+          creación con la redención, un tema que otros profetas como Amós y
+          Jeremías retomaron para enfatizar que el mismo brazo que extendió los
+          cielos es el que intervendría en la historia para salvar a Israel.
+          Esta conexión doctrinal establece que Yeshúa no es un plan de
+          contingencia, sino el centro de la narrativa profética que une el
+          Génesis con el Reino venidero. Los profetas vieron en Yeshúa al
+          Guerrero que sale con celo a batallar contra la iniquidad, tal como se
+          describe en el versículo trece de este capítulo.
+        </p>
+        <p>
+          Ezequiel conecta con la visión de la purificación de los ciegos y
+          sordos al hablar del tiempo en que Adonai daría un corazón de carne y
+          un espíritu nuevo. La conexión con Ieshaiah 42 revela que esta
+          transformación es operada exclusivamente por la intervención del
+          Siervo Mesiánico, quien tiene la autoridad de cambiar la naturaleza
+          del hombre. Los Neviím coinciden en que la ceguera del pueblo (v. 19)
+          solo podría ser sanada por aquel que es "perfecto" (meshullám),
+          identificando a Yeshúa como el único siervo fiel que no falló en Su
+          comisión. La conexión profética asegura que el Mashíaj es el ejecutor
+          de la regeneración nacional y espiritual de Israel.
+        </p>
+        <p>
+          ZacarYah y Miqueas también aportan a esta conexión al profetizar sobre
+          el día en que la instrucción (Torá) saldría de Yerushaláim hacia las
+          naciones, cumpliendo la promesa de la luz para los Goyím. Los profetas
+          entendieron que la gloria de Adonai no sería dada a otro (v. 8), y por
+          ello identificaron al Mashíaj como el portador legítimo de esa gloria
+          divina. La conexión con los Neviím refuerza que Yeshúa es el centro de
+          la adoración universal que las costas y el desierto deben proclamar.
+          Toda la expectativa de los profetas de un cántico nuevo (v. 10) halla
+          su razón de ser en la victoria definitiva que Yeshúa obtuvo sobre los
+          enemigos de la luz.
+        </p>
+        <p>
+          Finalmente, la mención de magnificar la Torá (v. 21) conecta con la
+          esperanza profética de una era donde la ley de Elohím sería el deleite
+          del corazón. Profetas como Malaquías advirtieron sobre la necesidad de
+          recordar la Torá de Moshéh, y Ieshaiah proyecta que el Mashíaj la
+          levaría a su máxima expresión de gloria. Esta conexión doctrinal
+          establece que Yeshúa no vino a disminuir la autoridad de la
+          instrucción divina, sino a revestirla de un esplendor espiritual que
+          la hace irresistible para el alma redimida. Los Neviím, en su
+          conjunto, presentan a Yeshúa como el guardián y el intérprete final
+          que hace que la Torá sea engrandecida ante los ojos de toda la
+          creación.
+        </p>
+      </div>
+
+      <h1>Conexión con el Brit Jadashá</h1>
+
+      <div class="content-container">
+        <p>
+          El Brit Jadashá presenta a Yeshúa HaMashíaj citando y encarnando
+          directamente las palabras de Ieshaiah 42. En los Besorot (Evangelios),
+          se narra cómo Yeshúa ordenaba silencio tras Sus milagros para cumplir
+          que Su voz no se oiría en las calles con altivez, demostrando la
+          mansedumbre del Siervo. La conexión con el Nuevo Pacto es absoluta
+          cuando los emisarios identifican a Yeshúa como aquel que trajo la luz
+          a Galilea de los gentiles, cumpliendo la promesa de iluminar las
+          naciones. En el Brit Jadashá, el misterio del Siervo se revela
+          plenamente: Yeshúa es el cumplimiento histórico de cada trazo de este
+          poema profético.
+        </p>
+        <p>
+          La carta a los Hebreos conecta con este pasaje al describir a Yeshúa
+          como el mediador de un pacto mejor, fundamentado en la justicia que
+          Ieshaiah anunció. La conexión con el Brit Jadashá nos muestra que ser
+          "pacto al pueblo" significaba que Yeshúa entregaría Su propia vida
+          para sellar la redención eterna. Esta doctrina se expande en las
+          epístolas, donde se enseña que Yeshúa es la luz que ilumina a todo
+          hombre, sacando a los creyentes de la potestad de las tinieblas y
+          trasladándolos al Reino de Su amado Hijo. El Brit Jadashá es el
+          comentario inspirado que explica cómo Yeshúa abrió los ojos
+          espirituales de los ciegos mediante el poder del Ruaj HaKodesh.
+        </p>
+        <p>
+          El libro de Revelación (Apocalipsis) culmina esta conexión al
+          presentar a Yeshúa como el Guerrero que sale a vencer, tal como el
+          versículo trece de Ieshaiah lo describe. La conexión con el Brit
+          Jadashá revela que el "cántico nuevo" que se pide en Ieshaiah es el
+          mismo cántico que entonan los redimidos ante el trono del Cordero.
+          Yeshúa es quien prevalece sobre Sus enemigos y quien manifiesta la
+          gloria del Padre que no se da a las esculturas. En el Nuevo Pacto, la
+          profecía de Ieshaiah deja de ser una esperanza lejana para convertirse
+          en la realidad presente de la victoria de Yeshúa sobre el pecado, la
+          muerte y el sistema del mundo.
+        </p>
+        <p>
+          Finalmente, la enseñanza de Yeshúa sobre la Torá en el Sermón del
+          Monte es la conexión perfecta con la promesa de "magnificar la Torá y
+          engrandecerla". El Brit Jadashá muestra cómo Yeshúa llevó la
+          instrucción de la letra al espíritu, dándole una profundidad que antes
+          era desconocida. Al enseñar que la Torá se resume en el amor y la
+          justicia, Yeshúa la engrandeció, demostrando que Sus mandamientos son
+          vida y luz. La conexión con el Brit Jadashá asegura que los seguidores
+          de Yeshúa no caminan en ceguera, sino en la claridad de una
+          instrucción que ha sido glorificada por la vida y el ejemplo de la
+          Torá Viviente.
+        </p>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          Se cumple en este pasaje la profecía de la expansión del conocimiento
+          del Elohím de Israel a través del mundo gentil por medio de Yeshúa.
+          Históricamente, antes de la venida del Mashíaj, la verdad de Adonai
+          estaba contenida mayormente dentro de las fronteras de Israel, pero
+          tal como anunció Ieshaiah, Yeshúa se convirtió en luz para las
+          naciones. Hoy, habitantes de las costas y de los desiertos más remotos
+          entonan el cántico nuevo, reconociendo a Yeshúa como su Redentor. Esta
+          es una profecía cumplida que demuestra la veracidad de la palabra
+          profética y la soberanía del Mashíaj sobre la geografía espiritual de
+          la tierra.
+        </p>
+        <p>
+          Se ha cumplido la profecía sobre el juicio a la idolatría y el
+          reconocimiento del Nombre único de Adonai. El pasaje declara que los
+          que confían en esculturas serán vueltos atrás y confundidos, y esto se
+          ha verificado con el colapso de los sistemas paganos del mundo antiguo
+          ante el avance del mensaje de Yeshúa. El Mashíaj ha demostrado que la
+          gloria del Padre no pertenece a los ídolos de fundición, sino a aquel
+          que es la imagen misma de Su sustancia. El cumplimiento de esta
+          profecía es visible en la destrucción de los altares de los dioses
+          falsos en los corazones de millones que ahora sirven al Elohim vivo a
+          través de Yeshúa.
+        </p>
+        <p>
+          La profecía de guiar a los ciegos por caminos que no sabían se cumple
+          en la regeneración de los pecadores que estaban perdidos en su propia
+          ignorancia. Yeshúa ha tornado las tinieblas en luz delante de Su
+          pueblo, transformando vidas que estaban sumergidas en la desesperación
+          en testimonios de esperanza. El cumplimiento de "estas cosas les haré,
+          y no los desampararé" se verifica en la preservación de la Kahal
+          (congregación) de Yeshúa a lo largo de los siglos, a pesar de las
+          persecuciones. Yeshúa ha cumplido Su palabra de no abandonar a Sus
+          siervos, guiándolos con la luz de Su Espíritu por sendas de rectitud.
+        </p>
+        <p>
+          Finalmente, se cumple la profecía de la magnificación de la Torá.
+          Yeshúa no solo guardó la ley, sino que la elevó a un estatus de honor
+          universal, demostrando que la instrucción divina es la sabiduría
+          perfecta para el hombre. Al morir por nuestras transgresiones a la
+          Torá, Yeshúa demostró que la ley es tan santa y grande que requería el
+          sacrificio del Hijo para satisfacer su justicia. El cumplimiento de
+          este versículo es la base de nuestra fe: en Yeshúa, la Torá no es
+          abolida, sino que alcanza su máxima gloria, siendo escrita en el
+          corazón de los redimidos como una ley de libertad y de vida eterna.
+        </p>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          La aplicación espiritual de Ieshaiah 42:5-21 nos llama a una rendición
+          total ante la soberanía de Yeshúa HaMashíaj, reconociendo que Él es
+          quien nos da el aliento y el espíritu para caminar. No podemos
+          pretender vivir bajo nuestra propia luz cuando se nos ha dado la Luz
+          del mundo para guiar nuestros pasos. La aplicación práctica consiste
+          en permitir que Yeshúa abra nuestros ojos espirituales para ver la
+          profundidad de Su Torá y la urgencia de Su Reino. Ser ciegos y sordos
+          a Su instrucción (v. 18) es el mayor peligro del creyente; por tanto,
+          debemos buscar diariamente que el Mashíaj sople Su Ruaj sobre nosotros
+          para que podamos discernir Su voluntad.
+        </p>
+        <p>
+          Debemos aplicar la identidad de ser partícipes del pacto que Yeshúa
+          representa. Al estar injertados en Él, nos convertimos en portadores
+          de Su luz para aquellos que todavía moran en tinieblas y prisiones de
+          pecado. La aplicación espiritual es vivir de tal manera que nuestra
+          justicia mayor —la que Yeshúa nos otorga— sea evidente ante los
+          hombres, glorificando así al Padre. No estamos llamados a una fe
+          pasiva, sino a ser extensiones del ministerio del Siervo,
+          intercediendo por los cautivos y anunciando las cosas nuevas que
+          Yeshúa está operando en medio de Su pueblo en estos últimos tiempos.
+        </p>
+        <p>
+          Es fundamental aplicar la confianza en el Guerrero que prevalece sobre
+          Sus enemigos. En tiempos de crisis o ataques espirituales, debemos
+          recordar que Yeshúa sale como gigante y hombre de guerra a
+          defendernos. La aplicación espiritual es descansar en Su victoria,
+          sabiendo que Él ha callado por mucho tiempo pero que intervendrá con
+          poder a favor de Su heredad. Nuestra fortaleza no reside en nuestras
+          armas, sino en la fidelidad de Yeshúa, quien convierte los caminos
+          escabrosos en llanura delante de nosotros. Confiar en que Él no nos
+          desamparará es el ancla de nuestra alma en medio de las tormentas del
+          mundo.
+        </p>
+        <p>
+          Finalmente, la aplicación de este estudio nos conduce a magnificar la
+          Torá en nuestras propias vidas, siguiendo el ejemplo de Yeshúa.
+          Debemos amar la instrucción de Elohím no como una carga legalista,
+          sino como el deleite del Reino que nos ha sido entregado. Al guardar
+          los mandamientos de Yeshúa, estamos engrandeciendo Su Nombre y
+          demostrando que Su sacrificio no fue en vano. La meta de nuestra vida
+          espiritual es que, a través de nuestra obediencia y amor al Mashíaj,
+          la gloria de Adonai llene nuestra tierra personal, transformándonos en
+          verdaderos siervos que oyen Su voz y ven Su gloria con claridad
+          meridiana.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          La Torá y los Profetas convergen en que la redención de Israel y de
+          las naciones depende exclusivamente de la obra de Yeshúa HaMashíaj. No
+          hay luz fuera de Su persona ni libertad fuera de Su pacto. El celo de
+          Adonai יְהוָה de los ejércitos garantiza que la ceguera será quitada
+          de Su pueblo y que el cántico nuevo resonará en toda la creación
+          cuando el Mashíaj regrese en gloria. Es tiempo de purificar nuestros
+          sentidos espirituales y abrazar la instrucción de Yeshúa, reconociendo
+          que Él es la Torá Viviente que ha venido a magnificar la voluntad del
+          Padre para siempre.
+        </p>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Juan 4:19-24 (La adoración en espíritu y en
+        verdad).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">4:19</div>
+        <div class="aramaic">
+          ܐܳܡܪܳܐ ܠܶܗ ܗܳܝ ܐܰܢ݈ܬ݁ܬ݂ܳܐ ܡܳܪܝ ܚܳܙܝܳܐ ܐ݈ܢܳܐ ܕ݁ܰܢܒ݂ܺܝܳܐ ܐܰܢ݈ܬ݁
+        </div>
+        <div class="transliteration">
+          Amrá leh hay antthá: Mary, jazyá ná danvyá ant.
+        </div>
+        <div class="translation">
+          Le dijo aquella mujer: Adón mío, veo que Tú eres un profeta.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">4:20</div>
+        <div class="aramaic">
+          ܐܰܒ݂ܳܗܰܝܢ ܒ݁ܗܳܢܳܐ ܛܽܘܪܳܐ ܣܓ݂ܶܕ݂ܘ ܘܰܐܢ݈ܬ݁ܽܘܢ ܐܳܡܪܺܝܢ ܐܢ݈ܬ݁ܽܘܢ
+          ܕ݁ܒ݂ܽܐܘܪܺܫܠܶܡ ܗ݈ܽܘ ܐܰܬ݂ܰܪ ܕ݁ܘܳܠܶܐ ܠܡܶܣܓ݁ܰܕ݂
+        </div>
+        <div class="transliteration">
+          Avaháyn beháná turá sguéd u'antón amrín antón d'vUrishlém hu athar
+          d'valé lmesguád.
+        </div>
+        <div class="translation">
+          Nuestros padres en este monte adoraron, pero ustedes dicen que en
+          Yerushaláim es el lugar donde es necesario adorar.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">4:21</div>
+        <div class="aramaic">
+          ܐܳܡܰܪ ܠܶܗ ܝܶܫܽܘܥ ܐܰܢ݈ܬ݁ܬ݂ܳܐ ܗܰܝܡܶܢܺܝܢܝ ܕ݁ܳܐܬ݂ܝܳܐ ܫܳܥܬ݂ܳܐ ܕ݁ܠܳܐ ܒ݁ܗܳܢܳܐ
+          ܛܽܘܪܳܐ ܘܳܐܦ݂ ܠܳܐ ܒ݁ܽܐܘܪܺܫܠܶܡ ܬ݁ܶܣܓ݁ܕ݂ܽܘܢ ܠܰܐܒ݂ܳܐ
+        </div>
+        <div class="transliteration">
+          Amár láh Yeshúa: Antthá haymeníni d'athyá shá'thá d'lá beháná turá
+          v'af lá v'Urishlém tesgdún l'Avá.
+        </div>
+        <div class="translation">
+          Yeshúa le dijo: Mujer, créeme, que viene la hora cuando ni en este
+          monte ni en Yerushaláim adorarán al Padre.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">4:22</div>
+        <div class="aramaic">
+          ܐܰܢ݈ܬ݁ܽܘܢ ܣܳܓ݂ܕ݁ܺܝܢ ܐܢ݈ܬ݁ܽܘܢ ܠܡܶܕ݁ܶܡ ܕ݁ܠܳܐ ܝܳܕ݂ܥܺܝܢ ܐܢ݈ܬ݁ܽܘܢ ܚܢܰܢ
+          ܕ݁ܶܝܢ ܣܳܓ݂ܕ݁ܺܝܢ ܚܢܰܢ ܠܡܳܐ ܕ݁ܝܳܕ݂ܥܺܝܢ ܚܢܰܢ ܕ݁ܚܰܝܶܐ ܡܶܢ ܝܺܗܽܘܕ݂ܳܝܶܐ
+          ܐܶܢܽܘܢ
+        </div>
+        <div class="transliteration">
+          Antón sagdín antón lmeddem d'lá yad'ín antón; jnán deyn sagdín jnán
+          lmá d'yad'ín jnán, d'jayé men Yihudayé enón.
+        </div>
+        <div class="translation">
+          Ustedes adoran lo que no conocen; nosotros adoramos lo que conocemos,
+          porque la salvación viene de los judíos.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">4:23</div>
+        <div class="aramaic">
+          ܐܶܠܳܐ ܐܳܬ݂ܝܳܐ ܫܳܥܬ݂ܳܐ ܘܗܳܫܳܐ ܐܺܝܬ݂ܶܝܗ ܐܶܡܰܬ݂ܝ ܕ݁ܣܳܓ݂ܽܘܕ݂ܶܐ ܫܰܪܺܝܪܶܐ
+          ܢܶܣܓ݁ܕ݂ܽܘܢ ܠܰܐܒ݂ܳܐ ܒ݁ܪܽܘܚܳܐ ܘܰܒ݂ܫܪܳܪܳܐ ܐܳܦ݂ ܐܰܒ݂ܳܐ ܓ݁ܶܝܪ ܕ݁ܰܐܝܟ݂
+          ܗܳܠܶܝܢ ܗ݈ܽܘ ܣܳܓ݂ܽܘܕ݂ܶܐ ܒ݁ܳܥܶܐ
+        </div>
+        <div class="transliteration">
+          Elá athyá shá'thá vehashá ithéyh, emathi d'sagúdé shariré nesgdún
+          l'Avá berújá uveshrárá; af Avá guir d'ayj haléyn hu sagúdé bá'é.
+        </div>
+        <div class="translation">
+          Pero viene la hora, y ahora es, cuando los verdaderos adoradores
+          adorarán al Padre en espíritu y en verdad; porque también el Padre a
+          tales adoradores busca.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">4:24</div>
+        <div class="aramaic">
+          ܪܽܘܚܳܐ ܗ݈ܽܘ ܓ݁ܶܝܪ ܐܰܠܳܗܳܐ ܘܰܐܝܠܶܝܢ ܕ݁ܣܳܓ݂ܕ݁ܺܝܢ ܠܶܗ ܒ݁ܪܽܘܚܳܐ ܘܰܒ݂ܫܪܳܪܳܐ
+          ܘܳܐܠܶܐ ܕ݁ܢܶܣܓ݁ܕ݂ܽܘܢ
+        </div>
+        <div class="transliteration">
+          Rújá hu guir Alahá, ve'ayléyn d'sagdín leh, berújá uveshrárá valé
+          d'nesgdún.
+        </div>
+        <div class="translation">
+          Porque Elohím es Espíritu; y los que le adoran, es necesario que le
+          adoren en espíritu y en verdad.
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Impacto Profético</div>
+          <p>
+            Yeshúa HaMashíaj revela aquí la transición profética del culto
+            localizado hacia la adoración universal del Reino. Al declarar que
+            "la salvación viene de los judíos", confirma Su linaje mesiánico y
+            el cumplimiento de las promesas hechas a Israel. Él es quien, como
+            la Torá Viviente, establece que la verdadera adoración no depende de
+            una ubicación geográfica, sino de la regeneración del corazón por el
+            Ruaj HaKodesh. Yeshúa es el centro de esta "verdad", pues en Él
+            habita la plenitud de Elohím. El cumplimiento profético se
+            manifiesta cuando el creerente, injertado en el Mashíaj, ofrece su
+            vida como un sacrificio vivo, reconociendo que Yeshúa es el único
+            camino al Padre. Esta es la hora donde los dispersos de Israel y los
+            de las naciones se unen en un solo espíritu para glorificar al
+            Elohím de Israel a través del único Mediador, Yeshúa HaMashíaj.
+          </p>
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El encuentro entre Yeshúa HaMashíaj y la mujer samaritana en el pozo
+          de Yaakov constituye el cumplimiento profético de la búsqueda de las
+          ovejas perdidas de la Casa de Israel. Yeshúa, al transitar por
+          Samaria, no realiza un simple viaje geográfico, sino una misión de
+          redención para restaurar a aquellos que habían sido mezclados y
+          alejados de la instrucción pura. El reconocimiento de Yeshúa como
+          "profeta" por parte de la mujer señala hacia la promesa de Moshéh
+          sobre el Profeta que Adonai levantaría, aquel que hablaría con la
+          autoridad misma de la Divinidad. Yeshúa personifica este cumplimiento
+          al revelar no solo el pecado oculto, sino la solución eterna que
+          reside en Su propia naturaleza mesiánica.
+        </p>
+        <p>
+          En Yeshúa HaMashíaj se cumple la transición del culto sombreado en
+          montes terrenales hacia la realidad espiritual del Reino de Elohím.
+          Mientras que la mujer planteaba la dicotomía entre el monte Guerizím y
+          Yerushaláim, Yeshúa se presenta como el verdadero Templo donde la
+          Shejináh habita en plenitud. Él es el cumplimiento de todas las
+          sombras del santuario, el lugar de encuentro definitivo entre el
+          Creador y la criatura. Su sola presencia anula la exclusividad de un
+          sitio físico para la adoración, pues al ser Él la Torá Viviente, el
+          centro del culto se traslada a la relación vital con Su persona,
+          permitiendo que la gloria del Padre sea accesible en todo lugar a
+          través del Hijo.
+        </p>
+        <p>
+          La declaración de Yeshúa sobre la salvación que "viene de los judíos"
+          es el cumplimiento profético del linaje de Davíd y de la fidelidad de
+          Adonai a Sus pactos con Israel. Yeshúa reafirma Su identidad judía no
+          como una exclusión, sino como el vehículo de la bendición universal
+          prometida a Abraham. Él es el Judío por excelencia, la simiente santa
+          que trae la redención no de un conocimiento vago o idolátrico, sino de
+          la revelación autorizada que Israel preservó por siglos. El
+          cumplimiento mesiánico asegura que la luz de Tziyón brille ahora sobre
+          todas las naciones, teniendo a Yeshúa como el sol de justicia que
+          emana de la tribu de Yehudáh para iluminar al mundo.
+        </p>
+        <p>
+          Finalmente, Yeshúa cumple la profecía de la adoración en "espíritu y
+          en verdad" al ser Él mismo el dador del Ruaj HaKodesh y la
+          personificación de la Verdad divina. La adoración verdadera solo es
+          posible mediante la unión con el Mashíaj, quien quita el velo de la
+          religiosidad externa para introducir al creyente en la intimidad del
+          Padre. El cumplimiento radica en que Yeshúa ha inaugurado una nueva
+          era donde la liturgia es la vida misma transformada por Su poder. Él
+          es quien busca a los adoradores, pues Su sacrificio en el madero es lo
+          que nos capacita para presentarnos ante el Trono de la Gracia
+          revestidos de Su propia santidad y justicia perfecta.
+        </p>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          La conexión de este pasaje con los Neviím es estructural, pues resuena
+          con la voz de Iermeyahu (Jeremías) cuando profetizó sobre el Nuevo
+          Pacto donde la Torá no sería una ley externa, sino grabada en el
+          corazón. Yeshúa, al hablar de la adoración en espíritu, está activando
+          la promesa profética de un tiempo donde todos conocerían a Adonai
+          desde el más pequeño hasta el más grande. Los profetas anunciaron que
+          el Mashíaj sería quien quitaría el corazón de piedra y pondría un
+          espíritu nuevo, permitiendo que la adoración no fuera un rito vacío,
+          sino una expresión orgánica de la vida interna. Yeshúa es la conexión
+          viva que une la ley profética con la gracia de la transformación
+          espiritual.
+        </p>
+        <p>
+          Ezequiel conectó con esta visión al profetizar sobre el agua limpia
+          que sería esparcida sobre el pueblo para purificarlo de sus ídolos y
+          de su inmundicia. Yeshúa, en el contexto de Samaria, se presenta como
+          el administrador de esa agua viva que limpia la ceguera de la
+          idolatría samaritana y judía por igual. Los Neviím vislumbraron un
+          Templo del cual saldrían ríos de agua de vida, y Yeshúa identifica ese
+          Templo con Su propio cuerpo y con el Espíritu que recibirían los que
+          creyeran en Él. Esta conexión refuerza que la adoración verdadera que
+          Yeshúa describe es el resultado de la purificación profetizada que
+          solo el Ungido de Israel podría efectuar.
+        </p>
+        <p>
+          Ieshaiah (Isaías) profetizó que la casa de Adonai sería llamada casa
+          de oración para todos los pueblos, una visión que Yeshúa expande al
+          declarar que la hora ha llegado en que la adoración trasciende las
+          fronteras físicas de Yerushaláim. Los profetas entendieron que la
+          gloria de Elohím llenaría toda la tierra, y Yeshúa explica cómo
+          ocurrirá esto: mediante adoradores que lleven la presencia de Elohím
+          en su interior. La conexión profética establece que Yeshúa es el
+          cumplimiento de la paz que los Neviím prometieron, una paz que
+          reconcilia a los hombres con el Padre sin las barreras de los antiguos
+          montes de división y conflicto religioso.
+        </p>
+        <p>
+          ZacarYah también aporta a esta conexión al profetizar sobre el día en
+          que "Adonai será Uno y Su nombre Uno" en toda la tierra. Yeshúa, al
+          enseñar sobre el Padre que busca adoradores, está revelando la unidad
+          de la deidad que los profetas custodiaron celosamente contra el
+          paganismo. La conexión con los Neviím nos asegura que el mensaje de
+          Yeshúa no es una ruptura con el pasado, sino la culminación de la
+          esperanza de los profetas de ver una adoración pura que no dependa de
+          estructuras humanas. Yeshúa es el centro de esta armonía profética, el
+          Rey que restaura el altar del corazón para que el incienso de la
+          alabanza suba continuamente desde toda la creación.
+        </p>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          Se cumple en este pasaje la profecía de la reconciliación de las
+          tribus de Israel dispersas, representadas en la mujer samaritana que
+          reconoce al Mashíaj. Yeshúa cumple la palabra que decía que el cetro
+          de Yehudáh no se apartaría hasta que viniera Shilóh y a Él se
+          congregaran los pueblos. Al atraer a Samaria hacia el conocimiento de
+          la verdad, Yeshúa está sanando la herida del cisma histórico entre el
+          norte y el sur de la nación. Esta es una profecía cumplida de unidad
+          mesiánica, donde el Pastor de Israel comienza a reunir a Su rebaño
+          bajo una sola instrucción y una sola esperanza de salvación eterna.
+        </p>
+        <p>
+          Se ha cumplido la profecía sobre el Mashíaj como el gran Maestro de
+          Justicia que aclararía todas las controversias sobre la adoración y el
+          lugar del culto. El ruego del pueblo por el Profeta que les diría
+          todas las cosas se verifica cuando Yeshúa aclara de un golpe siglos de
+          debates teológicos entre judíos y samaritanos. Su autoridad para
+          definir lo que es "espíritu y verdad" es el cumplimiento de Su rol
+          como el Legislador supremo que interpreta la Torá con la mente del
+          Padre. El cumplimiento radica en que Yeshúa no ofrece una opinión más,
+          sino la declaración final sobre la naturaleza de la relación entre el
+          hombre y Elohím.
+        </p>
+        <p>
+          La profecía sobre la "luz para los gentiles" y la salvación hasta los
+          confines de la tierra se cumple cuando Yeshúa declara que la hora ya
+          es, donde la adoración se desliga de la exclusividad física de los
+          muros de Yerushaláim. Se cumple la palabra que decía que "en todo
+          lugar se ofrecerá a Mi nombre incienso puro". Yeshúa es quien abre las
+          puertas del Reino a todos los que invocan Su nombre en verdad,
+          cumpliendo la promesa de que Elohím no hace acepción de personas. Este
+          cumplimiento histórico permite que hoy podamos adorar al Elohím de
+          Israel desde cualquier rincón del mundo, gracias a la mediación
+          soberana de Yeshúa.
+        </p>
+        <p>
+          Finalmente, se cumple la profecía de la morada de Elohím en medio de
+          los hombres de una manera nueva y poderosa. Al enseñar que Elohím es
+          Espíritu, Yeshúa cumple la expectativa de que la Shejináh no estaría
+          confinada a un edificio de piedra que pronto sería destruido. Se
+          cumple la palabra que dice que "el Altísimo no habita en templos
+          hechos de manos". Yeshúa es el cumplimiento de esta verdad, siendo Él
+          mismo el Tabernáculo vivo que prepara a Sus seguidores para ser
+          templos del Ruaj. Esta es la profecía cumplida de la presencia
+          omnipresente de Adonai a través del Mashíaj, permitiendo que la
+          santidad de Elohím impregne cada aspecto de la existencia humana.
+        </p>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          La aplicación espiritual de Iojanán 4:19-24 nos llama a una rendición
+          absoluta ante la autoridad de Yeshúa HaMashíaj como el único que
+          conoce la profundidad de nuestra sed interna. Debemos aplicar el
+          reconocimiento de la mujer samaritana a nuestra propia vida, aceptando
+          que Yeshúa es el Profeta que escudriña los corazones y revela nuestras
+          idolatrías ocultas. La aplicación práctica es dejar de buscar "aguas"
+          en pozos terrenales de religión o placer, y beber directamente de la
+          Fuente que es el Mashíaj. Solo al reconocer a Yeshúa como nuestra Torá
+          Viviente podemos ser transformados de buscadores de ritos en
+          verdaderos adoradores del Reino.
+        </p>
+        <p>
+          Debemos aplicar la enseñanza de Yeshúa sobre la prioridad del espíritu
+          sobre el lugar, eliminando cualquier confianza en estructuras físicas
+          o tradiciones humanas que nos impidan ver la gloria de Elohím. La
+          aplicación espiritual consiste en entender que nuestra vida diaria es
+          el altar donde debemos ofrecer adoración constante a través de la
+          obediencia al Mashíaj. No podemos limitar nuestra relación con Yeshúa
+          a un tiempo o un espacio determinado, sino que debemos caminar en Su
+          presencia en cada pensamiento y acción. Adorar en espíritu es permitir
+          que el Ruaj de Yeshúa gobierne nuestra voluntad y nos guíe a toda la
+          verdad de Su instrucción.
+        </p>
+        <p>
+          Es fundamental aplicar la verdad de que la salvación viene de los
+          judíos, honrando las raíces hebreas de nuestra fe y reconociendo a
+          Yeshúa en Su contexto nacional y pactual. Nuestra aplicación debe
+          alejarse de cualquier reemplazo teológico y abrazar la fidelidad de
+          Elohím a Israel manifestada en el Mashíaj. Al entender que Yeshúa es
+          el cumplimiento de las promesas a Yehudáh, nuestra adoración se vuelve
+          informada y profunda, dejando atrás la ignorancia de "adorar lo que no
+          conocemos". La aplicación práctica es estudiar la Torá con los ojos de
+          Yeshúa para que nuestra verdad no sea una teoría, sino la realidad del
+          carácter del Mashíaj formado en nosotros.
+        </p>
+        <p>
+          Finalmente, la aplicación espiritual nos convoca a ser los adoradores
+          que el Padre busca, respondiendo al llamado de Yeshúa con sinceridad y
+          pureza de corazón. Debemos aplicar la disciplina de la adoración en
+          espíritu, buscando que nuestro ser entero esté alineado con la Verdad
+          que es Yeshúa. Esto implica una vida de integridad donde no haya
+          brecha entre nuestra confesión de fe y nuestra conducta moral. La
+          aplicación definitiva es vivir en la consciencia de que Yeshúa está
+          presente en nosotros por Su Espíritu, transformando cada encuentro
+          cotidiano en un acto de culto al Elohím vivo, reflejando Su santidad y
+          Su amor ante un mundo sediento de Su gracia mesiánica.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          La Torá nos enseña que Yeshúa HaMashíaj es el único que ha traído la
+          luz definitiva sobre el misterio de la adoración al Elohím de Israel.
+          No hay acceso al Padre fuera del espíritu y la verdad que Yeshúa
+          personifica y otorga a Su pueblo redimido. El celo de Adonai יְהוָה de
+          los ejércitos garantiza que los adoradores verdaderos prevalecerán
+          sobre toda división religiosa y toda ceguera espiritual. Es tiempo de
+          acudir al pozo de la instrucción de Yeshúa, reconociendo que Él es la
+          Fuente de Agua Viva que pronto hará que toda la tierra sea llena del
+          conocimiento de Su gloria, restaurando a Israel y a las naciones en un
+          solo coro de alabanza eterna.
+        </p>
+      </div>
+      <h1>Punto 4. Contexto Histórico y Cultural (Éxodo 20:15–23)</h1>
+      <div class="content-container">
+        <strong>Marco histórico inmediato</strong>
+        <p>
+          Este pasaje ocurre inmediatamente después de que todo Israel ha
+          escuchado las Aseret haDevarím pronunciadas directamente por Adonái
+          יהוה. El pueblo ha sido testigo de una teofanía sin precedentes:
+          fuego, nube, sonido del shofar y la voz divina. La reacción humana es
+          inevitable: temor profundo y conciencia de pequeñez.
+        </p>
+        <p>Aquí se produce un cambio decisivo:</p>
+        <ul>
+          <li>El pueblo retrocede.</li>
+          <li>Moshéh se acerca.</li>
+          <li>Se establece formalmente la mediación.</li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>Contexto cultural del antiguo Cercano Oriente</strong>
+        <p>En las culturas antiguas:</p>
+        <ul>
+          <li>El contacto directo con la divinidad se consideraba mortal.</li>
+          <li>Los dioses eran impredecibles y caprichosos.</li>
+          <li>El temor era terror paralizante.</li>
+        </ul>
+        <p>En Sinaí:</p>
+        <ul>
+          <li>El temor es pedagógico.</li>
+          <li>La mediación es misericordiosa.</li>
+          <li>La revelación busca transformación, no destrucción.</li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <strong>Dimensión cultual</strong>
+        <p>Éxodo 20:22–23 introduce principios básicos del culto:</p>
+        <ul>
+          <li>Rechazo absoluto de imágenes.</li>
+          <li>Simplicidad del altar.</li>
+          <li>Pureza en la adoración.</li>
+        </ul>
+        <p>
+          Esto contrasta radicalmente con los santuarios paganos llenos de
+          imágenes, metales preciosos y ritualismo ostentoso.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        Punto 5. Estudio, Comentarios y Conexiones Proféticas (Éxodo 20:15–23)
+      </h1>
+      <div class="content-container">
+        <h3>Estructura del pasaje</h3>
+        <ul>
+          <li>Temor del pueblo y petición de mediación (vv.15–16)</li>
+          <li>Propósito del temor reverente (v.17)</li>
+          <li>Moshéh se acerca a la oscuridad donde está Elohím (v.18)</li>
+          <li>Principios del culto verdadero (vv.19–23)</li>
+        </ul>
+      </div>
+
+      <div class="explanation">
+        <h3>Comentarios rabínicos</h3>
+        <ul>
+          <li>
+            <strong>Rashí:</strong> El temor no es para huir de Elohím, sino
+            para no pecar.
+          </li>
+          <li>
+            <strong>Ibn Ezra:</strong> El pueblo reconoce su límite espiritual;
+            la mediación es necesaria.
+          </li>
+          <li>
+            <strong>Sforno:</strong> La simplicidad del altar evita que el
+            corazón se desvíe del Elohím verdadero.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Conexiones proféticas</div>
+          <ul>
+            <li>Anticipa Devarím 18, donde se promete un profeta mediador.</li>
+            <li>
+              Conecta con Isaías 66, donde Elohím busca humildad, no
+              ostentación.
+            </li>
+            <li>
+              Establece la base para un culto centrado en obediencia, no en
+              imágenes.
+            </li>
+          </ul>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Dimensión mesiánica</div>
+          <p>
+            La petición del pueblo (“habla tú con nosotros”) prepara el camino
+            para una mediación perfecta y permanente.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 6. Análisis Profundo de la Aliyáh (Éxodo 20:15–23)</h1>
+      <div class="content-container">
+        <h3>Análisis teológico</h3>
+        <ul>
+          <li>El temor reverente es don, no castigo.</li>
+          <li>La mediación protege al pueblo sin alejarlo de Elohím.</li>
+          <li>La adoración verdadera rechaza toda forma de idolatría.</li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h3>Análisis léxico</h3>
+        <ul>
+          <li>
+            <strong>Yiráh (יִרְאָה):</strong> temor que conduce a obediencia.
+          </li>
+          <li>
+            <strong>Arafel (עֲרָפֶל):</strong> oscuridad espesa; misterio
+            divino, no ausencia.
+          </li>
+          <li>
+            <strong>Pesel (פֶּסֶל):</strong> imagen tallada; intento humano de
+            controlar lo divino.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h3>Análisis espiritual</h3>
+        <p>El pueblo aprende que:</p>
+        <ul>
+          <li>No todo temor es negativo.</li>
+          <li>La cercanía requiere mediación.</li>
+          <li>Elohím es accesible, pero no manipulable.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 7. Tema Más Relevante de la Aliyáh (Éxodo 20:15–23)</h1>
+      <div class="content-container">
+        <div class="prophetic-title">Tema central:</div>
+        <p>El temor reverente que conduce a mediación y adoración pura</p>
+      </div>
+
+      <div class="content-container">
+        <h3>Importancia en la Toráh</h3>
+        <ul>
+          <li>Define el equilibrio entre cercanía y santidad.</li>
+          <li>Establece principios del culto verdadero.</li>
+          <li>Protege al pueblo de idolatría futura.</li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h3>Relación con Yeshúa haMashíaj</h3>
+        <p>Yeshúa:</p>
+        <ul>
+          <li>Es el mediador definitivo entre Elohím y el hombre.</li>
+          <li>Conduce al pueblo al Padre sin terror paralizante.</li>
+          <li>Enseña adoración en verdad y obediencia.</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 8. Descubriendo al Mashíaj en la Aliyáh (Éxodo 20:15–23)</h1>
+      <div class="content-container">
+        <h3>Tipologías mesiánicas</h3>
+        <ul>
+          <li>
+            Moshéh que se acerca a la oscuridad → Yeshúa haMashíaj que entra en
+            el misterio divino.
+          </li>
+          <li>El pueblo que teme → la humanidad consciente de su límite.</li>
+          <li>
+            La mediación solicitada → necesidad universal de un mediador
+            perfecto.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h3>Sombras y patrones</h3>
+        <p>Voz divina → temor → mediación → adoración correcta</p>
+        <p>Este patrón se cumple plenamente en el Mashíaj.</p>
+      </div>
+
+      <div class="content-container">
+        <h3>Cumplimiento en el Brit Hadasháh</h3>
+        <ul>
+          <li>
+            Yeshúa es el mediador que permite acceso sin anular la santidad.
+          </li>
+          <li>El culto se centra en obediencia y verdad, no en imágenes.</li>
+          <li>El temor reverente se transforma en confianza filial.</li>
+        </ul>
+      </div>
+
+      <div class="explanation">
+        <h3>Revelación final</h3>
+        <p>Yeshúa haMashíaj es:</p>
+        <ul>
+          <li>El mediador pedido en Sinaí.</li>
+          <li>El que entra en la “oscuridad” por nosotros.</li>
+          <li>El revelador del Padre sin idolatría.</li>
+          <li>El fundamento del culto puro y verdadero.</li>
+        </ul>
+      </div>
+      <h1>Punto 9. Midrashim, Targumim y Textos Fuentes (Éxodo 20:15–23)</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Midrashim relevantes</div>
+          <strong>Shemot Rabbáh 29:6–7</strong>
+          <p>
+            Este midrash explica que el temor del pueblo no fue incredulidad,
+            sino conciencia súbita de la santidad absoluta. Al escuchar la voz
+            divina, Israel comprendió que sin mediación el encuentro continuo
+            sería insoportable. Elohím acepta esta reacción porque revela
+            humildad, no rechazo.
+          </p>
+
+          <strong>Mekhilta deRabbi Ishmael (BaJodesh 10–11)</strong>
+          <p>
+            Interpreta la frase “para probaros vino Elohím” como purificación
+            interior. El temor no busca paralizar, sino eliminar el pecado del
+            corazón. El midrash afirma que el verdadero temor conduce a vida y
+            obediencia.
+          </p>
+
+          <strong>Tanjumá Yitró 15</strong>
+          <p>
+            Enseña que la prohibición de imágenes y la simplicidad del altar
+            fueron dadas inmediatamente para evitar que la experiencia
+            espiritual se convirtiera en idolatría emocional o estética.
+          </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Targumim</div>
+          <strong>Targum Onkelos</strong>
+          <p>
+            Traduce el temor del pueblo con términos de reverencia profunda,
+            evitando connotaciones de pánico irracional. Resalta que Moshéh “se
+            acercó” a la presencia divina, mostrando la función legítima del
+            mediador.
+          </p>
+
+          <strong>Targum Pseudo-Jonatán</strong>
+          <p>
+            Amplía la instrucción sobre el altar indicando que la simplicidad
+            preserva la pureza del corazón, pues Elohím no se complace en
+            ostentación sino en obediencia.
+          </p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Textos fuentes del Segundo Templo</div>
+          <ul>
+            <li>
+              Escritos judíos tempranos ven este pasaje como la
+              institucionalización de la mediación profética.
+            </li>
+            <li>
+              En Qumrán, se enfatiza que el culto verdadero requiere separación
+              de imágenes y humildad extrema.
+            </li>
+            <li>
+              El temor reverente es considerado señal de sabiduría espiritual
+              madura.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h1>Punto 10. Mandamientos o Principios Encontrados (Éxodo 20:15–23)</h1>
+
+      <div class="content-container">
+        <p>
+          Esta Aliyáh establece principios fundamentales del acercamiento a
+          Elohím:
+        </p>
+        <ul>
+          <li>
+            <strong>Principio del temor reverente</strong>: El temor que
+            proviene de Elohím guarda al hombre del pecado.
+          </li>
+          <li>
+            <strong>Principio de mediación designada</strong>: Elohím establece
+            un mediador para proteger y guiar al pueblo.
+          </li>
+          <li>
+            <strong>Principio de rechazo absoluto de imágenes</strong>: Ninguna
+            representación puede contener o definir al Uno, Ejad.
+          </li>
+          <li>
+            <strong>Principio de simplicidad en el culto</strong>: El altar
+            sencillo preserva la pureza de la adoración.
+          </li>
+          <li>
+            <strong>Principio de obediencia sobre ritualismo</strong>: Elohím se
+            agrada del corazón obediente, no del exceso externo.
+          </li>
+        </ul>
+        <p>
+          En el Brit Hadasháh, estos principios se revelan plenamente en Yeshúa
+          haMashíaj, mediador eterno y fundamento del culto verdadero.
+        </p>
+      </div>
+
+      <h1>
+        Punto 11. Preguntas de Reflexión con Respuestas en el Mashíaj (Éxodo
+        20:15–23)
+      </h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <strong
+            >1. ¿Por qué el pueblo pidió que Moshéh hablara en lugar de
+            Elohím?</strong
+          >
+          <div class="explanation">
+            Respuesta en el Mashíaj: Porque reconocieron su límite humano.
+            Yeshúa haMashíaj es la respuesta definitiva a esa necesidad de
+            mediación.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <strong
+            >2. ¿Qué tipo de temor produce Elohím según este pasaje?</strong
+          >
+          <div class="explanation">
+            Respuesta en el Mashíaj: Un temor que guarda del pecado y conduce a
+            obediencia. Yeshúa enseña este temor unido al amor filial.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <strong
+            >3. ¿Por qué Elohím insiste en la simplicidad del altar?</strong
+          >
+          <div class="explanation">
+            Respuesta en el Mashíaj: Para que el corazón no adore la forma en
+            lugar de la verdad. En Yeshúa, el culto se centra en espíritu y
+            obediencia.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <strong>4. ¿Qué enseña la oscuridad donde Moshéh entra?</strong>
+          <div class="explanation">
+            Respuesta en el Mashíaj: Que Elohím es misterio y luz a la vez.
+            Yeshúa entra en ese misterio para revelarlo sin destruirnos.
+          </div>
+        </div>
+
+        <div class="section-container">
+          <strong>5. ¿Cómo vivir hoy este pasaje en el Mashíaj?</strong>
+          <div class="explanation">
+            Respuesta en el Mashíaj: Caminando con temor reverente, rechazando
+            idolatría sutil y acercándonos al Padre por medio de Yeshúa
+            haMashíaj.
+          </div>
+        </div>
+      </div>
+
+      <h1>Punto 12. Resumen de la Aliyáh (Éxodo 20:15–23)</h1>
+
+      <div class="content-container">
+        <p>
+          Tras escuchar la voz divina, el pueblo tiembla y solicita mediación.
+        </p>
+        <p>
+          Moshéh se acerca a la presencia de Elohím, y se establecen principios
+          esenciales del culto: temor reverente, rechazo de imágenes y
+          simplicidad en la adoración.
+        </p>
+        <p>
+          La Aliyáh muestra que la cercanía a Elohím requiere mediación,
+          obediencia y pureza interior.
+        </p>
+      </div>
+
+      <h1>Punto 13. Tefiláh (Oración) de la Aliyáh (Éxodo 20:15–23)</h1>
+
+      <div class="content-container">
+        <div class="prayer-text">
+          Adonái יהוה, reconocemos tu santidad que inspira temor y vida.
+          Guárdanos de un temor que huye y condúcenos a un temor que obedece. Te
+          damos gracias por la mediación perfecta de Yeshúa haMashíaj, quien nos
+          acerca a tu presencia sin idolatría ni engaño. Purifica nuestro
+          corazón, haz sencilla nuestra adoración y permite que caminemos en
+          verdad y obediencia todos los días de nuestra vida.
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="../index.html">Ir al contenido de las 54 parashot</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
