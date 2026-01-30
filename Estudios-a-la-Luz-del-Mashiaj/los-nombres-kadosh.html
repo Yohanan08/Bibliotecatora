@@ -1,0 +1,1435 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Reino del Mashíaj en las Escrituras</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        LOS NOMBRES KADOSH DE ADONAI REVELADOS EN LA PARASHA 16 BESHALAJ(CUANDO
+        ENVIO)
+      </h1>
+
+      <div class="content-container">
+        <p>יהוה– Adonái (Shemot 13:17; 14:1, 4, 15; 15:1, 3, 6, 11)</p>
+      </div>
+
+      <h1>1️⃣ Significado hebreo y revelación en Parashá Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          El Nombre Inefable יהוה constituye la esencia misma de la existencia,
+          derivado de la raíz verbal que implica "ser", "era" y "será". En
+          Parashá Beshálaj, esta revelación trasciende la abstracción para
+          convertirse en una fuerza histórica que dirige los pasos de Israel
+          hacia su libertad. No es simplemente un título de autoridad, sino la
+          presencia activa que se manifiesta en la columna de nube y de fuego,
+          demostrando que la soberanía de Adonái no conoce límites geográficos
+          ni temporales frente a la soberanía del faraón. Al analizar su
+          aparición en los versículos de la parashá, observamos que יהוה toma la
+          iniciativa absoluta en la redención. Cuando el pueblo se encuentra
+          frente al Mar de Juncos, es יהוה quien endurece el corazón de Faraón
+          para mostrar Su gloria y es Él quien ordena a Moshéh que diga a los
+          hijos de Israel que "marchen". Esta revelación en Beshálaj establece
+          que el Nombre sagrado es sinónimo de salvación operativa, donde la
+          naturaleza misma debe doblegarse ante la voz de su Creador para
+          preservar el linaje del pacto. La revelación de יהוה en este evento
+          histórico es la de un libertador que no solo saca al pueblo de la
+          esclavitud, sino que lo introduce en una relación de dependencia
+          total. A través de las plagas y la división del mar, el Eterno
+          demuestra que Su Nombre es la garantía de que las promesas hechas a
+          los patriarcas se están cumpliendo. En Beshálaj, el Nombre יהוה se
+          convierte en el refugio de un pueblo que no tiene armas, pero que
+          tiene la Palabra del Único que puede abrir camino en medio del abismo.
+        </p>
+      </div>
+
+      <h1>2️⃣ Cumplimiento profético en el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          En la persona de Yeshúa HaMashíaj, el Nombre יהוה halla su expresión
+          más perfecta y cercana a la humanidad, pues Él es MarYah manifestado
+          en carne. El cumplimiento profético se observa cuando Yeshúa, al igual
+          que Adonái en el Mar de Juncos, demuestra autoridad sobre los
+          elementos naturales, calmando la tempestad y caminando sobre las
+          aguas. Esto no fue un simple despliegue de poder, sino la señal clara
+          de que el mismo que dividió las aguas para Israel estaba presente para
+          redimir a Sus seguidores de una esclavitud espiritual mucho más
+          profunda. La conexión entre el atributo de redención de יהוה y la obra
+          de Yeshúa es intrínseca; el Mashíaj no actúa por cuenta propia, sino
+          como la manifestación visible del Elohim de Israel. Su sacrificio en
+          el madero es la "mano fuerte y el brazo extendido" de Adonái que
+          destruye el poder del pecado y la muerte, tal como el mar destruyó al
+          ejército egipcio. La redención de Beshálaj es la sombra profética de
+          la redención eterna que Yeshúa establece para todo Israel y para
+          aquellos que se injertan en el olivo natural. Existe una continuidad
+          inquebrantable entre la Torá y el Mashíaj, donde Yeshúa es presentado
+          como aquel en quien habita toda la plenitud de la deidad. Al invocar
+          el Nombre de Yeshúa, estamos reconociendo la autoridad de יהוה
+          actuando en la historia humana para restaurar el Reino. En Beshálaj,
+          Adonái es el que guía; en el Brit Hadashah, Yeshúa es el Buen Pastor
+          que conduce a Sus ovejas fuera de la oscuridad, cumpliendo así la
+          promesa de presencia constante y salvación final que el Nombre יהוה
+          garantiza.
+        </p>
+      </div>
+
+      <h1>3️⃣ Conexión con los Profetas (Tanaj)</h1>
+      <div class="content-container">
+        <p>
+          El profeta Yeshayahu (Isaías) expande la revelación de יהוה en
+          relación con el éxodo al declarar: "Así dice Adonái יהוה, el que abre
+          camino en el mar y senda en las aguas impetuosas" (Yeshayahu 43:16).
+          Esta cita profética no solo recuerda el pasado, sino que proyecta
+          hacia el futuro una nueva redención que será tan impactante como la de
+          Beshálaj. Los profetas entendieron que el Nombre de יהוה está ligado
+          eternamente al concepto de "abrir caminos" donde humanamente no
+          existen, manteniendo viva la esperanza de la restauración de Israel.
+          La ampliación de esta revelación por parte de los profetas enfatiza
+          que la victoria en el Mar de Juncos fue un evento aislado, sino el
+          patrón de cómo Adonái interviene en favor de Su pueblo. Los Neviím
+          utilizan el lenguaje de Beshálaj para describir la era mesiánica,
+          donde la gloria de יהוה será revelada a todas las naciones. La
+          profecía conecta la columna de nube y de fuego con la protección
+          futura sobre Sión, asegurando que la presencia del Eterno será un
+          dosel de gloria sobre los redimidos, tal como lo fue para la
+          generación del desierto. Relacionar la profecía con Beshálaj nos
+          permite ver que el Nombre יהוה es la roca sobre la cual se construye
+          toda la esperanza de Israel. Los profetas proclaman que, en los
+          últimos días, el remanente de Israel reconocerá el Nombre de Adonái y
+          comprenderá que Su brazo no se ha acortado para salvar. La revelación
+          de יהוה como el único Salvador en los profetas es un eco directo del
+          cántico de Moshéh, donde se reconoce que no hay nadie como Él entre
+          los poderosos, consolidando una teología de soberanía absoluta que
+          atraviesa todo el Tanaj.
+        </p>
+      </div>
+
+      <h1>4️⃣ Conexión con la Brit Jadasháh</h1>
+      <div class="content-container">
+        <p>
+          En el Brit Hadashah, encontramos una referencia explícita en el libro
+          de Ivrim (Hebreos) que conecta la fe con el paso del Mar Rojo: "Por la
+          fe pasaron el Mar Rojo como por tierra seca" (Ivrim 11:29). Esta
+          mención no solo valida el evento histórico, sino que lo eleva a un
+          nivel de enseñanza espiritual sobre la confianza absoluta en la
+          autoridad de Adonái. El cumplimiento mesiánico se encuentra en que
+          Yeshúa es el autor y consumador de esa fe, el que permite que el
+          creyente atraviese las aguas del juicio y la tribulación sin ser
+          consumido. La coherencia teológica se mantiene al observar que en el
+          Brit Hadashah, la victoria de Yeshúa es descrita con los mismos
+          términos triunfales que el cántico de Shemot 15. En el libro de
+          Revelación, se menciona que los vencedores cantan "el cántico de
+          Moshéh y el cántico del Cordero", uniendo indisolublemente la
+          liberación física de Egipto con la liberación espiritual y
+          escatológica provista por el Mashíaj. Esto confirma que el Nombre de
+          יהוה revelado en Yeshúa es la misma fuerza libertadora que ha operado
+          desde el principio de los tiempos. Asimismo, la presencia de MarYah
+          manifestado en Yeshúa asegura que la autoridad de Adonái sobre la
+          muerte es el cumplimiento final de lo que se prefiguró en el mar. Si
+          en Beshálaj יהוה venció al ejército que representaba la muerte y la
+          opresión, en el Brit Hadashah, Yeshúa vence al "último enemigo", que
+          es la muerte misma. La unidad compuesta de יהוה se hace evidente
+          cuando vemos que la misma gloria que descendió en la nube es la que
+          resplandece en el rostro del Mashíaj, guiando a la Kahal de Israel
+          hacia la tierra prometida del Reino de Elohim.
+        </p>
+      </div>
+
+      <h1>5️⃣ Aplicación espiritual para el creyente hoy</h1>
+      <div class="content-container">
+        <p>
+          La enseñanza práctica de Beshálaj radica en el reconocimiento de que
+          la redención no depende del esfuerzo humano, sino de la intervención
+          soberana de Adonái. Para el creyente hoy, esto significa que ante las
+          encrucijadas de la vida, donde el enemigo parece acechar por la
+          espalda y el mar de la incertidumbre se extiende al frente, la
+          instrucción sigue siendo la misma: "Adonái peleará por vosotros, y
+          vosotros estaréis tranquilos". La confianza en el Nombre יהוה es un
+          llamado a la quietud del alma frente al caos externo. El impacto en la
+          fe y la obediencia se manifiesta cuando el seguidor del Mashíaj
+          comprende que caminar por el camino que Elohim abre requiere un paso
+          de fe inicial. No fue sino hasta que Israel comenzó a marchar que las
+          aguas se dividieron. Así, la aplicación pastoral profunda nos enseña
+          que la obediencia precede a la manifestación del milagro; debemos
+          movernos en la dirección de la Palabra de Adonái, confiando en que Su
+          Nombre es una torre fuerte donde hallaremos refugio y provisión en
+          medio del desierto. Finalmente, la confianza en el Nombre de יהוה
+          revelado en Yeshúa debe transformar nuestra perspectiva sobre las
+          crisis. Cada "mar de juncos" en nuestra vida es una oportunidad para
+          que la gloria del Elohim de Israel sea manifestada y para que nuestra
+          boca se llene de un cántico nuevo. La aplicación espiritual es un
+          recordatorio de que somos parte de un pueblo redimido que camina bajo
+          la guía de la columna de fuego, y que ninguna arma forjada contra el
+          propósito de Adonái en nuestras vidas prosperará, pues Su Nombre es la
+          garantía de nuestra victoria final.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="content-container">
+        <p>אֱלֹהִים – Elohím (Shemot 14:19; 14:25; 15:2)</p>
+      </div>
+
+      <h1>1️⃣ Significado hebreo y revelación en Parashá Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          El Nombre Elohím denota al Juez Supremo, al Poseedor de todo poder y
+          autoridad en el cielo y en la tierra. Gramaticalmente, es una forma
+          plural de majestad que señala la plenitud de las facultades divinas y
+          Su justicia intrínseca. En Parashá Beshálaj, Elohím se revela como el
+          legislador del universo que dicta sentencia contra los falsos dioses
+          de Egipto, demostrando que ninguna potestad humana o espiritual puede
+          compararse con Su gobierno absoluto sobre la creación. En los
+          versículos de esta parashá, vemos a Elohím actuando a través de Su
+          enviado, el Ángel de Elohím, quien se interpone entre el campamento de
+          Israel y el de Egipto. Esta revelación muestra a un Elohim protector
+          que establece una barrera infranqueable de justicia; para Israel es
+          luz y guía, mientras que para sus enemigos es oscuridad y confusión.
+          En el versículo 14:25, incluso los egipcios reconocen el poder de
+          Elohím cuando gritan: "Huyamos de delante de Israel, porque Elohím
+          pelea por ellos contra los egipcios", reconociendo que su derrota no
+          es por manos humanas. La revelación activa de Elohím en este evento
+          histórico subraya que la liberación de Israel es un acto judicial
+          divino. Elohím no solo salva por misericordia, sino por derecho legal,
+          pues Israel es Su primogénito según el pacto. Al hundir los carros de
+          Faraón, Elohím ejecuta un juicio sobre la soberbia y la idolatría,
+          estableciendo que Él es el único Elohim verdadero. En el cántico del
+          mar, el pueblo proclama: "Él es mi Elohey y yo le exaltaré", aceptando
+          formalmente Su soberanía y Su ley sobre sus vidas.
+        </p>
+      </div>
+
+      <h1>2️⃣ Cumplimiento profético en el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          Yeshúa HaMashíaj es la manifestación de Elohím en justicia y verdad,
+          siendo Él mismo el Verbo que estaba con Elohím y que era Elohím. El
+          cumplimiento profético se hace evidente en Su autoridad para juzgar y
+          perdonar, funciones que pertenecen exclusivamente a Elohím. En
+          Beshálaj, Elohím pelea por Su pueblo; en el Brit Hadashah, Yeshúa
+          pelea contra las potestades de las tinieblas y los gobernadores de
+          este siglo, despojándolos de su autoridad mediante Su sacrificio
+          perfecto y Su resurrección gloriosa. La conexión con Su obra redentora
+          es profunda, pues Yeshúa actúa como el Juez justo que asume sobre sí
+          la sentencia que pesaba sobre Israel y las naciones. Al ser Elohím
+          manifestado, Su sangre tiene valor infinito para satisfacer la
+          justicia divina. Así como el Ángel de Elohím protegió a Israel en el
+          mar, Yeshúa se interpone entre nosotros y el juicio venidero, siendo
+          nuestro refugio y nuestra justicia. Él es el Elohím fuerte que nos
+          saca de la potestad de las tinieblas y nos traslada a Su Reino de luz.
+          La continuidad entre Toráh y Mashíaj se confirma cuando vemos que
+          Yeshúa es llamado "mi Elohim y mi Adonai" por Sus discípulos,
+          reconociendo en Él la misma autoridad que operó en el Éxodo. En
+          Beshálaj, Elohím es el que ordena que las aguas se cierren sobre el
+          enemigo; en el Mashíaj, se nos revela que todo juicio ha sido
+          entregado al Hijo. Yeshúa es la expresión visible del Elohím
+          invisible, y Su cumplimiento de la Torá garantiza que la justicia de
+          Elohím sea ahora accesible para todos los que creen en Su Nombre.
+        </p>
+      </div>
+
+      <h1>3️⃣ Conexión con los Profetas (Tanaj)</h1>
+      <div class="content-container">
+        <p>
+          El profeta Yeshayahu proclama una visión poderosa sobre este atributo:
+          "¡He aquí vuestro Elohim! Ved, Adonái יהוה vendrá con poder, y Su
+          brazo señoreará" (Yeshayahu 40:9-10). Esta cita profética vincula
+          directamente la identidad de Elohím con la victoria y el gobierno que
+          se manifiestan en Beshálaj. Los profetas enfatizan que la salvación
+          viene únicamente de Elohím, y que Su soberanía no es solo para Israel,
+          sino que será reconocida por todos los confines de la tierra, haciendo
+          eco del reconocimiento forzado de los egipcios en el mar. Los profetas
+          amplían esta revelación al mostrar que Elohím es el que crea cosas
+          nuevas, así como creó un camino en el mar. Ellos ven en el evento de
+          Beshálaj un prototipo de la restauración final, donde Elohím volverá a
+          mostrar Su brazo poderoso para reunir a los dispersos de Israel. La
+          revelación de Elohím en los profetas es la de un Rey Guerrero que no
+          descansa hasta que Su justicia sea establecida en la tierra,
+          conectando la victoria pasada en el Mar Rojo con el triunfo futuro en
+          el día de Adonái. Relacionar la profecía con Beshálaj permite entender
+          que Elohím es el garante de la supervivencia de Israel a través de los
+          siglos. Los profetas recuerdan al pueblo que el Elohím que dividió las
+          aguas es el mismo que los sostiene en el exilio y el que los traerá de
+          regreso a su heredad. Esta conexión profética asegura que la autoridad
+          de Elohím no ha disminuido; Su capacidad para juzgar a las naciones
+          opresoras y vicar a Sus siervos permanece intacta, siendo Yeshúa el
+          ejecutor final de esa justicia profetizada.
+        </p>
+      </div>
+
+      <h1>4️⃣ Conexión con la Brit Jadasháh</h1>
+      <div class="content-container">
+        <p>
+          En el Brit Hadashah, encontramos una referencia explícita en el
+          evangelio de Yojanán: "En el principio era la Palabra... y la Palabra
+          era Elohím" (Yojanán 1:1). Esta declaración vincula la creación con la
+          redención y con la persona del Mashíaj. Así como Elohím intervino en
+          Beshálaj mediante Su palabra para salvar a Israel, Yeshúa es esa misma
+          Palabra viva que interviene en la historia humana para traer salvación
+          eterna. Él es Elohím con nosotros, la presencia divina que camina en
+          medio de Su pueblo. El cumplimiento mesiánico se manifiesta cuando
+          Yeshúa ejerce la autoridad de Elohím sobre la vida y la muerte. En la
+          resurrección de Lázaro y en Su propia resurrección, Yeshúa demuestra
+          ser el Elohím que da vida a los muertos y llama a las cosas que no son
+          como si fuesen. Esta es la misma autoridad de Elohím que vimos en
+          Beshálaj transformando el mar en tierra seca. La coherencia teológica
+          es absoluta: el poder que dividió las aguas es el mismo poder que
+          rompió las cadenas de la tumba. Mantener esta coherencia implica
+          reconocer que Yeshúa es MarYah manifestado, el Elohím de Israel que no
+          comparte Su gloria con otro. En el Brit Hadashah, la adoración que se
+          le rinde a Yeshúa es la misma que se le debe a Elohím, confirmando Su
+          identidad divina. Al igual que Israel cantó a Elohím después de cruzar
+          el mar, los redimidos en el Mashíaj cantan alabanzas a Aquel que nos
+          amó y nos lavó de nuestros pecados con Su sangre, reconociéndolo como
+          nuestro Elohím y Salvador.
+        </p>
+      </div>
+
+      <h1>5️⃣ Aplicación espiritual para el creyente hoy</h1>
+      <div class="content-container">
+        <p>
+          La aplicación espiritual de reconocer a Elohím como nuestro Juez y
+          Protector es la liberación del temor al hombre. Cuando comprendemos
+          que Elohím pelea por nosotros, como lo hizo en Beshálaj, dejamos de
+          intimidarnos por las amenazas de los "faraones" modernos o las
+          circunstancias adversas. La enseñanza práctica es que debemos
+          someternos a la autoridad de Elohím para disfrutar de Su protección;
+          Israel estaba bajo la nube porque estaba bajo la obediencia a la
+          palabra dada a Moshéh. El impacto en nuestra fe radica en confiar en
+          la justicia divina incluso cuando parece que el enemigo está ganando
+          ventaja. Elohím permitió que Faraón se acercara lo suficiente para que
+          Su victoria fuera total y definitiva. En nuestra vida, esto nos enseña
+          a confiar en los tiempos de Elohím, sabiendo que Él es el Juez Supremo
+          que dictará la sentencia final a nuestro favor. La obediencia a Sus
+          mandamientos es nuestra mejor defensa, pues nos mantiene alineados con
+          Su gobierno soberano. Desde una perspectiva pastoral profunda, la
+          revelación de Elohím en Beshálaj nos invita a renunciar a nuestras
+          propias fuerzas y a descansar en Su poder. Ser "hijos de Elohím" a
+          través del Mashíaj significa que tenemos acceso legal a la protección
+          del Altísimo. La aplicación hoy es vivir con la certeza de que el
+          Elohím que confundió a los egipcios es el mismo que hoy desbarata los
+          planes de las tinieblas contra nuestras familias y comunidades,
+          siempre que permanezcamos fieles a Su pacto.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="content-container">
+        <p>אֵל – El (Shemot 15:2 – “זֶה אֵלִי”)</p>
+      </div>
+
+      <h1>1️⃣ Significado hebreo y revelación en Parashá Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          El Nombre אֵל (El) representa la esencia misma del poder, la fuerza y
+          la preeminencia divina. Es la raíz que denota al "Fuerte" o al
+          "Poderoso", subrayando la capacidad de Elohím para realizar actos
+          sobrenaturales que exceden toda comprensión humana. En el contexto de
+          Parashá Beshálaj, específicamente en el Cántico del Mar, la expresión
+          "Zeh Eli" (Este es mi El) es una exclamación de reconocimiento
+          personal y comunitario de la fuerza irresistible que acaba de aplastar
+          el orgullo de Egipto. Al declarar "Zeh Eli", los hijos de Israel están
+          señalando no a una deidad abstracta, sino al Poderoso que han visto
+          actuar con sus propios ojos. La revelación de El en Beshálaj es una de
+          victoria militar y física; es el Fuerte que se ha convertido en su
+          "Az" (fuerza) y "Zimrat" (canción). Aquí, el atributo de El se
+          manifiesta en la capacidad de transformar la debilidad absoluta de un
+          pueblo de esclavos en la fuerza triunfante de un pueblo libre, gracias
+          a la intervención del único que posee la verdadera fuerza. Adonái se
+          revela activamente en este evento histórico como el ELOHIM de los
+          ejércitos que no necesita espadas humanas para vencer. Al usar el
+          término "El", el texto enfatiza que la salvación no fue un proceso
+          natural o una coincidencia climática, sino el despliegue del poder del
+          Altísimo. En Beshálaj, el Nombre El se asocia con la exclusividad: no
+          hay otro poderoso como Él, y esa fuerza está dedicada enteramente a la
+          preservación y liberación de Su heredad, Israel.
+        </p>
+      </div>
+
+      <h1>2️⃣ Cumplimiento profético en el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          Yeshúa HaMashíaj es revelado proféticamente como "El Guibor" (el
+          Elohim Fuerte), cumpliendo en Su persona la manifestación del poder de
+          Adonái. El cumplimiento en Yeshúa se observa en Su autoridad para
+          juzgar y perdonar, funciones que pertenecen exclusivamente a Elohím.
+          En Beshálaj, Elohím pelea por Su pueblo; en el Brit Hadashah, Yeshúa
+          pelea contra las potestades de las tinieblas y los gobernadores de
+          este siglo, despojándolos de su autoridad mediante Su sacrificio
+          perfecto y Su resurrección gloriosa. La conexión de este atributo con
+          Su obra redentora es vital para entender Su divinidad. Solo el "El"
+          (Poderoso) podía cargar con el peso del pecado del mundo y salir
+          victorioso de la tumba. Su fuerza no se manifestó en violencia física,
+          sino en la autoridad espiritual para entregar Su vida y volverla a
+          tomar. Yeshúa es el "Zeh Eli" del Brit Hadashah; al verlo a Él, vemos
+          el brazo de יהוה actuando con el mismo poder que dividió las aguas,
+          pero ahora aplicado a la restauración de la imagen de Elohim en el
+          hombre. Existe una continuidad perfecta entre la Toráh y el Mashíaj en
+          este punto: el mismo poder que sostuvo a Israel en el desierto es el
+          que sostiene al creyente hoy a través de Yeshúa. Al afirmar que Yeshúa
+          es el Mashíaj, estamos confesando que en Él reside la fuerza (El)
+          necesaria para completar la redención de Israel. En Beshálaj, Israel
+          vio al Poderoso en el mar; en el Nuevo Pacto, vemos al Poderoso en la
+          resurrección de Yeshúa, confirmando que nuestro Elohey es el mismo
+          ayer, hoy y por los siglos.
+        </p>
+      </div>
+
+      <h1>3️⃣ Conexión con los Profetas (Tanaj)</h1>
+      <div class="content-container">
+        <p>
+          El profeta Yeshayahu proclama una de las profecías más directas sobre
+          este atributo: "Porque un niño nos es nacido... y se llamará su
+          nombre... El Guibor (Elohim Fuerte)" (Yeshayahu 9:6). Esta cita
+          profética establece que el Mashíaj llevaría sobre sí la misma
+          naturaleza poderosa que Israel exaltó en las orillas del Mar Rojo. Los
+          profetas amplían esta revelación al mostrar que la fuerza de "El" no
+          es solo para la destrucción de enemigos, sino para el establecimiento
+          de un reino de paz y justicia eterna. Los profetas también conectan el
+          Nombre El con la fidelidad inquebrantable de Elohím hacia Su pueblo.
+          En el Tanaj, se nos recuerda constantemente que "El" es un Elohim
+          celoso y fuerte que no permitirá que Su pueblo sea aniquilado. Esta
+          revelación profética se nutre directamente de la experiencia de
+          Beshálaj, donde la fuerza de Adonái fue el único factor que impidió la
+          destrucción de Israel. Los profetas utilizan este precedente para
+          asegurar a las generaciones futuras que el mismo "El" que los sacó de
+          Egipto los sacará de todas sus angustias. Relacionar la profecía con
+          Beshálaj nos permite ver al Mashíaj como el cumplimiento de la
+          esperanza de Israel en un libertador poderoso. Los profetas no
+          esperaban a un maestro de moralidad simplemente, sino a la encarnación
+          de la fuerza de "El" que restauraría el trono de David. La victoria en
+          el Mar Rojo es el "tipo" profético de la victoria final del Mashíaj
+          sobre todas las naciones que se opongan al Reino de Elohím,
+          consolidando la imagen de Yeshúa como el Guerrero Fuerte que trae la
+          salvación.
+        </p>
+      </div>
+
+      <h1>4️⃣ Conexión con la Brit Jadasháh</h1>
+      <div class="content-container">
+        <p>
+          En el Brit Hadashah, la referencia a la fuerza de Elohím se manifiesta
+          en las palabras de Yeshúa cuando afirma que "todo poder" le ha sido
+          dado en el cielo y en la tierra (Mateo 28:18). Esta declaración es la
+          culminación de la revelación de "El" en la historia de la salvación.
+          El cumplimiento mesiánico es total: Yeshúa ejerce el poder que Israel
+          reconoció en el mar para comisionar a Sus discípulos y asegurar que la
+          victoria del Éxodo se extienda a todas las naciones a través del
+          mensaje del Reino. La coherencia teológica se mantiene al observar que
+          los milagros de Yeshúa —alimentar a las multitudes en el desierto,
+          sanar a los enfermos y resucitar muertos— son manifestaciones directas
+          del atributo de "El". Así como Adonái proveyó el Maná y el agua de la
+          roca en Beshálaj y los capítulos siguientes, Yeshúa se presenta como
+          el Pan de Vida y la Roca espiritual, demostrando que Él es el Poderoso
+          que sostiene la vida de Su pueblo. No hay separación entre la fuente
+          del poder en la Torá y la fuente del poder en el Brit Hadashah.
+          Mantener esta visión nos permite entender que Yeshúa es MarYah
+          manifestado, el "El" que camina entre los hombres. En la
+          transfiguración, la gloria y el poder de Elohím se hicieron visibles
+          en Él, recordando la gloria que cubría el monte y la nube. Al igual
+          que el pueblo en Beshálaj dijo "Este es mi El", los apóstoles y la
+          kahal de Israel confiesan que Yeshúa es el Poderoso Salvador, uniendo
+          para siempre la revelación del Éxodo con la gloria del Mashíaj
+          resucitado.
+        </p>
+      </div>
+
+      <h1>5️⃣ Aplicación espiritual para el creyente hoy</h1>
+      <div class="content-container">
+        <p>
+          La enseñanza práctica de reconocer a "El" como nuestro Elohim Fuerte
+          es la eliminación de la autoconfianza carnal. En Beshálaj, Israel no
+          tenía salida humana; su victoria fue proporcional a su reconocimiento
+          de que solo "El" podía salvarlos. Hoy, el creyente debe aprender que
+          su fuerza no reside en sus habilidades o recursos, sino en la
+          presencia del Mashíaj en su vida. La aplicación espiritual es aprender
+          a declarar "Zeh Eli" en medio de nuestras propias debilidades y
+          limitaciones. El impacto en la fe es profundo cuando comprendemos que
+          el poder de Elohím está a nuestra disposición a través de la
+          obediencia y la oración. Si Yeshúa es "El Guibor", entonces no hay
+          situación, adicción o problema que sea demasiado fuerte para Él. La
+          confianza en este Nombre nos da la audacia para enfrentar desafíos
+          gigantescos, sabiendo que el mismo poder que partió el mar está
+          operando en nosotros por medio del Ruach HaKodesh. Nuestra fe no se
+          basa en deseos, sino en la realidad histórica y espiritual del poder
+          de Adonái. Desde una perspectiva pastoral, la revelación de "El" en
+          Beshálaj nos consuela en tiempos de persecución o aflicción. Saber que
+          nuestro Salvador es el Elohim Fuerte nos permite perseverar con gozo,
+          sabiendo que la victoria final ya ha sido ganada. La aplicación hoy es
+          vivir una vida de alabanza constante, como la de Miriam y Moshéh,
+          celebrando la fuerza de nuestro Elohey por encima de cualquier
+          circunstancia adversa, y reconociendo que en el Mashíaj Yeshúa somos
+          más que vencedores.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="content-container">
+        <p>יָהּ – Yah (Shemot 15:2)</p>
+      </div>
+
+      <h1>1️⃣ Significado hebreo y revelación en Parashá Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          El Nombre יָהּ (Yah) es una forma abreviada y poética del
+          Tetragrámaton, que concentra en dos letras toda la intensidad de la
+          existencia y la salvación de Adonái. Se utiliza frecuentemente en
+          contextos de alabanza exaltada y júbilo tras una liberación milagrosa.
+          En Parashá Beshálaj, aparece en el corazón del Shirat HaYam (Cántico
+          del Mar): "Ozi ve-zimrat Yah, vayehi-li lishua" (Mi fortaleza y mi
+          canción es Yah, y Él ha sido para mí salvación). Este nombre resalta
+          la cercanía inmediata y la presencia vibrante de Elohím en el momento
+          de la victoria. La revelación de Yah en Beshálaj es una de conexión
+          emocional y espiritual profunda entre el Redentor y los redimidos. No
+          es solo el Elohim que juzga desde lejos, sino el Yah que se convierte
+          en la "canción" de Su pueblo. Esta forma abreviada sugiere una
+          relación íntima; es el suspiro de alivio y el grito de triunfo de
+          quien ha visto la muerte de cerca y ha sido rescatado por la mano
+          divina. En la parashá, Yah es el motor de la alegría que lleva a
+          Miriam y a las mujeres a danzar con panderos. Adonái se revela
+          activamente como Yah al transformar el terror del desierto en una
+          sinfonía de alabanza. Al usar este Nombre, la Torá nos enseña que la
+          salvación de יהוה es tan completa que no solo preserva la vida física,
+          sino que restaura la dignidad y el gozo del alma. En Beshálaj, Yah es
+          la garantía de que el pacto es personal; cada individuo en el
+          campamento de Israel pudo decir "Él es MI salvación", reconociendo la
+          atención detallada del Eterno sobre Su pueblo.
+        </p>
+      </div>
+
+      <h1>2️⃣ Cumplimiento profético en el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          Yeshúa HaMashíaj es el cumplimiento pleno del Nombre Yah, pues Su
+          propio nombre (Yehoshúa/Yeshúa) contiene la raíz de esta revelación:
+          "Yah es Salvación". Cada vez que pronunciamos el nombre de Yeshúa,
+          estamos proclamando la victoria de Beshálaj y su expansión universal.
+          El Mashíaj es la "canción" eterna de Elohím, el Verbo que trae alegría
+          y esperanza a un mundo sumido en la esclavitud del pecado. En Él, la
+          salvación que comenzó en el Mar Rojo alcanza su cenit profético y
+          eterno. La conexión de Yah con la obra redentora de Yeshúa es
+          absoluta. En el madero y en la resurrección, Yeshúa se convirtió en
+          nuestra fortaleza y nuestra canción, dándonos un motivo para exaltar a
+          Elohím incluso en medio de las pruebas. La obra de Yeshúa no es ajena
+          a la de Yah en Beshálaj; es la misma mano que sacó a Israel de las
+          aguas la que ahora saca a los creyentes de la fosa de la perdición.
+          Yeshúa personifica la cercanía y la gracia que el Nombre Yah comunica
+          a través de las Escrituras. Existe una continuidad teológica donde
+          Yeshúa es el centro de toda verdadera alabanza (Haleluyah – Alabad a
+          Yah). Sin el Mashíaj, el cántico de Beshálaj quedaría incompleto, pues
+          él es quien asegura que la salvación no sea solo temporal, sino una
+          herencia imperecedera. Al reconocer a Yeshúa como MarYah, estamos
+          uniendo la revelación poética de Yah con la realidad histórica de la
+          redención mesiánica, afirmando que el gozo del Éxodo es solo el
+          preludio del gozo eterno en el Reino del Mashíaj.
+        </p>
+      </div>
+
+      <h1>3️⃣ Conexión con los Profetas (Tanaj)</h1>
+      <div class="content-container">
+        <p>
+          Los Salmos, que forman parte fundamental del Tanaj y de la literatura
+          profética, utilizan constantemente el Nombre Yah para invocar la
+          protección divina. El Salmo 118:14 repite exactamente las palabras de
+          Beshálaj: "Mi fortaleza y mi canción es Yah, y Él ha sido para mí
+          salvación", conectando la liturgia del Templo con la victoria del
+          Éxodo. Los profetas y salmistas entendieron que Yah es el nombre del
+          auxilio rápido, la respuesta de Elohím ante el clamor angustiado de Su
+          pueblo en cualquier época. La revelación de Yah en los profetas se
+          expande hacia la visión de un Israel restaurado que canta de nuevo a
+          las orillas de un "mar" de naciones. Los profetas ven en la brevedad
+          del nombre Yah la intensidad de la presencia divina que no abandona a
+          Jacob. Esta conexión profética asegura que, aunque Israel pase por el
+          fuego o por las aguas del exilio, Yah estará con ellos. La profecía
+          une el "Haleluyah" del cielo con el caminar terrestre de los
+          redimidos, mostrando que la gloria de Elohím es constante. Relacionar
+          la profecía con Beshálaj nos permite ver que Yah es el Elohim de las
+          segundas oportunidades y de la restauración. Los profetas llaman al
+          pueblo a recordar a Yah en los días de su juventud (el Éxodo) para
+          encontrar fuerzas en el presente. La revelación de Yah en los profetas
+          prepara el camino para el Mashíaj, quien vendría a personificar esa
+          salvación cantada y profetizada, convirtiéndose en el centro del nuevo
+          cántico que resonará en toda la creación restaurada.
+        </p>
+      </div>
+
+      <h1>4️⃣ Conexión con la Brit Jadasháh</h1>
+      <div class="content-container">
+        <p>
+          En el Brit Hadashah, la presencia del Nombre Yah se siente en el
+          término "Haleluyah", que aparece triunfalmente en el libro de
+          Revelación (Apocalipsis 19:1, 3, 4, 6). Este es el eco directo del
+          cántico de Beshálaj resonando en las cortes celestiales tras la caída
+          de la Gran Bavel. El cumplimiento mesiánico es evidente: Yeshúa es el
+          motivo central de ese Haleluyah, el Cordero que ha vencido y que ha
+          hecho de Su pueblo un reino de sacerdotes para Yah, Su Elohim. La
+          coherencia teológica se manifiesta en que la salvación que Yeshúa trae
+          es descrita con la misma alegría explosiva que se vivió en las orillas
+          del Mar Rojo. Cuando Zacarías, el padre de Yojanán el Inmersor,
+          profetiza sobre el nacimiento del Mashíaj, utiliza un lenguaje que
+          evoca la redención de Israel y la luz de Yah visitando a Su pueblo.
+          Yeshúa es la visitación de Yah en la historia, el cumplimiento de que
+          "Yah ha sido para mí salvación" en una escala cósmica y personal.
+          Mantener esta coherencia implica reconocer que no hay contradicción
+          entre el Elohey de la Torá y el Mashíaj del Brit Hadashah. Yeshúa es
+          la encarnación del gozo de Yah. En sus enseñanzas y milagros, vemos la
+          misma ternura y poder que el Nombre Yah sugiere: un Elohim que se
+          interesa por la canción de Su pueblo. El Brit Hadashah nos invita a
+          vivir en un estado de "Haleluyah" constante, reconociendo que en
+          Yeshúa todas las promesas de Yah son "Sí" y "Amén" para la gloria del
+          Elohim de Israel.
+        </p>
+      </div>
+
+      <h1>5️⃣ Aplicación espiritual para el creyente hoy</h1>
+      <div class="content-container">
+        <p>
+          La enseñanza práctica de Yah en nuestra vida diaria es el llamado a
+          cultivar un espíritu de gratitud y alabanza, independientemente de las
+          circunstancias. Si Yah es nuestra canción en Beshálaj, también debe
+          serlo en nuestros momentos de desierto o prueba. La aplicación
+          espiritual es entender que la alabanza es una herramienta de guerra
+          espiritual; cuando cantamos las grandezas de Adonái, las murallas del
+          enemigo se debilitan y nuestro corazón se fortalece en la fe del
+          Mashíaj. El impacto en nuestra fe se traduce en una confianza gozosa.
+          No servimos a un Elohim lejano, sino a Yah, que está tan cerca como
+          nuestro propio aliento. Esta revelación nos impulsa a la obediencia no
+          por miedo, sino por el amor que nace de haber sido rescatados. La
+          aplicación pastoral profunda nos recuerda que, en el Mashíaj Yeshúa,
+          tenemos una razón eterna para danzar y regocijarnos, sabiendo que
+          nuestra redención final está más cerca cada día y que Yah es fiel para
+          completarla. Finalmente, la confianza en Yah nos ayuda a superar la
+          ansiedad del futuro. Si Yah pudo abrir el mar y proveer en el
+          desierto, Él puede encargarse de nuestras necesidades hoy. La
+          aplicación para el creyente es integrar el "Haleluyah" en su lenguaje
+          cotidiano, no como una muletilla, sino como una confesión de que
+          Yeshúa es nuestra fortaleza y nuestra salvación. Al igual que Israel
+          dejó atrás a Egipto con un cántico en sus labios, nosotros avanzamos
+          hacia el Reino con la canción de Yah en nuestros corazones.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="content-container">
+        <p>אִישׁ מִלְחָמָה – Ish Milchamáh (Shemot 15:3)</p>
+      </div>
+
+      <h1>1️⃣ Significado hebreo y revelación en Parashá Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          El término אִישׁ מִלְחָמָה (Ish Milchamáh) se traduce literalmente
+          como "Varón de Guerra" o "Hombre de Guerra". Esta es una de las
+          revelaciones más impactantes de Adonái en la Torá, presentándolo no
+          solo como un creador o un legislador, sino como un combatiente activo
+          que toma las armas en favor de Su pueblo. En Parashá Beshálaj, esta
+          revelación surge inmediatamente después de la destrucción del ejército
+          egipcio, estableciendo que la victoria no fue producto del azar, sino
+          del combate directo de יהוה contra las fuerzas de la opresión. La
+          revelación de Adonái como Ish Milchamáh en Beshálaj rompe con
+          cualquier noción de un Elohím pasivo. Él es el estratega que atrae a
+          Faraón a una trampa divina y el guerrero que arroja al mar los carros
+          y sus jinetes. Esta descripción subraya que la santidad de Adonái
+          incluye el celo por la justicia que se manifiesta en la destrucción de
+          los impíos que persiguen a Su heredad. En el Mar de Juncos, יהוה luchó
+          físicamente a través de los elementos, demostrando que Su Nombre es
+          sinónimo de triunfo militar sobre el mal. Adonái se revela activamente
+          en este evento histórico como el protector feroz de Israel. Al
+          identificarse como Ish Milchamáh, el Eterno asegura a Su pueblo que
+          nunca estarán solos en el campo de batalla. En Beshálaj, esta
+          revelación sirvió para infundir un temor reverente en Israel y un
+          terror paralizante en las naciones vecinas, como Edom y Moab, quienes
+          supieron que el Elohim de los hebreos es un guerrero invencible. Su
+          Nombre יהוה es Su estandarte de guerra, y Su victoria es total y
+          absoluta.
+        </p>
+      </div>
+
+      <h1>2️⃣ Cumplimiento profético en el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          Yeshúa HaMashíaj es el Guerrero Celestial que cumple perfectamente el
+          atributo de Ish Milchamáh. Aunque en Su primera venida se manifestó
+          como el Cordero que quita el pecado, Su obra fue una guerra espiritual
+          estratégica contra el reino de las tinieblas. Al morir y resucitar,
+          Yeshúa libró la batalla más grande de la historia, venciendo al
+          pecado, la muerte y al acusador. Él es el varón de guerra que
+          descendió al corazón de la tierra para arrebatar las llaves del Seol,
+          liberando a los cautivos con brazo fuerte. La conexión de este
+          atributo con Su obra redentora es fundamental para la escatología
+          mesiánica. Yeshúa es el Rey que vendrá en gloria, montado en un
+          caballo blanco, para juzgar y pelear con justicia (Revelación 19). Su
+          cumplimiento como Ish Milchamáh garantiza que ningún poder terrenal o
+          espiritual podrá prevalecer contra Su Reino. Él es la manifestación
+          visible del celo de יהוה, el guerrero que pisará el lagar del vino del
+          furor y de la ira del Elohim Todopoderoso para vindicar a Israel y a
+          Sus santos. Existe una continuidad innegable entre el guerrero del Mar
+          Rojo y el Mashíaj triunfante. En Beshálaj, Adonái derrotó a los
+          enemigos físicos de Israel; en Yeshúa, Adonái derrota a los enemigos
+          metafísicos y espirituales que impiden que el hombre se acerque a su
+          Creador. Yeshúa es MarYah manifestado como el General de los Ejércitos
+          del Cielo, y Su victoria en el madero es el fundamento sobre el cual
+          se construye la derrota final de todo mal. Él es nuestro Ish
+          Milchamáh, nuestra garantía de que la luz vencerá a las tinieblas.
+        </p>
+      </div>
+
+      <h1>3️⃣ Conexión con los Profetas (Tanaj)</h1>
+      <div class="content-container">
+        <p>
+          El profeta Zacarías ofrece una de las conexiones más directas:
+          "Entonces saldrá יהוה y peleará contra aquellas naciones, como peleó
+          en el día de la batalla" (Zacarías 14:3). Esta cita profética alude
+          directamente al evento de Beshálaj, estableciendo el Éxodo como el
+          paradigma de la intervención militar divina futura. Los profetas
+          visualizan a Adonái como un guerrero que despierta Su celo y sale de
+          Su morada kadosh para defender a Jerusalén, reafirmando que Su
+          identidad como Ish Milchamáh es eterna y operante. Los profetas
+          amplían esta revelación al describir las armas de Adonái: Su palabra,
+          Su justicia y Su juicio. No pelean con espadas de hierro, sino con la
+          verdad que deshace la mentira y con el fuego que consume la paja. La
+          revelación de Adonái como guerrero en los profetas busca consolar a un
+          Israel oprimido, recordándoles que el mismo que hundió a Egipto
+          juzgará a las naciones que se han ensañado con Su pueblo. Esta
+          conexión profética vincula el pasado glorioso de Beshálaj con el
+          futuro victorioso de la Era Mesiánica. Relacionar la profecía con
+          Beshálaj permite entender que la guerra de Adonái es siempre una
+          guerra de liberación. Los profetas presentan al Mashíaj como aquel que
+          herirá la tierra con la vara de Su boca, una imagen de combate que
+          resuena con la vara de Moshéh que dividió el mar. La identidad de Ish
+          Milchamáh asegura que el Reino de Elohim no se establece por
+          compromiso con el mal, sino por la victoria definitiva sobre él, una
+          verdad que los profetas proclaman con firmeza a través de todo el
+          Tanaj.
+        </p>
+      </div>
+
+      <h1>4️⃣ Conexión con la Brit Jadasháh</h1>
+      <div class="content-container">
+        <p>
+          En el Brit Hadashah, la figura del guerrero se hace explícita en las
+          visiones de Yojanán en Patmos. Yeshúa es presentado como el que tiene
+          una espada aguda de dos filos y cuyos ojos son como llama de fuego,
+          descripciones que evocan al Ish Milchamáh de Beshálaj. El cumplimiento
+          mesiánico es la culminación de la guerra iniciada en el Éxodo: la
+          destrucción final de la muerte y del sistema mundano opresor (Bavel).
+          Yeshúa es el ejecutor de la justicia de יהוה contra todos los que
+          persiguen a la Kahal de Israel. La coherencia teológica se mantiene al
+          ver que la armadura de Elohim descrita en Efesios es, en realidad, la
+          armadura del propio Mashíaj como guerrero. Se nos llama a vestirnos de
+          Él porque Él es quien ya ha ganado la batalla. Al igual que Israel en
+          Beshálaj solo tuvo que "estar quieto" mientras יהוה peleaba, el
+          creyente hoy se mantiene firme en la victoria que Yeshúa ya obtuvo. La
+          guerra del Mashíaj es legal y espiritual, y Su triunfo es la base de
+          nuestra paz. Mantener esta coherencia implica reconocer que Yeshúa no
+          es un maestro de pacifismo pasivo, sino el Rey de Justicia que
+          confronta el mal. En Su ministerio terrenal, expulsó demonios y
+          reprendió a los líderes hipócritas con la autoridad de un guerrero. En
+          el Brit Hadashah, Su identidad como Ish Milchamáh se revela en Su
+          capacidad para destruir las obras del diablo. No hay contradicción: el
+          Adonái que peleó en el Mar Rojo es el Yeshúa que triunfó en el madero
+          y que regresará para establecer el Reino con poder.
+        </p>
+      </div>
+
+      <h1>5️⃣ Aplicación espiritual para el creyente hoy</h1>
+      <div class="content-container">
+        <p>
+          La enseñanza práctica de Ish Milchamáh es que nuestra vida espiritual
+          es un campo de batalla donde no luchamos solos. En Beshálaj, el pueblo
+          aprendió que su protección dependía de la fidelidad del Guerrero de
+          Israel. Para nosotros hoy, la aplicación es dejar de intentar pelear
+          nuestras batallas en la carne y aprender a entregar el combate a
+          Adonái. Nuestra función es la obediencia y la confianza, mientras que
+          la ejecución del juicio y la apertura de caminos pertenecen al Elohim
+          de los Ejércitos. El impacto en nuestra fe es la seguridad absoluta en
+          la victoria final. Si nuestro Salvador es el Varón de Guerra que nunca
+          ha perdido una batalla, no tenemos por qué vivir en temor ante los
+          ataques del enemigo. La aplicación pastoral profunda nos invita a la
+          "quietud" espiritual de la que habló Moshéh, una quietud que nace no
+          de la indiferencia, sino de la fe inquebrantable en el poder del
+          Mashíaj. Ser un seguidor de Yeshúa es estar en el bando del vencedor,
+          lo que debe transformar nuestra actitud ante las dificultades.
+          Finalmente, la confianza en Ish Milchamáh nos llama a la santidad. Un
+          guerrero kadosh requiere un pueblo kadosh. Al igual que Israel tuvo
+          que purificarse y seguir las instrucciones de Adonái para ver la
+          salvación, nosotros debemos caminar en rectitud. La aplicación hoy es
+          vestirnos con la armadura de la luz, sabiendo que Yeshúa HaMashíaj es
+          nuestro estandarte y nuestro capitán. Su Nombre es nuestra contraseña
+          para la victoria y Su Palabra es el arma que nos permite avanzar
+          contra toda hueste de maldad, confiando en que el Elohim de Beshálaj
+          sigue peleando por nosotros.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="content-container">
+        <p>רֹפְאֶךָ – Roféja (Shemot 15:26)</p>
+      </div>
+
+      <h1>1️⃣ Significado hebreo y revelación en Parashá Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          El Nombre רֹפְאֶךָ (Roféja) proviene de la raíz "Rafá", que significa
+          sanar, restaurar, reparar o curar. En el contexto de Parashá Beshálaj,
+          se presenta en la declaración solemne: "Ani יהוה Roféja" (Yo soy יהוה
+          tu Sanador). Esta revelación ocurre en Maráh, donde las aguas amargas
+          fueron endulzadas por un madero que Moshéh arrojó en ellas. Aquí,
+          Adonái se revela no solo como el que cura enfermedades físicas, sino
+          como el que sana la naturaleza misma y las experiencias amargas de Su
+          pueblo. La revelación de Roféja en Beshálaj establece una conexión
+          intrínseca entre la sanidad y la obediencia a la Torá. Adonái promete
+          que, si Israel escucha Su voz y hace lo recto, Él no pondrá sobre
+          ellos ninguna de las plagas de Egipto. Esto muestra que la sanidad
+          divina es un atributo preventivo y restaurador que fluye de una
+          relación de pacto. En Maráh, el Eterno demostró que Su presencia tiene
+          el poder de transformar la amargura en dulzura, estableciendo un
+          estatuto de cuidado constante sobre la salud integral de Israel.
+          Adonái se revela activamente en este evento histórico como el Médico
+          por excelencia que conoce la amargura del corazón de Su pueblo después
+          de años de esclavitud. La sanidad en Beshálaj no fue solo para las
+          aguas, sino para la psicología de un pueblo que todavía tenía
+          mentalidad de esclavo. Al identificarse como Roféja, יהוה ofrece una
+          garantía de bienestar total para aquellos que eligen caminar en Sus
+          caminos, revelando que Su Nombre es la medicina que cura todas las
+          dolencias del cuerpo y del espíritu.
+        </p>
+      </div>
+
+      <h1>2️⃣ Cumplimiento profético en el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          Yeshúa HaMashíaj es la encarnación del atributo Roféja, manifestando
+          el poder sanador de Elohím en cada paso de Su ministerio. El
+          cumplimiento profético es evidente en la cantidad de milagros de
+          sanidad que realizó, devolviendo la vista a los ciegos, haciendo
+          caminar a los paralíticos y limpiando a los leprosos. Estas obras no
+          eran simples actos de caridad, sino la prueba de que el Sanador de
+          Israel había venido en persona para restaurar a Su pueblo y prepararlo
+          para el Reino de Elohím. La conexión con Su obra redentora es
+          profunda, pues la sanidad que Yeshúa ofrece alcanza su punto máximo en
+          el madero. Como dice la Escritura, "por sus llagas fuimos nosotros
+          curados". Yeshúa es el "madero" arrojado en las aguas amargas de la
+          humanidad para endulzarlas y quitar la maldición del pecado. Su
+          sacrificio es la medicina definitiva que sana la separación entre el
+          hombre y Elohím, restaurando la salud espiritual que se había perdido
+          desde el principio. Él es el Roféja que no solo trata los síntomas,
+          sino que arranca la raíz de toda enfermedad: el pecado. Existe una
+          continuidad innegable donde Yeshúa actúa con la misma autoridad que
+          Adonái en Beshálaj. Al sanar en Shabat y perdonar pecados
+          simultáneamente, Yeshúa demostró ser MarYah manifestado, el Sanador
+          que tiene poder sobre todas las áreas de la existencia humana. En el
+          Mashíaj, la promesa de "Ani יהוה Roféja" se convierte en una realidad
+          tangible y accesible. Él es el bálsamo de Galaad, el médico que vino a
+          buscar a los enfermos para darles vida en abundancia y restaurar la
+          plenitud de Israel.
+        </p>
+      </div>
+
+      <h1>3️⃣ Conexión con los Profetas (Tanaj)</h1>
+      <div class="content-container">
+        <p>
+          El profeta Yeshayahu describe el ministerio del Mashíaj con un fuerte
+          énfasis en la sanidad: "Ciertamente llevó Él nuestras enfermedades, y
+          sufrió nuestros dolores" (Yeshayahu 53:4). Esta cita profética vincula
+          el sufrimiento del Siervo con el atributo sanador de Adonái revelado
+          en Beshálaj. Los profetas entendieron que la redención final incluiría
+          una restauración física y espiritual total de la nación, donde "el
+          cojo saltará como un ciervo y la lengua del mudo cantará" (Yeshayahu
+          35:6), haciendo eco de la liberación de Egipto. Los profetas amplían
+          esta revelación al mostrar que Adonái es el que sana el corazón
+          quebrantado y venda las heridas de Su pueblo. En el Tanaj, la sanidad
+          se presenta a menudo como una metáfora del perdó y la restauración
+          nacional después del juicio. La revelación de Roféja en los profetas
+          asegura que, aunque Israel haya sido herido por su propia rebelión,
+          Adonái es fiel para sanarlos una vez que regresen a Él en teshuvá.
+          Esta conexión profética mantiene viva la esperanza de que ninguna
+          herida es demasiado profunda para el Sanador de Israel. Relacionar la
+          profecía con Beshálaj permite ver que la amargura de Maráh es un
+          símbolo de todas las pruebas que Israel enfrentaría en su historia.
+          Los profetas utilizan el lenguaje de la sanidad para describir el
+          Nuevo Pacto, donde la Torá será escrita en los corazones, sanando la
+          inclinación al mal. La identidad de Roféja garantiza que el propósito
+          final de Elohím no es solo sacar a Israel de las naciones, sino
+          presentarlo sano y kadosh ante Su presencia, una promesa que los
+          profetas repiten con fervor.
+        </p>
+      </div>
+
+      <h1>4️⃣ Conexión con la Brit Jadasháh</h1>
+      <div class="content-container">
+        <p>
+          En el Brit Hadashah, vemos el cumplimiento explícito de este atributo
+          en las palabras de Mateo, quien cita a Yeshayahu para explicar los
+          milagros de Yeshúa: "Él mismo tomó nuestras enfermedades y llevó
+          nuestras dolencias" (Mateo 8:17). Yeshúa es presentado como el Roféja
+          que camina entre los que sufren, demostrando que el Elohím de Beshálaj
+          no ha cambiado Su carácter. Su capacidad para sanar con una palabra o
+          con el roce de Su manto confirma que la autoridad sanadora de יהוה
+          reside plenamente en Él. La coherencia teológica se observa en que la
+          sanidad en el Brit Hadashah es a menudo un preludio de la salvación
+          espiritual. Cuando Yeshúa sana al paralítico en Cafarnaúm, primero
+          perdona sus pecados, revelando que la sanidad integral comienza desde
+          el interior. Esto refleja el estatuto de Maráh: la sanidad fluye de la
+          obediencia y la alineación con la voluntad de Elohím. Yeshúa es el
+          madero kadosh que, al ser levantado en el madero de ejecución, provee
+          la sanidad para todo aquel que mira hacia Él con fe. Mantener esta
+          coherencia implica reconocer que Yeshúa es MarYah manifestado en Su
+          rol de Sanador. En el Brit Hadashah, se nos instruye a orar por los
+          enfermos en el Nombre de Yeshúa, reconociendo que Su autoridad sigue
+          vigente para restaurar cuerpos y almas. No hay contradicción entre la
+          promesa de Éxodo 15:26 y la práctica de la Kahal de Israel; el Mashíaj
+          es el canal a través del cual la bendición de "Adonái Roféja" llega a
+          Sus hijos, confirmando que Su Nombre es medicina para todos nuestros
+          huesos.
+        </p>
+      </div>
+
+      <h1>5️⃣ Aplicación espiritual para el creyente hoy</h1>
+      <div class="content-container">
+        <p>
+          La enseñanza práctica de Roféja es que no hay amargura en nuestra vida
+          que Adonái no pueda endulzar. Si nos encontramos en un "Maráh"
+          personal —un divorcio, una pérdida, una enfermedad o una crisis
+          financiera—, debemos recurrir al madero del Mashíaj. La aplicación
+          espiritual es invitar a Yeshúa a las áreas amargas de nuestro corazón
+          para que Su presencia transforme nuestro dolor en un testimonio de Su
+          gracia. Debemos aprender a ver nuestras pruebas no como finales, sino
+          como oportunidades para la sanidad divina. El impacto en nuestra fe
+          radica en la confianza en la provisión de salud de Elohím. Al seguir
+          los mandamientos de la Torá y los principios de vida del Mashíaj, nos
+          posicionamos bajo la promesa de protección contra las plagas del
+          mundo. La obediencia no es una carga, sino una medida de salud
+          preventiva. La aplicación pastoral profunda nos recuerda que, aunque
+          suframos en este cuerpo mortal, tenemos la promesa de una redención
+          física final en la resurrección, donde ya no habrá más dolor ni
+          enfermedad. Finalmente, la confianza en Roféja nos llama a ser agentes
+          de sanidad en un mundo herido. Como seguidores del Mashíaj, debemos
+          llevar el mensaje de restauración a otros, señalándoles al Único que
+          puede sanar sus vidas. La aplicación hoy es vivir con la certeza de
+          que "יהוה Roféja" es nuestro estandarte diario. Al igual que el agua
+          de Maráh se volvió potable y dulce, nuestra vida, bajo el cuidado del
+          Sanador, se convierte en una fuente de bendición para Israel y para
+          todas las naciones, exaltando el Nombre de Yeshúa HaMashíaj.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="content-container">
+        <p>נִסִּי – Nisí (Shemot 17:15 – יהוה נִסִּי)</p>
+      </div>
+
+      <h1>1️⃣ Significado hebreo y revelación en Parashá Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          El Nombre נִסִּי (Nisí) proviene de la palabra "Nes", que significa
+          estandarte, bandera, señal o milagro. Se refiere a un objeto elevado
+          que sirve como punto de reunión para un ejército o como señal de
+          victoria. En Parashá Beshálaj, Moshéh edifica un altar después de la
+          victoria sobre Amalec y lo llama "יהוה Nisí" (יהוה es mi Estandarte).
+          Esta revelación surge en el contexto de una batalla donde la victoria
+          dependía de las manos alzadas de Moshéh, simbolizando la total
+          dependencia de Israel en la autoridad divina. La revelación de Nisí en
+          Beshálaj enseña que Adonái es la identidad y el centro de unidad de Su
+          pueblo en tiempos de conflicto. Un estandarte no solo marca la
+          posición de un ejército, sino que también representa la causa por la
+          cual se lucha. Al declarar que יהוה es su estandarte, Israel reconoce
+          que su existencia y sus triunfos no se deben a su destreza militar
+          —pues acababan de salir de la esclavitud— sino a que el Nombre del
+          Eterno está levantado sobre ellos. En Beshálaj, el "Nes" es el milagro
+          de la victoria sobre la carne, representada por Amalec. Adonái se
+          revela activamente en este evento histórico como aquel que garantiza
+          la victoria perpetua contra las fuerzas que intentan destruir el
+          propósito de Elohím. Al levantar el altar "יהוה Nisí", Moshéh
+          establece que la guerra contra Amalec es de generación en generación,
+          y que solo bajo el estandarte de Adonái se puede prevalecer. Esta
+          revelación en Beshálaj convierte al Eterno en el punto de referencia
+          absoluto para Israel: dondequiera que el estandarte de יהוה se eleve,
+          allí habrá victoria, orden y protección para los redimidos.
+        </p>
+      </div>
+
+      <h1>2️⃣ Cumplimiento profético en el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          Yeshúa HaMashíaj es el "Nes" (Estandarte) levantado para todas las
+          naciones, cumpliendo la profecía de ser la señal de salvación para
+          Israel y el mundo. El cumplimiento profético es evidente cuando Yeshúa
+          mismo declara que así como la serpiente fue levantada en el desierto,
+          así era necesario que el Hijo del Hombre fuera levantado. Al ser
+          elevado en el madero, Yeshúa se convirtió en el estandarte de victoria
+          definitiva sobre el pecado y la muerte. Él es el punto de reunión para
+          todos los que buscan redención y la bandera que guía al ejército de
+          Elohím. La conexión con Su obra redentora es fundamental: Yeshúa es
+          nuestro "יהוה Nisí" porque en Su sacrificio encontramos la fuerza para
+          vencer nuestros propios "Amalecs" internos y externos. La victoria de
+          Moshéh con las manos alzadas es una sombra profética de Yeshúa con las
+          manos extendidas en el madero; mientras Él estuvo levantado, el poder
+          de las tinieblas fue derrotado. Su resurrección es el estandarte de
+          triunfo que nunca será arriado, asegurando que todos los que se
+          alinean bajo Su autoridad son partícipes de Su gloria eterna. Existe
+          una continuidad inquebrantable entre el altar de Moshéh y la persona
+          del Mashíaj. Yeshúa es el altar y es el estandarte. En el Brit
+          Hadashah, se nos llama a poner los ojos en Yeshúa, lo cual es
+          equivalente a mirar el estandarte en el fragor de la batalla. Al
+          reconocer a Yeshúa como MarYah, estamos confesando que יהוה Nisí se ha
+          hecho carne para liderar a Su pueblo hacia la herencia prometida. Él
+          es nuestra bandera de amor, justicia y verdad, el nombre que invocamos
+          para asegurar la victoria en cada batalla espiritual.
+        </p>
+      </div>
+
+      <h1>3️⃣ Conexión con los Profetas (Tanaj)</h1>
+      <div class="content-container">
+        <p>
+          El profeta Yeshayahu presenta una visión poderosa de este atributo:
+          "Acontecerá en aquel tiempo que la raíz de Yishái (Isaí), la cual
+          estará puesta por estandarte (Nes) a los pueblos, será buscada por las
+          gentes" (Yeshayahu 11:10). Esta cita profética identifica directamente
+          al Mashíaj como el Nes que Adonái levantaría para reunir a los
+          dispersos de Israel y atraer a las naciones. Los profetas entendieron
+          que el estandarte de Beshálaj evolucionaría de un altar local a una
+          persona mesiánica que sería la señal universal del Reino de Elohím.
+          Los profetas amplían esta revelación al mostrar que Adonái levantará
+          Su estandarte sobre los montes para convocar a Sus ejércitos y
+          ejecutar juicio. El "Nes" en la literatura profética es siempre una
+          señal de intervención divina inminente. La revelación de Nisí en los
+          profetas asegura que, a pesar de las derrotas temporales de Israel
+          debido a su desobediencia, Adonái volvería a levantar Su bandera para
+          restaurarlos. Esta conexión profética vincula la victoria inicial
+          contra Amalec con el triunfo escatológico final del Mashíaj sobre
+          todos los enemigos de la justicia. Relacionar la profecía con Beshálaj
+          permite ver que el estandarte de Adonái es una promesa de fidelidad
+          eterna. Los profetas llaman al pueblo a "mirar hacia el estandarte" en
+          tiempos de angustia, recordando que el mismo que venció en Refidim
+          vencerá en el monte de Sión. La identidad de Nisí garantiza que Israel
+          siempre tendrá un lugar de reunión y una identidad clara bajo el
+          gobierno de Elohím. La profecía confirma que Yeshúa es esa "raíz de
+          Yishái" que permanece como el estandarte inamovible de la esperanza de
+          Israel.
+        </p>
+      </div>
+
+      <h1>4️⃣ Conexión con la Brit Jadasháh</h1>
+      <div class="content-container">
+        <p>
+          En el Brit Hadashah, la referencia al estandarte se manifiesta en la
+          exaltación de Yeshúa tras Su obediencia hasta la muerte. Rav Shaul
+          explica que Elohím lo exaltó hasta lo sumo y le dio un Nombre que es
+          sobre todo nombre, para que toda rodilla se doble ante Él. Este es el
+          acto de levantar el estandarte (Nes) sobre todo el universo. El
+          cumplimiento mesiánico es la centralidad de Yeshúa en la fe del Nuevo
+          Pacto; Él es la señal que divide la historia y el estandarte bajo el
+          cual se congrega la Kahal de Israel de entre todas las lenguas. La
+          coherencia teológica se observa en que la vida del creyente en el Brit
+          Hadashah es descrita como una milicia espiritual. Se nos insta a
+          "pelear la buena batalla de la fe", y nuestra victoria está asegurada
+          solo si permanecemos bajo el estandarte de Yeshúa. Al igual que Aarón
+          y Jur sostuvieron las manos de Moshéh, la comunidad de creyentes se
+          sostiene mutuamente en la intercesión, reconociendo que Yeshúa es
+          quien está a la diestra de Elohím intercediendo por nosotros, siendo
+          nuestro estandarte perpetuo de victoria. Mantener esta coherencia
+          implica reconocer que Yeshúa es MarYah manifestado como nuestro Jefe
+          de Salvación. En el libro de Revelación, Él es quien guía a los
+          ejércitos celestiales; Su nombre es el estandarte que causa pavor a
+          los enemigos. No hay contradicción entre el altar de Shemot 17 y la
+          gloria de Yeshúa; el Mashíaj es la realización viva de lo que el altar
+          simbolizaba. Al levantar Su Nombre en nuestras vidas, estamos
+          activando la misma potencia divina que derrotó a Amalec, confirmando
+          que יהוה Nisí vive hoy en Yeshúa.
+        </p>
+      </div>
+
+      <h1>5️⃣ Aplicación espiritual para el creyente hoy</h1>
+      <div class="content-container">
+        <p>
+          La enseñanza práctica de Nisí es la necesidad de una identidad clara y
+          pública en nuestra fe. Un estandarte no se esconde; se levanta con
+          orgullo. Para el creyente hoy, la aplicación es no avergonzarse del
+          Nombre de Yeshúa ni de los mandamientos de la Torá. Debemos vivir de
+          tal manera que nuestra conducta sea un "Nes", una señal que apunte a
+          otros hacia la soberanía de Elohím. Nuestra vida debe ser un punto de
+          reunión para la verdad en medio de un mundo confundido y sin rumbo. El
+          impacto en nuestra fe radica en la seguridad de que la batalla ya está
+          decidida. Cuando Amalec (la carne, la duda, el pecado) nos ataca,
+          nuestra respuesta no debe ser la desesperación, sino levantar nuestras
+          manos en oración y adoración al Mashíaj. La aplicación pastoral
+          profunda es entender que la victoria no depende de nuestra fuerza,
+          sino de mantener nuestra mirada fija en el estandarte levantado.
+          Debemos aprender a "reunirnos" bajo la autoridad de Yeshúa en cada
+          decisión y conflicto cotidiano. Finalmente, la confianza en Nisí nos
+          une como cuerpo. Así como las tribus de Israel se agrupaban bajo sus
+          respectivos estandartes alrededor del Tabernáculo, nosotros nos unimos
+          en torno al Mashíaj. La aplicación hoy es fortalecer la unidad de la
+          Kahal, reconociendo que compartimos una misma bandera y un mismo
+          Capitán. Bajo el estandarte de "יהוה Nisí" revelado en Yeshúa,
+          avanzamos con valentía, sabiendo que somos protegidos por el mismo que
+          venció en el desierto y que nos llevará en triunfo hasta la
+          consumación de los siglos.
+        </p>
+      </div>
+
+      <h1>Resumen Teológico de Beshálaj</h1>
+      <div class="content-container">
+        <p>
+          En la Parashá Beshálaj, la revelación progresiva de los Nombres de
+          Adonái construye un edificio teológico de redención absoluta. יהוה se
+          manifiesta como el Redentor soberano que controla la historia y los
+          elementos para liberar a Su pueblo. Elohím actúa como el Juez justo
+          que vindica a Israel y castiga la opresión. El y Yah revelan la Fuerza
+          y la Canción íntima que sostiene y alegra el corazón del redimido. Ish
+          Milchamáh presenta al Eterno como el Guerrero invencible, mientras que
+          Roféja y Nisí lo muestran como el Sanador de nuestras heridas y el
+          Estandarte de nuestra victoria constante. Todos estos atributos hallan
+          su cumplimiento perfecto y su manifestación final en Adonái Yeshúa
+          HaMashíaj, quien es MarYah manifestado para nuestra salvación eterna.
+        </p>
+      </div>
+
+      <h1>Oración Solemne</h1>
+      <div class="content-container">
+        <p class="prayer-text">
+          Avinu, Elohím de Israel, venimos ante Tu presencia kadosh exaltando Tu
+          Nombre sobre todo nombre. Te bendecimos como יהוה, nuestro Redentor
+          eterno, quien nos ha sacado de la esclavitud de las tinieblas hacia Tu
+          luz admirable. Reconocemos que Tú eres Elohím, el Juez de toda la
+          tierra, y en Ti hallamos nuestra justicia y protección. Declaramos que
+          "Zeh Eli", Tú eres nuestro El poderoso y nuestra canción de gozo como
+          Yah, pues en Yeshúa hemos visto Tu salvación. Gracias por ser nuestro
+          Ish Milchamáh, el Varón de Guerra que ha vencido a nuestros enemigos
+          en el madero; gracias por ser Roféja, el Sanador que endulza nuestras
+          aguas amargas y restaura nuestra alma. Hoy levantamos a יהוה Nisí como
+          nuestro único estandarte de victoria. En el Nombre kadosh de Yeshúa
+          HaMashíaj, afirmamos nuestra fe y nuestra obediencia a Tu Toráh,
+          caminando bajo Tu nube de gloria hasta que Tu Reino sea establecido
+          plenamente en la tierra.
+        </p>
+        <p class="prayer-conclusion">¡Amén y Amén!</p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+      <div class="content-container">
+        <p>
+          La revelación de los Nombres de Adonái en Beshálaj no es solo una
+          memoria del pasado, sino el mapa de la restauración final de Israel.
+          Al reconocer que Yeshúa es el cumplimiento de cada uno de estos
+          atributos, rompemos con una fe pasiva y entramos en la autoridad del
+          Reino. La Torá nos enseña que la redención es un proceso de guerra,
+          sanidad y victoria bajo un solo estandarte. Como hijos de Israel, no
+          esperamos una salvación futura sin fundamento; vivimos hoy en la
+          realidad de un Mashíaj que es Guerrero, Sanador y Presencia constante,
+          preparándonos para el día en que יהוה sea Uno y Su Nombre Uno en toda
+          la tierra.
+        </p>
+      </div>
+
+      <footer>
+        <p>
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj:
+          <a
+            href="[https://ia-interactiva.vercel.app/](https://ia-interactiva.vercel.app/)"
+            >[https://ia-interactiva.vercel.app/](https://ia-interactiva.vercel.app/)</a
+          >
+        </p>
+        <p>
+          Yeshúa la toraviviente de estudio:
+          <a
+            href="[https://gemini.google.com/gem/310786cce7ad](https://gemini.google.com/gem/310786cce7ad)"
+            >[https://gemini.google.com/gem/310786cce7ad](https://gemini.google.com/gem/310786cce7ad)</a
+          >
+        </p>
+        <p>
+          Siguenos en Instagram oficial:
+          <a
+            href="[https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3](https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3)"
+            >[https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3](https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3)</a
+          >
+        </p>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
