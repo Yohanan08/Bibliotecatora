@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Reino del Mashíaj en Parashá Mishpatim</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+    <main id="contenido">
+      <h1>El Reino del Mashíaj en Parashá Mishpatim</h1>
+
+      <div class="content-container">
+        <p>
+          La Parashá Mishpatim (Éxodo 21:1–24:18) no es simplemente un código
+          legal civil; es la constitución del Reino de יְהוָה sobre la tierra,
+          el marco de justicia que el Mashíaj Yeshúa viene a establecer en su
+          plenitud.
+        </p>
+      </div>
+
+      <h1>1. Contexto Profético de Mishpatim dentro del Pacto Sinaítico</h1>
+      <div class="content-container">
+        <p>
+          Tras la entrega de las Diez Palabras en el Sinaí, יְהוָה entrega los
+          mishpatim (juicios o decretos). Mientras que las Diez Palabras son los
+          principios fundamentales, los mishpatim son la aplicación práctica de
+          la santidad en las relaciones humanas. Proféticamente, esto señala que
+          el Reino de Elohim no es una idea abstracta, sino un sistema de
+          justicia tangible donde el Rey habita en medio de Su pueblo,
+          gobernando con rectitud. El pacto se sella con sangre (Éxodo 24:8),
+          prefigurando el Nuevo Pacto sellado por la sangre de Yeshúa, donde la
+          Torá no solo se escribe en piedra, sino en el corazón del hombre para
+          que los mishpatim fluyan por amor.
+        </p>
+      </div>
+
+      <h1>2. Revelación del Reino del Mashíaj en los Mishpatim</h1>
+      <div class="content-container">
+        <p>
+          El Reino del Mashíaj se manifiesta en la protección de los
+          vulnerables, un eje central de esta parashá:
+        </p>
+        <ul>
+          <li>
+            <strong>Justicia Social y Redención:</strong> El trato al siervo
+            hebreo (Éxodo 21:2) establece que la libertad es el estado natural
+            bajo el gobierno de יְהוָה. El Mashíaj es el Redentor que paga el
+            precio para sacarnos de la esclavitud.
+          </li>
+          <li>
+            <strong>Restitución:</strong> El Reino exige que el daño sea
+            reparado (Éxodo 22:1). En el Reino del Mashíaj, la justicia no solo
+            castiga, sino que restaura lo que el pecado destruyó.
+          </li>
+          <li>
+            <strong>Misericordia:</strong> El mandato de no afligir a la viuda,
+            al huérfano ni al extranjero (Éxodo 22:21-22) revela el carácter del
+            Rey Yeshúa, quien juzga con compasión.
+          </li>
+        </ul>
+      </div>
+
+      <h1>3. Tipología Mesiánica: El Siervo Hebreo</h1>
+      <div class="content-container">
+        <p>
+          La figura del siervo que, por amor a su señor, a su mujer y a sus
+          hijos, decide no salir libre y se deja horadar la oreja en el poste de
+          la puerta (Éxodo 21:5-6), es una de las tipologías más poderosas del
+          Mashíaj. Yeshúa es el Siervo Sufriente que, teniendo derecho a Su
+          libertad divina, eligió por amor someterse a la voluntad de יְהוָה y
+          al servicio de Su Kahal para siempre. Su ejecución en el madero es el
+          cumplimiento final de esta entrega absoluta.
+        </p>
+      </div>
+
+      <h1>4. Profecías Relacionadas en Tanaj y Brit Hadashah</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Isaías 42:1-4:</strong> Profetiza que el Siervo de יְהוָה
+            "traerá justicia (mishpat) a las naciones". Este es Yeshúa
+            estableciendo el marco legal de Mishpatim en todo el mundo.
+          </li>
+          <li>
+            <strong>Jeremías 31:31-33:</strong> El Nuevo Pacto consiste en poner
+            la Torá (incluyendo sus mishpatim) en el interior del pueblo,
+            permitiendo un cumplimiento desde el Ruach HaKodesh.
+          </li>
+          <li>
+            <strong>Mateo 5-7:</strong> En el "Sermón del Monte", Yeshúa no
+            anula los mishpatim, sino que los eleva a su intención original (el
+            espíritu de la norma), mostrando que la justicia del Reino debe
+            superar la mera observancia externa.
+          </li>
+        </ul>
+      </div>
+
+      <h1>5. Cumplimiento Profético en Yeshúa el Mashíaj</h1>
+      <div class="content-container">
+        <p>
+          Yeshúa encarna los mishpatim al demostrar que el "ojo por ojo" no era
+          una licencia para la venganza, sino un límite a la injusticia y un
+          llamado a la equidad. Él eleva los juicios hacia la plenitud
+          espiritual al enseñar que la verdadera justicia nace del temor a
+          יְהוָה y el amor al prójimo. Como MarYah manifestado, Él es el Juez
+          Justo que no juzga por lo que ven Sus ojos, sino con justicia para los
+          pobres (Isaías 11:3-4).
+        </p>
+      </div>
+
+      <h1>6. Dimensión del Reino: Presente y Futuro</h1>
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Reino Interior:</strong> Hoy, el Reino se manifiesta cuando
+            el creyente somete su conducta a los juicios de יְהוָה, permitiendo
+            que Yeshúa gobierne sus decisiones éticas.
+          </li>
+          <li>
+            <strong>Reino Escatológico:</strong> En la Era Mesiánica (E.M.), la
+            restauración de Israel será completa. Yeshúa gobernará desde
+            Yerushalayim, y los mishpatim de la Torá serán la ley universal para
+            todas las naciones, trayendo paz verdadera (Miqueas 4:2-3).
+          </li>
+        </ul>
+      </div>
+
+      <h1>7. Aplicación Espiritual Práctica</h1>
+      <div class="content-container">
+        <p>Vivir bajo el Reino de Yeshúa hoy implica:</p>
+        <ol>
+          <li>
+            <strong>Justicia Activa:</strong> No ser indiferentes ante la
+            opresión.
+          </li>
+          <li>
+            <strong>Compasión:</strong> Reflejar el carácter del Elohim de
+            Israel al cuidar del necesitado.
+          </li>
+          <li>
+            <strong>Santidad en lo cotidiano:</strong> Entender que nuestras
+            transacciones comerciales y relaciones sociales son actos de culto
+            si se rigen por los mishpatim.
+          </li>
+        </ol>
+      </div>
+
+      <h2>Mizmor por el Reinado de Justicia</h2>
+      <div class="explanation">
+        <p class="prayer-text">
+          ¡Oh יְהוָה, inclina Tu oído a la voz de Tu pueblo, que anhela el
+          juicio recto del Mashíaj en la tierra! Tú eres el Juez de toda la
+          carne, el que pesa los corazones, Tu diestra está llena de justicia y
+          Tu brazo de poder. Bendito es Yeshúa, el Siervo que por amor se
+          entregó, cuyo oído fue abierto para oír la instrucción del Eterno. Él
+          es nuestra Torre fuerte, el Rey que restaura a Israel, bajo Su cetro
+          de rectitud, los humildes hallarán reposo. Que Tu Reino venga, que Tu
+          voluntad se haga en nosotros, hasta que los mishpatim llenen la tierra
+          de Tu gloria, y toda lengua confiese que MarYah es Uno y Su Nombre
+          Uno.
+        </p>
+        <p class="prayer-conclusion">¡Amén y Amén!</p>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Impacto Profético</div>
+          <p>
+            La Torá no es un yugo de esclavitud, sino el diseño divino para una
+            sociedad libre y santa. Al abrazar los mishpatim desde la
+            perspectiva del Mashíaj, rompemos con la fe pasiva y nos convertimos
+            en agentes de la restauración de Israel. Yeshúa no vino a liberarnos
+            de la instrucción de יְהוָה, sino de las interpretaciones humanas
+            opresivas, para que caminemos en la libertad del espíritu,
+            aguardando el día cuando Su justicia universal cubra la tierra como
+            las aguas cubren el mar.
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj
+        </p>
+        <a
+          href="https://ia-interactiva.vercel.app/"
+          class="boton-descargar"
+          >Recursos</a
+        >
+        <a
+          href="https://gemini.google.com/gem/310786cce7ad"
+          class="boton-descargar"
+          >Estudio</a
+        >
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          class="boton-descargar"
+          >Instagram</a
+        >
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
