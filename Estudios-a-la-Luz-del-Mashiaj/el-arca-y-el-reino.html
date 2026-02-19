@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Reino del Mashíaj en Parashá Mishpatim</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+    <main id="contenido">
+      <h1>INVESTIGACIÓN ACADÉMICA: EL ARCA DEL PACTO EN LA PARASHÁ TERUMÁ</h1>
+
+      <div class="content-container">
+        <h2>1. Base Textual Principal: Shemot (Éxodo) 25:10–22</h2>
+        <p>
+          De acuerdo con la base textual autorizada de la Torá Viviente, las
+          instrucciones para la construcción del Arca son las siguientes:
+        </p>
+        <p class="scripture">
+          "[10] Harán un arca de madera de acacia; su longitud será de tres pies
+          y nueve pulgadas, su anchura de dos pies y tres pulgadas, y su altura
+          de dos pies y tres pulgadas. [11] La revestirás de oro puro; la
+          revestirás por dentro y por fuera; y harás sobre ella una moldura de
+          oro alrededor. [12] Fundirás para ella cuatro anillos de oro, y los
+          pondrás en sus cuatro esquinas; dos anillos en un lado de ella y dos
+          anillos en el otro lado. [13] Harás varales de madera de acacia y los
+          revestirás de oro. [14] Meterás los varales por los anillos a los
+          lados del arca, para llevar el arca con ellos. [15] Los varales se
+          quedarán en los anillos del arca; no se quitarán de ella. [16] Pondrás
+          dentro del arca el Testimonio que Yo te daré. [17] Harás un
+          propiciatorio (Kappóret) de oro puro; su longitud será de tres pies y
+          nueve pulgadas, y su anchura de dos pies y tres pulgadas. [18] Harás
+          dos keruvim de oro; de oro labrado a martillo los harás, en los dos
+          extremos del propiciatorio. [19] Haz un keruv en un extremo y un keruv
+          en el otro extremo; de una sola pieza con el propiciatorio harás los
+          keruvim en sus dos extremos. [20] Los keruvim extenderán sus alas
+          hacia arriba, cubriendo con sus alas el propiciatorio, con sus rostros
+          el uno frente al otro; hacia el propiciatorio estarán los rostros de
+          los keruvim. [21] Pondrás el propiciatorio encima del arca; y dentro
+          del arca pondrás el Testimonio que Yo te daré. [22] Allí me encontraré
+          contigo, y hablaré contigo desde arriba del propiciatorio, de entre
+          los dos keruvim que están sobre el arca del Testimonio, de todo lo que
+          Yo te mande para los hijos de Israel ש."
+        </p>
+      </div>
+
+      <div class="explanation">
+        <h3>Análisis del Hebreo Bíblico y Simbolismo:</h3>
+        <ul>
+          <li>
+            <strong>Aron (אֲרוֹן):</strong> El término para "Arca" significa
+            cofre o receptáculo. Representa el corazón del Mishkán, donde reside
+            el testimonio de la voluntad de יְהוָה.
+          </li>
+          <li>
+            <strong>Madera de Acacia (Atzey Shittim):</strong> Una madera
+            incorruptible del desierto, simbolizando la humanidad del Mashíaj
+            que no conoció pecado ni corrupción.
+          </li>
+          <li>
+            <strong>Oro (Zahav):</strong> Representa la naturaleza divina y la
+            gloria de יְהוָה. El revestimiento interno y externo indica una
+            pureza absoluta tanto en lo oculto como en lo manifiesto.
+          </li>
+          <li>
+            <strong>Kappóret (כַּפֹּרֶת):</strong> Traducido como
+            "propiciatorio" o "cubierta", proviene de la raíz kapar, que
+            significa "cubrir" o "expiar". Es el lugar donde la justicia y la
+            misericordia se besan.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h2>2. Tipología Mesiánica: Yeshúa como el Arca Viviente</h2>
+        <p>
+          El Arca apunta proféticamente a la persona y obra de Adonai יְהוָה
+          manifestado en Yeshúa HaMashíaj.
+        </p>
+        <ul>
+          <li>
+            <strong>La Madera y el Oro:</strong> La unión de la madera de acacia
+            y el oro puro prefigura la unidad compuesta de יְהוָה revelada en el
+            Mashíaj: Su perfecta humanidad (acacia) unida a Su deidad intrínseca
+            (oro).
+          </li>
+          <li>
+            <strong>El Propiciatorio (Kappóret):</strong> Yeshúa es nuestro
+            verdadero lugar de expiación. En Él, la sangre derramada satisface
+            la justicia de la Torá y permite que la presencia divina habite con
+            el hombre.
+          </li>
+          <li>
+            <strong>Los Keruvim:</strong> Estos seres celestiales custodian la
+            santidad de la presencia de MarYah. Sus rostros hacia el
+            propiciatorio indican que incluso los ángeles anhelan mirar la
+            maravilla de la redención en el Mashíaj.
+          </li>
+          <li>
+            <strong>Las Tablas del Pacto:</strong> Así como el Arca contenía la
+            Torá, Yeshúa es la Torá Viviente. En Él, la instrucción de יְהוָה no
+            es solo letra muerta, sino espíritu y vida.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h2>3. Conexión con los Neviím (Profetas)</h2>
+        <p>
+          Jeremías profetizó sobre un tiempo donde el Arca física ya no sería el
+          centro, porque el Nuevo Pacto escribiría la Torá en el corazón
+          (Jeremías 31:31). Sin embargo, la esencia del Arca —la presencia de
+          יְהוָה entre Su pueblo— es el eje de la restauración del Reino.
+          Ezequiel detalla el regreso de la Kavod (Gloria) de יְהוָה al Templo
+          restaurado, una gloria que es la misma manifestada en el rostro del
+          Mashíaj.
+        </p>
+      </div>
+
+      <div class="content-container">
+        <h2>4. Brit Hadashá (Nuevo Pacto)</h2>
+        <p>
+          El libro de Israelitas Mesiánicos (Hebreos) explica que el Mishkán
+          terrenal era solo una "copia y sombra de las cosas originales del
+          cielo". Yeshúa, habiendo entrado en el Lugar Kadosh Kedoshim no hecho
+          por manos, se presenta como el mediador del Nuevo Pacto. Él es la
+          presencia divina (Shejiná) que "tabernaculizó" entre nosotros (Iojanán
+          1:14).
+        </p>
+      </div>
+
+      <div class="content-container">
+        <h2>5. Literatura del Segundo Templo y Qumrán</h2>
+        <p>
+          En los textos de Qumrán (como el Rollo del Templo), se enfatiza la
+          pureza extrema requerida para acercarse a la presencia de יְהוָה. Las
+          interpretaciones judías antiguas veían en el Arca el "carro"
+          (Merkavah) de la divinidad. El Mashíaj Yeshúa cumple esta expectativa
+          al ser la manifestación visible de la gloria invisible de Elohim de
+          Israel.
+        </p>
+      </div>
+
+      <div class="content-container">
+        <h2>6. Dimensión Escatológica y Aplicación Espiritual</h2>
+        <p>
+          En la Era Mesiánica (E.M.), la revelación del Arca en el Templo
+          celestial (Apocalipsis 11:19) señala el juicio y la victoria final de
+          יְהוָה. Aplicación: Hoy, el creyente debe ser un "arca" donde la Torá
+          esté guardada en el corazón, revestido de la justicia (oro) del
+          Mashíaj, permitiendo que el Ruach HaKodesh hable desde el
+          "propiciatorio" de una vida rendida.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>EL ARCA DEL PACTO — PRESENCIA, GOBIERNO Y REDENCIÓN</h1>
+
+      <div class="content-container">
+        <h2>1️⃣ El Arca acompañando a Israel en el desierto</h2>
+        <p>
+          El Arca del Pacto no era un objeto estático; era el trono móvil de
+          יהוה que guiaba los pasos de la nación.
+        </p>
+        <ul>
+          <li>
+            <strong>Análisis de Bemidbar (Números) 10:33–36:</strong> Según la
+            instrucción profética, el Arca "iba delante de ellos camino de tres
+            días, para buscarles lugar de descanso".
+          </li>
+          <li>
+            <strong>Manifestación de la Presencia:</strong> Cuando el Arca se
+            movía, Moshéh decía: "¡Levántate, oh יהוה, y sean dispersos tus
+            enemigos!". Esto confirma que el Arca era el epicentro de la
+            protección divina durante las jornadas.
+          </li>
+          <li>
+            <strong>La Nube y la Gloria:</strong> La guía no era humana; el Arca
+            se movía bajo la dirección de la nube, símbolo del Ruach HaKodesh,
+            estableciendo que la gloria de יהוה es quien marca el ritmo de la
+            vida del pueblo.
+          </li>
+          <li>
+            <strong>Tipología Mesiánica:</strong> Yeshúa HaMashíaj es el
+            cumplimiento de esta guía. Así como el Arca buscaba descanso para
+            Israel, Yeshúa dice: "Vengan a mí... y yo los haré descansar". Él es
+            quien "va delante" de Su pueblo como el Buen Pastor, abriendo camino
+            en el desierto espiritual de las naciones.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h2>2️⃣ El Arca en la conquista y en tiempos de transición</h2>
+        <p>
+          El Arca fue el instrumento de victoria que demostró que la tierra no
+          se ganaba por fuerza militar, sino por la presencia de Elohim.
+        </p>
+        <ul>
+          <li>
+            <strong>Cruce del Jordán e Ierijó (Jericó):</strong> En Iehoshúa
+            (Josué) 3–4, el Jordán se detuvo solo cuando los pies de los kohanim
+            (sacerdotes) que cargaban el Arca tocaron el agua. Esto enseñó que
+            la presencia de יהוה abre puertas imposibles.
+          </li>
+          <li>
+            <strong>Sacerdocio y Victoria:</strong> El hecho de que el Arca
+            fuera portada por los hijos de Leví subraya que el Reino solo avanza
+            mediante la santidad y el servicio consagrado.
+          </li>
+          <li>
+            <strong>Conexión con el Reino del Mashíaj:</strong> La caída de
+            Ierijó prefigura la caída de los sistemas del mundo ante el retorno
+            de Yeshúa, quien con el sonido del shofar (como en Jericó)
+            establecerá Su Reino sobre la tierra.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h2>3️⃣ El Arca y David: El Trono y la Santidad</h2>
+        <p>
+          David entendió que el corazón del Reino no era su palacio, sino la
+          presencia de יהוה.
+        </p>
+        <ul>
+          <li>
+            <strong>Traslado a Ierushalaim (2 Samuel 6):</strong> El error de
+            Uza recordó a Israel que la presencia de יהוה no puede ser tratada
+            de forma común; debe portarse según las instrucciones de la Torá
+            (sobre hombros de kohanim, no en carros nuevos).
+          </li>
+          <li>
+            <strong>Pacto Davídico (2 Samuel 7):</strong> David deseó edificar
+            una "casa" para el Arca, pero יהוה le prometió edificarle a él una
+            casa eterna: el linaje del Mashíaj.
+          </li>
+          <li>
+            <strong>Cumplimiento en Yeshúa:</strong> Como Hijo de David, Yeshúa
+            es el heredero legal del trono. Él es la verdadera "Casa" y el
+            Templo donde habita la plenitud de la deidad.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h2>4️⃣ El Arca y los Plishtim (Filisteos): Juicio y Soberanía</h2>
+        <p>
+          La estancia del Arca entre los idólatras demostró que יהוה no puede
+          ser domesticado ni derrotado por dioses ajenos.
+        </p>
+        <ul>
+          <li>
+            <strong>Juicio sobre Dagón (1 Samuel 4–6):</strong> El ídolo de los
+            filisteos cayó postrado ante el Arca, reconociendo su superioridad.
+            Las plagas sobre las ciudades filisteas mostraron que la santidad de
+            יהוה es fuego consumidor para lo impuro.
+          </li>
+          <li>
+            <strong>Significado Profético:</strong> Este evento prefigura el
+            juicio final sobre las naciones y sus ideologías idólatras. Al
+            final, toda rodilla se doblará ante Adonai Yeshúa, el único que
+            porta la autoridad de יהוה.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h2>5️⃣ Dimensión Profética y Escatológica</h2>
+        <p>
+          El Arca física desapareció para dar paso a la realidad celestial y
+          espiritual que representaba.
+        </p>
+        <ul>
+          <li>
+            <strong>Apocalipsis 11:19:</strong> En la visión del Brit Hadashá,
+            se abre el Templo en el cielo y "fue vista el Arca de Su Pacto".
+            Esto indica que el fundamento del juicio y del Reino final es la
+            Torá y la fidelidad de יהוה a Sus promesas.
+          </li>
+          <li>
+            <strong>Restauración Final:</strong> La meta de la historia es que
+            el Arca (la presencia de יהוה) habite plenamente con Su pueblo, no
+            ya en un cofre de madera, sino en una comunión directa en la Era
+            Mesiánica.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">6️⃣ Profecías Cumplidas</div>
+          <ul>
+            <li>
+              <strong>Irmeyáh (Jeremías) 3:16:</strong> Profetizó que vendría un
+              tiempo donde ya no se diría más "Arca del Pacto de יהוה", porque
+              toda Ierushalaim sería el trono de Adonai. Esto se cumple en el
+              Nuevo Pacto iniciado por Yeshúa.
+            </li>
+            <li>
+              <strong>Hebreos 9:</strong> Explica que Yeshúa entró en el
+              verdadero Lugar Kadosh con Su propia sangre, habiendo obtenido
+              eterna redención, cumpliendo la función del propiciatorio del
+              Arca.
+            </li>
+          </ul>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">7️⃣ Aplicación Espiritual</div>
+          <ul>
+            <li>
+              <strong>Reverencia:</strong> Debemos tratar la presencia de MarYah
+              en nuestras vidas con el mismo temor que exigía el Arca.
+            </li>
+            <li>
+              <strong>Guía en el Desierto:</strong> Así como Israel seguía al
+              Arca, nosotros seguimos a Yeshúa. Si Él no se mueve, nosotros no
+              nos movemos.
+            </li>
+            <li>
+              <strong>Portadores de Presencia:</strong> Como kohanim del Nuevo
+              Pacto, estamos llamados a "cargar" la presencia de Elohim con
+              vidas santas y apartadas del mundo.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="explanation">
+        <h2>8️⃣ Conclusión Devocional</h2>
+        <p>
+          <strong>Resumen Teológico:</strong> El Arca del Pacto es el hilo
+          conductor que une la Torá de Moshéh con el Reino del Mashíaj.
+          Representa la justicia de la Ley (dentro del Arca) cubierta por la
+          misericordia de la sangre (sobre el propiciatorio), una unidad
+          perfecta manifestada en Yeshúa HaMashíaj.
+        </p>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Impacto Profético</div>
+          <p>
+            La restauración de Israel no es una idea abstracta, sino la reunión
+            de un pueblo alrededor de la presencia real de Adonai Yeshúa
+            HaMashíaj. El Arca nos enseña que no hay Reino sin Torá, y no hay
+            presencia divina sin expiación. Es tiempo de que la Kahal de Israel
+            despierte de una fe pasiva y reconozca que el Mashíaj es el centro
+            de cada detalle del Mishkán, llamándonos a una santidad radical para
+            la Aliyáh espiritual y física.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>Conclusión Devocional (Mizmor de Terumá)</h3>
+        <p class="prayer-text">
+          ¡Oh יְהוָה, quién morará en Tu tabernáculo! Aquel que tiene al Mashíaj
+          como su Kappóret. Madera que no se pudre, oro que no se empaña, es
+          Yeshúa, la gloria que en nosotros acompaña. Entre los querubines se
+          escucha Tu voz, el Testimonio es guardado, el pacto es veloz.
+          ¡Levántate, oh Arca de Tu fortaleza, y llénanos, Rey, de Tu eterna
+          pureza! Amén.
+        </p>
+
+        <h3>Mizmor de Exaltación</h3>
+        <p class="prayer-text">
+          ¡Oh יהוה, Tu gloria llena los cielos y la tierra! El Arca de Tu fuerza
+          se levanta en medio de Israel, y ante Tu presencia los ídolos de las
+          naciones caen. Yeshúa, nuestro Rey, Tú eres el Pastor que va delante,
+          en el desierto de los siglos, Tu luz es nuestro estandarte. Reinaste
+          ayer entre querubines, reinas hoy en el corazón, y vendrás mañana en
+          Tu gloria para traer la restauración. ¡Baruj HaShem יהוה! ¡Baruj
+          HaMashíaj Yeshúa! Amén.
+        </p>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Impacto Profético</div>
+          <p>
+            El Arca nos recuerda que la restauración de Israel no es solo
+            política, sino espiritual. El Mashíaj Yeshúa no vino a anular la
+            Torá que el Arca contenía, sino a grabarla en nuestros corazones
+            para que seamos el verdadero Mishkán viviente. Abandonemos la fe
+            pasiva y caminemos tras la presencia de Adonai, pues Su Reino se
+            acerca con poder y gran gloria.
+          </p>
+        </div>
+      </div>
+      <footer>
+        <p>
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj
+        </p>
+        <a href="https://ia-interactiva.vercel.app/" class="boton-descargar"
+          >Recursos</a
+        >
+        <a
+          href="https://gemini.google.com/gem/310786cce7ad"
+          class="boton-descargar"
+          >Estudio</a
+        >
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          class="boton-descargar"
+          >Instagram</a
+        >
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
