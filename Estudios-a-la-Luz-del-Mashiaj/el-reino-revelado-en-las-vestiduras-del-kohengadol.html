@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      EL REINO REVELADO EN LAS VESTIDURAS DEL KOHEN GADOL: LA OBRA DEL MASHÍAJ
+      YESHÚA Y EL MINISTERIO ETERNO SEGÚN EL ORDEN DE MALKI-TZEDEK.
+    </title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+    <main id="contenido">
+      <h1>
+        EL REINO REVELADO EN LAS VESTIDURAS DEL KOHEN GADOL: LA OBRA DEL MASHÍAJ
+        YESHÚA Y EL MINISTERIO ETERNO SEGÚN EL ORDEN DE MALKI-TZEDEK.
+      </h1>
+
+      <div class="content-container">
+        <p>
+          El estudio de las vestiduras del Kohen Gadol (Sumo Sacerdote) no es
+          meramente un registro histórico de indumentaria ritual, sino una
+          revelación profética de la identidad, autoridad y ministerio del
+          Mashíaj Yeshúa. En Shemot 28, Adonái יְהוָה instruye a Moshéh sobre la
+          confección de vestiduras "para honra y hermosura" (Lekabod
+          uletifaret), señalando que el sacerdocio es un reflejo de la majestad
+          del Reino de los Cielos manifestada en la tierra.
+        </p>
+      </div>
+
+      <h2>
+        I. Análisis Individual de las Vestiduras y su Simbolismo Profético
+      </h2>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. Mitznefet (Turbante) y Tzitz (Lámina de oro)
+          </div>
+          <ul>
+            <li>
+              <strong>Función literal:</strong> El turbante de lino fino cubría
+              la cabeza del Kohen, y sobre él se sujetaba con un cordón azul la
+              lámina de oro puro (Tzitz).
+            </li>
+            <li>
+              <strong>Inscripción:</strong> La lámina llevaba grabado: "Kodesh
+              L'יְהוָה" (Apartado para יְהוָה).
+            </li>
+            <li>
+              <strong>Cumplimiento en el Mashíaj:</strong> Representa la
+              santidad total de los pensamientos y la autoridad real. Yeshúa,
+              como nuestra cabeza, es la máxima expresión de santidad al Eterno.
+              En el orden de Malki-Tzedek, Él es el Rey de Justicia y Rey de
+              Paz, cuya mente está perfectamente unida a la voluntad de Adonái
+              יְהוָה.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Joshen (Pectoral del Juicio)</div>
+          <ul>
+            <li>
+              <strong>Función literal:</strong> Una pieza cuadrada con doce
+              piedras preciosas, cada una grabada con el nombre de una de las
+              tribus de Israel. Contenía el Urim y el Tumim.
+            </li>
+            <li>
+              <strong>Simbolismo:</strong> El Kohen llevaba los nombres de los
+              hijos de Israel sobre su corazón al entrar en el Lugar Santísimo.
+            </li>
+            <li>
+              <strong>Cumplimiento en el Mashíaj:</strong> Yeshúa nos lleva
+              sobre Su corazón en Su intercesión continua. Él es el Juez justo
+              que posee la luz (Urim) y la perfección (Tumim). Como se enseña en
+              Ivrim (Hebreos), Él entró una vez y para siempre al santuario
+              celestial, intercediendo por cada nombre grabado en Su amor
+              redentor.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Efod</div>
+          <ul>
+            <li>
+              <strong>Función literal:</strong> Una vestidura exterior similar a
+              un chaleco, tejida con oro, azul, púrpura, carmesí y lino fino
+              torcido. Tenía dos piedras de ónice en los hombros con los nombres
+              de las tribus.
+            </li>
+            <li>
+              <strong>Simbolismo:</strong> Representa la carga del gobierno y la
+              responsabilidad sacerdotal.
+            </li>
+            <li>
+              <strong>Cumplimiento en el Mashíaj:</strong> El Mashíaj lleva el
+              peso del gobierno sobre Sus hombros (Yesha‘yahu 9:6). El oro
+              tipifica Su deidad y el lino Su humanidad justa; los colores
+              proclaman Su realeza y sacrificio.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">4. Me'il (Manto azul)</div>
+          <ul>
+            <li>
+              <strong>Función literal:</strong> Un manto íntegramente azul que
+              se usaba debajo del efod. En su borde inferior tenía campanillas
+              de oro y granadas de colores.
+            </li>
+            <li>
+              <strong>Simbolismo:</strong> El azul representa el origen
+              celestial. El sonido de las campanillas anunciaba que el Kohen
+              estaba vivo realizando el servicio.
+            </li>
+            <li>
+              <strong>Cumplimiento en el Mashíaj:</strong> El ministerio de
+              Yeshúa es celestial. El fruto (granadas) y el testimonio
+              (campanillas) de Su obra permanecen vivos ante el Elohim de
+              Israel.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">5. Ketonet (Túnica de lino)</div>
+          <ul>
+            <li>
+              <strong>Función literal:</strong> Una túnica larga de lino fino
+              blanco tejida en cuadros.
+            </li>
+            <li>
+              <strong>Simbolismo:</strong> Representa la pureza y la justicia
+              perfecta.
+            </li>
+            <li>
+              <strong>Cumplimiento en el Mashíaj:</strong> Refleja la vida sin
+              pecado del Mashíaj, la "justicia de los santos". Es la base de
+              toda su labor intercesora.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            6. Avnet (Cinturón) y Mikhnasayim (Calzones de lino)
+          </div>
+          <ul>
+            <li>
+              <strong>Función literal:</strong> El cinturón ceñía la túnica para
+              el servicio, y los calzones cubrían la desnudez desde los lomos
+              hasta los muslos.
+            </li>
+            <li>
+              <strong>Simbolismo:</strong> Verdad y pudor en el servicio
+              sagrado.
+            </li>
+            <li>
+              <strong>Cumplimiento en el Mashíaj:</strong> Yeshúa es el siervo
+              sufriente y victorioso, ceñido de verdad y justicia. La
+              eliminación de la "desnudez" espiritual mediante Su cobertura
+              sacerdotal permite que el hombre se acerque a יְהוָה sin morir.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>II. Conexión con el Orden de Malki-Tzedek y la Unidad de יְהוָה</h2>
+
+      <div class="content-container">
+        <p>
+          El sacerdocio de Aharon era una sombra, pero el de Yeshúa es según el
+          orden de Malki-Tzedek (Tehilim 110:4). A diferencia del sacerdocio
+          levítico, este es un sacerdocio real (Rey y Sacerdote a la vez).
+        </p>
+        <ul>
+          <li>
+            <strong>Naturaleza Compuesta:</strong> Las vestiduras, con su mezcla
+            de materiales celestiales (oro) y terrenales (lino), revelan la
+            unidad compuesta de יְהוָה manifestada en el Mashíaj. Él es MarYah
+            manifestado en carne, el Elohim de Israel que se viste de humanidad
+            para servir como nuestro mediador eterno.
+          </li>
+          <li>
+            <strong>Trascendencia:</strong> Mientras que los sacerdotes
+            levíticos morían y dejaban sus vestiduras, Yeshúa vive para siempre.
+            Su ministerio en el Brit Hadashah no anula la Torá, sino que la
+            eleva a su máxima expresión espiritual en el Tabernáculo no hecho de
+            manos.
+          </li>
+        </ul>
+      </div>
+
+      <h2>III. El Reino y los Redimidos como Kohanim</h2>
+
+      <div class="content-container">
+        <p>
+          La Torá establece que Israel sería un "reino de kohanim" (Shemot
+          19:6). A través del Mashíaj Yeshúa, esta promesa se extiende a la
+          kahal de Israel restaurada.
+        </p>
+        <ul>
+          <li>
+            <strong>Identidad Real:</strong> Al estar "en el Mashíaj",
+            participamos espiritualmente de estas vestiduras. Somos revestidos
+            de Su justicia (Ketonet) y llamados a llevar la santidad de יְהוָה
+            en nuestra frente (Tzitz).
+          </li>
+          <li>
+            <strong>Manifestación del Reino:</strong> Caminar en estas
+            vestiduras hoy significa vivir en intercesión constante,
+            manifestando la justicia del Reino y la santidad del Ruach HaKodesh
+            en cada área de nuestra vida, preparándonos para la Era Mesiánica.
+          </li>
+        </ul>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-title">Impacto Profético:</div>
+        <p>
+          La restauración de Israel no es solo política, sino esencialmente
+          sacerdotal. Al reconocer al Mashíaj Yeshúa como nuestro Kohen Gadol
+          eterno, rompemos con la fe pasiva y asumimos nuestra responsabilidad
+          de ministrar ante el Trono. La Torá no es una carga de mandamientos
+          humanos, sino la instrucción que nos viste de luz para que el Reino de
+          יְהוָה sea establecido con poder, justicia y verdad sobre toda la
+          tierra.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h2>Mizmor de la Majestad Sacerdotal del Mashíaj</h2>
+
+      <div class="content-container">
+        <p>
+          Lamenatzéaj (Al Músico Principal). Mizmor de alabanza por el
+          Sacerdocio Eterno.
+        </p>
+
+        <div class="prayer-text">
+          1. ¡Cuán glorioso eres, Adonái יְהוָה, en Tu santuario celestial! Te
+          has vestido de honor y hermosura, y has manifestado Tu gloria en el
+          Mashíaj.<br />
+          2. Sobre Su frente brilla el Tzitz de oro puro, proclamando: "Kodesh
+          L'יְהוָה" (Apartado para יְהוָה). Su mente es luz, Su pensamiento es
+          perfecta santidad para Tu Nombre.<br />
+          3. En Su pecho lleva el Joshen de justicia, doce piedras de fuego
+          donde están grabados nuestros nombres. Él no nos olvida al entrar tras
+          el velo; nos lleva sobre Su corazón ante Tu presencia, oh Elohim de
+          Israel.<br />
+          4. Sus hombros sostienen el peso del Reino, como el Efod cargaba las
+          piedras de memoria. Él es nuestro Adón, el Siervo que sostiene a Su
+          pueblo con brazo de poder.<br />
+          5. Escuchad el sonido de Su marcha en el Lugar Kadosh, las campanillas
+          de oro en Su Me'il azul anuncian que Él vive. Su intercesión es música
+          dulce, Su fruto es como la granada de aroma fragante.<br />
+          6. Revestido de la Ketonet de lino finísimo, Su justicia es nuestro
+          amparo y nuestra cobertura. No hay mancha en Él, ni engaño en Sus
+          labios; Él es el Kohen Gadol según el orden de Malki-Tzedek.<br />
+          7. ¡Levantaos, hijos de la Aliyáh! Porque Él nos ha hecho un reino de
+          kohanim para יְהוָה. Caminemos en santidad, ceñidos con la verdad,
+          reflejando la luz de Aquel que entró en el Tabernáculo eterno.<br />
+          8. Bendito sea el Mashíaj Yeshúa, nuestro Rey y Sacerdote, en quien la
+          unidad de יְהוָה se ha revelado a las naciones. ¡Halleluyah! Tu Reino
+          permanece para siempre.
+        </div>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-title">Impacto Profético:</div>
+        <p>
+          Este Mizmor nos recuerda que nuestra identidad no depende de nuestros
+          méritos, sino de la vestidura de justicia que el Mashíaj nos otorga.
+          Al elevar esta oración, reconocemos que el sacerdocio de Yeshúa es la
+          garantía de nuestra restauración y que, como Su kahal, estamos
+          llamados a ministrar con la misma santidad y compromiso que Él muestra
+          ante el Trono del Eterno.
+        </p>
+      </div>
+      <footer>
+        <p>
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj
+        </p>
+        <a href="https://ia-interactiva.vercel.app/" class="boton-descargar"
+          >Recursos</a
+        >
+        <a
+          href="https://gemini.google.com/gem/310786cce7ad"
+          class="boton-descargar"
+          >Estudio</a
+        >
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          class="boton-descargar"
+          >Instagram</a
+        >
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
