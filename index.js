@@ -23,131 +23,84 @@ async function descargarPDF() {
   const element = document.getElementById('contenido');
   if (!element) return alert('No se encontró el contenido');
 
+  // 1. Validación de navegador integrado (Instagram, WhatsApp, etc.)
   if (esNavegadorIntegrado()) {
-    alert('Este navegador no permite descargas. Usa el navegador del sistema.');
+    alert('Para descargar el PDF, por favor abre esta página en el navegador de tu sistema (Chrome o Safari) usando los tres puntos de la esquina.');
     return;
   }
 
-  mostrarIndicador(true, 'Preparando descarga...');
+  // 2. Mostrar tu indicador de carga
+  mostrarIndicador(true, 'Preparando documento...');
 
-  // 1. Guardar estilos originales
-  const originalStyle = {
-    height: element.style.height,
-    overflow: element.style.overflow,
-    position: element.style.position, // Añadido para más seguridad
-  };
+  // 3. Crear el iframe invisible para procesar el PDF
+  const iframe = document.createElement('iframe');
+  Object.assign(iframe.style, {
+    position: 'fixed',
+    right: '0',
+    bottom: '0',
+    width: '0',
+    height: '0',
+    border: '0'
+  });
+  document.body.appendChild(iframe);
 
-  // 2. Aplicar estilos para asegurar la captura completa
-  element.style.height = 'auto';
-  element.style.overflow = 'visible';
-  element.style.position = 'relative'; // 'relative' es más seguro para el cálculo de altura
+  const doc = iframe.contentWindow.document;
 
-  // Esperamos a que el contenido se re-renderice
-  await new Promise(resolve => setTimeout(resolve, 100));
+  // 4. Escribir el contenido con los estilos de impresión
+  doc.write(`
+    <html>
+      <head>
+        <title>Estudio Purim</title>
+        <style>
+          body { 
+            font-family: 'Times New Roman', serif; 
+            padding: 40px; 
+            color: #000; 
+            background: #fff;
+            line-height: 1.6;
+          }
+          h1, h2 { color: #7b1e1e; margin-top: 0; }
+          p { text-align: justify; margin-bottom: 15px; font-size: 12pt; }
+          blockquote { 
+            border-left: 4px solid #7b1e1e; 
+            padding-left: 15px; 
+            font-style: italic; 
+            margin: 20px 0;
+          }
+          a { color: #0000ff; text-decoration: underline; }
+          footer { margin-top: 50px; border-top: 1px solid #ccc; padding-top: 20px; font-size: 10pt; }
+          
+          /* Evita que los párrafos se corten feo entre páginas */
+          p, blockquote, li { page-break-inside: avoid; }
+          @page { margin: 2cm; }
+        </style>
+      </head>
+      <body>
+        ${element.innerHTML}
+      </body>
+    </html>
+  `);
 
-  try {
-    // 3. Configuración de PDF y Dimensiones
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfPageWidth = 210; // Ancho A4
-    const pdfPageHeight = 297; // Alto A4
-    const margin = 10;
+  doc.close();
 
-    // Dimensiones útiles de la página PDF (en mm)
-    const pdfImgWidthMM = pdfPageWidth - margin * 2; // 190 mm
-    const pdfImgHeightMM = pdfPageHeight - margin * 2; // 277 mm
-
-    // Dimensiones del contenido (en px)
-    const contentWidthPX = element.scrollWidth;
-    const totalHeightPX = element.scrollHeight;
-
-    // 4. Calcular geometría de paginación
-    // Ratio (proporción) de la página PDF
-    const pdfPageRatio = pdfImgHeightMM / pdfImgWidthMM;
-    // Calcular cuántos píxeles de alto del contenido caben en una página PDF
-    const pageHeightPX = contentWidthPX * pdfPageRatio;
-
-    // Calcular número total de páginas
-    const totalPages = Math.ceil(totalHeightPX / pageHeightPX);
-
-    // 5. Opciones base de html2canvas
-    const canvasOptions = {
-      useCORS: true,
-      backgroundColor: '#fff',
-      scale: Math.min(window.devicePixelRatio || 1, 1.5),
-      width: contentWidthPX,
-      // Compensamos el scroll que TENGA LA VENTANA, si es que tiene
-      scrollX: -window.scrollX,
-      scrollY: -window.scrollY,
-    };
-
-    // 6. Loop para capturar página por página
-    for (let i = 0; i < totalPages; i++) {
-      // Actualizar el indicador de carga con el progreso
-      mostrarIndicador(true, `Generando página ${i + 1} de ${totalPages}...`);
-      
-      if (i > 0) {
-        pdf.addPage();
-      }
-
-      // Calcular el offset 'Y' (dónde empieza el recorte)
-      const yOffset = i * pageHeightPX;
-      
-      // Calcular la altura real a capturar (para la última página)
-      const currentHeightPX = Math.min(pageHeightPX, totalHeightPX - yOffset);
-
-      // --- ¡ESTA ES LA CORRECCIÓN CLAVE! ---
-      // Usamos 'y' para decirle dónde empezar a capturar
-      // Usamos 'height' para decirle dónde terminar
-      const pageCanvasOptions = {
-        ...canvasOptions,
-        height: currentHeightPX,
-        y: yOffset // Dónde empezar a capturar (en píxeles, desde el top)
-      };
-
-      // Capturar solo esta "ventana" del contenido
-      const canvas = await html2canvas(element, pageCanvasOptions);
-
-      // Calcular la altura proporcional de la imagen en el PDF
-      const imgHeightMM = (canvas.height * pdfImgWidthMM) / canvas.width;
-
-      // Añadir al PDF
-      const imgData = canvas.toDataURL('image/jpeg', 0.85);
-      pdf.addImage(imgData, 'JPEG', margin, margin, pdfImgWidthMM, imgHeightMM);
-      
-      // (Opcional) Pequeña pausa para que el navegador respire
-      await new Promise(resolve => setTimeout(resolve, 10)); 
-    }
-
-    // 7. Descargar el PDF
-    mostrarIndicador(true, 'Finalizando descarga...');
-    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
-    const blob = pdf.output('blob');
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `documento_${timestamp}.pdf`;
-    a.click();
-    URL.revokeObjectURL(url);
-
-  } catch (e) {
-    console.error('Error al generar PDF', e);
-    alert('Error al generar el PDF: ' + e.message);
-  } finally {
-    // 8. Restaurar estilos originales
-    element.style.height = originalStyle.height;
-    element.style.overflow = originalStyle.overflow;
-    element.style.position = originalStyle.position;
+  // 5. Pequeña pausa para que el navegador procese el HTML
+  setTimeout(() => {
+    mostrarIndicador(false); // Ocultamos tu aviso de carga
     
-    // Ocultar indicador
-    mostrarIndicador(false);
-  }
+    iframe.contentWindow.focus();
+    iframe.contentWindow.print(); // Abre el menú de Guardar PDF
+
+    // 6. Limpiar el iframe después de cerrar el menú de impresión
+    setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 2000);
+  }, 1000);
 }
 
-/**
- * Función de indicador de carga mejorada.
- * Ahora acepta un parámetro de 'texto' para mostrar el progreso.
- */
+// --- TUS FUNCIONES DE APOYO (SE MANTIENEN IGUAL) ---
+
 function mostrarIndicador(mostrar, texto = "Generando PDF…") {
   let el = document.getElementById('cargando-pdf');
   if (mostrar) {
@@ -159,12 +112,11 @@ function mostrarIndicador(mostrar, texto = "Generando PDF…") {
         background:rgba(0,0,0,0.6);display:flex;align-items:center;
         justify-content:center;z-index:9999;font-family:sans-serif;">
           <div style="background:white;padding:20px 40px;border-radius:10px;text-align:center;box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-            <p id="cargando-pdf-texto" style="font-size:1.1em;font-weight:bold;margin:0;">${texto}</p>
+            <p id="cargando-pdf-texto" style="font-size:1.1em;font-weight:bold;margin:0;color:#000;">${texto}</p>
           </div>
         </div>`;
       document.body.appendChild(el);
     } else {
-      // Si ya existe, solo actualiza el texto
       const p = document.getElementById('cargando-pdf-texto');
       if (p) p.innerText = texto;
     }
@@ -174,20 +126,15 @@ function mostrarIndicador(mostrar, texto = "Generando PDF…") {
   }
 }
 
-/**
- * Función de utilidad para detectar navegadores integrados (sin cambios).
- */
 function esNavegadorIntegrado() {
   const ua = navigator.userAgent.toLowerCase();
   return ua.includes('instagram') || ua.includes('fbav') || ua.includes('fban') ||
          ua.includes('whatsapp') || ua.includes('telegram') || ua.includes('line');
 }
 
-/**
- * Listener del botón (sin cambios).
- */
+// Listener para el botón
 document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('btn-descargar-pdf');
+  const btn = document.getElementById('descargar-pdf'); // Asegúrate que el ID coincida con tu HTML
   if (btn) {
     btn.addEventListener('click', e => {
       e.preventDefault();
