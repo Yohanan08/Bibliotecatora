@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      EL REINO REVELADO EN LAS VESTIDURAS DEL KOHEN GADOL: LA OBRA DEL MASHÍAJ
+      YESHÚA Y EL MINISTERIO ETERNO SEGÚN EL ORDEN DE MALKI-TZEDEK.
+    </title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+    <main id="contenido">
+      <h1>El Escenario del Reino en Ki Tisá</h1>
+
+      <div class="content-container">
+        <p>
+          La Parashá Ki Tisá (Éxodo 30:11–34:35) constituye un punto de
+          inflexión crítico en la historia de la redención y en la estructura
+          del Reino de Elohim. Situada inmediatamente después de las
+          instrucciones detalladas para la construcción del Mishkán
+          (Tabernáculo), esta sección revela la tensión entre la santidad de
+          יְהוָה y la fragilidad de Israel.
+        </p>
+        <p>
+          El episodio del becerro de oro no es simplemente un acto de idolatría,
+          sino un intento humano de materializar la presencia divina fuera de
+          los parámetros del Reino establecido por יְהוָה. La importancia
+          espiritual y profética de este evento radica en que demuestra la
+          absoluta necesidad de un mediador perfecto.
+        </p>
+        <p>
+          Mientras que Moshé intercede desde la brecha, su figura proyecta la
+          sombra del Reino del Mashíaj, donde la justicia y la misericordia se
+          besan para restaurar un pacto que el hombre, por sí mismo, es incapaz
+          de sostener.
+        </p>
+      </div>
+
+      <h2>Análisis Profundo de los Temas Principales</h2>
+
+      <div class="content-container">
+        <h3>1. El Rescate del Alma (Éxodo 30:11-16)</h3>
+        <p>
+          El censo de Israel se realiza mediante el "medio siclo" de plata. El
+          texto de la Torá Viviente establece:
+        </p>
+        <div class="verse-container">
+          <div class="translation">
+            "[12] Cuando tomes el censo de los hijos de Israel para contarlos,
+            cada uno dará a יְהוָה el rescate de su alma al ser contado... [13]
+            Esto darán todos los que pasen por el recuento: medio siclo...
+            ofrenda a יְהוָה."
+          </div>
+        </div>
+        <p>
+          <strong>Dimensión Mesiánica:</strong> Este rescate (kófer) iguala al
+          rico y al pobre, enseñando que en el Reino del Mashíaj, el valor de la
+          redención no depende de los recursos humanos, sino de la provisión
+          divina. La plata, que en la tipología bíblica representa la redención,
+          señala hacia el precio pagado por el Mashíaj Yeshúa para rescatar las
+          almas de la casa de Israel.
+        </p>
+      </div>
+
+      <div class="content-container">
+        <h3>2. El Lavacro de Bronce y la Santificación</h3>
+        <p>
+          El Kiyor (lavacro) era esencial para que los sacerdotes pudieran
+          ministrar sin morir. Representa la purificación continua necesaria
+          para entrar en la presencia del Rey. En el Reino del Mashíaj, Yeshúa
+          es quien purifica a Su Kahal (asamblea) mediante el lavado del agua
+          por la Palabra, permitiendo que un pueblo antes impuro actúe como un
+          reino de sacerdotes.
+        </p>
+      </div>
+
+      <div class="content-container">
+        <h3>3. La Unción Santa y el Sacerdocio</h3>
+        <p>
+          El aceite de la unción santa (Shemen HaMishjah) consagraba el
+          Tabernáculo y a los sacerdotes. Este aceite no podía ser imitado.
+          Proféticamente, esto señala a Yeshúa HaMashíaj (el Ungido), quien
+          posee la plenitud del Ruaj HaKodesh. Su reino no es una imitación
+          religiosa, sino una monarquía establecida bajo la autoridad directa de
+          la unción de יְהוָה.
+        </p>
+      </div>
+
+      <div class="content-container">
+        <h3>4. El Shabat como Señal del Reino</h3>
+        <p>En Ki Tisá, el Shabat se presenta como una señal perpetua:</p>
+        <div class="verse-container">
+          <div class="translation">
+            "[17] Señal es para siempre entre Mí y los hijos de Israel; porque
+            en seis días hizo יְהוָה los cielos y la tierra, y en el séptimo día
+            cesó y reposó."
+          </div>
+        </div>
+        <p>
+          El Shabat es el "Palacio en el Tiempo" y una miniatura del Reino
+          Mesiánico (el séptimo milenio). Guardar el Shabat es un acto de
+          lealtad al Rey del Universo y un anticipo del reposo final que Yeshúa
+          trae a Su pueblo.
+        </p>
+      </div>
+
+      <div class="content-container">
+        <h3>5. El Pecado del Becerro de Oro y la Intercesión</h3>
+        <p>
+          Cuando el pueblo dice "haznos elohim que vayan delante de nosotros"
+          (Ex. 32:1), rompen el matrimonio del pacto. La respuesta de Moshé es
+          la intercesión sacrificial. Moshé ofrece su propia vida ("bórrame
+          ahora de Tu libro", Ex. 32:32) para salvar a la nación. Esta es la
+          tipología más clara de Yeshúa, quien no solo ofreció ser borrado, sino
+          que cargó con el juicio para que el Reino pudiera ser restaurado.
+        </p>
+      </div>
+
+      <h1>Revelación de los Atributos de Misericordia (Éxodo 34)</h1>
+
+      <div class="content-container">
+        <p>
+          Tras la ruptura, יְהוָה revela Su carácter a Moshé. Según la Torá
+          Viviente:
+        </p>
+        <div class="verse-container">
+          <div class="translation">
+            "[6] Y pasando יְהוָה por delante de él, proclamó: ¡יְהוָה! ¡יְהוָה!
+            El El rajum (compasivo) y jannun (clemente), lento para la ira, y
+            grande en misericordia y verdad."
+          </div>
+        </div>
+        <p>
+          Estos atributos son el fundamento del Reino Mesiánico. El Reino no se
+          sostiene sobre el mérito legalista de Israel, sino sobre la Jesed
+          (misericordia) de יְהוָה. Yeshúa es la manifestación visible de estos
+          trece atributos; en Él, la "Verdad" y la "Misericordia" se encuentran
+          plenamente.
+        </p>
+      </div>
+
+      <h1>Tipología Mesiánica y Cumplimiento en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>Moshé como Mediador:</strong> Así como Moshé descendió del
+            monte con el rostro resplandeciente (Ex. 34:29), Yeshúa es la luz
+            del mundo cuya gloria se manifiesta tras la victoria sobre el
+            pecado. Moshé intercedió por un pueblo idólatra; Yeshúa intercede
+            perpetuamente por los redimidos.
+          </li>
+          <li>
+            <strong>La Restauración del Pacto:</strong> Las segundas tablas
+            representan el Nuevo Pacto. A diferencia de las primeras, que se
+            quebraron debido a la dureza del corazón, el Reino del Mashíaj
+            escribe la Torá en los corazones por medio del Ruaj HaKodesh,
+            asegurando que el pacto nunca más se rompa.
+          </li>
+          <li>
+            <strong>El Sacrificio Redentor:</strong> El "medio siclo" encuentra
+            su cumplimiento en la entrega total de Yeshúa. Él es el Kófer
+            (rescate) que permite que Israel sea contado y preservado para el
+            Reino.
+          </li>
+        </ul>
+      </div>
+
+      <h2>Comentarios y Perspectivas Judías Mesiánicas</h2>
+
+      <div class="explanation">
+        <ul>
+          <li>
+            <strong>Rashi</strong> enfatiza que el pecado del becerro fue
+            perdonado solo parcialmente en ese momento, quedando un "residuo" de
+            castigo para generaciones futuras. Desde una perspectiva mesiánica,
+            entendemos que solo el sacrificio de Yeshúa elimina ese residuo de
+            pecado, permitiendo la restauración total de las doce tribus.
+          </li>
+          <li>
+            <strong>Rambán (Najmánides)</strong> destaca que la gloria que
+            cubría a Moshé era un reflejo de la Shejiná. En el Reino del
+            Mashíaj, esta gloria no estará limitada a un mediador, sino que "la
+            tierra será llena del conocimiento de la gloria de יְהוָה" a través
+            de Yeshúa.
+          </li>
+          <li>
+            <strong>Midrash Rabá</strong> conecta la construcción del Mishkán
+            con la creación del mundo. Ki Tisá enseña que el Reino es un proceso
+            de "re-creación" donde el hombre es invitado a participar en la
+            santidad divina.
+          </li>
+        </ul>
+      </div>
+
+      <h1>El Reino del Mashíaj Revelado en Ki Tisá: El Patrón de Redención</h1>
+
+      <div class="content-container">
+        <p>Ki Tisá revela que el Reino de Elohim opera bajo un patrón de:</p>
+        <ul>
+          <li>1. Revelación (Instrucciones del Mishkán).</li>
+          <li>2. Caída (Becerro de oro).</li>
+          <li>3. Intercesión (Moshé).</li>
+          <li>4. Restauración (Segundas tablas y renovación del pacto).</li>
+        </ul>
+        <p>
+          Este es el mismo patrón de la historia humana que culmina en la
+          manifestación futura del Reino Mesiánico. El Mashíaj Yeshúa es quien
+          toma las "tablas rotas" de nuestra humanidad y las restaura en un
+          pacto eterno de paz.
+        </p>
+      </div>
+
+      <h2>Aplicación Espiritual</h2>
+
+      <div class="content-container">
+        <p>
+          Hoy, los creyentes participan del Reino del Mashíaj al reconocer que
+          su rescate no fue comprado con plata ni oro, sino con la sangre
+          preciosa del Cordero de Pésaj. La restauración de Israel mencionada en
+          esta parashá nos llama a la Teshuvá (arrepentimiento) nacional y
+          personal. Como hijos de Israel en la diáspora o en Eretz Israel,
+          debemos vivir bajo la unción del Ruaj HaKodesh, guardando el Shabat
+          como señal de nuestra ciudadanía en el Reino venidero.
+        </p>
+      </div>
+
+      <h2>Impacto Profético</h2>
+
+      <div class="content-container">
+        <p>
+          La Parashá Ki Tisá nos enseña que el Reino del Mashíaj no es una
+          estructura impuesta desde fuera, sino una restauración desde el centro
+          mismo del carácter de יְהוָה. El Mashíaj Yeshúa, como el mediador
+          superior a Moshé, ha quitado el velo que impedía a Israel ver la
+          gloria del Eterno. La restauración de las doce tribus y la unificación
+          del Reino bajo el cetro de David es una promesa irrevocable que se
+          fundamenta en los atributos de misericordia revelados en el Sinaí. No
+          hay pecado tan grande que la intercesión del Mashíaj no pueda cubrir
+          para traer de regreso a Su pueblo a la heredad prometida.
+        </p>
+      </div>
+
+      <h1>Mizmor de la Redención y el Rostro Radiante</h1>
+
+      <div class="content-container">
+        <div class="prayer-text">
+          <strong>1</strong><br />
+          ¡Alzad voz de júbilo a יְהוָה, Roca de nuestro rescate!<br />
+          Porque no con oro ni con plata fuimos redimidos de la mortandad,<br />
+          sino con el medio siclo de Su gracia, el precio de nuestra alma,<br />
+          entregado por el Ungido en el madero de la ejecución.<br /><br />
+          <strong>2</strong><br />
+          Hicimos un becerro en el desierto de nuestro extravío,<br />
+          cambiamos la Gloria por una imagen que no respira;<br />
+          mas el Mediador se puso en la brecha ante יְהוָה,<br />
+          implorando misericordia por el kahal de Israel que perecía.<br /><br />
+          <strong>3</strong><br />
+          ¡Cuán grande es Tu bondad, Elohim de Israel!<br />
+          Que proclamas Tu Nombre ante los ojos del humilde:<br />
+          "¡יְהוָה! ¡יְהוָה! El rajuwm y jannuwn, lento para la ira",<br />
+          grande en verdad para los que esperan Tu salvación.<br /><br />
+          <strong>4</strong><br />
+          Lávanos en el kiyor de Tu Palabra, Adonai Yeshúa,<br />
+          úngenos con el aceite que consagra el corazón para el Reino;<br />
+          que el Shabat sea la señal eterna en nuestra frente,<br />
+          el reposo del alma que halla descanso en Su Mashíaj.<br /><br />
+          <strong>5</strong><br />
+          Ya no hay velo que oculte la luz de Tu presencia,<br />
+          pues en el rostro de Yeshúa resplandece la Torá Viviente;<br />
+          escribe Tus mandamientos en las tablas de nuestra vida,<br />
+          y llévanos de regreso a Eretz Israel, a la heredad de los santos.<br /><br />
+          <strong>6</strong><br />
+          ¡Bendito sea el Rey que restaura a Jacob!<br />
+          Cuya gloria es más radiante que la de Moshé en el monte,<br />
+          porque en Él, la unidad compuesta de יְהוָה se ha manifestado,<br />
+          y Su Reino no tendrá fin por los siglos de los siglos.
+        </div>
+      </div>
+      <footer>
+        <p>
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj
+        </p>
+        <a href="https://ia-interactiva.vercel.app/" class="boton-descargar"
+          >Recursos</a
+        >
+        <a
+          href="https://gemini.google.com/gem/310786cce7ad"
+          class="boton-descargar"
+          >Estudio</a
+        >
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          class="boton-descargar"
+          >Instagram</a
+        >
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
