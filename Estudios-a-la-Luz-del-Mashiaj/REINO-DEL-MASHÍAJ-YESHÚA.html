@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      REINO DEL MASHÍAJ YESHÚA, SIGUIENDO EL PATRÓN DEL BEIT MIDRASH.
+    </title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+    <main id="contenido">
+      <h1>REINO DEL MASHÍAJ YESHÚA, SIGUIENDO EL PATRÓN DEL BEIT MIDRASH.</h1>
+
+      <div class="content-container">
+        <h2>Parashá 22 — וַיַּקְהֵל | Vayakel</h2>
+        <p><strong>Significado:</strong> “Y reunió”</p>
+        <p><strong>Torá:</strong> Shemot / Éxodo 35:1 – 38:20</p>
+        <p><strong>Haftará:</strong> Melajim Alef / 1 Reyes 7:13–26</p>
+        <p>
+          <strong>Conexión Brit Hadashah:</strong> revelación del Mishkán
+          celestial y el kahal como templo vivo.
+        </p>
+      </div>
+
+      <h1>1. Contexto hebreo de la Parashá dentro de la Torá</h1>
+      <div class="content-container">
+        <p>
+          La palabra וַיַּקְהֵל — Vayakel proviene de la raíz hebrea:
+          <strong>קהל — kahal</strong> significa congregar, reunir, convocar una
+          asamblea santa.
+        </p>
+        <p>
+          Por primera vez después del pecado del becerro de oro (Shemot 32),
+          Moshé vuelve a reunir al kahal de Israel. Esto tiene enorme
+          importancia espiritual. Israel había quebrantado el pacto, pero Adonai
+          יְהוָה restablece la relación y vuelve a convocar a Su pueblo.
+        </p>
+        <p>El orden del pasaje es significativo:</p>
+        <ul>
+          <li>1. Se convoca al kahal de Israel</li>
+          <li>2. Se establece el Shabat</li>
+          <li>3. Se ordena la construcción del Mishkán</li>
+        </ul>
+        <p>
+          Este orden revela un principio del Reino de Elohim:
+          <strong>Pueblo → Santidad → Presencia</strong>. Primero el pueblo se
+          reúne, luego se santifica, y entonces la presencia de יְהוָה puede
+          habitar en medio de ellos.
+        </p>
+      </div>
+
+      <h1>2. Texto clave de la Parashá</h1>
+      <div class="verse-container">
+        <div class="verse-number">Shemot 35:1-2</div>
+        <div class="translation">
+          “Y reunió Moshé a toda la congregación de los hijos de Israel y les
+          dijo: Estas son las palabras que Adonai ha mandado para que las
+          hagáis. Seis días se trabajará, mas el séptimo día os será santo,
+          Shabat de reposo para Adonai.”
+        </div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          Aquí aparece el primer principio del Reino: El Reino comienza con el
+          gobierno del Shabat. El Shabat es la señal del Reino de יְהוָה sobre
+          el pueblo.
+        </p>
+      </div>
+
+      <h1>3. El significado espiritual de la construcción del Mishkán</h1>
+      <div class="content-container">
+        <p>
+          El Mishkán (Tabernáculo) no era solo un santuario físico. Era un
+          modelo profético del Reino de Elohim en la tierra. La palabra Mishkán
+          proviene de: <strong>שכן — shakan</strong>. Significa: habitar / morar
+          / establecer presencia. De esta raíz también viene:
+          <strong>Shejiná</strong> — la presencia manifestada de יְהוָה.
+        </p>
+        <p>
+          Por tanto el Mishkán representa: El trono del Reino de Elohim en medio
+          de Israel. No era solo un lugar de culto. Era el centro del gobierno
+          divino. Todo el campamento de Israel se organizaba alrededor del
+          Mishkán. Esto revela el principio del Reino: El Reino del Mashíaj se
+          organiza alrededor de la presencia de Adonai.
+        </p>
+      </div>
+
+      <h1>4. Revelación del Reino del Mashíaj dentro de la Parashá</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1 — El Rey reúne al kahal</div>
+          <p>
+            La palabra Vayakel anticipa la obra de Yeshúa. Yeshúa vino a reunir
+            al kahal disperso de Israel. Los profetas ya lo habían anunciado.
+            Yejezkel 37 declara que el Mashíaj reuniría a Israel de entre las
+            naciones. En la Brit Hadashah, Yeshúa declara que vendría a reunir a
+            los dispersos. Así como Moshé reunió al pueblo para construir el
+            Mishkán, Yeshúa reúne al kahal para formar el templo espiritual.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2 — El Reino se construye con corazones voluntarios
+          </div>
+          <p>
+            En Vayakel aparece una expresión repetida: “todo aquel cuyo corazón
+            le impulsó”. El Mishkán fue construido por ofrendas voluntarias.
+            Esto revela un principio espiritual del Reino: El Reino del Mashíaj
+            no se edifica por imposición, sino por corazones transformados por
+            el Ruach HaKodesh. Cada persona traía: oro, plata, bronce, telas,
+            madera. Esto representa los dones espirituales del kahal. Cada
+            miembro participa en la edificación del Reino.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            3 — El Reino es una morada para la presencia divina
+          </div>
+          <p>
+            El objetivo final del Mishkán era: “Y habitaré en medio de ellos”
+            (Shemot 25:8). Esto se cumple plenamente en Yeshúa HaMashíaj. Porque
+            el Mashíaj es la manifestación visible de la presencia de יְהוָה. En
+            la Era Mesiánica (E.M.), el Mishkán se expande: ya no es una tienda
+            física, sino el pueblo mismo transformado en morada del Ruach
+            HaKodesh.
+          </p>
+        </div>
+      </div>
+
+      <h1>5. Tipología mesiánica en los elementos del Mishkán</h1>
+      <div class="content-container">
+        <p>
+          <strong>1 — El Arca del Pacto:</strong> Representa el trono de יְהוָה.
+          Dentro del arca estaban: la Torá, el maná, la vara de Aharón. Esto
+          revela que el Mashíaj es: la Torá viviente, el pan del cielo, el
+          sacerdote eterno.
+        </p>
+        <p>
+          <strong>2 — El propiciatorio (Kapporet):</strong> Era el lugar donde
+          se manifestaba la presencia divina. Los querubines cubrían el arca.
+          Entre ellos se manifestaba la Shejiná. Esto revela el lugar de
+          reconciliación entre Elohim y el pueblo. El Mashíaj Yeshúa cumple esta
+          función como mediador del Nuevo Pacto.
+        </p>
+        <p>
+          <strong>3 — La Menorá:</strong> Representa: la luz del Reino. El
+          Mashíaj es la luz que ilumina al kahal. Los siete brazos simbolizan la
+          plenitud del Ruach HaKodesh.
+        </p>
+        <p>
+          <strong>4 — El altar de incienso:</strong> Simboliza la intercesión.
+          El Mashíaj es el sumo sacerdote que presenta al kahal delante de
+          Adonai.
+        </p>
+        <p>
+          <strong>5 — Las vestiduras sacerdotales:</strong> Representan la
+          autoridad espiritual del Reino. El kahal del Mashíaj es llamado a
+          ejercer un sacerdocio santo.
+        </p>
+      </div>
+
+      <h1>6. Comentarios judíos y judío-mesiánicos</h1>
+      <div class="explanation">
+        <p>
+          <strong>Comentario del Midrash:</strong> El Midrash señala que la
+          construcción del Mishkán corrige el pecado del becerro de oro. Israel
+          había usado el oro para idolatría. Ahora el oro se usa para construir
+          la morada de Adonai. Esto enseña un principio profundo: La redención
+          transforma lo que fue usado para el pecado en instrumento del Reino.
+        </p>
+        <p>
+          <strong>Comentario de Najmánides (Ramban):</strong> Ramban explica que
+          el Mishkán es una continuación de la revelación del Sinaí. Lo que
+          ocurrió en el monte ahora ocurre dentro del campamento. Esto
+          significa: La presencia de יְהוָה no solo se manifiesta en momentos
+          extraordinarios, sino en medio de la vida diaria del pueblo.
+        </p>
+        <p>
+          <strong>Perspectiva judío-mesiánica:</strong> Los maestros mesiánicos
+          señalan que el Mishkán es una sombra del Mashíaj. Cada detalle apunta
+          a Yeshúa. No es casual que el Mishkán sea llamado: “Morada” porque el
+          Mashíaj es la morada viva de la presencia divina entre los hombres.
+        </p>
+      </div>
+
+      <h1>7. Conexiones proféticas con el Tanaj y la Brit Hadashah</h1>
+      <div class="content-container">
+        <p>
+          <strong>Profecía en Yejezkel:</strong> Yejezkel 37 declara: “Mi
+          Mishkán estará con ellos, y Yo seré su Elohim y ellos serán mi
+          pueblo.” Esta profecía describe el Reino del Mashíaj restaurando
+          Israel.
+        </p>
+        <p>
+          <strong>Cumplimiento en Yeshúa:</strong> En la Brit Hadashah se revela
+          que el Mashíaj es el verdadero templo. Y el kahal de Israel se
+          convierte en su morada. Esto es la expansión del Mishkán.
+        </p>
+      </div>
+
+      <h1>8. Cómo esta Parashá revela el gobierno del Reino de Elohim</h1>
+      <div class="content-container">
+        <p>
+          Vayakel revela la estructura del gobierno del Reino. El Reino funciona
+          mediante: 1. Torá — la instrucción divina, 2. Shabat — la autoridad
+          del Rey, 3. Kahal — el pueblo reunido, 4. Mishkán — la presencia del
+          Rey. Cuando estos cuatro elementos se alinean, el Reino de Elohim se
+          manifiesta en la tierra.
+        </p>
+      </div>
+
+      <h1>9. Aplicación espiritual para el pueblo de Israel hoy</h1>
+      <div class="content-container">
+        <p>
+          1. Restauración del Shabat: El Shabat establece el gobierno de Adonai
+          sobre el tiempo.
+        </p>
+        <p>
+          2. Corazones voluntarios: El Reino crece cuando el kahal entrega su
+          vida al servicio de Adonai.
+        </p>
+        <p>
+          3. Ser morada del Ruach HaKodesh: El propósito final no es un templo
+          físico. Es que el pueblo sea transformado en Mishkán viviente.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+      <div class="prophetic-content">
+        <p>
+          La Parashá Vayakel revela un patrón profético del Reino del Mashíaj.
+          Así como Moshé reunió al kahal de Israel para edificar el Mishkán, el
+          Mashíaj Yeshúa está reuniendo hoy al pueblo disperso para restaurar la
+          morada de Adonai entre los hombres. Esta restauración culminará en la
+          Era Mesiánica cuando el Reino de יְהוָה sea establecido plenamente
+          sobre Israel y las naciones, y la presencia divina habite
+          permanentemente en medio de Su pueblo.
+        </p>
+      </div>
+
+      <h1>מִזְמוֹר הַמִּשְׁכָּן — Mizmor del Mishkán</h1>
+      <div class="content-container">
+        <div class="prayer-text">
+          Oh Adonai יְהוָה, Rey de Israel y Luz de Tu pueblo, Tú convocas al
+          kahal de Israel como en los días de Moshé tu siervo. Tú dijiste:
+          “Reúnase Mi pueblo delante de Mí, y escucharé el corazón de aquellos
+          que desean edificar Mi morada.” Bendito eres Tú, Elohim de Israel,
+          porque no buscas templos hechos solo por manos humanas, sino corazones
+          encendidos por el Ruach HaKodesh. Como en el desierto reuniste al
+          pueblo para levantar el Mishkán de Tu gloria, así en estos días reúnes
+          a Israel para preparar la morada del Mashíaj. Despierta, oh Adonai, el
+          corazón voluntario de Tu pueblo. Que traigan delante de Ti el oro de
+          la fe, la plata de la redención, y el bronce de la fidelidad. Que cada
+          alma del kahal sea piedra viva de Tu santuario. Haz que Tu Shabat sea
+          corona sobre Israel, y que Tu Torá sea lámpara en medio del
+          campamento. Oh Adonai יְהוָה, haz resplandecer Tu presencia entre los
+          querubines de Tu misericordia. Porque el trono de Tu Reino se levanta
+          en medio de Tu pueblo. Yeshúa HaMashíaj, luz de la Menorá eterna,
+          sacerdote del Mishkán celestial, Rey de justicia para el kahal de
+          Israel. Reúne a los dispersos de Israel desde los cuatro rincones de
+          la tierra. Y establece Tu Mishkán eterno en medio de Tu pueblo.
+          Entonces la tierra conocerá que Tú eres Adonai, y Tu gloria llenará el
+          mundo como las aguas cubren el mar. Bendito sea el Reino de יְהוָה y
+          bendito el Mashíaj que viene en Su nombre.
+        </div>
+        <div class="prayer-conclusion">Amén.</div>
+      </div>
+
+      <div class="explanation">
+        <p>
+          Este Mizmor refleja la restauración profética anunciada en la Torá:
+          así como el kahal de Israel fue reunido en Vayakel para levantar el
+          Mishkán, el Mashíaj Yeshúa está reuniendo hoy al pueblo disperso para
+          restaurar la morada de Adonai en medio de Israel. Esta obra culminará
+          en la Era Mesiánica cuando el Reino de יְהוָה sea establecido
+          plenamente y Su presencia habite permanentemente entre Su pueblo.
+        </p>
+      </div>
+
+      <footer>
+        <p>
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj
+        </p>
+        <p>
+          Judio Adonai Yeshúa Hamashiaj:
+          [https://ia-interactiva.vercel.app/](https://ia-interactiva.vercel.app/)
+        </p>
+        <p>
+          📖 Yeshúa la Toraviviente | Torá Mesiánica:
+          [https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica](https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica)
+        </p>
+        <p>
+          Yeshúa la toraviviente de estudio:
+          [https://gemini.google.com/gem/310786cce7ad](https://gemini.google.com/gem/310786cce7ad)
+        </p>
+        <p>
+          Siguenos en Instagram oficial:
+          [https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3](https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3)
+        </p>
+        <p>
+          <strong>Yohanan ben Israel</strong> - Compañero de labores en Adonai
+          Yeshúa HaMashíaj
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
