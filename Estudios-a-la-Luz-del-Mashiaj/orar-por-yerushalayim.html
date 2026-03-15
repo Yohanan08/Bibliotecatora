@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ORAR POR YERUSHALAYIM Y EL LLAMADO DE LOS CENTINELAS.</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+    <main id="contenido">
+      <h1>ORAR POR YERUSHALAYIM Y EL LLAMADO DE LOS CENTINELAS</h1>
+
+      <h2>EL PROPÓSITO PROFÉTICO DE LA CIUDAD DEL GRAN REY</h2>
+
+      <div class="content-container">
+        Yerushalayim no es simplemente una ciudad histórica. En las Escrituras
+        es el centro del pacto, del gobierno del Mashíaj y del destino
+        espiritual de Israel y de las naciones. Desde la Torá hasta el Brit
+        Hadashah, la revelación muestra que la restauración de Yerushalayim está
+        ligada a la manifestación del Reino del Mashíaj. Por esta razón, el
+        pueblo de Israel y los creyentes están llamados a interceder por ella.
+      </div>
+
+      <h1>1. El mandato de orar por Yerushalayim</h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Tehilim / Salmos 122:6</div>
+        <div class="hebrew">
+          שַׁאֲלוּ שְׁלוֹםיְרוּשָׁלָ‍ִםיִשְׁלָיוּאֹהֲבָיִךְ
+        </div>
+        <div class="transliteration">
+          Sha'alu shlom Yerushalayim yishlayu ohavayij
+        </div>
+        <div class="translation">
+          “Pedid la paz de Yerushalayim; prosperarán los que te aman.”
+        </div>
+      </div>
+
+      <div class="explanation">
+        Este pasaje es un mandato espiritual. No es solo un deseo emocional por
+        una ciudad. Es una participación en el propósito redentor de Adonai. La
+        palabra shalom no significa solamente ausencia de guerra. Incluye:
+        <ul>
+          <li>plenitud</li>
+          <li>restauración</li>
+          <li>justicia</li>
+          <li>gobierno divino</li>
+          <li>orden del Reino</li>
+        </ul>
+        Orar por Yerushalayim es interceder para que el propósito de Adonai se
+        establezca en la tierra. Porque el destino de la ciudad está conectado
+        con:
+        <ul>
+          <li>la restauración de Israel</li>
+          <li>la revelación del Mashíaj</li>
+          <li>el gobierno del Reino.</li>
+        </ul>
+      </div>
+
+      <h1>2. Los centinelas sobre los muros de Yerushalayim</h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Isaías 62:6-7</div>
+        <div class="hebrew">
+          עַל־חוֹמֹתַיִךְ יְרוּשָׁלַ‍ִםהִפְקַדְתִּישֹׁמְרִים
+          כָּל־הַיּוֹםוְכָל־הַלַּיְלָהתָּמִידלֹאיֶחֱשׁוּ
+        </div>
+        <div class="transliteration">
+          Al jomotayij Yerushalayim hifkadti shomerim kol hayom vekol halayla
+          tamid lo yejeshu
+        </div>
+        <div class="translation">
+          “Sobre tus muros, Yerushalayim, he puesto centinelas; todo el día y
+          toda la noche continuamente no callarán.”
+        </div>
+      </div>
+
+      <div class="explanation">
+        Aquí aparece una imagen profundamente profética. Los centinelas
+        (shomerim) eran vigilantes en las murallas de una ciudad. Su función
+        era:
+        <ul>
+          <li>observar el horizonte</li>
+          <li>anunciar peligro</li>
+          <li>proclamar esperanza</li>
+          <li>anunciar la llegada del rey.</li>
+        </ul>
+        En la dimensión espiritual, los centinelas representan intercesores
+        proféticos. Personas levantadas por Adonai para:
+        <ul>
+          <li>orar sin cesar</li>
+          <li>proclamar las promesas de la restauración</li>
+          <li>recordar el pacto de Elohim con Israel.</li>
+        </ul>
+        El pasaje continúa: “No le den descanso hasta que establezca a
+        Yerushalayim y la ponga por alabanza en la tierra.” Esto revela una
+        verdad profunda: La restauración de Yerushalayim está conectada con la
+        intercesión continua del pueblo de Adonai.
+      </div>
+
+      <h1>3. Yerushalayim en el conflicto profético de las naciones</h1>
+
+      <div class="content-container">
+        Zacarías 12. El profeta revela que en los últimos tiempos Yerushalayim
+        será el centro del conflicto espiritual de las naciones.
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Zacarías 12:3</div>
+        <div class="hebrew">
+          וְהָיָה
+          בַּיּוֹםהַהוּאאָשִׂיםאֶת־יְרוּשָׁלַ‍ִםאֶבֶןמַעֲמָסָהלְכָל־הָעַמִּים
+        </div>
+        <div class="transliteration">
+          Vehayah bayom hahu asim et Yerushalayim even ma'amasah lejol ha'amim
+        </div>
+        <div class="translation">
+          “En aquel día haré de Yerushalayim una piedra pesada para todos los
+          pueblos.”
+        </div>
+      </div>
+
+      <div class="explanation">
+        Esto describe un tiempo donde las naciones se oponen al propósito de
+        Adonai. Pero el capítulo también revela algo extraordinario. Adonai
+        derramará: “Ruaj de gracia y de súplica” y el pueblo mirará al que
+        traspasaron. Esto apunta directamente al Mashíaj Yeshúa. La restauración
+        espiritual de Israel ocurre cuando reconoce al Mashíaj.
+      </div>
+
+      <h1>4. La manifestación del Reino en Yerushalayim</h1>
+
+      <div class="content-container">
+        Zacarías 14. Este capítulo describe el momento cuando el Mashíaj
+        establecerá su Reino en la tierra. Las Escrituras revelan que:
+        <ul>
+          <li>las naciones subirán a Yerushalayim</li>
+          <li>el Rey gobernará desde allí</li>
+          <li>el mundo reconocerá la soberanía de Adonai.</li>
+        </ul>
+        La ciudad se convierte en el centro del Reino mesiánico. Esto explica
+        por qué las Escrituras llaman a orar por ella. Porque su destino está
+        conectado con la restauración del mundo entero.
+      </div>
+
+      <h1>5. El corazón del Mashíaj por Yerushalayim</h1>
+
+      <div class="content-container">
+        Lucas 19:41-44. El Brit Hadashah revela un momento profundamente
+        conmovedor. Cuando Yeshúa se acerca a la ciudad: él llora sobre
+        Yerushalayim. Porque la ciudad no reconoció el tiempo de su visitación.
+        Esto muestra algo importante. El Mashíaj no rechaza a Israel. Él llora
+        por su restauración.
+      </div>
+
+      <div class="content-container">
+        Mateo 23:37-39. Yeshúa declara: “Yerushalayim, Yerushalayim… cuántas
+        veces quise reunir a tus hijos como la gallina reúne a sus polluelos.”
+        Luego anuncia una profecía crucial: “No me veréis más hasta que digáis:
+        Bendito el que viene en nombre de Adonai.” Esto revela que la
+        manifestación plena del Mashíaj está conectada con la restauración
+        espiritual de Yerushalayim.
+      </div>
+
+      <h1>6. El cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        Toda la esperanza profética de Yerushalayim converge en Yeshúa. Él es:
+        <ul>
+          <li>el Rey prometido a la casa de David</li>
+          <li>el Cordero de Pésaj que redime a Israel</li>
+          <li>el que traerá el Reino.</li>
+        </ul>
+        La restauración final de Yerushalayim incluye:
+        <ol>
+          <li>arrepentimiento nacional de Israel</li>
+          <li>reconocimiento del Mashíaj</li>
+          <li>establecimiento del Reino.</li>
+        </ol>
+        Por eso la intercesión por la ciudad es participar en el plan mesiánico
+        de Adonai.
+      </div>
+
+      <h1>7. Aplicación espiritual para los creyentes hoy</h1>
+
+      <div class="explanation">
+        Orar por Yerushalayim significa:<br /><br />
+        <strong>1. Interceder por la restauración espiritual de Israel</strong
+        ><br />
+        Romanos 11 enseña que el endurecimiento de Israel no es permanente. Hay
+        una restauración futura.<br /><br />
+        <strong>2. Preparar el camino del Reino</strong><br />
+        La oración alinea el corazón del pueblo de Elohim con su propósito
+        eterno.<br /><br />
+        <strong>3. Unirse al llamado de los centinelas</strong><br />
+        Los creyentes están llamados a ser vigilantes espirituales. Orando por:
+        <ul>
+          <li>Israel</li>
+          <li>Yerushalayim</li>
+          <li>la manifestación del Reino.</li>
+        </ul>
+      </div>
+
+      <h1>8. Conexión con el Reino mesiánico futuro</h1>
+
+      <div class="content-container">
+        Las Escrituras revelan que:
+        <ul>
+          <li>el Mashíaj reinará desde Yerushalayim</li>
+          <li>las naciones vendrán a aprender la Torá</li>
+          <li>la paz cubrirá la tierra.</li>
+        </ul>
+        La oración por Yerushalayim es una anticipación profética del Reino
+        venidero.
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-title">Impacto Profético</div>
+        <div class="prophetic-section">
+          La intercesión por Yerushalayim no es simplemente una práctica
+          devocional. Es una participación directa en el propósito eterno de
+          Adonai para la restauración de Israel y la manifestación del Reino del
+          Mashíaj. Los centinelas levantados sobre los muros representan a
+          aquellos que disciernen los tiempos y claman hasta que las promesas
+          del pacto se cumplan plenamente. Cuando Israel reconozca al Mashíaj
+          Yeshúa y Yerushalayim sea establecida como centro del gobierno del
+          Reino, toda la tierra verá la fidelidad de יְהוָה y la gloria del
+          Mashíaj será revelada a las naciones.
+        </div>
+      </div>
+
+      <h3>Mizmor de intercesión por Yerushalayim</h3>
+      <h3>שֹׁמְרֵי יְרוּשָׁלַיִם — Shomrei Yerushalayim</h3>
+      <p style="text-align: center">(Los centinelas de Yerushalayim)</p>
+
+      <div class="verse-container">
+        <div class="hebrew">
+          יְהוָה אֱלֹהֵייִשְׂרָאֵל זְכֹראֶת־צִיּוֹןבְּרַחֲמֶיךָ<br />
+          שַׁלְוָה לִירוּשָׁלַיִםתֵּן וְשָׁלוֹםבְּחוֹמוֹתֶיהָ<br />
+          הָקֵם שֹׁמְרִיםעַל־חֹמוֹתֶיהָ לֹאיֶחֱשׁוּיוֹמָםوָלַיְלָה<br />
+          יִזְכְּרוּ בְּרִיתֶךָעִם־יִשְׂרָאֵל וְיִקְרְאוּבְּשֵׁםקָדְשֶׁךָ<br />
+          הָשֵׁב אֶת־שְׁבוּתעַמֶּךָ וְהָאֵרפָּנֶיךָעַל־צִיּוֹן<br />
+          יָבוֹא מַלְכֵּנוּמִצִּיּוֹן וְיִמְלֹךְבְּצֶדֶקוּבֶאֱמֶת<br />
+          יָשִׂים שָׁלוֹםבָּאָרֶץ וְתִתְגַּלֶּהתִּפְאֶרֶתיְהוָה<br />
+          בְּיָמֵי הַמָּשִׁיחַיֵשׁוּעַ אוֹרלְיִשְׂרָאֵלוּלְכָל־הָעַמִּים
+        </div>
+        <div class="transliteration">
+          Adonai Elohei Yisrael zejor et-Tziyon berajameja<br />
+          Shalvá liYerushalayim ten veshalom bejomoteha<br />
+          Haqem shomerim al-jomoteha lo yejeshu yomam valayla<br />
+          Yizkeru beriteja im-Yisrael veyikreu beshem kodesheja<br />
+          Hashev et shevut ameja vehaer paneja al-Tziyon<br />
+          Yavo Malkenu miTziyon veyimloj betzedek uve’emet<br />
+          Yasim shalom ba’aretz vetitgale tif’eret Adonai<br />
+          Bimey HaMashíaj Yeshúa or leYisrael ulekol ha’amim
+        </div>
+        <div class="translation">
+          Oh Adonai, Elohim de Israel, recuerda a Tziyon en tu misericordia. Da
+          prosperidad a Yerushalayim y paz dentro de sus muros. Levanta
+          centinelas sobre sus murallas que no callen ni de día ni de noche. Que
+          recuerden tu pacto con Israel y clamen en tu Nombre santo. Restaura al
+          pueblo de tu heredad y haz resplandecer tu rostro sobre Tziyon. Que
+          venga nuestro Rey desde Tziyon y reine con justicia y verdad. Que
+          establezca paz sobre la tierra y sea revelada la gloria de Adonai. En
+          los días del Mashíaj Yeshúa, luz para Israel y para todas las
+          naciones.
+        </div>
+      </div>
+
+      <div class="explanation">
+        <strong>Significado espiritual del mizmor</strong><br />
+        Este mizmor refleja tres verdades proféticas del estudio:
+        <ul>
+          <li>1. La intercesión por Yerushalayim (Tehilim 122).</li>
+          <li>2. El llamado de los centinelas (Isaías 62).</li>
+          <li>3. La manifestación del Reino del Mashíaj (Zacarías 14).</li>
+        </ul>
+        La oración clama por:
+        <ul>
+          <li>la restauración de Israel</li>
+          <li>la paz de Yerushalayim</li>
+          <li>la revelación del Reino del Mashíaj.</li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        Cuando los centinelas espirituales interceden por Yerushalayim, se
+        alinean con el propósito eterno de Adonai para la restauración de
+        Israel. Las Escrituras revelan que la paz final de Yerushalayim se
+        manifestará plenamente cuando el Mashíaj Yeshúa sea reconocido y su
+        Reino sea establecido desde Tziyon. Así, cada oración por la ciudad
+        participa en el cumplimiento de las promesas proféticas y prepara el
+        camino para la manifestación de la gloria de יְהוָה en toda la tierra.
+      </div>
+
+      <footer>
+        <a href="https://ia-interactiva.vercel.app/" target="_blank">
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj
+        </a>
+        <br /><br />
+
+        <a
+          href="https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica"
+          target="_blank"
+        >
+          📖 Yeshúa la Toraviviente | Torá Mesiánica
+        </a>
+        <br /><br />
+
+        <a
+          href="https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua"
+          target="_blank"
+        >
+          📖 Salmos Mesiánicos
+        </a>
+        <br /><br />
+
+        <a href="https://gemini.google.com/gem/310786cce7ad" target="_blank">
+          Yeshúa la toraviviente de estudio
+        </a>
+        <br /><br />
+
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          target="_blank"
+        >
+          Siguenos en Instagram oficial
+        </a>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
