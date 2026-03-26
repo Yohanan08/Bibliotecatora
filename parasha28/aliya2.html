@@ -1,0 +1,1904 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parashá Metzorá (מצורע) – Levítico 14:13-20</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        28. Parashá Metzorá (מצורע) – Aliyáh 2: (Levítico 14:13-20) Ofrecimiento
+        del sacrificio de purificación por el metzorá.
+        <p>
+          Haftaráh: Isaías 52:1-12 (El anuncio de buenas noticias y la
+          purificación).
+        </p>
+        <p>
+          Brit Hadasháh: Efesios 5:25-27 (La purificación de la Kehiláh como la
+          novia de Yeshúa).
+        </p>
+      </h1>
+      <h1>Punto 1. Levítico 14:13-20</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">13</div>
+          <div class="hebrew">
+            וְשָׁחַט אֶת־הַכֶּבֶשׂ בִּמְקוֹם אֲשֶׁר יִשְׁחַט אֶת־הַחַטָּאת
+            וְאֶת־הָעֹלָה בִּמְקוֹם הַקֹּדֶשׁ כִּי כַחַטָּאת הָאָשָׁם הוּא
+            לַכֹּהֵן קֹדֶשׁ קָדָשִׁים הוּא׃
+          </div>
+          <div class="transliteration">
+            Veshajat et-hakeves bimkom asher yishjat et-hajatát ve’et-ha’olá
+            bimkom hakodesh ki kajatat ha’asham hu lakohén kodesh kodashim hu.
+          </div>
+          <div class="translation">
+            Y degollará el cordero en el lugar donde se degüella la ofrenda por
+            el pecado y la ofrenda quemada, en lugar santo; porque como la
+            ofrenda por el pecado, así es la ofrenda por la culpa; es para el
+            kohen; cosa santísima es.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">14</div>
+          <div class="hebrew">
+            וְלָקַח הַכֹּהֵן מִדַּם הָאָשָׁם וְנָתַן הַכֹּהֵן עַל־תְּנוּךְ אֹזֶן
+            הַמִּטַּהֵר הַיְמָנִית וְעַל־בֹּהֶן יָדוֹ הַיְמָנִית וְעַל־בֹּהֶן
+            רַגְלוֹ הַיְמָנִית׃
+          </div>
+          <div class="transliteration">
+            Velakaj hakohén midam ha’asham venatán hakohén al-tenuj ozen
+            hamitahér hayemanit ve’al-bohen yado hayemanit ve’al-bohen raglo
+            hayemanit.
+          </div>
+          <div class="translation">
+            Y tomará el kohen de la sangre de la ofrenda por la culpa, y pondrá
+            el kohen sobre el lóbulo de la oreja derecha del que se purifica, y
+            sobre el pulgar de su mano derecha y sobre el pulgar de su pie
+            derecho.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">15</div>
+          <div class="hebrew">
+            וְלָקַח הַכֹּהֵן מִלֹּג הַשָּׁמֶן וְיָצַק עַל־כַּף הַכֹּהֵן
+            הַשְּׂמָאלִית׃
+          </div>
+          <div class="transliteration">
+            Velakaj hakohén milog hashemen veyatzak al-kaf hakohén hasemalit.
+          </div>
+          <div class="translation">
+            Y tomará el kohen del log de aceite y lo derramará sobre la palma
+            izquierdo del kohen.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">16</div>
+          <div class="hebrew">
+            וְטָבַל הַכֹּהֵן אֶת־אֶצְבָּעוֹ הַיְמָנִית מִן־הַשֶּׁמֶן אֲשֶׁר
+            עַל־כַּפּוֹ הַשְּׂמָאלִית וְהִזָּה מִן־הַשֶּׁמֶן בְּאֶצְבָּעוֹ
+            שֶׁבַע פְּעָמִים לִפְנֵי יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Vetaval hakohén et-etzba’o hayemanit min-hashemen asher al-kapo
+            hasemalit vehizá min-hashemen be’etzba’o sheva pe’amim lifnei יהוה.
+          </div>
+          <div class="translation">
+            Y el kohen mojará su dedo derecho en el aceite que está sobre su
+            palma izquierda, y rociará del aceite con su dedo siete veces
+            delante de יהוה.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">17</div>
+          <div class="hebrew">
+            וּמִיֶּתֶר הַשֶּׁמֶן אֲשֶׁר עַל־כַּפּוֹ יִתֵּן הַכֹּהֵן עַל־תְּנוּךְ
+            אֹזֶן הַמִּטַּהֵר הַיְמָנִית וְעַל־בֹּהֶן יָדוֹ הַיְמָנִית
+            וְעַל־בֹּהֶן רַגְלוֹ הַיְמָנִית עַל־דַּם הָאָשָׁם׃
+          </div>
+          <div class="transliteration">
+            Umiyeter hashemen asher al-kapo yiten hakohén al-tenuj ozen
+            hamitahér hayemanit ve’al-bohen yado hayemanit ve’al-bohen raglo
+            hayemanit al-dam ha’asham.
+          </div>
+          <div class="translation">
+            Y del resto del aceite que está en su palma pondrá el kohen sobre el
+            lóbulo de la oreja derecha del que se purifica, y sobre el pulgar de
+            su mano derecha y sobre el pulgar de su pie derecho, sobre la sangre
+            de la ofrenda por la culpa.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">18</div>
+          <div class="hebrew">
+            וְהַנּוֹתָר בַּשֶּׁמֶן אֲשֶׁר עַל־כַּף הַכֹּהֵן יִתֵּן עַל־רֹאשׁ
+            הַמִּטַּהֵר וְכִפֶּר עָלָיו הַכֹּהֵן לִפְנֵי יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Vehanotar bashemen asher al-kaf hakohén yiten al-rosh hamitahér
+            vekhiper alav hakohén lifnei יהוה.
+          </div>
+          <div class="translation">
+            Y lo que queda del aceite que está sobre la palma del kohen lo
+            pondrá sobre la cabeza del que se purifica; y hará expiación por él
+            el kohen delante de יהוה.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">19</div>
+          <div class="hebrew">
+            וְעָשָׂה הַכֹּהֵן אֶת־הַחַטָּאת וְכִפֶּר עַל־הַמִּטַּהֵר
+            מִטֻּמְאָתוֹ וְאַחַר יִשְׁחַט אֶת־הָעֹלָה׃
+          </div>
+          <div class="transliteration">
+            Ve’asá hakohén et-hajatát vekhiper al-hamitahér mitum’ató ve’ajar
+            yishjat et-ha’olá.
+          </div>
+          <div class="translation">
+            Y hará el kohen la ofrenda por el pecado, y hará expiación por el
+            que se purifica de su impureza; y después degollará la ofrenda
+            quemada.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">20</div>
+          <div class="hebrew">
+            וְהֶעֱלָה הַכֹּהֵן אֶת־הָעֹלָה וְאֶת־הַמִּנְחָה הַמִּזְבֵּחָה
+            וְכִפֶּר עָלָיו הַכֹּהֵן וְטָהֵר׃
+          </div>
+          <div class="transliteration">
+            Vehe’elah hakohén et-ha’olá ve’et-haminjá hamizbejá vekhiper alav
+            hakohén vetahér.
+          </div>
+          <div class="translation">
+            Y hará subir el kohen la ofrenda quemada y la ofrenda sobre el
+            altar; y hará expiación por él el kohen, y será limpio.
+          </div>
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El pasaje de Vayikrá 14:13-20 introduce una dimensión más profunda del
+          proceso de purificación: la aplicación de la sangre del asham sobre la
+          oreja, la mano y el pie del que es limpiado. Este acto no es meramente
+          ritual, sino profundamente profético. La sangre aplicada en estos tres
+          puntos revela la consagración total del ser: el oído para obedecer, la
+          mano para actuar y el pie para caminar en los caminos de יהוה. Esta
+          triple consagración encuentra su cumplimiento perfecto en Yeshúa
+          HaMashíaj, quien vivió en obediencia absoluta, actuó en justicia
+          perfecta y caminó sin desviarse en la voluntad de יהוה (Juan 5:19; 1
+          Pedro 2:22).
+        </p>
+        <p>
+          La sangre del asham colocada sobre el cuerpo del purificado señala
+          directamente al sacrificio de Yeshúa, quien derramó su sangre para
+          santificar al pueblo. El Brit Hadashah declara: “cuánto más la sangre
+          del Mashíaj… limpiará vuestras conciencias de obras muertas” (Hebreos
+          9:14). Así como el metzorá no podía ser restaurado sin sangre, el ser
+          humano no puede ser restaurado sin la obra redentora de Yeshúa. La
+          sangre no solo cubre, sino que consagra y habilita para una vida
+          nueva.
+        </p>
+        <p>
+          Romanos 12:1 se revela en este contexto como la respuesta a esta obra.
+          El creyente presenta su cuerpo como sacrificio vivo porque primero
+          Yeshúa presentó su cuerpo en entrega total. Su ejecución en el madero
+          (Filipenses 2:8) no fue un evento aislado, sino la culminación de una
+          vida completamente entregada. Él escuchó perfectamente, actuó
+          perfectamente y caminó perfectamente. Por tanto, la consagración del
+          metzorá es una sombra de la vida del Mashíaj.
+        </p>
+        <p>
+          El aceite aplicado sobre la sangre (Levítico 14:17) añade una
+          dimensión aún más profunda: la unción del Ruaj HaKodesh sobre la
+          redención. Esto muestra que la obra de Yeshúa no termina en la
+          expiación, sino que continúa en la impartición del Ruaj. Como está
+          escrito: “recibiréis poder cuando haya venido sobre vosotros el Ruaj
+          HaKodesh” (Hechos 1:8). Así, el sacrificio vivo no es solo entrega,
+          sino vida empoderada por el Ruaj, reflejando la vida del Mashíaj en el
+          creyente.
+        </p>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          Los Neviím anticiparon esta consagración integral del ser humano.
+          Shemá Yisrael establece: “amarás a יהוה… con todo tu corazón, con toda
+          tu alma y con todas tus fuerzas” (Deuteronomio 6:5). Este mandamiento
+          encuentra su expresión simbólica en la sangre aplicada a oído, mano y
+          pie, indicando que toda la vida debe ser entregada. Los profetas
+          desarrollan esta idea mostrando que la obediencia verdadera es total,
+          no parcial.
+        </p>
+        <p>
+          Yeshayahu denuncia la desconexión entre ritual y obediencia: “este
+          pueblo me honra con sus labios, pero su corazón está lejos” (Isaías
+          29:13). Vayikrá 14 apunta a la necesidad de una transformación real,
+          no superficial. En Yeshúa HaMashíaj, esta transformación se hace
+          posible, pues Él no solo demanda obediencia, sino que la produce por
+          medio del Ruaj HaKodesh.
+        </p>
+        <p>
+          Yejezkel profundiza esta promise al declarar: “haré que andéis en mis
+          estatutos” (Ezequiel 36:27). Aquí se revela que la obediencia no es
+          solo un mandato, sino una capacidad impartida por יהוה. El aceite
+          sobre la sangre en Levítico 14 es una figura de esta realidad: la
+          redención seguida de la habilitación espiritual. Yeshúa cumple esta
+          promesa al enviar el Ruaj HaKodesh, haciendo posible una vida de
+          obediencia real.
+        </p>
+        <p>
+          Los Neviím, por tanto, no solo anunciaron la necesidad de pureza, sino
+          la provisión divina para vivir en ella. En Yeshúa, esta provisión se
+          manifiesta plenamente, uniendo la expiación con la transformación
+          interna del kahal de Israel.
+        </p>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <p>
+            El principio de consagración total encuentra su eco en el Salmo
+            40:6-8: “he aquí que vengo… para hacer tu voluntad”. Este pasaje es
+            aplicado a Yeshúa en Hebreos 10:5-10, mostrando que Él es el
+            cumplimiento del sacrificio perfecto. La sangre del asham en
+            Levítico 14 apunta a esta realidad: un sacrificio que no solo expía,
+            sino que establece una vida de obediencia perfecta.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <p>
+            Zacarías 3 presenta al sumo kohen Yehoshúa siendo purificado y
+            vestido con vestiduras limpias, lo cual refleja la restauración del
+            pueblo. Esta visión se conecta con Levítico 14 y encuentra su
+            cumplimiento en Yeshúa HaMashíaj, quien quita la iniquidad en un
+            solo día (Zacarías 3:9). La purificación del metzorá es una imagen
+            individual de una realidad colectiva que יהוה promete para Israel.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <p>
+            Yeshayahu 61:1-3 anuncia al ungido que trae restauración, vendaje y
+            renovación. Yeshúa declara el cumplimiento de esta profecía en sí
+            mismo (Lucas 4:18-21). El aceite en Levítico 14 apunta a esta unción
+            mesiánica, mostrando que la restauración no es solo limpieza, sino
+            restauración de propósito y llamado.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <p>
+            Romanos 12:1 se conecta con estas profecías al mostrar que la
+            respuesta a la redención es la entrega total. El creyente,
+            restaurado y ungido, vive como sacrificio vivo, participando en el
+            cumplimiento continuo de las promesas de יהוה para su pueblo.
+          </p>
+        </div>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="explanation">
+        <p>
+          El kahal de Israel es llamado a ver en este pasaje un modelo de vida
+          consagrada. La aplicación de la sangre sobre oído, mano y pie enseña
+          que toda la vida debe ser transformada. Escuchar la voz de יהוה,
+          actuar conforme a su voluntad y caminar en sus caminos no son aspectos
+          separados, sino una unidad integral de vida en el Mashíaj.
+        </p>
+        <p>
+          Romanos 12:1 llama a presentar el cuerpo como sacrificio vivo, lo cual
+          implica que cada dimensión del ser pertenece a יהוה. Esto no es un
+          acto puntual, sino un estado continuo. Como está escrito: “para mí el
+          vivir es el Mashíaj” (Filipenses 1:21). La vida del creyente se
+          convierte en una expresión constante de la vida de Yeshúa.
+        </p>
+        <p>
+          El aceite sobre la sangre revela que esta vida no se vive en fuerza
+          humana, sino por el Ruaj HaKodesh. El creyente no solo es limpiado,
+          sino capacitado. “No con ejército ni con fuerza, sino con mi Ruaj”
+          (Zacarías 4:6). Así, la santidad no es un esfuerzo humano, sino una
+          manifestación del poder del Ruaj en la vida del discípulo.
+        </p>
+        <p>
+          Finalmente, la expiación completa (Levítico 14:20) muestra que la
+          restauración es total. El creyente no vive en condenación, sino en
+          limpieza y comunión con יהוה. Esta realidad permite vivir como
+          sacrificio vivo, reflejando la vida de Yeshúa HaMashíaj en el mundo,
+          como testimonio de la obra redentora y transformadora del Elohim de
+          Israel.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          La restauración del metzorá anticipa la restauración plena de Israel,
+          donde el pueblo será limpiado, ungido y consagrado completamente a
+          יהוה. En Yeshúa HaMashíaj, esta restauración ya ha comenzado, y el
+          kahal de Israel es llamado a vivir como anticipo de la Era Mesiánica,
+          manifestando una vida completamente entregada, transformada y llena
+          del Ruaj HaKodesh.
+        </p>
+      </div>
+      <h1>
+        Punto 2. Haftaráh: Isaías 52:1-12 (El anuncio de buenas noticias y la
+        purificación).
+      </h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">1</div>
+          <div class="hebrew">
+            עוּרִי עוּרִי לִבְשִׁי עֻזֵּךְ צִיּוֹן לִבְשִׁי בִגְדֵי
+            תִפְאַרְתֵּךְ יְרוּשָׁלִַם עִיר הַקֹּדֶשׁ כִּי לֹא יוֹסִיף
+            יָבוֹא־בָךְ עוֹד עָרֵל וְטָמֵא׃
+          </div>
+          <div class="transliteration">
+            Uri uri livshí uzéj Tziyon livshí bigdé tifartéj Yerushaláyim ir
+            hakodesh ki lo yosif yavo-vaj od arel vetamé.
+          </div>
+          <div class="translation">
+            Despierta, despierta, vístete de tu fuerza, Tziyon; vístete de tus
+            vestiduras de hermosura, Yerushalayim, ciudad de santidad; porque no
+            volverá a entrar en ti incircunciso ni impuro.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">2</div>
+          <div class="hebrew">
+            הִתְנַעֲרִי מֵעָפָר קוּמִי שְׁבִי יְרוּשָׁלִָם הִתְפַּתְּחִי
+            מוֹסְרֵי צַוָּארֵךְ שְׁבִיָּה בַּת־צִיּוֹן׃
+          </div>
+          <div class="transliteration">
+            Hitna’arí me’afar kumí sheví Yerushalám hitpatjí mosré tzavarej
+            sheviyá bat-Tziyon.
+          </div>
+          <div class="translation">
+            Sacúdete del polvo, levántate, siéntate, Yerushalayim; suéltate de
+            las cadenas de tu cuello, cautiva hija de Tziyon.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">3</div>
+          <div class="hebrew">
+            כִּי כֹה אָמַר יְהוָה חִנָּם נִמְכַּרְתֶּם וְלֹא בְכֶסֶף
+            תִּגָּאֵלוּ׃
+          </div>
+          <div class="transliteration">
+            Ki koh amar יהוה jinam nimkartem velo vejésef tigga’elu.
+          </div>
+          <div class="translation">
+            Porque así dice יהוה: gratuitamente fuisteis vendidos, y sin dinero
+            seréis redimidos.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">4</div>
+          <div class="hebrew">
+            כִּי כֹה אָמַר אֲדֹנָי יְהוִה מִצְרַיִם יָרַד־עַמִּי בָרִאשֹׁנָה
+            לָגוּר שָׁם וְאַשּׁוּר בְּאֶפֶס עֲשָׁקוֹ׃
+          </div>
+          <div class="transliteration">
+            Ki koh amar Adonai יהוה Mitsrayim yarad ami barishoná lagur sham
+            veAshur be’efes ashaqó.
+          </div>
+          <div class="translation">
+            Porque así dijo Adonai יהוה: a Mitsrayim descendió mi pueblo al
+            principio para habitar allí, y Ashur sin causa lo oprimió.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">5</div>
+          <div class="hebrew">
+            וְעַתָּה מַה־לִּי פֹה נְאֻם־יְהוָה כִּי לֻקַּח עַמִּי חִנָּם
+            מֹשְׁלָיו יְהֵילִילוּ נְאֻם־יְהוָה וְתָמִיד כָּל־הַיּוֹם שְׁמִי
+            מִנֹּאָץ׃
+          </div>
+          <div class="transliteration">
+            Ve’atah mah-li poh ne’um יהוה ki luqaj ami jinam moshelav yeheililu
+            ne’um יהוה vetamid kol-hayom shemi mino’atz.
+          </div>
+          <div class="translation">
+            Y ahora, ¿qué tengo yo aquí?, declara יהוה, porque mi pueblo fue
+            tomado gratuitamente; sus gobernantes aúllan, declara יהוה, y
+            continuamente todo el día mi nombre es blasfemado.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">6</div>
+          <div class="hebrew">
+            לָכֵן יֵדַע עַמִּי שְׁמִי לָכֵן בַּיּוֹם הַהוּא כִּי־אֲנִי הוּא
+            הַמְדַבֵּר הִנֵּנִי׃
+          </div>
+          <div class="transliteration">
+            Lajen yedá ami shemi lajen bayom hahu ki-ani hu hamdaber hinéni.
+          </div>
+          <div class="translation">
+            Por tanto, mi pueblo conocerá mi nombre; por tanto, en aquel día,
+            porque yo soy el que habla: he aquí estoy.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">7</div>
+          <div class="hebrew">
+            מַה־נָּאוּ עַל־הֶהָרִים רַגְלֵי מְבַשֵּׂר מַשְׁמִיעַ שָׁלוֹם
+            מְבַשֵּׂר טוֹב מַשְׁמִיעַ יְשׁוּעָה אֹמֵר לְצִיּוֹן מָלַךְ
+            אֱלֹהָיִךְ׃
+          </div>
+          <div class="transliteration">
+            Mah-na’u al-heharim raglé mevaser mashmia shalom mevaser tov mashmia
+            yeshu’ah omer leTziyon malaj Elohayij.
+          </div>
+          <div class="translation">
+            ¡Cuán hermosos sobre los montes son los pies del que anuncia buenas
+            nuevas, del que hace oír paz, del que anuncia bien, del que hace oír
+            salvación, del que dice a Tziyon: tu Elohim reina!
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">8</div>
+          <div class="hebrew">
+            קוֹל צֹפַיִךְ נָשְׂאוּ קוֹל יַחְדָּו יְרַנֵּנוּ כִּי עַיִן בְּעַיִן
+            יִרְאוּ בְּשׁוּב יְהוָה צִיּוֹן׃
+          </div>
+          <div class="transliteration">
+            Kol tzofayij nas’u kol yachdav yeranenu ki ayin be’ayin yir’u beshuv
+            יהוה Tziyon.
+          </div>
+          <div class="translation">
+            Voz de tus atalayas: alzan la voz, juntamente cantan, porque ojo a
+            ojo verán cuando יהוה regrese a Tziyon.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">9</div>
+          <div class="hebrew">
+            פִּצְחוּ רַנְּנוּ יַחְדָּו חָרְבוֹת יְרוּשָׁלִָם כִּי־נִחַם יְהוָה
+            עַמּוֹ גָּאַל יְרוּשָׁלִָם׃
+          </div>
+          <div class="transliteration">
+            Pitzju ranenu yachdav jorvot Yerushalám ki-nijam יהוה amo ga’al
+            Yerushalám.
+          </div>
+          <div class="translation">
+            Prorrumpid, cantad juntamente, ruinas de Yerushalayim, porque יהוה
+            ha consolado a su pueblo, ha redimido a Yerushalayim.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">10</div>
+          <div class="hebrew">
+            חָשַׂף יְהוָה אֶת־זְרוֹעַ קָדְשׁוֹ לְעֵינֵי כָּל־הַגּוֹיִם וְרָאוּ
+            כָּל־אַפְסֵי־אָרֶץ אֵת יְשׁוּעַת אֱלֹהֵינוּ׃
+          </div>
+          <div class="transliteration">
+            Jasaf יהוה et-zeroa kodsho le’enei kol-hagoyim vera’u kol-afsé aretz
+            et yeshu’at Eloheinu.
+          </div>
+          <div class="translation">
+            יהוה ha descubierto el brazo de su santidad ante los ojos de todas
+            las naciones, y verán todos los confines de la tierra la salvación
+            de nuestro Elohim.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">11</div>
+          <div class="hebrew">
+            סוּרוּ סוּרוּ צְאוּ מִשָּׁם טָמֵא אַל־תִּגָּעוּ צְאוּ מִתּוֹכָהּ
+            הִבָּרוּ נֹשְׂאֵי כְלֵי יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Suru suru tze’u misham tamé al-tiga’u tze’u mitojah hibaru nosei
+            klei יהוה.
+          </div>
+          <div class="translation">
+            Apartaos, apartaos, salid de allí, no toquéis lo impuro; salid de en
+            medio de ella, purificaos, los que lleváis los utensilios de יהוה.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">12</div>
+          <div class="hebrew">
+            כִּי לֹא בְחִפָּזוֹן תֵּצֵאוּ וּבִמְנוּסָה לֹא תֵלֵכוּן כִּי־הֹלֵךְ
+            לִפְנֵיכֶם יְהוָה וּמְאַסִּפְכֶם אֱלֹהֵי יִשְׂרָאֵל׃
+          </div>
+          <div class="transliteration">
+            Ki lo vejipazon tetze’u uvimnusah lo telejun ki-holej lifneijem יהוה
+            ume’asifjem Elohei Yisrael.
+          </div>
+          <div class="translation">
+            Porque no saldréis con prisa ni iréis huyendo, porque va delante de
+            vosotros יהוה, y os reúne el Elohim de Yisrael.
+          </div>
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El llamado inicial de Yeshayahu 52:1-2, “despierta… vístete de tu
+          fuerza, Tziyon”, no es simplemente una exhortación histórica, sino una
+          proclamación profética de resurrección espiritual que alcanza su
+          cumplimiento en Yeshúa HaMashíaj. Tziyon es llamada a levantarse del
+          polvo, imagen de muerte y humillación, lo cual encuentra eco directo
+          en la obra del Mashíaj, quien levanta al pueblo de la condición caída
+          hacia una nueva vida. El Brit Hadashah declara que “estando nosotros
+          muertos… nos dio vida juntamente con el Mashíaj” (Efesios 2:5),
+          mostrando que este despertar profético se cumple en la vida impartida
+          por Yeshúa.
+        </p>
+        <p>
+          La declaración “sin dinero seréis redimidos” (Isaías 52:3) revela la
+          naturaleza de la redención mesiánica. No se trata de un intercambio
+          económico, sino de una intervención divina basada en gracia. Este
+          principio se cumple plenamente en Yeshúa, quien entrega su vida como
+          redención sin precio humano: “fuisteis rescatados… no con cosas
+          corruptibles… sino con la sangre preciosa del Mashíaj” (1 Pedro
+          1:18-19). Así, la redención anunciada por el profeta es realizada por
+          medio de la entrega voluntaria del cuerpo de Yeshúa.
+        </p>
+        <p>
+          Romanos 12:1 se conecta directamente con esta revelación, pues la
+          redención sin precio produce una respuesta de entrega total. Yeshúa,
+          como sacrificio vivo, no solo muere, sino que vive eternamente
+          (Apocalipsis 1:18), estableciendo el modelo perfecto. Su vida entera
+          fue una manifestación de obediencia continua, culminando en su
+          ejecución en el madero (Filipenses 2:8). Por tanto, el llamado a
+          presentarse como sacrificio vivo no es una exigencia aislada, sino la
+          participación en la vida misma del Mashíaj.
+        </p>
+        <p>
+          El anuncio “¡cuán hermosos… los pies del que anuncia buenas nuevas!”
+          (Isaías 52:7) se cumple en Yeshúa como portador y encarnación de la
+          buena nueva. Él no solo proclama salvación, sino que es la salvación
+          misma (Mateo 1:21). La proclamación del Reino (Mateo 4:17) es la
+          manifestación visible de esta profecía, donde la paz, la redención y
+          el reinado de יהוה se hacen presentes en la persona del Mashíaj.
+        </p>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          El llamado a salir de la impureza (Isaías 52:11) está profundamente
+          conectado con la voz de los Neviím que exhortan a una santidad
+          integral. Yirmeyahu proclama: “lava tu corazón de maldad” (Jeremías
+          4:14), indicando que la verdadera pureza no es externa, sino interna.
+          Esta transformación es precisamente lo que Yeshúa inaugura, llevando
+          al pueblo más allá del rito hacia una vida renovada por el Ruaj
+          HaKodesh.
+        </p>
+        <p>
+          Yejezkel amplía esta visión al declarar: “os daré corazón nuevo…
+          pondré dentro de vosotros mi Ruaj” (Ezekiel 36:26-27). El mandato de
+          separarse de lo impuro en Isaías no es meramente físico, sino
+          espiritual. En Yeshúa, esta separación se convierte en una realidad
+          viva, donde el creyente es transformado desde adentro, cumpliendo lo
+          anunciado por los profetas.
+        </p>
+        <p>
+          Oseas también anticipa esta restauración diciendo: “volverán los hijos
+          de Yisrael… y buscarán a יהוה” (Oseas 3:5). Isaías 52 presenta este
+          retorno en forma de redención y restauración de Tziyon. En el Brit
+          Hadashah, esta promesa se cumple cuando el pueblo es llamado a volver
+          a יהוה a través de Yeshúa (Hechos 3:19), mostrando la continuidad
+          entre la profecía y su cumplimiento mesiánico.
+        </p>
+        <p>
+          Así, los Neviím convergen en una misma revelación: la transformación
+          del corazón, la obediencia verdadera y la restauración del pueblo.
+          Todo esto se hace tangible en Yeshúa HaMashíaj, quien es la
+          encarnación de la fidelidad de יהוה a sus promesas.
+        </p>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          Isaías 52:10 declara que יהוה “descubre su brazo santo… y verán todos
+          los confines de la tierra la salvación”. Este “brazo” es una expresión
+          profética del poder redentor manifestado en Yeshúa. En el Brit
+          Hadashah, este lenguaje se conecta con el Mashíaj como la
+          manifestación visible de la salvación: “la salvación de Elohim es
+          enviada a las naciones” (Hechos 28:28). Así, lo que Isaías anuncia, se
+          cumple en la expansión del mensaje mesiánico.
+        </p>
+        <p>
+          El conocimiento del Nombre de יהוה (Isaías 52:6) también encuentra su
+          cumplimiento en Yeshúa, quien revela plenamente la identidad divina.
+          Él declara: “yo he manifestado tu Nombre” (Juan 17:6), mostrando que
+          la revelación del Nombre no es solo lingüística, sino relacional y
+          espiritual. En Él, el pueblo llega a conocer verdaderamente a יהוה.
+        </p>
+        <p>
+          El tema de la redención gratuita (Isaías 52:3) conecta con las
+          promesas de restauración en el Tanaj, como en Isaías 55:1, donde se
+          invita a comprar sin dinero. Esto se cumple en Yeshúa, quien ofrece
+          vida eterna gratuitamente: “el que quiera, tome del agua de la vida
+          gratuitamente” (Apocalipsis 22:17). La gracia anunciada por los
+          profetas se manifiesta plenamente en el Mashíaj.
+        </p>
+        <p>
+          Romanos 12:1 se inserta en esta línea profética como la respuesta
+          adecuada a la redención. El creyente, habiendo sido redimido
+          gratuitamente, responde con una entrega total. Esta entrega no es una
+          carga, sino una participación en la vida del Mashíaj, quien es el
+          cumplimiento de todas las promesas de יהוה (2 Corintios 1:20).
+        </p>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          El kahal de Israel es llamado a despertar, levantarse y vestirse de
+          fuerza, lo cual implica una renovación espiritual profunda. Este
+          despertar no es emocional, sino ontológico: una transformación de
+          identidad en el Mashíaj. Romanos 13:11 declara: “ya es hora de
+          levantarnos del sueño”, conectando directamente con el llamado de
+          Isaías. En Yeshúa, el creyente deja el polvo y entra en una nueva
+          vida.
+        </p>
+        <p>
+          La separación de la impureza (Isaías 52:11) se convierte en una
+          práctica diaria en la vida del discípulo. Presentar el cuerpo como
+          sacrificio vivo (Romanos 12:1) implica apartarse de lo que contamina y
+          vivir en santidad. Esta santidad no es legalismo, sino respuesta a la
+          redención. Como está escrito: “sed santos… porque yo soy santo” (1
+          Pedro 1:16).
+        </p>
+        <p>
+          El hecho de que יהוה vaya delante y detrás (Isaías 52:12) revela una
+          seguridad total en el caminar del creyente. En Yeshúa, esta promesa se
+          hace personal: “yo estoy con vosotros todos los días” (Mateo 28:20).
+          El sacrificio vivo no es una vida de incertidumbre, sino de confianza
+          en la presencia constante del Elohim de Israel.
+        </p>
+        <p>
+          Finalmente, la proclamación de buenas nuevas se convierte en la misión
+          del kahal. Así como el mensajero anuncia paz (Isaías 52:7), el
+          discípulo de Yeshúa es enviado a anunciar la obra del Mashíaj. La vida
+          entregada se convierte en mensaje vivo. Como está escrito: “vosotros
+          sois carta… conocida y leída por todos” (2 Corintios 3:2). Así, el
+          sacrificio vivo no solo se vive, sino que se proclama.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          Isaías 52 anuncia la restauración de Tziyon y la manifestación del
+          reinado de יהוה, lo cual encuentra su inicio en Yeshúa HaMashíaj y su
+          plenitud en la Era Mesiánica. El kahal de Israel es llamado a vivir
+          como primicia de esta restauración, manifestando la redención, la
+          santidad y la proclamación del Reino, hasta que toda la tierra vea la
+          salvación del Elohim de Israel.
+        </p>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Efesios 5:25-27 (La purificación de la Kehiláh
+        como la novia de Yeshúa).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 25</div>
+        <div class="aramaic">
+          גַּבְרֵא אֲחִיבוּ נְשֵׁיכוֹן אַיְכַנָּא דְּאַף הוּא מְשִׁיחָא אֲחֵב
+          לְעִדְתָּא וְנַפְשֵׁהּ יַהְבָּהּ חֲלָפֶיהָ׃
+        </div>
+        <div class="transliteration">
+          Gavré ajivu neshéjon ayjana de’af hu Meshija ajév le’edta venafsheh
+          yahbah jalafeh.
+        </div>
+        <div class="translation">
+          Hombres, amad a vuestras mujeres, así como también el Mashíaj amó a la
+          kahal y entregó su vida por ella.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 26</div>
+        <div class="aramaic">
+          דְּנְקַדְּשִׁיהָ וְנְדַכֵּיהָ בְּסִיחְתָּא דְּמַיָּא בְּמִלְּתָא׃
+        </div>
+        <div class="transliteration">
+          Denqaddeshihá venedakkéyah besijta demayya bemilta.
+        </div>
+        <div class="translation">
+          Para santificarla, limpiándola con el lavado del agua por la palabra.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Versículo 27</div>
+        <div class="aramaic">
+          וְנְקִימֶהָ לְנַפְשֵׁהּ עִדְתָּא mְשַׁבַּחְתָּא דְּלָא אִית בָּהּ
+          כֶּתְמָא אוֹ קְמָטָא אוֹ מִדֵּם כְּהָלֵין אֶלָּא תְּהֵא קַדִּישְׁתָּא
+          וּדְלָא מוּמָא׃
+        </div>
+        <div class="transliteration">
+          Veneqiméh lenafsheh edta meshabbajta dela it bah ketma o qemata o
+          midem kehalen ela tehe qaddishta udela muma.
+        </div>
+        <div class="translation">
+          Y presentarla para sí como kahal gloriosa, que no tenga mancha ni
+          arruga ni cosa semejante, sino que sea santa y sin defecto.
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El pasaje de Efesios 5:25-27 revela una de las expresiones más
+          profundas del amor redentor de Yeshúa HaMashíaj: “amó a la kahal y se
+          entregó por ella”. Esta entrega no es meramente un acto puntual, sino
+          la manifestación suprema de una vida completamente ofrecida. Desde su
+          encarnación hasta su ejecución en el madero, Yeshúa vivió como
+          sacrificio vivo, cumpliendo el principio que Shaúl expone en Romanos
+          12:1. Él no solo enseñó la entrega, sino que la encarnó plenamente,
+          ofreciendo su cuerpo como ofrenda perfecta, kadosh y aceptable delante
+          de יהוה (Hebreos 10:10).
+        </p>
+        <p>
+          La frase “se entregó por ella” (Efesios 5:25) conecta directamente con
+          la dimensión voluntaria del sacrificio. Yeshúa mismo declara: “nadie
+          me quita la vida, sino que yo la doy” (Juan 10:18). Esta entrega
+          voluntaria revela que el sacrificio vivo no es una imposición externa,
+          sino una obediencia interna perfecta. Su ejecución en el madero
+          (Filipenses 2:8) es la culminación visible de una vida de entrega
+          constante, donde cada acto estuvo alineado con la voluntad de יהוה.
+        </p>
+        <p>
+          La finalidad de esta entrega es “santificarla, limpiándola” (Efesios
+          5:26), lo cual conecta con el lenguaje de purificación del Tanaj,
+          especialmente en textos como Levítico 14. Yeshúa no solo expía el
+          pecado, sino que purifica y transforma. El lavado del agua por la
+          palabra refleja la acción continua del Ruaj HaKodesh, quien aplica la
+          obra redentora en la vida del creyente (Juan 15:3). Así, el sacrificio
+          vivo de Yeshúa produce una comunidad santificada.
+        </p>
+        <p>
+          Finalmente, el propósito es presentar una kahal “gloriosa, sin mancha
+          ni arruga” (Efesios 5:27). Esta presentación es escatológica,
+          apuntando a la restauración final del pueblo. Yeshúa no solo redime,
+          sino que perfecciona. Como está escrito: “el que comenzó en vosotros
+          la buena obra la perfeccionará” (Filipenses 1:6). En Él, el sacrificio
+          vivo produce una comunidad transformada que refleja la gloria de יהוה.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          Los Neviím anunciaron repetidamente la relación entre יהוה e Israel en
+          términos de pacto matrimonial. Oseas declara: “te desposaré conmigo en
+          fidelidad” (Oseas 2:20), revelando que la relación entre יהוה y su
+          pueblo es de amor y compromiso. Efesios 5 retoma esta imagen y la
+          lleva a su plenitud en Yeshúa HaMashíaj, quien se entrega por la kahal
+          como un esposo que ama y restaura.
+        </p>
+        <p>
+          Yejezkel 16 describe a Yerushalayim como una esposa rescatada, lavada
+          y adornada por יהוה. Este lenguaje se conecta directamente con Efesios
+          5:26-27, donde la kahal es limpiada y preparada. La purificación no es
+          solo externa, sino una restauración de dignidad y propósito. En
+          Yeshúa, esta imagen se cumple plenamente, pues Él no solo limpia, sino
+          que restaura la identidad del pueblo.
+        </p>
+        <p>
+          Yeshayahu 62 también proclama: “como el esposo se goza con la esposa,
+          así se gozará contigo tu Elohim” (Isaías 62:5). Esta alegría divina
+          encuentra su cumplimiento en la obra de Yeshúa, quien presenta a la
+          kahal como una novia preparada. La santificación no es solo un
+          proceso, sino una preparación para la unión plena con el Mashíaj.
+        </p>
+        <p>
+          Los Neviím, por tanto, establecen el marco: una relación de pacto,
+          restauración y transformación. Efesios 5 revela que Yeshúa es el
+          cumplimiento de esta relación, llevando al kahal de Israel a su
+          destino profético como pueblo santificado y unido a Él.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          El lenguaje de purificación y presentación sin defecto tiene sus
+          raíces en las leyes de los sacrificios del Tanaj. Levítico 22:21
+          establece que la ofrenda debe ser sin defecto, lo cual apunta a la
+          necesidad de perfección. Yeshúa cumple esta exigencia como el Cordero
+          sin mancha (1 Pedro 1:19), y al mismo tiempo transforma al pueblo para
+          que participe de esta pureza.
+        </p>
+        <p>
+          Jeremías 31:33 anuncia el Brit renovado donde la Toráh es escrita en
+          el corazón. Efesios 5:26 refleja este cumplimiento, donde la limpieza
+          ocurre “por la palabra”. La palabra no es solo instrucción, sino
+          instrumento de transformación interna. En Yeshúa, esta promesa se hace
+          realidad, pues Él es la Palabra viviente (Juan 1:14).
+        </p>
+        <p>
+          Zacarías 3 muestra al sumo kohen siendo purificado y vestido con
+          vestiduras limpias, simbolizando la restauración del pueblo. Esta
+          visión encuentra su cumplimiento en la obra de Yeshúa, quien quita la
+          iniquidad y viste al pueblo con justicia (Zacarías 3:4). La kahal
+          presentada sin mancha en Efesios 5 es la realización de esta promesa
+          profética.
+        </p>
+        <p>
+          Romanos 12:1 se conecta con estas profecías al mostrar que la
+          respuesta a esta transformación es la entrega total. El creyente,
+          purificado y renovado, se convierte en ofrenda viva. Así, la profecía
+          no solo se cumple en Yeshúa, sino que continúa en la vida del kahal
+          que vive conforme a su ejemplo.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          El llamado a amar como el Mashíaj ama implica una vida de entrega
+          total. El creyente no puede comprender Efesios 5:25 sin asumir Romanos
+          12:1. Presentar el cuerpo como sacrificio vivo significa vivir en
+          constante disposición a la voluntad de יהוה. No es un acto aislado,
+          sino una vida continua de obediencia, reflejando el carácter de
+          Yeshúa.
+        </p>
+        <p>
+          La limpieza por la palabra implica una exposición constante a la
+          revelación divina. El creyente es transformado al recibir, meditar y
+          vivir la palabra. Como está escrito: “la palabra del Mashíaj habite en
+          abundancia en vosotros” (Colosenses 3:16). Esta transformación no es
+          instantánea, sino progresiva, guiada por el Ruaj HaKodesh.
+        </p>
+        <p>
+          La meta es una vida sin mancha ni arruga, lo cual no implica
+          perfección humana, sino una vida alineada con la justicia del Mashíaj.
+          “Sed irreprensibles y sencillos” (Filipenses 2:15) expresa este
+          llamado. El creyente vive en santidad no para ser aceptado, sino
+          porque ha sido transformado por la obra de Yeshúa.
+        </p>
+        <p>
+          Finalmente, la vida del sacrificio vivo se manifiesta en relaciones,
+          decisiones y propósito. El kahal de Israel es llamado a reflejar el
+          amor del Mashíaj en todo. Esta vida no es teórica, sino práctica,
+          visible y transformadora. Así, el creyente se convierte en testimonio
+          vivo de la obra redentora de Yeshúa HaMashíaj.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          Efesios 5:25-27 revela el destino final del kahal de Israel: ser
+          presentado como una comunidad gloriosa, completamente restaurada y
+          unida al Mashíaj. Esta visión anticipa la plenitud de la Era
+          Mesiánica, donde la relación entre יהוה y su pueblo será manifestada
+          en su totalidad. Yeshúa HaMashíaj es el centro de esta restauración, y
+          su obra continúa hasta que el pueblo sea plenamente transformado y
+          establecido en justicia.
+        </p>
+      </div>
+      <h1>
+        Punto 4. Contexto Histórico y Cultural de Vayikrá (Levítico) 14:13–20
+      </h1>
+      <div class="content-container">
+        <p>
+          Al avanzar en esta sección de la Aliyáh, uno percibe un cambio
+          importante: ya no estamos en la fase inicial de diagnóstico o
+          readmisión preliminar, sino en el corazón del sistema sacrificial. Es
+          decir, la restauración del metsorá ahora entra en la esfera del
+          Mishkán como centro activo de expiación.
+        </p>
+
+        <h2>1. Del campamento al Mishkán: transición de estado</h2>
+        <p>
+          Si en Levítico 14:1–12 el énfasis estaba en la salida del kohen hacia
+          el excluido, aquí el movimiento se invierte: el restaurado ahora es
+          llevado al espacio sagrado. Esto refleja una progresión tripartita:
+        </p>
+        <ul>
+          <li>Fuera del campamento (exclusión)</li>
+          <li>Entrada al campamento (reintegración social)</li>
+          <li>Acceso al Mishkán (restauración espiritual completa)</li>
+        </ul>
+        <p>
+          Históricamente, esto muestra cómo el sistema levítico no solo regulaba
+          salud pública, sino la geografía de la santidad.
+        </p>
+
+        <h2>2. Sistema sacrificial en el periodo del Mishkán</h2>
+        <p>Levítico 14:13–20 introduce tres sacrificios clave:</p>
+        <ul>
+          <li><strong>Asham</strong> (ofrenda por la culpa)</li>
+          <li><strong>Jatat</strong> (ofrenda por el pecado)</li>
+          <li><strong>Olah</strong> (ofrenda de ascensión)</li>
+        </ul>
+        <p>
+          En el contexto antiguo: El asham implicaba restitución y
+          responsabilidad. El jatat trataba la purificación de la impureza. El
+          olah representaba consagración total. Este triple sistema refleja una
+          restauración integral: Legal (culpa), Moral (pecado), Relacional
+          (consagración).
+        </p>
+
+        <h2>3. El rol del kohen en el Segundo Templo</h2>
+        <p>
+          Durante el Segundo Templo, estos rituales continuaron siendo
+          fundamentales. Textos como la Mishná (Zevajim y Keritot) detallan los
+          procedimientos sacrificiales. El kohen no era un simple oficiante,
+          sino un mediador que: manipulaba la sangre, aplicaba la expiación,
+          declaraba la restauración. Esto subraya la centralidad del Templo como
+          lugar de encuentro con Adonái יהוה.
+        </p>
+
+        <h2>4. Simbolismo cultural de la sangre y el aceite</h2>
+        <p>
+          Un elemento distintivo en este pasaje es la aplicación de sangre y
+          luego aceite sobre: Oreja derecha, Pulgar derecho, Dedo gordo del pie
+          derecho. Culturalmente, esto representa: Escucha (obediencia), Acción
+          (obras), Caminar (conducta). Luego, el aceite (símbolo del Ruaj
+          Hakodesh) es aplicado sobre la sangre. Esto no es casual: primero
+          expiación, luego unción.
+        </p>
+
+        <h2>5. Contexto de pureza en Qumrán</h2>
+        <p>
+          En Qumrán, la pureza ritual era aún más estricta. La entrada a la
+          comunidad requería pureza total. Este pasaje habría sido visto como un
+          modelo ideal de restauración, aunque reinterpretado con énfasis
+          comunitario más que sacrificial.
+        </p>
+      </div>
+
+      <h1>Punto 5. Estudio, Comentarios y Conexiones Proféticas</h1>
+      <div class="explanation">
+        <h2>1. Comentario rabínico clásico</h2>
+        <p>
+          <strong>Rashi:</strong> Rashi señala que el mismo lugar donde se
+          sacrifica el jatat se usa para el asham, enfatizando la continuidad
+          entre culpa y pecado.
+        </p>
+        <p>
+          <strong>Ramban:</strong> Ramban destaca que este proceso es único del
+          pueblo de Israel, indicando una interacción directa entre santidad
+          divina y vida humana.
+        </p>
+
+        <h2>2. Significado de la sangre aplicada</h2>
+        <p>
+          Los sabios ven en la aplicación de sangre un acto de “reconsagración”,
+          similar al proceso de consagración sacerdotal en Éxodo 29. Esto
+          sugiere algo impresionante: El metsorá restaurado es tratado como
+          alguien que vuelve a ser consagrado.
+        </p>
+
+        <h2>3. Conexión profética</h2>
+        <p>
+          Este pasaje apunta a una realidad mayor: La sangre purifica, El aceite
+          consagra. En el Brit Hadasháh, esto se manifiesta en: Redención
+          (sangre), Transformación (Ruaj). Yeshúa no solo cumple el sistema
+          sacrificial, sino que lo encarna. Como revela el testimonio arameo, Él
+          es MarYah, el mismo que establece estos principios y los lleva a su
+          plenitud.
+        </p>
+
+        <h2>4. Lectura mesiánica de los primeros discípulos</h2>
+        <p>
+          Los primeros creyentes vieron en estos rituales: Un patrón de
+          redención, Un proceso de santificación, Una anticipación del Mesías
+          como Kohen y sacrificio.
+        </p>
+      </div>
+
+      <h1>Punto 6. Análisis Profundo de la Aliyáh (Levítico 14:13–20)</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. El sacrificio de culpa (asham)</div>
+          <p>
+            Este sacrificio inicia el proceso en el Mishkán. Clave: la
+            restauración comienza con el reconocimiento de responsabilidad.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Aplicación de la sangre</div>
+          <p>
+            Sobre: Oreja, Mano, Pie. Esto redefine completamente al individuo:
+            Lo que oye, Lo que hace, Cómo camina.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Aplicación del aceite</div>
+          <p>
+            El aceite no reemplaza la sangre, la sigue. Esto indica: Primero
+            expiación, Luego llenura espiritual.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">4. Sacrificio por el pecado (jatat)</div>
+          <p>Aquí se trata la dimensión interna.</p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">5. Ofrenda de ascensión (olah)</div>
+          <p>El proceso culmina con entrega total a Elohím.</p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">6. Resultado final</div>
+          <p>
+            “Y el kohen hará expiación por él, y será limpio”. Esto no es solo
+            declaración ritual, es restauración ontológica.
+          </p>
+        </div>
+      </div>
+
+      <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+      <div class="content-container">
+        <p><strong>Tema central: Consagración total del restaurado</strong></p>
+        <p>Subtemas:</p>
+        <ul>
+          <li>Responsabilidad (asham)</li>
+          <li>Purificación (jatat)</li>
+          <li>Entrega total (olah)</li>
+          <li>Transformación integral (sangre + aceite)</li>
+        </ul>
+        <p>
+          Este pasaje enseña que la restauración no termina en limpieza, sino en
+          consagración.
+        </p>
+        <p>
+          <strong>Relación con Yeshúa haMashíaj:</strong> Yeshúa cumple este
+          proceso de forma perfecta: Él es el sacrificio, Él aplica la
+          purificación, Él envía el Ruaj Hakodesh.
+        </p>
+        <p>
+          <strong>Conexión con los Moedim:</strong> Este patrón se relaciona
+          especialmente con: Yom Kipur → expiación, Shavuot → entrega del Ruaj,
+          Pésaj → redención inicial.
+        </p>
+      </div>
+
+      <h1>Punto 8. Descubriendo al Mashíaj en la Aliyáh</h1>
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Tipología del asham</div>
+          <p>
+            El sacrificio de culpa apunta al Mesías como quien carga la
+            responsabilidad del hombre.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Sangre en el cuerpo</div>
+          <p>Esto prefigura una transformación total del ser humano.</p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Aceite sobre la sangre</div>
+          <p>
+            Esto es clave: No hay unción sin expiación previa. En el Brit
+            Hadasháh: Redención → Ruaj Hakodesh.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            4. Paralelismo con la consagración sacerdotal
+          </div>
+          <p>
+            El metsorá es restaurado como si fuera un sacerdote. Esto anticipa
+            que el pueblo redimido es llamado a ser: Reino de kohanim.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">5. Cumplimiento en Yeshúa</div>
+          <p>
+            Yeshúa no solo cumple los sacrificios: Él es el asham, Él es el
+            jatat, Él es el olah. Y además: Él es el Kohen que ministra, Él es
+            MarYah manifestado en carne.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">6. Reflexión final</div>
+          <p>
+            Si uno lo piensa con honestidad… Este pasaje no trata simplemente de
+            alguien que vuelve a estar limpio. Habla de alguien que: Es
+            restaurado, Es transformado, Es consagrado. Y eso, en su plenitud,
+            solo se entiende cuando vemos a Yeshúa haMashíaj como el centro de
+            todo el proceso.
+          </p>
+        </div>
+      </div>
+      <h1>Punto 9. Midrashim, Targumim y Textos Fuentes de Vayikrá 14:13–20</h1>
+
+      <div class="content-container">
+        <p>
+          Al explorar las fuentes antiguas sobre esta sección, uno percibe algo
+          muy interesante: los sabios no veían estos sacrificios como actos
+          aislados, sino como un sistema profundamente simbólico de restauración
+          integral del ser humano.
+        </p>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Midrashim relevantes</div>
+          <strong>Sifra (Torat Kohanim) sobre Vayikrá 14:13–18</strong>
+          <p>
+            El Sifra enfatiza que el asham (ofrenda de culpa) del metsorá es
+            único, porque:
+          </p>
+          <p>
+            “Así como fue separado de la comunidad, así su restauración requiere
+            una ofrenda especial.”
+          </p>
+          <p>
+            Además, conecta la aplicación de la sangre con la restauración de
+            las facultades humanas:
+          </p>
+          <ul>
+            <li>Oído → obediencia a la Toráh</li>
+            <li>Mano → acciones rectas</li>
+            <li>Pie → caminar en justicia</li>
+          </ul>
+          <p>
+            Esto sugiere que el pecado afectó todo el ser, y la restauración
+            también debe ser total.
+          </p>
+
+          <strong>Vayikrá Rabbá 17:3</strong>
+          <p>
+            Este Midrash compara al metsorá restaurado con un recién consagrado
+            sacerdote. Y, sinceramente, esto es impactante… porque implica que:
+          </p>
+          <ul>
+            <li>
+              La restauración no solo devuelve al estado anterior, sino que
+              eleva.
+            </li>
+          </ul>
+
+          <strong>Midrash Tanjuma, Metzora 4</strong>
+          <p>
+            Relaciona el aceite con la presencia del Ruaj Hakodesh, indicando
+            que:
+          </p>
+          <ul>
+            <li>La sangre limpia</li>
+            <li>El aceite santifica</li>
+          </ul>
+          <p>Un orden que no es accidental.</p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">2. Targumim</div>
+          <strong>Targum Onkelos</strong>
+          <p>
+            Mantiene fidelidad textual, pero resalta el lenguaje de “expiación”
+            (כפר / kapará) como restauración relacional.
+          </p>
+
+          <strong>Targum Yonatán</strong>
+          <p>Introduce una dimensión más explícita:</p>
+          <ul>
+            <li>
+              Interpreta el proceso como reconciliación con la presencia de la
+              Shejináh
+            </li>
+            <li>
+              Subraya que el kohen actúa como agente de misericordia, no solo de
+              juicio
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Literatura del Segundo Templo</div>
+          <strong>Qumrán (11QTemple Scroll)</strong>
+          <p>
+            Describe regulaciones similares pero con mayor rigor, indicando que:
+          </p>
+          <ul>
+            <li>
+              La pureza total es indispensable para acercarse a la comunidad
+              santa
+            </li>
+          </ul>
+          <p>
+            Esto intensifica la lectura: el acceso al Mishkán no es trivial, es
+            el clímax del proceso redentor.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            4. Conexión con otros textos bíblicos
+          </div>
+          <p>El paralelismo más fuerte está en:</p>
+          <strong>Shemot 29 (consagración sacerdotal)</strong>
+          <p>
+            La misma aplicación de sangre y aceite aparece allí. Esto crea un
+            puente textual claro:
+          </p>
+          <ul>
+            <li>
+              El metsorá restaurado es tratado como alguien reconsagrado para
+              servir a Elohím.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            5. Síntesis mesiánica de las fuentes
+          </div>
+          <p>Todas estas tradiciones convergen en un patrón:</p>
+          <ul>
+            <li>Purificación → Consagración → Servicio</li>
+          </ul>
+          <p>En el Mashíaj:</p>
+          <ul>
+            <li>Él purifica</li>
+            <li>Él consagra</li>
+            <li>Él establece un pueblo restaurado</li>
+          </ul>
+          <p>
+            Porque Él es MarYah manifestado, actuando dentro del sistema que Él
+            mismo instituyó.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>
+        Punto 10. Mandamientos (Mitzvot) y Principios en Levítico 14:13–20
+      </h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">1. Mitzvot explícitos</div>
+          <ul>
+            <li>
+              <strong>Ofrecer el sacrificio de culpa (asham)</strong> →
+              Reconocimiento de responsabilidad personal.
+            </li>
+            <li>
+              <strong>Aplicación de la sangre en oreja, mano y pie</strong> →
+              Consagración total del individuo.
+            </li>
+            <li>
+              <strong>Aplicación del aceite después de la sangre</strong> →
+              Orden divino: expiación antes de unción.
+            </li>
+            <li>
+              <strong>Ofrecer el sacrificio por el pecado (jatat)</strong> →
+              Purificación interna.
+            </li>
+            <li>
+              <strong>Ofrecer la ofrenda de ascensión (olah)</strong> → Entrega
+              total a Elohím.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2. Principios espirituales profundos
+          </div>
+          <ul>
+            <li>
+              <strong>a. La restauración implica responsabilidad:</strong> No
+              hay restauración sin reconocer la culpa.
+            </li>
+            <li>
+              <strong>b. La transformación es integral:</strong> No solo el
+              corazón, sino oído, acciones y caminar.
+            </li>
+            <li>
+              <strong>c. El orden divino es inalterable:</strong> Primero
+              sangre, luego aceite.
+            </li>
+            <li>
+              <strong>d. La restauración culmina en consagración:</strong> Ser
+              limpio no es el final, es el comienzo.
+            </li>
+            <li>
+              <strong>e. La vida restaurada pertenece a Elohím:</strong> La olah
+              simboliza entrega total.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">3. Aplicación en Yeshúa haMashíaj</div>
+          <p>Yeshúa cumple todos estos principios:</p>
+          <ul>
+            <li>Él provee expiación</li>
+            <li>Él transforma el interior</li>
+            <li>Él envía el Ruaj Hakodesh</li>
+            <li>Él llama a una vida consagrada</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 11. Preguntas de Reflexión con Respuestas en el Mashíaj</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. ¿Por qué se requiere el asham antes de otros sacrificios?
+          </div>
+          <p>
+            <strong>Respuesta en el Mashíaj:</strong> Porque la restauración
+            comienza con asumir responsabilidad. Yeshúa carga nuestra culpa,
+            pero también nos llama a reconocerla.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2. ¿Qué significa la sangre en la oreja, mano y pie?
+          </div>
+          <p>
+            <strong>Respuesta en el Mashíaj:</strong> Que toda la vida debe ser
+            redimida: lo que escuchamos, lo que hacemos y cómo vivimos.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            3. ¿Por qué el aceite viene después de la sangre?
+          </div>
+          <p>
+            <strong>Respuesta en el Mashíaj:</strong> Porque no hay llenura del
+            Ruaj sin redención previa. Yeshúa primero limpia, luego llena.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            4. ¿Por qué termina con una ofrenda de ascensión (olah)?
+          </div>
+          <p>
+            <strong>Respuesta en el Mashíaj:</strong> Porque la meta no es solo
+            ser perdonado, sino vivir completamente para Elohím.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            5. ¿Qué revela este proceso sobre la identidad del restaurado?
+          </div>
+          <p>
+            <strong>Respuesta en el Mashíaj:</strong> Que no vuelve igual: ahora
+            es alguien consagrado, llamado a vivir en santidad.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 12. Resumen de la Aliyáh (Levítico 14:13–20)</h1>
+
+      <div class="content-container">
+        <p>
+          Este segmento describe la culminación del proceso de restauración del
+          metsorá en el Mishkán.
+        </p>
+        <p><strong>Elementos clave:</strong></p>
+        <ul>
+          <li>Sacrificio de culpa como inicio</li>
+          <li>Aplicación de sangre para restauración integral</li>
+          <li>Aplicación de aceite como consagración espiritual</li>
+          <li>Sacrificio por el pecado para purificación interna</li>
+          <li>Ofrenda de ascensión como entrega total</li>
+        </ul>
+        <p><strong>Estructura del proceso:</strong></p>
+        <ul>
+          <li>Expiación</li>
+          <li>Purificación</li>
+          <li>Consagración</li>
+        </ul>
+        <p><strong>En el Mashíaj:</strong></p>
+        <p>Yeshúa haMashíaj cumple este proceso completamente:</p>
+        <ul>
+          <li>Él redime</li>
+          <li>Él purifica</li>
+          <li>Él consagra</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 13. Tefiláh de la Aliyáh (Levítico 14:13–20)</h1>
+
+      <div class="content-container">
+        <div class="prophetic-title">Exaltación:</div>
+        <p class="prayer-text">
+          Oh Adonái יהוה, Elohím Alef Tav, Tú eres Kadosh y perfecto, justo en
+          todos Tus caminos. Tú restauras lo quebrado y levantas al que ha sido
+          separado. Tú eres Ejad, revelado plenamente en Yeshúa haMashíaj, quien
+          manifiesta Tu redención y Tu santidad.
+        </p>
+
+        <div class="prophetic-title">Oración:</div>
+        <p class="prayer-text">
+          Padre eterno, hoy reconozco que no solo necesito limpieza, sino
+          transformación completa. Aplica Tu obra sobre mi vida:
+        </p>
+        <ul>
+          <li>En mi oído, para escuchar Tu voz</li>
+          <li>En mis manos, para hacer Tu voluntad</li>
+          <li>En mis pasos, para caminar en Tus caminos</li>
+        </ul>
+        <p class="prayer-text">
+          Gracias por la sangre de Yeshúa haMashíaj que limpia profundamente, y
+          por Tu Ruaj Hakodesh que unge y transforma. Enséñame a vivir como
+          alguien consagrado, no solo restaurado. Que mi vida sea como una
+          ofrenda de ascensión, completamente entregada a Ti. No permitas que
+          vuelva a la antigua condición, sino llévame a una vida de santidad,
+          obediencia y comunión contigo.
+        </p>
+        <p class="prayer-conclusion">
+          En el Nombre de Yeshúa haMashíaj, quien es Uno contigo, oro. Amén.
+        </p>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya3.html">Continuar con la Aliyá 3</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

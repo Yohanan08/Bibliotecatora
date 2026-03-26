@@ -1,0 +1,2142 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parashá Metzorá (מצורע) – Levítico 14:1-12</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        28. Parashá Metzorá (מצורע) – Aliyáh 1: (Levítico 14:1-12) Continuación
+        de las leyes de purificación para un metzorá (leproso).
+        <p>
+          Haftaráh: 2 Reyes 7:3-20 (La intervención de los leprosos que revelan
+          la provisión).
+        </p>
+        <p>
+          Brit Hadasháh: Marcos 1:40-45 (La compasión de Yeshúa al sanar a un
+          leproso).
+        </p>
+      </h1>
+      <h1>Punto 1. Levítico 14:1-12</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:1</div>
+          <div class="hebrew">וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה לֵּאמֹר׃</div>
+          <div class="transliteration">Vayedabér יְהוָה el-Moshéh lemor.</div>
+          <div class="translation">Y habló יְהוָה a Moshéh, diciendo:</div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:2</div>
+          <div class="hebrew">
+            זֹאת תִּהְיֶה תּוֹרַת הַמְּצֹרָע בְּיוֹם טָהֳרָתוֹ וְהוּבָא
+            אֶל־הַכֹּהֵן׃
+          </div>
+          <div class="transliteration">
+            Zot tihyéh torat hametzorá beyom tahorató vehuvá el-hakohén.
+          </div>
+          <div class="translation">
+            Esta será la Toráh del metzorá en el día de su purificación; será
+            traído al kohen.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:3</div>
+          <div class="hebrew">
+            וְיָצָא הַכֹּהֵן אֶל־מִחוּץ לַמַּחֲנֶה וְרָאָה הַכֹּהֵן וְהִנֵּה
+            נִרְפָּא נֶגַע הַצָּרַעַת מִן־הַצָּרוּעַ׃
+          </div>
+          <div class="transliteration">
+            Veyatzá hakohén el-mijuts lamajanéh verá hakohén vehiné nirpá nega
+            hatsaráat min-hatsaruá.
+          </div>
+          <div class="translation">
+            El kohen saldrá fuera del campamento, y verá el kohen; y he aquí, ha
+            sido sanada la llaga de tzaraat del leproso.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:4</div>
+          <div class="hebrew">
+            וְצִוָּה הַכֹּהֵן וְלָקַח לַמִּטַּהֵר שְׁתֵּי־צִפֳּרִים חַיּוֹת
+            טְהֹרוֹת וְעֵץ אֶרֶז וּשְׁנִי תוֹלַעַת וְאֵזֹב׃
+          </div>
+          <div class="transliteration">
+            Vetsivá hakohén velakaj lamitahér shtei-tsiporim jayót tehorot
+            ve’ets érez ushni tola’at ve’ezov.
+          </div>
+          <div class="translation">
+            El kohen ordenará, y tomará para el que se purifica dos aves vivas
+            limpias, madera de cedro, hilo escarlata y hisopo.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:5</div>
+          <div class="hebrew">
+            וְצִוָּה הַכֹּהֵן וְשָׁחַט אֶת־הַצִּפּוֹר הָאֶחָת אֶל־כְּלִי־חֶרֶשׂ
+            עַל־מַיִם חַיִּים׃
+          </div>
+          <div class="transliteration">
+            Vetsivá hakohén veshajat et-hatsipor ha’ejat el-kli-jéres al-mayim
+            jayim.
+          </div>
+          <div class="translation">
+            El kohen ordenará, y degollará una de las aves en vasija de barro
+            sobre aguas vivas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:6</div>
+          <div class="hebrew">
+            אֶת־הַצִּפּוֹר הַחַיָּה יִקַּח אֹתָהּ וְאֵת עֵץ הָאֶרֶז וְאֶת־שְׁנִי
+            הַתּוֹלַעַת וְאֶת־הָאֵזֹב וְטָבַל אוֹתָם וְאֵת הַצִּפּוֹר הַחַיָּה
+            בְּדַם הַצִּפּוֹר הַשְּׁחוּטָה עַל־הַמַּיִם הַחַיִּים׃
+          </div>
+          <div class="transliteration">
+            Et-hatsipor hajayá yikaj otáh ve’et ets ha’érez ve’et shni hatola’at
+            ve’et ha’ezov vetaval otam ve’et hatsipor hajayá bedam hatsipor
+            hashjutá al-hamayim hajayim.
+          </div>
+          <div class="translation">
+            Tomará el ave viva, la madera de cedro, el hilo escarlata y el
+            hisopo, y los sumergirá junto con el ave viva en la sangre del ave
+            degollada sobre las aguas vivas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:7</div>
+          <div class="hebrew">
+            וְהִזָּה עַל־הַמִּטַּהֵר מִן־הַצָּרַעַת שֶׁבַע פְּעָמִים וְטִהֲרוֹ
+            וְשִׁלַּח אֶת־הַצִּפּוֹר הַחַיָּה עַל־פְּנֵי הַשָּׂדֶה׃
+          </div>
+          <div class="transliteration">
+            Vehizá al-hamitahér min-hatsaráat sheva pe’amim vetiharo veshilaj
+            et-hatsipor hajayá al-penei hasadéh.
+          </div>
+          <div class="translation">
+            Rociará siete veces sobre el que se purifica de la tzaraat, y lo
+            declarará limpio; y soltará el ave viva sobre la faz del campo.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:8</div>
+          <div class="hebrew">
+            וְכִבֶּס הַמִּטַּהֵר אֶת־בְּגָדָיו וְגִלַּח אֶת־כָּל־שְׂעָרוֹ
+            וְרָחַץ בַּמַּיִם וְטָהֵר וְאַחַר יָבוֹא אֶל־הַמַּחֲנֶה וְיָשַׁב
+            מִחוּץ לְאָהֳלוֹ שִׁבְעַת יָמִים׃
+          </div>
+          <div class="transliteration">
+            Vejibes hamitahér et-begadav vegilaj et-kol se’aró verajats bamayim
+            vetahér ve’ajár yavó el-hamajanéh veyashav mijuts leaholó shivat
+            yamim.
+          </div>
+          <div class="translation">
+            El que se purifica lavará sus vestiduras, rasurará todo su cabello,
+            se lavará con agua y será limpio; después entrará al campamento y
+            habitará fuera de su tienda siete días.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:9</div>
+          <div class="hebrew">
+            וְהָיָה בַּיּוֹם הַשְּׁבִיעִי יְגַלַּח אֶת־כָּל־שְׂעָרוֹ אֶת־רֹאשׁוֹ
+            וְאֶת־זְקָנוֹ וְאֵת גַּבֹּת עֵינָיו וְאֶת־כָּל־שְׂעָרוֹ יְגַלֵּחַ
+            וְכִבֶּס אֶת־בְּגָדָיו וְרָחַץ אֶת־בְּשָׂרוֹ בַּמַּיִם וְטָהֵר׃
+          </div>
+          <div class="transliteration">
+            Vehayá bayom hashevi’í yegalaj et-kol se’aró et-roshó ve’et zekanó
+            ve’et gabot einav ve’et kol se’aró yegaléaj vejibes et-begadav
+            verajats et-besaro bamayim vetahér.
+          </div>
+          <div class="translation">
+            Y será en el séptimo día: rasurará todo su cabello, su cabeza, su
+            barba, y las cejas de sus ojos; todo su cabello rasurará; lavará sus
+            vestiduras, lavará su carne en agua, y será limpio.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:10</div>
+          <div class="hebrew">
+            וּבַיּוֹם הַשְּׁמִינִי יִקַּח שְׁנֵי־כְבָשִׂים תְּמִימִם וְכַבְשָׂה
+            אַחַת בַּת־שְׁנָתָהּ תְּמִימָה וּשְׁלֹשָׁה עֶשְׂרֹנִים סֹלֶת מִנְחָה
+            בְלוּלָה בַשֶּׁמֶן וְלֹג אֶחָד שָׁמֶן׃
+          </div>
+          <div class="transliteration">
+            Uvayom hasheminí yikaj shnei-kevasim temimim vekivsá ajat
+            bat-shenatá temimá ush’loshá esronim solet minjá belulá bashemen
+            velog ejad shamen.
+          </div>
+          <div class="translation">
+            En el octavo día tomará dos corderos sin defecto, una cordera de un
+            año sin defecto, tres décimas de flor de harina como ofrenda
+            mezclada con aceite, y un log de aceite.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:11</div>
+          <div class="hebrew">
+            וְהֶעֱמִיד הַכֹּהֵן הַמְּטַהֵר אֶת־הָאִישׁ הַמִּטַּהֵר וְאֹתָם
+            לִפְנֵי יְהוָה פֶּתַח אֹהֶל מוֹעֵד׃
+          </div>
+          <div class="transliteration">
+            Vehe’emid hakohén hametahér et-ha’ish hamitahér ve’otam lifney
+            יְהוָה petaj Ohel Mo’ed.
+          </div>
+          <div class="translation">
+            El kohen que purifica presentará al hombre que se purifica junto con
+            ellos delante de יְהוָה, a la entrada del Ohel Moed.
+          </div>
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El pasaje de Vayikrá 14:1-12 revela el proceso de purificación del
+          metzorá, el cual no era simplemente un rito sanitario, sino una
+          profunda figura profética del proceso de redención. El hecho de que el
+          kohen salga fuera del campamento (Levítico 14:3) apunta directamente a
+          la obra de Yeshúa HaMashíaj, quien también salió fuera del campamento
+          de Israel para efectuar la purificación del pueblo. El Brit Hadashah
+          declara claramente: “Yeshúa también, para santificar al pueblo
+          mediante su propia sangre, padeció fuera de la puerta” (Ivrim/Hebreos
+          13:12). Aquí se revela que la purificación no ocurre dentro del
+          sistema humano, sino mediante la intervención directa del Mashíaj
+          fuera del orden ritual establecido.
+        </p>
+        <p>
+          El uso de las dos aves en el proceso es profundamente mesiánico. Una
+          es degollada sobre aguas vivas y la otra es soltada (Levítico 14:5-7),
+          mostrando dos dimensiones de la obra de Yeshúa: su entrega en muerte y
+          su resurrección. Esta dualidad encuentra eco en el Brit Hadashah
+          cuando se afirma que Yeshúa fue entregado por nuestras transgresiones
+          y resucitado para nuestra justificación (Romanos 4:25). La sangre
+          sobre aguas vivas apunta a la unión entre muerte y vida, revelando que
+          el sacrificio no es final en sí mismo, sino el inicio de una nueva
+          creación en el Ruaj HaKodesh (Iojanán/Juan 7:38-39).
+        </p>
+        <p>
+          El principio de Romanos 12:1 se cumple plenamente en Yeshúa HaMashíaj,
+          quien ofreció su propio cuerpo como sacrificio vivo, kadosh y
+          agradable delante de יהוה. Shaúl escribe: “presentéis vuestros cuerpos
+          como sacrificio vivo” (Romanos 12:1), pero este llamado no es
+          abstracto, sino que está modelado en la vida del Mashíaj. Él mismo
+          declaró: “Yo pongo mi vida… nadie me la quita” (Iojanán/Juan
+          10:17-18), mostrando que su entrega fue voluntaria, continua y viva.
+          Aun en su ejecución en el madero, Yeshúa no fue una víctima pasiva,
+          sino el cumplimiento activo del Korbán perfecto, el cual no solo
+          muere, sino que vive eternamente (Apocalipsis 1:18).
+        </p>
+        <p>
+          En este sentido, el sacrificio de Yeshúa redefine el concepto de
+          korban. No es simplemente muerte ritual, sino una vida completamente
+          entregada. Desde su obediencia perfecta (Filipenses 2:8) hasta su
+          resurrección, Yeshúa encarna el modelo del sacrificio vivo. Así,
+          Romanos 12:1 no es una exigencia legalista, sino la invitación a
+          participar en la misma vida del Mashíaj, quien es la manifestación
+          viva de la Toráh cumplida.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          Los Neviím anticiparon esta transformación interna que el ritual de
+          purificación del metzorá simbolizaba externamente. Yejezkel anuncia:
+          “Os daré corazón nuevo, y pondré espíritu nuevo dentro de vosotros”
+          (Ezequiel 36:26). Este pasaje revela que la verdadera purificación no
+          es externa, sino una obra interna del Ruaj HaKodesh. El proceso de
+          Vayikrá 14, con agua, sangre y purificación progresiva, es una sombra
+          de esta renovación total que יהוה prometió realizar en el corazón del
+          kahal de Israel.
+        </p>
+        <p>
+          Yeshayahu también denuncia la insuficiencia de los sacrificios
+          externos sin transformación interna, diciendo: “Este pueblo se acerca
+          a mí con su boca… pero su corazón está lejos de mí” (Isaías 29:13). El
+          rito del metzorá, cuando se entiende a la luz de Yeshúa, deja de ser
+          un acto ceremonial para convertirse en una revelación del proceso
+          espiritual de restauración. En Yeshúa, el corazón es acercado
+          verdaderamente a יהוה, cumpliendo lo que los profetas anunciaron.
+        </p>
+        <p>
+          Asimismo, Yirmeyahu proclama el Brit renovado: “Pondré mi Toráh en su
+          interior, y la escribiré en su corazón” (Jeremías 31:33). Esta promesa
+          se cumple en la obra de Yeshúa, quien no solo limpia externamente,
+          sino que inscribe la Toráh en la vida del creyente por medio del Ruaj
+          HaKodesh. El metzorá, que estaba apartado del campamento, es
+          restaurado completamente; de la misma manera, el pecador es
+          reintegrado al kahal mediante la obra del Mashíaj.
+        </p>
+        <p>
+          Los Neviím, por tanto, no solo anunciaron purificación, sino
+          transformación. Vayikrá 14 es la tipología; los Profetas son la
+          promesa; Yeshúa es el cumplimiento perfecto donde la pureza ritual se
+          convierte en pureza espiritual viva.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          El principio de Romanos 12:1 encuentra su raíz profética en múltiples
+          pasajes del Tanaj. El Salmo 40:6-8 declara: “Sacrificio y ofrenda no
+          quisiste… he aquí que vengo… para hacer tu voluntad”. Este texto es
+          aplicado directamente a Yeshúa en Ivrim/Hebreos 10:5-10, mostrando que
+          el verdadero sacrificio no es animal, sino la obediencia total del
+          Mashíaj. Así, la entrega del cuerpo como sacrificio vivo tiene su
+          cumplimiento perfecto en Yeshúa.
+        </p>
+        <p>
+          Yeshayahu 53 presenta al Siervo sufriente que “llevó nuestras
+          enfermedades” (Isaías 53:4), lo cual conecta directamente con la
+          purificación del metzorá. La tzaraat, como figura de impureza, es
+          removida mediante la obra del Siervo. El Brit Hadashah confirma este
+          cumplimiento cuando declara que Yeshúa tomó nuestras enfermedades y
+          cargó nuestras dolencias (Mateo 8:17). La purificación del leproso es,
+          por tanto, una profecía viva del poder redentor del Mashíaj.
+        </p>
+        <p>
+          Zacarías 13:1 también anuncia: “En aquel día habrá fuente abierta…
+          para la purificación del pecado”. Esta fuente se conecta con las
+          “aguas vivas” de Levítico 14 y encuentra su cumplimiento en Yeshúa,
+          quien proclama: “El que cree en mí… de su interior correrán ríos de
+          agua viva” (Juan 7:38). Así, la purificación ritual se transforma en
+          una fuente espiritual continua que emana del Mashíaj.
+        </p>
+        <p>
+          Estas profecías muestran que Romanos 12:1 no es una innovación, sino
+          la culminación de una expectativa profética. La entrega total del
+          creyente es posible porque primero Yeshúa se entregó completamente,
+          cumpliendo la voluntad de יהוה y abriendo el camino para la renovación
+          del kahal de Israel.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          El proceso del metzorá enseña que la restauración no es instantánea ni
+          superficial, sino total y progresiva. El creyente en Yeshúa es llamado
+          a vivir esta realidad, presentando su cuerpo como sacrificio vivo
+          (Romanos 12:1). Esto implica una vida consagrada, donde cada acción,
+          pensamiento y decisión reflejan la obra transformadora del Ruaj
+          HaKodesh. No es un acto momentáneo, sino un estilo de vida continuo en
+          santidad.
+        </p>
+        <p>
+          La rasuración total, el lavado y la espera fuera de la tienda
+          (Levítico 14:8-9) simbolizan la eliminación completa de la antigua
+          naturaleza. Shaúl lo expresa diciendo: “con el Mashíaj estoy
+          juntamente ejecutado… y ya no vivo yo, mas vive el Mashíaj en mí”
+          (Gálatas 2:20). Esta es la esencia del sacrificio vivo: una vida donde
+          el yo es sometido y la vida de Yeshúa se manifiesta plenamente.
+        </p>
+        <p>
+          El octavo día, que representa un nuevo comienzo (Levítico 14:10),
+          apunta a la nueva creación en el Mashíaj. “De modo que si alguno está
+          en el Mashíaj, nueva criatura es” (2 Corintios 5:17). El creyente no
+          solo es limpiado, sino recreado. Así como el metzorá es reintegrado al
+          campamento, el discípulo es restaurado al kahal de Israel, viviendo en
+          comunión con יהוה y con su pueblo.
+        </p>
+        <p>
+          Finalmente, la vida del creyente se convierte en una extensión de la
+          obra de Yeshúa. El sacrificio vivo no es sufrimiento sin propósito,
+          sino una manifestación de la vida del Mashíaj en el mundo. Por medio
+          del Ruaj HaKodesh, el kahal de Israel es llamado a caminar en
+          santidad, reflejando la pureza, obediencia y entrega total que fueron
+          plenamente reveladas en Yeshúa HaMashíaj.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          La restauración del metzorá es una imagen profética de la restauración
+          de Israel. Así como el impuro es reintegrado, el kahal de Israel será
+          plenamente restaurado en la Era Mesiánica mediante Yeshúa HaMashíaj.
+          Este proceso no es solo individual, sino colectivo, anunciando el
+          tiempo en que יהוה reunirá a su pueblo, lo purificará y lo establecerá
+          en justicia, cumpliendo todas sus promesas por medio del Mashíaj.
+        </p>
+      </div>
+      <h1>
+        Punto 2. Haftaráh: 2 Reyes 7:3-20 (La intervención de los leprosos que
+        revelan la provisión).
+      </h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">3</div>
+          <div class="hebrew">
+            וְאַרְבָּעָה אֲנָשִׁים הָיוּ מְצֹרָעִים פֶּתַח הַשַּׁעַר וַיֹּאמְרוּ
+            אִישׁ אֶל־רֵעֵהוּ מָה אֲנַחְנוּ יֹשְׁבִים פֹּה עַד־מֻתֵּנוּ׃
+          </div>
+          <div class="transliteration">
+            Ve’arba’ah anashim hayú metzora’im petaj hasha’ar vayomeru ish
+            el-re’ehu mah anajnu yoshvim poh ad-muténu.
+          </div>
+          <div class="translation">
+            Y cuatro hombres eran metzoraim a la entrada de la puerta, y dijeron
+            uno a su compañero: ¿Por qué estamos sentados aquí hasta morir?
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">4</div>
+          <div class="hebrew">
+            אִם־אָמַרְנוּ נָבוֹא הָעִיר וְהָרָעָב בָּעִיר וָמַתְנוּ שָׁם
+            וְאִם־יָשַׁבְנוּ פֹה וָמָתְנוּ וְעַתָּה לְכוּ וְנִפְּלָה אֶל־מַחֲנֵה
+            אֲרָם אִם־יְחַיֻּנוּ נִחְיֶה וְאִם־יְמִיתֻנוּ וָמָתְנוּ׃
+          </div>
+          <div class="transliteration">
+            Im-amarnu navo ha’ir vehara’av ba’ir vamatnu sham ve’im yashavnu poh
+            vamátnu ve’atah leju venipelah el-majaneh Aram im-yejayunu nijyéh
+            ve’im yemitunu vamátnu.
+          </div>
+          <div class="translation">
+            Si decimos: entremos en la ciudad, hay hambre en la ciudad y
+            moriremos allí; y si nos quedamos aquí, moriremos; ahora pues
+            vayamos y caigamos en el campamento de Aram; si nos dan vida,
+            viviremos; y si nos matan, moriremos.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">5</div>
+          <div class="hebrew">
+            וַיָּקֻמוּ בַנֶּשֶף לָבוֹא אֶל־מַחֲנֵה אֲרָם וַיָּבֹאוּ עַד־קְצֵה
+            מַחֲנֵה אֲרָם וְהִנֵּה אֵין־שָׁם אִישׁ׃
+          </div>
+          <div class="transliteration">
+            Vayakumu banéshef lavo el-majaneh Aram vayavo’u ad-ketzeh majaneh
+            Aram vehiné ein-sham ish.
+          </div>
+          <div class="translation">
+            Y se levantaron al anochecer para ir al campamento de Aram, y
+            llegaron hasta el extremo del campamento de Aram, y he aquí, no
+            había allí hombre.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">6</div>
+          <div class="hebrew">
+            וַאֲדֹנָי הִשְׁמִיעַ אֶת־מַחֲנֵה אֲרָם קוֹל רֶכֶב קוֹל סוּס קוֹל
+            חַיִל גָּדוֹל וַיֹּאמְרוּ אִישׁ אֶל־אָחִיו הִנֵּה שָׂכַר עָלֵינוּ
+            מֶלֶךְ יִשְׂרָאֵל אֶת־מַלְכֵי הַחִתִּים וְאֶת־מַלְכֵי מִצְרַיִם
+            לָבוֹא עָלֵינוּ׃
+          </div>
+          <div class="transliteration">
+            VaAdonai hishmia et-majaneh Aram kol rejév kol sus kol jayil gadol
+            vayomeru ish el-ajiv hiné sachar alenu melej Yisrael et-maljey
+            hajitim ve’et maljey Mitsrayim lavo alenu.
+          </div>
+          <div class="translation">
+            Y Adonai hizo oír al campamento de Aram ruido de carros, ruido de
+            caballos, ruido de gran ejército, y dijeron uno a su hermano: he
+            aquí, el rey de Yisrael ha contratado contra nosotros a los reyes de
+            los hititas y a los reyes de Mitsrayim para venir contra nosotros.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">7</div>
+          <div class="hebrew">
+            וַיָּקֻמוּ וַיָּנֻסוּ בַנֶּשֶף וַיַּעַזְבוּ אֶת־אָהֳלֵיהֶם
+            וְאֶת־סוּסֵיהֶם וְאֶת־חֲמֹרֵיהֶם הַמַּחֲנֶה כַּאֲשֶׁר־הִיא
+            וַיָּנֻסוּ אֶל־נַפְשָׁם׃
+          </div>
+          <div class="transliteration">
+            Vayakumu vayanusu banéshef vaya’azvu et-oholehem ve’et susehem ve’et
+            jamorehem hamajaneh ka’asher hi vayanusu el-nafsham.
+          </div>
+          <div class="translation">
+            Y se levantaron y huyeron al anochecer, y dejaron sus tiendas, sus
+            caballos y sus asnos, el campamento tal como estaba, y huyeron por
+            sus vidas.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">8</div>
+          <div class="hebrew">
+            וַיָּבֹאוּ הַמְצֹרָעִים הָאֵלֶּה עַד־קְצֵה הַמַּחֲנֶה וַיָּבֹאוּ
+            אֶל־אֹהֶל אֶחָד וַיֹּאכְלוּ וַיִּשְׁתּוּ וַיִּשְׂאוּ מִשָּׁם כֶּסֶף
+            וְזָהָב וּבְגָדִים וַיֵּלְכוּ וַיַּטְמִינוּ וַיָּשֻׁבוּ וַיָּבֹאוּ
+            אֶל־אֹהֶל אַחֵר וַיִּשְׂאוּ מִשָּׁם וַיֵּלְכוּ וַיַּטְמִינוּ׃
+          </div>
+          <div class="transliteration">
+            Vayavo’u hametzora’im ha’eleh ad-ketzeh hamajaneh vayavo’u el-ohel
+            ejad vayojlu vayishtu vayis’u misham kesef vezahav uvegadim vayelju
+            vayatminu vayashuvu vayavo’u el-ohel ajer vayis’u misham vayelju
+            vayatminu.
+          </div>
+          <div class="translation">
+            Y estos metzoraim llegaron hasta el extremo del campamento, y
+            entraron en una tienda, comieron y bebieron, y tomaron de allí
+            plata, oro y vestidos, y fueron y lo escondieron; volvieron y
+            entraron en otra tienda, y tomaron de allí, y fueron y lo
+            escondieron.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">9</div>
+          <div class="hebrew">
+            וַיֹּאמְרוּ אִישׁ אֶל־רֵעֵהוּ לֹא־כֵן אֲנַחְנוּ עֹשִׂים הַיּוֹם
+            הַזֶּה יוֹם־בְּשֹׂרָה הוּא וַאֲנַחְנוּ מַחֲשִׁים וְחִכִּינוּ
+            עַד־אוֹר הַבֹּקֶר וּמְצָאָנוּ עָוֹן וְעַתָּה לְכוּ וְנָבוֹאָה
+            וְנַגִּידָה בֵּית הַמֶּלֶךְ׃
+          </div>
+          <div class="transliteration">
+            Vayomeru ish el-re’ehu lo-jen anajnu osim hayom hazeh yom-besorah hu
+            va’anajnu machashim vechikinu ad-or haboker umetsa’nu avon ve’atah
+            leju venavo’ah venagidah beit hamelej.
+          </div>
+          <div class="translation">
+            Y dijeron uno a su compañero: no hacemos bien; este día es día de
+            buena noticia, y nosotros callamos; si esperamos hasta la luz de la
+            mañana, nos alcanzará culpa; ahora pues vayamos y anunciemos en casa
+            del rey.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">10</div>
+          <div class="hebrew">
+            וַיָּבֹאוּ וַיִּקְרְאוּ אֶל־שֹׁעֵר הָעִיר וַיַּגִּידוּ לָהֶם לֵאמֹר
+            בָּאנוּ אֶל־מַחֲנֵה אֲרָם וְהִנֵּה אֵין־שָׁם אִישׁ וְקוֹל אָדָם כִּי
+            אִם־הַסּוּס אָסוּר וְהַחֲמוֹר אָסוּר וְהָאֹהָלִים כַּאֲשֶׁר־הֵמָּה׃
+          </div>
+          <div class="transliteration">
+            Vayavo’u vayikre’u el-sho’er ha’ir vayagidu lahem lemor banu
+            el-majaneh Aram vehiné ein-sham ish vekol adam ki im-hasus asur
+            vehachamor asur veha’ohalim ka’asher hemmah.
+          </div>
+          <div class="translation">
+            Y vinieron y llamaron a los porteros de la ciudad, y les declararon
+            diciendo: fuimos al campamento de Aram, y he aquí, no había allí
+            hombre ni voz de hombre, sino los caballos atados y los asnos
+            atados, y las tiendas tal como estaban.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">11</div>
+          <div class="hebrew">
+            וַיִּקְרָא הַשֹּׁעֲרִים וַיַּגִּידוּ בֵּית הַמֶּלֶךְ פְּנִימָה׃
+          </div>
+          <div class="transliteration">
+            Vayikra hasho’arim vayagidu beit hamelej פנימה.
+          </div>
+          <div class="translation">
+            Y llamaron los porteros, y lo anunciaron dentro de la casa del rey.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">12</div>
+          <div class="hebrew">
+            וַיָּקָם הַמֶּלֶךְ לַיְלָה וַיֹּאמֶר אֶל־עֲבָדָיו אַגִּידָה־נָּא
+            לָכֶם אֵת אֲשֶׁר־עָשׂוּ לָנוּ אֲרָם יָדְעוּ כִּי־רְעֵבִים אֲנַחְנוּ
+            וַיֵּצְאוּ מִן־הַמַּחֲנֶה לְהֵחָבֵא בַשָּׂדֶה לֵאמֹר כִּי־יֵצְאוּ
+            מִן־הָעִיר וּנְתְפְּשֵׂם חַיִּים וְאֶל־הָעִיר נָבֹא׃
+          </div>
+          <div class="transliteration">
+            Vayakam hamelej laylah vayomer el-avadav agidah-na lachem et
+            asher-asu lanu Aram yad’u ki-re’evim anajnu vayetze’u min-hamajaneh
+            lehachavé basadeh lemor ki-yetze’u min-ha’ir unetfesem chayim
+            ve’el-ha’ir navo.
+          </div>
+          <div class="translation">
+            Y se levantó el rey de noche y dijo a sus siervos: os declararé lo
+            que nos han hecho Aram; saben que tenemos hambre, y han salido del
+            campamento para esconderse en el campo, diciendo: cuando salgan de
+            la ciudad, los tomaremos vivos y entraremos en la ciudad.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">13</div>
+          <div class="hebrew">
+            וַיַּעַן אֶחָד מֵעֲבָדָיו וַיֹּאמֶר וְיִקְחוּ־נָא חֲמִשָּׁה
+            מִן־הַסּוּסִים הַנִּשְׁאָרִים אֲשֶׁר נִשְׁאֲרוּ בָּהּ הִנָּם
+            כְּכָל־הֲמוֹן יִשְׂרָאֵל אֲשֶׁר נִשְׁאֲרוּ בָּהּ הִנָּם
+            כְּכָל־הֲמוֹן יִשְׂרָאֵל אֲשֶׁר תָּמּוּ וְנִשְׁלְחָה וְנִרְאֶה׃
+          </div>
+          <div class="transliteration">
+            Vaya’an ejad me’avadav vayomer veyikju-na chamishah min-hasusim
+            hanish’arim asher nish’aru bah hinam kechol-hamon Yisrael asher
+            nish’aru bah hinam kechol-hamon Yisrael asher tamu venishlechah
+            venir’eh.
+          </div>
+          <div class="translation">
+            Y respondió uno de sus siervos y dijo: tomen ahora cinco de los
+            caballos que han quedado en ella; he aquí, ellos son como toda la
+            multitud de Yisrael que ha quedado en ella, he aquí, ellos son como
+            toda la multitud de Yisrael que ha perecido; enviemos y veamos.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">14</div>
+          <div class="hebrew">
+            וַיִּקְחוּ שְׁנֵי רֶכֶב סוּסִים וַיִּשְׁלַח הַמֶּלֶךְ אַחֲרֵי
+            מַחֲנֵה אֲרָם לֵאמֹר לְכוּ וּרְאוּ׃
+          </div>
+          <div class="transliteration">
+            Vayikju shnei rejév susim vayishlach hamelej ajarei majaneh Aram
+            lemor leju ure’u.
+          </div>
+          <div class="translation">
+            Y tomaron dos carros con caballos, y envió el rey tras el campamento
+            de Aram, diciendo: id y ved.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">15</div>
+          <div class="hebrew">
+            וַיֵּלְכוּ אַחֲרֵיהֶם עַד־הַיַּרְדֵּן וְהִנֵּה כָּל־הַדֶּרֶךְ
+            מְלֵאָה בְגָדִים וְכֵלִים אֲשֶׁר־הִשְׁלִיכוּ אֲרָם בְּחָפְזָם
+            וַיָּשֻׁבוּ הַמַּלְאָכִים וַיַּגִּדוּ לַמֶּלֶךְ׃
+          </div>
+          <div class="transliteration">
+            Vayelju ajarehem ad-hayarden vehiné kol-haderej mele’ah begadim
+            vekelim asher-hishlichu Aram bechofzam vayashuvu hamal’ajim vayagidu
+            lamelej.
+          </div>
+          <div class="translation">
+            Y fueron tras ellos hasta el Yardén, y he aquí, todo el camino
+            estaba lleno de vestidos y utensilios que Aram había arrojado en su
+            prisa; y volvieron los mensajeros y lo declararon al rey.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">16</div>
+          <div class="hebrew">
+            וַיֵּצֵא הָעָם וַיָּבֹזּוּ אֶת־מַחֲנֵה אֲרָם וַיְהִי סְאָה־סֹלֶת
+            בְּשֶׁקֶל וּסְאָתַיִם שְׂעֹרִים בְּשֶׁקֶל כִּדְבַר יְהוָה׃
+          </div>
+          <div class="transliteration">
+            Vayetze ha’am vayavozu et-majaneh Aram vayehí se’ah solet beshekel
+            uséatayim se’orim beshekel kidvar יהוה.
+          </div>
+          <div class="translation">
+            Y salió el pueblo y saqueó el campamento de Aram; y fue una medida
+            de flor de harina por un shekel, y dos medidas de cebada por un
+            shekel, conforme a la palabra de יהוה.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">17</div>
+          <div class="hebrew">
+            וְהַמֶּלֶךְ הִפְקִיד אֶת־הַשָּׁלִישׁ אֲשֶׁר־נִשְׁעַן עַל־יָדוֹ
+            עַל־הַשַּׁעַר וַיִּרְמְסֻהוּ הָעָם בַּשַּׁעַר וַיָּמֹת כַּאֲשֶׁר
+            דִּבֶּר אִישׁ הָאֱלֹהִים אֲשֶׁר דִּבֶּר בְּרֶדֶת הַמֶּלֶךְ אֵלָיו׃
+          </div>
+          <div class="transliteration">
+            Vehamelej hifkid et-hashalish asher-nish’an al-yado al-hasha’ar
+            vayirmesuhu ha’am bashaar vayamot ka’asher diber ish haElohim asher
+            diber beredet hamelej elav.
+          </div>
+          <div class="translation">
+            Y el rey puso al oficial en cuya mano se apoyaba sobre la puerta, y
+            el pueblo lo atropelló en la puerta, y murió, conforme a lo que
+            había hablado el varón de Elohim cuando descendió el rey a él.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">18</div>
+          <div class="hebrew">
+            וַיְהִי כְּדַבֵּר אִישׁ הָאֱלֹהִים אֶל־הַמֶּלֶךְ לֵאמֹר סְאָתַיִם
+            שְׂעֹרִים בְּשֶׁקֶל וּסְאָה־סֹלֶת בְּשֶׁקֶל יִהְיֶה כָּעֵת מָחָר
+            בְּשַׁעַר שֹׁמְרוֹן׃
+          </div>
+          <div class="transliteration">
+            Vayehí kedaber ish haElohim el-hamelej lemor séatayim se’orim
+            beshekel use’ah solet beshekel yihyeh ka’et machar besha’ar Shomron.
+          </div>
+          <div class="translation">
+            Y fue como habló el varón de Elohim al rey, diciendo: dos medidas de
+            cebada por un shekel y una medida de flor de harina por un shekel
+            será mañana a esta hora en la puerta de Shomron.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">19</div>
+          <div class="hebrew">
+            וַיַּעַן הַשָּׁלִישׁ אֶת־אישׁ הָאֱלֹהִים וַיֹּאמֶר הִנֵּה יְהוָה
+            עֹשֶׂה אֲרֻבּוֹת בַּשָּׁמַיִם הֲיִהְיֶה הַדָּבָר הַזֶּה וַיֹּאמֶר
+            הִנְּךָ רֹאֶה בְעֵינֶיךָ וּמִשָּׁם לֹא תֹאכֵל׃
+          </div>
+          <div class="transliteration">
+            Vaya’an hashalish et-ish haElohim vayomer hiné יהוה oseh arubot
+            bashamayim hayihyeh hadavar hazeh vayomer hincha ro’eh be’einecha
+            umisham lo tojel.
+          </div>
+          <div class="translation">
+            Y respondió el oficial al varón de Elohim y dijo: he aquí, si יהוה
+            hiciera ventanas en los cielos, ¿sería esto? Y dijo: he aquí, tú lo
+            verás con tus ojos, pero de ello no comerás.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">20</div>
+          <div class="hebrew">
+            וַיְהִי־לוֹ כֵן וַיִּרְמְסוּ אֹתוֹ הָעָם בַּשַּׁעַר וַיָּמֹת׃
+          </div>
+          <div class="transliteration">
+            Vayehí-lo ken vayirmesu oto ha’am bashaar vayamot.
+          </div>
+          <div class="translation">
+            Y fue así para él, y el pueblo lo atropelló en la puerta, y murió.
+          </div>
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <p>
+            El relato de Melajim Bet 7:3-20 presenta a cuatro metzoraim que,
+            estando fuera del campamento, son los primeros en experimentar la
+            provisión sobrenatural de יהוה. Esta escena revela una tipología
+            profunda de la obra de Yeshúa HaMashíaj, quien se identifica con los
+            rechazados y marginados, y desde ese lugar revela la salvación. Así
+            como los metzoraim estaban excluidos, Yeshúa fue también contado
+            entre los impuros y rechazados, cumpliendo lo anunciado:
+            “Despreciado y desechado entre los hombres” (Yeshayahu/Isaías 53:3).
+            Sin embargo, desde ese mismo lugar de exclusión se manifiesta la
+            abundancia del Reino.
+          </p>
+          <p>
+            El acto de levantarse al anochecer y avanzar hacia lo desconocido (2
+            Reyes 7:5) refleja un principio de fe activa que se cumple
+            plenamente en Yeshúa. Él no permaneció en la condición de muerte,
+            sino que avanzó voluntariamente hacia el cumplimiento de la voluntad
+            de יהוה. El Brit Hadashah declara: “se humilló a sí mismo,
+            haciéndose obediente hasta la muerte” (Filipenses 2:8). Este
+            movimiento hacia la entrega es la esencia del sacrificio vivo, no
+            como resignación pasiva, sino como obediencia activa que transforma
+            la realidad espiritual.
+          </p>
+          <p>
+            Romanos 12:1 encuentra su cumplimiento perfecto en Yeshúa HaMashíaj,
+            quien presentó su cuerpo como sacrificio vivo, continuo y obediente.
+            Su vida no fue solamente un evento culminante en el madero, sino una
+            entrega constante desde su encarnación hasta su resurrección. Él
+            mismo afirmó: “Yo pongo mi vida… para volverla a tomar”
+            (Iojanán/Juan 10:17). Este es el modelo del sacrificio vivo: una
+            vida entregada completamente a יהוה, no interrumpida por la muerte,
+            sino consumada en vida eterna.
+          </p>
+          <p>
+            Los metzoraim, al descubrir la provisión y luego proclamarla (2
+            Reyes 7:9), reflejan el testimonio del Mashíaj resucitado. Así como
+            ellos no podían callar el día de buenas nuevas, Yeshúa es la buena
+            nueva encarnada, y su resurrección activa la proclamación del Reino
+            (Mateo 28:19-20). En Él, el sacrificio vivo se convierte en misión
+            viva, donde la entrega produce vida para otros.
+          </p>
+        </div>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <p>
+            Los Neviím anunciaron que la verdadera restauración vendría mediante
+            una intervención directa de יהוה que transformaría el corazón
+            humano. El evento en 2 Reyes 7, donde la salvación ocurre sin
+            intervención humana visible, apunta a esta verdad profética.
+            Zejaryah declara: “No con ejército, ni con fuerza, sino con mi Ruaj”
+            (Zacarías 4:6), mostrando que la liberación del pueblo no depende de
+            medios humanos, sino del poder del Ruaj HaKodesh.
+          </p>
+          <p>
+            Yirmeyahu anuncia un Brit renovado donde la Toráh sería escrita en
+            el corazón (Jeremías 31:33). Este principio se refleja en los
+            metzoraim cuando pasan de una mentalidad de supervivencia a una
+            conciencia de responsabilidad espiritual: “no hacemos bien… este día
+            es día de buena noticia” (2 Reyes 7:9). Esta transformación interior
+            es precisamente lo que los profetas anticiparon: una obediencia que
+            brota desde el interior, no impuesta externamente.
+          </p>
+          <p>
+            Yejezkel profundiza esta revelación al declarar que יהוה quitará el
+            corazón de piedra y dará un corazón de carne (Ezequiel 36:26-27). En
+            Yeshúa HaMashíaj, esta promesa se cumple plenamente, pues Él no solo
+            enseña obediencia, sino que imparte vida por medio del Ruaj
+            HaKodesh. Así, el movimiento de los metzoraim desde la desesperación
+            hacia la proclamación se convierte en una figura de la regeneración
+            espiritual anunciada por los Neviím.
+          </p>
+          <p>
+            La conexión profética muestra que el evento histórico es una sombra
+            de una realidad mayor: la transformación del kahal de Israel en un
+            pueblo que vive y actúa desde la vida interior impartida por יהוה a
+            través del Mashíaj.
+          </p>
+        </div>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <p>
+            El cumplimiento de la palabra profética es central en este pasaje.
+            El profeta había declarado que habría abundancia al día siguiente (2
+            Reyes 7:1), y esto se cumple literalmente (2 Reyes 7:16). Este
+            patrón revela el principio de que la palabra de יהוה es irrevocable
+            y se cumple en el tiempo establecido. Este mismo principio se
+            manifiesta en Yeshúa, quien es la Palabra hecha carne (Iojanán/Juan
+            1:14), en quien todas las promesas son afirmadas y cumplidas (2
+            Corintios 1:20).
+          </p>
+          <p>
+            El juicio sobre el oficial incrédulo (2 Reyes 7:19-20) conecta con
+            las advertencias proféticas sobre la incredulidad. Habacuc declara:
+            “el justo por su fe vivirá” (Habacuc 2:4), estableciendo que la
+            participación en las promesas depende de la emunáh. El oficial ve el
+            cumplimiento, pero no participa de él, lo cual refleja la realidad
+            de aquellos que rechazan la revelación de יהוה en el Mashíaj. El
+            Brit Hadashah confirma esto: “vino a los suyos, y los suyos no le
+            recibieron” (Juan 1:11).
+          </p>
+          <p>
+            Asimismo, el tema de provisión sobrenatural en medio de escasez
+            conecta con las promesas de restauración en los profetas. Yoel
+            anuncia la restitución de lo perdido (Joel 2:25-26), y Amos declara
+            abundancia en tiempos venideros (Amós 9:13). Estas promesas
+            encuentran su cumplimiento pleno en Yeshúa HaMashíaj, quien no solo
+            provee alimento físico, sino vida eterna (Juan 6:35).
+          </p>
+          <p>
+            Romanos 12:1 se inserta dentro de esta línea profética, mostrando
+            que la respuesta a la fidelidad de יהוה es la entrega total del ser.
+            Así como יהוה cumple su palabra, el creyente responde ofreciendo su
+            vida en obediencia, siguiendo el modelo perfecto establecido en
+            Yeshúa.
+          </p>
+        </div>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <p>
+            El kahal de Israel es llamado a identificarse con los metzoraim, no
+            en su impureza, sino en su recognition de necesidad y dependencia
+            total de יהוה. La decisión de levantarse y moverse (2 Reyes 7:5) es
+            un llamado a abandonar la pasividad espiritual. Romanos 12:1 exige
+            una respuesta activa: presentar el cuerpo como sacrificio vivo, lo
+            cual implica una vida completamente rendida al propósito de יהוה.
+          </p>
+          <p>
+            La experiencia de encontrar abundancia y luego proclamarla revela
+            que la vida en Yeshúa no es solo recepción, sino transmisión. El
+            creyente no puede retener la revelación del Mashíaj, sino que está
+            llamado a anunciarla. Shaúl expresa esto diciendo: “¡Ay de mí si no
+            anuncio las buenas nuevas!” (1 Corintios 9:16). La vida del
+            sacrificio vivo se manifiesta en una existencia entregada al
+            servicio y proclamación.
+          </p>
+          <p>
+            El juicio sobre el incrédulo enseña que la falta de emunáh impide
+            participar en la plenitud de la promesa. Esto es una advertencia
+            para el kahal de Israel: ver no es suficiente; es necesario creer y
+            responder. Ivrim/Hebreos 4:2 declara que la palabra no aprovecha si
+            no se mezcla con fe. Por tanto, la vida del discípulo implica una
+            confianza activa en la palabra de יהוה.
+          </p>
+          <p>
+            Finalmente, la entrega del cuerpo como sacrificio vivo se expresa en
+            una vida transformada por el Ruaj HaKodesh. No es una renuncia
+            vacía, sino una participación en la vida del Mashíaj. Como está
+            escrito: “ya no vivo yo, mas vive el Mashíaj en mí” (Gálatas 2:20).
+            Así, el kahal de Israel camina en santidad, reflejando la vida de
+            Yeshúa HaMashíaj como la manifestación viva de la Toráh en acción.
+          </p>
+        </div>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <div class="section-container">
+          <p>
+            Este pasaje revela que la restauración de Israel vendrá por medio de
+            la intervención sobrenatural de יהוה y la respuesta de fe del
+            pueblo. Así como los metzoraim fueron los primeros en anunciar la
+            salvación, el kahal de Israel está llamado a proclamar la obra de
+            Yeshúa HaMashíaj en la Era Mesiánica. La restauración no será por
+            fuerza humana, sino por el poder del Ruaj HaKodesh, manifestando la
+            plenitud del Reino en el Mashíaj.
+          </p>
+        </div>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Marcos 1:40-45 (La compasión de Yeshúa al sanar
+        a un leproso).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">40</div>
+        <div class="aramaic">
+          וְאָתֵא לְוָתֵהּ מְצֹרָעָא וּמִתְחַנַּן לֵהּ וְכָרֵעַ
+          עַל־בּוּרְכּוֹהִי וְאָמַר לֵהּ אִם־צָבֵא אַתְּ יָכֵל אַתְּ
+          לְדַכָּיוּתִי׃
+        </div>
+        <div class="transliteration">
+          Ve’ate levateh metzora’a umitjanan leh ve’kare’a al-burkojí ve’amar
+          leh im-tzavé at yakhel at ledakayutí.
+        </div>
+        <div class="translation">
+          Y vino a Él un metzorá suplicándole, y arrodillándose le dijo: si
+          quieres, puedes limpiarme.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">41</div>
+        <div class="aramaic">
+          וְיֵשׁוּעַ אִתְרַחֵם עֲלֵהּ וְפָשַׁט יָדֵהּ וְנָגַע בֵּהּ וְאָמַר לֵהּ
+          צָבֵא אֲנָא אִתְדַּכָּא׃
+        </div>
+        <div class="transliteration">
+          Veyeshúa itrajem aleh ufashat yadeh venaga beh ve’amar leh tzavé ana
+          itdaká.
+        </div>
+        <div class="translation">
+          Y Yeshúa tuvo compasión de él, y extendiendo su mano lo tocó y le
+          dijo: quiero, sé limpio.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">42</div>
+        <div class="aramaic">
+          וּכְדֵין מִיָּד נִפְקַת מִנֵּהּ צָרַעְתֵּהּ וְאָתִדַּכִּי׃
+        </div>
+        <div class="transliteration">
+          Uj’dayn miyad nifqat mineh tzara’teh ve’itdaki.
+        </div>
+        <div class="translation">
+          Y al instante salió de él su tzaraat y fue limpiado.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">43</div>
+        <div class="aramaic">וּגְעַר בֵּהּ וּמִיָּד אַפְקֵהּ׃</div>
+        <div class="transliteration">Uge’ar beh umiyad afqeh.</div>
+        <div class="translation">Y le reprendió y enseguida lo despidió.</div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">44</div>
+        <div class="aramaic">
+          וְאָמַר לֵהּ חֲזֵי דְלָא לְאִנָשׁ תֵּאמַר מִדֵּם אֶלָּא זֵיל חֲוֵי
+          נַפְשָׁךְ לְכָהֲנָא וְקָרֵב עַל דִּכְיוּתָךְ מָה דְּפַקֵּד מֹשֶׁה
+          לְסַהֲדוּתָא לְהוֹן׃
+        </div>
+        <div class="transliteration">
+          Ve’amar leh jazé dela le’enash temar midem ela zil jave nafshaj
+          le’kahana veqarev al dikhyutaj ma de’paqed Moshe lesahaduta lehon.
+        </div>
+        <div class="translation">
+          Y le dijo: mira, no digas nada a nadie, sino ve, muéstrate al kohen y
+          ofrece por tu purificación lo que ordenó Moshéh para testimonio a
+          ellos.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">45</div>
+        <div class="aramaic">
+          וְהוּא נְפַק וְשָׁרֵי לְמַכְרָזוּתָא סַגִּיאֳתָא וּלְפַרְסוּמֵי
+          מִלְּתָא עַד דְּלָא יָכֵל הֲוָה יֵשׁוּעַ לְמֵיעַל לְמְדִינְתָא
+          גְּלֵיָא אֶלָּא בַּרָּא בְּאַתְרָוָתָא חָרְבָתָא הֲוָה וְאָתִין הֲווֹ
+          לְוָתֵהּ מִכָּל־אֲתַר׃
+        </div>
+        <div class="transliteration">
+          Vehu nefaq vesharé lemakrazuta sagí’ata ulefarsemé milta ad dela
+          yakhel hava Yeshúa lemeyal lemedinta gelya ela barra beatrawata
+          jarvata hava ve’atin havu levateh mikol atar.
+        </div>
+        <div class="translation">
+          Y él salió y comenzó a proclamar mucho y a divulgar la palabra, de
+          modo que Yeshúa ya no podía entrar abiertamente en la ciudad, sino que
+          estaba fuera en lugares desiertos; y venían a Él de todas partes.
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El encuentro entre el metzorá y Yeshúa en Marcos 1:40-45 revela una de
+          las manifestaciones más profundas del carácter redentor del Mashíaj.
+          El metzorá, excluido del kahal de Israel conforme a la Toráh (Levítico
+          13:46), se acerca con una declaración de emunáh: “si quieres, puedes
+          limpiarme” (Marcos 1:40). Esta expresión reconoce en Yeshúa no solo
+          autoridad, sino voluntad divina. Cuando Yeshúa extiende su mano y toca
+          al impuro (Marcos 1:41), se revela una inversión profética: en lugar
+          de contaminarse, Él transmite pureza. Esto manifiesta que en Él habita
+          la plenitud de la santidad de יהוה, capaz de absorber la impureza y
+          transformarla.
+        </p>
+        <p>
+          Este acto no es aislado, sino que anticipa la obra redentora completa
+          de Yeshúa HaMashíaj. Así como tocó al metzorá, Él se identifica con la
+          condición humana caída. Shaúl declara: “Al que no conoció pecado, por
+          nosotros lo hizo pecado” (2 Corintios 5:21), mostrando que Yeshúa
+          asumió la impureza espiritual del mundo para impartir justicia. La
+          limpieza inmediata del metzorá (Marcos 1:42) es una señal visible de
+          una realidad invisible: la capacidad del Mashíaj de restaurar
+          completamente al ser humano.
+        </p>
+        <p>
+          Romanos 12:1 encuentra su cumplimiento en esta dinámica. Yeshúa no
+          solo ofreció su cuerpo en el momento de su ejecución en el madero,
+          sino que vivió constantemente como sacrificio vivo. Su compasión, su
+          toque, su obediencia, todo fue una entrega continua. Él mismo declara:
+          “Mi alimento es hacer la voluntad del que me envió” (Juan 4:34),
+          revelando que su vida entera fue korban vivo. Su ejecución en el
+          madero (Filipenses 2:8) no es el inicio del sacrificio, sino su
+          culminación visible.
+        </p>
+        <p>
+          La instrucción de presentarse al kohen conforme a la Toráh (Marcos
+          1:44) demuestra que Yeshúa no anula la Toráh, sino que la cumple
+          plenamente. Él es el cumplimiento viviente de Vayikrá 14, donde el
+          metzorá purificado debía presentarse como testimonio. Así, el
+          sacrificio vivo de Yeshúa establece un modelo para el creyente: una
+          vida que no solo experimenta purificación, sino que vive en obediencia
+          continua a יהוה.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          Los Neviím anticiparon una purificación que iría más allá de los
+          rituales externos. Yeshayahu declara: “aunque vuestros pecados sean
+          como la grana, como la nieve serán emblanquecidos” (Isaías 1:18). Este
+          lenguaje de limpieza encuentra su cumplimiento visible en la sanidad
+          del metzorá, pero su plenitud se revela en Yeshúa, quien no solo
+          limpia la piel, sino el corazón. La acción de tocar al impuro muestra
+          que la pureza de יהוה es activa y transformadora.
+        </p>
+        <p>
+          Yejezkel anuncia: “esparciré sobre vosotros agua limpia, y seréis
+          limpiados… pondré dentro de vosotros mi Ruaj” (Ezequiel 36:25-27).
+          Esta promesa conecta directamente con el acto de Yeshúa, quien no solo
+          limpia externamente, sino que introduce una nueva realidad espiritual.
+          La limpieza del metzorá es una señal del derramamiento del Ruaj
+          HaKodesh, mediante el cual el creyente es transformado desde adentro.
+        </p>
+        <p>
+          Zejaryah también profetiza: “habrá una fuente abierta… para la
+          purificación del pecado” (Zacarías 13:1). Yeshúa se revela como esa
+          fuente. Cuando Él toca al metzorá, la pureza fluye desde Él,
+          cumpliendo esta profecía. En el Brit Hadashah, esta realidad se amplía
+          cuando declara: “el que cree en mí… de su interior correrán ríos de
+          agua viva” (Juan 7:38), identificando la purificación con la vida del
+          Ruaj HaKodesh.
+        </p>
+        <p>
+          Los Neviím, por tanto, no solo anunciaron limpieza, sino
+          transformación total. Marcos 1:40-45 muestra que esa transformación ha
+          llegado en Yeshúa HaMashíaj, quien encarna la promesa profética y la
+          hace accesible al kahal de Israel.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          El acto de Yeshúa al sanar al metzorá cumple directamente las palabras
+          de Yeshayahu: “Él llevó nuestras enfermedades” (Isaías 53:4). El Brit
+          Hadashah confirma esta conexión cuando afirma que las sanidades de
+          Yeshúa eran cumplimiento de esta profecía (Mateo 8:17). La tzaraat,
+          como símbolo de impureza y separación, es removida por el Mashíaj,
+          mostrando que Él es el portador de la restauración prometida.
+        </p>
+        <p>
+          El mandato de presentarse al kohen (Marcos 1:44) también cumple la
+          Toráh, mostrando que Yeshúa es el mediador que conecta la promesa
+          profética con la práctica ritual. Él no elimina el sistema, sino que
+          lo llena de significado. Como está escrito: “no penséis que he venido
+          para abolir la Toráh… sino para cumplir” (Mateo 5:17). Así, cada
+          sanidad es un testimonio de que las promesas de יהוה están siendo
+          activadas.
+        </p>
+        <p>
+          El silencio que Yeshúa pide y la proclamación posterior del hombre
+          (Marcos 1:45) reflejan la tensión profética entre revelación y
+          manifestación. El mensaje del Mashíaj no puede ser contenido. Esto
+          conecta con Isaías 52:7: “¡Cuán hermosos son… los pies del que anuncia
+          buenas nuevas!”. El metzorá se convierte en proclamador, anticipando
+          la expansión del mensaje mesiánico.
+        </p>
+        <p>
+          Romanos 12:1 se conecta con estas profecías al mostrar que la
+          respuesta a la obra de יהוה es la entrega total. Así como las
+          profecías se cumplen en Yeshúa, el creyente responde viviendo como
+          sacrificio vivo, participando en la realidad profética ya inaugurada
+          en el Mashíaj.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          El metzorá representa la condición humana separada de יהוה, pero
+          también la posibilidad de restauración mediante la emunáh. Su
+          acercamiento a Yeshúa (Marcos 1:40) es un acto de rendición total.
+          Esto establece el modelo para el kahal de Israel: la restauración
+          comienza cuando el ser humano reconoce su necesidad y se acerca al
+          Mashíaj con confianza plena.
+        </p>
+        <p>
+          El toque de Yeshúa revela que la santidad no es aislamiento, sino
+          transformación. El creyente, al recibir la vida del Mashíaj, es
+          llamado a vivir en santidad activa. Romanos 12:1 enseña que el cuerpo
+          debe ser presentado como sacrificio vivo, lo cual implica una vida
+          donde cada acción refleja la pureza recibida. No se trata solo de ser
+          limpiado, sino de vivir como limpio.
+        </p>
+        <p>
+          La proclamación del hombre sanado (Marcos 1:45) muestra que la
+          experiencia de redención produce testimonio. El discípulo no puede
+          permanecer en silencio. Como está escrito: “lo que hemos visto y oído,
+          eso anunciamos” (1 Juan 1:3). La vida del sacrificio vivo se
+          manifiesta en una existencia dedicada a revelar a Yeshúa.
+        </p>
+        <p>
+          Finalmente, el hecho de que Yeshúa permanezca en lugares desiertos
+          (Marcos 1:45) mientras la multitud viene a Él, muestra el intercambio
+          redentor: el limpio toma el lugar del impuro, y el impuro es
+          restaurado al pueblo. Este es el corazón del mensaje mesiánico. El
+          kahal de Israel es llamado a vivir esta realidad, caminando en
+          santidad por medio del Ruaj HaKodesh, reflejando la vida de Yeshúa
+          HaMashíaj en todo aspecto.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          La limpieza del metzorá anuncia la restauración futura de Israel,
+          donde toda impureza será removida y el pueblo caminará en santidad
+          delante de יהוה. Yeshúa HaMashíaj es el agente de esta restauración, y
+          su obra inaugura la Era Mesiánica en la que el kahal de Israel es
+          purificado, transformado y enviado como testigo de la gloria de יהוה
+          en toda la tierra.
+        </p>
+      </div>
+      <h1>
+        Punto 4. Contexto Histórico y Cultural de Vayikrá (Levítico) 14:1–12
+      </h1>
+      <div class="content-container">
+        <p>
+          Cuando uno se adentra en Vayikrá 14:1–12, honestamente no está
+          simplemente leyendo un protocolo sanitario antiguo; está entrando en
+          una cosmovisión profundamente teológica donde pureza, comunidad y
+          presencia divina están entrelazadas de forma inseparable. Este pasaje
+          pertenece al sistema de pureza ritual del período del Mishkán en el
+          desierto, pero su relevancia se extiende hasta el Segundo Templo y aún
+          más allá, en la comprensión mesiánica.
+        </p>
+
+        <h3>1. Contexto del Mishkán y la santidad del campamento</h3>
+        <p>
+          En el período del desierto, el Mishkán no era solo un santuario; era
+          el punto de intersección entre el cielo y la tierra. La presencia de
+          Adonái יהוה habitaba en medio del campamento de Israel. Por ello,
+          cualquier forma de impureza (tum’ah) no era simplemente una condición
+          física, sino una disonancia espiritual que afectaba la comunión con
+          Elohím. La condición del metsorá (persona afectada por tzaráat)
+          implicaba separación total del campamento (Lev 13). Esta exclusión no
+          era meramente médica, sino simbólica: representaba ruptura relacional,
+          tanto comunitaria como espiritual. En este sentido, el proceso de
+          purificación descrito en Levítico 14 no es un tratamiento, sino una
+          restauración del orden divino.
+        </p>
+
+        <h3>2. Tzaráat: más que una enfermedad</h3>
+        <p>
+          A diferencia de la lepra moderna, tzaráat es una condición descrita en
+          la Toráh con dimensiones espirituales. Fuentes del Segundo Templo
+          (como los textos de Qumrán) y tradiciones rabínicas posteriores
+          asocian la tzaráat con el lashón hará (lengua maligna), orgullo y
+          transgresión moral. Esto nos indica que el metsorá es visto como
+          alguien que ha experimentado una manifestación externa de un desorden
+          interno.
+        </p>
+
+        <h3>3. Periodo del Segundo Templo</h3>
+        <p>
+          Durante el Segundo Templo, los sacerdotes (kohanim) continuaron
+          desempeñando el rol de inspectores rituales. El tratado Negaim de la
+          Mishná detalla meticulosamente estos procedimientos, indicando que
+          este sistema permaneció activo y normativo. Sin embargo, algo
+          interesante ocurre en este periodo: la purificación del metsorá
+          comienza a adquirir un matiz escatológico. La restauración del impuro
+          se ve como una señal de redención nacional.
+        </p>
+
+        <h3>4. Qumrán y la pureza comunitaria</h3>
+        <p>
+          Los escritos de Qumrán muestran una comunidad extremadamente rigurosa
+          en cuanto a pureza. Para ellos, la impureza excluía no solo del
+          Templo, sino de la comunidad misma. Esto refleja una intensificación
+          del concepto: la pureza es requisito para pertenecer al pueblo del
+          pacto.
+        </p>
+
+        <h3>5. Conexión con la expectativa mesiánica</h3>
+        <p>
+          En el judaísmo del Segundo Templo, la sanidad de la tzaráat era vista
+          como un acto extraordinario. De hecho, en varias tradiciones se
+          consideraba que solo Elohím podía sanar al metsorá. Esto es clave: la
+          purificación del metsorá se convierte en una señal mesiánica. Y aquí
+          es donde todo empieza a alinearse de manera sorprendente.
+        </p>
+      </div>
+
+      <h1>Punto 5. Comentarios Rabínicos y Conexiones Proféticas</h1>
+      <div class="content-container">
+        <h3>1. Comentarios clásicos judíos</h3>
+        <p>
+          Rashi, basado en Midrashim antiguos, interpreta la tzaráat como
+          castigo por el mal uso del habla. El metsorá es aislado “medida por
+          medida” (midáh kenegued midáh): así como separó a otros con su lengua,
+          ahora es separado. Najmánides (Ramban), por su parte, ve la tzaráat
+          como un fenómeno sobrenatural exclusivo de Israel cuando habita en
+          santidad en la tierra. Esto refuerza algo profundo: la tzaráat no es
+          natural, sino espiritual.
+        </p>
+
+        <h3>2. Simbolismo de los elementos de purificación</h3>
+        <p>Levítico 14 menciona:</p>
+        <ul>
+          <li>Dos aves vivas</li>
+          <li>Madera de cedro</li>
+          <li>Hilo escarlata</li>
+          <li>Hisopo</li>
+        </ul>
+        <p>
+          Los comentaristas judíos ven en estos elementos símbolos de humildad
+          (hisopo) frente al orgullo (cedro). Pero desde una lectura mesiánica,
+          estos elementos forman una tipología poderosa: la madera, la sangre,
+          el agua, la vida liberada. Todo apunta a un patrón redentor.
+        </p>
+
+        <h3>3. Conexión profética con Yeshúa haMashíaj</h3>
+        <p>
+          Aquí es donde debo ser muy claro: el Brit Hadasháh no introduce algo
+          nuevo, sino que revela lo que ya estaba contenido. Los relatos donde
+          Yeshúa sana a los metsorim no son simples milagros. Son declaraciones
+          teológicas. Cuando Él instruye: “preséntate al kohen como mandó
+          Moshé”, está validando la Toráh y al mismo tiempo mostrando que en Él
+          se cumple lo que la Toráh anticipaba. De acuerdo con el testimonio
+          arameo, Yeshúa es MarYah manifestado, el mismo que en la Toráh
+          establece los rituales de purificación. Esto no es dualidad. Es Ejad.
+        </p>
+
+        <h3>4. Notas de los primeros siglos</h3>
+        <p>
+          Los primeros discípulos entendieron la purificación del metsorá como
+          una imagen de la redención del pecado: exclusión → intervención divina
+          → restauración.
+        </p>
+      </div>
+
+      <h1>Punto 6. Análisis Profundo de la Aliyáh (Levítico 14:1–12)</h1>
+      <div class="content-container">
+        <p>
+          Si uno observa cuidadosamente la estructura del texto, nota un
+          movimiento progresivo:
+        </p>
+        <h3>1. Salida del aislamiento</h3>
+        <p>
+          El kohen sale fuera del campamento. Esto es impactante. No es el
+          impuro quien se acerca primero, sino que el mediador sale hacia él.
+          Esto anticipa un principio mesiánico fundamental: la iniciativa divina
+          en la redención.
+        </p>
+
+        <h3>2. Diagnóstico y declaración</h3>
+        <p>
+          El kohen verifica la sanidad. No sana, solo declara. Esto muestra que
+          la sanidad proviene de Elohím.
+        </p>
+
+        <h3>3. Ritual de las dos aves</h3>
+        <p>
+          Una muere, otra es liberada. Este acto es profundamente simbólico:
+        </p>
+        <ul>
+          <li>Muerte sustitutiva</li>
+          <li>Vida liberada</li>
+        </ul>
+
+        <h3>4. Purificación progresiva</h3>
+        <p>
+          Lavado, espera de siete días, y luego sacrificios. El proceso no es
+          instantáneo. Es restauración gradual.
+        </p>
+
+        <h3>5. Reintegración</h3>
+        <p>
+          El metsorá vuelve al campamento y luego a la presencia del Mishkán.
+          Esto refleja restauración total: social + espiritual.
+        </p>
+      </div>
+
+      <h1>Punto 7. Tema Más Relevante de la Aliyáh</h1>
+      <div class="content-container">
+        <p>
+          <strong
+            >Tema central: Restauración completa mediante intervención
+            divina</strong
+          >
+        </p>
+        <p>Subtemas:</p>
+        <ul>
+          <li>Exclusión por impureza</li>
+          <li>Iniciativa del kohen</li>
+          <li>Purificación mediante sangre y agua</li>
+          <li>Proceso progresivo</li>
+          <li>Reintegración plena</li>
+        </ul>
+        <p>
+          La verdad es que este pasaje no trata solo de pureza, sino de
+          reconciliación.
+        </p>
+
+        <h3>Relación con Yeshúa haMashíaj</h3>
+        <p>Yeshúa encarna cada uno de estos elementos:</p>
+        <ul>
+          <li>Él sale hacia los excluidos</li>
+          <li>Él declara limpio</li>
+          <li>Él provee el medio de purificación</li>
+          <li>Él restaura completamente</li>
+        </ul>
+
+        <h3>Conexión con los Moedim</h3>
+        <p>Este proceso refleja especialmente:</p>
+        <ul>
+          <li>Pésaj: sangre que libera</li>
+          <li>Yom Kipur: expiación y restauración</li>
+          <li>Sukkot: reintegración y presencia</li>
+        </ul>
+      </div>
+
+      <h1>Punto 8. Descubriendo al Mashíaj en la Aliyáh</h1>
+      <div class="content-container">
+        <p>
+          Aquí, sinceramente, es donde el texto cobra una profundidad casi
+          abrumadora.
+        </p>
+        <h3>1. Tipología de las dos aves</h3>
+        <ul>
+          <li>Ave muerta → sacrificio</li>
+          <li>Ave viva → resurrección / libertad</li>
+        </ul>
+        <p>Un patrón claro: muerte que produce vida.</p>
+
+        <h3>2. El kohen que sale del campamento</h3>
+        <p>
+          Esto conecta directamente con la idea de que el redentor se acerca al
+          impuro. Yeshúa toca al metsorá, algo que ningún kohen haría.
+        </p>
+
+        <h3>3. Elementos simbólicos</h3>
+        <ul>
+          <li>Cedro (altura) → orgullo humano</li>
+          <li>Hisopo (bajeza) → humildad</li>
+          <li>Escarlata → pecado / sangre</li>
+        </ul>
+        <p>Todo converge en un proceso de transformación.</p>
+
+        <h3>4. Patrón redentor (Tavnit)</h3>
+        <ul>
+          <li>Impureza → separación</li>
+          <li>Intervención → sacrificio</li>
+          <li>Purificación → restauración</li>
+          <li>Reintegración → comunión</li>
+        </ul>
+        <p>Este patrón se repite en toda la Escritura.</p>
+
+        <h3>5. Cumplimiento en el Brit Hadasháh</h3>
+        <p>Cuando Yeshúa sana al metsorá:</p>
+        <ul>
+          <li>No solo limpia</li>
+          <li>Revela identidad divina</li>
+        </ul>
+        <p>
+          Como se ha demostrado en el testimonio arameo, el Mesías es
+          identificado como MarYah, el mismo que establece la Toráh y la cumple
+          plenamente.
+        </p>
+
+        <h3>6. Reflexión final</h3>
+        <p>
+          Si uno lo piensa bien… este texto no trata de enfermedad. Trata de
+          algo mucho más profundo: cómo alguien completamente separado puede
+          volver a la presencia de Elohím. Y la respuesta, desde la Toráh hasta
+          el Brit Hadasháh, es la misma: Por medio de una obra divina de
+          purificación, revelada plenamente en Yeshúa haMashíaj, quien es Ejad
+          con el Padre.
+        </p>
+      </div>
+      <h1>Punto 9. Midrashim, Targumim y Textos Fuentes de Vayikrá 14:1–12</h1>
+      <div class="content-container">
+        <p>
+          Cuando uno se adentra en las fuentes antiguas, honestamente empieza a
+          percibir que este pasaje fue leído mucho más allá de su literalidad
+          ritual. Los sabios de Israel vieron en el metsorá una figura
+          espiritual, casi un espejo del alma humana en ruptura.
+        </p>
+
+        <h3>1. Midrashim relevantes</h3>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Midrash Vayikrá Rabbá 16:1–7</div>
+          <p>
+            Este Midrash conecta directamente la tzaráat con el pecado del
+            lashón hará (lengua maligna). Se afirma que:
+          </p>
+          <p class="scripture">
+            “El metsorá es llamado así porque מוציא רע (motzí ra) — el que saca
+            mal.”
+          </p>
+          <p>
+            Aquí el énfasis no es médico sino ético. La enfermedad es una
+            manifestación visible de un desorden invisible.
+          </p>
+          <p>
+            <strong>Insight mesiánico:</strong> Esto establece una conexión
+            directa con la enseñanza de Yeshúa haMashíaj sobre que lo que
+            contamina al hombre proviene del corazón y de la boca.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Midrash Tanjuma, Metzora 2</div>
+          <p>
+            Describe que la purificación del metsorá es como un nuevo
+            nacimiento:
+          </p>
+          <ul>
+            <li>Sale de su estado de muerte social</li>
+            <li>Es restaurado a la vida comunitaria</li>
+          </ul>
+          <p>Esto anticipa el concepto de regeneración espiritual.</p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Sifra (Torat Kohanim) sobre Levítico 14
+          </div>
+          <p>
+            El Sifra interpreta que el kohen sale fuera del campamento porque:
+          </p>
+          <p class="scripture">“La compasión precede al juicio.”</p>
+          <p>
+            Es decir, el sistema sacerdotal no es solo legal, sino profundamente
+            pastoral.
+          </p>
+        </div>
+
+        <h3>2. Targumim</h3>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Targum Onkelos</div>
+          <p>
+            Mantiene una traducción bastante literal, pero introduce matices de
+            purificación más que de simple sanidad.
+          </p>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Targum Yonatán</div>
+          <p>Amplía el sentido espiritual:</p>
+          <ul>
+            <li>
+              Interpreta la tzaráat como consecuencia de pecado manifiesto
+            </li>
+            <li>Resalta el papel del kohen como mediador restaurador</li>
+          </ul>
+          <p>
+            Esto es clave: el kohen no solo inspecciona, representa la
+            intervención divina.
+          </p>
+        </div>
+
+        <h3>3. Textos del Segundo Templo</h3>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            Manuscritos de Qumrán (4QMMT, 11QTemple)
+          </div>
+          <p>Estos textos enfatizan la pureza extrema:</p>
+          <ul>
+            <li>El impuro no puede entrar en la comunidad santa</li>
+            <li>La pureza es requisito para la presencia divina</li>
+          </ul>
+          <p>
+            Esto intensifica el significado de Levítico 14: la restauración no
+            es opcional, es esencial para pertenecer.
+          </p>
+        </div>
+
+        <h3>4. Textos Apócrifos</h3>
+        <div class="prophetic-section">
+          <div class="prophetic-title">Sirácida (Eclesiástico) 38</div>
+          <p>
+            Aunque trata sobre médicos, reconoce que la sanidad última proviene
+            de Elohím. Esto armoniza con Levítico 14: el kohen no sana, solo
+            declara lo que Elohím ha hecho.
+          </p>
+        </div>
+
+        <h3>5. Síntesis mesiánica de las fuentes</h3>
+        <p>Todas estas tradiciones convergen en un punto:</p>
+        <ul>
+          <li>El metsorá representa ruptura</li>
+          <li>La purificación representa restauración divina</li>
+          <li>El mediador representa intervención celestial</li>
+        </ul>
+        <p>Y en el Brit Hadasháh, Yeshúa haMashíaj cumple los tres roles:</p>
+        <ul>
+          <li>Identifica la impureza</li>
+          <li>Produce la sanidad</li>
+          <li>Declara la restauración</li>
+        </ul>
+        <p>
+          Porque Él es MarYah manifestado, Ejad con el Padre, actuando dentro de
+          la historia humana.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 10. Mandamientos (Mitzvot) y Principios en Levítico 14:1–12</h1>
+      <div class="content-container">
+        <h3>1. Mitzvot explícitos</h3>
+        <ul>
+          <li>
+            <strong>Presentarse al kohen tras la sanidad:</strong> Reconocer
+            autoridad espiritual establecida por la Toráh.
+          </li>
+          <li>
+            <strong>Realizar el ritual de purificación:</strong> Uso de
+            elementos específicos (aves, madera, escarlata, hisopo).
+          </li>
+          <li>
+            <strong>Separación y proceso de siete días:</strong> Respeto por los
+            tiempos de restauración.
+          </li>
+          <li>
+            <strong>Lavado de vestiduras y cuerpo:</strong> Señal externa de una
+            transformación interna.
+          </li>
+        </ul>
+
+        <h3>2. Principios espirituales profundos</h3>
+        <ul>
+          <li>
+            <strong>a. La restauración requiere intervención divina:</strong> El
+            hombre no puede purificarse por sí mismo.
+          </li>
+          <li>
+            <strong
+              >b. La pureza no es solo física, sino moral y espiritual:</strong
+            >
+            Esto redefine completamente la comprensión de santidad.
+          </li>
+          <li>
+            <strong>c. El proceso es progresivo:</strong> No hay restauración
+            instantánea completa.
+          </li>
+          <li>
+            <strong>d. La comunidad importa:</strong> La reintegración es parte
+            esencial del proceso redentor.
+          </li>
+          <li>
+            <strong>e. Mediación sacerdotal:</strong> Anticipa el rol del
+            Mashíaj como Kohen Gadol eterno.
+          </li>
+        </ul>
+
+        <h3>3. Aplicación en el Mashíaj</h3>
+        <p>Yeshúa no abroga estos principios; los lleva a su plenitud:</p>
+        <ul>
+          <li>Él es el Kohen que examina</li>
+          <li>Él es el sacrificio representado en las aves</li>
+          <li>Él es quien declara limpio</li>
+        </ul>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 11. Preguntas de Reflexión con Respuestas en el Mashíaj</h1>
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            1. ¿Qué representa realmente la tzaráat?
+          </div>
+          <div class="explanation">
+            Representa el pecado que separa. Yeshúa revela que la verdadera
+            impureza nace del corazón.
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            2. ¿Por qué el kohen sale fuera del campamento?
+          </div>
+          <div class="explanation">
+            Porque la redención inicia con la iniciativa divina. Yeshúa vino
+            hacia nosotros en nuestra condición de exclusión.
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            3. ¿Qué significado tienen las dos aves?
+          </div>
+          <div class="explanation">
+            Muerte y vida. Yeshúa entrega Su vida y abre camino a una vida
+            nueva.
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">4. ¿Por qué el proceso es gradual?</div>
+          <div class="explanation">
+            Porque la transformación del ser humano es progresiva. La
+            santificación es un camino, no un instante.
+          </div>
+        </div>
+        <div class="prophetic-section">
+          <div class="prophetic-title">
+            5. ¿Qué implica ser declarado limpio?
+          </div>
+          <div class="explanation">
+            No es solo ausencia de impureza, es restauración de identidad y
+            relación con Elohím.
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 12. Resumen de la Aliyáh (Levítico 14:1–12)</h1>
+      <div class="content-container">
+        <p>
+          Este pasaje describe el proceso de restauración del metsorá, desde su
+          exclusión hasta su reintegración total.
+        </p>
+        <p>Puntos clave:</p>
+        <ul>
+          <li>El kohen sale al encuentro del impuro</li>
+          <li>Se verifica la sanidad dada por Elohím</li>
+          <li>Se realiza un ritual simbólico de muerte y vida</li>
+          <li>Se inicia un proceso de purificación progresiva</li>
+          <li>Se prepara al individuo para su reintegración</li>
+        </ul>
+        <div class="conclusion">
+          <strong>En el Mashíaj:</strong>
+          <p>
+            Todo este proceso encuentra su cumplimiento en Yeshúa haMashíaj:
+          </p>
+          <ul>
+            <li>Él busca al excluido</li>
+            <li>Él sana</li>
+            <li>Él purifica</li>
+            <li>Él restaura completamente</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Punto 13. Tefiláh de la Aliyáh (Levítico 14:1–12)</h1>
+      <div class="content-container">
+        <div class="prophetic-title">Exaltación:</div>
+        <div class="prayer-text">
+          Oh Adonái יהוה, Elohím Alef Tav, Tú eres Kadosh, perfecto en todos Tus
+          caminos, el que habita en luz inaccesible y aun así te acercas al
+          quebrantado. Tú eres Ejad, y te has revelado a nosotros en Yeshúa
+          haMashíaj, quien manifiesta Tu misericordia y Tu verdad.
+        </div>
+        <div class="prophetic-title">Oración:</div>
+        <div class="prayer-text">
+          Padre eterno, yo reconozco que muchas veces he estado como el metsorá,
+          separado, afectado en lo profundo de mi ser. Pero Tú, en Tu compasión,
+          no esperaste que yo regresara, sino que saliste a buscarme.<br /><br />
+          Gracias por Yeshúa haMashíaj, quien es MarYah manifestado, quien toca
+          lo impuro y lo transforma, quien no solo limpia sino restaura
+          completamente.<br /><br />
+          Purifica mi corazón, mis pensamientos y mis palabras. Límpiame con el
+          hisopo y seré limpio. Lávame y seré más blanco que la nieve.<br /><br />
+          Enséñame a caminar en santidad, a valorar Tu presencia, y a vivir como
+          alguien que ha sido restaurado.<br /><br />
+          Que mi vida refleje Tu obra redentora, y que nunca olvide que fui
+          traído de vuelta por Tu gracia.
+        </div>
+        <div class="prayer-conclusion">
+          En el Nombre de Yeshúa haMashíaj, quien es Uno contigo, oro. Amén.
+        </div>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya2.html">Continuar con la Aliyá 2</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>

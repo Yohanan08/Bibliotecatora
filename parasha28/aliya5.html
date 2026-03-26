@@ -1,0 +1,1885 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parashá Metzorá (מצורע) – Levítico 14:54-15:15</title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: clamp(15px, 3vw, 20px);
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: clamp(20px, 4vw, 30px);
+        background-color: white;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: clamp(1em, 3vw, 1.2em);
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin: 10px 0;
+        line-height: 1.8;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+        font-size: clamp(0.9em, 2vw, 1em);
+      }
+
+      .translation {
+        margin: 10px 0;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: clamp(1.1em, 3vw, 1.3em);
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: clamp(18px, 3.5vw, 25px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: clamp(20px, 4vw, 30px);
+      }
+
+      .section-container {
+        margin-bottom: clamp(18px, 3.5vw, 25px);
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(20px, 4vw, 30px);
+        font-size: clamp(1.5em, 5vw, 2em);
+      }
+
+      h2 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(15px, 3vw, 20px);
+        font-size: clamp(1.3em, 4vw, 1.5em);
+      }
+
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: clamp(12px, 2.5vw, 20px);
+        font-size: clamp(1.1em, 3.5vw, 1.3em);
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: clamp(25px, 5vw, 40px) 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: clamp(15px, 3vw, 20px);
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: clamp(25px, 5vw, 40px);
+      }
+
+      .prophetic-section {
+        margin-bottom: clamp(15px, 3vw, 20px);
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: clamp(1em, 2.5vw, 1.1em);
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px clamp(10px, 3vw, 20px);
+        padding-left: clamp(10px, 2.5vw, 15px);
+        border-left: 3px solid #ddd;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: clamp(12px, 2.5vw, 15px);
+        border-radius: 5px;
+        margin-top: clamp(20px, 4vw, 30px);
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: clamp(20px, 4vw, 30px);
+      }
+
+      li {
+        margin-bottom: 8px;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      .prayer-text {
+        font-size: clamp(1em, 2.2vw, 1.05em);
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: clamp(20px, 4vw, 30px);
+        font-size: clamp(0.95em, 2vw, 1em);
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(10px, 2.5vw, 12px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(13px, 3vw, 15px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .boton-descargar:active {
+        transform: scale(0.98);
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 18px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 3.5vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button:active {
+        transform: translateY(0);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: clamp(20px, 4vw, 25px);
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Media Queries para ajustes específicos */
+
+      /* Celulares pequeños */
+      @media (max-width: 480px) {
+        body {
+          max-width: 100%;
+          padding: 15px;
+        }
+
+        .verse-container,
+        .content-container,
+        .explanation,
+        .prophetic-content {
+          padding: 12px;
+        }
+
+        .aliya-button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 481px) and (max-width: 768px) {
+        body {
+          max-width: 95%;
+          padding: 18px;
+        }
+
+        .aliya-button {
+          width: auto;
+          min-width: 150px;
+        }
+      }
+
+      /* Tablets grandes y computadores pequeños */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        body {
+          max-width: 750px;
+        }
+      }
+
+      /* Computadores */
+      @media (min-width: 1025px) {
+        body {
+          max-width: 800px;
+        }
+      }
+
+      /* Ajuste para orientación horizontal en móviles */
+      @media (max-width: 768px) and (orientation: landscape) {
+        body {
+          padding: 10px 15px;
+        }
+
+        .verse-container,
+        .content-container {
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Tablas responsivas: permiten ajuste y/o scroll en pantallas pequeñas */
+      .prophetic-content {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: auto;
+      }
+
+      .prophetic-content table {
+        width: 100%;
+        max-width: 100%;
+        border-collapse: collapse;
+      }
+
+      .prophetic-content th,
+      .prophetic-content td {
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+        box-sizing: border-box;
+        vertical-align: top;
+      }
+
+      /* En móviles convertimos las filas en bloques para evitar desbordes largos */
+      @media (max-width: 480px) {
+        .prophetic-content table {
+          display: block;
+        }
+
+        .prophetic-content thead,
+        .prophetic-content tbody,
+        .prophetic-content tr {
+          display: block;
+        }
+
+        .prophetic-content tr {
+          margin-bottom: 12px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .prophetic-content th,
+        .prophetic-content td {
+          display: block;
+          width: 100%;
+          padding: 8px 6px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="google_translate_element"></div>
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+
+    <main id="contenido">
+      <h1>
+        28. Parashá Metzorá (מצורע) – Aliyáh 5: (Levítico 14:54-15:15)
+        Instrucciones sobre la impureza por flujo corporal en los hombres.
+        <p>
+          Haftaráh: Zacarías 13:1-9 (La fuente abierta para el pecado y la
+          impureza).
+        </p>
+        <p>
+          Brit Hadasháh: Mateo 9:20-22 (La mujer con flujo de sangre que es
+          sanada por Yeshúa).
+        </p>
+      </h1>
+      <h1>Punto 1. Levítico 14:54-15:15</h1>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:54</div>
+          <div class="hebrew">
+            זֹאת הַתּוֹרָה לְכָל־נֶגַע הַצָּרַעַת וְלַנָּתֶק׃
+          </div>
+          <div class="transliteration">
+            Zot haToráh lechol-nega hatsara'at velanatek.
+          </div>
+          <div class="translation">
+            Esta es la Torá para toda plaga de tsaraat y para la tiña.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:55</div>
+          <div class="hebrew">וְלַצָּרַעַת הַבֶּגֶד וְלַבָּיִת׃</div>
+          <div class="transliteration">Velatsara'at habeged velabayit.</div>
+          <div class="translation">
+            Y para la tsaraat del vestido y de la casa.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:56</div>
+          <div class="hebrew">וְלַשּׂאֵת וְלַסַּפַּחַת וְלַבַּהֶרֶת׃</div>
+          <div class="transliteration">Velasse'et velasapajat velabaheret.</div>
+          <div class="translation">
+            Y para la hinchazón, y para la erupción, y para la mancha blanca.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 14:57</div>
+          <div class="hebrew">
+            לְהוֹרֹת בְּיוֹם הַטָּמֵא וּבְיוֹם הַטָּהֹר זֹאת תּוֹרַת הַצָּרָעַת׃
+          </div>
+          <div class="transliteration">
+            Lehorot beyom hatamé uveyom hatahor zot Torat hatsara'at.
+          </div>
+          <div class="translation">
+            Para enseñar en el día de lo impuro y en el día de lo puro; esta es
+            la Torá de la tsaraat.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:1</div>
+          <div class="hebrew">
+            וַיְדַבֵּר יְהוָה אֶל־מֹשֶׁה וְאֶל־אַהֲרֹן לֵאמֹר׃
+          </div>
+          <div class="transliteration">
+            Vayedaber יהוה el-Moshé ve'el-Aharón lemor.
+          </div>
+          <div class="translation">
+            Y habló יהוה a Moshé y a Aharón, diciendo.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:2</div>
+          <div class="hebrew">
+            דַּבְּרוּ אֶל־בְּנֵי יִשְׂרָאֵל וַאֲמַרְתֶּם אֲלֵהֶם אִישׁ אִישׁ
+            כִּי יִהְיֶה זָב מִבְּשָׂרוֹ זוֹבוֹ טָמֵא הוּא׃
+          </div>
+          <div class="transliteration">
+            Dabru el-beney Yisra'el va'amartem alehem ish ish ki yihye zav
+            mibesaró zovó tame hu.
+          </div>
+          <div class="translation">
+            Hablad a los hijos de Yisrael y decidles: hombre, hombre que tenga
+            flujo de su carne, su flujo es impuro.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:3</div>
+          <div class="hebrew">
+            וְזֹאת תִּהְיֶה טֻמְאָתוֹ בְּזוֹבוֹ רָר בְּשָׂרוֹ אֶת־זוֹבוֹ אוֹ
+            הֶחְתִּים בְּשָׂרוֹ מִזּוֹבוֹ טֻמְאָתוֹ הִוא׃
+          </div>
+          <div class="transliteration">
+            Vezot tihye tum'ato bezovó rar besaró et-zovó o hejtim besaró mizovó
+            tum'ato hi.
+          </div>
+          <div class="translation">
+            Y esta será su impureza en su flujo: cuando su carne fluya su flujo
+            o retenga su flujo, su impureza es.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:4</div>
+          <div class="hebrew">
+            כָּל־הַמִּשְׁכָּב אֲשֶׁר יִשְׁכַּב עָלָיו הַזָּב יִטְמָא
+            וְכָל־הַכְּלִי אֲשֶׁר־יֵשֵׁב עָלָיו יִטְמָא׃
+          </div>
+          <div class="transliteration">
+            Kol-hamishkav asher yishkav alav hazav yitmá vechol-hakli asher
+            yeshev alav yitmá.
+          </div>
+          <div class="translation">
+            Toda cama sobre la cual se acueste el que tiene flujo será impura, y
+            todo objeto sobre el cual se siente será impuro.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:5</div>
+          <div class="hebrew">
+            וְאִישׁ אֲשֶׁר יִגַּע בְּמִשְׁכָּבוֹ יְכַבֵּס בְּגָדָיו וְרָחַץ
+            בַּמַּיִם וְטָמֵא עַד־הָעָרֶב׃
+          </div>
+          <div class="transliteration">
+            Ve'ish asher yiga bemishkavó yejabbes begadav verajatz bamayim
+            vetamé ad-ha'arev.
+          </div>
+          <div class="translation">
+            Y el hombre que toque su cama lavará sus vestidos y se lavará en
+            agua y será impuro hasta la tarde.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:6</div>
+          <div class="hebrew">
+            וְהַיֹּשֵׁב על־הַכְּלִי אֲשֶׁר־יֵשֵׁב עָלָיו הַזָּב יְכַבֵּס
+            בְּגָדָיו וְרָחַץ בַּמַּיִם וְטָמֵא עַד־הָעָרֶב׃
+          </div>
+          <div class="transliteration">
+            Vehayoshev al-hakli asher yeshev alav hazav yejabbes begadav
+            verajatz bamayim vetamé ad-ha'arev.
+          </div>
+          <div class="translation">
+            Y el que se siente sobre el objeto en que se sentó el que tiene
+            flujo lavará sus vestidos y se lavará en agua y será impuro hasta la
+            tarde.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:7</div>
+          <div class="hebrew">
+            וְהַנֹּגֵעַ בִּבְשַׂר הַזָּב יְכַבֵּס בְּגָדָיו וְרָחַץ בַּמַּיִם
+            וְטָמֵא עַד־הָעָרֶב׃
+          </div>
+          <div class="transliteration">
+            Vehanogea bivsar hazav yejabbes begadav verajatz bamayim vetamé
+            ad-ha'arev.
+          </div>
+          <div class="translation">
+            Y el que toque la carne del que tiene flujo lavará sus vestidos y se
+            lavará en agua y será impuro hasta la tarde.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:8</div>
+          <div class="hebrew">
+            וְכִי־יָרֹק הַזָּב בַּטָּהוֹר וְכִבֶּס בְּגָדָיו וְרָחַץ בַּמַּיִם
+            וְטָמֵא עַד־הָעָרֶב׃
+          </div>
+          <div class="transliteration">
+            Veji-yarok hazav batahor vechibbes begadav verajatz bamayim vetamé
+            ad-ha'arev.
+          </div>
+          <div class="translation">
+            Y si escupe el que tiene flujo sobre el limpio, lavará sus vestidos
+            y se lavará en agua y será impuro hasta la tarde.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:9</div>
+          <div class="hebrew">
+            וְכָל־הַמֶּרְכָּב אֲשֶׁר יִרְכַּב עָלָיו הַזָּב יִטְמָא׃
+          </div>
+          <div class="transliteration">
+            Vechol-hamerkav asher yirkav alav hazav yitmá.
+          </div>
+          <div class="translation">
+            Y todo vehículo sobre el cual cabalgue el que tiene flujo será
+            impuro.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:10</div>
+          <div class="hebrew">
+            וְכָל־הַנֹּגֵעַ בְּכָל־אֲשֶׁר יִהְיֶה תַחְתָּיו יִטְמָא עַד־הָעָרֶב
+            וְהַנּוֹשֵׂא אוֹתָם יְכַבֵּס בְּגָדָיו וְרָחַץ בַּמַּיִם וְטָמֵא
+            עַד־הָעָרֶב׃
+          </div>
+          <div class="transliteration">
+            Vechol-hanogea bechol-asher yihye tachtav yitmá ad-ha'arev vehanose
+            otam yejabbes begadav verajatz bamayim vetamé ad-ha'arev.
+          </div>
+          <div class="translation">
+            Y todo el que toque cualquier cosa que esté debajo de él será impuro
+            hasta la tarde; y el que las lleve lavará sus vestidos y se lavará
+            en agua y será impuro hasta la tarde.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:11</div>
+          <div class="hebrew">
+            וְכֹל אֲשֶׁר יִגַּע־בּוֹ הַזָּב וְיָדָיו לֹא־שָׁטַף בַּמַּיִם
+            וְכִבֶּס בְּגָדָיו וְרָחַץ בַּמַּיִם וְטָמֵא עַד־הָעָרֶב׃
+          </div>
+          <div class="transliteration">
+            Vechol asher yiga-bo hazav veyadav lo-shataf bamayim vechibbes
+            begadav verajatz bamayim vetamé ad-ha'arev.
+          </div>
+          <div class="translation">
+            Y todo aquel a quien toque el que tiene flujo sin haber lavado sus
+            manos en agua lavará sus vestidos y se lavará en agua y será impuro
+            hasta la tarde.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:12</div>
+          <div class="hebrew">
+            וּכְלִי־חֶרֶשׂ אֲשֶׁר־יִגַּע־בּוֹ הַזָּב יִשָּׁבֵר וְכָל־כְּלִי־עֵץ
+            יִשָּׁטֵף בַּמָּיִם׃
+          </div>
+          <div class="transliteration">
+            Uchli-jeres asher yiga-bo hazav yishaver vechol-kli-ets yishatef
+            bamayim.
+          </div>
+          <div class="translation">
+            Y el utensilio de barro que toque el que tiene flujo será quebrado,
+            y todo utensilio de madera será lavado en agua.
+          </div>
+        </div>
+
+        <div class="verse-container">
+          <div class="verse-number">Levítico 15:13</div>
+          <div class="hebrew">
+            וְכִי יִטְהַר הַזָּב מִזּוֹבוֹ וְסָפַר־לוֹ שִׁבְעַת יָמִים
+            לְטָהֳרָתוֹ וְכִבֶּס בְּגָדָיו וְרָחַץ בְּשָׂרוֹ בְּמַיִם חַיִּים
+            וְטָהֵר׃
+          </div>
+          <div class="transliteration">
+            Veji yithar hazav mizovó vesafar-lo shiv'at yamim letahorato
+            vechibbes begadav verajatz besaró bemayim jayim vetaher.
+          </div>
+          <div class="translation">
+            Y cuando se purifique el que tiene flujo de su flujo, contará para
+            sí siete días para su purificación, y lavará sus vestidos y lavará
+            su carne en aguas vivas y será limpio.
+          </div>
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <p>
+            El pasaje de Vayikrá 14:54–15:15 establece la Torá de la impureza y
+            la purificación, revelando que la condición del hombre, representada
+            por el flujo y la contaminación, no es simplemente física, sino
+            profundamente espiritual. La impureza que emana del cuerpo simboliza
+            la corrupción interna del ser humano, evidenciando que la naturaleza
+            caída produce continuamente contaminación. Este diagnóstico
+            espiritual encuentra su respuesta únicamente en Yeshúa HaMashíaj,
+            quien no solo trata los síntomas, sino que transforma la fuente
+            misma de la impureza (Marcos 7:20-23).
+          </p>
+          <p>
+            La instrucción de lavarse en “mayim jayim” — aguas vivas (Levítico
+            15:13) — es una sombra profética del poder purificador del Mashíaj.
+            En el Brit Hadashah, Yeshúa declara: “el que beba del agua que yo le
+            daré, no tendrá sed jamás” (Juan 4:14), revelando que Él es la
+            fuente de purificación interior. Su vida fue completamente apartada,
+            sin contaminación alguna, y Su entrega en el madero no solo expía el
+            pecado, sino que inaugura una limpieza continua por medio del Ruaj
+            HaKodesh (Hebreos 9:13-14).
+          </p>
+          <p>
+            Romanos 12:1 alcanza su máxima expresión en Yeshúa, quien presentó
+            Su cuerpo como sacrificio vivo, no contaminado por la corrupción del
+            mundo. A diferencia del hombre afectado por flujo, cuya impureza se
+            propaga, Yeshúa transmite pureza a todo lo que toca (Lucas 8:43-48).
+            Su ejecución en el madero es la culminación de una vida
+            completamente entregada, y mediante esa entrega, Él santifica al
+            kahal de Israel, capacitándolo para vivir como ofrenda viva delante
+            de יהוה (Hebreos 10:10).
+          </p>
+        </div>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <p>
+            Los Neviím profundizan en la comprensión de la impureza como una
+            condición del corazón. Ieshaiah declara: “todas nuestras justicias
+            como trapo de inmundicia” (Isaías 64:6), reflejando la misma
+            realidad que Vayikrá describe en términos físicos. La impureza no es
+            superficial, sino que brota desde el interior del hombre,
+            confirmando la necesidad de una transformación radical que solo יהוה
+            puede realizar.
+          </p>
+          <p>
+            Yejezkel anuncia una promesa directamente relacionada con esta
+            purificación: “rociaré sobre vosotros agua limpia, y seréis
+            limpiados” (Ezequiel 36:25-27). Este acto profético encuentra su
+            cumplimiento en Yeshúa HaMashíaj, quien no solo limpia externamente,
+            sino que implanta un nuevo corazón por medio del Ruaj HaKodesh. Así,
+            el lavamiento en Levítico apunta hacia una realidad espiritual más
+            profunda: la regeneración del ser humano.
+          </p>
+          <p>
+            Zejaryah también declara: “en aquel día habrá una fuente abierta…
+            para la purificación del pecado” (Zacarías 13:1). Esta fuente es
+            Yeshúa mismo, quien abre un camino permanente de limpieza. De esta
+            manera, los Neviím confirman que la Torá de la purificación no era
+            un fin en sí mismo, sino una sombra de la obra redentora del
+            Mashíaj, quien transforma al kahal de Israel en un pueblo limpio y
+            apartado para יהוה.
+          </p>
+        </div>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <p>
+            El principio de purificación mediante agua y separación del impuro
+            encuentra su cumplimiento en múltiples profecías del Tanaj. El Salmo
+            51 clama: “purifícame… y seré limpio” (Salmos 51:7), anticipando una
+            limpieza que no depende de rituales externos, sino de la
+            intervención directa de יהוה. Esta petición se cumple en Yeshúa,
+            quien purifica la conciencia del hombre (Hebreos 9:14).
+          </p>
+          <p>
+            Isaías 1:16-18 llama al pueblo a lavarse y limpiarse, prometiendo
+            que los pecados serán emblanquecidos. Este lenguaje se conecta
+            directamente con Levítico 15, pero su cumplimiento pleno ocurre en
+            el Mashíaj, quien hace posible esa limpieza interior. Romanos 12:1
+            se presenta entonces como la respuesta del hombre redimido: una vida
+            entregada completamente a יהוה como resultado de haber sido
+            purificado.
+          </p>
+          <p>
+            Además, la idea de separación del impuro apunta hacia la santidad
+            del pueblo restaurado. Levítico establece límites claros entre lo
+            puro y lo impuro, y los profetas anuncian un tiempo en que el pueblo
+            caminará en santidad continua (Isaías 35:8). En el Brit Hadashah,
+            esto se cumple en aquellos que son guiados por el Ruaj HaKodesh
+            (Gálatas 5:16), quienes viven como sacrificio vivo, reflejando la
+            pureza impartida por Yeshúa HaMashíaj.
+          </p>
+        </div>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <p>
+            El mensaje de Vayikrá 14:54–15:15 confronta al kahal de Israel con
+            la realidad de que la impureza no puede ser ignorada ni tratada
+            superficialmente. La vida del discípulo de Yeshúa implica un
+            reconocimiento constante de la necesidad de purificación. Romanos
+            12:1 llama a una entrega total del cuerpo, lo cual implica que cada
+            aspecto de la vida debe ser consagrado y apartado para יהוה.
+          </p>
+          <p>
+            El caminar en santidad requiere una dependencia continua del Ruaj
+            HaKodesh. Así como el hombre con flujo debía someterse a un proceso
+            de limpieza, el creyente es llamado a permitir que el Ruaj examine y
+            transforme su interior (Salmos 139:23-24). Esta obra no es
+            instantánea, sino un proceso continuo de renovación que produce una
+            vida agradable delante de יהוה.
+          </p>
+          <p>
+            Finalmente, el discípulo de Yeshúa está llamado a reflejar la pureza
+            del Mashíaj en su vida diaria. Esto implica no solo evitar la
+            contaminación, sino vivir activamente en santidad, siendo un canal
+            de vida y no de impureza. Así, el principio de Romanos 12:1 se
+            manifiesta en una vida completamente entregada, donde el cuerpo, la
+            mente y el espíritu son ofrecidos como sacrificio vivo, en respuesta
+            a la obra perfecta de Yeshúa HaMashíaj.
+          </p>
+        </div>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <p>
+            La Torá de la purificación revela el propósito eterno de יהוה de
+            tener un pueblo limpio y apartado. En Yeshúa HaMashíaj, este
+            propósito alcanza su cumplimiento, estableciendo un kahal purificado
+            por Su sangre y renovado por el Ruaj HaKodesh. En la Era Mesiánica,
+            esta realidad se manifestará plenamente, cuando Israel camine en
+            santidad total, reflejando la pureza del Mashíaj ante todas las
+            naciones.
+          </p>
+        </div>
+      </div>
+      <h1>
+        Punto 2. Haftaráh: Zacarías 13:1-9 (La fuente abierta para el pecado y
+        la impureza).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">1</div>
+        <div class="hebrew">
+          בַּיּוֹם הַהוּא יִהְיֶה מָקוֹר נִפְתָּח לְבֵית דָּוִיד וּלְיֹשְׁבֵי
+          יְרוּשָׁלַ‍ִם לְחַטָּאת וּלְנִדָּה׃
+        </div>
+        <div class="transliteration">
+          Bayom hahu yihyé makor niftaj leveit David ule'yoshvei Yerushalayim
+          lejatat ulenidah.
+        </div>
+        <div class="translation">
+          En aquel día habrá una fuente abierta para la casa de David y para los
+          habitantes de Yerushalayim para el pecado y para la impureza.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">2</div>
+        <div class="hebrew">
+          וְהָיָה בַּיּוֹם הַהוּא נְאֻם יְהוָה צְבָאוֹת אַכְרִית אֶת־שְׁמוֹת
+          הָעֲצַבִּים מִן־הָאָרֶץ וְלֹא יִזָּכְרוּ עוֹד וְגַם אֶת־הַנְּבִיאִים
+          וְאֶת־רוּחַ הַטֻּמְאָה אַעֲבִיר מִן־הָאָרֶץ׃
+        </div>
+        <div class="transliteration">
+          Vehayah bayom hahu ne'um יְהוָה tseva'ot ajrit et-shemot ha'atsabim
+          min-ha'arets velo yizakeru od vegam et-hanevi'im ve'et ruaj hatum'ah
+          a'avir min-ha'arets.
+        </div>
+        <div class="translation">
+          Y será en aquel día, declaración de יהוה de los ejércitos, cortaré los
+          nombres de los ídolos de la tierra y no serán recordados más, y
+          también a los profetas y al espíritu de impureza haré pasar de la
+          tierra.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">3</div>
+        <div class="hebrew">
+          וְהָיָה כִּי־יִנָּבֵא אִישׁ עוֹד וְאָמְרוּ אֵלָיו אָבִיו וְאִמּוֹ
+          יֹלְדָיו לֹא תִחְיֶה כִּי שֶׁקֶר דִּבַּרְתָּ בְּשֵׁם יְהוָה
+          וּדְקָרוּהוּ אָבִיו וְאִמּוֹ יֹלְדָיו בְּהִנָּבְאוֹ׃
+        </div>
+        <div class="transliteration">
+          Vehayah ki-yinavé ish od ve'amru elav aviv ve'imo yoldav lo tijyé ki
+          sheker dibarta beshem יְהוָה udekárhu aviv ve'imo yoldav behinabe'o.
+        </div>
+        <div class="translation">
+          Y será que si alguno profetiza aún, le dirán su padre y su madre que
+          lo engendraron: no vivirás, porque mentira hablaste en el nombre de
+          יהוה; y lo traspasarán su padre y su madre que lo engendraron cuando
+          profetice.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">4</div>
+        <div class="hebrew">
+          וְהָיָה בַּיּוֹם הַהוּא יֵבֹשׁוּ הַנְּבִיאִים אִישׁ מֵחֶזְיֹנוֹ
+          בְּהִנָּבְאוֹ וְלֹא יִלְבְּשׁוּ אַדֶּרֶת שֵׂעָר לְמַעַן כַּחֵשׁ׃
+        </div>
+        <div class="transliteration">
+          Vehayah bayom hahu yevoshu hanevi'im ish mejézyono behinabe'o velo
+          yilbeshu aderet se'ar lema'an kajesh.
+        </div>
+        <div class="translation">
+          Y será en aquel día, se avergonzarán los profetas cada uno de su
+          visión cuando profetice, y no vestirán manto de pelo para engañar.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">5</div>
+        <div class="hebrew">
+          וְאָמַר לֹא נָבִיא אָנֹכִי אִישׁ עֹבֵד אֲדָמָה אָנֹכִי כִּי אָדָם
+          הִקְנַנִי מִנְּעוּרָי׃
+        </div>
+        <div class="transliteration">
+          Ve'amar lo navi anojí ish oved adamáh anojí ki adam hiknani
+          min'neurai.
+        </div>
+        <div class="translation">
+          Y dirá: no soy profeta, hombre de labranza soy yo, porque hombre me
+          adquirió desde mi juventud.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">6</div>
+        <div class="hebrew">
+          וְאָמַר אֵלָיו מָה הַמַּכּוֹת הָאֵלֶּה בֵּין יָדֶיךָ וְאָמַר אֲשֶׁר
+          הֻכֵּיתִי בֵּית מְאַהֲבָי׃
+        </div>
+        <div class="transliteration">
+          Ve'amar elav mah hamakot ha'eleh bein yadeja ve'amar asher huketi beit
+          me'ahavai.
+        </div>
+        <div class="translation">
+          Y le dirán: ¿qué son estas heridas entre tus manos? Y dirá: con las
+          cuales fui herido en casa de mis amadores.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">7</div>
+        <div class="hebrew">
+          חֶרֶב עוּרִי עַל־רֹעִי וְעַל־גֶּבֶר עֲמִיתִי נְאֻם יְהוָה צְבָאוֹת
+          הַךְ אֶת־הָרֹעֶה וּתְפוּצֶיןָ הַצֹּאן וַהֲשִׁבֹתִי יָדִי
+          עַל־הַצְּעָרִים׃
+        </div>
+        <div class="transliteration">
+          Jerev uri al-ro'i ve'al-gever amiti ne'um יְהוָה tseva'ot hak
+          et-haro'eh utefutsena hatson vahashivoti yadi al-hatse'arim.
+        </div>
+        <div class="translation">
+          Espada, despierta contra mi pastor y contra el hombre compañero mío,
+          declaración de יהוה de los ejércitos; hiere al pastor y serán
+          dispersadas las ovejas, y volveré mi mano sobre los pequeños.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">8</div>
+        <div class="hebrew">
+          וְהָיָה בְכָל־הָאָרֶץ נְאֻם יְהוָה פִּי־שְׁנַיִם בָּהּ יִכָּרְתוּ
+          יִגְוָעוּ וְהַשְּׁלִשִׁית יִוָּתֶר בָּהּ׃
+        </div>
+        <div class="transliteration">
+          Vehayah bechol-ha'arets ne'um יְהוָה pi shenayim bah yikaretu yigva'u
+          vehashlishit yivater bah.
+        </div>
+        <div class="translation">
+          Y será en toda la tierra, declaración de יהוה, dos partes en ella
+          serán cortadas, morirán, y la tercera quedará en ella.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">9</div>
+        <div class="hebrew">
+          וְהֵבֵאתִי אֶת־הַשְּׁלִשִׁית בָּאֵשׁ וּצְרַפְתִּים כִּצְרֹף
+          אֶת־הַכֶּסֶף וּבְחַנְתִּים כִּבְחֹן אֶת־הַזָּהָב הוּא יִקְרָא בִשְׁמִי
+          וַאֲנִי אֶעֱנֶה אֹתוֹ אָמַרְתִּי עַמִּי הוּא וְהוּא יֹאמַר יְהוָה
+          אֱלֹהָי׃
+        </div>
+        <div class="transliteration">
+          Veheveti et-hashlishit ba'esh utzraftim kitsrof et-hakesef uvejantim
+          kivjon et-hazahav hu yikra bishmi va'ani e'ene oto amarti ami hu vehu
+          yomar יְהוָה Elohai.
+        </div>
+        <div class="translation">
+          Y traeré la tercera parte por el fuego y los refinaré como se refina
+          la plata y los probaré como se prueba el oro; él invocará mi nombre y
+          Yo le responderé; diré: pueblo mío es, y él dirá: יהוה es mi Elohim.
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          Zejaryah 13:1 abre con una declaración central en la revelación
+          mesiánica: “habrá una fuente abierta… para el pecado y para la
+          impureza”. Esta fuente no es simbólica en sentido limitado, sino una
+          profecía directa de la obra redentora de Yeshúa HaMashíaj. Él es la
+          fuente abierta que limpia al kahal de Israel, no mediante agua ritual,
+          sino mediante Su propia entrega. El Brit Hadashah confirma esta
+          realidad cuando declara que “la sangre de Yeshúa… nos limpia de todo
+          pecado” (1 Juan 1:7), mostrando que la purificación anunciada por el
+          profeta se cumple en Su sacrificio.
+        </p>
+        <p>
+          La expresión “herido en casa de mis amadores” (Zacarías 13:6) apunta
+          directamente al sufrimiento del Mashíaj dentro de su propio pueblo.
+          Este detalle profético se cumple en Yeshúa, quien fue rechazado y
+          entregado por aquellos a quienes vino a redimir (Juan 1:11). Su
+          ejecución en el madero no fue un accidente histórico, sino el
+          cumplimiento del plan eterno de יהוה para abrir esa fuente de
+          purificación. Así, el sufrimiento del Mashíaj se convierte en el medio
+          por el cual la impureza es removida.
+        </p>
+        <p>
+          Romanos 12:1 encuentra su cumplimiento perfecto en Yeshúa HaMashíaj,
+          quien no solo enseña el sacrificio vivo, sino que Él mismo lo encarna.
+          Su vida fue una ofrenda continua y Su muerte fue la culminación de esa
+          entrega (Filipenses 2:8). Él no ofreció un sacrificio externo, sino Su
+          propio cuerpo, estableciendo el modelo para el kahal de Israel. Por
+          medio de Él, el creyente es llamado a participar en esa misma dinámica
+          de entrega, reflejando la obra redentora en su propia vida (Hebreos
+          10:10).
+        </p>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          Los Neviím anticiparon la necesidad de una purificación profunda y
+          definitiva. Yejezkel proclama: “os rociaré con agua limpia… y pondré
+          dentro de vosotros mi Ruaj” (Ezequiel 36:25-27), lo cual se conecta
+          directamente con la fuente abierta de Zacarías 13:1. Esta limpieza no
+          es externa, sino interna, y se cumple en la obra del Mashíaj, quien
+          transforma el corazón del hombre mediante el Ruaj HaKodesh.
+        </p>
+        <p>
+          Yirmeyahu, al anunciar el Brit Jadashá, declara que la Torá será
+          escrita en el corazón (Jeremías 31:33). Este principio revela que la
+          verdadera purificación produce obediencia genuina. Yeshúa cumple esta
+          promesa al establecer una relación viva con el creyente, donde la
+          obediencia no es impuesta, sino que fluye desde un corazón renovado
+          (Juan 14:15-17).
+        </p>
+        <p>
+          Ieshaiah también anuncia al Siervo sufriente que cargaría con el
+          pecado del pueblo (Isaías 53:5-6). Esta profecía se entrelaza con
+          Zacarías 13, donde el pastor es herido (Zacarías 13:7). Yeshúa mismo
+          aplica este pasaje a Su vida (Mateo 26:31), mostrando que los profetas
+          hablaron de un Mashíaj que sería herido para traer restauración. Así,
+          la conexión profética revela que la purificación y la entrega están
+          inseparablemente unidas en la persona del Mashíaj.
+        </p>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          Zacarías 13:7 declara: “hiere al pastor y serán dispersadas las
+          ovejas”, una profecía que Yeshúa cita directamente antes de Su
+          ejecución (Mateo 26:31). Este cumplimiento demuestra que Su muerte no
+          solo era necesaria, sino anunciada. La dispersión de los dispositivos
+          refleja el impacto inmediato de esta profecía, pero también apunta a
+          una restauración posterior, donde el Mashíaj reuniría nuevamente a Su
+          pueblo (Juan 10:16).
+        </p>
+        <p>
+          La purificación por medio del fuego descrita en Zacarías 13:9 conecta
+          con el proceso de refinamiento espiritual anunciado en el Tanaj.
+          Malaquías habla de יהוה como “fuego purificador” (Malaquías 3:2-3), y
+          en el Brit Hadashah este proceso se manifiesta en la obra del Ruaj
+          HaKodesh en el creyente (1 Pedro 1:6-7). Así, la tribulación y la
+          purificación no son castigos sin propósito, sino medios para formar un
+          pueblo santo.
+        </p>
+        <p>
+          Romanos 12:1 se alinea con estas profecías al presentar la vida del
+          creyente como sacrificio vivo. Este llamado es la respuesta al
+          cumplimiento de las promesas: un pueblo purificado que vive en entrega
+          total. La obra del Mashíaj no solo redime, sino que transforma al
+          kahal de Israel en una ofrenda viva, cumpliendo así el propósito
+          profético de יהוה de tener un pueblo apartado y consagrado (Tito
+          2:14).
+        </p>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          El mensaje de Zacarías 13:1-9 confronta al kahal de Israel con la
+          realidad de la purificación y el costo de la redención. La fuente
+          abierta implica acceso continuo a la limpieza, pero también demanda
+          una respuesta: vivir en santidad. Romanos 12:1 llama al creyente a
+          presentar su cuerpo como sacrificio vivo, lo cual implica una vida
+          completamente rendida a יהוה.
+        </p>
+        <p>
+          El proceso de refinamiento descrito en el pasaje muestra que la
+          santificación no es instantánea, sino progresiva. El creyente es
+          pasado por “fuego” para ser purificado, lo cual se refleja en las
+          pruebas y procesos de la vida (1 Pedro 1:7). Este proceso produce un
+          pueblo que invoca el nombre de יהוה con sinceridad, como declara
+          Zacarías 13:9.
+        </p>
+        <p>
+          Finalmente, el discípulo de Yeshúa está llamado a reflejar la vida del
+          Mashíaj en su caminar diario. Así como Él fue herido para traer
+          sanidad, el creyente es llamado a vivir en entrega, reflejando Su
+          carácter. La vida como sacrificio vivo no es una carga, sino la
+          manifestación de una transformación interior operada por el Ruaj
+          HaKodesh. De esta manera, el kahal de Israel se convierte en
+          testimonio vivo de la obra redentora de Yeshúa HaMashíaj.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          Zacarías 13 revela que la purificación y la restauración de Israel
+          están inseparablemente ligadas al sacrificio del Mashíaj. La fuente
+          abierta continúa fluyendo, llamando al pueblo a la santidad y a la
+          restauración. En la Era Mesiánica, esta obra alcanzará su plenitud
+          cuando el kahal de Israel viva completamente purificado, reflejando la
+          gloria de יהוה a través de Yeshúa HaMashíaj.
+        </p>
+      </div>
+      <h1>
+        Punto 3. Brit Hadasháh: Mateo 9:20-22 (La mujer con flujo de sangre que
+        es sanada por Yeshúa).
+      </h1>
+
+      <div class="verse-container">
+        <div class="verse-number">Mateo 9:20</div>
+        <div class="aramaic">
+          ܘܗܐ ܐܢܬܬܐ ܕܡܐ ܐܫܬܬܐ ܬܪܥܣܪ ܫܢܝܢ ܐܬܬ ܡܢ ܒܬܪܗ ܘܩܪܒܬ ܒܟܢܦܐ ܕܠܒܘܫܗ
+        </div>
+        <div class="transliteration">
+          Fonética aramea tiberiana: Veha anteta dama eshtata tre'esar shnin
+          atat min batreh veqarbat beknafá delbushéh.
+        </div>
+        <div class="translation">
+          Traducción literal al español: Y he aquí una mujer que tenía flujo de
+          sangre doce años vino por detrás y tocó el borde de su vestido.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Mateo 9:21</div>
+        <div class="aramaic">ܐܡܪܐ ܗܘܬ ܒܢܦܫܗ ܕܐܢ ܐܬܩܪܒ ܐܦ ܠܒܘܫܗ ܐܬܚܠܡ</div>
+        <div class="transliteration">
+          Fonética aramea tiberiana: Amrá havat benafshah de'en etqarav af
+          lebushéh etjalam.
+        </div>
+        <div class="translation">
+          Traducción literal al español: Porque decía en su alma: si tan solo me
+          acerco también a su vestido, seré sanada.
+        </div>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">Mateo 9:22</div>
+        <div class="aramaic">
+          ܝܫܘܥ ܕܝܢ ܐܬܦܢܝ ܘܚܙܗ ܘܐܡܪ ܐܬܒܛܚܝ ܒܪܬܝ ܗܝܡܢܘܬܟܝ ܐܚܠܡܬܟܝ ܘܐܬܚܠܡܬ ܐܢܬܬܐ ܡܢ
+          ܗܝ ܫܥܬܐ
+        </div>
+        <div class="transliteration">
+          Fonética aramea tiberiana: Yeshúa den etpani vejazah ve'amar etbatji
+          barti heymanutaj ajlamatji ve'etjalmát anteta min hi sha'ata.
+        </div>
+        <div class="translation">
+          Traducción literal al español: Yeshúa entonces se volvió y la vio y
+          dijo: confía, hija mía, tu fe te ha sanado; y la mujer fue sanada
+          desde aquella hora.
+        </div>
+      </div>
+      <h1>Cumplimiento profético en Yeshúa HaMashíaj</h1>
+
+      <div class="content-container">
+        <p>
+          El relato de Mattai 9:20-22 presenta una revelación profunda del poder
+          purificador de Yeshúa HaMashíaj. La mujer con flujo de sangre, impura
+          conforme a la Torá (Levítico 15:25-27), representa la condición del
+          ser humano separado por la impureza continua. Sin embargo, al tocar el
+          borde de Su vestidura, ocurre una inversión radical: la impureza no
+          contamina al Mashíaj, sino que la pureza del Mashíaj expulsa la
+          impureza. Esto revela que Yeshúa no es simplemente un maestro, sino la
+          fuente viva de purificación anunciada en el Tanaj (Zacarías 13:1).
+        </p>
+        <p>
+          Este acto no es aislado, sino una manifestación de Su identidad
+          redentora. La mujer no ofrece sacrificio alguno, sino que se acerca en
+          fe, y esa fe la conecta con la obra del Mashíaj. Romanos 12:1
+          encuentra aquí su fundamento: el sacrificio vivo no comienza con el
+          hombre, sino con Yeshúa mismo. Él es quien primero se ofrece
+          completamente, permitiendo que el hombre, ya purificado, responda con
+          una vida entregada. Su vida fue una ofrenda continua, y Su ejecución
+          en el madero es la culminación de ese sacrificio perfecto (Hebreos
+          9:14).
+        </p>
+        <p>
+          Cuando Yeshúa declara: “tu fe te ha sanado” (Mateo 9:22), está
+          revelando que la conexión con Él activa la restauración total. Esta
+          sanidad no es solo física, sino espiritual. La mujer, antes excluida,
+          ahora es restaurada. Así, Yeshúa no solo limpia, sino que reintegra al
+          kahal de Israel. Su sacrificio en el madero abre el acceso permanente
+          a esta restauración, cumpliendo el modelo del sacrificio vivo que
+          transforma completamente al que se acerca a Él (1 Pedro 2:24).
+        </p>
+      </div>
+
+      <h1>Conexión con los Profetas (Neviím)</h1>
+
+      <div class="content-container">
+        <p>
+          Los Neviím anunciaron que la purificación vendría directamente de יהוה
+          y no solo de rituales externos. Malaquías declara: “para vosotros…
+          nacerá el sol de justicia, y en sus alas traerá sanidad” (Malaquías
+          4:2). La mujer al tocar el borde del manto —las “alas” (kanaf)— está
+          accediendo proféticamente a esta promesa. Yeshúa es ese “sol de
+          justicia” cuya presencia trae sanidad y restauración.
+        </p>
+        <p>
+          Ieshaiah también proclama que el Siervo llevaría nuestras dolencias:
+          “ciertamente llevó nuestras enfermedades” (Isaías 53:4-5). Este pasaje
+          se manifiesta directamente en la sanidad de la mujer. La enfermedad no
+          es solo física, sino una expresión de la condición caída del hombre.
+          Yeshúa, al sanar, está revelando que Él carga con esa condición para
+          restaurar al ser humano en totalidad.
+        </p>
+        <p>
+          Yejezkel anuncia la purificación mediante agua limpia y un nuevo
+          corazón (Ezequiel 36:25-27). La mujer, al ser sanada instantáneamente,
+          experimenta una anticipación de esta promesa. Su fe la conecta con la
+          obra transformadora del Mashíaj, mostrando que la verdadera pureza no
+          proviene del esfuerzo humano, sino de la intervención directa de יהוה
+          manifestada en Yeshúa HaMashíaj.
+        </p>
+      </div>
+
+      <h1>Profecías cumplidas</h1>
+
+      <div class="content-container">
+        <p>
+          El acto de sanidad en Mattai 9:20-22 cumple múltiples líneas
+          proféticas del Tanaj. Zacarías 13:1 habla de una fuente abierta para
+          la purificación, y esta mujer accede a esa fuente en la persona de
+          Yeshúa. No hay intermediarios, no hay rituales complejos; hay un
+          contacto directo con el Mashíaj, quien encarna esa fuente de limpieza.
+        </p>
+        <p>
+          El Salmo 103 declara que יהוה “sana todas tus enfermedades” (Salmos
+          103:3). En el Brit Hadashah, esta obra se revela en Yeshúa, quien
+          actúa con la autoridad misma de יהוה para restaurar. Así, la sanidad
+          de la mujer no es un milagro aislado, sino el cumplimiento de la
+          promesa de restauración integral del pueblo.
+        </p>
+        <p>
+          Romanos 12:1 se conecta con estas profecías al mostrar que el
+          propósito de la redención no es solo limpiar, sino transformar. La
+          mujer, después de ser sanada, ya no vive en impureza, sino en
+          restauración. De la misma manera, el kahal de Israel es llamado a
+          vivir como sacrificio vivo, respondiendo a la obra redentora del
+          Mashíaj con una vida completamente entregada (Romanos 6:13).
+        </p>
+      </div>
+
+      <h1>Aplicación espiritual</h1>
+
+      <div class="content-container">
+        <p>
+          El encuentro entre la mujer y Yeshúa revela que la fe es el medio por
+          el cual el hombre accede a la purificación. Esta fe no es pasiva, sino
+          activa, valiente y determinada. La mujer rompe barreras sociales y
+          rituales para acercarse al Mashíaj, mostrando que la verdadera
+          transformación comienza cuando el hombre decide acercarse a la fuente
+          de vida.
+        </p>
+        <p>
+          Romanos 12:1 llama al creyente a presentar su cuerpo como sacrificio
+          vivo, y este pasaje muestra cómo esa entrega comienza con un encuentro
+          real con Yeshúa. El discípulo no se ofrece a sí mismo para ser
+          aceptado, sino que, habiendo sido restaurado, responde con una vida de
+          entrega. La santidad se convierte en el resultado natural de haber
+          sido tocado por el poder del Mashíaj.
+        </p>
+        <p>
+          El caminar en el Ruaj HaKodesh implica vivir constantemente en esa
+          conexión con Yeshúa. Así como la mujer fue sanada “desde aquella hora”
+          (Mateo 9:22), el creyente experimenta una transformación continua. La
+          vida como sacrificio vivo es una vida que fluye desde la pureza
+          impartida por el Mashíaj, manifestándose en obediencia, santidad y
+          comunión constante con יהוה.
+        </p>
+      </div>
+
+      <h1>Impacto Profético</h1>
+
+      <div class="content-container">
+        <p>
+          La sanidad de la mujer anticipa la restauración total del kahal de
+          Israel en la Era Mesiánica. Así como una mujer impura fue restaurada
+          mediante el contacto con Yeshúa, todo Israel será purificado al
+          reconocer al Mashíaj. Este evento es una señal profética de la obra
+          continua de יהוה, quien por medio de Yeshúa HaMashíaj está restaurando
+          a Su pueblo y preparándolo para habitar en Su presencia en plenitud.
+        </p>
+      </div>
+      <h1>
+        Punto 4: Contexto Histórico y Cultural de Vayikrá (Levítico) 14:54–15:15
+      </h1>
+
+      <div class="content-container">
+        <p>
+          Al entrar en esta sección, notamos una transición interesante: se
+          cierra el tema de la tzaráat (cap. 13–14) y se abre el ámbito de las
+          impurezas corporales, especialmente los flujos (zav). Y, honestamente,
+          esto revela una cosmovisión profundamente distinta a la moderna.
+        </p>
+
+        <h3>1. Transición temática: de lo visible a lo invisible</h3>
+        <p>Levítico 14:54-57 funciona como un colofón técnico:</p>
+        <ul>
+          <li>Resume las leyes de tzaráat</li>
+          <li>
+            Introduce el principio: distinguir entre tamei (impuro) y tahor
+            (puro)
+          </li>
+        </ul>
+        <p>Luego, Levítico 15:1-15 inicia:</p>
+        <ul>
+          <li>No con algo visible como manchas externas</li>
+          <li>Sino con flujos corporales internos</li>
+        </ul>
+        <p>Esto marca un cambio clave:</p>
+        <p>
+          La impureza ya no solo se ve… también se discierne en lo oculto del
+          cuerpo.
+        </p>
+
+        <h3>2. Contexto médico-antiguo del Cercano Oriente</h3>
+        <p>En el mundo antiguo (Egipto, Mesopotamia):</p>
+        <ul>
+          <li>Las secreciones corporales eran observadas cuidadosamente</li>
+          <li>Asociadas con: Enfermedad, Fertilidad, Desequilibrio corporal</li>
+        </ul>
+        <p>
+          Textos médicos egipcios (como el Papiro Ebers) describen: Descargas
+          genitales y Tratamientos empíricos.
+        </p>
+        <p>Sin embargo, la Toráh introduce algo radical:</p>
+        <p>No trata primero de curar… sino de categorizar espiritualmente.</p>
+
+        <h3>3. El concepto hebreo de “zav” (זוֹב)</h3>
+        <p>El término zav implica:</p>
+        <ul>
+          <li>Flujo anormal</li>
+          <li>Emisión continua</li>
+        </ul>
+        <p>No es una condición puntual, sino persistente. Esto indica:</p>
+        <ul>
+          <li>Desorden interno</li>
+          <li>Pérdida de control del cuerpo</li>
+        </ul>
+        <p>Y en la mentalidad hebrea:</p>
+        <p>
+          Lo que fluye fuera del cuerpo representa una pérdida de integridad
+          vital.
+        </p>
+
+        <h3>4. Vida comunitaria y pureza</h3>
+        <p>En el periodo del Mishkán y luego del Templo:</p>
+        <ul>
+          <li>La pureza determinaba participación social y cultual</li>
+          <li>
+            Un zav: No podía acercarse al santuario, Contaminaba lo que tocaba
+          </li>
+        </ul>
+        <p>Esto generaba una cultura de:</p>
+        <ul>
+          <li>Conciencia corporal</li>
+          <li>Responsabilidad comunitaria</li>
+        </ul>
+
+        <h3>5. Qumrán y pureza radical</h3>
+        <p>La comunidad de Qumrán llevó estas leyes al extremo:</p>
+        <ul>
+          <li>Separaban estrictamente a los impuros</li>
+          <li>Regulaban incluso: Asientos, Utensilios, Interacciones</li>
+        </ul>
+        <p>Para ellos:</p>
+        <p>La pureza corporal era reflejo de pureza espiritual.</p>
+
+        <h3>6. Dimensión antropológica</h3>
+        <p>Aquí, sinceramente, hay una verdad profunda:</p>
+        <p>El cuerpo no es neutral.</p>
+        <ul>
+          <li>Lo que ocurre en él tiene significado espiritual</li>
+          <li>No hay separación entre físico y espiritual</li>
+        </ul>
+        <p>Esto desafía la mentalidad moderna dualista.</p>
+      </div>
+
+      <h1>Punto 5: Estudio, Comentarios y Conexiones Proféticas</h1>
+
+      <div class="content-container">
+        <h3>1. Comentarios rabínicos</h3>
+        <strong>Sifra sobre Levítico 15</strong>
+        <p>Los sabios enfatizan:</p>
+        <ul>
+          <li>El flujo no es necesariamente pecado</li>
+          <li>Pero sí genera estado de impureza</li>
+        </ul>
+        <p>Esto distingue: Impureza ≠ culpabilidad moral directa</p>
+
+        <strong>Talmud (Niddah 34a)</strong>
+        <p>Se analiza el zav como:</p>
+        <ul>
+          <li>Señal de desequilibrio interno</li>
+          <li>Requiere observación cuidadosa</li>
+        </ul>
+
+        <h3>2. Interpretación simbólica</h3>
+        <p>Los sabios vinculan el flujo con:</p>
+        <ul>
+          <li>Pérdida de vida</li>
+          <li>Desorden interno</li>
+        </ul>
+        <p>Y, en algunos casos: Consecuencia indirecta de conducta moral</p>
+
+        <h3>3. Conexión profética</h3>
+        <p>Los profetas usan lenguaje similar:</p>
+        <ul>
+          <li>“Fuente contaminada”</li>
+          <li>“Corrupción que fluye”</li>
+        </ul>
+        <p>
+          Por ejemplo: Jeremías describe al pueblo como fuente de aguas
+          contaminadas. Esto conecta directamente con Levítico 15: El flujo
+          físico se convierte en metáfora de corrupción espiritual.
+        </p>
+
+        <h3>4. Relación con Yeshúa haMashíaj</h3>
+        <p>En los relatos del Brit Hadashá:</p>
+        <ul>
+          <li>Una mujer con flujo de sangre (zavah) toca a Yeshúa</li>
+          <li>En lugar de contaminarlo… Ella es purificada</li>
+        </ul>
+        <p>
+          Esto invierte completamente el sistema: La pureza de Yeshúa es mayor
+          que la impureza humana.
+        </p>
+
+        <h3>5. Dimensión teológica (Unidad Ejad)</h3>
+        <p>El testimonio arameo afirma que Yeshúa es MarYah manifestado.</p>
+        <p>Esto implica:</p>
+        <ul>
+          <li>El mismo que define la impureza en la Toráh</li>
+          <li>Es quien tiene autoridad para removerla</li>
+        </ul>
+      </div>
+
+      <h1>Punto 6: Análisis Profundo de la Aliyáh (Levítico 14:54–15:15)</h1>
+
+      <div class="content-container">
+        <h3>1. Versículos 14:54-57 — Conclusión legal</h3>
+        <p>Estos versos funcionan como:</p>
+        <ul>
+          <li>Resumen sistemático</li>
+          <li>Marco interpretativo</li>
+        </ul>
+        <p>
+          Frase clave: “Para enseñar cuándo es impuro y cuándo es puro”. Esto
+          establece: Discernimiento como eje central de la Toráh.
+        </p>
+
+        <h3>2. Levítico 15:1-3 — Definición del zav</h3>
+        <ul>
+          <li>Flujo continuo</li>
+          <li>Estado persistente</li>
+        </ul>
+        <p>Dos posibilidades: Flujo activo o Flujo retenido pero presente.</p>
+        <p>Ambos generan impureza.</p>
+
+        <h3>3. Levítico 15:4-12 — Contaminación por contacto</h3>
+        <p>
+          Todo lo que el zav toca (Cama, Asiento, Objetos) se vuelve impuro.
+        </p>
+        <p>Esto revela un principio: La impureza es transferible.</p>
+
+        <h3>4. Levítico 15:13-15 — Proceso de purificación</h3>
+        <p>Después del flujo: Conteo de días, Lavado, Sacrificio.</p>
+        <p>Elementos clave: Tiempo, Agua, Ofrenda.</p>
+
+        <h3>5. Patrón estructural</h3>
+        <ul>
+          <li>Identificación</li>
+          <li>Propagación</li>
+          <li>Separación</li>
+          <li>Purificación</li>
+        </ul>
+
+        <h3>6. Lectura espiritual</h3>
+        <p>
+          El flujo representa: Desborde interno, Falta de contención espiritual.
+        </p>
+        <p>
+          Y el proceso enseña: La restauración requiere tiempo, limpieza y
+          expiación.
+        </p>
+      </div>
+
+      <h1>Punto 7: Tema Más Relevante de la Aliyáh</h1>
+
+      <div class="content-container">
+        <h2>
+          Tema central: La gestión de la impureza invisible y su impacto en la
+          comunidad
+        </h2>
+        <h3>Subtemas</h3>
+        <ul>
+          <li>
+            <strong>1. La impureza interna afecta lo externo:</strong> No todo
+            lo contaminante es visible.
+          </li>
+          <li>
+            <strong>2. La impureza se transmite:</strong> Las acciones
+            personales afectan a otros.
+          </li>
+          <li>
+            <strong>3. La restauración es posible:</strong> Pero requiere
+            proceso.
+          </li>
+          <li>
+            <strong>4. Discernimiento espiritual:</strong> Saber diferenciar
+            estados es esencial.
+          </li>
+        </ul>
+        <p><strong>Conexión con los Moedim</strong></p>
+        <ul>
+          <li>Yom Kippur: purificación total</li>
+          <li>Pésaj: eliminación de corrupción</li>
+          <li>Shavuot: preparación para recibir la Toráh en pureza</li>
+        </ul>
+      </div>
+
+      <h1>Punto 8: Descubriendo al Mashíaj en la Aliyáh</h1>
+
+      <div class="content-container">
+        <h3>1. El zav como tipología del estado humano</h3>
+        <p>
+          El flujo continuo representa: La condición caída del ser humano: una
+          emisión constante de impureza interior.
+        </p>
+
+        <h3>2. Yeshúa y la mujer con flujo</h3>
+        <p>Cuando la mujer toca a Yeshúa:</p>
+        <ul>
+          <li>No lo contamina</li>
+          <li>Él la sana</li>
+        </ul>
+        <p>
+          Esto revela: Yeshúa no solo evita la impureza… la absorbe y la
+          transforma.
+        </p>
+
+        <h3>3. Agua y purificación</h3>
+        <p>
+          El lavamiento apunta a: Renovación, Limpieza espiritual. Cumplido en
+          Mashíaj: Purificación interna por el Ruaj.
+        </p>
+
+        <h3>4. Sacrificio expiatorio</h3>
+        <p>El zav debía presentar ofrenda.</p>
+        <p>
+          Esto apunta a: Necesidad de expiación. Cumplido en Yeshúa: Él mismo es
+          la ofrenda perfecta.
+        </p>
+
+        <h3>5. Mashíaj como fuente pura</h3>
+        <p>Mientras el zav contamina lo que toca, Yeshúa:</p>
+        <ul>
+          <li>Purifica lo que toca</li>
+          <li>Restaura lo que está roto</li>
+        </ul>
+
+        <h3>6. Revelación de MarYah en Mashíaj</h3>
+        <p>
+          El testimonio arameo declara: Yeshúa es MarYah, el Elohím viviente
+          manifestado.
+        </p>
+        <p>
+          Por tanto: El legislador de la pureza es también el redentor de la
+          impureza.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <h3>Reflexión final</h3>
+        <p>
+          Si uno lo piensa con calma… Todos, en algún nivel, somos como el zav:
+        </p>
+        <ul>
+          <li>Hay cosas que fluyen de nosotros que no deberían</li>
+          <li>Hay desórdenes internos que afectan a otros</li>
+        </ul>
+        <p>Pero la esperanza es esta:</p>
+        <p>
+          Yeshúa haMashíaj no se aleja de la impureza… la confronta, la toca y
+          la transforma.
+        </p>
+      </div>
+      <h1>
+        Punto 9: Midrashim, Targumim y Textos Fuentes de Vayikrá 14:54–15:15
+      </h1>
+
+      <div class="content-container">
+        <p>
+          Al entrar en esta sección, los sabios de Israel percibieron que ya no
+          se trataba solo de tzaráat externa, sino de algo más sutil: la
+          dinámica de lo interno que se desborda hacia lo externo. Y, bueno…
+          esto generó una riqueza interpretativa bastante profunda.
+        </p>
+
+        <h3>1. Midrashim Clásicos</h3>
+        <strong>Sifra (Torat Kohanim) sobre Levítico 15</strong>
+        <p>El Sifra enfatiza que el zav:</p>
+        <ul>
+          <li>No necesariamente ha cometido un pecado específico</li>
+          <li>Pero su condición revela un estado de desorden corporal</li>
+        </ul>
+        <p>
+          Los sabios concluyen: “La Toráh habla al hombre en su condición
+          natural, pero lo eleva hacia la santidad.”
+        </p>
+        <p>Es decir:</p>
+        <ul>
+          <li>La impureza no es condenación</li>
+          <li>Es una condición que requiere tratamiento espiritual</li>
+        </ul>
+
+        <strong>Vayikrá Rabbah 15:2</strong>
+        <p>Este Midrash establece una conexión simbólica:</p>
+        <ul>
+          <li>
+            El flujo (zov) se compara con: Palabras impuras, Pensamientos
+            desordenados
+          </li>
+        </ul>
+        <p>
+          Aquí aparece una idea muy fuerte: Así como el cuerpo emite flujo, el
+          corazón emite palabras. Esto conecta directamente con la enseñanza
+          posterior de Yeshúa haMashíaj: “De la abundancia del corazón habla la
+          boca”
+        </p>
+
+        <strong>Midrash Tanjuma (Metzora 9–11)</strong>
+        <p>Aunque centrado en tzaráat, amplía hacia flujos:</p>
+        <ul>
+          <li>Lo oculto en el hombre termina manifestándose</li>
+          <li>La impureza es progresiva</li>
+        </ul>
+
+        <h3>2. Targumim (Traducciones Arameas)</h3>
+        <strong>Targum Onkelos</strong>
+        <p>Mantiene fidelidad textual:</p>
+        <ul>
+          <li>Traduce zav como flujo corporal literal</li>
+          <li>Conserva la estructura legal</li>
+        </ul>
+        <p>
+          Pero al mantener el lenguaje sin suavizarlo, subraya: La Toráh no
+          oculta la realidad humana.
+        </p>
+
+        <strong>Targum Yonatan</strong>
+        <p>Introduce matices interpretativos:</p>
+        <ul>
+          <li>
+            Sugiere que el flujo puede estar ligado a: Excesos, Desequilibrios
+            morales o físicos
+          </li>
+        </ul>
+        <p>
+          Esto abre una lectura más amplia: El cuerpo refleja el estado del
+          alma.
+        </p>
+
+        <h3>3. Literatura del Segundo Templo</h3>
+        <strong>Qumrán (Regla de la Comunidad – 1QS)</strong>
+        <ul>
+          <li>
+            La pureza corporal era esencial para pertenecer a la comunidad
+          </li>
+          <li>Los flujos corporales implicaban exclusión temporal</li>
+        </ul>
+        <p>
+          Para ellos: La impureza corporal impedía la comunión con la luz
+          divina.
+        </p>
+
+        <h3>4. Textos Apócrifos</h3>
+        <strong>Libro de Jubileos</strong>
+        <p>
+          Refuerza la idea de: Orden en el cuerpo como reflejo del orden divino
+        </p>
+        <strong>1 Enoc</strong>
+        <p>
+          Aunque no trata directamente flujos, desarrolla el concepto de:
+          Corrupción interna → manifestación externa
+        </p>
+
+        <h3>5. Lectura Mesiánica de los Primeros Siglos</h3>
+        <p>Los primeros discípulos vieron en estas leyes:</p>
+        <ul>
+          <li>Tipologías del estado humano caído</li>
+          <li>Necesidad de una purificación superior</li>
+        </ul>
+        <p>
+          Y reconocieron que: Solo el Ruaj Hakodesh permite reconocer a Yeshúa
+          como MarYah. Esto implica que: La verdadera pureza no es solo ritual,
+          es revelación y transformación interna en Mashíaj.
+        </p>
+      </div>
+
+      <h1>Punto 10: Mandamientos (Mitzvot) y Principios en la Aliyáh</h1>
+
+      <div class="content-container">
+        <strong>1. Discernir entre puro e impuro</strong>
+        <p>
+          Principio central del cierre (14:57). Aplicación: Desarrollar
+          discernimiento espiritual en todas las áreas de la vida.
+        </p>
+
+        <strong>2. Reconocer estados de impureza</strong>
+        <p>
+          No negar la condición. Aplicación en Mashíaj: Confesar la condición
+          interna delante de Yeshúa.
+        </p>
+
+        <strong>3. Evitar la contaminación por contacto</strong>
+        <p>
+          Todo lo que el zav toca se vuelve impuro. Principio: Nuestras acciones
+          afectan a otros.
+        </p>
+
+        <strong>4. Responsabilidad comunitaria</strong>
+        <p>
+          La impureza no es solo personal. Aplicación: Cuidar el impacto
+          espiritual en la Kehiláh.
+        </p>
+
+        <strong>5. Lavamiento y purificación</strong>
+        <p>
+          Agua como medio de restauración. Aplicación: Renovación continua por
+          el Ruaj Hakodesh.
+        </p>
+
+        <strong>6. Tiempo de espera</strong>
+        <p>
+          Proceso antes de restauración. Principio: La sanidad no es
+          instantánea, es progresiva.
+        </p>
+
+        <strong>7. Ofrenda expiatoria</strong>
+        <p>
+          Necesidad de reconciliación. Cumplimiento en Mashíaj: Yeshúa haMashíaj
+          como ofrenda perfecta.
+        </p>
+      </div>
+
+      <h1>Punto 11: Preguntas de Reflexión con Respuestas en el Mashíaj</h1>
+
+      <div class="content-container">
+        <strong
+          >1. ¿Qué representa el flujo continuo en la vida espiritual?</strong
+        >
+        <p>
+          Respuesta en Mashíaj: Representa patrones de pecado o debilidad que
+          fluyen constantemente. En Yeshúa: Él no solo cubre, Él transforma la
+          fuente interna.
+        </p>
+
+        <strong>2. ¿Por qué la impureza se transmite por contacto?</strong>
+        <p>
+          Respuesta: Porque la vida humana es relacional. En Mashíaj: Así como
+          la impureza se transmite, también la santidad se transmite desde Él.
+        </p>
+
+        <strong>3. ¿Qué significa el lavamiento con agua?</strong>
+        <p>
+          Respuesta: Renovación y limpieza. En Mashíaj: El agua simboliza la
+          obra del Ruaj Hakodesh, limpieza interior continua.
+        </p>
+
+        <strong>4. ¿Por qué es necesario un proceso de tiempo?</strong>
+        <p>
+          Respuesta: Porque la restauración es gradual. En Mashíaj: Él obra en
+          procesos, forma carácter, no solo eventos momentáneos.
+        </p>
+
+        <strong>5. ¿Qué revela esta aliyáh sobre la condición humana?</strong>
+        <p>
+          Respuesta: Que el problema es interno, no solo externo. En Mashíaj: Él
+          trata la raíz, no solo los síntomas.
+        </p>
+      </div>
+
+      <h1>Punto 12: Resumen de la Aliyáh (Levítico 14:54–15:15)</h1>
+
+      <div class="content-container">
+        <ul>
+          <li>
+            <strong>1. Conclusión de las leyes de tzaráat:</strong> Sistema de
+            discernimiento, Enseñanza de pureza.
+          </li>
+          <li>
+            <strong>2. Introducción al zav (flujo corporal:</strong> Condición
+            interna, Estado persistente.
+          </li>
+          <li>
+            <strong>3. Propagación de la impureza:</strong> Contacto con objetos
+            y personas.
+          </li>
+          <li>
+            <strong>4. Proceso de purificación:</strong> Tiempo, Lavamiento,
+            Ofrenda.
+          </li>
+        </ul>
+
+        <h3>Síntesis Mesiánica</h3>
+        <p>Esta aliyáh revela:</p>
+        <ul>
+          <li>La profundidad del problema humano (interno)</li>
+          <li>La necesidad de purificación completa</li>
+        </ul>
+        <p>
+          Yeshúa haMashíaj: No solo limpia lo externo, Restaura la fuente
+          interior.
+        </p>
+      </div>
+
+      <h1>Punto 13: Tefiláh de la Aliyáh</h1>
+
+      <div class="content-container">
+        <div class="prophetic-section">
+          <div class="prophetic-title">Exaltación</div>
+          <p class="prayer-text">
+            Oh Adonái יהוה, Elohím Ejad, Tú que conoces lo profundo del hombre,
+            Tú que ves lo oculto y discernes lo que nadie más puede ver…
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <div class="prophetic-title">Oración</div>
+          <p class="prayer-text">
+            Padre eterno, hoy reconozco que no todo en mí es visible, pero nada
+            está oculto delante de Ti. Si hay flujos en mi vida, áreas
+            desordenadas que brotan sin control, te pido que las reveles con Tu
+            luz. No permitas que viva en negación, sino en verdad delante de Tu
+            presencia. Lávame, purifícame, restaura lo que está desalineado en
+            mí. Así como estableciste procesos de limpieza en la Toráh, cumple
+            en mí la plenitud de esa purificación por medio de Yeshúa haMashíaj,
+            quien es MarYah manifestado, el único que puede transformar la
+            fuente de mi ser. Que mi vida no contamine, sino que refleje Tu
+            santidad. Hazme un canal limpio, un instrumento de vida, una morada
+            donde Tu presencia habite con libertad.
+          </p>
+        </div>
+
+        <p class="prayer-conclusion">En el Nombre de Yeshúa haMashíaj, Amén.</p>
+      </div>
+      <footer>
+        <p>
+          <a href="https://bibliatorahviviente.github.io/recursos/"
+            >+Recursos del Ministerio Judío Mesiánico de Biblia Toráh Viviente
+            Para Maestros, Traductores y Estudiantes:
+            https://bibliatorahviviente.github.io/recursos/</a
+          >
+        </p>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./aliya6.html">Continuar con la Aliyá 6</a>
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
