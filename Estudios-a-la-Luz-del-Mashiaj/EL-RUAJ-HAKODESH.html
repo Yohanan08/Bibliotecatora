@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      EL RUAJ HAKODESH RECUERDA TODAS LAS COSAS AL PUEBLO DE ISRAEL.
+    </title>
+
+    <!-- Google Translate API -->
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+
+      .verse-container {
+        margin-bottom: 30px;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .verse-number {
+        font-weight: bold;
+        color: #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      .hebrew {
+        font-family: "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.1em;
+        margin: 10px 0;
+      }
+
+      .transliteration {
+        font-style: italic;
+        margin: 10px 0;
+        color: #555;
+      }
+
+      .translation {
+        margin: 10px 0;
+      }
+
+      .aramaic {
+        font-family:
+          "Estrangelo Edessa", "Serto Jerusalem", "East Syriac Adiabene",
+          "Times New Roman", serif;
+        direction: rtl;
+        font-size: 1.3em;
+        margin: 15px 0;
+        line-height: 1.8;
+      }
+
+      .explanation {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .point-letter {
+        font-weight: bold;
+        font-size: 1.1em;
+        margin-right: 8px;
+        color: #000;
+      }
+
+      .content-container {
+        background-color: white;
+        padding: 25px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section-container {
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 30px;
+      }
+
+      h2,
+      h3 {
+        text-align: center;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .section-divider {
+        border-top: 1px solid #ddd;
+        margin: 40px 0;
+      }
+
+      .prophetic-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+      }
+
+      .prophetic-section {
+        margin-bottom: 20px;
+      }
+
+      .prophetic-title {
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+      }
+
+      strong {
+        color: #000;
+      }
+
+      .scripture {
+        font-style: italic;
+        margin: 10px 20px;
+        padding-left: 15px;
+        border-left: 3px solid #ddd;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .conclusion {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 30px;
+      }
+
+      ul {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 30px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .literal-translation {
+        margin: 10px 0;
+        font-style: italic;
+        color: #444;
+      }
+
+      .prayer-text {
+        font-size: 1.05em;
+        line-height: 1.8;
+        margin: 20px 0;
+      }
+
+      .prayer-conclusion {
+        font-style: italic;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #google_translate_element {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 10px 0;
+        flex-wrap: wrap;
+        font-size: clamp(12px, 2.5vw, 14px);
+      }
+
+      /* Botones */
+      .boton-descargar {
+        display: block;
+        width: clamp(150px, 70%, 180px);
+        margin: 15px auto;
+        padding: clamp(8px, 2vw, 10px);
+        background-color: #007bff;
+        color: white;
+        text-align: center;
+        border-radius: 15px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: clamp(12px, 3vw, 14px);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .boton-descargar:hover {
+        background-color: #0056b3;
+        cursor: pointer;
+      }
+
+      .aliya-button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+        text-align: center;
+        display: inline-block;
+        font-size: clamp(14px, 4vw, 16px);
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .aliya-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .aliya-button a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      footer {
+        margin-top: 25px;
+        text-align: center;
+        font-size: clamp(12px, 2vw, 14px);
+        color: #777;
+        border-top: 1px solid #ccc;
+        padding-top: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+      <button class="boton-descargar" onclick="descargarPDF()">
+        Descargar en PDF
+      </button>
+    </header>
+    <main id="contenido">
+      <h1>
+        ESTUDIO EXPOSITORIO: “EL RUAJ HAKODESH RECUERDA TODAS LAS COSAS AL
+        PUEBLO DE ISRAEL”
+      </h1>
+
+      <div class="content-container">
+        <h2>1. 📖 Fundamento profético en la Torá y los Profetas</h2>
+        <p>
+          Desde el inicio de la creación, el Elohim de Israel estableció un
+          orden perfecto en el tiempo. En Bereshit 1:14, se declara:
+        </p>
+
+        <div class="verse-container">
+          <div class="hebrew">וַיֹּאמֶראֱלֹהִיםיְהִימְאֹרֹת...לְמֹעֲדִים</div>
+          <div class="transliteration">
+            Vayomer Elohím: yehí meorot... lemoadím
+          </div>
+          <div class="translation">
+            “...y sean por señales, para los tiempos señalados, y días y años.”
+          </div>
+        </div>
+
+        <div class="explanation">
+          Aquí se revela que los moedim (tiempos señalados) no son invención
+          humana, sino citas divinas establecidas desde la creación. Son
+          encuentros determinados por יהוה con Su pueblo. No son fechas
+          opcionales, sino convocaciones eternas. El Ruaj HaKodesh, que en
+          Bereshit 1:2 se movía sobre las aguas, es el mismo que guarda la
+          memoria divina. Así como el Ruaj ordenó el caos inicial, también
+          ordena el tiempo espiritual del pueblo. Cuando Israel olvida los
+          moedim, entra en desorden espiritual; pero cuando el Ruaj sopla,
+          recuerda lo establecido desde el principio. Los profetas confirman
+          esto. En Ieshaiah (Isaías) 66:23, se declara que toda carne vendrá a
+          adorar de mes en mes y de Shabat en Shabat. Esto demuestra que los
+          tiempos de יהוה son eternos. El Ruaj HaKodesh trae esta memoria no
+          como información, sino como reactivación del pacto en el corazón de
+          Israel.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>2. 🕯️ El calendario del Eterno desde la creación</h2>
+        <div class="explanation">
+          El calendario del Eterno no comienza en el Sinaí, sino en la creación
+          misma. Bereshit establece que los luminares fueron puestos “para los
+          moedim”. Esto indica que el tiempo celestial precede al tiempo humano.
+          El libro de Enoc y los Jubileos revelan un orden de 364 días, alineado
+          con ciclos celestiales perfectos. Este calendario no depende de
+          ajustes humanos, sino de la perfección del diseño divino. El problema
+          no es el calendario del cielo, sino la desconexión del hombre con ese
+          orden. El Ruaj HaKodesh restaura este entendimiento. No se trata solo
+          de contar días, sino de discernir tiempos espirituales. Así como Yosef
+          interpretó tiempos en Egipto, el pueblo restaurado discierne
+          estaciones espirituales por el Ruaj. El tiempo deja de ser cronológico
+          y se vuelve profético.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>3. 🔥 Promesa del Ruaj HaKodesh</h2>
+        <p>
+          Yeshúa HaMashíaj declaró en el Brit Hadashah: “Pero el Ruaj HaKodesh…
+          Él os recordará todas las cosas.”
+        </p>
+        <div class="explanation">
+          La palabra “recordar” en hebreo es zakar, que no significa solo traer
+          a la mente, sino activar un pacto vigente. Cuando יהוה “recuerda”,
+          actúa. Así también el Ruaj no solo enseña, sino que activa obediencia.
+          En Yirmeyahu (Jeremías) 31:33, el Nuevo Pacto promete que la Torá será
+          escrita en el corazón. En Yejezkel (Ezequiel) 36:27, יהוה dice:
+          “Pondré Mi Ruaj dentro de vosotros y haré que andéis en Mis
+          estatutos”. Esto incluye los moedim. El Ruaj HaKodesh, por tanto, no
+          introduce una nueva religión. Él restaura la Torá interna. Lo que
+          antes estaba en tablas, ahora arde en el corazón del pueblo.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>
+          4. 🕊️ El Ruaj HaKodesh y la restauración del calendario del Eterno
+        </h2>
+        <div class="explanation">
+          A lo largo de la historia, los tiempos de יהוה fueron alterados por
+          sistemas humanos (Daniel 7:25). Sin embargo, el Ruaj HaKodesh opera
+          como restaurador del orden divino. El tiempo es espiritual. No es solo
+          medición, es alineación con el cielo. Cuando el pueblo vive fuera del
+          calendario de יהוה, vive fuera de sincronía espiritual. Pero el Ruaj
+          vuelve a alinear los corazones con los ciclos divinos. Hoy estamos
+          viendo un despertar global donde el pueblo comienza a guardar Shabat,
+          celebrar Pésaj, discernir Shavuot. Esto no es moda; es el Ruaj
+          recordando. Es el cumplimiento profético de restauración.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>5. 🩸 Las fiestas de יהוה y su cumplimiento en Yeshúa HaMashíaj</h2>
+        <ul>
+          <li>
+            <strong>Pésaj:</strong> Diseño: liberación de Egipto | Cumplimiento:
+            Yeshúa como Cordero de Pésaj | Revelación del Ruaj: redención
+            personal
+          </li>
+          <li>
+            <strong>Matzot:</strong> Diseño: pureza sin levadura | Cumplimiento:
+            vida sin pecado del Mashíaj | Ruaj: santificación
+          </li>
+          <li>
+            <strong>Bikurim:</strong> Diseño: primicias | Cumplimiento:
+            resurrección de Yeshúa | Ruaj: vida nueva
+          </li>
+          <li>
+            <strong>Shavuot:</strong> Diseño: entrega de la Torá | Cumplimiento:
+            derramamiento del Ruaj | Ruaj: escritura interna de la Torá
+          </li>
+          <li>
+            <strong>Yom Teruah:</strong> Diseño: llamado al arrepentimiento |
+            Cumplimiento: anuncio del regreso del Mashíaj | Ruaj: despertar
+            espiritual
+          </li>
+          <li>
+            <strong>Yom Kippur:</strong> Diseño: expiación | Cumplimiento:
+            intercesión de Yeshúa | Ruaj: purificación
+          </li>
+          <li>
+            <strong>Sucot:</strong> Diseño: habitar con Elohim | Cumplimiento:
+            el Reino Mesiánico | Ruaj: plenitud y gozo
+          </li>
+        </ul>
+        <p>Cada moed es revelado por el Ruaj como una dimensión de Yeshúa.</p>
+      </div>
+
+      <div class="content-container">
+        <h2>6. 👑 Restauración de la identidad como nación kadosh</h2>
+        <div class="explanation">
+          En Shemot 19:6, Israel es llamado “reino de sacerdotes y nación
+          kadosh”. Esta identidad está ligada a la Torá y sus tiempos. Cuando
+          Israel olvida los moedim, pierde identidad. Pero cuando el Ruaj los
+          restaura, Israel recuerda quién es. En el Brit Hadashah, 1 Pedro 2:9
+          reafirma esta identidad. El calendario no es solo fechas: es identidad
+          nacional espiritual. Guardar los tiempos es caminar como pueblo
+          escogido.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>7. 🔥 Aplicación espiritual en el creyente</h2>
+        <div class="explanation">
+          El Ruaj HaKodesh obra hoy:
+          <ul>
+            <li>Convicción → llama al arrepentimiento</li>
+            <li>Obediencia → guía a guardar los tiempos</li>
+            <li>Sensibilidad → discernir estaciones espirituales</li>
+          </ul>
+          El creyente deja de vivir en calendario humano y entra en el
+          calendario de יהוה. Aprende a esperar en los tiempos del Eterno. Esto
+          produce alineación, paz y dirección espiritual.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>8. ✡️ Profundización mesiánica</h2>
+        <div class="explanation">
+          El Ruaj revela que Yeshúa es la Torá viviente. No vino a abolir, sino
+          a cumplir plenamente. El Ruaj no trae novedad desligada de la Torá. Él
+          recuerda lo establecido. Toda revelación verdadera está conectada con
+          lo que יהוה ya habló. Así, el creyente no sigue tradiciones humanas,
+          sino la continuidad de la revelación en el Mashíaj.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>9. 🔍 Midrashim y sombras proféticas</h2>
+        <div class="explanation">
+          El calendario refleja ciclos de:
+          <ul>
+            <li>Redención (Pésaj)</li>
+            <li>Transformación (Shavuot)</li>
+            <li>Restauración (Sucot)</li>
+          </ul>
+          El patrón es cíclico y profético. Cada año es un ensayo del plan
+          eterno. Midráshicamente, el tiempo es un espiral, no una línea. Cada
+          ciclo profundiza la revelación del Mashíaj.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>10. ❓ Preguntas de reflexión</h2>
+        <ul>
+          <li>
+            1. ¿Por qué el Ruaj recuerda los moedim? → Porque son citas de pacto
+            establecidas por יהוה.
+          </li>
+          <li>
+            2. ¿Qué significa “recordar” en el Ruaj? → Activar la obediencia del
+            pacto.
+          </li>
+          <li>
+            3. ¿Por qué muchos no ven esto? → Porque no han sido despertados por
+            el Ruaj.
+          </li>
+          <li>4. ¿Cuál es el centro de los moedim? → Yeshúa HaMashíaj.</li>
+          <li>
+            5. ¿Qué ocurre cuando vivimos en el calendario del Eterno? →
+            Entramos en alineación con el Reino.
+          </li>
+        </ul>
+      </div>
+
+      <div class="content-container">
+        <h2>11. 🔥 Conclusión profética</h2>
+        <div class="explanation">
+          Estamos en un tiempo donde el Ruaj HaKodesh está despertando a Israel.
+          El calendario del Eterno está siendo restaurado. Los moedim están
+          siendo revelados nuevamente. El pueblo está recordando. La identidad
+          está regresando. El Mashíaj está siendo revelado en las fiestas. El
+          tiempo ya no es humano. El tiempo es profético. Y el Ruaj está
+          diciendo: “Recuerda… vuelve… alinea tu vida con Mis tiempos.”
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">✨ Impacto Profético</div>
+          <p>
+            El Ruaj HaKodesh está restaurando a Israel en todas las naciones.
+            Los moedim están siendo reactivados como señales del Reino. Yeshúa
+            HaMashíaj está siendo revelado como el centro de toda la Torá. Esta
+            restauración no es parcial: es el regreso completo del pueblo a su
+            identidad kadosh, preparando el camino para la plenitud del Reino
+            Mesiánico.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>🔥 Conexión Profética con Dani’el 12:7</h1>
+      <div class="content-container">
+        <p>
+          La revelación de Dani’el 12:7 no está aislada; es una de las claves
+          más profundas para entender cómo el Ruaj HaKodesh restaura el tiempo,
+          los moedim y la identidad de Israel.
+        </p>
+        <h3>📖 Dani’el 12:7 — Texto y enfoque</h3>
+        <p class="scripture">
+          “…por un tiempo, tiempos y medio tiempo… y cuando se termine la
+          dispersión del pueblo kadosh, conocerán todas estas cosas.”
+        </p>
+        <div class="explanation">
+          Aquí se nos revela un misterio profético: el conocimiento está ligado
+          al fin de la dispersión. Esto significa que hay cosas que Israel no
+          podía entender plenamente mientras estaba disperso, incluyendo: el
+          calendario correcto, los moedim, la identidad como nación kadosh, el
+          papel de Yeshúa HaMashíaj.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>1. 🕊️ El Ruaj HaKodesh y el tiempo profético oculto</h3>
+        <div class="explanation">
+          El período de “tiempo, tiempos y medio tiempo” no es solo cronológico,
+          sino espiritual. Representa una etapa donde el pueblo está
+          desconectado del orden divino. Durante esa dispersión, Israel: perdió
+          la sincronía con los moedim, adoptó sistemas de tiempo alterados,
+          olvidó el calendario del Eterno.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>
+          2. 🔥 “Entonces conocerán todas estas cosas” — Activación del Ruaj
+        </h3>
+        <div class="explanation">
+          La frase clave es: “conocerán todas estas cosas”. Esto conecta
+          directamente con las palabras de Yeshúa: “El Ruaj HaKodesh… os
+          recordará todas las cosas.” Vemos una sincronía perfecta: Dani’el →
+          conocimiento al final; Yeshúa → el Ruaj recuerda todo. Esto significa
+          que el conocimiento profético no viene por estudio intelectual
+          solamente, sino por revelación del Ruaj HaKodesh en el tiempo
+          correcto.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>3. 🌍 La dispersión y la pérdida del calendario</h3>
+        <div class="explanation">
+          Dani’el vincula el entendimiento con el fin de la dispersión. La
+          dispersión produjo: desconexión de la tierra, desalineación del
+          calendario, fragmentación de la identidad. Pero ahora, al comenzar la
+          restauración, el Ruaj está reconectando al pueblo con el tiempo
+          divino.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>4. 🕯️ Restauración del calendario como cumplimiento de Dani’el</h3>
+        <div class="explanation">
+          Lo que estamos viendo hoy es cumplimiento directo de Dani’el 12:7.
+          Cuando el texto dice: “cuando la dispersión… haya terminado” no habla
+          solo de geografía, sino de dispersión espiritual. El Ruaj HaKodesh
+          está reuniendo al pueblo, restaurando la Torá y corrigiendo el
+          entendimiento.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>5. ✡️ Conexión con Yeshúa HaMashíaj</h3>
+        <div class="explanation">
+          Yeshúa es el centro de esta restauración. Sin Él, los moedim son
+          sombra sin revelación. Por el Ruaj se revela que Pésaj es Yeshúa el
+          Cordero, Shavuot es Yeshúa derramando el Ruaj y Sucot es Yeshúa
+          habitando con nosotros.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>
+          6. 🔍 Dimensión profética: tiempo restaurado = identidad restaurada
+        </h3>
+        <div class="explanation">
+          Dani’el conecta: fin de la dispersión, restauración del conocimiento y
+          activación del pueblo kadosh. El tiempo restaurado no es solo
+          calendario: es identidad restaurada.
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h3>7. 🔥 Aplicación espiritual</h3>
+        <div class="explanation">
+          Hoy el Ruaj HaKodesh está despertando a muchos a guardar Shabat,
+          entender Pésaj y discernir los tiempos. Es el momento profético donde
+          el conocimiento está siendo liberado.
+        </div>
+      </div>
+
+      <div class="prophetic-content">
+        <div class="prophetic-section">
+          <div class="prophetic-title">✨ Conclusión Profética</div>
+          <p>
+            Dani’el 12:7 es una profecía de memoria restaurada. El Ruaj HaKodesh
+            está terminando la dispersión espiritual, restaurando el calendario
+            y revelando a Yeshúa en los moedim.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-container">
+        <h2>🎶 Mizmor: “El Ruaj que recuerda los tiempos eternos”</h2>
+        <div class="prayer-text">
+          Oh יְהוָה, Elohim de Israel,<br />
+          Tú que estableciste los cielos y la tierra,<br />
+          Tú que marcaste los tiempos desde Bereshit,<br />
+          haz que Tu Ruaj despierte nuestra memoria.<br /><br />
+          Porque olvidamos Tus moedim,<br />
+          caminamos en tiempos ajenos,<br />
+          seguimos calendarios sin vida,<br />
+          pero Tu Ruaj nos llama a recordar.<br /><br />
+          El Ruaj HaKodesh sopla sobre las aguas otra vez,<br />
+          como en el principio,<br />
+          ordenando el caos de nuestras vidas,<br />
+          alineando nuestro corazón con Tu tiempo eterno.<br /><br />
+          Nos recuerda Pésaj en la sangre del Cordero,<br />
+          nos revela Matzot en la pureza del Mashíaj,<br />
+          nos levanta en Bikurim con la vida de Yeshúa,<br />
+          y en Shavuot escribe Tu Torá dentro de nosotros.<br /><br />
+          Oh Ruaj de verdad,<br />
+          enciende en nosotros el sonido de Yom Teruah,<br />
+          quebranta nuestro corazón en Yom Kippur,<br />
+          y haznos habitar contigo en Sucot.<br /><br />
+          Porque fuimos dispersados entre las naciones,<br />
+          y olvidamos quiénes éramos,<br />
+          pero Tú juraste por Tu Nombre eterno<br />
+          que volveríamos a conocer todas las cosas.<br /><br />
+          Y ahora, en estos tiempos,<br />
+          Tu Ruaj está despertando a Tu pueblo,<br />
+          rompiendo el velo del olvido,<br />
+          restaurando los ciclos de Tu Reino.<br /><br />
+          Haznos sensibles a Tus estaciones,<br />
+          obedientes a Tu voz,<br />
+          firmes en Tu pacto,<br />
+          y encendidos en el conocimiento de Yeshúa HaMashíaj.<br /><br />
+          Que no vivamos más en tiempo humano,<br />
+          sino en Tu tiempo perfecto,<br />
+          que no caminemos en confusión,<br />
+          sino en la luz de Tus moedim.<br /><br />
+          Porque Tu Ruaj recuerda…<br />
+          y al recordar, restaura.<br />
+          Y al restaurar, levanta a Israel.
+        </div>
+        <div class="prayer-conclusion">Selah.</div>
+      </div>
+
+      <div class="explanation">
+        Este mizmor proclama la obra del Ruaj HaKodesh en esta generación:
+        despertar la memoria del pueblo de Israel, restaurar los moedim, alinear
+        el calendario del Eterno y revelar a Yeshúa HaMashíaj como el centro de
+        todos los tiempos.
+      </div>
+      <footer>
+        <a href="https://ia-interactiva.vercel.app/" target="_blank">
+          Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+          crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj
+        </a>
+        <br /><br />
+
+        <a
+          href="https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica"
+          target="_blank"
+        >
+          📖 Yeshúa la Toraviviente | Torá Mesiánica
+        </a>
+        <br /><br />
+
+        <a
+          href="https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua"
+          target="_blank"
+        >
+          📖 Salmos Mesiánicos
+        </a>
+        <br /><br />
+
+        <a href="https://gemini.google.com/gem/310786cce7ad" target="_blank">
+          Yeshúa la toraviviente de estudio
+        </a>
+        <br /><br />
+
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          target="_blank"
+        >
+          Siguenos en Instagram oficial
+        </a>
+      </footer>
+    </main>
+
+    <button class="aliya-button">
+      <a href="./EstudiosalaluzdelmashiajYeshua.html"
+        >Ir al siguiente estudio</a
+      >
+    </button>
+
+    <script src="../index.js"></script>
+  </body>
+</html>
