@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shabat Ha Gadol</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>SHABAT HAGADOL: SU HISTORIA, CONEXIÓN CON EL SEGUNDO TEMPLO Y CUMPLIMIENTO PROFÉTICO EN EL MASHÍAJ #2</h1>
+
+<div class="content-container">
+<h2>Introducción</h2>
+<p>Shabat HaGadol, el “Gran Shabat”, es el Shabat que precede inmediatamente a la festividad de Pésaj dentro del calendario bíblico establecido en la Torá (Shemot 12:1-2). Este día adquiere un carácter singular dentro de la tradición de Israel porque marca el inicio de la redención nacional del kahal de Israel, cuando יהוה preparó a su pueblo para salir de Mitsrayim. No es simplemente un Shabat más, sino un punto de transición entre esclavitud y libertad, entre juicio y redención.</p>
+<p>El término “HaGadol” (el grande) ha sido entendido históricamente de múltiples formas dentro de Israel. Algunos lo vinculan con los grandes milagros que ocurrieron en ese día, cuando Israel tomó públicamente el cordero de Pésaj sin temor a Mitsrayim. Otros lo relacionan con la grandeza de la revelación que anticipa: la redención definitiva que sería manifestada plenamente en Yeshúa HaMashíaj. Así, este Shabat se convierte en una sombra profética de algo mucho mayor que el evento histórico inicial.</p>
+<p>Dentro del calendario bíblico, Shabat HaGadol se sitúa en el contexto de preparación espiritual. No es solo una fecha, sino un llamado a la introspección, a la purificación y a la alineación con la voluntad de יהוה. En el marco mesiánico, este Shabat anuncia la revelación del Cordero perfecto, Yeshúa, quien sería presentado, examinado y finalmente ofrecido como sacrificio redentor, cumpliendo lo que Pésaj anticipaba desde el principio.</p>
+</div>
+
+<div class="content-container">
+<h2>Fundamento en la Torá</h2>
+<p>El fundamento principal de Shabat HaGadol se encuentra en el relato del primer Pésaj en Mitsrayim, particularmente en Shemot 12:1-14. Allí יהוה establece el inicio del calendario redentor para Israel, declarando: “Este mes será para vosotros el principio de los meses” (Shemot 12:2). Este cambio no es meramente cronológico, sino espiritual: Israel comienza a contar su tiempo desde la redención.</p>
+<p>En el día 10 del mes primero, cada familia debía tomar un cordero sin defecto, apartarlo y guardarlo hasta el día 14 (Shemot 12:3-6). Este acto era profundamente significativo, ya que implicaba una identificación pública con el propósito de יהוה. El cordero no era seleccionado en secreto, sino delante de todos, incluso de los egipcios, cuyos dioses incluían animales similares. Esto representaba una confrontación directa contra los poderes espirituales de Mitsrayim.</p>
+</div>
+
+<div class="verse-container">
+<div class="verse-number">Shemot 12:5-7</div>
+<div class="hebrew">שֶׂה תָמִים זָכָר בֶּן-שָׁנָה יִהְיֶה לָכֶם… וְשָׁחֲטוּ אֹתוֹ… וְלָקְחוּ מִן-הַדָּם וְנָתְנוּ עַל-הַמְּזוּזֹת</div>
+<div class="transliteration">Seh tamim zakhar ben-shanah yihyeh lachem… veshajatu oto… velakju min-hadam venatnu al-hamezuzot</div>
+<div class="translation">“…un cordero sin defecto, macho de un año será para vosotros… y lo sacrificarán… y tomarán de la sangre y la pondrán sobre los postes…”</div>
+</div>
+
+<div class="explanation">
+<p>Este acto revela que la redención no vendría sin sangre. La sangre del cordero era la señal visible que apartaba a Israel del juicio. Este principio es fundamental: la vida es preservada mediante sustitución. Proféticamente, esto apunta directamente a Yeshúa HaMashíaj, cuya sangre establece la redención eterna.</p>
+</div>
+
+<div class="content-container">
+<h2>Origen Histórico de Shabat HaGadol</h2>
+<p>El origen de Shabat HaGadol como designación específica no aparece explícitamente en la Torá, sino que se desarrolla dentro de la tradición de Israel. Durante el período posterior al exilio, y especialmente en la época del Segundo Templo, se consolidó la práctica de identificar el Shabat previo a Pésaj como un día de enseñanza especial y preparación espiritual.</p>
+<p>Las tradiciones rabínicas señalan que en el día 10 de Nisán —cuando Israel tomó el cordero— ocurrió un milagro notable: los egipcios no pudieron impedirlo. Este evento fue visto como una manifestación del poder de יהוה sobre los dioses de Mitsrayim. Por ello, el Shabat cercano a esa fecha fue llamado “HaGadol”, en referencia a la grandeza del milagro y de la intervención divina.</p>
+<p>Además, este Shabat se convirtió en un tiempo de instrucción pública. Los maestros enseñaban las leyes de Pésaj, explicaban el significado del sacrificio y preparaban al pueblo para la festividad. Así, Shabat HaGadol adquirió un carácter pedagógico y profético, donde la memoria histórica se entrelasaba con la esperanza futura.</p>
+<p>Desde una perspectiva mesiánica, este desarrollo no es accidental. La tradición misma preservó un patrón que más adelante sería plenamente revelado en Yeshúa. Lo que comenzó como memoria se transformó en profecía viva, anticipando la manifestación del Cordero definitivo.</p>
+</div>
+
+<div class="content-container">
+<h2>Conexión con el Segundo Templo</h2>
+<p>En tiempos del Segundo Templo, Shabat HaGadol tenía una intensidad espiritual notable. Yerushalayim comenzaba a llenarse de peregrinos que venían a celebrar Pésaj, conforme al mandamiento de Devarim 16:16. El ambiente era de expectativa, preparación y purificación.</p>
+<p>Durante este Shabat, los líderes espirituales enseñaban en las sinagogas y en los patios del Templo acerca de las leyes del cordero de Pésaj, la eliminación del jametz y la santidad del tiempo. Era un momento en el que el pueblo se alineaba con el propósito de יהוה, recordando la redención pasada y anticipando la futura.</p>
+<p>El proceso de selección del cordero también era central. Los corderos eran examinados cuidadosamente para asegurarse de que no tuvieran defecto. Este proceso de inspección es clave para entender el cumplimiento mesiánico, ya que establece un patrón de perfección y pureza que debía ser cumplido por el sacrificio.</p>
+<p>En este contexto, Yeshúa entra en Yerushalayim precisamente en este tiempo, siendo presentado públicamente, enseñando en el Templo y siendo examinado por las autoridades religiosas. Este paralelo no es casual, sino profundamente profético.</p>
+</div>
+
+<div class="prophetic-content">
+<div class="prophetic-section">
+<div class="prophetic-title">Dimensión Profética</div>
+<p>Shemot 12:12 declara que יהוה ejecutaría juicio contra todos los dioses de Mitsrayim. Esto revela que Pésaj no es solo liberación física, sino confrontación espiritual. La redención implica derrota de los poderes que oprimen a Israel.</p>
+<p>El cordero representa sustitución, la sangre representa protección, y la noche de Pésaj representa transición. Todo esto apunta a una realidad mayor: la redención final del pecado y de la muerte. El juicio que cayó sobre Mitsrayim fue evitado en las casas marcadas con sangre, estableciendo un principio eterno.</p>
+<p>Proféticamente, el cordero es una figura del Mashíaj. La sangre en los postes forma una imagen que muchos sabios han visto como anticipación del madero. La redención no es solo histórica, sino escatológica, apuntando hacia la restauración completa de Israel.</p>
+<p>Así, Shabat HaGadol se convierte en una antesala profética: el momento en que el Cordero es presentado antes del juicio. Es el anuncio de que la redención está cerca.</p>
+</div>
+</div>
+
+<div class="content-container">
+<h2>Cumplimiento en Yeshúa HaMashíaj</h2>
+<p>Yeshúa entra en Yerushalayim en lo que corresponde al período de Shabat HaGadol (Mateo 21:1-11). Su entrada no es casual, sino una presentación pública como el Rey y como el Cordero. El pueblo clama “Hosanna”, reconociendo, aunque parcialmente, su identidad mesiánica.</p>
+<p>Yojanán declara: “He aquí el Cordero de Elohim que quita el pecado del mundo” (Juan 1:29). Esta declaración conecta directamente con Shemot 12. Yeshúa no es simplemente un maestro, sino el cumplimiento del cordero de Pésaj.</p>
+<p>Durante los días siguientes, Yeshúa es examinado por fariseos, saduceos y líderes religiosos (Mateo 22). No encuentran falta en Él, cumpliendo el requisito del cordero sin defecto. Finalmente, es entregado para ser ejecutado en el tiempo de Pésaj.</p>
+<p>Shaul afirma: “Porque nuestra Pésaj, que es HaMashíaj, ya fue sacrificada por nosotros” (1 Corintios 5:7). Aquí se revela claramente el cumplimiento: Yeshúa es el Cordero definitivo cuya sangre trae redención eterna.</p>
+</div>
+
+<div class="content-container">
+<h2>Aplicación Espiritual para Hoy</h2>
+<p>Shabat HaGadol llama al creyente a prepararse espiritualmente. Así como Israel debía apartar el cordero, el creyente debe apartar su vida para יהוה. Esto implica examen interno, arrepentimiento y renovación de la emuná.</p>
+<p>La eliminación del jametz simboliza la eliminación del pecado. Shaul conecta esto con la vida del creyente, llamando a vivir en pureza (1 Corintios 5:8). La preparación no es externa, sino interna, en el corazón.</p>
+<p>Identificarse con el Cordero implica confiar en la obra de Yeshúa. Su sangre es la cobertura que libra del juicio. Esta verdad sigue vigente para el kahal de Israel en la Era Mesiánica.</p>
+</div>
+
+<div class="content-container">
+<h2>Enseñanza Mesiánica Profunda</h2>
+<p>La tipología del cordero revela múltiples dimensiones. El cordero debía ser sin defecto, observado, sacrificado y comido. Yeshúa cumple cada uno de estos elementos de manera perfecta.</p>
+<p>Midráshicamente, el acto de tomar el cordero en Mitsrayim puede verse como un acto de fe pública. De igual manera, reconocer a Yeshúa es un acto visible de fidelidad al Elohim de Israel.</p>
+<p>Los profetas, como Yeshayahu 53, describen al siervo como cordero llevado al matadero. Esta imagen converge con Pésaj, mostrando que la redención siempre estuvo centrada en el Mashíaj.</p>
+</div>
+
+<div class="content-container">
+<h2>Conclusión</h2>
+<p>Shabat HaGadol es más que una tradición; es un portal profético que conecta la redención de Mitsrayim con la redención en Yeshúa HaMashíaj. Es el momento en que el Cordero es presentado antes del sacrificio.</p>
+<p>Este Shabat revela que la historia de Israel es una historia de redención progresiva que culmina en el Mashíaj. Cada detalle de Pésaj encuentra su cumplimiento en Él.</p>
+<p>Así, el creyente es llamado a vivir en la realidad de esa redención, recordando que el Cordero ya ha sido ofrecido y que la liberación ha sido establecida.</p>
+</div>
+
+<div class="prophetic-content">
+<div class="prophetic-section">
+<div class="prophetic-title">Impacto Profético</div>
+<p>Shabat HaGadol anuncia la restauración final de Israel y la manifestación plena del Reino de יהוה a través de Yeshúa HaMashíaj. Así como Israel fue liberado de Mitsrayim, el kahal de Israel será plenamente redimido en la Era Mesiánica, cuando el Mashíaj reúna a su pueblo y establezca justicia sobre la tierra. Este Shabat sigue proclamando que la redención ya ha comenzado y será consumada en Yeshúa.</p>
+</div>
+</div>
+
+<footer>
+<p>Yeshúa la Toraviviente | todos los recursos kedoshim para tu crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj:https://ia-interactiva.vercel.app/</p>
+<p>📖 Yeshúa la Toraviviente | Torá Mesiánica:https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica</p>
+<p>📖 Salmos Mesiánicos:https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua</p>
+<p>Yeshúa la toraviviente de estudio:https://gemini.google.com/gem/310786cce7ad</p>
+<p>Siguenos en Instagram oficial:https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3</p>
+</footer>
+        </main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
