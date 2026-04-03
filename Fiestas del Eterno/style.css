@@ -1,158 +1,280 @@
 :root {
-    --gold: #d4af37;
-    --dark-blue: #002366;
-    --white: #ffffff;
-    --text-color: #2c3e50;
-    --bg-light: #fdfcf9; /* Un tono crema suave como papel antiguo */
+  --gold: #d4af37;
+  --dark-blue: #002366;
+  --white: #ffffff;
+  --text-color: #2c3e50;
+  --bg-light: #fdfcf9;
+}
+
+/* Global para evitar desbordamiento horizontal */
+* {
+  box-sizing: border-box;
+  max-width: 100%; /* Evita que cualquier elemento sea más ancho que la pantalla */
+  overflow-wrap: break-word; /* Fuerza a los links largos a romperse */
+  word-wrap: break-word;
 }
 
 body {
-    background-color: var(--bg-light);
-    font-family: 'Lora', serif;
-    margin: 0;
-    color: var(--text-color);
+  background-color: var(--bg-light);
+  font-family: "Lora", serif;
+  margin: 0;
+  color: var(--text-color);
+  overflow-x: hidden; /* Prohibido el scroll horizontal */
+  width: 100%;
+}
+
+/* Botón volver elegante */
+.btn-back {
+  display: inline-block;
+  margin: 15px; /* Margen más pequeño para móvil */
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  max-width: calc(
+    100% - 30px
+  ); /* No deja que el botón sea más ancho que la pantalla */
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none; /* quita subrayado */
+  border: none; /* quita bordes si hay */
+  background-color: rgb(17, 177, 240);
+}
+
+.btn-back:hover {
+  background-color: var(--dark-blue);
+  color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .main-header {
-    text-align: center;
-    background-color: var(--dark-blue);
-    color: var(--gold);
-    padding: 40px 20px;
-    border-bottom: 5px solid var(--gold);
+  text-align: center;
+  background-color: var(--dark-blue);
+  color: var(--gold);
+  padding: 40px 20px;
+  border-bottom: 5px solid var(--gold);
 }
 
 .main-title {
-    font-family: 'Cinzel', serif;
-    margin: 0;
-    font-size: 2.5rem;
+  font-family: "Cinzel", serif;
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.5rem); /* Título fluido según pantalla */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 /* Tarjetas de Fiestas */
 .fest-card {
-    background: var(--white);
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    padding: 30px;
-    text-align: center;
-    border: 1px solid #eee;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  text-align: center;
+  border: 1px solid #eee;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+  word-wrap: break-word; /* Evita que links largos rompan la tarjeta */
 }
 
 .fest-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--gold);
+  transform: translateY(-10px);
+  border-color: var(--gold);
 }
 
 .fest-card i {
-    font-size: 3rem;
-    color: var(--gold);
-    margin-bottom: 15px;
+  font-size: 3rem;
+  color: var(--gold);
+  margin-bottom: 15px;
 }
 
 .fest-card h2 {
-    font-family: 'Cinzel', serif;
-    color: var(--dark-blue);
-    margin-bottom: 15px;
+  font-family: "Cinzel", serif;
+  color: var(--dark-blue);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
 }
 
 /* Vista del Estudio */
 .study-view {
-    grid-column: 1 / -1;
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-#pdf-content {
-    margin-top: 20px;
+  grid-column: 1 / -1;
+  background: white;
+  padding: clamp(15px, 4vw, 40px); /* Padding adaptable */
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
 .study-title {
-    color: var(--dark-blue);
-    border-bottom: 2px solid var(--gold);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
+  color: var(--dark-blue);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  font-size: clamp(1.4rem, 4vw, 2rem);
 }
 
 .study-text {
-    line-height: 1.8;
-    font-size: 1.15rem;
-    text-align: justify;
-    white-space: pre-line; /* Mantiene los saltos de línea del JSON */
+  line-height: 1.8;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  text-align: justify;
+  white-space: pre-line;
+  word-break: break-word; /* Seguridad para links largos */
 }
 
-/* Botones */
-.btn-read, .btn-pdf, .btn-back {
-    cursor: pointer;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: 0.3s;
+/* Botones genéricos */
+.btn-read,
+.btn-pdf {
+  cursor: pointer;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
 }
 
-.btn-read { background: var(--dark-blue); color: white; width: 100%; }
-.btn-read:hover { background: #001a4d; }
+.btn-read {
+  background: var(--dark-blue);
+  color: white;
+  width: 100%;
+}
 
-.btn-pdf { background: #8b0000; color: white; margin-top: 20px; }
-.btn-back { background: #eee; color: #333; margin-bottom: 20px; }
+.btn-pdf {
+  background: #8b0000;
+  color: white;
+  margin-top: 20px;
+}
 
 .main-footer {
-    text-align: center;
-    padding: 40px;
-    color: #777;
-    font-size: 0.9rem;
-}
-.card-estudio-original {
-    background: #ffffff;
-    border: 1px solid #e0e0e0; /* Borde sutil */
-    border-radius: 12px;
-    padding: 2.5rem 1.5rem;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+  padding: 40px 20px;
+  color: #777;
+  font-size: 0.9rem;
+  word-wrap: break-word; /* Los links del footer no se salen */
 }
 
-/* El borde dorado cuando está activa (como Pesaj en tu foto) */
-.card-estudio-original:hover {
-    border: 2px solid #D4AF37;
+.main-footer p,
+.main-footer small,
+.footer-links {
+  text-align: center;
+  display: block;
+}
+/* ===== ESTUDIOS (NUEVO FORMATO HTML) ===== */
+.estudio {
+  background: var(--white);
+  padding: 30px 20px; /* Reducido para que en móvil respire mejor */
+  border-radius: 15px;
+  margin: 20px auto;
+  border-left: 8px solid var(--gold);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  max-width: 95%; /* Asegura que no toque los bordes físicos del celular */
+  width: 1000px;
+  overflow: hidden; /* Corta cualquier cosa que intente salir */
+}
+
+.estudio h1 {
+  color: var(--dark-blue);
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+
+.estudio p,
+.study-text,
+.main-footer {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: left; /* En móvil es mejor left que justify para evitar huecos raros */
+  margin-bottom: 15px;
+  word-break: break-word; /* Rompe links de Instagram/Google si son muy largos */
+  hyphens: auto; /* Agrega guiones si es necesario */
+}
+
+/* Botones Flexibles */
+.botones {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column; /* En móvil uno arriba del otro */
+  gap: 10px;
+  border-top: 1px dashed #ddd;
+  padding-top: 25px;
+}
+
+.botones button {
+  flex: 1 1 auto; /* Crecen para llenar el espacio */
+  min-width: 150px;
+  padding: 12px 20px;
+  justify-content: center;
+}
+
+/* ===== TARJETAS ORIGINALES REFORZADAS ===== */
+.card-estudio-original {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  border-top: 5px solid var(--gold);
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  height: 100%; /* Para que todas midan lo mismo en el grid */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-title-blue {
-    color: #002855; /* Azul marino */
-    font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
-    margin: 1rem 0;
-}
-
-.card-text-center {
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
+  color: var(--dark-blue);
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  margin-bottom: 15px;
 }
 
 .btn-navy-blue {
-    background-color: #002855;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
+  background-color: var(--dark-blue);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: auto;
 }
 
-.scroll-icon {
-    width: 60px;
-    margin-bottom: 10px;
+/* Media Query para ajustes finos en móviles pequeños */
+@media (max-width: 480px) {
+  .main-header {
+    padding: 30px 10px;
+  }
+  .btn-back {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+  }
+  .estudio {
+    border-left-width: 4px;
+  }
+}
+
+@media (min-width: 768px) {
+  .botones {
+    flex-direction: row; /* En PC vuelven a estar uno al lado del otro */
+  }
+  .estudio {
+    padding: 50px;
+    margin: 40px auto;
+  }
+  .estudio p {
+    text-align: justify;
+  }
 }

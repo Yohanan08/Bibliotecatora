@@ -32,20 +32,7 @@ function mostrarMenuPrincipal() {
 
 // --- FUNCIÓN 2: PANTALLA DE LECTURA (UNA SOLA COLUMNA ANCHA) ---
 function verEstudiosDeFiesta(nombreFiesta) {
-  const container = document.getElementById("app-container");
-
-  // IMPORTANTE: Quitamos el Grid para que los estudios no se amontonen
-  container.style.display = "block";
-  container.innerHTML = "";
-
-  const lista = studiesData[nombreFiesta].es;
-
-  // Botón para regresar
-  let html = `
-        <button onclick="mostrarMenuPrincipal()" style="margin-bottom: 30px; padding: 12px 25px; cursor: pointer; border-radius: 5px; border: 1px solid #002855; background: white; color: #002855; font-weight: bold;">
-            <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
-        </button>
-    `;
+  window.location.href = nombreFiesta.toLowerCase() + ".html";
 
   // Recorremos los estudios (los 24 de Sukot, etc.)
   lista.forEach((estudio, index) => {
