@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MATITYAHU (MATEO) 1:1–25</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>📖 ESTUDIO EXPOSITIVO PROFUNDO — MATTITYAHU (MATEO) 1:1–25</h1>
+    <h2>PERSPECTIVA: TORÁ MESIÁNICA | BEIT MIDRASH | REVELACIÓN DEL MASHÍAJ</h2>
+    <h3>Mt-Matityah 1:1-25</h3>
+ 
+    <!-- Verso 1 -->
+    <div class="verse-container">
+      <div class="verse-number">[1]</div>
+      <div class="translation">
+        Rollo del pergamino del registro genealogico de Yeshúa
+        <span class="hebrew">יֵשׁוּעַ</span> HaMashíaj, hijo de David
+        <span class="hebrew">דָּוִד</span>, hijo de avraham
+        <span class="hebrew">אַבְרָהָם</span>:
+      </div>
+      <div class="translation">
+        📜 <strong>Nota:</strong> El nombre del Mesías en hebreo y arameo
+        <span class="hebrew">ישוע</span>. Se deriva de la frase "MarYah
+        (Adonái) es la salvación".
+      </div>
+    </div>
+ 
+    <!-- Verso 2 -->
+    <div class="verse-container">
+      <div class="verse-number">[2]</div>
+      <div class="translation">
+        avraham <span class="hebrew">אַבְרָהָם</span> fue el padre de Itzjak
+        <span class="hebrew">יִצְחַק</span>, Itzjak
+        <span class="hebrew">יִצְחַק</span> fue el padre de Iaakov
+        <span class="hebrew">יַעֲקֹב</span>, Iaakov
+        <span class="hebrew">יַעֲקֹב</span> fue el padre de Iehudáh
+        <span class="hebrew">יְהוּדָה</span> y sus hermanos,
+      </div>
+    </div>
+ 
+    <!-- Verso 3 -->
+    <div class="verse-container">
+      <div class="verse-number">[3]</div>
+      <div class="translation">
+        Iehudáh <span class="hebrew">יְהוּדָה</span> fue el padre de Peretz
+        <span class="hebrew">פֶּרֶץ</span> y Zeraj
+        <span class="hebrew">זֶרַח</span> (su madre fue Tamar), Peretz
+        <span class="hebrew">פֶּרֶץ</span> fue el padre de Hetzron
+        <span class="hebrew">חֶצְרוֹן</span>, Hetzron
+        <span class="hebrew">חֶצְרוֹן</span> fue el padre de Ram
+        <span class="hebrew">רָם</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 4 -->
+    <div class="verse-container">
+      <div class="verse-number">[4]</div>
+      <div class="translation">
+        Ram fue el padre de Amminadav <span class="hebrew">עַמִּינָדָב</span>,
+        Amminadav <span class="hebrew">עַמִּינָדָב</span> fue el padre de
+        Najshon <span class="hebrew">נַחְשׁוֹן</span>, Najshon
+        <span class="hebrew">נַחְשׁוֹן</span> fue el padre de Salmon
+        <span class="hebrew">שַׂלְמוֹן</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 5 -->
+    <div class="verse-container">
+      <div class="verse-number">[5]</div>
+      <div class="translation">
+        Salmon <span class="hebrew">שַׂלְמוֹן</span> fue el padre de Boaz
+        <span class="hebrew">בֹּעַז</span> (su madre fue Rajav
+        <span class="hebrew">רָחָב</span>), Boaz
+        <span class="hebrew">בֹּעַז</span> fue el padre de Oved
+        <span class="hebrew">עוֹבֵד</span> (su madre fue Rut), Oved
+        <span class="hebrew">עוֹבֵד</span> fue el padre de Yishai
+        <span class="hebrew">יִשָׁי</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 6 -->
+    <div class="verse-container">
+      <div class="verse-number">[6]</div>
+      <div class="translation">
+        Yishai <span class="hebrew">יִשָׁי</span> fue el padre del rey David
+        <span class="hebrew">דָּוִד</span>, David
+        <span class="hebrew">דָּוִד</span> fue el padre de Shlomó
+        <span class="hebrew">שׁלמה</span> (su madre fue la mujer de Uriyah),
+      </div>
+    </div>
+ 
+    <!-- Verso 7 -->
+    <div class="verse-container">
+      <div class="verse-number">[7]</div>
+      <div class="translation">
+        Shlomó <span class="hebrew">שׁלמה</span> fue el padre de Rejaveam
+        <span class="hebrew">רחבעם</span>, Rejaveam
+        <span class="hebrew">רחבעם</span> fue el padre de Aviyah
+        <span class="hebrew">אֲבִיָּה</span>, Aviyah
+        <span class="hebrew">אֲבִיָּה</span> fue el padre de Asa,
+      </div>
+    </div>
+ 
+    <!-- Verso 8 -->
+    <div class="verse-container">
+      <div class="verse-number">[8]</div>
+      <div class="translation">
+        Asa fue el padre de Yehoshafat
+        <span class="hebrew">יְהוֹשָׁפָט</span>, Yehoshafat
+        <span class="hebrew">יְהוֹשָׁפָט</span> fue el padre de Amatzyah,
+        Amatzyah fue el padre de Uziyahu
+        <span class="hebrew">עֻזִּיָּהו</span>, 2 Cr 26:1
+      </div>
+    </div>
+ 
+    <!-- Verso 9 -->
+    <div class="verse-container">
+      <div class="verse-number">[9]</div>
+      <div class="translation">
+        Uziyahu <span class="hebrew">עֻזִּיָּהו</span> fue el padre de Yotam
+        <span class="hebrew">יוֹתָם</span>, Yotam
+        <span class="hebrew">יוֹתָם</span> fue el padre de Ajaz, Ajaz
+        <span class="hebrew">אָחָז</span> fue el padre de Hizkiyahu
+        <span class="hebrew">חִזְקִיָּהוּ</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 10 -->
+    <div class="verse-container">
+      <div class="verse-number">[10]</div>
+      <div class="translation">
+        Hizkiyahu <span class="hebrew">חִזְקִיָּהוּ</span> fue el padre de
+        Menashéh <span class="hebrew">מְנַשֶּה</span>, Menashéh
+        <span class="hebrew">מְנַשֶּה</span> fue el padre de Amón, Amón fue el
+        padre de Yoshiyahu <span class="hebrew">יֹאשִׁיָּהוּ</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 11 -->
+    <div class="verse-container">
+      <div class="verse-number">[11]</div>
+      <div class="translation">
+        Yoshiyahu <span class="hebrew">יֹאשִׁיָּהוּ</span> fue el padre de
+        Yekanyahu <span class="hebrew">יְכָנְיָהוּ</span> [Koniyah, Yehoyajim]
+        y sus hermanos en el tiempo del exilio a Bavel
+        <span class="hebrew">בבל</span>.
+      </div>
+    </div>
+ 
+    <!-- Verso 12 -->
+    <div class="verse-container">
+      <div class="verse-number">[12]</div>
+      <div class="translation">
+        Después del exilio A bavel, Yekanyahu
+        <span class="hebrew">יְכָנְיָהוּ</span> fue el padre de Shealtiel
+        <span class="hebrew">שְׁאַלְתִּיאֵל</span>, Shealtiel
+        <span class="hebrew">שְׁאַלְתִּיאֵל</span> fue el padre de Zerubabel
+        <span class="hebrew">זְרֻבָּבֶל</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 13 -->
+    <div class="verse-container">
+      <div class="verse-number">[13]</div>
+      <div class="translation">
+        Zerubabel <span class="hebrew">זְרֻבָּבֶל</span> fue el padre de
+        Avihud <span class="hebrew">אֲבִיהוּד</span>, Avihud
+        <span class="hebrew">אֲבִיהוּד</span> fue el padre de Avner, Avner fue
+        el padre de Elyakim <span class="hebrew">אֶלְיָקִים</span>, Elyakim
+        <span class="hebrew">אֶלְיָקִים</span> fue el padre de Azur
+        <span class="hebrew">עזור</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 14 -->
+    <div class="verse-container">
+      <div class="verse-number">[14]</div>
+      <div class="translation">
+        Azur <span class="hebrew">עזור</span> fue el padre de Tzadok
+        <span class="hebrew">צָדוֹק</span>, Tzadok
+        <span class="hebrew">צָדוֹק</span> fue el padre de Yaquin
+        <span class="hebrew">יָכִין</span>, Yaquin
+        <span class="hebrew">יָכִין</span> fue el padre de Elijud
+        <span class="hebrew">אֱלִיהוּד</span>,
+      </div>
+    </div>
+ 
+    <!-- Verso 15 -->
+    <div class="verse-container">
+      <div class="verse-number">[15]</div>
+      <div class="translation">
+        Elijud <span class="hebrew">אֱלִיהוּד</span> fue el padre de Eleazar
+        <span class="hebrew">אֶלְעָזָר</span>, Eleazar
+        <span class="hebrew">אֶלְעָזָר</span> fue el padre de Mattan
+        <span class="hebrew">מַתָּן</span>, Mattan
+        <span class="hebrew">מַתָּן</span> fue el padre de Iaakov
+        <span class="hebrew">יַעֲקֹב</span>
+      </div>
+    </div>
+ 
+    <!-- Verso 16 -->
+    <div class="verse-container">
+      <div class="verse-number">[16]</div>
+      <div class="translation">
+        Iaakov <span class="hebrew">יַעֲקֹב</span> fue el padre de Iosef
+        <span class="hebrew">יוֹסֵף</span>, Y Iosef
+        <span class="hebrew">יוֹסֵף</span> Padre (gabra) de Miryam, de quien
+        nació Yeshúa <span class="hebrew">ישוע</span>, quien fue llamado el
+        Mashíaj. <span class="hebrew">הואיוסףאבימריםאמישוע</span>
+        <br />Dan 9:25-26; Mat 7:9; 17:14,15; Lc 11:11, Zac 12:6-11.
+      </div>
+    </div>
+ 
+    <!-- Verso 17 -->
+    <div class="verse-container">
+      <div class="verse-number">[17]</div>
+      <div class="translation">
+        De manera que hubo catorce generaciones desde avraham
+        <span class="hebrew">אַבְרָהָם</span> a David
+        <span class="hebrew">דָּוִד</span>; catorce generaciones desde David
+        <span class="hebrew">דָּוִד</span> al exilio Babilónico; Y catorce
+        generaciones desde el exilio A bavel al Mashíaj. Dan 9:25-27
+      </div>
+    </div>
+ 
+    <!-- Verso 18 -->
+    <div class="verse-container">
+      <div class="verse-number">[18]</div>
+      <div class="translation">
+        Esta es la forma en que el nacimiento de Yeshúa
+        <span class="hebrew">יֵשׁוּעַ</span> se llevó a cabo. Cuando su madre
+        Miryam estaba comprometida con Iosef
+        <span class="hebrew">יוֹסֵף</span>, Antes de que Iosef
+        <span class="hebrew">יוֹסֵף</span> la comprara con una dote, se halló
+        que estaba embarazada por obra del Ruaj HaKodesh
+        <span class="hebrew">רוּחַ הַקֹּדֶשׁ</span>, incluso antes de haber
+        tenido relaciones sexuales. Is 7:14
+      </div>
+    </div>
+ 
+    <!-- Verso 19 -->
+    <div class="verse-container">
+      <div class="verse-number">[19]</div>
+      <div class="translation">
+        Su futuro, esposo (ba'la) Iosef<span class="hebrew">יוֹסֵף</span>, era
+        un hombre justo; así que hizo planes para romper el compromiso
+        secretamente, y no ponerla en deshonra pública.
+      </div>
+    </div>
+ 
+    <!-- Verso 20 -->
+    <div class="verse-container">
+      <div class="verse-number">[20]</div>
+      <div class="translation">
+        Pero mientras él pensaba esto, un malaj de Adonái יהוה - MarYah se le
+        apareció en un sueño, y dijo: "Iosef
+        <span class="hebrew">יוֹסֵף</span>, hijo de David
+        <span class="hebrew">דָּוִד</span>, no tengas temor de tomar a Miryam
+        como tu esposa; porque lo que ha sido concebido en ella, del Ruaj
+        HaKodesh <span class="hebrew">רוּחַ הַקֹּדֶשׁ</span> es. Hch 12:15
+      </div>
+    </div>
+ 
+    <!-- Verso 21 -->
+    <div class="verse-container">
+      <div class="verse-number">[21]</div>
+      <div class="translation">
+        Ella dará a luz un hijo, y tú le llamarás Yeshúa
+        <span class="hebrew">ישוע</span> porque Él [Élohím] salvará a su pueblo
+        de sus pecados." Lc 1:31; Zac 6:11-12; 12:6-11
+      </div>
+    </div>
+ 
+    <!-- Verso 22 -->
+    <div class="verse-container">
+      <div class="verse-number">[22]</div>
+      <div class="translation">
+        Todas estas cosas sucedieron para que se cumpliera la palabra que Adonái
+        יהוה había hablado a través del profeta:
+      </div>
+    </div>
+ 
+    <!-- Verso 23 -->
+    <div class="verse-container">
+      <div class="verse-number">[23]</div>
+      <div class="translation">
+        "La virgen (almáh <span class="hebrew">עלמה</span>) concebirá y dará a
+        luz un hijo, y ellos le llamaran Immanu'El." (El Nombre significa, "con
+        nosotros Elohím - El poderoso" -arameo Amanu-El, Alahja es con
+        nosotros) Is 7:14; 9:6-7; Zac 8:23; Pr 30:4; Sal 33:6; Dan 7:13-14,
+        Fil 2:11, Lc 2:11; Jn 1:1-14; 14:6-14, Hch 10:36, 1 Co 8:6 y 12:3,
+        Col 3:24, Ro 9:5 y 14:9, Ap 19:13, 22:20
+      </div>
+    </div>
+ 
+    <!-- Verso 24 -->
+    <div class="verse-container">
+      <div class="verse-number">[24]</div>
+      <div class="translation">
+        Cuando Iosef <span class="hebrew">יוֹסֵף</span> despertó, hizo lo que
+        el mensajero de Elohím le ordenó que hiciera y la tomó por esposa.
+      </div>
+    </div>
+ 
+    <!-- Verso 25 -->
+    <div class="verse-container">
+      <div class="verse-number">[25]</div>
+      <div class="translation">
+        pero el no había tenido relaciones sexuales con ella antes de dar a luz
+        a su hijo, El Primogénito, a quien le llamó Yeshúa
+        <span class="hebrew">יֵשׁוּעַ</span> (Adonái יהוה es la salvación) Ex
+        14:13
+      </div>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <!-- Punto 1 -->
+    <div class="content-container">
+      <h2>1. 📜 Cumplimiento profético en el Mashíaj</h2>
+      <p>
+        Mattityahu 1 inicia con una declaración profundamente hebrea: "Libro de
+        la genealogía de Yeshúa HaMashíaj, hijo de David, hijo de Avraham".
+        Esta estructura no es casual, sino una proclamación legal y profética.
+        En la mentalidad del Segundo Templo, la identidad mesiánica debía ser
+        validada por linaje. Aquí se establece que Yeshúa está conectado
+        directamente con las promesas hechas a Avraham en Bereshit 12:1-3,
+        donde יְהוָה declara que en su zera serían benditas todas las naciones.
+        Esta promesa no era abstracta, sino una línea concreta que debía
+        manifestarse en el tiempo.
+      </p>
+      <p>
+        En el pacto davídico (2 Shemuel 7:12-16), יְהוָה promete que levantará
+        un descendiente cuyo reino será eterno. La genealogía de Mattityahu 1 no
+        solo enumera nombres, sino que demuestra que Yeshúa es ese heredero
+        legítimo. La inclusión de generaciones organizadas en tres bloques de
+        catorce revela un diseño intencional, mostrando que la historia de
+        Israel está dirigida hacia un clímax: la manifestación del Mashíaj. No
+        es historia aleatoria, es redención planificada.
+      </p>
+      <p>
+        El texto conecta directamente con la estructura de Bereshit, donde las
+        "toledot" (generaciones) marcan el avance del propósito divino. Así como
+        Bereshit establece el inicio de la humanidad, Mattityahu presenta el
+        inicio de la restauración. Esta conexión revela que el mismo Elohim que
+        dijo "Sea la luz" (Bereshit 1:3) ahora introduce la luz definitiva en el
+        Mashíaj.
+      </p>
+      <p>
+        Por tanto, Mattityahu 1 no es solo genealogía; es declaración profética
+        de cumplimiento. Avraham recibió la promesa, David recibió el trono, y
+        en Yeshúa ambos pactos convergen. Esto establece una verdad fundamental:
+        la historia de Israel no termina en el Tanaj, sino que alcanza su
+        cumplimiento en el Mashíaj, sin ruptura, sino continuidad perfecta.
+      </p>
+    </div>
+ 
+    <!-- Punto 2 -->
+    <div class="content-container">
+      <h2>2. 🔥 Profecías cumplidas (Torá y Profetas)</h2>
+      <p>
+        Desde Bereshit 3:15 se establece la primera profecía mesiánica: la zera
+        de la mujer herirá la cabeza de la serpiente. Este texto es clave porque
+        introduce un elemento anómalo en la genealogía: la simiente no es
+        atribuida al hombre, sino a la mujer. Esto prepara el entendimiento para
+        Mattityahu 1:18-25, donde el nacimiento del Mashíaj ocurre sin
+        intervención humana masculina, cumpliendo exactamente este patrón
+        profético.
+      </p>
+      <p>
+        Yeshayahu 7:14 declara: "He aquí, la 'almá concebirá". Esta no es
+        simplemente una joven, sino una señal sobrenatural. Mattityahu 1:23 cita
+        directamente esta profecía, afirmando que en Yeshúa se cumple. Esto
+        demuestra que el Brit Hadashah no inventa nuevas ideas, sino que
+        interpreta correctamente lo ya revelado en el Tanaj.
+      </p>
+      <p>
+        Mijá 5:2 establece que el gobernante de Israel nacería en Beit-Lejem,
+        pero añade una dimensión eterna: "sus salidas son desde los días
+        antiguos, desde la eternidad". Esto conecta con Mattityahu, mostrando
+        que el Mashíaj no comienza en su nacimiento, sino que es eterno en su
+        esencia.
+      </p>
+      <p>
+        Yirmeyahu 23:5 profetiza un "Renuevo justo" del linaje de David.
+        Mattityahu 1 presenta precisamente esa línea. La genealogía no es solo
+        histórica, es la validación de esta profecía. Cada nombre es un testigo
+        de que יְהוָה preservó la línea mesiánica a pesar del exilio, pecado y
+        dispersión.
+      </p>
+      <p>
+        Así, todas estas profecías convergen en Mattityahu 1, mostrando que el
+        Mashíaj no es una figura aislada, sino el cumplimiento de un patrón
+        profético establecido desde el inicio de la Torá hasta los Profetas.
+      </p>
+    </div>
+ 
+    <!-- Punto 3 -->
+    <div class="content-container">
+      <h2>3. 🔥 El misterio: Elohim manifestado en carne</h2>
+      <p>
+        Yeshayahu 9:6 declara que el niño nacido sería llamado "El Gibor"
+        (Elohim poderoso). Esto rompe cualquier concepto de un simple líder
+        humano. El texto presenta una identidad divina encarnada. Mattityahu 1
+        revela que este niño es Yeshúa, estableciendo que la promesa se cumple
+        literalmente.
+      </p>
+      <p>
+        Iojanán 1:1,14 declara que el Verbo estaba con Elohim y era Elohim, y
+        que ese Verbo se hizo carne. Esto no contradice la Torá, sino que la
+        revela en mayor profundidad. El mismo que creó en Bereshit ahora entra
+        en su creación. Esto conecta con Bereshit 1:1 donde Elohim crea los
+        cielos y la tierra, mostrando que el Creador es el mismo que se
+        manifiesta en el Mashíaj.
+      </p>
+      <p>
+        Colosenses 2:9 afirma que en Yeshúa habita toda la plenitud. Esto
+        confirma que no es un representante, sino la manifestación misma de
+        Elohim. En pensamiento hebreo, esto no implica división, sino revelación
+        de la unidad de יְהוָה.
+      </p>
+      <p>
+        El nombre "Immanu-El" en Mattityahu 1:23 significa "Elohim con
+        nosotros". No es simbólico, es literal. יְהוָה ha descendido para
+        habitar entre su pueblo, cumpliendo el patrón del Mishkán y del Templo,
+        donde la presencia divina mora entre Israel.
+      </p>
+      <p>
+        Este es el misterio revelado: el Elohim invisible se hace visible en el
+        Mashíaj, no anulando su trascendencia, sino manifestando su cercanía.
+      </p>
+    </div>
+ 
+    <!-- Punto 4 -->
+    <div class="content-container">
+      <h2>
+        4. 🌱 El nacimiento del Mashíaj (sin intervención humana masculina)
+      </h2>
+      <p>
+        Mattityahu 1:18-25 presenta un nacimiento único en toda la Escritura.
+        Miryam concibe por Ruach HaKodesh, cumpliendo Bereshit 3:15. Esto
+        establece que el origen del Mashíaj es divino, no humano.
+      </p>
+      <p>
+        En el pensamiento hebreo, la "zera" viene del padre. Sin embargo, aquí
+        la simiente es atribuida a la mujer, lo cual es una intervención directa
+        de Elohim. Esto no es una anomalía biológica, sino una señal profética.
+      </p>
+      <p>
+        La ausencia de intervención masculina preserva la naturaleza divina del
+        Mashíaj. Esto confirma que su identidad no proviene de linaje humano
+        únicamente, sino de origen celestial.
+      </p>
+      <p>
+        Yosef actúa como guardián legal, asegurando el linaje davídico, mientras
+        que la concepción divina establece la naturaleza del Mashíaj. Así se
+        unen lo legal y lo sobrenatural.
+      </p>
+      <p>
+        Este nacimiento revela que la redención no es obra humana, sino
+        intervención directa de יְהוָה en la historia.
+      </p>
+    </div>
+ 
+    <!-- Punto 5 -->
+    <div class="content-container">
+      <h2>5. 🔤 La señal de la "virgen" (análisis hebreo profundo)</h2>
+      <p>
+        <strong>נַעֲרָה (Na'aráh)</strong> simplemente indica una joven. No
+        implica pureza ni señal divina. Por tanto, no puede sostener una
+        profecía mesiánica.
+      </p>
+      <p>
+        <strong>בְּתוּלָה (Betuláh)</strong> indica virginidad física, pero en
+        algunos contextos puede requerir aclaración adicional. No necesariamente
+        implica intervención sobrenatural.
+      </p>
+      <p>
+        <strong>עַלְמָה ('Almáh)</strong> es el término usado en Yeshayahu
+        7:14. Este término implica una doncella en pureza con propósito divino.
+        Es una señal (ot), no un evento común.
+      </p>
+      <p>
+        Mattityahu 1:23 interpreta correctamente este término, mostrando que
+        Miryam es la 'almá profética. No es solo pureza física, sino
+        intervención de Ruach HaKodesh.
+      </p>
+      <p>
+        Por tanto, 'almá es una revelación mesiánica. No se trata solo de
+        nacimiento milagroso, sino de cumplimiento profético divino.
+      </p>
+    </div>
+ 
+    <!-- Punto 6 -->
+    <div class="content-container">
+      <h2>
+        6. 🕍 Conexión con el Segundo Templo y la expectativa mesiánica
+      </h2>
+      <p>
+        Durante el período del Segundo Templo, Israel vivía bajo dominio
+        extranjero, esperando la redención prometida. La esperanza davídica
+        estaba viva, basada en las promesas del Tanaj.
+      </p>
+      <p>
+        Los escritos de Qumrán y la literatura intertestamentaria reflejan una
+        expectativa de un Mashíaj restaurador. Mattityahu 1 responde directamente
+        a esta expectativa.
+      </p>
+      <p>
+        La genealogía demuestra que Yeshúa cumple con los requisitos esperados:
+        linaje davídico, cumplimiento profético y señal divina.
+      </p>
+      <p>
+        El contexto espiritual era de anhelo por liberación, no solo política,
+        sino espiritual. El pecado y el exilio requerían redención.
+      </p>
+      <p>
+        Yeshúa aparece en este contexto como la respuesta definitiva, no
+        anulando Israel, sino cumpliendo su propósito.
+      </p>
+    </div>
+ 
+    <!-- Punto 7 -->
+    <div class="content-container">
+      <h2>
+        7. ⚠️ Corrección doctrinal: Israel y el error del reemplazo
+      </h2>
+      <p>
+        Romanos 11 declara claramente que Israel no ha sido desechado. Shaul
+        afirma que los dones y el llamamiento de יְהוָה son irrevocables.
+      </p>
+      <p>
+        Yirmeyahu 31:35-37 establece que Israel permanecerá mientras existan los
+        cielos y la tierra. Esto es un pacto eterno.
+      </p>
+      <p>
+        Mattityahu 1 refuerza esto al presentar al Mashíaj dentro de Israel, no
+        separado de él. No hay reemplazo, hay cumplimiento.
+      </p>
+      <p>
+        El injerto de las naciones no elimina la raíz, sino que depende de ella.
+        Israel sigue siendo el portador del pacto.
+      </p>
+      <p>
+        Por tanto, la doctrina del reemplazo es contraria a la Escritura. El
+        plan de redención incluye a las naciones, pero no elimina a Israel.
+      </p>
+    </div>
+ 
+    <!-- Punto 8 -->
+    <div class="content-container">
+      <h2>8. ✨ Aplicación espiritual</h2>
+      <p>
+        El creyente es llamado a entender su identidad en relación con Israel y
+        el Mashíaj. No es una fe desligada de la Torá, sino arraigada en ella.
+      </p>
+      <p>
+        La obediencia a la Torá no es legalismo, sino respuesta al pacto. Yeshúa
+        no anula la Torá, la cumple y la revela plenamente.
+      </p>
+      <p>
+        La fe en el Mashíaj implica transformación de vida, alineación con la
+        voluntad de יְהוָה y participación en su propósito.
+      </p>
+      <p>
+        El nacimiento sobrenatural del Mashíaj nos llama a una vida regenerada
+        por el Ruach HaKodesh.
+      </p>
+      <p>
+        La revelación del Mashíaj produce obediencia, identidad y restauración
+        espiritual.
+      </p>
+    </div>
+ 
+    <!-- Punto 9 - Oración -->
+    <div class="content-container">
+      <h2>9. 🙏 Oración estilo mismor (Tehilim)</h2>
+      <div class="prayer-text">
+        <p>
+          Oh יְהוָה Elohim de Israel, Tú que estableciste los cielos y la tierra
+          desde el principio, y que dijiste: "Sea la luz" , ilumina nuestros
+          corazones con la luz del Mashíaj.
+        </p>
+        <p>
+          Revela en nosotros el misterio de Tu presencia manifestada en Yeshúa,
+          para que caminemos en fidelidad a Tu Torá y entendamos Tus caminos
+          eternos.
+        </p>
+        <p>
+          Haznos parte de Tu kahal, injertados en la raíz de Israel, guardando
+          Tus pactos y esperando la redención completa.
+        </p>
+        <p>
+          Que Tu Ruach HaKodesh nos guíe en verdad, para vivir conforme a Tu
+          voluntad y reconocer a Yeshúa HaMashíaj como cumplimiento de toda Tu
+          palabra.
+        </p>
+      </div>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <!-- Impacto Profético -->
+    <div class="prophetic-content">
+      <div class="prophetic-section">
+        <div class="prophetic-title">🔥 Impacto Profético</div>
+        <p>
+          Mattityahu 1 no es un inicio, es una culminación. Toda la Torá, los
+          Profetas y los Escritos apuntan hacia el Mashíaj. En Yeshúa, Elohim ha
+          intervenido en la historia, cumpliendo sus promesas y revelando su plan
+          eterno.
+        </p>
+        <p>
+          El llamado es claro: volver a la raíz, reconocer al Mashíaj y caminar
+          en el pacto eterno de יְהוָה.
+        </p>
+      </div>
+    </div>
+ 
+    <footer>
+      <p>
+        📖 Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+        crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj:
+        <a href="https://ia-interactiva.vercel.app/" target="_blank"
+          >https://ia-interactiva.vercel.app/</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la Toraviviente | Torá Mesiánica:
+        <a
+          href="https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica"
+          target="_blank"
+          >https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica</a
+        >
+      </p>
+      <p>
+        📖 Salmos Mesiánicos:
+        <a
+          href="https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua"
+          target="_blank"
+          >https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua</a
+        >
+      </p>
+      <p>
+        📖 Parashot Mesianicas:
+        <a
+          href="https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas"
+          target="_blank"
+          >https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la toraviviente de estudio:
+        <a href="https://gemini.google.com/gem/310786cce7ad" target="_blank"
+          >https://gemini.google.com/gem/310786cce7ad</a
+        >
+      </p>
+      <p>
+        📱 Instagram:
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          target="_blank"
+          >https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3</a
+        >
+      </p>
+    </footer>
+</main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
