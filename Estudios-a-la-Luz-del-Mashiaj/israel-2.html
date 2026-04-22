@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>78 AÑOS DE ISRAEL COMO NACIÓN-2.</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>78 AÑOS DE ISRAEL COMO NACIÓN #2</h1>
+ 
+    <div class="content-container">
+      <h2>I. El Nacimiento de Israel: Promesa Eterna desde Avraham</h2>
+      <p>
+        El origen de Israel no comienza en 1948 ni en decisiones humanas, sino
+        en el decreto eterno de יהוה manifestado a Avraham. La Torá establece
+        con claridad el fundamento:
+      </p>
+      <p class="scripture">
+        "Y haré de ti una nación grande… y serán benditas en ti todas las
+        familias de la tierra" (Bereshit 12:2-3).
+      </p>
+      <p>
+        Este pacto no es condicional al mérito humano, sino a la fidelidad de
+        יהוה. En Bereshit 15, el Eterno sella el pacto pasando entre los
+        pedazos, mostrando que Él mismo garantiza su cumplimiento. Israel nace,
+        por tanto, como resultado de una promesa divina irrevocable.
+      </p>
+      <p>
+        La continuidad del pacto revela un principio profético fundamental: no
+        toda descendencia física hereda la promesa. En Bereshit 17:19, יהוה
+        declara que el pacto será establecido con Yitzjak y no con Ishmael. Este
+        acto no es arbitrario, sino revelador del diseño soberano de Elohim. La
+        elección no responde a la lógica humana, sino al propósito eterno que
+        apunta hacia el linaje mesiánico que culmina en Yeshúa HaMashíaj.
+      </p>
+      <p>
+        La elección continúa con Yaakov, cuyo nombre es transformado a Israel.
+        En Bereshit 28:13-15, יהוה reafirma:
+      </p>
+      <p class="scripture">
+        "La tierra en que estás acostado te la daré a ti y a tu zera".
+      </p>
+      <p>
+        Este acto establece no solo un pueblo, sino una identidad espiritual y
+        profética. Israel no es simplemente una nación étnica, sino un
+        instrumento del Reino de Elohim en la tierra.
+      </p>
+      <p>
+        Por lo tanto, el nacimiento del Estado de Israel en tiempos modernos
+        debe ser entendido como una manifestación parcial de una promesa mucho
+        más antigua. No es el inicio, sino la continuación de lo que יהוה juró
+        a Avraham, Yitzjak y Yaakov. La historia moderna confirma lo que la
+        Torá declaró desde el principio: Israel existe porque יהוה lo determinó.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <div class="content-container">
+      <h2>II. Dispersión y Restauración: Profecía de los Neviim</h2>
+      <p>
+        Los Neviim anunciaron tanto la dispersión como la restauración de
+        Israel. En Devarim 28, la Torá advierte que la desobediencia llevaría al
+        exilio entre las naciones. Esta profecía se cumplió en múltiples etapas
+        históricas, desde Asiria hasta Roma. Sin embargo, la dispersión nunca
+        fue el final del propósito divino.
+      </p>
+      <p>El profeta Yejezkel declara:</p>
+      <p class="scripture">
+        "Os tomaré de las naciones… y os traeré a vuestra tierra" (Yejezkel
+        36:24).
+      </p>
+      <p>
+        Esta promesa no depende de la justicia de Israel, sino del Nombre de
+        יהוה. La restauración es un acto de fidelidad divina, no de mérito
+        humano. Israel es reunido porque יהוה recuerda Su pacto eterno.
+      </p>
+      <p>
+        Yirmeyahu 31:35-36 afirma que Israel permanecerá como nación mientras
+        existan el sol, la luna y las estrellas. Esta declaración destruye
+        cualquier teología de reemplazo. Israel no ha sido desechado; su
+        restauración es inevitable porque está ligada al orden mismo de la
+        creación establecido por יהוה.
+      </p>
+      <p>
+        El renacimiento del Estado de Israel en el siglo XX refleja esta
+        restauración profética en proceso. No es la plenitud aún, pero sí una
+        señal clara de que las palabras de los Neviim están activas. La historia
+        moderna se convierte en evidencia viva de que יהוה cumple lo que
+        promete.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <div class="content-container">
+      <h2>III. El Mashíaj Yeshúa y la Restauración de Israel</h2>
+      <p>
+        El cumplimiento profético encuentra su centro en Yeshúa HaMashíaj. Él
+        no viene a reemplazar a Israel, sino a restaurarlo. En Mattityahu 15:24
+        declara:
+      </p>
+      <p class="scripture">
+        "No he sido enviado sino a las ovejas perdidas de la casa de Israel".
+      </p>
+      <p>
+        Esto establece que la misión mesiánica está directamente conectada con
+        la restauración del pueblo del pacto.
+      </p>
+      <p>
+        El Brit Hadashah revela que la restauración incluye tanto lo físico como
+        lo espiritual. En Ma'asei (Hechos) 1:6, los discípulos preguntan:
+      </p>
+      <p class="scripture">
+        "¿Restaurarás el reino a Israel en este tiempo?".
+      </p>
+      <p>
+        Yeshúa no niega la restauración, sino que señala el tiempo del
+        cumplimiento. Esto confirma que el Reino está ligado a Israel.
+      </p>
+      <p>
+        Shaul (Pablo) enseña en Romanos 11 que Israel no ha sido desechado, sino
+        temporalmente endurecido hasta que se cumpla el propósito con las
+        naciones. Luego, "todo Israel será salvo". Esto muestra un proceso
+        progresivo donde el Mashíaj actúa como mediador del cumplimiento del
+        pacto.
+      </p>
+      <p>
+        Así, Yeshúa es la clave que conecta la promesa original con su
+        cumplimiento final. Él es la simiente prometida a Avraham (Bereshit
+        22:18), a través de quien las naciones son bendecidas, sin invalidar el
+        rol central de Israel. La restauración nacional y espiritual convergen
+        en Él.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <div class="content-container">
+      <h2>IV. Israel y los Imperios: Liberación a lo Largo de la Historia</h2>
+      <p>
+        La historia de Israel está marcada por confrontaciones con imperios que
+        intentaron destruirlo. Egipto fue el primer gran opresor, pero יהוה
+        liberó a Su pueblo con mano fuerte (Shemot 3:7-8). Este patrón de
+        opresión y liberación se repite continuamente en la historia.
+      </p>
+      <p>
+        Babilonia destruyó Yerushalayim y llevó al pueblo al exilio, pero según
+        la profecía de Yirmeyahu 29:10, el retorno estaba determinado. Persia,
+        bajo Koresh, permitió el regreso, mostrando que incluso los imperios
+        sirven al propósito de יהוה. Ningún poder terrenal puede anular Su
+        pacto.
+      </p>
+      <p>
+        Roma dispersó a Israel en el año 70 E.M., cumpliendo las palabras de
+        Yeshúa en Lucas 21:24. Sin embargo, esta dispersión no fue definitiva. A
+        lo largo de los siglos, a pesar de persecuciones, inquisiciones y
+        holocaustos, Israel sobrevivió de manera sobrenatural.
+      </p>
+      <p>
+        El establecimiento moderno del Estado de Israel demuestra que יהוה sigue
+        interviniendo en la historia. Naciones han caído, imperios han
+        desaparecido, pero Israel permanece. Esto no puede explicarse solo en
+        términos políticos; es evidencia de la fidelidad del Elohim de Israel.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <div class="content-container">
+      <h2>V. Reino de Elohim y Restauración Final</h2>
+      <p>
+        La restauración de Israel está intrínsecamente ligada al establecimiento
+        del Reino de Elohim. Los profetas anuncian un tiempo donde Yerushalayim
+        será el centro espiritual del mundo (Yeshayahu 2:2-3). Este no es un
+        símbolo, sino una realidad futura concreta.
+      </p>
+      <p>
+        Zejaryah 12 y 14 describen un escenario donde las naciones se levantarán
+        contra Yerushalayim, pero יהוה intervendrá directamente. Esto conecta
+        el destino de Israel con el clímax de la historia redentora. La nación
+        se convierte en el escenario del cumplimiento final.
+      </p>
+      <p>
+        El Reino no es meramente espiritual; incluye restauración territorial,
+        justicia y gobierno divino. Yeshúa, como Rey Mashíaj, reinará desde
+        Tziyon. Esto cumple tanto la promesa davídica como el pacto con Avraham.
+      </p>
+      <p>
+        Por tanto, el Israel moderno es una etapa dentro de un proceso mayor. No
+        es la consumación, pero sí una señal profética inequívoca de que el
+        Reino se aproxima. La historia avanza hacia el cumplimiento total del
+        propósito de יהוה.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <div class="content-container">
+      <h2>VI. Aplicación Profética y Significado Actual</h2>
+      <p>
+        El renacimiento de Israel en nuestros tiempos exige discernimiento
+        espiritual. No es simplemente un evento geopolítico, sino una señal
+        profética activa. Así como en los días de los profetas, יהוה está
+        cumpliendo Su palabra delante de los ojos de las naciones.
+      </p>
+      <p>
+        La restauración también llama al arrepentimiento y alineación con la
+        Torá. Yejezkel 36 continúa diciendo que יהוה dará un nuevo corazón y
+        pondrá Su Ruaj dentro del pueblo. Esto muestra que la restauración no es
+        solo física, sino espiritual.
+      </p>
+      <p>
+        Para el kahal de Israel y los creyentes en Yeshúa, esto implica
+        reconocer el rol central de Israel en el plan divino. No hay reemplazo,
+        sino injerto (Romanos 11). Participar del Reino implica alinearse con el
+        pacto eterno.
+      </p>
+      <p>
+        Finalmente, el nacimiento del Estado de Israel nos recuerda que יהוה
+        cumple Sus promesas. Lo que comenzó con Avraham continúa hoy y culminará
+        en el Reino del Mashíaj. La fidelidad divina es la garantía del futuro.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <div class="prophetic-content">
+      <div class="prophetic-section">
+        <p class="prophetic-title">Impacto Profético</p>
+        <p>
+          El establecimiento de Israel en nuestros días es testimonio vivo de
+          que יהוה guarda Su pacto eterno con Avraham, Yitzjak y Yaakov. No es
+          obra de hombres, sino manifestación de una promesa inquebrantable.
+          Este evento señala que los tiempos finales avanzan hacia la
+          restauración completa bajo el reinado de Yeshúa HaMashíaj.
+        </p>
+        <p>
+          Quien discierne este tiempo entiende que la historia no es aleatoria,
+          sino dirigida por el Elohim de Israel. Israel es la señal visible del
+          cumplimiento profético, y su existencia confirma que el Reino está más
+          cerca de lo que muchos perciben.
+        </p>
+      </div>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <div class="content-container">
+      <h2>תְּפִלָּה — Tefilá estilo Mizmor sobre la restauración de Israel</h2>
+      <div class="prayer-text">
+        <p>Oh יהוה Elohim de Avraham, Yitzjak y Yaakov,</p>
+        <p>Tú que estableciste Tu pacto eterno sobre la zera escogida,</p>
+        <p>desde los días antiguos declaraste el fin desde el principio,</p>
+        <p>
+          y Tu palabra no cae a tierra, ni vuelve vacía delante de Ti.
+        </p>
+        <br />
+        <p>Tú eres fiel, aunque el hombre sea inconstante,</p>
+        <p>y has guardado a Israel como la niña de Tus ojos.</p>
+        <p>Tú dispersaste a Tu pueblo entre las naciones,</p>
+        <p>como lo hablaste por boca de los Neviim,</p>
+        <p>pero también prometiste reunirlos de los cuatro rincones de la tierra,</p>
+        <p>y traerlos de regreso a la heredad que juraste a los padres.</p>
+        <br />
+        <p>No por justicia nuestra, sino por Tu Nombre kadosh,</p>
+        <p>has comenzado a levantar a Israel delante de las naciones.</p>
+        <p>Recordamos, oh יהוה, Tu palabra a Avraham:</p>
+        <p>"Haré de ti una gran nación", y así ha sido,</p>
+        <p>pues contra imperios, guerras y destrucción,</p>
+        <p>Israel permanece vivo por Tu mano poderosa.</p>
+        <br />
+        <p>Egipto no pudo destruirlo, Babilonia no lo extinguió,</p>
+        <p>Roma no logró borrar Tu pacto eterno.</p>
+        <p>En estos tiempos, Tú has hecho brotar la tierra nuevamente,</p>
+        <p>has levantado a Israel como señal entre las naciones,</p>
+        <p>como escrito está: "¿Nacerá una nación en un día?"</p>
+        <p>y he aquí, Tú lo hiciste por Tu poder soberano.</p>
+        <br />
+        <p>No fue voluntad humana, ni consejo de hombres,</p>
+        <p>sino cumplimiento de Tu promesa eterna.</p>
+        <p>Envía Tu Ruach HaKodesh sobre Tu pueblo,</p>
+        <p>para que no solo vuelvan a la tierra, sino a Tu corazón,</p>
+        <p>para que reconozcan a Yeshúa HaMashíaj,</p>
+        <p>la simiente prometida, el Redentor de Israel.</p>
+        <br />
+        <p>Circuncida el corazón de Tu pueblo,</p>
+        <p>y escribe Tu Torá en lo profundo de su ser.</p>
+        <p>Levanta, oh יהוה, Tu Reino desde Tziyon,</p>
+        <p>y establece justicia en Yerushalayim,</p>
+        <p>que las naciones vean Tu gloria manifestada,</p>
+        <p>y que el Mashíaj reine con vara de verdad.</p>
+        <br />
+        <p>Haz que Israel sea luz, conforme a Tu propósito,</p>
+        <p>y que Tu Nombre sea exaltado en toda la tierra.</p>
+        <br />
+        <p>Bendito eres Tú, יהוה, guardador del pacto,</p>
+        <p>quien no olvida lo que juró a los padres,</p>
+        <p>fiel en cada generación, poderoso en redención.</p>
+        <p>A Ti sea la gloria por los siglos,</p>
+        <p>porque has levantado a Israel,</p>
+        <p>y cumplirás todo lo que has hablado.</p>
+      </div>
+      <p class="prayer-conclusion">Amén veAmén.</p>
+    </div>
+ 
+    <footer>
+      <p>
+        📖 Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+        crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj:<br />
+        <a href="https://ia-interactiva.vercel.app/" target="_blank"
+          >https://ia-interactiva.vercel.app/</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la Toraviviente | Torá Mesiánica:<br />
+        <a
+          href="https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica"
+          target="_blank"
+          >https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica</a
+        >
+      </p>
+      <p>
+        📖 Salmos Mesiánicos:<br />
+        <a
+          href="https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua"
+          target="_blank"
+          >https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua</a
+        >
+      </p>
+      <p>
+        📖 Parashot Mesianicas:<br />
+        <a
+          href="https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas"
+          target="_blank"
+          >https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la toraviviente de estudio:<br />
+        <a href="https://gemini.google.com/gem/310786cce7ad" target="_blank"
+          >https://gemini.google.com/gem/310786cce7ad</a
+        >
+      </p>
+      <p>
+        📱 Siguenos en Instagram oficial:<br />
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          target="_blank"
+          >https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3</a
+        >
+      </p>
+      <p>
+        <strong>YOHANAN BEN ISRAEL</strong><br />
+        COMPAÑERO DE LABORES EN ADONAI YESHÚA<br />
+        MELEJ HAMASHIAJ
+      </p>
+    </footer>
+</main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
