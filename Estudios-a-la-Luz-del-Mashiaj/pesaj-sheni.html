@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PÉSAJ SHENÍ (El segundo Pésaj)</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+         <h1>PÉSAJ SHENÍ</h1>
+    <h2>El segundo Pésaj</h2>
+ 
+    <div class="content-container">
+      <p>
+        El estudio de Pésaj Shení (el Segundo Pésaj) es una revelación profunda
+        de la Teshuváh (arrepentimiento/retorno) y la misericordia de יְהוָה.
+        No es simplemente una regla administrativa, sino el diseño profético de
+        la "segunda oportunidad" que se materializa plenamente en Yeshúa
+        HaMashíaj.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <h1>1. EXPLICACIÓN DETALLADA DEL TEXTO</h1>
+    <h2>BASE: BAMIDBAR 9:9-14</h2>
+ 
+    <div class="content-container">
+      <p>
+        A continuación, presento la traducción literal y exacta del Tanaj según
+        la fuente autorizada:
+      </p>
+      <div class="verse-container">
+        <div class="verse-number">[9]</div>
+        <div class="translation">Adonái habló a Moshé, diciendo:</div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">[10]</div>
+        <div class="translation">
+          "Habla a los hijos de Israel, y diles: 'Si cualquiera de ustedes o de
+          sus descendientes está impuro por causa de un cuerpo muerto o está
+          lejos en un viaje, él todavía puede observar el Pésaj de Adonái.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">[11]</div>
+        <div class="translation">
+          Ellos lo observarán en el segundo mes, en el día catorce, al
+          crepúsculo. Lo comerán con matzá y marror.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">[12]</div>
+        <div class="translation">
+          No dejarán nada de él hasta la mañana, ni quebrarán ni uno de sus
+          huesos; lo observarán de acuerdo a todas las regulaciones de Pésaj.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">[13]</div>
+        <div class="translation">
+          Pero la persona que está limpia y no está de viaje, y a pesar de eso
+          deja de observar el Pésaj, esa persona será cortada de su pueblo;
+          porque no trajo la ofrenda de Adonái a su tiempo señalado, esa
+          persona llevará su pecado.
+        </div>
+      </div>
+      <div class="verse-container">
+        <div class="verse-number">[14]</div>
+        <div class="translation">
+          Si un extranjero que vive con ustedes quiere observar el Pésaj de
+          Adonái, él lo hará de acuerdo a sus leyes y regulaciones; tendrán la
+          misma ley para el extranjero que para el nacido en la tierra.'"
+        </div>
+      </div>
+    </div>
+ 
+    <h2>Análisis Verso por Verso</h2>
+ 
+    <div class="explanation">
+      <ul>
+        <li>
+          <strong>Impureza por muerto (Tamé - טָמֵא):</strong> El texto indica
+          que quien está impuro por contacto con la muerte no puede participar
+          en la fecha original. Proféticamente, la muerte es la consecuencia del
+          pecado. Yeshúa vino a buscarnos cuando estábamos "muertos en delitos y
+          pecados", dándonos acceso al Korbán (sacrificio) incluso en nuestra
+          condición de impureza previa.
+        </li>
+        <li>
+          <strong>Estar lejos en viaje:</strong> Representa a aquellos que se
+          han alejado del pacto o de la Kahal de Israel. La gracia de יְהוָה
+          alcanza al que está lejos.
+        </li>
+        <li>
+          <strong>El segundo mes, día catorce (Pésaj Shení):</strong> Ocurre
+          exactamente un mes después del Pésaj original. Revela que el tiempo de
+          Elohim es redentor.
+        </li>
+        <li>
+          <strong>Matzá (Pan sin levadura) y Marror (Hierbas amargas):</strong>
+          El cumplimiento mesiánico exige pureza (sin levadura de maldad) y el
+          recuerdo del costo del pecado (amargura), el cual Yeshúa bebió por
+          nosotros.
+        </li>
+        <li>
+          <strong>No quebrar huesos:</strong> Esta es una instrucción directa
+          que se cumplió en la ejecución de Yeshúa. Mientras a los otros les
+          quebraron las piernas, a Él no, confirmando que Él es el Cordero de
+          Pésaj profetizado en la Torá.
+        </li>
+      </ul>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <h1>2. PÉSAJ SHENÍ COMO LA SEGUNDA OPORTUNIDAD</h1>
+ 
+    <div class="content-container">
+      <p>
+        Pésaj Shení revela que יְהוָה no desea la muerte del pecador, sino que
+        este haga Teshuváh y viva.
+      </p>
+      <ul>
+        <li>
+          <strong>Misericordia Divina:</strong> En Lucas 15, Yeshúa enseña sobre
+          el hijo pródigo; Pésaj Shení es la base legal de ese regreso. Aunque
+          el hijo estaba "lejos en un viaje" y "muerto" espiritualmente, el
+          Padre (Adonai יְהוָה) provee la mesa para su retorno.
+        </li>
+        <li>
+          <strong>Puerta de Regreso:</strong> En Juan 6, Yeshúa se presenta como
+          el pan que descendió del cielo. Él es la Matzá de la segunda
+          oportunidad para todo aquel que, habiendo estado impuro, busca el
+          perdón.
+        </li>
+        <li>
+          <strong>La Gracia y la Obediencia:</strong> Como dice 2 Kefa 3:9,
+          Adonai no retarda su promesa, sino que es paciente, no queriendo que
+          nadie perezca. Pésaj Shení es la prueba física en la Torá de que la
+          paciencia de Elohim tiene un nombre: Yeshúa.
+        </li>
+      </ul>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <h1>3. RELACIÓN PROFÉTICA CON EL MASHÍAJ YESHÚA</h1>
+ 
+    <div class="content-container">
+      <p>Yeshúa es el cumplimiento pleno de la restauración del impuro:</p>
+      <ul>
+        <li>
+          <strong>El Cordero Perfecto:</strong> Al igual que el cordero de Pésaj
+          Shení, Yeshúa no tuvo hueso quebrantado (Juan 19:36).
+        </li>
+        <li>
+          <strong>Redención del Lejano:</strong> Efesios 2 declara que los que
+          antes estaban "lejos" han sido hechos cercanos por la sangre del
+          Mashíaj.
+        </li>
+        <li>
+          <strong>Inclusión de las Naciones:</strong> El verso 14 de Bamidbar 9
+          establece "una misma ley" para el natural y el extranjero. Esto rompe
+          la teología del reemplazo y afirma que las naciones son injertadas en
+          el Israel restaurado a través de Yeshúa.
+        </li>
+      </ul>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <h1>4. PÉSAJ SHENÍ Y LA CUENTA DEL ÓMER</h1>
+ 
+    <div class="content-container">
+      <p>
+        Es significativo que Pésaj Shení ocurra durante la Cuenta del Ómer
+        (Sefirat HaOmer).
+      </p>
+      <ul>
+        <li>
+          <strong>Purificación y Crecimiento:</strong> Mientras Israel cuenta
+          los días hacia Shavuot (entrega de la Torá/Ruaj HaKodesh), Pésaj
+          Shení aparece como un recordatorio de que la santificación es un
+          proceso.
+        </li>
+        <li>
+          <strong>De la liberación a la madurez:</strong> El creyente que toma
+          su "segunda oportunidad" en el segundo mes, se une inmediatamente al
+          conteo hacia la plenitud del Ruach HaKodesh.
+        </li>
+      </ul>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <h1>5. TERMINOLOGÍA HEBREA RELEVANTE</h1>
+ 
+    <div class="content-container">
+      <ul>
+        <li>
+          <strong>Pésaj (פֶּסַח):</strong> Salto o pasar por alto.
+        </li>
+        <li>
+          <strong>Shení (שֵׁנִי):</strong> Segundo.
+        </li>
+        <li>
+          <strong>Tahor (טָהוֹר):</strong> Ritual y espiritualmente puro.
+        </li>
+        <li>
+          <strong>Tamé (טָמֵא):</strong> Impuro (especialmente por contacto con
+          la muerte).
+        </li>
+        <li>
+          <strong>Teshuváh (תְּשׁוּבָה):</strong> Arrepentimiento, retorno al
+          camino original.
+        </li>
+        <li>
+          <strong>Geuláh (גְּאוּלָה):</strong> Redención.
+        </li>
+      </ul>
+    </div>
+ 
+    <div class="prophetic-content">
+      <div class="prophetic-section">
+        <div class="prophetic-title">Impacto Profético</div>
+        <p>
+          Pésaj Shení rompe con la fe pasiva y la condenación religiosa. Nos
+          enseña que el Elohim de Israel ha trazado un camino de regreso incluso
+          para los que se sienten descalificados por su impureza o su distancia.
+          En el Mashíaj Yeshúa, no hay "demasiado tarde" para el que busca la
+          Geuláh con un corazón sincero. La restauración de Israel y la
+          injerción de las naciones no es un plan "B", sino el diseño eterno de
+          MarYah manifestado en el sacrificio perfecto.
+        </p>
+        <p>
+          El concepto de la "segunda oportunidad" es un hilo conductor que une
+          la entrega de la Torá en el Sinaí, la institución de Pésaj Shení y la
+          restauración de las almas en el discurso de Kefa (Pedro) en Shavuot.
+          Esta revelación nos muestra que יְהוָה siempre provee un camino de
+          retorno para aquellos que, por diversas razones, se encontraban
+          "lejos" o "impuros".
+        </p>
+      </div>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <h1>1. El Fundamento: Pésaj Shení (Números 9)</h1>
+ 
+    <div class="content-container">
+      <p>
+        Como se establece en la base textual autorizada de la Torá Viviente:
+      </p>
+      <div class="scripture">
+        [10] "Habla a los hijos de Israel, y diles: 'Si cualquiera de ustedes o
+        de sus descendientes está impuro por causa de un cuerpo muerto o está
+        lejos en un viaje, él todavía puede observar el Pésaj de Adonái. [11]
+        Ellos lo observarán en el segundo mes, en el día catorce, al
+        crepúsculo...'"
+      </div>
+      <p>
+        Esta instrucción nace de una demanda del pueblo. Hombres que estaban
+        impuros por haber enterrado a un muerto no querían quedar excluidos de
+        la oferta de Adonai. La respuesta de יְהוָה no fue el rechazo, sino la
+        creación de un tiempo redentor adicional. Proféticamente, esto señala
+        que la muerte (el pecado) y la distancia no son obstáculos insalvables
+        cuando hay un deseo genuino de acercarse al sacrificio del Mashíaj.
+      </p>
+    </div>
+ 
+    <h1>2. El Cumplimiento en Shavuot: Los 3,000 de Kefa</h1>
+ 
+    <div class="content-container">
+      <p>
+        En el libro de los Hechos (Hechos 2), vemos la manifestación del Ruach
+        HaKodesh en Shavuot. Kefa se levanta y confronta a la multitud, muchos
+        de los cuales habían estado presentes o habían consentido en la
+        ejecución de Yeshúa apenas cincuenta días antes.
+      </p>
+      <ul>
+        <li>
+          <strong>La Impureza Espiritual:</strong> Aquellos que gritaron "sea
+          ejecutado" estaban, en términos espirituales, "impuros por causa de un
+          cuerpo muerto", y no de cualquier cuerpo, sino del cuerpo del Mashíaj.
+        </li>
+        <li>
+          <strong>La Distancia:</strong> Muchos eran judíos de la diáspora, que
+          habían estado "lejos en un viaje" tanto física como espiritualmente del
+          reconocimiento de su Rey.
+        </li>
+        <li>
+          <strong>La Teshuváh como Pésaj Shení:</strong> Cuando el pueblo
+          pregunta: "¿Qué haremos?", Kefa les ofrece la "segunda oportunidad".
+          Al igual que en Pésaj Shení se permitía participar un mes después, en
+          Shavuot (el tiempo de la cosecha), יְהוָה abre la puerta para que
+          3,000 almas que habían perdido el momento del Pésaj original (al
+          rechazar al Cordero), pudieran ahora ser "sumergidas" en el nombre de
+          Yeshúa para perdón de pecados.
+        </li>
+      </ul>
+    </div>
+ 
+    <h1>3. Comentario Mesiánico: La Redención del Remanente</h1>
+ 
+    <div class="content-container">
+      <p>
+        La salvación de estos 3,000 no fue un evento aislado, sino la
+        activación de la Geuláh (Redención). Yeshúa, como MarYah manifestado,
+        extendió Su mano una vez más.
+      </p>
+      <p>
+        En el Pésaj original en Egipto, el que no ponía la sangre moría. En el
+        Pésaj de la ejecución de Yeshúa, muchos no comprendieron el sacrificio.
+        Sin embargo, en Su infinita misericordia, el Elohim de Israel no los
+        cortó de su pueblo inmediatamente, sino que usó el discurso de Kefa para
+        aplicar la esencia de Pésaj Shení: una ventana de tiempo para que el
+        impuro sea purificado y el lejano sea acercado.
+      </p>
+    </div>
+ 
+    <h1>4. Aplicación Espiritual ligada a la Aliyáh</h1>
+ 
+    <div class="content-container">
+      <p>
+        La Aliyáh no es solo el retorno físico a la tierra de Israel, sino el
+        retorno espiritual a la identidad en el Mashíaj.
+      </p>
+      <ul>
+        <li>
+          Muchos hoy se sienten como aquellos hombres de Bamidbar 9: "impuros"
+          por su pasado o "lejos" por años de tradiciones humanas o pecado.
+        </li>
+        <li>
+          El mensaje de los 3,000 salvos es que la Kahal de Israel se construye
+          con aquellos que aprovechan la segunda oportunidad.
+        </li>
+        <li>
+          Yeshúa es nuestro Pésaj perpetuo. Si perdiste la primera convocatoria
+          por ignorancia o error, el Ruach HaKodesh te convoca hoy a un "Pésaj
+          Shení" espiritual: arrepiéntete, haz Teshuváh y entra en el pacto
+          renovado.
+        </li>
+      </ul>
+    </div>
+ 
+    <div class="conclusion">
+      <p>
+        Pésaj Shení y la salvación de los 3,000 en Shavuot demuestran que el
+        plan de יְהוָה para la restauración de Israel es mayor que nuestro
+        fracaso. La Torá no es un sistema de condenación, sino una instrucción
+        de vida que prevé nuestra debilidad y ofrece la provisión del Mashíaj
+        para que nadie que desee participar del sacrificio del Cordero quede
+        excluido. La "segunda oportunidad" es la firma de la gracia de MarYah
+        sobre un Israel que está siendo despertado y restaurado en estos últimos
+        tiempos.
+      </p>
+    </div>
+ 
+    <div class="section-divider"></div>
+ 
+    <h1>Conexión con las Buenas Nuevas del Reino</h1>
+ 
+    <div class="content-container">
+      <p>
+        Las Buenas Nuevas (Besorah) del Reino no consisten en la anulación de la
+        instrucción, sino en la apertura del camino para que los que estaban
+        "lejos" sean acercados. Pésaj Shení es la sombra profética de esta
+        realidad:
+      </p>
+      <ul>
+        <li>
+          <strong>La Impureza por Cuerpo Muerto:</strong> Representa la
+          condición espiritual de la humanidad bajo la esclavitud del pecado y
+          la muerte. Así como el impuro en el desierto no podía participar del
+          sacrificio, el hombre en su estado de muerte espiritual está separado.
+          Pero el Reino ofrece una purificación que permite el acceso al Cordero
+          de Pésaj.
+        </li>
+        <li>
+          <strong>El Viaje Lejano:</strong> Simboliza a las diez tribus de
+          Israel dispersas y a las naciones que no conocían el pacto. El Reino
+          anuncia que, aunque hayan estado "lejos en un viaje" a causa de la
+          idolatría o la ignorancia, el tiempo de la restauración ha llegado.
+        </li>
+        <li>
+          <strong>La Teshuváh (Arrepentimiento):</strong> Pésaj Shení es la
+          fiesta de la Teshuváh por excelencia. Enseña que nunca es tarde para
+          aquel que reconoce su falta de mérito y clama por ser incluido en el
+          sacrificio de Yeshúa.
+        </li>
+      </ul>
+    </div>
+ 
+    <h1>3. Comentario Mesiánico: Yeshúa como el Pésaj Perpetuo</h1>
+ 
+    <div class="content-container">
+      <p>
+        En el Brit Hadashah, vemos este principio operando plenamente. Yeshúa,
+        como MarYah manifestado, no vino para los que se creían justos, sino
+        para los "impuros" y los que estaban "lejos".
+      </p>
+      <p>
+        La inmensa cosecha de almas tras la ejecución y resurrección del Mashíaj
+        es un cumplimiento del espíritu de Pésaj Shení. Muchos que no pudieron o
+        no quisieron reconocer al Cordero en el momento de Su sacrificio (el 14
+        de Nisán), recibieron una "segunda oportunidad" mediante la inmersión en
+        aguas vivas y la recepción del Ruach HaKodesh poco tiempo después. El
+        Nuevo Pacto es, en esencia, la extensión de la mano de יְהוָה hacia un
+        Israel que estaba impuro, permitiéndole comer nuevamente de la mesa del
+        Rey.
+      </p>
+    </div>
+ 
+    <h1>4. Aplicación Espiritual y Aliyáh</h1>
+ 
+    <div class="content-container">
+      <p>
+        La verdadera Aliyáh comienza con el reconocimiento de que necesitamos
+        este Pésaj Shení espiritual.
+      </p>
+      <ul>
+        <li>
+          <strong>Restauración de la Identidad:</strong> Las Buenas Nuevas llaman
+          a los hijos de Israel que han estado viviendo como gentiles ("lejos en
+          un viaje") a regresar a su herencia.
+        </li>
+        <li>
+          <strong>Justicia y no Condenación:</strong> Al igual que en la Torá,
+          donde יְהוָה no castigó a los hombres impuros sino que les dio una
+          provisión, el Mashíaj no vino para condenar al mundo, sino para que el
+          mundo sea salvo por Él.
+        </li>
+        <li>
+          <strong>La Urgencia del Regreso:</strong> Aunque hay una segunda
+          oportunidad, el mandato es claro: debe celebrarse con Matzót
+          (sinceridad y verdad) y hierbas amargas (reconocimiento del amargor
+          del pecado).
+        </li>
+      </ul>
+    </div>
+ 
+    <div class="prophetic-content">
+      <div class="prophetic-section">
+        <div class="prophetic-title">Impacto Profético</div>
+        <p>
+          Pésaj Shení es la prueba fehaciente de que el Elohim de Israel no
+          desea la muerte del que muere, sino que se arrepienta y viva. Este
+          principio rompe con la fe pasiva y nos impulsa a una búsqueda activa
+          de la santidad, sabiendo que el Mashíaj ha pavimentado el camino para
+          que incluso el que se sentía excluido sea contado dentro de la Kahal
+          de Israel. La restauración de todas las cosas es el cumplimiento
+          definitivo de este "segundo llamado", donde cada alma redimida por la
+          sangre de Yeshúa es limpiada de la muerte para servir al Elohim vivo.
+        </p>
+      </div>
+    </div>
+ 
+    <div class="section-divider"></div>
+<footer>
+      <p>
+        📖 Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+        crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj:<br />
+        <a href="https://ia-interactiva.vercel.app/" target="_blank"
+          >https://ia-interactiva.vercel.app/</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la Toraviviente | Torá Mesiánica:<br />
+        <a
+          href="https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica"
+          target="_blank"
+          >https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica</a
+        >
+      </p>
+      <p>
+        📖 Salmos Mesiánicos:<br />
+        <a
+          href="https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua"
+          target="_blank"
+          >https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua</a
+        >
+      </p>
+      <p>
+        📖 Parashot Mesianicas:<br />
+        <a
+          href="https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas"
+          target="_blank"
+          >https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la toraviviente de estudio:<br />
+        <a href="https://gemini.google.com/gem/310786cce7ad" target="_blank"
+          >https://gemini.google.com/gem/310786cce7ad</a
+        >
+      </p>
+      <p>
+        📱 Siguenos en Instagram oficial:<br />
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          target="_blank"
+          >https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3</a
+        >
+      </p>
+      <p>
+        <strong>YOHANAN BEN ISRAEL</strong><br />
+        COMPAÑERO DE LABORES EN ADONAI YESHÚA<br />
+        MELEJ HAMASHIAJ
+      </p>
+    </footer>
+</main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
