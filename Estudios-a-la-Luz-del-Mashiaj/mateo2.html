@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MATITYAHU (MATEO) 1:1–25</title>
+
+        <!-- Google Translate API -->
+        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <!-- Librerías necesarias -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <style>
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #f8f8f8;
+                color: #333;
+            }
+
+            .verse-container {
+                margin-bottom: 30px;
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .verse-number {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+
+            .hebrew {
+                font-family: 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.1em;
+                margin: 10px 0;
+            }
+
+            .transliteration {
+                font-style: italic;
+                margin: 10px 0;
+                color: #555;
+            }
+
+            .translation {
+                margin: 10px 0;
+            }
+
+            .aramaic {
+                font-family: 'Estrangelo Edessa', 'Serto Jerusalem', 'East Syriac Adiabene', 'Times New Roman', serif;
+                direction: rtl;
+                font-size: 1.3em;
+                margin: 15px 0;
+                line-height: 1.8;
+            }
+
+            .explanation {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .point-letter {
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-right: 8px;
+                color: #000;
+            }
+
+            .content-container {
+                background-color: white;
+                padding: 25px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-bottom: 30px;
+            }
+
+            .section-container {
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 30px;
+            }
+
+            h2,
+            h3 {
+                text-align: center;
+                color: #000;
+                margin-bottom: 20px;
+            }
+
+            .section-divider {
+                border-top: 1px solid #ddd;
+                margin: 40px 0;
+            }
+
+            .prophetic-content {
+                background-color: white;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                margin-top: 40px;
+            }
+
+            .prophetic-section {
+                margin-bottom: 20px;
+            }
+
+            .prophetic-title {
+                font-weight: bold;
+                color: #000;
+                margin-bottom: 10px;
+                font-size: 1.1em;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            .scripture {
+                font-style: italic;
+                margin: 10px 20px;
+                padding-left: 15px;
+                border-left: 3px solid #ddd;
+            }
+
+            .highlight {
+                font-weight: bold;
+                color: #000;
+            }
+
+            .conclusion {
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 30px;
+            }
+
+            ul {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                padding-left: 30px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .literal-translation {
+                margin: 10px 0;
+                font-style: italic;
+                color: #444;
+            }
+
+            .prayer-text {
+                font-size: 1.05em;
+                line-height: 1.8;
+                margin: 20px 0;
+            }
+
+            .prayer-conclusion {
+                font-style: italic;
+                text-align: center;
+                margin-top: 30px;
+            }
+
+            #google_translate_element {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin: 10px 0;
+                flex-wrap: wrap;
+                font-size: clamp(12px, 2.5vw, 14px);
+            }
+
+            /* Botones */
+            .boton-descargar {
+                display: block;
+                width: clamp(150px, 70%, 180px);
+                margin: 15px auto;
+                padding: clamp(8px, 2vw, 10px);
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: clamp(12px, 3vw, 14px);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+            .boton-descargar:hover {
+                background-color: #0056b3;
+                cursor: pointer;
+            }
+
+            .aliya-button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+                text-align: center;
+                display: inline-block;
+                font-size: clamp(14px, 4vw, 16px);
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s;
+                width: auto;
+                max-width: 100%;
+            }
+
+            .aliya-button:hover {
+                background-color: #45a049;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+                transform: translateY(-2px);
+            }
+
+            .aliya-button a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            footer {
+                margin-top: 25px;
+                text-align: center;
+                font-size: clamp(12px, 2vw, 14px);
+                color: #777;
+                border-top: 1px solid #ccc;
+                padding-top: 15px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+
+<body>
+    <!-- Selector de idioma -->
+    <div id="google_translate_element"></div>
+
+    <!-- Contenido para exportar -->
+    <header>
+        <button class="boton-descargar" onclick="descargarPDF()">Descargar en PDF</button>
+    </header>
+
+    <main id="contenido">
+        <h1>MATAEO CAPITULO 2, CON COMENTARIOS MESIANICOS.</h1>
+        <h2>Mt-Matityah 2:1-23</h2>
+        <div class="verse-container">
+  <div class="verse-number">[1]</div>
+  <div class="translation">
+    Después que Yeshúa יֵשׁוּעַ nació en Beit-Lejem en la tierra de Iehudáh
+    יְהוּדָה (Miqueas 5:1) durante el tiempo que Herodes era rey, hombres
+    sabios de oriente llegaron a Ierushalaim יְרוּשָׁלַיִם,
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[2]</div>
+  <div class="translation">
+    y preguntaron: "¿Dónde está el recién nacido, Rey de los Yehudaitas?
+    Pues vimos su estrella en oriente y vinimos a adorarle."
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[3]</div>
+  <div class="translation">
+    Cuando el rey Herodes oyó esto, se molestó, al igual que todos en
+    Ierushalaim יְרוּשָׁלַיִם.
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[4]</div>
+  <div class="translation">
+    Llamó a todos los principales kohanim, soferim - escribas (escribanos,
+    maestros de la Tora, rabinos) del pueblo, y les preguntó con ansiedad:
+    "¿Dónde nacerá el Mashíaj?"
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[5]</div>
+  <div class="translation">
+    Ellos respondieron: "En Beit-Lejem de Iehudáh יְהוּדָה, porque el
+    profeta escribió:
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[6]</div>
+  <div class="translation">
+    'Y tú, Beit-Lejem, en la tierra de Iehudáh יְהוּדָה, de ningún modo eres
+    la menor entre los príncipes de Iehudáh יְהוּדָה pues de ti vendrá el
+    rey que será pastor de Mi pueblo Israel ישראל.' Miq 5:1-3
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[7]</div>
+  <div class="translation">
+    Herodes mandó a llamar a los Sabios para que se reunieran con él en
+    secreto, y les preguntó exactamente cuando fue que apareció la estrella.
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[8]</div>
+  <div class="translation">
+    Después los envió a Beit-Lejem con estas instrucciones: "Busquen
+    cuidadosamente al niño; y cuando le hallen, me lo hacen saber, para yo
+    también ir a adorarle."
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[9]</div>
+  <div class="translation">
+    Después que ellos escucharon al rey, se fueron; y la estrella que habían
+    visto en el oriente iba delante de ellos, hasta que llegó y se detuvo
+    encima del lugar donde estaba el niño.
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[10]</div>
+  <div class="translation">Cuando vieron la estrella, se regocijaron con gran alegría.</div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[11]</div>
+  <div class="translation">
+    Entraron en la suka (tienda cabaña) y vieron al niño con su madre
+    Miryam. Doblando sus rodillas ante Él (heb: sjachah inclinarse) lo
+    adoraron (arameo - sagad) y abrieron sus tesoros y le ofrecieron: oro,
+    mirra e incienso. Lev 23:39-43; Sal 97:7
+  </div>
+  <div class="aramaic">sagad</div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[12]</div>
+  <div class="translation">
+    Pero se les mostró en un sueño que no deberían volver a Herodes, por lo
+    que tomaron un camino diferente a su país.
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[13]</div>
+  <div class="translation">
+    Después que ellos se fueron, un malaj de Elohím se le apareció en un
+    sueño a Iosef יוֹסֵף y le dijo: "Levántate, toma al niño y a su madre, y
+    huye a Mitsraim מִצְרַיִם, quédate allí hasta que yo te diga que
+    regreses, porque Herodes buscará al niño para matarlo."
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[14]</div>
+  <div class="translation">
+    Así, pues, se levantó durante la noche, tomó al niño y a su madre, y se
+    los llevó a Mitsraim מִצְרַיִם,
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[15]</div>
+  <div class="translation">
+    donde permaneció hasta la muerte de Herodes. 'Esto sucedió, para que se
+    cumpliese lo que había hablado por medio del profeta: "De Mitsraim
+    מִצְרַיִם llamé a mi hijo." Os 11:1
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[16]</div>
+  <div class="translation">
+    Cuando Herodes descubrió que había sido engañado por los sabios, se
+    enfureció y ordenó que todos los niños de dos años o menos, en
+    Beit-Lehem y en todos sus vecindarios fueran asesinados, de acuerdo con
+    el tiempo que pasó desde que los sabios lo descubrieron.
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[17]</div>
+  <div class="translation">
+    De esta manera, las palabras dadas por el profeta Irmeyáh יִרְמְיָה se
+    cumplieron: Jer 31:15
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[18]</div>
+  <div class="translation">
+    "Se oyó una voz en Ramah, llanto y gran lamento. Era Rajel que lloraba a
+    sus hijos y rehusaba ser consolada, porque ya no estaban vivos." Jer
+    31:14-15
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[19]</div>
+  <div class="translation">
+    Después de la muerte de Herodes, un malaj de Elohím se apareció en un
+    sueño a Iosef יוֹסֵף en Mitsraim מִצְרַיִם,
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[20]</div>
+  <div class="translation">
+    y dijo: "Levántate, toma al niño y a su madre, y vete a Eretz-Israel
+    ישראל, porque aquellos que procuraban la vida "alma" del niño están
+    muertos."
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[21]</div>
+  <div class="translation">
+    Entonces se levantó, tomó al niño y a su madre, y regresó a Eretz-Israel
+    ישראל.
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[22]</div>
+  <div class="translation">
+    Sin embargo, al oír que Arquelao había sucedido a su padre Herodes como
+    rey de Iehudáh יְהוּדָה, tuvo temor de ir allá; y se le mostró en un
+    sueño que debía ir a la región de Galil.
+  </div>
+</div>
+
+<div class="verse-container">
+  <div class="verse-number">[23]</div>
+  <div class="translation">
+    y fue a morar en un pueblo llamado Netzaret, para que se cumpliera lo
+    que fue hablado por los profetas, que habría de ser llamado “Netzer”
+    (Renuevo - Rama) (el Mashïaj de Netzer/TzEmaj. Is 11:1,2; 53:2 Jer 23:5;
+    31:6 Zac 3:8; 6:11-12; Hch 24:5)
+  </div>
+</div>
+
+<div class="content-container">
+  <p>(REFERECIAS TOMADAS DE BIBLIA TORA VIVIENTE.)</p>
+</div>
+
+<h1>1. CONTEXTO HISTÓRICO Y CULTURAL</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>El capítulo 2 del Evangelio de Mateo se sitúa en el período del dominio romano sobre Yisrael, bajo el reinado de Herodes el Grande, un idumeo impuesto por Roma. Este contexto revela una tensión política profunda, donde el pueblo anhelaba la restauración del Reino davídico prometido en el Tanaj. La expectativa mesiánica estaba viva, basada en textos como Miqueas 5:2 y Daniel 9:25. Herodes, aunque gobernaba Yerushalayim, no era legítimo descendiente de David, lo cual intensificaba la esperanza de un verdadero Rey. En este escenario aparece el nacimiento de Yeshúa, cumpliendo el anhelo profético del Mashíaj.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>La llegada de los sabios de oriente refleja una realidad cultural donde incluso las naciones estaban atentas a señales celestiales. Esto conecta con la promesa dada a Avraham en Bereshit 12:3, donde todas las naciones serían bendecidas en su descendencia. Estos sabios probablemente conocían las profecías hebreas a través de la dispersión de Yisrael en Babilonia. La estrella que siguieron no era simplemente un fenómeno astronómico, sino una señal divina, alineada con Bamidbar 24:17: “saldrá estrella de Yaakov”. Esto indica que el nacimiento de Yeshúa no fue oculto, sino anunciado incluso a los gentiles.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>Herodes representa el sistema corrupto opuesto al Reino de Adonai. Su reacción violenta al enterarse del nacimiento del “Rey de los judíos” revela la lucha entre el reino terrenal y el Reino eterno. La matanza de los niños en Bet-Léjem muestra el temor del poder humano ante la manifestación divina. Este acto refleja patrones anteriores en la historia de Yisrael, como el decreto de Faraón en Shemot 1:22. Así, Mateo presenta a Yeshúa como el nuevo libertador, en paralelo con Moshéh.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>El entorno cultural también incluye la práctica de sueños y revelaciones como medio de dirección divina, como se ve en Yosef. Esto conecta con Bereshit 37, donde Yosef hijo de Yaakov recibe sueños proféticos. La huida a Mitzrayim (Egipto) no es casual, sino parte del patrón redentor de Yisrael. Egipto simboliza tanto opresión como preservación. Este contexto muestra que cada evento del capítulo está profundamente enraizado en la historia y cultura hebrea, no en una narrativa aislada.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>2. CUMPLIMIENTO PROFÉTICO DEL MASHÍAJ</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>Mateo 2 revela múltiples cumplimientos proféticos directos del Tanaj. El nacimiento en Bet-Léjem cumple Miqueas 5:2, donde se anuncia que de esta pequeña ciudad saldría el gobernante de Yisrael. Este cumplimiento no es simbólico sino literal, demostrando la precisión profética del plan de Adonai. Bet-Léjem, “Casa de Pan”, también apunta a Yeshúa como el pan de vida. Así, el lugar de nacimiento no solo cumple profecía, sino que revela identidad mesiánica.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>La huida a Egipto cumple Hoshea 11:1: “De Egipto llamé a mi hijo”. Originalmente este texto se refiere a Yisrael, pero en Yeshúa se revela el cumplimiento pleno. Él recapitula la historia de Yisrael en sí mismo. Así como Yisrael salió de Egipto en redención, Yeshúa también emerge de Egipto como el Hijo obediente. Este patrón muestra que el Mashíaj no solo cumple profecías, sino que encarna la identidad de la nación redimida.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>La matanza de los niños cumple Yirmeyahu 31:15: “Raquel llora por sus hijos”. Este evento conecta con el exilio y el dolor de Yisrael. Sin embargo, el contexto de Jeremías también incluye restauración. Mateo muestra que el dolor no es el final, sino parte del proceso redentor. La vida del Mashíaj está rodeada de sufrimiento desde su inicio, señalando su misión futura.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>El establecimiento en Natzeret cumple la expresión “será llamado netzer (retoño)”, conectando con Yeshayahu 11:1. Aunque no es una cita textual directa, es una referencia profética al renuevo de David. Natzeret no era una ciudad prominente, lo que refleja la humildad del Mashíaj. Este cumplimiento muestra que el plan de Adonai incluye lo pequeño para manifestar lo eterno.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>3. CONEXIÓN CON LA TORÁ</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>El patrón de la huida y regreso de Egipto refleja directamente el éxodo narrado en la Torá. En Bereshit y Shemot establecen el modelo de redención: descenso, opresión y liberación. Yeshúa repite este patrón, mostrando que Él es el cumplimiento vivo de la Torá. Así como Yisrael fue llamado hijo, Yeshúa es el Hijo obediente.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>La amenaza de Herodes recuerda el decreto de Faraón contra los niños hebreos. Esto establece un paralelo directo entre Moshéh y Yeshúa. Ambos fueron preservados milagrosamente para cumplir una misión redentora. La Torá presenta estos patrones como sombras que encuentran su plenitud en el Mashíaj.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>La guía divina a través de sueños a Yosef refleja el modelo patriarcal. En Bereshit, los sueños son instrumentos proféticos. Esto muestra continuidad en la forma en que Adonai se comunica. No hay ruptura entre la Torá y el Brit Hadashah.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>El concepto de “primogénito” en la Torá (Shemot 4:22) se cumple en Yeshúa como el primogénito de redención. Él representa a Yisrael delante de Adonai, cumpliendo la función sacerdotal y redentora establecida desde la Torá.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>4. CONEXIÓN CON LOS NEVIIM (PROFETAS)</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>Miqueas 5:2 establece el lugar del nacimiento del Mashíaj. Mateo muestra su cumplimiento exacto, validando la autoridad profética. Este texto conecta el linaje de David con el propósito eterno.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>Hoshea 11:1 revela la identidad del hijo de Adonai. En Yeshúa, este pasaje adquiere dimensión mesiánica plena. Él es el cumplimiento del llamado de Yisrael.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>Jeremías 31:15 introduce el dolor del exilio. Mateo conecta este lamento con la matanza de los niños, mostrando continuidad histórica y espiritual.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>Yeshayahu 11:1 anuncia el retoño (netzer). Natzeret se convierte en señal profética del origen humilde del Mashíaj.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>5. CONEXIÓN CON LOS KETUVIM</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>Los Salmos mesiánicos como Tehilim 2 hablan del Rey establecido por Adonai. Mateo 2 muestra la oposición a este Rey desde su nacimiento.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>Tehilim 72 describe a las naciones trayendo regalos al Rey. Esto se cumple en los Sabios de oriente.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>Iyov refleja el sufrimiento del justo. Yeshúa desde niño enfrenta persecución.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>Rut conecta con Bet-Léjem, lugar del linaje davídico, cumplido en Yeshúa.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>6. RELACIÓN Y ARMONÍA CON TODO EL TANAJ</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>El capítulo 2 de Mateo no es un relato aislado, sino una manifestación armónica del plan revelado en todo el Tanaj. Desde Bereshit, el anuncio de la simiente prometida (Bereshit 3:15) establece una línea mesiánica que se desarrolla progresivamente. Yeshúa, al ser preservado de la muerte decretada por Herodes, continúa esta línea profética que atraviesa toda la Escritura. La preservación del linaje es clave en el plan redentor, como se observa en la historia de Yitzjak, Yaakov y David. Cada intento de destruir la simiente es frustrado por la intervención divina.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>El patrón de exilio y retorno presente en Mateo 2 refleja el ciclo constante en el Tanaj: Yisrael desciende, es oprimido y luego es restaurado por Adonai. Este patrón se observa en Egipto, Babilonia y otras etapas históricas. Yeshúa revive este patrón en su propia vida, mostrando que Él no solo participa en la historia de Yisrael, sino que la cumple plenamente. Así, Él es la representación viva del pueblo escogido en obediencia perfecta.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>La oposición al Mashíaj también es un tema recurrente en el Tanaj. Desde Kayin contra Hevel, hasta Shaúl persiguiendo a David, el justo siempre enfrenta resistencia. Herodes encarna esta misma oposición contra el ungido de Adonai. Sin embargo, el Tanaj también muestra que el propósito de Adonai prevalece siempre. Mateo 2 confirma que ningún decreto humano puede detener el cumplimiento profético.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>La armonía del Tanaj se revela en cómo múltiples libros, escritos en diferentes épocas, convergen en Yeshúa. La Torá establece el fundamento, los Profetas anuncian, y los Escritos reflexionan sobre la esperanza. En Mateo 2, todas estas líneas convergen en un solo punto: el Mashíaj prometido ha venido. Esto confirma la unidad de la revelación de יְהוָה.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>7. PROFECÍAS MESIÁNICAS CUMPLIDAS EN YESHÚA</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>Miqueas 5:2 establece claramente que el gobernante de Yisrael nacería en Bet-Léjem. Este cumplimiento en Mateo 2 no es casual, sino evidencia de la precisión profética. Bet-Léjem, como ciudad de David, conecta directamente al Mashíaj con el pacto davídico (2 Samuel 7:12-16). Yeshúa cumple este requisito esencial del Mesías esperado.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>Hoshea 11:1, “De Egipto llamé a mi hijo”, encuentra en Yeshúa un cumplimiento ampliado. Este pasaje originalmente describe a Yisrael, pero en el Mashíaj se revela su dimensión más profunda. Yeshúa es el Hijo que cumple lo que Yisrael no pudo cumplir plenamente: obediencia perfecta.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>Yirmeyahu 31:15 muestra el dolor de Raquel llorando por sus hijos. Este lamento se cumple en la matanza de los niños, pero también apunta a la restauración futura descrita en el mismo capítulo. Mateo presenta el dolor como parte del proceso redentor.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>Yeshayahu 11:1 habla del “netzer” (retoño) que saldrá de la raíz de Yishai. El término conecta con Natzeret, lugar donde Yeshúa crece. Esto no solo cumple una profecía, sino que revela la identidad del Mashíaj como el renuevo de David.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>8. EXPLICACIÓN DETALLADA DE LAS REFERENCIAS BÍBLICAS</h1>
+<div class="explanation">
+  <p>Párrafo 1</p>
+  <p>Miqueas 5:2 debe entenderse en su contexto de esperanza en medio de juicio. Israel estaba bajo amenaza, pero el profeta anuncia un gobernante eterno. El término hebreo “מושל” (moshel) implica autoridad divina, no solo política. En Yeshúa, este gobierno se manifiesta en justicia y verdad.</p>
+</div>
+<div class="explanation">
+  <p>Párrafo 2</p>
+  <p>Hoshea 11:1 revela el amor paternal de Adonai por Yisrael. Sin embargo, también muestra la infidelidad del pueblo. En contraste, Yeshúa representa la fidelidad perfecta. Así, el texto adquiere una dimensión tipológica y profética.</p>
+</div>
+<div class="explanation">
+  <p>Párrafo 3</p>
+  <p>Yirmeyahu 31:15 se sitúa en el contexto del exilio. Raquel, matriarca de Yisrael, simboliza el dolor colectivo. Pero el capítulo continúa con la promesa del Brit Hadashah. Mateo conecta el dolor con la esperanza futura.</p>
+</div>
+<div class="explanation">
+  <p>Párrafo 4</p>
+  <p>Yeshayahu 11:1 utiliza el término “netzer”, que implica crecimiento desde lo aparentemente insignificante. Este concepto es clave para entender el carácter humilde del Mashíaj. Natzeret, una ciudad despreciada, se convierte en símbolo de esta profecía.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>9. CONEXIÓN CON LAS FIESTAS BÍBLICAS</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>La huida a Egipto y regreso conecta directamente con Pésaj, la fiesta de redención. Así como Yisrael fue liberado de Egipto, Yeshúa emerge como el Cordero de Pésaj que traerá redención definitiva.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>La preservación del niño Mashíaj refleja el principio de Bikurim (primicias). Él es la primicia de la redención futura. Su vida anticipa la resurrección y restauración del pueblo.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>La manifestación a los sabios de oriente puede relacionarse con Shavuot, donde las naciones reciben revelación. Aquí vemos a gentiles reconociendo al Mashíaj, anticipando la expansión del mensaje.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>El conflicto con Herodes refleja Yom Teruah, un tiempo de juicio y anuncio. La venida del Rey implica confrontación con los reinos de este mundo.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>10. APLICACIÓN ESPIRITUAL Y ENSEÑANZA</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>Así como Yosef obedeció sin cuestionar, el creyente debe aprender a discernir y obedecer la voz de Adonai. La obediencia activa es clave en el caminar espiritual.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>El contraste entre los sabios de oriente y Herodes enseña dos respuestas al Mashíaj: adoración o rechazo. Cada persona debe decidir cómo responder a Yeshúa.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>El sufrimiento no invalida el propósito de Adonai. La vida del Mashíaj comienza con persecución, mostrando que la fidelidad puede implicar pruebas.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>El llamado es a salir de “Egipto”, símbolo de esclavitud espiritual, y caminar hacia la libertad en el Mashíaj.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<h1>11. ENSEÑANZA MESIÁNICA Y REVELACIÓN ESPIRITUAL</h1>
+<div class="content-container">
+  <p>Párrafo 1</p>
+  <p>Yeshúa es el cumplimiento vivo de Yisrael. Él recapitula la historia del pueblo en perfecta obediencia.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 2</p>
+  <p>El Mashíaj no llega en poder político, sino en humildad, revelando el carácter del Reino.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 3</p>
+  <p>La oposición espiritual es parte del cumplimiento profético. El Reino avanza en medio de resistencia.</p>
+</div>
+<div class="content-container">
+  <p>Párrafo 4</p>
+  <p>La revelación central es que Adonai cumple Su palabra con precisión absoluta.</p>
+</div>
+
+<div class="prophetic-content">
+  <div class="prophetic-section">
+    <div class="prophetic-title">IMPACTO PROFÉTICO</div>
+    <p>El capítulo 2 revela que el plan de redención no es improvisado, sino perfectamente tejido desde la Torá hasta el Mashíaj. Cada evento confirma que Yeshúa es el cumplimiento vivo de Yisrael, el Hijo obediente, el Rey prometido y el Redentor anunciado. Su vida desde la infancia está marcada por cumplimiento profético, oposición espiritual y dirección divina.</p>
+    <p>Hoy, este mensaje llama a discernir los tiempos, a reconocer al Mashíaj en medio de sistemas contrarios y a caminar en obediencia como Yosef. El mismo Elohim de Israel que guió a Yeshúa sigue guiando a su pueblo.</p>
+  </div>
+</div>
+
+<div class="content-container">
+    <h1>Tefilah</h1>
+  <div class="prayer-text">
+    Abba Kadosh, Elohim de Israel, te exaltamos porque Tu palabra es perfecta y fiel. Reconocemos en Yeshúa el cumplimiento de todas Tus promesas. Así como lo preservaste en medio de la amenaza, guarda nuestras vidas bajo Tu propósito eterno.
+    Enséñanos a obedecer como Yosef, a adorar como los sabios y a rechazar todo espíritu de Herodes en nuestro corazón. Líbranos de todo temor y danos discernimiento espiritual.
+    Haznos salir de Egipto espiritual y caminar en libertad, guiados por Tu Ruach HaKodesh. Establece Tu Reino en nuestras vidas y en Tu pueblo.
+  </div>
+  <div class="prayer-conclusion">En el nombre de Yeshúa HaMashíaj. Amén.</div>
+</div>
+
+<footer>
+      <p>
+        📖 Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+        crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj:
+        <a href="https://ia-interactiva.vercel.app/" target="_blank"
+          >https://ia-interactiva.vercel.app/</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la Toraviviente | Torá Mesiánica:
+        <a
+          href="https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica"
+          target="_blank"
+          >https://chatgpt.com/g/g-69af0b05c8448191a5ba37e05813ad0b-yeshua-la-toraviviente-tora-mesianica</a
+        >
+      </p>
+      <p>
+        📖 Salmos Mesiánicos:
+        <a
+          href="https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua"
+          target="_blank"
+          >https://chatgpt.com/g/g-69b37541c18481919cb13231ddfdb7cf-salmos-mesianicos-tehilim-del-mashiaj-yeshua</a
+        >
+      </p>
+      <p>
+        📖 Parashot Mesianicas:
+        <a
+          href="https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas"
+          target="_blank"
+          >https://chatgpt.com/g/g-69beeee7767081919ab9ccc3cdf68faa-parashot-mesianicas</a
+        >
+      </p>
+      <p>
+        📖 Yeshúa la toraviviente de estudio:
+        <a href="https://gemini.google.com/gem/310786cce7ad" target="_blank"
+          >https://gemini.google.com/gem/310786cce7ad</a
+        >
+      </p>
+      <p>
+        📱 Instagram:
+        <a
+          href="https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3"
+          target="_blank"
+          >https://www.instagram.com/yeshua.toraviviente?igsh=MzlyanJ2bDlrMGx3</a
+        >
+      </p>
+    </footer>
+        </main>
+
+  <button class="aliya-button"><a href="./EstudiosalaluzdelmashiajYeshua.html">Ir al siguiente estudio</a></button>
+
+  <script src="../index.js"></script>
+
+</body>
+
+</html>
