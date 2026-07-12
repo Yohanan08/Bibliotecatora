@@ -95,13 +95,19 @@ h1 {
   margin-top: var(--spacing-lg);
 }
 
+/* FIX: el h2 ya no se comprime en columna cuando hay un blockquote
+   u otro elemento cercano. Se le da ancho completo y se limpia
+   de cualquier flotante previo. */
 h2 {
   font-size: var(--font-size-h2);
   color: var(--color-primary-light);
   margin-top: var(--spacing-md);
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: var(--spacing-xs);
+  width: 100%;
+  clear: both;
 }
 
 h3 {
@@ -114,6 +120,15 @@ p {
   margin-bottom: var(--spacing-md);
   text-align: justify;
   color: var(--color-text-dark);
+}
+
+/* Referencia bíblica que suele ir junto al h2 (ej. "Bereshit (Génesis) 1:2")
+   Se fuerza a que quede en su propia línea, nunca flotando junto al título. */
+h2 + p,
+h2 ~ .referencia {
+  clear: both;
+  display: block;
+  margin-bottom: var(--spacing-sm);
 }
 
 /* Énfasis en nombres sagrados o notas importantes */
@@ -200,6 +215,9 @@ p b {
 /* --------------------------------------------------------------------------
    6. COMPONENTES ESPECÍFICOS (Bloques de Citas y Destacados)
    -------------------------------------------------------------------------- */
+
+/* FIX: el blockquote nunca flota junto a un título; siempre ocupa
+   su propia línea completa, evitando que comprima al h2 vecino. */
 blockquote {
   background: linear-gradient(135deg, var(--color-primary-deep), var(--color-primary-light));
   color: var(--color-white);
@@ -208,6 +226,9 @@ blockquote {
   border-left: 5px solid var(--color-gold-base);
   margin: var(--spacing-md) 0;
   box-shadow: var(--shadow-medium);
+  float: none !important;
+  clear: both;
+  width: 100%;
 }
 
 blockquote p {
