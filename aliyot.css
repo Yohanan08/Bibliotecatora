@@ -1,0 +1,141 @@
+/* Variables CSS — Paleta Institucional del Ministerio
+   Yeshua — La Torah Viviente (azul marino profundo + dorado) */
+:root {
+  --primary-color: #0b1a30;      /* Azul Marino Profundo (del escudo) */
+  --secondary-color: #162a4a;    /* Azul Intermedio */
+  --accent-color: #bfa15f;       /* Dorado Institucional (hover) */
+  --accent-color-light: #d9c596; /* Dorado Destello */
+  --background-color: #faf8f5;   /* Marfil/Crema */
+  --text-color: #1c2430;
+  --shadow-light: rgba(11, 26, 48, 0.08);
+  --border-radius-main: 12px;
+  --border-radius-item: 8px;
+  --font-heading: "Merriweather", serif;
+  --font-body: "Open Sans", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  display: flex; /* Usamos flexbox para centrar el contenido verticalmente */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+  box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+}
+
+.container {
+  max-width: 900px;
+  width: 90%; /* Hace el contenedor más responsivo */
+  margin: 30px auto; /* Ajustamos el margen superior/inferior */
+  background: white;
+  padding: 30px; /* Aumentamos el padding para más espacio */
+  box-shadow: 0 5px 15px var(--shadow-light); /* Sombra más suave */
+  border-radius: var(--border-radius-main);
+  border-top: 4px solid var(--accent-color); /* Acento dorado institucional */
+  text-align: center; /* Centramos el texto dentro del contenedor */
+}
+
+h1 {
+  font-family: var(--font-heading);
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-size: 2.2em; /* Aumentamos el tamaño para mayor impacto */
+}
+
+h2 {
+  font-family: var(--font-heading);
+  text-align: center;
+  color: var(--secondary-color);
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 1.6em;
+}
+
+.aliyot-list {
+  list-style: none;
+  padding: 0;
+  display: grid; /* Usamos CSS Grid para un diseño más flexible */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Ajuste automático de columnas */
+  gap: 15px; /* Espacio entre los elementos de la lista */
+}
+
+.aliyot-list li {
+  margin: 0; /* Eliminamos el margen superior/inferior redundante */
+}
+
+.aliyot-list a {
+  display: block;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 18px 25px; /* Aumentamos el padding para un mejor click */
+  border-radius: var(--border-radius-item);
+  font-size: 1.1em; /* Ajustamos el tamaño de la fuente */
+  font-weight: 600; /* Un poco más de peso */
+  text-decoration: none;
+  border: 2px solid var(--accent-color);
+  transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease; /* Añadimos transform a la transición */
+  box-shadow: 0 2px 5px rgba(11, 26, 48, 0.15); /* Pequeña sombra en los enlaces */
+}
+
+.aliyot-list a:hover {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  border-color: var(--accent-color-light);
+  color: var(--accent-color-light);
+  transform: translateY(-3px); /* Efecto sutil al pasar el ratón */
+  box-shadow: 0 4px 10px rgba(11, 26, 48, 0.25); /* Sombra más pronunciada al hacer hover */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+  }
+
+  .aliyot-list {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
+
+  .aliyot-list a {
+    font-size: 1em;
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    align-items: flex-start; /* Evita que el contenido se vea demasiado apretado en pantallas muy pequeñas */
+    padding-top: 20px;
+  }
+  .container {
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 8px;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+  }
+}

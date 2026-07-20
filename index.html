@@ -1,25 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contenido de las Parashot</title>
-    <link rel="stylesheet" href="./Parashot.css">
-</head>
+    <meta
+      name="description"
+      content="Explora las 54 Parashot del Torá con sus Aliyot, Haftará y Brit Hadashá entretejidos, revelando a Yeshua HaMashiaj en cada porción semanal."
+    />
+    <meta
+      property="og:title"
+      content="Contenido de las Parashot — Biblioteca Torá"
+    />
+    <meta
+      property="og:description"
+      content="Un recorrido completo por las Parashot del Torá, con estudios que muestran a Yeshua HaMashiaj presente en cada porción semanal."
+    />
+    <link rel="stylesheet" href="./Parashot.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="navbar">
-        <button class="hamburger-btn" onclick="toggleSidebar()" id="hamburgerBtn">
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-            <div class="hamburger-line"></div>
-        </button>
-        <div class="navbar-title">
-            <span>📖</span>
-            Recursos Kedoshim.
-        </div>
+      <button class="hamburger-btn" onclick="toggleSidebar()" id="hamburgerBtn">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </button>
+      <div class="navbar-title">
+        <span>📖</span>
+        Recursos Kedoshim.
+      </div>
     </div>
 
     <!-- Overlay -->
@@ -27,165 +37,216 @@
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <button class="close-btn" onclick="closeSidebar()">×</button>
-            <div class="sidebar-title">
-                <span>📖</span>
-                Contenidos
-            </div>
-            <div class="sidebar-subtitle">Recursos Kedoshim</div>
+      <div class="sidebar-header">
+        <button class="close-btn" onclick="closeSidebar()">×</button>
+        <div class="sidebar-title">
+          <span>📖</span>
+          Contenidos
         </div>
+        <div class="sidebar-subtitle">Recursos Kedoshim</div>
+      </div>
 
+      <div class="sidebar-content">
         <div class="sidebar-content">
-            <div class="sidebar-content">
-    <div class="menu-section">
-        <a href="https://ia-interactiva.vercel.app/" class="menu-item">
-            <span class="icon">🕎</span>
-            <span class="menu-text">Yeshúa la Toraviviente | todos los recursos kedoshim para tu crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj</span>
-        </a>
-    </div>
-</div>
+          <div class="menu-section">
+            <a href="https://ia-interactiva.vercel.app/" class="menu-item">
+              <span class="icon">🕎</span>
+              <span class="menu-text"
+                >Yeshúa la Toraviviente | todos los recursos kedoshim para tu
+                crecimiento en el mashiaj Judio Adonai Yeshúa Hamashiaj</span
+              >
+            </a>
+          </div>
         </div>
+      </div>
     </div>
 
     <header>
-        <h1><span class="torah-icon">📜</span> 54 PARASHOT</h1>
+      <h1><span class="torah-icon">📜</span> 54 PARASHOT</h1>
     </header>
 
     <div class="search-bar">
-        <input type="text" id="buscador" placeholder="Buscar parashá por nombre...">
+      <input
+        type="text"
+        id="buscador"
+        placeholder="Buscar parashá por nombre..."
+      />
     </div>
 
     <div class="container" id="contenedores">
-        <!-- Los contenedores se generarán aquí con JavaScript -->
+      <!-- Los contenedores se generarán aquí con JavaScript -->
     </div>
 
     <div id="miModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>SHALOM* *ALEJEM</h2>
-            <p>Bienvenidos a este espacio de estudio y reflexión
-                del Ministerio Judío Mesiánico.
-                Nos sentimos honrados de tenerte con nosotros
-                en este viaje de aprendizaje y crecimiento espiritual.
-                Aquí, nos dedicamos a profundizar en las Escrituras Hebreas,
-                explorando el Tanaj y el Brit Hadashá bajo la luz de
-                nuestro Adonai Yeshúa HaMashíaj.</p>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>SHALOM* *ALEJEM</h2>
+        <p>
+          Bienvenidos a este espacio de estudio y reflexión del Ministerio Judío
+          Mesiánico. Nos sentimos honrados de tenerte con nosotros en este viaje
+          de aprendizaje y crecimiento espiritual. Aquí, nos dedicamos a
+          profundizar en las Escrituras Hebreas, explorando el Tanaj y el Brit
+          Hadashá bajo la luz de nuestro Adonai Yeshúa HaMashíaj.
+        </p>
+      </div>
     </div>
 
     <script>
-        const nombres = [
-            "Bereshit", "Noaj", "Lej Lejá", "Vayera", "Jayei Sará", "Toldot",
-            "Vayetze", "Vayishlaj", "Vayeshev", "Miketz", "Vayigash", "Vayeji",
-            "Shemot", "Vaerá", "Bo", "Beshalaj", "Yitró", "Mishpatim",
-            "Terumá", "Tetzavé", "Ki Tisá", "Vayakhel", "Pekudei",
-            "Vayikrá", "Tzav", "Sheminí", "Tazría", "Metzorá", "Ajarei Mot",
-            "Kedoshim", "Emor", "Behar", "Bejukotai", "Bamidbar", "Naso",
-            "Behaalotejá", "Shelaj Lejá", "Koraj", "Jukat", "Balak",
-            "Pinjás", "Matot", "Masei", "Devarim", "Vaetjanán", "Ekev",
-            "Reé", "Shoftim", "Ki Tetzé", "Ki Tavó", "Nitzavim", "Vayelej",
-            "Haazinu", "Vezot Haberajá"
-        ];
+      const nombres = [
+        "Bereshit",
+        "Noaj",
+        "Lej Lejá",
+        "Vayera",
+        "Jayei Sará",
+        "Toldot",
+        "Vayetze",
+        "Vayishlaj",
+        "Vayeshev",
+        "Miketz",
+        "Vayigash",
+        "Vayeji",
+        "Shemot",
+        "Vaerá",
+        "Bo",
+        "Beshalaj",
+        "Yitró",
+        "Mishpatim",
+        "Terumá",
+        "Tetzavé",
+        "Ki Tisá",
+        "Vayakhel",
+        "Pekudei",
+        "Vayikrá",
+        "Tzav",
+        "Sheminí",
+        "Tazría",
+        "Metzorá",
+        "Ajarei Mot",
+        "Kedoshim",
+        "Emor",
+        "Behar",
+        "Bejukotai",
+        "Bamidbar",
+        "Naso",
+        "Behaalotejá",
+        "Shelaj Lejá",
+        "Koraj",
+        "Jukat",
+        "Balak",
+        "Pinjás",
+        "Matot",
+        "Masei",
+        "Devarim",
+        "Vaetjanán",
+        "Ekev",
+        "Reé",
+        "Shoftim",
+        "Ki Tetzé",
+        "Ki Tavó",
+        "Nitzavim",
+        "Vayelej",
+        "Haazinu",
+        "Vezot Haberajá",
+      ];
 
-        const contenedor = document.getElementById("contenedores");
+      const contenedor = document.getElementById("contenedores");
 
-        for (let i = 0; i < 54; i++) {
-            let div = document.createElement("div");
-            div.classList.add("box");
-            div.innerHTML = `
+      for (let i = 0; i < 54; i++) {
+        let div = document.createElement("div");
+        div.classList.add("box");
+        div.innerHTML = `
                 <p>${nombres[i]}</p>
                 <a href="parasha${i + 1}.html" class="btn">Ir a ${nombres[i]}</a>
             `;
-            contenedor.appendChild(div);
-        }
+        contenedor.appendChild(div);
+      }
 
-       document.getElementById("buscador").addEventListener("input", function () {
-        const texto = this.value.toLowerCase();
-        const contenedores = document.querySelectorAll(".box");
+      document
+        .getElementById("buscador")
+        .addEventListener("input", function () {
+          const texto = this.value.toLowerCase();
+          const contenedores = document.querySelectorAll(".box");
 
-        contenedores.forEach(box => {
+          contenedores.forEach((box) => {
             const parasha = box.textContent.toLowerCase();
             box.style.display = parasha.includes(texto) ? "block" : "none";
-        });
-    });
-
-        // Obtener el modal y el botón de cierre
-        var modal = document.getElementById("miModal");
-        var closeBtn = document.querySelector(".close");
-
-        // Mostrar el modal automáticamente cuando se carga la página
-        window.onload = function () {
-            modal.style.display = "flex";
-        };
-
-        // Cerrar el modal al hacer clic en la "X"
-        closeBtn.onclick = function () {
-            modal.style.display = "none";
-        };
-
-        // Cerrar el modal si el usuario hace clic fuera de él
-        window.onclick = function (event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };
-
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-
-            const isActive = sidebar.classList.contains('active');
-
-            if (isActive) {
-                closeSidebar();
-            } else {
-                openSidebar();
-            }
-        }
-
-        function openSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-
-            sidebar.classList.add('active');
-            overlay.classList.add('active');
-            hamburgerBtn.classList.add('active');
-
-            // Prevenir scroll del body cuando el menú está abierto
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const hamburgerBtn = document.getElementById('hamburgerBtn');
-
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
-            hamburgerBtn.classList.remove('active');
-
-            // Restaurar scroll del body
-            document.body.style.overflow = 'auto';
-        }
-
-        // Cerrar menú con tecla Escape
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                closeSidebar();
-            }
+          });
         });
 
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', () => {
-                closeSidebar();
-            });
+      // Obtener el modal y el botón de cierre
+      var modal = document.getElementById("miModal");
+      var closeBtn = document.querySelector(".close");
+
+      // Mostrar el modal automáticamente cuando se carga la página
+      window.onload = function () {
+        modal.style.display = "flex";
+      };
+
+      // Cerrar el modal al hacer clic en la "X"
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // Cerrar el modal si el usuario hace clic fuera de él
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+
+        const isActive = sidebar.classList.contains("active");
+
+        if (isActive) {
+          closeSidebar();
+        } else {
+          openSidebar();
+        }
+      }
+
+      function openSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+
+        sidebar.classList.add("active");
+        overlay.classList.add("active");
+        hamburgerBtn.classList.add("active");
+
+        // Prevenir scroll del body cuando el menú está abierto
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+
+        sidebar.classList.remove("active");
+        overlay.classList.remove("active");
+        hamburgerBtn.classList.remove("active");
+
+        // Restaurar scroll del body
+        document.body.style.overflow = "auto";
+      }
+
+      // Cerrar menú con tecla Escape
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeSidebar();
+        }
+      });
+
+      // Cerrar menú al hacer clic en un enlace
+      document.querySelectorAll(".menu-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          closeSidebar();
         });
+      });
     </script>
-
-</body>
-
+  </body>
 </html>
