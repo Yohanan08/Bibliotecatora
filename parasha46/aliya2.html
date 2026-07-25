@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -12,248 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        margin: 0 auto;
-        max-width: 800px;
-        padding: 20px;
-        background-color: #f8f8f8;
-        color: #333;
-      }
-
-      .verse-container {
-        margin-bottom: 30px;
-        background-color: white;
-        padding: 15px;
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-
-      .verse-number {
-        font-weight: bold;
-        color: #000;
-        font-size: 1.2em;
-        margin-bottom: 10px;
-      }
-
-      .hebrew {
-        font-family: "Times New Roman", serif;
-        direction: rtl;
-        font-size: 1.1em;
-        margin: 10px 0;
-      }
-
-      .transliteration {
-        font-style: italic;
-        margin: 10px 0;
-        color: #555;
-      }
-
-      .translation {
-        margin: 10px 0;
-      }
-
-      .aramaic {
-        font-family: "Estrangelo Edessa", "Serto Jerusalem",
-          "East Syriac Adiabene", "Times New Roman", serif;
-        direction: rtl;
-        font-size: 1.3em;
-        margin: 15px 0;
-        line-height: 1.8;
-      }
-
-      .explanation {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        margin-top: 40px;
-      }
-
-      .point-letter {
-        font-weight: bold;
-        font-size: 1.1em;
-        margin-right: 8px;
-        color: #000;
-      }
-
-      .content-container {
-        background-color: white;
-        padding: 25px;
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-      }
-
-      .section-container {
-        margin-bottom: 25px;
-      }
-
-      h1 {
-        text-align: center;
-        color: #000;
-        margin-bottom: 30px;
-      }
-
-      h2,
-      h3 {
-        text-align: center;
-        color: #000;
-        margin-bottom: 20px;
-      }
-
-      .section-divider {
-        border-top: 1px solid #ddd;
-        margin: 40px 0;
-      }
-
-      .prophetic-content {
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        margin-top: 40px;
-      }
-
-      .prophetic-section {
-        margin-bottom: 20px;
-      }
-
-      .prophetic-title {
-        font-weight: bold;
-        color: #000;
-        margin-bottom: 10px;
-        font-size: 1.1em;
-      }
-
-      strong {
-        color: #000;
-      }
-
-      .scripture {
-        font-style: italic;
-        margin: 10px 20px;
-        padding-left: 15px;
-        border-left: 3px solid #ddd;
-      }
-
-      .highlight {
-        font-weight: bold;
-        color: #000;
-      }
-
-      .conclusion {
-        background-color: #f9f9f9;
-        padding: 15px;
-        border-radius: 5px;
-        margin-top: 30px;
-      }
-
-      ul {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding-left: 30px;
-      }
-
-      li {
-        margin-bottom: 8px;
-      }
-
-      .literal-translation {
-        margin: 10px 0;
-        font-style: italic;
-        color: #444;
-      }
-
-      .prayer-text {
-        font-size: 1.05em;
-        line-height: 1.8;
-        margin: 20px 0;
-      }
-
-      .prayer-conclusion {
-        font-style: italic;
-        text-align: center;
-        margin-top: 30px;
-      }
-
-      #google_translate_element {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        margin: 10px 0;
-        flex-wrap: wrap;
-        font-size: clamp(12px, 2.5vw, 14px);
-      }
-
-      /* Botones */
-      .boton-descargar {
-        display: block;
-        width: clamp(150px, 70%, 180px);
-        margin: 15px auto;
-        padding: clamp(8px, 2vw, 10px);
-        background-color: #007bff;
-        color: white;
-        text-align: center;
-        border-radius: 15px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: clamp(12px, 3vw, 14px);
-        transition: background-color 0.3s ease-in-out;
-      }
-
-      .boton-descargar:hover {
-        background-color: #0056b3;
-        cursor: pointer;
-      }
-
-      .aliya-button {
-        background-color: #4caf50;
-        border: none;
-        color: white;
-        padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
-        text-align: center;
-        display: inline-block;
-        font-size: clamp(14px, 4vw, 16px);
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 10px;
-        font-weight: bold;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s;
-        width: auto;
-        max-width: 100%;
-      }
-
-      .aliya-button:hover {
-        background-color: #45a049;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        transform: translateY(-2px);
-      }
-
-      .aliya-button a {
-        text-decoration: none;
-        color: black;
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-
-      footer {
-        margin-top: 25px;
-        text-align: center;
-        font-size: clamp(12px, 2vw, 14px);
-        color: #777;
-        border-top: 1px solid #ccc;
-        padding-top: 15px;
-        width: 100%;
-        box-sizing: border-box;
-      }
-    </style>
+    <link rel="stylesheet" href="../style.css" />
   </head>
 
   <body>
@@ -266,1769 +25,2040 @@
 
     <main id="contenido">
       <h1>
-        46. Parashá Ekev (עקב) Aliyáh 2: (Deuteronomio 8:11-9:3) Advertencia contra el orgullo 
-        y el olvido de Elohím al entrar en la tierra.
+        46. Parashá Ekev (עקב) Aliyáh 2: (Deuteronomio 8:11-9:3) Advertencia
+        contra el orgullo y el olvido de Elohím al entrar en la tierra.
         <p>
-          Haftaráh: Isaías 51:12-52:12 (La advertencia de no temer al hombre y confiar en Elohím).
+          Haftaráh: Isaías 51:12-52:12 (La advertencia de no temer al hombre y
+          confiar en Elohím).
         </p>
         <p>
-          Brit Hadasháh: Lucas 12:15-21 (La advertencia de Yeshúa contra la avaricia y la autosuficiencia).
+          Brit Hadasháh: Lucas 12:15-21 (La advertencia de Yeshúa contra la
+          avaricia y la autosuficiencia).
         </p>
       </h1>
       <h1>Punto 1. Deuteronomio 8:11-9:3</h1>
 
-    <div class="verse-container">
-      <div class="verse-number">דְּבָרִים ח׳:י״א</div>
-      <p class="hebrew">
-        הִשָּׁמֶר לְךָ פֶּן-תִּשְׁכַּח אֶת־יְהוָה אֱלֹהֶיךָ לְבִלְתִּי שְׁמֹר
-        מִצְו‍ֹתָיו וּמִשְׁפָּטָיו וְחֻקֹּתָיו אֲשֶׁר אָנֹכִי מְצַוְּךָ הַיּוֹם
-      </p>
-      <p class="transliteration">
-        Hi-shámer lejá pen-tishkáḥ et-יהוה Elohéija le-viltí shemór mitzvotáv
-        u-mishpatáv ve-ḥuqotáv asher anojí metzavjá hayyom.
-      </p>
-      <p class="translation">
-        Guárdate para ti, no sea que olvides a יהוה tu Elohím, para no guardar
-        Sus mandamientos, Sus juicios y Sus estatutos que yo te ordeno hoy.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:י״ב</div>
-      <p class="hebrew">
-        פֶּן-תֹּאכַל וְשָׂבָעְתָּ וּבָתִים טוֹבִים תִּבְנֶה וְיָשָׁבְתָּ
-      </p>
-      <p class="transliteration">
-        Pen-tojal ve-sava‘ta, u-vatím tovím tivné ve-yashavta.
-      </p>
-      <p class="translation">
-        No sea que comas y te sacies, y casas buenas edifiques y habites.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:י״ג</div>
-      <p class="hebrew">
-        וּבְקָרְךָ וְצֹאנְךָ יִרְבּוּ וְכֶסֶף וְזָהָב יִרְבֶּה לָךְ וְכֹל
-        אֲשֶׁר-לְךָ יִרְבֶּה
-      </p>
-      <p class="transliteration">
-        U-veqorkhá ve-tzonjá yirbú, ve-késef ve-zaháv yirbé lakh, ve-khól asher
-        lekha yirbé.
-      </p>
-      <p class="translation">
-        Y tu ganado vacuno y tu rebaño aumenten, y plata y oro aumenten para ti,
-        y todo lo que es tuyo aumente.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:י״ד</div>
-      <p class="hebrew">
-        וְרָם לְבָבֶךָ וְשָׁכַחְתָּ אֶת־יְהוָה אֱלֹהֶיךָ הַמּוֹצִיאֲךָ מֵאֶרֶץ
-        מִצְרַיִם מִבֵּית עֲבָדִים
-      </p>
-      <p class="transliteration">
-        Ve-ram levavejá ve-shajaḥta et-יהוה Elohéija ha-motzi’aja mé-eretz
-        Mitzráyim mi-bet avadím.
-      </p>
-      <p class="translation">
-        Y se eleve tu corazón, y olvides a יהוה tu Elohím que te sacó de tierra
-        de Mitsráyim, de casa de siervos.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:ט״ו</div>
-      <p class="hebrew">
-        הַמּוֹלִיכֲךָ בַּמִּדְבָּר הַגָּדוֹל וְהַנּוֹרָא נָחָשׁ שָׂרָף וְעַקְרָב
-        וְצִמָּאָון אֲשֶׁר אֵין-מָיִם הַמּוֹצִיא לְךָ מַיִם מִצּוּר הַחַלָּמִישׁ
-      </p>
-      <p class="transliteration">
-        Ha-molíkhajá ba-midbár ha-gadol ve-ha-norá, naḥásh saráf ve-‘akráv,
-        ve-tzimma’ón asher én-máyim, ha-motzí lejá máyim mi-tzur ha-ḥallámish.
-      </p>
-      <p class="translation">
-        Que te condujo en el desierto grande y temible, serpiente abrasadora y
-        escorpión, y sed donde no hay agua; que sacó para ti agua de la roca de
-        pedernal.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:ט״ז</div>
-      <p class="hebrew">
-        הַמַּאֲכִלְךָ מָן בַּמִּדְבָּר אֲשֶׁר לֹא-יָדְעוּן אֲבֹתֶיךָ לְמַעַן
-        עַנֹּתְךָ וּלְמַעַן נַסֹּתֶךָ לְהֵיטִבְךָ בְּאַחֲרִיתֶךָ
-      </p>
-      <p class="transliteration">
-        Ha-ma’akhiljá mán ba-midbár asher lo-yad‘un avotéija, le-ma‘an ‘anotjá
-        u-le-ma‘an nasotéija le-heitívja be-aḥaritjá.
-      </p>
-      <p class="translation">
-        Que te alimentó con maná en el desierto, que no conocieron tus padres,
-        para humillarte y para probarte, para hacerte bien en tu final.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:י״ז</div>
-      <p class="hebrew">
-        וְאָמַרְתָּ בִלְבָבֶךָ כֹּחִי וְעֹצֶם יָדִי עָשָׂה לִי אֶת־הַחַיִל הַזֶּה
-      </p>
-      <p class="transliteration">
-        Ve-amartá bilvavejá: koḥí ve-‘ótzem yadí ‘asá lí et-ha-ḥáil ha-zé.
-      </p>
-      <p class="translation">
-        Y digas en tu corazón: mi fuerza y el poder de mi mano me hicieron esta
-        riqueza.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:י״ח</div>
-      <p class="hebrew">
-        וְזָכַרְתָּ אֶת־יְהוָה אֱלֹהֶיךָ כִּי הוּא הַנֹּתֵן לְךָ כֹּחַ לַעֲשׂוֹת
-        חָיִל לְמַעַן הָקִים אֶת־בְּרִיתוֹ אֲשֶׁר נִשְׁבַּע לַאֲבֹתֶיךָ כַּיּוֹם
-        הַזֶּה
-      </p>
-      <p class="transliteration">
-        Ve-zajartá et-יהוה Elohéija, ki hu ha-notén lejá koaj la‘asót ḥáil,
-        le-ma‘an haqím et-beritó asher nishbá la-avotéija ka-yom ha-zé.
-      </p>
-      <p class="translation">
-        Y recordarás a יהוה tu Elohím, porque Él es el que te da fuerza para
-        hacer riqueza, para confirmar Su pacto que juró a tus padres, como en
-        este día.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:י״ט</div>
-      <p class="hebrew">
-        וְהָיָה אִם-שָׁכֹחַ תִּשְׁכַּח אֶת־יְהוָה אֱלֹהֶיךָ וְהָלַכְתָּ אַחֲרֵי
-        אֱלֹהִים אֲחֵרִים וַעֲבַדְתָּם וְהִשְׁתַּחֲוִיתָ לָהֶם הַעִדֹתִי בָכֶם
-        הַיּוֹם כִּי אָבֹד תֹּאבֵדוּן
-      </p>
-      <p class="transliteration">
-        Ve-hayá im-shajóaj tishkáḥ et-יהוה Elohéija, ve-halaḵtá ajaré elohím
-        ajerím va-avadetám ve-hishtajavítá lahem, ha‘idotí bakhém ha-yom, ki
-        avód tovedún.
-      </p>
-      <p class="translation">
-        Y será, si por completo olvidas a יהוה tu Elohím, y andas tras otros
-        dioses y los sirves y te postras ante ellos, testifico contra vosotros
-        hoy, que de cierto pereceréis.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ח׳:כ׳</div>
-      <p class="hebrew">
-        כַּגּוֹיִם אֲשֶׁר יְהוָה מַאֲבִיד מִפְּנֵיכֶם כֵּן תֹּאבֵדוּן עֵקֶב לֹא
-        תִשְׁמְעוּן בְּקוֹל יְהוָה אֱלֹהֵיכֶם
-      </p>
-      <p class="transliteration">
-        Ka-goyím asher יהוה ma’avid mi-penéijem, ken tovedún, ‘ékev lo
-        tishme‘ún be-qól יהוה Elohéijem.
-      </p>
-      <p class="translation">
-        Como las naciones que יהוה destruye de delante de vosotros, así
-        pereceréis, por cuanto no obedecéis la voz de יהוה vuestro Elohím.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">דְּבָרִים ט׳:א׳</div>
-      <p class="hebrew">
-        שְׁמַע יִשְׂרָאֵל אַתָּה עֹבֵר הַיּוֹם אֶת־הַיַּרְדֵּן לָבוֹא לָרֶשֶׁת
-        גּוֹיִם גְּדֹלִים וַעֲצוּמִים מִמְּךָ עָרִים גְּדֹלֹת וּבְצֻרוֹת
-        בַּשָּׁמָיִם
-      </p>
-      <p class="transliteration">
-        Shema‘ Yisraél, atáh ‘over ha-yom et ha-Yardén, la-vó la-réshet goyím
-        gedolím va-‘atzumím miméja, ‘arím gedolót u-vetzurót ba-shamayim.
-      </p>
-      <p class="translation">
-        Escucha, Israel: tú vas a pasar hoy el Yardén para venir a heredar
-        naciones grandes y fuertes, más que tú; ciudades grandes y fortificadas
-        en los cielos.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ט׳:ב׳</div>
-      <p class="hebrew">
-        עַם־גָּדוֹל וָרָם בְּנֵי עֲנָק אֲשֶׁר אַתָּה יָדַעְתָּ וְאַתָּה שָׁמַעְתָּ
-        מִי יִתְיַצֵּב לִפְנֵי בְנֵי עֲנָק
-      </p>
-      <p class="transliteration">
-        ‘Am gadól va-rám, bené ‘Anáq, asher atáh yada‘tá ve-atáh shamá‘tá: mí
-        yityatzév lifné bené ‘Anáq?
-      </p>
-      <p class="translation">
-        Pueblo grande y alto, hijos de ‘Anáq, que tú conoces y tú has oído:
-        ¿Quién se sostendrá delante de los hijos de ‘Anáq?
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <div class="verse-number">ט׳:ג׳</div>
-      <p class="hebrew">
-        וְיָדַעְתָּ הַיּוֹם כִּי יְהוָה אֱלֹהֶיךָ הוּא הָעֹבֵר לְפָנֶיךָ אֵשׁ
-        אֹכְלָה הוּא יַשְׁמִידֵם וְהוּא יַכְנִיעֵם לְפָנֶיךָ וְהוֹרַשְׁתָּם
-        וְהַאֲבַדְתָּם מַהֵר כַּאֲשֶׁר דִּבֶּר יְהוָה לָךְ
-      </p>
-      <p class="transliteration">
-        Ve-yada‘tá ha-yom ki יהוה Elohéija hu ha-‘over lefanéija, esh okhlá hu
-        yashmidém, ve-hu yakhni‘ém lefanéija; ve-horashtám ve-ha’avadtám mahér,
-        ka’asher dibér יהוה lakh.
-      </p>
-      <p class="translation">
-        Y conocerás hoy que יהוה tu Elohím es el que pasa delante de ti, fuego
-        consumidor; Él los destruirá, y Él los humillará delante de ti; y tú los
-        desposeerás y los destruirás rápidamente, como habló יהוה para ti.
-      </p>
-    </div>
-
-    <div class="explanation">
-      <div class="prophetic-section">
-        <h1>1. Cumplimiento Profético en el Mashíaj</h1>
-        <p>
-          En Deuteronomio 8:11-20, Moshé advierte a Israel sobre el peligro de
-          la prosperidad: olvidar a יהוה y atribuirse el mérito de las
-          bendiciones. En 9:1-3, la advertencia se intensifica: la victoria
-          sobre naciones poderosas no será por mérito propio, sino porque יהוה
-          mismo pasa delante de ellos como fuego consumidor.
+      <div class="verse-container">
+        <div class="verse-number">דְּבָרִים ח׳:י״א</div>
+        <p class="hebrew">
+          הִשָּׁמֶר לְךָ פֶּן-תִּשְׁכַּח אֶת־יְהוָה אֱלֹהֶיךָ לְבִלְתִּי שְׁמֹר
+          מִצְו‍ֹתָיו וּמִשְׁפָּטָיו וְחֻקֹּתָיו אֲשֶׁר אָנֹכִי מְצַוְּךָ
+          הַיּוֹם
         </p>
-        <p>En el plano profético, esto apunta a Yeshúa haMashíaj como:</p>
-        <ul>
-          <li>
-            <span class="prophetic-title">El Fuego Consumidor (אש אכלה):</span>
-            Hebreos 12:29 (Peshitta) cita Devarim 4:24, aplicando a MarYah (יהוה)
-            el título de fuego consumidor. En Apocalipsis 1:14-16, la
-            descripción de Yeshúa glorificado refleja esta imagen.
-          </li>
-          <li>
-            <span class="prophetic-title">El Conquistador que va delante:</span>
-            Apocalipsis 19:11-16 presenta al Mashíaj montando un caballo blanco,
-            con una espada que sale de Su boca para juzgar y guerrear en
-            justicia, cumpliendo la promesa de Devarim 9:3.
-          </li>
-          <li>
-            <span class="prophetic-title">El Guardián del Pacto:</span> Devarim
-            8:18 habla de quien confirma el pacto jurado a los padres; Lucas
-            1:72-73 y 2 Corintios 1:20 declaran que todas las promesas se
-            cumplen en Él.
-          </li>
-        </ul>
-      </div>
-
-      <div class="prophetic-section">
-        <h2>2. Conexión con los Profetas (Nevi’ím)</h2>
-        <p>Los Nevi’ím retoman estas imágenes:</p>
-        <ul>
-          <li>
-            <span class="prophetic-title"
-              >Fuego Consumidor y Presencia Divina:</span
-            >
-            Isaías 33:14-17 habla de “quién habitará con el fuego consumidor” y
-            conecta con la santidad de la presencia de יהוה. Malaquías 3:1-3
-            presenta al “mensajero del pacto” que purifica como fuego de
-            fundidor.
-          </li>
-          <li>
-            <span class="prophetic-title"
-              >Advertencia contra la autosuficiencia:</span
-            >
-            Oseas 13:4-6 recuerda cómo, después de la prosperidad, Israel
-            olvidó a su Salvador, reflejando Devarim 8. Jeremías 9:23-24
-            enfatiza que el que se gloríe, lo haga en conocer a יהוה, no en su
-            fuerza ni riquezas.
-          </li>
-          <li>
-            <span class="prophetic-title"
-              >Victoria por la intervención divina:</span
-            >
-            Isaías 42:13 describe a יהוה como guerrero que sale a pelear por Su
-            pueblo. Zacarías 14:3-5 muestra a יהוה descendiendo a pelear contra
-            las naciones, uniendo con la visión mesiánica de Su regreso.
-          </li>
-        </ul>
-      </div>
-
-      <div class="prophetic-section">
-        <h2>3. Conexión con el Brit Hadasháh (Peshitta arameo)</h2>
-        <p>En el Peshitta encontramos múltiples ecos:</p>
-        <ul>
-          <li>
-            <span class="prophetic-title"
-              >Advertencia contra olvidar al Dador:</span
-            >
-            Lucas 12:15-21 (parábola del rico insensato) enseña que no se debe
-            confiar en las riquezas sino en Elohím. 1 Timoteo 6:17-19 exhorta a
-            los ricos a no poner su esperanza en las riquezas, sino en Elohím
-            que nos da todo en abundancia.
-          </li>
-          <li>
-            <span class="prophetic-title"
-              >El Fuego Consumidor y el que va delante:</span
-            >
-            2 Tesalonicenses 1:7-8 (Peshitta) describe a MarYah Yeshúa
-            revelándose “con fuego ardiente” para dar retribución a los que no
-            conocen a Elohím. Hebreos 12:28-29 une la idea de recibir un reino
-            inconmovible con el servicio reverente al Fuego Consumidor.
-          </li>
-          <li>
-            <span class="prophetic-title"
-              >Victoria sobre enemigos espirituales:</span
-            >
-            Efesios 6:10-18 muestra que nuestra lucha no es contra carne ni
-            sangre, pero es la misma dinámica de Devarim 9:3: la victoria es por
-            la fuerza del que va delante. Apocalipsis 17:14 declara que el
-            Cordero vencerá, porque es Soberano de Soberanos y Rey de reyes.
-          </li>
-        </ul>
-      </div>
-
-      <div class="prophetic-section">
-        <h2>4. Aplicación Espiritual Hoy</h2>
-        <ul>
-          <li>
-            <strong>Recordar al Dador en la prosperidad:</strong> El corazón
-            humano fácilmente olvida la fuente de sus bendiciones. Debemos
-            cultivar gratitud diaria, reconociendo que todo éxito, salud y
-            provisión vienen de יהוה a través de Yeshúa haMashíaj.
-          </li>
-          <li>
-            <strong>Vivir en dependencia constante:</strong> Así como Israel no
-            podía derrotar a los hijos de ‘Anáq por su fuerza, nosotros no
-            podemos vencer al pecado ni a las fuerzas espirituales sin el que va
-            delante.
-          </li>
-          <li>
-            <strong>Humildad como arma espiritual:</strong> El reconocimiento
-            de nuestra incapacidad abre la puerta al poder del Mashíaj en
-            nosotros (2 Corintios 12:9).
-          </li>
-          <li>
-            <strong
-              >Seguridad en la presencia victoriosa del Mashíaj:</strong
-            >
-            Él es nuestro Fuego Consumidor que destruye toda oposición a Su
-            reino; por tanto, aunque enfrentemos “murallas hasta el cielo” en la
-            vida, no debemos temer.
-          </li>
-        </ul>
-        <p class="conclusion">
-          Este pasaje, leído a la luz del Tanaj y del Brit Hadasháh, es una
-          invitación a vivir con memoria espiritual, humildad constante y
-          confianza plena en que el Mashíaj pelea nuestras batallas y guarda Su
-          pacto eterno.
+        <p class="transliteration">
+          Hi-shámer lejá pen-tishkáḥ et-יהוה Elohéija le-viltí shemór mitzvotáv
+          u-mishpatáv ve-ḥuqotáv asher anojí metzavjá hayyom.
         </p>
-      </div>
-    </div>
-
-    <h1>Punto 2. Haftaráh: Isaías 51:12-52:12 (La advertencia de no temer al hombre y confiar en Elohím).</h1>
-    <div class="verse-container">
-      <p class="verse-number">51:12</p>
-      <p class="hebrew">
-        אָנֹכִי אָנֹכִי הוּא מְנַחֶמְכֶם מִי־אַתְּ וַתִּירְאִי מֵאֱנוֹשׁ יָמוּת
-        וּמִבֶּן־אָדָם חָצִיר יִנָּתֵן׃
-      </p>
-      <p class="transliteration">
-        ʾānōḵî ʾānōḵî hūʾ mĕnaḥemḵem mî ʾaṯ watti·rʾî mēʾĕnōš yāmūṯ ūmibben
-        ʾādām ḥāṣîr yinnāṯên
-      </p>
-      <p class="translation">
-        Yo, yo soy el que os consuela. ¿Quién eres tú que temes al hombre que
-        muere, y al hijo de hombre que como la hierba será entregado?
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">51:13</p>
-      <p class="hebrew">
-        וַתִּשְׁכַּח יְהוה עֹשֶׂךָ נֹטֶה שָׁמַיִם וְיֹסֵד אָרֶץ וַתְּפַחֵד תָּמִיד
-        כָּל־הַיּוֹם מִפְּנֵי חֲמַת הַמֵּצִיק כַּאֲשֶׁר כוֹנֵן לְהַשְׁחִית וְאַיֵּה
-        חֲמַת הַמֵּצִיק׃
-      </p>
-      <p class="transliteration">
-        vattishkaḥ יהוה ʿōśeḵā nōṭeh šāmayim wĕyōsêḏ ʾāreṣ vattepaḥêḏ tāmîḏ
-        kol-hayyôm mippĕnê ḥămaṯ hammēṣîq kaʾăšer kōnên lĕhašḥîṯ wĕʾayyê ḥămaṯ
-        hammēṣîq
-      </p>
-      <p class="translation">
-        Y te olvidaste de יהוה tu Hacedor, que extiende los cielos y funda la
-        tierra; y temiste continuamente cada día por la furia del opresor,
-        cuando se prepara para destruir; ¿y dónde está la furia del opresor?
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">51:14</p>
-      <p class="hebrew">
-        מִהַר צֹעֶה לְהִפָּתֵחַ וְלֹא־יָמוּת לַשַּׁחַת וְלֹא יֶחְסַר לַחְמוֹ׃
-      </p>
-      <p class="transliteration">
-        mihar ṣōʿeh lehippāṯêaḥ wĕlō-yāmūṯ laššaḥaṯ wĕlō yeḥsar laḥmô
-      </p>
-      <p class="translation">
-        El que se inclina será pronto soltado; y no morirá en el hoyo, y no le
-        faltará su pan.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">51:15</p>
-      <p class="hebrew">
-        וְאָנֹכִי יְהוה אֱלֹהֶיךָ רֹגַע הַיָּם וַיֶּהֱמוּ גַּלָּיו יְהוה צְבָאוֹת
-        שְׁמוֹ׃
-      </p>
-      <p class="transliteration">
-        vĕʾānōḵî יהוה ʾĕlōheḵā rōgaʿ hayyām vayyĕhemū gallāw יהוה ṣəḇāʾōṯ šĕmô
-      </p>
-      <p class="translation">
-        Y yo soy יהוה tu Elohím, que calma el mar y braman sus olas; יהוה de los
-        ejércitos es su Nombre.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">51:16</p>
-      <p class="hebrew">
-        וָאָשִׂם דְּבָרַי בְּפִיךָ וּבְצֵל יָדִי כִּסִּיתִיךָ לִנְטֹעַ שָׁמַיִם
-        וְלִיסֹד אָרֶץ וְלֵאמֹר לְצִיּוֹן עַמִּי־אָתָּה׃
-      </p>
-      <p class="transliteration">
-        vāʾāśîm dĕḇāray bĕpîḵā ūḇĕṣēl yādî kissîtîḵā lintōaʿ šāmayim wĕlîsōḏ
-        ʾāreṣ wĕlēmōr ləṣîyôn ʿammî-ʾāttāh
-      </p>
-      <p class="translation">
-        Y pondré mis palabras en tu boca, y con la sombra de mi mano te
-        cubriré, para plantar los cielos y fundar la tierra, y para decir a
-        Sión: Pueblo mío eres tú.
-      </p>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <h1>Yeshayahu 52:1–12</h1>
-    <div class="verse-container">
-      <p class="verse-number">52:1</p>
-      <p class="hebrew">
-        עוּרִי עוּרִי לִבְשִׁי עֻזֵּךְ צִיּוֹן לִבְשִׁי בִגְדֵי תִפְאַרְתֵּךְ
-        יְרוּשָׁלִַם עִיר הַקֹּדֶשׁ כִּי לֹא־יוֹסִיף יָבוֹא בָךְ עוֹד עָרֵל
-        וְטָמֵא׃
-      </p>
-      <p class="transliteration">
-        ʿûrî ʿûrî liḇšî ʿuz·zēḵ ṣiyyôn liḇšî biḡ·dê tif·ʾar·tēḵ
-        yə·ru·šā·la·yim ʿîr haq·qō·ḏeš kî lō‑yō·sîp̄ yā·ḇō ḇāḵ ʿōḏ ʿā·rēl
-        wə·ṭā·mê
-      </p>
-      <p class="translation">
-        Despiértate, despiértate, vístete de tu poder, Sión; vístete con los
-        vestidos de tu hermosura, Yerushaláyim, ciudad santa; porque no volverá
-        a entrar en ti más el incircunciso ni el impuro.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:2</p>
-      <p class="hebrew">
-        הִתְנַעֲרִי מֵעָפָר קוּמִי שְׁבִי יְרוּשָׁלִַם הִתְפַּתְּחִי מוֹסְרֵי
-        צַוָּארֵךְ שְׁבִיָּה בַּת צִיּוֹן׃
-      </p>
-      <p class="transliteration">
-        hit·na·ʿă·rî mê·ʿā·fār qū·mî šə·ḇî yə·ru·šā·la·yim hit·pat·tə·ḥî
-        mō·sə·rê ṣaw·wā·rêḵ šə·ḇiy·yā bat ṣiyyôn
-      </p>
-      <p class="translation">
-        Sacúdete del polvo; levántate, siéntate, Yerushaláyim; desata las
-        ataduras de tu cuello, cautiva, hija de Sión.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:3</p>
-      <p class="hebrew">
-        כִּי כֹה אָמַר יְהוה חִנָּם נִמְכַּרְתֶּם וְלֹא בְכֶסֶף תִּגָּאֵלוּ׃
-      </p>
-      <p class="transliteration">
-        kî kōh ʾā·mar יהוה ḥin·nām nim·kar·tem wə·lō ḇə·ḵe·sef tig·gā·ʾê·lū
-      </p>
-      <p class="translation">
-        Porque así dijo יהוה: por nada fuisteis vendidos; y sin plata seréis
-        redimidos.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:4</p>
-      <p class="hebrew">
-        כִּי כֹה אָמַר אֲדֹנָי יְהוה מִצְרַיִם יָרַד עַמִּי בָרִאשֹׁנָה לָגוּר
-        שָׁם וַעֲשּׁוּרוֹ בְּאֶפֶס שָׁקֵּץ׃
-      </p>
-      <p class="transliteration">
-        kî kōh ʾā·mar ʾă·ḏō·nāy יהוה miṣ·ra·yim yā·raḏ ʿam·mî ḇā·rî·šō·nāh
-        lā·gūr šām wa·ʿă·š·šū·rō ḇə·ʾe·p̄es šā·qēṣ
-      </p>
-      <p class="translation">
-        Porque así dijo Adonái יהוה: a Mitsráyim descendió mi pueblo al
-        principio para residir allí; y el asirio sin razón lo oprimió.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:5</p>
-      <p class="hebrew">
-        וְעַתָּה מַה־לִּי פֹה נְאֻם יְהוה כִּי לֻקַּח עַמִּי חִנָּם מֹשְׁלֵיהֶם
-        יְהִילִילוּ נְאֻם יְהוה וְתָמִיד כָּל־הַיּוֹם שְׁמִי מְנֹאָץ׃
-      </p>
-      <p class="transliteration">
-        wə·ʿat·tāh mah‑lî pō nə·ʾum יהוה kî luq·qaḥ ʿam·mî ḥin·nām mō·šə·lê·hem
-        yə·hî·lî·lū nə·ʾum יהוה wə·tā·mîḏ kol‑hay·yōm šə·mî mə·nō·ʾāṣ
-      </p>
-      <p class="translation">
-        Y ahora, ¿qué tengo aquí? dice יהוה, que mi pueblo es tomado por nada,
-        sus gobernantes dan voces, dice יהוה, y continuamente todo el día mi
-        Nombre es despreciado.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:6</p>
-      <p class="hebrew">
-        לָכֵן יֵדַע עַמִּי שְׁמִי לָכֵן בַּיּוֹם הַהוּא כִּי אֲנִי הַמְדַבֵּר
-        הִנְנִי׃
-      </p>
-      <p class="transliteration">
-        lākēn yē·ḏaʿ ʿam·mî šə·mî lākēn bay·yōm hah·hū kî ʾă·nî ham·da·bēr
-        hin·nē·nî
-      </p>
-      <p class="translation">
-        Por tanto, conocerá mi pueblo mi Nombre; por tanto, en aquel día, yo
-        soy el que habla, heme aquí.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:7</p>
-      <p class="hebrew">
-        מַה־נָּאווּ עַל־הֶהָרִים רַגְלֵי מְבַשֵּׂר מַשְׁמִיעַ שָׁלוֹם מְבַשֵּׂר
-        טוֹב מַשְׁמִיעַ יְשׁוּעָה אֹמֵר לְצִיּוֹן מָלַךְ אֱלֹהָיִךְ׃
-      </p>
-      <p class="transliteration">
-        mah‑nā·wū ʿal‑he·hā·rîm raḡ·lê mə·ḇaś·śēr maš·mî·aʿ šā·lōm mə·ḇaś·śēr
-        ṭōḇ maš·mî·aʿ yə·šū·ʿāh ʾō·mêr lə·ṣî·yōn mā·laḵ ʾĕ·lō·hā·yeḵ
-      </p>
-      <p class="translation">
-        ¡Qué hermosos sobre los montes los pies del que trae buenas nuevas, que
-        anuncia la paz, del que trae buenas noticias de bien, que anuncia
-        salvación, que dice a Sión: tu Elohím reina!
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:8</p>
-      <p class="hebrew">
-        קוֹל צֹפַיִךְ נָשְׂאוּ קוֹל יַחְדָּו יְרַנֵּנוּ כִּי עַיִן בְּעַיִן
-        יִרְאוּ בְּשׁוּב יְהוה צִיּוֹן׃
-      </p>
-      <p class="transliteration">
-        qōl ṣō·fa·yiḵ nāś·ʾū qōl yaḥ·dāw yə·ran·nê·nū kî ʿa·yin bə·ʿa·yin
-        yir·ʾū bə·šūḇ יהוה ṣî·yōn
-      </p>
-      <p class="translation">
-        ¡Voz de tus centinelas! Alzaron su voz, juntos cantan de júbilo, porque
-        ojo a ojo verán cuando יהוה retorne a Sión.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:9</p>
-      <p class="hebrew">
-        פִּצְחוּ רְנָנוּ יַחְדָּו חָרְבוֹת יְרוּשָׁלִָם כִּי נִחַם יְהוה עַמּוֹ
-        גָּאַל יְרוּשָׁלִָם׃
-      </p>
-      <p class="transliteration">
-        pitṣ·ḥū rə·nā·nū yaḥ·dāw ḥor·ḇōṯ yə·rū·šā·la·yim kî ni·ḥam יהוה ʿam·mō
-        gā·ʾal yə·rū·šā·la·yim
-      </p>
-      <p class="translation">
-        ¡Estallad, cantad juntas, ruinas de Yerushaláyim! Porque ha consolado
-        יהוה a su pueblo, ha redimido a Yerushaláyim.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:10</p>
-      <p class="hebrew">
-        חָשַׂף יְהוה אֶת־זְרוֹעַ קָדְשׁוֹ לְעֵינֵי כָל־הַגּוֹיִם וְרָאוּ
-        כָל־אַפְסֵי־אָרֶץ אֵת יְשׁוּעַת אֱלֹהֵינוּ׃
-      </p>
-      <p class="transliteration">
-        ḥā·śap̄ יהוה ʾeṯ‑zə·rō·aʿ qod·šō lə·ʿê·nê kol‑hag·gō·yim wə·rā·ʾū
-        kol‑ʾap̄·sê‑ʾā·reṣ ʾeṯ yə·šū·ʿat ʾĕ·lō·hê·nū
-      </p>
-      <p class="translation">
-        Ha desnudado יהוה el brazo de su santidad ante los ojos de todas las
-        naciones; y verán todos los confines de la tierra la salvación de
-        nuestro Elohím.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:11</p>
-      <p class="hebrew">
-        סֻרוּ סֻרוּ צְאוּ מִשָּׁם טָמֵא אַל־תִּגָּעוּ צְאוּ מִתּוֹכָהּ הִבָּרוּ
-        נֹשְׂאֵי כְלֵי יְהוה׃
-      </p>
-      <p class="transliteration">
-        sū·rū sū·rū ṣə·ʾū miš·šām ṭā·mê ʾal‑tig·gā·ʿū ṣə·ʾū mit·tō·ḵāh hib·bārū
-        nō·śə·ʾê kə·lê יהוה
-      </p>
-      <p class="translation">
-        Apartaos, apartaos, salid de allí; no toquéis cosa impura; salid de en
-        medio de ella; limpiaos los que lleváis los utensilios de יהוה.
-      </p>
-    </div>
-    <div class="verse-container">
-      <p class="verse-number">52:12</p>
-      <p class="hebrew">
-        כִּי לֹא בְחִפָּזוֹן תֵּצֵאוּ וּבְמְנוּסָה לֹא תֵלֵכוּ כִּי הוֹלֵךְ
-        לִפְנֵיכֶם יְהוה וּמְאַסִּפְכֶם אֱלֹהֵי יִשְׂרָאֵל׃
-      </p>
-      <p class="transliteration">
-        kî lō ḇə·ḥip·pā·zôn tē·ṣē·ʾū ū·ḇə·mə·nū·sāh lō tē·lê·ḵū kî hō·lēḵ
-        lip̄·nê·ḵem יהוה ū·mə·ʾas·sip̄·ḵem ʾĕ·lō·hê yiś·rā·ʾêl
-      </p>
-      <p class="translation">
-        Porque no saldréis con prisa, ni iréis huyendo; porque va delante de
-        vosotros יהוה, y vuestro recogedor es el Elohím de Israel.
-      </p>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="content-container">
-      <h1>CUMPLIMIENTO PROFÉTICO EN EL MASHÍAJ – YESHAYAHU 51:12–52:12</h1>
-
-      <div class="prophetic-section">
-        <h3>I. Conexión Profética y Mesiánica: Consolación, Redención y el Siervo</h3>
-        <p>
-          Los capítulos Yeshayahu 51:12–52:12 representan una de las transiciones más profundas del libro de Isaías. El tema dominante es la consolación de Sion, la liberación del cautiverio, y la promesa de redención mesiánica mediante el siervo de יהוה. Esta porción culmina justo antes del famoso capítulo 53, que describe directamente al Mashíaj sufriente. Todo el pasaje está impregnado de elementos proféticos cumplidos en Yeshúa haMashíaj.
+        <p class="translation">
+          Guárdate para ti, no sea que olvides a יהוה tu Elohím, para no guardar
+          Sus mandamientos, Sus juicios y Sus estatutos que yo te ordeno hoy.
         </p>
       </div>
 
-      <div class="prophetic-section">
-        <h3>II. Cumplimiento en el Mashíaj – Yeshúa haNotzrí</h3>
-        
-        <p class="prophetic-title">1. “Yo soy el que os consuela” (51:12) – Consolación en el Mesías</p>
-        <p>Yeshúa es identificado como el Consolador encarnado:</p>
-        <ul>
-            <li><span class="highlight">Lucas 2:25:</span> Shimón esperaba la “consolación de Yisrael”, personificada en el Mesías.</li>
-            <li><span class="highlight">2 Corintios 1:3-5:</span> El Elohím de toda consolación nos consuela en Mashíaj.</li>
-            <li><span class="highlight">Mateo 11:28:</span> “Venid a mí… y yo os haré descansar”.</li>
-        </ul>
-        <p>Yeshúa no solo habla consuelo, Él es el Consolador — una manifestación de la promesa de Yeshayahu 51:12.</p>
-
-        <p class="prophetic-title">2. “No temas al hombre que muere” (51:12–13) – Autoridad sobre la muerte</p>
-        <p>Mashíaj es quien venció al último enemigo: la muerte misma:</p>
-        <ul>
-            <li><span class="highlight">Hebreos 2:14-15:</span> “Para destruir por medio de la muerte al que tenía el imperio de la muerte”.</li>
-            <li><span class="highlight">Juan 11:25:</span> “Yo soy la resurrección y la vida”.</li>
-        </ul>
-        <p>Este mensaje de no temer al mortal se cumple porque Yeshúa quitó el aguijón de la muerte.</p>
-        
-        <p class="prophetic-title">3. “Yo soy יהוה tu Elohím, el que aquieta el mar” (51:15) – Autoridad sobre la creación</p>
-        <p>Este verso encuentra eco literal en el acto mesiánico cuando Yeshúa calma el mar:</p>
-        <ul>
-            <li><span class="highlight">Marcos 4:39-41:</span> “¿Quién es este que aún el viento y el mar le obedecen?”</li>
-        </ul>
-        <p>Salmos 89:9 y Yeshayahu 51:15 se reflejan en esa escena como prueba de su divinidad. Yeshúa manifiesta aquí la identidad de יהוה como el que tiene dominio sobre los elementos.</p>
-        
-        <p class="prophetic-title">4. “Pondré mis palabras en tu boca” (51:16) – El profeta como Moisés</p>
-        <p>Este verso conecta directamente con Devarim 18:18 — “Un profeta como tú levantaré”, cumplido en:</p>
-        <ul>
-            <li><span class="highlight">Juan 12:49-50:</span> Yeshúa dice: “El Padre que me envió me dio mandamiento”.</li>
-            <li><span class="highlight">Juan 14:24:</span> “La palabra que oís no es mía, sino del Padre”.</li>
-        </ul>
-        <p>Yeshúa es el portador de las palabras vivas de יהוה, cumpliendo la función de un profeta y redentor celestial.</p>
+      <div class="verse-container">
+        <div class="verse-number">ח׳:י״ב</div>
+        <p class="hebrew">
+          פֶּן-תֹּאכַל וְשָׂבָעְתָּ וּבָתִים טוֹבִים תִּבְנֶה וְיָשָׁבְתָּ
+        </p>
+        <p class="transliteration">
+          Pen-tojal ve-sava‘ta, u-vatím tovím tivné ve-yashavta.
+        </p>
+        <p class="translation">
+          No sea que comas y te sacies, y casas buenas edifiques y habites.
+        </p>
       </div>
 
-      <div class="prophetic-section">
-        <h3>III. Isaías 52 – El Mensajero que Anuncia Salvación</h3>
-        
-        <p class="prophetic-title">1. “¡Qué hermosos los pies…!” (52:7) – Evangelio del Reino</p>
-        <p>Este pasaje es citado directamente por Rav Shaúl:</p>
-        <ul>
-            <li><span class="highlight">Romanos 10:15:</span> Describe a los emisarios que proclaman la “buena nueva” – en hebreo besoráh.</li>
-            <li><span class="highlight">Lucas 4:18-19:</span> Yeshúa enuncia su misión usando Isaías: “proclamar libertad...”.</li>
-        </ul>
-        <p>Él es el mensajero celestial que anuncia paz, gozo, y salvación (Yeshuáh).</p>
-        
-        <p class="prophetic-title">2. “Verán con sus ojos… el retorno de יהוה a Sion” (52:8) – Presencia divina en el Mesías</p>
-        <p>Yeshúa es la manifestación visible de la Presencia de יהוה:</p>
-        <ul>
-            <li><span class="highlight">Juan 1:14:</span> “El Verbo se hizo carne, y habitó entre nosotros”.</li>
-            <li><span class="highlight">Zacarías 2:10:</span> “He aquí vengo y habitaré en medio de ti, dice יהוה”.</li>
-        </ul>
-        <p>El retorno de יהוה a Tsión ocurre cuando el Mesías entra en Yerushaláyim (Mateo 21).</p>
-        
-        <p class="prophetic-title">3. “Mi pueblo conocerá mi Nombre” (52:6) – Revelación del Nombre a través del Hijo</p>
-        <p>El conocimiento del Nombre está vinculado con reconocer a Yeshúa:</p>
-        <ul>
-            <li><span class="highlight">Juan 17:6:</span> “He manifestado tu Nombre a los hombres…”.</li>
-            <li><span class="highlight">Filipenses 2:9-11:</span> El Nombre dado a Yeshúa es el Nombre sobre todo nombre – una proclamación mesiánica de supremacía.</li>
-        </ul>
-        
-        <p class="prophetic-title">4. “Verán todos… la salvación de nuestro Elohím” (52:10) – Revelación universal</p>
-        <p>Yeshayahu usa “Yeshuat Eloheinu”, y esto se ve cumplido en:</p>
-        <ul>
-            <li><span class="highlight">Lucas 3:6:</span> “Y verá toda carne la salvación de Elohím”.</li>
-            <li><span class="highlight">Hechos 13:47:</span> “Te he puesto por luz de los gentiles”.</li>
-        </ul>
-        <p>Mashíaj revela el brazo de יהוה — Zeroa יהוה — en su encarnación y redención.</p>
+      <div class="verse-container">
+        <div class="verse-number">ח׳:י״ג</div>
+        <p class="hebrew">
+          וּבְקָרְךָ וְצֹאנְךָ יִרְבּוּ וְכֶסֶף וְזָהָב יִרְבֶּה לָךְ וְכֹל
+          אֲשֶׁר-לְךָ יִרְבֶּה
+        </p>
+        <p class="transliteration">
+          U-veqorkhá ve-tzonjá yirbú, ve-késef ve-zaháv yirbé lakh, ve-khól
+          asher lekha yirbé.
+        </p>
+        <p class="translation">
+          Y tu ganado vacuno y tu rebaño aumenten, y plata y oro aumenten para
+          ti, y todo lo que es tuyo aumente.
+        </p>
       </div>
 
-      <div class="prophetic-section">
-        <h3>IV. Aplicación Espiritual para Hoy</h3>
-        <ul>
-          <li><span class="point-letter">1.</span> <strong>No temer al hombre mortal (51:12-13):</strong> La fidelidad al Reino de Mashíaj implica confiar en el poder del Eterno por encima de amenazas humanas.</li>
-          <li><span class="point-letter">2.</span> <strong>Consolación divina presente (51:12; 52:9):</strong> Muchos hoy viven en duelo y exilio espiritual. El mensaje sigue vigente: יהוה ha consolado a su pueblo por medio del Mesías.</li>
-          <li><span class="point-letter">3.</span> <strong>Llamado a pureza y santidad (52:11):</strong> El llamado a “no tocar cosa impura” es vigente: Rav Shaúl lo cita en 2 Corintios 6:17, instando a una vida apartada en pureza para יהוה.</li>
-          <li><span class="point-letter">4.</span> <strong>Proclamación de la buena nueva (52:7):</strong> Hoy, cada creyente está llamado a ser como el mensajero: llevar la besoráh del Reino, paz, y redención a través de Yeshúa haMashíaj.</li>
-          <li><span class="point-letter">5.</span> <strong>Reconocer al “brazo de יהוה” (52:10):</strong> Aceptar a Yeshúa es aceptar la manifestación activa de יהוה — su brazo extendido que trae salvación.</li>
-        </ul>
+      <div class="verse-container">
+        <div class="verse-number">ח׳:י״ד</div>
+        <p class="hebrew">
+          וְרָם לְבָבֶךָ וְשָׁכַחְתָּ אֶת־יְהוָה אֱלֹהֶיךָ הַמּוֹצִיאֲךָ מֵאֶרֶץ
+          מִצְרַיִם מִבֵּית עֲבָדִים
+        </p>
+        <p class="transliteration">
+          Ve-ram levavejá ve-shajaḥta et-יהוה Elohéija ha-motzi’aja mé-eretz
+          Mitzráyim mi-bet avadím.
+        </p>
+        <p class="translation">
+          Y se eleve tu corazón, y olvides a יהוה tu Elohím que te sacó de
+          tierra de Mitsráyim, de casa de siervos.
+        </p>
       </div>
 
-      <div class="conclusion">
-        <h3>V. Conclusión Mesiánica</h3>
-        <p>Isaías 51:12–52:12 presenta una visión clara del Mashíaj como:</p>
-        <ul>
+      <div class="verse-container">
+        <div class="verse-number">ח׳:ט״ו</div>
+        <p class="hebrew">
+          הַמּוֹלִיכֲךָ בַּמִּדְבָּר הַגָּדוֹל וְהַנּוֹרָא נָחָשׁ שָׂרָף
+          וְעַקְרָב וְצִמָּאָון אֲשֶׁר אֵין-מָיִם הַמּוֹצִיא לְךָ מַיִם מִצּוּר
+          הַחַלָּמִישׁ
+        </p>
+        <p class="transliteration">
+          Ha-molíkhajá ba-midbár ha-gadol ve-ha-norá, naḥásh saráf ve-‘akráv,
+          ve-tzimma’ón asher én-máyim, ha-motzí lejá máyim mi-tzur ha-ḥallámish.
+        </p>
+        <p class="translation">
+          Que te condujo en el desierto grande y temible, serpiente abrasadora y
+          escorpión, y sed donde no hay agua; que sacó para ti agua de la roca
+          de pedernal.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">ח׳:ט״ז</div>
+        <p class="hebrew">
+          הַמַּאֲכִלְךָ מָן בַּמִּדְבָּר אֲשֶׁר לֹא-יָדְעוּן אֲבֹתֶיךָ לְמַעַן
+          עַנֹּתְךָ וּלְמַעַן נַסֹּתֶךָ לְהֵיטִבְךָ בְּאַחֲרִיתֶךָ
+        </p>
+        <p class="transliteration">
+          Ha-ma’akhiljá mán ba-midbár asher lo-yad‘un avotéija, le-ma‘an ‘anotjá
+          u-le-ma‘an nasotéija le-heitívja be-aḥaritjá.
+        </p>
+        <p class="translation">
+          Que te alimentó con maná en el desierto, que no conocieron tus padres,
+          para humillarte y para probarte, para hacerte bien en tu final.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">ח׳:י״ז</div>
+        <p class="hebrew">
+          וְאָמַרְתָּ בִלְבָבֶךָ כֹּחִי וְעֹצֶם יָדִי עָשָׂה לִי אֶת־הַחַיִל
+          הַזֶּה
+        </p>
+        <p class="transliteration">
+          Ve-amartá bilvavejá: koḥí ve-‘ótzem yadí ‘asá lí et-ha-ḥáil ha-zé.
+        </p>
+        <p class="translation">
+          Y digas en tu corazón: mi fuerza y el poder de mi mano me hicieron
+          esta riqueza.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">ח׳:י״ח</div>
+        <p class="hebrew">
+          וְזָכַרְתָּ אֶת־יְהוָה אֱלֹהֶיךָ כִּי הוּא הַנֹּתֵן לְךָ כֹּחַ
+          לַעֲשׂוֹת חָיִל לְמַעַן הָקִים אֶת־בְּרִיתוֹ אֲשֶׁר נִשְׁבַּע
+          לַאֲבֹתֶיךָ כַּיּוֹם הַזֶּה
+        </p>
+        <p class="transliteration">
+          Ve-zajartá et-יהוה Elohéija, ki hu ha-notén lejá koaj la‘asót ḥáil,
+          le-ma‘an haqím et-beritó asher nishbá la-avotéija ka-yom ha-zé.
+        </p>
+        <p class="translation">
+          Y recordarás a יהוה tu Elohím, porque Él es el que te da fuerza para
+          hacer riqueza, para confirmar Su pacto que juró a tus padres, como en
+          este día.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">ח׳:י״ט</div>
+        <p class="hebrew">
+          וְהָיָה אִם-שָׁכֹחַ תִּשְׁכַּח אֶת־יְהוָה אֱלֹהֶיךָ וְהָלַכְתָּ
+          אַחֲרֵי אֱלֹהִים אֲחֵרִים וַעֲבַדְתָּם וְהִשְׁתַּחֲוִיתָ לָהֶם
+          הַעִדֹתִי בָכֶם הַיּוֹם כִּי אָבֹד תֹּאבֵדוּן
+        </p>
+        <p class="transliteration">
+          Ve-hayá im-shajóaj tishkáḥ et-יהוה Elohéija, ve-halaḵtá ajaré elohím
+          ajerím va-avadetám ve-hishtajavítá lahem, ha‘idotí bakhém ha-yom, ki
+          avód tovedún.
+        </p>
+        <p class="translation">
+          Y será, si por completo olvidas a יהוה tu Elohím, y andas tras otros
+          dioses y los sirves y te postras ante ellos, testifico contra vosotros
+          hoy, que de cierto pereceréis.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">ח׳:כ׳</div>
+        <p class="hebrew">
+          כַּגּוֹיִם אֲשֶׁר יְהוָה מַאֲבִיד מִפְּנֵיכֶם כֵּן תֹּאבֵדוּן עֵקֶב
+          לֹא תִשְׁמְעוּן בְּקוֹל יְהוָה אֱלֹהֵיכֶם
+        </p>
+        <p class="transliteration">
+          Ka-goyím asher יהוה ma’avid mi-penéijem, ken tovedún, ‘ékev lo
+          tishme‘ún be-qól יהוה Elohéijem.
+        </p>
+        <p class="translation">
+          Como las naciones que יהוה destruye de delante de vosotros, así
+          pereceréis, por cuanto no obedecéis la voz de יהוה vuestro Elohím.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">דְּבָרִים ט׳:א׳</div>
+        <p class="hebrew">
+          שְׁמַע יִשְׂרָאֵל אַתָּה עֹבֵר הַיּוֹם אֶת־הַיַּרְדֵּן לָבוֹא לָרֶשֶׁת
+          גּוֹיִם גְּדֹלִים וַעֲצוּמִים מִמְּךָ עָרִים גְּדֹלֹת וּבְצֻרוֹת
+          בַּשָּׁמָיִם
+        </p>
+        <p class="transliteration">
+          Shema‘ Yisraél, atáh ‘over ha-yom et ha-Yardén, la-vó la-réshet goyím
+          gedolím va-‘atzumím miméja, ‘arím gedolót u-vetzurót ba-shamayim.
+        </p>
+        <p class="translation">
+          Escucha, Israel: tú vas a pasar hoy el Yardén para venir a heredar
+          naciones grandes y fuertes, más que tú; ciudades grandes y
+          fortificadas en los cielos.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">ט׳:ב׳</div>
+        <p class="hebrew">
+          עַם־גָּדוֹל וָרָם בְּנֵי עֲנָק אֲשֶׁר אַתָּה יָדַעְתָּ וְאַתָּה
+          שָׁמַעְתָּ מִי יִתְיַצֵּב לִפְנֵי בְנֵי עֲנָק
+        </p>
+        <p class="transliteration">
+          ‘Am gadól va-rám, bené ‘Anáq, asher atáh yada‘tá ve-atáh shamá‘tá: mí
+          yityatzév lifné bené ‘Anáq?
+        </p>
+        <p class="translation">
+          Pueblo grande y alto, hijos de ‘Anáq, que tú conoces y tú has oído:
+          ¿Quién se sostendrá delante de los hijos de ‘Anáq?
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <div class="verse-number">ט׳:ג׳</div>
+        <p class="hebrew">
+          וְיָדַעְתָּ הַיּוֹם כִּי יְהוָה אֱלֹהֶיךָ הוּא הָעֹבֵר לְפָנֶיךָ אֵשׁ
+          אֹכְלָה הוּא יַשְׁמִידֵם וְהוּא יַכְנִיעֵם לְפָנֶיךָ וְהוֹרַשְׁתָּם
+          וְהַאֲבַדְתָּם מַהֵר כַּאֲשֶׁר דִּבֶּר יְהוָה לָךְ
+        </p>
+        <p class="transliteration">
+          Ve-yada‘tá ha-yom ki יהוה Elohéija hu ha-‘over lefanéija, esh okhlá hu
+          yashmidém, ve-hu yakhni‘ém lefanéija; ve-horashtám ve-ha’avadtám
+          mahér, ka’asher dibér יהוה lakh.
+        </p>
+        <p class="translation">
+          Y conocerás hoy que יהוה tu Elohím es el que pasa delante de ti, fuego
+          consumidor; Él los destruirá, y Él los humillará delante de ti; y tú
+          los desposeerás y los destruirás rápidamente, como habló יהוה para ti.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <div class="prophetic-section">
+          <h1>1. Cumplimiento Profético en el Mashíaj</h1>
+          <p>
+            En Deuteronomio 8:11-20, Moshé advierte a Israel sobre el peligro de
+            la prosperidad: olvidar a יהוה y atribuirse el mérito de las
+            bendiciones. En 9:1-3, la advertencia se intensifica: la victoria
+            sobre naciones poderosas no será por mérito propio, sino porque יהוה
+            mismo pasa delante de ellos como fuego consumidor.
+          </p>
+          <p>En el plano profético, esto apunta a Yeshúa haMashíaj como:</p>
+          <ul>
+            <li>
+              <span class="prophetic-title"
+                >El Fuego Consumidor (אש אכלה):</span
+              >
+              Hebreos 12:29 (Peshitta) cita Devarim 4:24, aplicando a MarYah
+              (יהוה) el título de fuego consumidor. En Apocalipsis 1:14-16, la
+              descripción de Yeshúa glorificado refleja esta imagen.
+            </li>
+            <li>
+              <span class="prophetic-title"
+                >El Conquistador que va delante:</span
+              >
+              Apocalipsis 19:11-16 presenta al Mashíaj montando un caballo
+              blanco, con una espada que sale de Su boca para juzgar y guerrear
+              en justicia, cumpliendo la promesa de Devarim 9:3.
+            </li>
+            <li>
+              <span class="prophetic-title">El Guardián del Pacto:</span>
+              Devarim 8:18 habla de quien confirma el pacto jurado a los padres;
+              Lucas 1:72-73 y 2 Corintios 1:20 declaran que todas las promesas
+              se cumplen en Él.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>2. Conexión con los Profetas (Nevi’ím)</h2>
+          <p>Los Nevi’ím retoman estas imágenes:</p>
+          <ul>
+            <li>
+              <span class="prophetic-title"
+                >Fuego Consumidor y Presencia Divina:</span
+              >
+              Isaías 33:14-17 habla de “quién habitará con el fuego consumidor”
+              y conecta con la santidad de la presencia de יהוה. Malaquías 3:1-3
+              presenta al “mensajero del pacto” que purifica como fuego de
+              fundidor.
+            </li>
+            <li>
+              <span class="prophetic-title"
+                >Advertencia contra la autosuficiencia:</span
+              >
+              Oseas 13:4-6 recuerda cómo, después de la prosperidad, Israel
+              olvidó a su Salvador, reflejando Devarim 8. Jeremías 9:23-24
+              enfatiza que el que se gloríe, lo haga en conocer a יהוה, no en su
+              fuerza ni riquezas.
+            </li>
+            <li>
+              <span class="prophetic-title"
+                >Victoria por la intervención divina:</span
+              >
+              Isaías 42:13 describe a יהוה como guerrero que sale a pelear por
+              Su pueblo. Zacarías 14:3-5 muestra a יהוה descendiendo a pelear
+              contra las naciones, uniendo con la visión mesiánica de Su
+              regreso.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>3. Conexión con el Brit Hadasháh (Peshitta arameo)</h2>
+          <p>En el Peshitta encontramos múltiples ecos:</p>
+          <ul>
+            <li>
+              <span class="prophetic-title"
+                >Advertencia contra olvidar al Dador:</span
+              >
+              Lucas 12:15-21 (parábola del rico insensato) enseña que no se debe
+              confiar en las riquezas sino en Elohím. 1 Timoteo 6:17-19 exhorta
+              a los ricos a no poner su esperanza en las riquezas, sino en
+              Elohím que nos da todo en abundancia.
+            </li>
+            <li>
+              <span class="prophetic-title"
+                >El Fuego Consumidor y el que va delante:</span
+              >
+              2 Tesalonicenses 1:7-8 (Peshitta) describe a MarYah Yeshúa
+              revelándose “con fuego ardiente” para dar retribución a los que no
+              conocen a Elohím. Hebreos 12:28-29 une la idea de recibir un reino
+              inconmovible con el servicio reverente al Fuego Consumidor.
+            </li>
+            <li>
+              <span class="prophetic-title"
+                >Victoria sobre enemigos espirituales:</span
+              >
+              Efesios 6:10-18 muestra que nuestra lucha no es contra carne ni
+              sangre, pero es la misma dinámica de Devarim 9:3: la victoria es
+              por la fuerza del que va delante. Apocalipsis 17:14 declara que el
+              Cordero vencerá, porque es Soberano de Soberanos y Rey de reyes.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h2>4. Aplicación Espiritual Hoy</h2>
+          <ul>
+            <li>
+              <strong>Recordar al Dador en la prosperidad:</strong> El corazón
+              humano fácilmente olvida la fuente de sus bendiciones. Debemos
+              cultivar gratitud diaria, reconociendo que todo éxito, salud y
+              provisión vienen de יהוה a través de Yeshúa haMashíaj.
+            </li>
+            <li>
+              <strong>Vivir en dependencia constante:</strong> Así como Israel
+              no podía derrotar a los hijos de ‘Anáq por su fuerza, nosotros no
+              podemos vencer al pecado ni a las fuerzas espirituales sin el que
+              va delante.
+            </li>
+            <li>
+              <strong>Humildad como arma espiritual:</strong> El reconocimiento
+              de nuestra incapacidad abre la puerta al poder del Mashíaj en
+              nosotros (2 Corintios 12:9).
+            </li>
+            <li>
+              <strong>Seguridad en la presencia victoriosa del Mashíaj:</strong>
+              Él es nuestro Fuego Consumidor que destruye toda oposición a Su
+              reino; por tanto, aunque enfrentemos “murallas hasta el cielo” en
+              la vida, no debemos temer.
+            </li>
+          </ul>
+          <p class="conclusion">
+            Este pasaje, leído a la luz del Tanaj y del Brit Hadasháh, es una
+            invitación a vivir con memoria espiritual, humildad constante y
+            confianza plena en que el Mashíaj pelea nuestras batallas y guarda
+            Su pacto eterno.
+          </p>
+        </div>
+      </div>
+
+      <h1>
+        Punto 2. Haftaráh: Isaías 51:12-52:12 (La advertencia de no temer al
+        hombre y confiar en Elohím).
+      </h1>
+      <div class="verse-container">
+        <p class="verse-number">51:12</p>
+        <p class="hebrew">
+          אָנֹכִי אָנֹכִי הוּא מְנַחֶמְכֶם מִי־אַתְּ וַתִּירְאִי מֵאֱנוֹשׁ
+          יָמוּת וּמִבֶּן־אָדָם חָצִיר יִנָּתֵן׃
+        </p>
+        <p class="transliteration">
+          ʾānōḵî ʾānōḵî hūʾ mĕnaḥemḵem mî ʾaṯ watti·rʾî mēʾĕnōš yāmūṯ ūmibben
+          ʾādām ḥāṣîr yinnāṯên
+        </p>
+        <p class="translation">
+          Yo, yo soy el que os consuela. ¿Quién eres tú que temes al hombre que
+          muere, y al hijo de hombre que como la hierba será entregado?
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">51:13</p>
+        <p class="hebrew">
+          וַתִּשְׁכַּח יְהוה עֹשֶׂךָ נֹטֶה שָׁמַיִם וְיֹסֵד אָרֶץ וַתְּפַחֵד
+          תָּמִיד כָּל־הַיּוֹם מִפְּנֵי חֲמַת הַמֵּצִיק כַּאֲשֶׁר כוֹנֵן
+          לְהַשְׁחִית וְאַיֵּה חֲמַת הַמֵּצִיק׃
+        </p>
+        <p class="transliteration">
+          vattishkaḥ יהוה ʿōśeḵā nōṭeh šāmayim wĕyōsêḏ ʾāreṣ vattepaḥêḏ tāmîḏ
+          kol-hayyôm mippĕnê ḥămaṯ hammēṣîq kaʾăšer kōnên lĕhašḥîṯ wĕʾayyê ḥămaṯ
+          hammēṣîq
+        </p>
+        <p class="translation">
+          Y te olvidaste de יהוה tu Hacedor, que extiende los cielos y funda la
+          tierra; y temiste continuamente cada día por la furia del opresor,
+          cuando se prepara para destruir; ¿y dónde está la furia del opresor?
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">51:14</p>
+        <p class="hebrew">
+          מִהַר צֹעֶה לְהִפָּתֵחַ וְלֹא־יָמוּת לַשַּׁחַת וְלֹא יֶחְסַר לַחְמוֹ׃
+        </p>
+        <p class="transliteration">
+          mihar ṣōʿeh lehippāṯêaḥ wĕlō-yāmūṯ laššaḥaṯ wĕlō yeḥsar laḥmô
+        </p>
+        <p class="translation">
+          El que se inclina será pronto soltado; y no morirá en el hoyo, y no le
+          faltará su pan.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">51:15</p>
+        <p class="hebrew">
+          וְאָנֹכִי יְהוה אֱלֹהֶיךָ רֹגַע הַיָּם וַיֶּהֱמוּ גַּלָּיו יְהוה
+          צְבָאוֹת שְׁמוֹ׃
+        </p>
+        <p class="transliteration">
+          vĕʾānōḵî יהוה ʾĕlōheḵā rōgaʿ hayyām vayyĕhemū gallāw יהוה ṣəḇāʾōṯ šĕmô
+        </p>
+        <p class="translation">
+          Y yo soy יהוה tu Elohím, que calma el mar y braman sus olas; יהוה de
+          los ejércitos es su Nombre.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">51:16</p>
+        <p class="hebrew">
+          וָאָשִׂם דְּבָרַי בְּפִיךָ וּבְצֵל יָדִי כִּסִּיתִיךָ לִנְטֹעַ
+          שָׁמַיִם וְלִיסֹד אָרֶץ וְלֵאמֹר לְצִיּוֹן עַמִּי־אָתָּה׃
+        </p>
+        <p class="transliteration">
+          vāʾāśîm dĕḇāray bĕpîḵā ūḇĕṣēl yādî kissîtîḵā lintōaʿ šāmayim wĕlîsōḏ
+          ʾāreṣ wĕlēmōr ləṣîyôn ʿammî-ʾāttāh
+        </p>
+        <p class="translation">
+          Y pondré mis palabras en tu boca, y con la sombra de mi mano te
+          cubriré, para plantar los cielos y fundar la tierra, y para decir a
+          Sión: Pueblo mío eres tú.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <h1>Yeshayahu 52:1–12</h1>
+      <div class="verse-container">
+        <p class="verse-number">52:1</p>
+        <p class="hebrew">
+          עוּרִי עוּרִי לִבְשִׁי עֻזֵּךְ צִיּוֹן לִבְשִׁי בִגְדֵי תִפְאַרְתֵּךְ
+          יְרוּשָׁלִַם עִיר הַקֹּדֶשׁ כִּי לֹא־יוֹסִיף יָבוֹא בָךְ עוֹד עָרֵל
+          וְטָמֵא׃
+        </p>
+        <p class="transliteration">
+          ʿûrî ʿûrî liḇšî ʿuz·zēḵ ṣiyyôn liḇšî biḡ·dê tif·ʾar·tēḵ
+          yə·ru·šā·la·yim ʿîr haq·qō·ḏeš kî lō‑yō·sîp̄ yā·ḇō ḇāḵ ʿōḏ ʿā·rēl
+          wə·ṭā·mê
+        </p>
+        <p class="translation">
+          Despiértate, despiértate, vístete de tu poder, Sión; vístete con los
+          vestidos de tu hermosura, Yerushaláyim, ciudad santa; porque no
+          volverá a entrar en ti más el incircunciso ni el impuro.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:2</p>
+        <p class="hebrew">
+          הִתְנַעֲרִי מֵעָפָר קוּמִי שְׁבִי יְרוּשָׁלִַם הִתְפַּתְּחִי מוֹסְרֵי
+          צַוָּארֵךְ שְׁבִיָּה בַּת צִיּוֹן׃
+        </p>
+        <p class="transliteration">
+          hit·na·ʿă·rî mê·ʿā·fār qū·mî šə·ḇî yə·ru·šā·la·yim hit·pat·tə·ḥî
+          mō·sə·rê ṣaw·wā·rêḵ šə·ḇiy·yā bat ṣiyyôn
+        </p>
+        <p class="translation">
+          Sacúdete del polvo; levántate, siéntate, Yerushaláyim; desata las
+          ataduras de tu cuello, cautiva, hija de Sión.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:3</p>
+        <p class="hebrew">
+          כִּי כֹה אָמַר יְהוה חִנָּם נִמְכַּרְתֶּם וְלֹא בְכֶסֶף תִּגָּאֵלוּ׃
+        </p>
+        <p class="transliteration">
+          kî kōh ʾā·mar יהוה ḥin·nām nim·kar·tem wə·lō ḇə·ḵe·sef tig·gā·ʾê·lū
+        </p>
+        <p class="translation">
+          Porque así dijo יהוה: por nada fuisteis vendidos; y sin plata seréis
+          redimidos.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:4</p>
+        <p class="hebrew">
+          כִּי כֹה אָמַר אֲדֹנָי יְהוה מִצְרַיִם יָרַד עַמִּי בָרִאשֹׁנָה לָגוּר
+          שָׁם וַעֲשּׁוּרוֹ בְּאֶפֶס שָׁקֵּץ׃
+        </p>
+        <p class="transliteration">
+          kî kōh ʾā·mar ʾă·ḏō·nāy יהוה miṣ·ra·yim yā·raḏ ʿam·mî ḇā·rî·šō·nāh
+          lā·gūr šām wa·ʿă·š·šū·rō ḇə·ʾe·p̄es šā·qēṣ
+        </p>
+        <p class="translation">
+          Porque así dijo Adonái יהוה: a Mitsráyim descendió mi pueblo al
+          principio para residir allí; y el asirio sin razón lo oprimió.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:5</p>
+        <p class="hebrew">
+          וְעַתָּה מַה־לִּי פֹה נְאֻם יְהוה כִּי לֻקַּח עַמִּי חִנָּם
+          מֹשְׁלֵיהֶם יְהִילִילוּ נְאֻם יְהוה וְתָמִיד כָּל־הַיּוֹם שְׁמִי
+          מְנֹאָץ׃
+        </p>
+        <p class="transliteration">
+          wə·ʿat·tāh mah‑lî pō nə·ʾum יהוה kî luq·qaḥ ʿam·mî ḥin·nām
+          mō·šə·lê·hem yə·hî·lî·lū nə·ʾum יהוה wə·tā·mîḏ kol‑hay·yōm šə·mî
+          mə·nō·ʾāṣ
+        </p>
+        <p class="translation">
+          Y ahora, ¿qué tengo aquí? dice יהוה, que mi pueblo es tomado por nada,
+          sus gobernantes dan voces, dice יהוה, y continuamente todo el día mi
+          Nombre es despreciado.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:6</p>
+        <p class="hebrew">
+          לָכֵן יֵדַע עַמִּי שְׁמִי לָכֵן בַּיּוֹם הַהוּא כִּי אֲנִי הַמְדַבֵּר
+          הִנְנִי׃
+        </p>
+        <p class="transliteration">
+          lākēn yē·ḏaʿ ʿam·mî šə·mî lākēn bay·yōm hah·hū kî ʾă·nî ham·da·bēr
+          hin·nē·nî
+        </p>
+        <p class="translation">
+          Por tanto, conocerá mi pueblo mi Nombre; por tanto, en aquel día, yo
+          soy el que habla, heme aquí.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:7</p>
+        <p class="hebrew">
+          מַה־נָּאווּ עַל־הֶהָרִים רַגְלֵי מְבַשֵּׂר מַשְׁמִיעַ שָׁלוֹם
+          מְבַשֵּׂר טוֹב מַשְׁמִיעַ יְשׁוּעָה אֹמֵר לְצִיּוֹן מָלַךְ אֱלֹהָיִךְ׃
+        </p>
+        <p class="transliteration">
+          mah‑nā·wū ʿal‑he·hā·rîm raḡ·lê mə·ḇaś·śēr maš·mî·aʿ šā·lōm mə·ḇaś·śēr
+          ṭōḇ maš·mî·aʿ yə·šū·ʿāh ʾō·mêr lə·ṣî·yōn mā·laḵ ʾĕ·lō·hā·yeḵ
+        </p>
+        <p class="translation">
+          ¡Qué hermosos sobre los montes los pies del que trae buenas nuevas,
+          que anuncia la paz, del que trae buenas noticias de bien, que anuncia
+          salvación, que dice a Sión: tu Elohím reina!
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:8</p>
+        <p class="hebrew">
+          קוֹל צֹפַיִךְ נָשְׂאוּ קוֹל יַחְדָּו יְרַנֵּנוּ כִּי עַיִן בְּעַיִן
+          יִרְאוּ בְּשׁוּב יְהוה צִיּוֹן׃
+        </p>
+        <p class="transliteration">
+          qōl ṣō·fa·yiḵ nāś·ʾū qōl yaḥ·dāw yə·ran·nê·nū kî ʿa·yin bə·ʿa·yin
+          yir·ʾū bə·šūḇ יהוה ṣî·yōn
+        </p>
+        <p class="translation">
+          ¡Voz de tus centinelas! Alzaron su voz, juntos cantan de júbilo,
+          porque ojo a ojo verán cuando יהוה retorne a Sión.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:9</p>
+        <p class="hebrew">
+          פִּצְחוּ רְנָנוּ יַחְדָּו חָרְבוֹת יְרוּשָׁלִָם כִּי נִחַם יְהוה
+          עַמּוֹ גָּאַל יְרוּשָׁלִָם׃
+        </p>
+        <p class="transliteration">
+          pitṣ·ḥū rə·nā·nū yaḥ·dāw ḥor·ḇōṯ yə·rū·šā·la·yim kî ni·ḥam יהוה ʿam·mō
+          gā·ʾal yə·rū·šā·la·yim
+        </p>
+        <p class="translation">
+          ¡Estallad, cantad juntas, ruinas de Yerushaláyim! Porque ha consolado
+          יהוה a su pueblo, ha redimido a Yerushaláyim.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:10</p>
+        <p class="hebrew">
+          חָשַׂף יְהוה אֶת־זְרוֹעַ קָדְשׁוֹ לְעֵינֵי כָל־הַגּוֹיִם וְרָאוּ
+          כָל־אַפְסֵי־אָרֶץ אֵת יְשׁוּעַת אֱלֹהֵינוּ׃
+        </p>
+        <p class="transliteration">
+          ḥā·śap̄ יהוה ʾeṯ‑zə·rō·aʿ qod·šō lə·ʿê·nê kol‑hag·gō·yim wə·rā·ʾū
+          kol‑ʾap̄·sê‑ʾā·reṣ ʾeṯ yə·šū·ʿat ʾĕ·lō·hê·nū
+        </p>
+        <p class="translation">
+          Ha desnudado יהוה el brazo de su santidad ante los ojos de todas las
+          naciones; y verán todos los confines de la tierra la salvación de
+          nuestro Elohím.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:11</p>
+        <p class="hebrew">
+          סֻרוּ סֻרוּ צְאוּ מִשָּׁם טָמֵא אַל־תִּגָּעוּ צְאוּ מִתּוֹכָהּ
+          הִבָּרוּ נֹשְׂאֵי כְלֵי יְהוה׃
+        </p>
+        <p class="transliteration">
+          sū·rū sū·rū ṣə·ʾū miš·šām ṭā·mê ʾal‑tig·gā·ʿū ṣə·ʾū mit·tō·ḵāh
+          hib·bārū nō·śə·ʾê kə·lê יהוה
+        </p>
+        <p class="translation">
+          Apartaos, apartaos, salid de allí; no toquéis cosa impura; salid de en
+          medio de ella; limpiaos los que lleváis los utensilios de יהוה.
+        </p>
+      </div>
+      <div class="verse-container">
+        <p class="verse-number">52:12</p>
+        <p class="hebrew">
+          כִּי לֹא בְחִפָּזוֹן תֵּצֵאוּ וּבְמְנוּסָה לֹא תֵלֵכוּ כִּי הוֹלֵךְ
+          לִפְנֵיכֶם יְהוה וּמְאַסִּפְכֶם אֱלֹהֵי יִשְׂרָאֵל׃
+        </p>
+        <p class="transliteration">
+          kî lō ḇə·ḥip·pā·zôn tē·ṣē·ʾū ū·ḇə·mə·nū·sāh lō tē·lê·ḵū kî hō·lēḵ
+          lip̄·nê·ḵem יהוה ū·mə·ʾas·sip̄·ḵem ʾĕ·lō·hê yiś·rā·ʾêl
+        </p>
+        <p class="translation">
+          Porque no saldréis con prisa, ni iréis huyendo; porque va delante de
+          vosotros יהוה, y vuestro recogedor es el Elohím de Israel.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div class="content-container">
+        <h1>CUMPLIMIENTO PROFÉTICO EN EL MASHÍAJ – YESHAYAHU 51:12–52:12</h1>
+
+        <div class="prophetic-section">
+          <h3>
+            I. Conexión Profética y Mesiánica: Consolación, Redención y el
+            Siervo
+          </h3>
+          <p>
+            Los capítulos Yeshayahu 51:12–52:12 representan una de las
+            transiciones más profundas del libro de Isaías. El tema dominante es
+            la consolación de Sion, la liberación del cautiverio, y la promesa
+            de redención mesiánica mediante el siervo de יהוה. Esta porción
+            culmina justo antes del famoso capítulo 53, que describe
+            directamente al Mashíaj sufriente. Todo el pasaje está impregnado de
+            elementos proféticos cumplidos en Yeshúa haMashíaj.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3>II. Cumplimiento en el Mashíaj – Yeshúa haNotzrí</h3>
+
+          <p class="prophetic-title">
+            1. “Yo soy el que os consuela” (51:12) – Consolación en el Mesías
+          </p>
+          <p>Yeshúa es identificado como el Consolador encarnado:</p>
+          <ul>
+            <li>
+              <span class="highlight">Lucas 2:25:</span> Shimón esperaba la
+              “consolación de Yisrael”, personificada en el Mesías.
+            </li>
+            <li>
+              <span class="highlight">2 Corintios 1:3-5:</span> El Elohím de
+              toda consolación nos consuela en Mashíaj.
+            </li>
+            <li>
+              <span class="highlight">Mateo 11:28:</span> “Venid a mí… y yo os
+              haré descansar”.
+            </li>
+          </ul>
+          <p>
+            Yeshúa no solo habla consuelo, Él es el Consolador — una
+            manifestación de la promesa de Yeshayahu 51:12.
+          </p>
+
+          <p class="prophetic-title">
+            2. “No temas al hombre que muere” (51:12–13) – Autoridad sobre la
+            muerte
+          </p>
+          <p>Mashíaj es quien venció al último enemigo: la muerte misma:</p>
+          <ul>
+            <li>
+              <span class="highlight">Hebreos 2:14-15:</span> “Para destruir por
+              medio de la muerte al que tenía el imperio de la muerte”.
+            </li>
+            <li>
+              <span class="highlight">Juan 11:25:</span> “Yo soy la resurrección
+              y la vida”.
+            </li>
+          </ul>
+          <p>
+            Este mensaje de no temer al mortal se cumple porque Yeshúa quitó el
+            aguijón de la muerte.
+          </p>
+
+          <p class="prophetic-title">
+            3. “Yo soy יהוה tu Elohím, el que aquieta el mar” (51:15) –
+            Autoridad sobre la creación
+          </p>
+          <p>
+            Este verso encuentra eco literal en el acto mesiánico cuando Yeshúa
+            calma el mar:
+          </p>
+          <ul>
+            <li>
+              <span class="highlight">Marcos 4:39-41:</span> “¿Quién es este que
+              aún el viento y el mar le obedecen?”
+            </li>
+          </ul>
+          <p>
+            Salmos 89:9 y Yeshayahu 51:15 se reflejan en esa escena como prueba
+            de su divinidad. Yeshúa manifiesta aquí la identidad de יהוה como el
+            que tiene dominio sobre los elementos.
+          </p>
+
+          <p class="prophetic-title">
+            4. “Pondré mis palabras en tu boca” (51:16) – El profeta como Moisés
+          </p>
+          <p>
+            Este verso conecta directamente con Devarim 18:18 — “Un profeta como
+            tú levantaré”, cumplido en:
+          </p>
+          <ul>
+            <li>
+              <span class="highlight">Juan 12:49-50:</span> Yeshúa dice: “El
+              Padre que me envió me dio mandamiento”.
+            </li>
+            <li>
+              <span class="highlight">Juan 14:24:</span> “La palabra que oís no
+              es mía, sino del Padre”.
+            </li>
+          </ul>
+          <p>
+            Yeshúa es el portador de las palabras vivas de יהוה, cumpliendo la
+            función de un profeta y redentor celestial.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3>III. Isaías 52 – El Mensajero que Anuncia Salvación</h3>
+
+          <p class="prophetic-title">
+            1. “¡Qué hermosos los pies…!” (52:7) – Evangelio del Reino
+          </p>
+          <p>Este pasaje es citado directamente por Rav Shaúl:</p>
+          <ul>
+            <li>
+              <span class="highlight">Romanos 10:15:</span> Describe a los
+              emisarios que proclaman la “buena nueva” – en hebreo besoráh.
+            </li>
+            <li>
+              <span class="highlight">Lucas 4:18-19:</span> Yeshúa enuncia su
+              misión usando Isaías: “proclamar libertad...”.
+            </li>
+          </ul>
+          <p>
+            Él es el mensajero celestial que anuncia paz, gozo, y salvación
+            (Yeshuáh).
+          </p>
+
+          <p class="prophetic-title">
+            2. “Verán con sus ojos… el retorno de יהוה a Sion” (52:8) –
+            Presencia divina en el Mesías
+          </p>
+          <p>Yeshúa es la manifestación visible de la Presencia de יהוה:</p>
+          <ul>
+            <li>
+              <span class="highlight">Juan 1:14:</span> “El Verbo se hizo carne,
+              y habitó entre nosotros”.
+            </li>
+            <li>
+              <span class="highlight">Zacarías 2:10:</span> “He aquí vengo y
+              habitaré en medio de ti, dice יהוה”.
+            </li>
+          </ul>
+          <p>
+            El retorno de יהוה a Tsión ocurre cuando el Mesías entra en
+            Yerushaláyim (Mateo 21).
+          </p>
+
+          <p class="prophetic-title">
+            3. “Mi pueblo conocerá mi Nombre” (52:6) – Revelación del Nombre a
+            través del Hijo
+          </p>
+          <p>
+            El conocimiento del Nombre está vinculado con reconocer a Yeshúa:
+          </p>
+          <ul>
+            <li>
+              <span class="highlight">Juan 17:6:</span> “He manifestado tu
+              Nombre a los hombres…”.
+            </li>
+            <li>
+              <span class="highlight">Filipenses 2:9-11:</span> El Nombre dado a
+              Yeshúa es el Nombre sobre todo nombre – una proclamación mesiánica
+              de supremacía.
+            </li>
+          </ul>
+
+          <p class="prophetic-title">
+            4. “Verán todos… la salvación de nuestro Elohím” (52:10) –
+            Revelación universal
+          </p>
+          <p>Yeshayahu usa “Yeshuat Eloheinu”, y esto se ve cumplido en:</p>
+          <ul>
+            <li>
+              <span class="highlight">Lucas 3:6:</span> “Y verá toda carne la
+              salvación de Elohím”.
+            </li>
+            <li>
+              <span class="highlight">Hechos 13:47:</span> “Te he puesto por luz
+              de los gentiles”.
+            </li>
+          </ul>
+          <p>
+            Mashíaj revela el brazo de יהוה — Zeroa יהוה — en su encarnación y
+            redención.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3>IV. Aplicación Espiritual para Hoy</h3>
+          <ul>
+            <li>
+              <span class="point-letter">1.</span>
+              <strong>No temer al hombre mortal (51:12-13):</strong> La
+              fidelidad al Reino de Mashíaj implica confiar en el poder del
+              Eterno por encima de amenazas humanas.
+            </li>
+            <li>
+              <span class="point-letter">2.</span>
+              <strong>Consolación divina presente (51:12; 52:9):</strong> Muchos
+              hoy viven en duelo y exilio espiritual. El mensaje sigue vigente:
+              יהוה ha consolado a su pueblo por medio del Mesías.
+            </li>
+            <li>
+              <span class="point-letter">3.</span>
+              <strong>Llamado a pureza y santidad (52:11):</strong> El llamado a
+              “no tocar cosa impura” es vigente: Rav Shaúl lo cita en 2
+              Corintios 6:17, instando a una vida apartada en pureza para יהוה.
+            </li>
+            <li>
+              <span class="point-letter">4.</span>
+              <strong>Proclamación de la buena nueva (52:7):</strong> Hoy, cada
+              creyente está llamado a ser como el mensajero: llevar la besoráh
+              del Reino, paz, y redención a través de Yeshúa haMashíaj.
+            </li>
+            <li>
+              <span class="point-letter">5.</span>
+              <strong>Reconocer al “brazo de יהוה” (52:10):</strong> Aceptar a
+              Yeshúa es aceptar la manifestación activa de יהוה — su brazo
+              extendido que trae salvación.
+            </li>
+          </ul>
+        </div>
+
+        <div class="conclusion">
+          <h3>V. Conclusión Mesiánica</h3>
+          <p>Isaías 51:12–52:12 presenta una visión clara del Mashíaj como:</p>
+          <ul>
             <li>Consolador divino.</li>
             <li>Revelación del Nombre de יהוה.</li>
             <li>Profeta mayor que Moshéh.</li>
             <li>Anunciador de paz y redención.</li>
             <li>Manifestación del brazo de יהוה.</li>
-        </ul>
-        <p>Todo esto encuentra su cumplimiento perfecto en Yeshúa, quien no solo predicó esta esperanza, sino que la encarnó.</p>
+          </ul>
+          <p>
+            Todo esto encuentra su cumplimiento perfecto en Yeshúa, quien no
+            solo predicó esta esperanza, sino que la encarnó.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="section-divider"></div>
+      <div class="section-divider"></div>
 
-    <h1>Punto 3. Brit Hadasháh: Lucas 12:15-21 (La advertencia de Yeshúa contra la avaricia y la autosuficiencia).</h1>
-
-    <div class="verse-container">
-      <p class="aramaic">
-        ܘܐܡܪ ܠܗܘܢ ܚܙܘ ܘܐܙܕܗܪܘ ܡܢ ܟܠܗ ܛܡܥܘܬܐ ܡܛܠ ܕܠܐ ܗܝ ܒܝܬ ܝܘܬܪܢܐ ܕܐܝܬ
-        ܠܐܢܫ ܚܝܐ ܡܢ ܩܢܝܢܗ
-      </p>
-      <p class="transliteration">
-        Ḥezú w-ezdeharú men kolah ṭem‘útā, meṭul d-lā hay beth yutrānā d-ayt
-        l-enāsh ḥayyē men qanīneh.
-      </p>
-      <p class="translation">
-        Mirad y guardaos de toda codicia, porque no está en la abundancia de lo
-        que tiene el hombre su vida de sus posesiones.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <p class="aramaic">
-        ܘܐܡܪ ܠܗܘܢ ܡܬܠܐ ܠܐܡܪ ܓܒܪܐ ܚܕ ܥܬܝܪܐ ܐܬܝܬܬ ܠܗ ܐܪܥܗ ܫܪܝܪܐ
-      </p>
-      <p class="transliteration">
-        W-amar le-hon mathlā l-emar: gabhrā ḥad ‘attīrā athyattet leh ar‘eh
-        shrīrā.
-      </p>
-      <p class="translation">
-        Y les dijo una parábola, diciendo: un hombre rico tuvo la tierra que le
-        produjo bien.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <p class="aramaic">
-        ܘܡܬܚܫܒ ܗܘܐ ܒܢܦܫܗ ܘܐܡܪ ܡܢܐ ܐܥܒܕ ܡܛܠ ܕܠܝܬ ܠܝ ܐܝܟܐ ܐܟܢܘܫ ܒܥܪܬܝ
-      </p>
-      <p class="transliteration">
-        W-methḥashseb hawā b-nafshēh w-amar: manā e‘bad meṭul d-layt lī aykā
-        akhnūsh b-‘arthī.
-      </p>
-      <p class="translation">
-        Y pensaba dentro de sí, diciendo: ¿Qué haré? porque no tengo dónde
-        almacenar mis frutos.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <p class="aramaic">
-        ܘܐܡܪ ܗܕܐ ܐܥܒܕ ܐܣܬܘܪ ܒܝܬ ܐܘܨܪܝ ܘܐܥܒܕ ܪܒܐ ܘܐܟܢܘܫ ܬܡܢ ܟܠܗܘܢ ܥܪܬܝ
-        ܘܛܒܬܝ
-      </p>
-      <p class="transliteration">
-        W-amar: hādē e‘bad — astur beth ōtzrī w-e‘bad rabbā, w-akhnūsh taman
-        kolhūn ‘arthī w-ṭavtī.
-      </p>
-      <p class="translation">
-        Y dijo: esto haré — derribaré mis graneros y haré mayores, y allí
-        almacenaré todos mis frutos y mis bienes.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <p class="aramaic">
-        ܘܐܡܪ ܠܢܦܫܝ ܢܦܫܝ ܐܝܬ ܠܟܝ ܛܒܬܐ ܣܓܝܐܬܐ ܣܡܝܟܬܐ ܠܫܢܝܢ ܣܓܝܐܢ ܐܬܢܝܚܝ
-        ܐܟܘܠܝ ܐܫܬܝ ܘܐܬܒܣܡܝ
-      </p>
-      <p class="transliteration">
-        W-amar l-nafshī: nafshī, ayt lakhī ṭavtā saggiātā samekhtā l-shenīn
-        saggiān — ethnīḥī, akhulī, eshṭī w-ethbasemī.
-      </p>
-      <p class="translation">
-        Y diré a mi alma: alma mía, tienes muchos bienes almacenados para muchos
-        años; descansa, come, bebe y alégrate.
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <p class="aramaic">
-        ܐܡܪ ܠܗ ܐܠܗܐ ܣܟܠܐ ܒܠܠܝܐ ܗܢܐ ܢܦܫܟ ܬܒܥܝܢ ܠܗ ܘܗܠܝܢ ܕܛܝܒܬ ܠܡܢ ܢܗܘܘܢ
-      </p>
-      <p class="transliteration">
-        Amar leh Alāhā: saklā, b-l-lailiyā hanā, nafshak teba‘īn leh, w-hālēn
-        d-ṭaybt, l-man nehwon?
-      </p>
-      <p class="translation">
-        Le dijo Elohím: insensato, esta noche tu alma será requerida de ti, y lo
-        que has provisto, ¿para quién será?
-      </p>
-    </div>
-
-    <div class="verse-container">
-      <p class="aramaic">
-        ܗܟܢܐ ܗܘ ܕܣܐܡ ܠܢܦܫܗ ܘܠܐ ܥܬܝܪ ܠܐܠܗܐ
-      </p>
-      <p class="transliteration">
-        Hākenā hu d-sām l-nafshēh, w-lā ‘attīr l-Alāhā.
-      </p>
-      <p class="translation">
-        Así es el que acumula para sí mismo y no es rico para con Elohím.
-      </p>
-    </div>
-
-    <div class="explanation">
       <h1>
-        📜 Lucas 12:15–21 – Comentario Mesiánico y Conexión con la Toráh y los
-        Profetas
+        Punto 3. Brit Hadasháh: Lucas 12:15-21 (La advertencia de Yeshúa contra
+        la avaricia y la autosuficiencia).
       </h1>
 
-      <div class="prophetic-section">
-        <h3 class="prophetic-title">1. Texto y contexto inmediato</h3>
-        <p>En este pasaje, Yeshúa haMashíaj advierte:</p>
+      <div class="verse-container">
+        <p class="aramaic">
+          ܘܐܡܪ ܠܗܘܢ ܚܙܘ ܘܐܙܕܗܪܘ ܡܢ ܟܠܗ ܛܡܥܘܬܐ ܡܛܠ ܕܠܐ ܗܝ ܒܝܬ ܝܘܬܪܢܐ ܕܐܝܬ ܠܐܢܫ
+          ܚܝܐ ܡܢ ܩܢܝܢܗ
+        </p>
+        <p class="transliteration">
+          Ḥezú w-ezdeharú men kolah ṭem‘útā, meṭul d-lā hay beth yutrānā d-ayt
+          l-enāsh ḥayyē men qanīneh.
+        </p>
+        <p class="translation">
+          Mirad y guardaos de toda codicia, porque no está en la abundancia de
+          lo que tiene el hombre su vida de sus posesiones.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="aramaic">
+          ܘܐܡܪ ܠܗܘܢ ܡܬܠܐ ܠܐܡܪ ܓܒܪܐ ܚܕ ܥܬܝܪܐ ܐܬܝܬܬ ܠܗ ܐܪܥܗ ܫܪܝܪܐ
+        </p>
+        <p class="transliteration">
+          W-amar le-hon mathlā l-emar: gabhrā ḥad ‘attīrā athyattet leh ar‘eh
+          shrīrā.
+        </p>
+        <p class="translation">
+          Y les dijo una parábola, diciendo: un hombre rico tuvo la tierra que
+          le produjo bien.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="aramaic">
+          ܘܡܬܚܫܒ ܗܘܐ ܒܢܦܫܗ ܘܐܡܪ ܡܢܐ ܐܥܒܕ ܡܛܠ ܕܠܝܬ ܠܝ ܐܝܟܐ ܐܟܢܘܫ ܒܥܪܬܝ
+        </p>
+        <p class="transliteration">
+          W-methḥashseb hawā b-nafshēh w-amar: manā e‘bad meṭul d-layt lī aykā
+          akhnūsh b-‘arthī.
+        </p>
+        <p class="translation">
+          Y pensaba dentro de sí, diciendo: ¿Qué haré? porque no tengo dónde
+          almacenar mis frutos.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="aramaic">
+          ܘܐܡܪ ܗܕܐ ܐܥܒܕ ܐܣܬܘܪ ܒܝܬ ܐܘܨܪܝ ܘܐܥܒܕ ܪܒܐ ܘܐܟܢܘܫ ܬܡܢ ܟܠܗܘܢ ܥܪܬܝ ܘܛܒܬܝ
+        </p>
+        <p class="transliteration">
+          W-amar: hādē e‘bad — astur beth ōtzrī w-e‘bad rabbā, w-akhnūsh taman
+          kolhūn ‘arthī w-ṭavtī.
+        </p>
+        <p class="translation">
+          Y dijo: esto haré — derribaré mis graneros y haré mayores, y allí
+          almacenaré todos mis frutos y mis bienes.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="aramaic">
+          ܘܐܡܪ ܠܢܦܫܝ ܢܦܫܝ ܐܝܬ ܠܟܝ ܛܒܬܐ ܣܓܝܐܬܐ ܣܡܝܟܬܐ ܠܫܢܝܢ ܣܓܝܐܢ ܐܬܢܝܚܝ ܐܟܘܠܝ
+          ܐܫܬܝ ܘܐܬܒܣܡܝ
+        </p>
+        <p class="transliteration">
+          W-amar l-nafshī: nafshī, ayt lakhī ṭavtā saggiātā samekhtā l-shenīn
+          saggiān — ethnīḥī, akhulī, eshṭī w-ethbasemī.
+        </p>
+        <p class="translation">
+          Y diré a mi alma: alma mía, tienes muchos bienes almacenados para
+          muchos años; descansa, come, bebe y alégrate.
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="aramaic">
+          ܐܡܪ ܠܗ ܐܠܗܐ ܣܟܠܐ ܒܠܠܝܐ ܗܢܐ ܢܦܫܟ ܬܒܥܝܢ ܠܗ ܘܗܠܝܢ ܕܛܝܒܬ ܠܡܢ ܢܗܘܘܢ
+        </p>
+        <p class="transliteration">
+          Amar leh Alāhā: saklā, b-l-lailiyā hanā, nafshak teba‘īn leh, w-hālēn
+          d-ṭaybt, l-man nehwon?
+        </p>
+        <p class="translation">
+          Le dijo Elohím: insensato, esta noche tu alma será requerida de ti, y
+          lo que has provisto, ¿para quién será?
+        </p>
+      </div>
+
+      <div class="verse-container">
+        <p class="aramaic">ܗܟܢܐ ܗܘ ܕܣܐܡ ܠܢܦܫܗ ܘܠܐ ܥܬܝܪ ܠܐܠܗܐ</p>
+        <p class="transliteration">
+          Hākenā hu d-sām l-nafshēh, w-lā ‘attīr l-Alāhā.
+        </p>
+        <p class="translation">
+          Así es el que acumula para sí mismo y no es rico para con Elohím.
+        </p>
+      </div>
+
+      <div class="explanation">
+        <h1>
+          📜 Lucas 12:15–21 – Comentario Mesiánico y Conexión con la Toráh y los
+          Profetas
+        </h1>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">1. Texto y contexto inmediato</h3>
+          <p>En este pasaje, Yeshúa haMashíaj advierte:</p>
+          <p class="scripture">
+            “Guardaos de toda avaricia, porque la vida del hombre no consiste en
+            la abundancia de los bienes que posee” (Lucas 12:15).
+          </p>
+          <p>
+            Luego relata la parábola del rico insensato: un hombre prospera
+            tanto que decide construir graneros más grandes para almacenar sus
+            cosechas, confiando en sus riquezas para asegurar su futuro. Sin
+            embargo, Elohím le dice: “Necio, esta noche vienen a pedir tu alma;
+            y lo que has provisto, ¿de quién será?” (v. 20). Yeshúa concluye:
+            “Así es el que hace para sí tesoro, y no es rico para con Elohím”
+            (v. 21).
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">2. Conexión con la Toráh</h3>
+          <p>Este mensaje está profundamente enraizado en la Toráh:</p>
+          <ul>
+            <li>
+              <strong>Devarím (Deuteronomio) 8:17–18</strong> – Israel es
+              advertido de no decir: “Mi poder y la fuerza de mi mano me han
+              traído esta riqueza”, sino recordar que Adonái es quien da el
+              poder para hacer riquezas.
+            </li>
+            <li>
+              <strong>Shemot (Éxodo) 16</strong> – El maná en el desierto enseña
+              a depender diariamente de Elohím, sin acumular de más.
+            </li>
+            <li>
+              <strong>Vayikrá (Levítico) 25:23</strong> – La tierra no pertenece
+              al hombre sino a Elohím; el hombre es solo un mayordomo.
+            </li>
+            <li>
+              <strong>Mishléi (Proverbios) 11:28</strong> – “El que confía en
+              sus riquezas caerá; pero los justos reverdecerán como ramas
+              verdes.”
+            </li>
+          </ul>
+          <p>
+            Yeshúa, como el Rabino Mesiánico de la Toráh, retoma y amplifica
+            este principio: la vida verdadera no está en los bienes temporales,
+            sino en la comunión y fidelidad a Elohím.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">3. Conexión con los Profetas</h3>
+          <p>
+            Los Nevi’im advirtieron repetidamente sobre la falsa seguridad de la
+            riqueza:
+          </p>
+          <ul>
+            <li>
+              <strong>Yeshayahu (Isaías) 5:8–9</strong> – Ay de los que acumulan
+              casas y campos pensando en su seguridad, porque vendrá desolación.
+            </li>
+            <li>
+              <strong>Yirmeyahu (Jeremías) 9:23–24</strong> – No se gloríe el
+              rico en sus riquezas, sino en conocer a Adonái.
+            </li>
+            <li>
+              <strong>Amós 6:1</strong> – Ay de los que están confiados en Sion
+              y se sienten seguros, pero no se lamentan por la ruina espiritual.
+            </li>
+          </ul>
+          <p>
+            Estos profetas conectan con la parábola de Yeshúa porque el hombre
+            insensato actúa igual que Israel en tiempos de abundancia: olvida su
+            dependencia del Eterno.
+          </p>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">4. Cumplimiento y enseñanza mesiánica</h3>
+          <p>
+            Yeshúa haMashíaj se presenta como el verdadero tesoro celestial
+            (Matityahu 6:19–21) y el único que puede dar vida eterna (Yojanán
+            10:10).
+          </p>
+          <p>En este pasaje:</p>
+          <ul>
+            <li>
+              Se revela como juez justo (v. 20: Elohím exige el alma → en el
+              Brit Hadasháh, el juicio está en manos del Hijo, Yojanán 5:22).
+            </li>
+            <li>
+              Enseña el principio del Reino: ser “rico para con Elohím”
+              significa invertir en obras de justicia, generosidad y obediencia
+              que permanecen para la eternidad.
+            </li>
+            <li>
+              Muestra la vanidad del materialismo como ya lo hacía Kohelet
+              (Eclesiastés): todo es vanidad si no se vive en reverencia a
+              Elohím.
+            </li>
+          </ul>
+        </div>
+
+        <div class="prophetic-section">
+          <h3 class="prophetic-title">5. Reflexión espiritual</h3>
+          <p>Para los creyentes en Yeshúa hoy:</p>
+          <ul>
+            <li>
+              La parábola es un llamado a evaluar dónde está nuestro tesoro y a
+              vivir como peregrinos, administrando todo como si fuera de Elohím
+              (porque lo es).
+            </li>
+            <li>
+              Nos recuerda que la muerte es el gran igualador y que la verdadera
+              herencia está en el Reino eterno.
+            </li>
+            <li>
+              Conecta con el espíritu de la Toráh, que nos enseña a no codiciar
+              y a vivir dependiendo diariamente del Creador.
+            </li>
+          </ul>
+        </div>
+
+        <div class="conclusion">
+          <h3 class="prophetic-title">📌 Resumen de conexión:</h3>
+          <ul>
+            <li>
+              <strong>Toráh</strong> <span class="arrow">→</span> Enseña
+              dependencia diaria y mayordomía.
+            </li>
+            <li>
+              <strong>Profetas</strong> <span class="arrow">→</span> Denuncian
+              la falsa seguridad en la riqueza.
+            </li>
+            <li>
+              <strong>Yeshúa</strong> <span class="arrow">→</span> Revela que la
+              verdadera riqueza es estar en relación con Él, el Mashíaj, quien
+              es la vida misma (Yojanán 14:6).
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="content-container">
+        <h1>📜 Punto 4 Contexto Histórico y Cultural</h1>
+        <h3>1. Marco geográfico y temporal</h3>
+        <p>
+          El pasaje se sitúa en los discursos finales de Moshé a Israel,
+          alrededor del año 1406 a.E.C., justo antes de la entrada a la Tierra
+          Prometida. Israel se encontraba en las llanuras de Moav, al este del
+          río Yardén, frente a Yerijó.
+        </p>
+        <p>
+          Este territorio, controlado previamente por los amorreos, había sido
+          conquistado bajo el liderazgo de Moshé (Números 21:21-35). La
+          perspectiva inmediata es el cruce del Yardén y la conquista de Canaán
+          bajo Yehoshúa bin Nun.
+        </p>
+
+        <h3>2. Contexto social y religioso</h3>
+        <p>Israel se hallaba en un punto crítico de transición:</p>
+        <ul>
+          <li>
+            <strong>De nómadas a agricultores:</strong> tras 40 años en el
+            desierto, dependerían ahora de cultivos, viñas, aceite y ganado, lo
+            que suponía un cambio económico, cultural y religioso.
+          </li>
+          <li>
+            <strong
+              >De dependencia diaria del maná a la abundancia de la
+              tierra,</strong
+            >
+            con el riesgo espiritual de olvidar a Adonái יהוה, el Proveedor.
+          </li>
+        </ul>
+        <p>
+          La advertencia de Moshé busca prevenir la autosuficiencia orgullosa,
+          que en las culturas circundantes derivaba en idolatría y sincretismo.
+        </p>
+
+        <h3>3. Trasfondo histórico</h3>
+        <p>
+          En el Próximo Oriente Antiguo, las naciones atribuían su prosperidad a
+          sus dioses locales y a su propio poder militar. Moshé contrasta esto
+          afirmando que la victoria de Israel sobre naciones más poderosas
+          (hititas, cananeos, perizitas, etc.) no sería por su justicia, sino
+          por:
+        </p>
+        <ul>
+          <li>La maldad de esas naciones (Deut. 9:4).</li>
+          <li>La fidelidad al pacto con Abraham, Yitzjak y Yaakov.</li>
+        </ul>
+
+        <h3>4. Elementos culturales relevantes</h3>
+        <ul>
+          <li>
+            <strong>Tierras fértiles de Canaán:</strong> conocidas por sus siete
+            especies (trigo, cebada, vides, higueras, granadas, olivos y miel de
+            dátil), símbolo de bendición, pero también tentación de olvidar el
+            origen divino de esa prosperidad.
+          </li>
+          <li>
+            <strong>Prácticas idolátricas cananeas:</strong> culto a Baal y
+            Astarté, ritos de fertilidad, sacrificios humanos, lo cual hacía
+            urgente la advertencia contra la asimilación cultural.
+          </li>
+          <li>
+            <strong>“Corazón altivo” en la cultura semítica:</strong> se
+            entendía como arrogancia espiritual y social, ruptura del pacto de
+            lealtad hacia el soberano (en este caso, Adonái יהוה).
+          </li>
+          <li>
+            <strong>Conquista “como fuego consumidor” (Deut. 9:3):</strong>
+            metáfora bélica conocida en tratados reales asirios y hititas,
+            aplicada aquí a la acción de Elohím mismo como Guerrero Divino.
+          </li>
+        </ul>
+
+        <h3>5. Perspectiva del Mishkán y del culto</h3>
+        <p>
+          Aunque estaban lejos del Mishkán centralizado en Shiló (que sería
+          establecido años después), Israel ya había practicado un culto móvil
+          con el Tabernáculo. La advertencia incluía preservar la pureza del
+          culto y no introducir imágenes ni prácticas paganas.
+        </p>
+        <p>
+          Este trasfondo ayuda a entender que Devarím 8:11–9:3 no es solo una
+          exhortación moral, sino una advertencia estratégica y teológica para
+          un pueblo a punto de asentarse en una cultura materialmente avanzada
+          pero espiritualmente corrupta.
+        </p>
+      </div>
+
+      <hr class="section-divider" />
+
+      <div class="content-container">
+        <h1>📖 Punto 5 – Estudio, Comentarios y Conexiones Proféticas</h1>
+        <h3>1. Comentarios rabínicos relevantes</h3>
+        <p>
+          <strong>Rashí (s. XI)</strong> señala que la advertencia de no olvidar
+          a Adonái יהוה en 8:11 implica no atribuir el éxito a la fuerza propia,
+          sino reconocer que todo proviene del pacto. La frase “y se
+          enorgullezca tu corazón” (8:14) es vista como la raíz de todos los
+          pecados: la autosuficiencia que desplaza al Creador del centro de la
+          vida.
+        </p>
+        <p>
+          <strong>Ibn Ezra</strong> observa que la enumeración de las
+          bendiciones de la tierra (8:7-10) antes de la advertencia tiene un
+          propósito pedagógico: cuanto más abundancia, más urgente es la memoria
+          activa de Elohím.
+        </p>
+        <p>
+          <strong>Sforno (s. XVI)</strong> enfatiza que el olvido mencionado no
+          es una mera falla mental, sino un acto voluntario de apartar a Elohím
+          de la vida diaria, lo cual se manifiesta en la idolatría o en la
+          indiferencia espiritual.
+        </p>
+
+        <h3>2. Comentario judío mesiánico</h3>
+        <p>
+          Desde la perspectiva mesiánica, este pasaje es un paralelo profético a
+          la vida espiritual del creyente en Yeshúa haMashíaj:
+        </p>
+        <ul>
+          <li>
+            <strong>Del desierto a la tierra prometida</strong> = Del tiempo de
+            prueba y dependencia absoluta al tiempo de herencia y
+            responsabilidad.
+          </li>
+          <li>
+            Así como Israel debía reconocer que su victoria sobre naciones más
+            fuertes no era por su justicia (9:4-6), el creyente reconoce que su
+            salvación no es por mérito propio, sino por la gracia manifestada en
+            el sacrificio de Yeshúa (Efesios 2:8-9).
+          </li>
+          <li>
+            En la Brit Hadasháh, Rav Shaúl (Pablo) advierte contra la misma
+            actitud de orgullo espiritual en Romanos 11:18-21: los gentiles
+            injertados en el olivo de Israel no deben jactarse contra las ramas
+            naturales, porque no son ellos quienes sostienen la raíz.
+          </li>
+        </ul>
+
+        <h3>3. Notas de los primeros siglos</h3>
+        <p>
+          En los escritos nazarenos del s. I-II, este pasaje era usado como
+          advertencia contra el orgullo post-conversión.
+        </p>
+        <ul>
+          <li>
+            <strong>Clemente de Roma</strong> cita Deut. 8:11 para recordar que
+            la prosperidad de la Kehiláh no debe llevar a olvidar la humildad y
+            el temor reverente.
+          </li>
+          <li>
+            Los primeros talmidím veían el
+            <strong>“no es por tu justicia”</strong> como una declaración
+            mesiánica velada: así como la conquista no fue por mérito humano, la
+            redención final no será por mérito humano sino por la obra del
+            Mashíaj, identificado con Adonái יהוה mismo.
+          </li>
+        </ul>
+
+        <h3>4. Aplicación práctica y espiritual</h3>
+        <ul>
+          <li>
+            <strong>Memoria activa:</strong> así como Israel debía “recordar”
+            (<span class="hebrew-term">זכור</span>
+            <span class="transliteration">zakhor</span>) las obras de Elohím, el
+            creyente debe mantener vivo el testimonio de lo que Yeshúa ha hecho.
+          </li>
+          <li>
+            <strong>Dependencia continua:</strong> incluso en la abundancia
+            espiritual o material, no asumir que es fruto de nuestras
+            habilidades.
+          </li>
+          <li>
+            <strong>Vigilancia ante el orgullo:</strong> reconocer que la
+            verdadera justicia proviene de Elohím, no de nuestras obras.
+          </li>
+        </ul>
+
+        <h3>5. Anotaciones gramaticales, léxicas</h3>
+        <ul>
+          <li>
+            <span class="hebrew-term">השמר לך</span> (<span
+              class="transliteration"
+              >hishamer lekha</span
+            >) en 8:11 es un imperativo reflexivo que significa “guárdate” o
+            “cuídate cuidadosamente”, usado en contextos de advertencia solemne.
+          </li>
+          <li>
+            <span class="hebrew-term">כחי ועצם ידי</span> (<span
+              class="transliteration"
+              >koji ve-‘otzem yadi</span
+            >) en 8:17, “mi fuerza y el poder de mi mano”, es una expresión
+            idiomática semítica que enfatiza la autosuficiencia presuntuosa.
+          </li>
+          <li>
+            La palabra <span class="hebrew-term">ברית</span> (<span
+              class="transliteration"
+              >berit</span
+            >, pacto) aparece implícita en 8:18, recordando que la prosperidad
+            está ligada a la promesa hecha a los patriarcas.
+          </li>
+          <li>
+            <strong></strong> la palabra
+            <span class="hebrew-term">לבבך</span> (<span class="transliteration"
+              >levavekha</span
+            >, tu corazón) = 48, que según algunos midrashim alude a las “48
+            formas de adquirir la Toráh” (Pirkei Avot 6:6), implicando que el
+            corazón debe llenarse de la Toráh para no enorgullecerse.
+          </li>
+        </ul>
+      </div>
+
+      <hr class="section-divider" />
+
+      <div class="content-container">
+        <h1>📚 Punto 6 – Análisis Profundo de la Aliyáh</h1>
+        <h3>1. Estructura y flujo del pasaje</h3>
+        <ul>
+          <li>
+            <strong>8:11-20 →</strong> Advertencia contra olvidar a Adonái יהוה
+            en tiempos de abundancia.
+          </li>
+          <li>
+            <strong>9:1-3 →</strong> Llamado a la confianza para conquistar
+            naciones más poderosas, con énfasis en que la victoria vendrá por el
+            poder de Elohím, no por mérito propio.
+          </li>
+        </ul>
+        <p>
+          Moshé crea un contraste deliberado: prosperidad puede llevar al
+          olvido, y guerra puede llevar al temor; en ambos casos, la respuesta
+          correcta es dependencia de Adonái יהוה.
+        </p>
+
+        <h3>2. Comentario judío tradicional</h3>
+        <p>
+          <strong>Rashí</strong> observa que “olvidar” (<span
+            class="transliteration"
+            >lishkoaj</span
+          >) aquí no es simple amnesia, sino dejar de actuar en consecuencia a
+          la memoria del pacto. Incluso un pueblo con memoria histórica puede
+          “olvidar” si sus acciones no reflejan esa memoria.
+        </p>
+        <p>
+          <strong>Ibn Ezra</strong> enfatiza que la frase “y digas en tu
+          corazón: mi fuerza y el poder de mi mano” (8:17) era un proverbio
+          semítico para el autoelogio militar y económico, común en
+          inscripciones reales de Canaán y Mesopotamia. Moshé se opone a esa
+          visión al atribuir todo el mérito a Elohím.
+        </p>
+
+        <h3>3. Comentario mesiánico</h3>
+        <p>En la lectura mesiánica, este pasaje se cumple en dos niveles:</p>
+        <ul>
+          <li>
+            <strong>Histórico-profético:</strong> Israel entra en la tierra por
+            el poder de Elohím, no por justicia propia. Esto es un patrón
+            profético del Nuevo Pacto en el que la redención llega por gracia,
+            no por mérito (Efesios 2:8-9).
+          </li>
+          <li>
+            <strong>Tipológico:</strong> El paso de la generación del desierto a
+            la generación de conquista refleja el paso del creyente de una fe
+            inicial sostenida por “maná” (provisión milagrosa diaria) a una fe
+            madura que enfrenta batallas y administra bendiciones.
+          </li>
+        </ul>
         <p class="scripture">
-          “Guardaos de toda avaricia, porque la vida del hombre no consiste en
-          la abundancia de los bienes que posee” (Lucas 12:15).
+          Rav Shaúl alude a esta misma idea en 1 Corintios 4:7 —“¿Qué tienes que
+          no hayas recibido? Y si lo recibiste, ¿por qué te glorías como si no
+          lo hubieras recibido?”—, un eco directo de Devarím 8:17.
+        </p>
+
+        <h3>4. Conexión con la Haftaráh</h3>
+        <p>
+          En la estructura de estudio, la Haftaráh asociada (Isaías 49:14–51:3)
+          subraya que la salvación y la restauración de Israel no dependen del
+          mérito humano, sino del pacto eterno con los padres. El mismo
+          principio de Devarím 9:5 (“no por tu justicia”) se repite: el motivo
+          de la acción divina es su amor y fidelidad al pacto.
+        </p>
+
+        <h3>5. Conexión con el Brit Hadasháh</h3>
+        <p>
+          En el texto arameo Peshitta, Efesios 2:8-9 y Tito 3:5 presentan el
+          mismo patrón:
+        </p>
+        <p class="scripture">
+          “No por obras de justicia que nosotros hubiéramos hecho, sino según Su
+          misericordia nos salvó.”
         </p>
         <p>
-          Luego relata la parábola del rico insensato: un hombre prospera tanto
-          que decide construir graneros más grandes para almacenar sus cosechas,
-          confiando en sus riquezas para asegurar su futuro. Sin embargo,
-          Elohím le dice: “Necio, esta noche vienen a pedir tu alma; y lo que
-          has provisto, ¿de quién será?” (v. 20). Yeshúa concluye: “Así es el que
-          hace para sí tesoro, y no es rico para con Elohím” (v. 21).
+          La teología de la gracia en el Brit Hadasháh se apoya en esta verdad
+          de la Toráh: la victoria y la herencia vienen únicamente por el poder
+          y la fidelidad de Elohím, revelados plenamente en Yeshúa haMashíaj
+          como MarYah.
         </p>
-      </div>
 
-      <div class="prophetic-section">
-        <h3 class="prophetic-title">2. Conexión con la Toráh</h3>
-        <p>Este mensaje está profundamente enraizado en la Toráh:</p>
+        <h3>6. Reflexión y exhortación</h3>
         <ul>
           <li>
-            <strong>Devarím (Deuteronomio) 8:17–18</strong> – Israel es advertido
-            de no decir: “Mi poder y la fuerza de mi mano me han traído esta
-            riqueza”, sino recordar que Adonái es quien da el poder para hacer
-            riquezas.
+            El pasaje enseña que el mayor peligro espiritual no siempre está en
+            la escasez, sino en la abundancia mal administrada.
           </li>
           <li>
-            <strong>Shemot (Éxodo) 16</strong> – El maná en el desierto enseña a
-            depender diariamente de Elohím, sin acumular de más.
-          </li>
-          <li>
-            <strong>Vayikrá (Levítico) 25:23</strong> – La tierra no pertenece
-            al hombre sino a Elohím; el hombre es solo un mayordomo.
-          </li>
-          <li>
-            <strong>Mishléi (Proverbios) 11:28</strong> – “El que confía en sus
-            riquezas caerá; pero los justos reverdecerán como ramas verdes.”
-          </li>
-        </ul>
-        <p>
-          Yeshúa, como el Rabino Mesiánico de la Toráh, retoma y amplifica este
-          principio: la vida verdadera no está en los bienes temporales, sino
-          en la comunión y fidelidad a Elohím.
-        </p>
-      </div>
-
-      <div class="prophetic-section">
-        <h3 class="prophetic-title">3. Conexión con los Profetas</h3>
-        <p>
-          Los Nevi’im advirtieron repetidamente sobre la falsa seguridad de la
-          riqueza:
-        </p>
-        <ul>
-          <li>
-            <strong>Yeshayahu (Isaías) 5:8–9</strong> – Ay de los que acumulan
-            casas y campos pensando en su seguridad, porque vendrá desolación.
-          </li>
-          <li>
-            <strong>Yirmeyahu (Jeremías) 9:23–24</strong> – No se gloríe el rico
-            en sus riquezas, sino en conocer a Adonái.
-          </li>
-          <li>
-            <strong>Amós 6:1</strong> – Ay de los que están confiados en Sion y
-            se sienten seguros, pero no se lamentan por la ruina espiritual.
-          </li>
-        </ul>
-        <p>
-          Estos profetas conectan con la parábola de Yeshúa porque el hombre
-          insensato actúa igual que Israel en tiempos de abundancia: olvida su
-          dependencia del Eterno.
-        </p>
-      </div>
-
-      <div class="prophetic-section">
-        <h3 class="prophetic-title">4. Cumplimiento y enseñanza mesiánica</h3>
-        <p>
-          Yeshúa haMashíaj se presenta como el verdadero tesoro celestial
-          (Matityahu 6:19–21) y el único que puede dar vida eterna (Yojanán
-          10:10).
-        </p>
-        <p>En este pasaje:</p>
-        <ul>
-          <li>
-            Se revela como juez justo (v. 20: Elohím exige el alma → en el Brit
-            Hadasháh, el juicio está en manos del Hijo, Yojanán 5:22).
-          </li>
-          <li>
-            Enseña el principio del Reino: ser “rico para con Elohím” significa
-            invertir en obras de justicia, generosidad y obediencia que
-            permanecen para la eternidad.
-          </li>
-          <li>
-            Muestra la vanidad del materialismo como ya lo hacía Kohelet
-            (Eclesiastés): todo es vanidad si no se vive en reverencia a Elohím.
+            Así como Israel debía prepararse para no olvidar a Adonái יהוה en la
+            tierra de abundancia, el creyente debe prepararse para honrar a
+            Yeshúa haMashíaj en todo tiempo, reconociendo que sin Él nada
+            podemos hacer (Juan 15:5).
           </li>
         </ul>
       </div>
 
-      <div class="prophetic-section">
-        <h3 class="prophetic-title">5. Reflexión espiritual</h3>
-        <p>Para los creyentes en Yeshúa hoy:</p>
-        <ul>
-          <li>
-            La parábola es un llamado a evaluar dónde está nuestro tesoro y a
-            vivir como peregrinos, administrando todo como si fuera de Elohím
-            (porque lo es).
-          </li>
-          <li>
-            Nos recuerda que la muerte es el gran igualador y que la verdadera
-            herencia está en el Reino eterno.
-          </li>
-          <li>
-            Conecta con el espíritu de la Toráh, que nos enseña a no codiciar y
-            a vivir dependiendo diariamente del Creador.
-          </li>
-        </ul>
-      </div>
+      <hr class="section-divider" />
 
-      <div class="conclusion">
-        <h3 class="prophetic-title">📌 Resumen de conexión:</h3>
-        <ul>
-          <li>
-            <strong>Toráh</strong> <span class="arrow">→</span> Enseña
-            dependencia diaria y mayordomía.
-          </li>
-          <li>
-            <strong>Profetas</strong> <span class="arrow">→</span> Denuncian la
-            falsa seguridad en la riqueza.
-          </li>
-          <li>
-            <strong>Yeshúa</strong> <span class="arrow">→</span> Revela que la
-            verdadera riqueza es estar en relación con Él, el Mashíaj, quien es
-            la vida misma (Yojanán 14:6).
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="content-container">
-      <h1>📜 Punto 4 Contexto Histórico y Cultural</h1>
-      <h3>1. Marco geográfico y temporal</h3>
-      <p>
-        El pasaje se sitúa en los discursos finales de Moshé a Israel, alrededor
-        del año 1406 a.E.C., justo antes de la entrada a la Tierra Prometida.
-        Israel se encontraba en las llanuras de Moav, al este del río Yardén,
-        frente a Yerijó.
-      </p>
-      <p>
-        Este territorio, controlado previamente por los amorreos, había sido
-        conquistado bajo el liderazgo de Moshé (Números 21:21-35). La
-        perspectiva inmediata es el cruce del Yardén y la conquista de Canaán
-        bajo Yehoshúa bin Nun.
-      </p>
-
-      <h3>2. Contexto social y religioso</h3>
-      <p>Israel se hallaba en un punto crítico de transición:</p>
-      <ul>
-        <li>
-          <strong>De nómadas a agricultores:</strong> tras 40 años en el
-          desierto, dependerían ahora de cultivos, viñas, aceite y ganado, lo
-          que suponía un cambio económico, cultural y religioso.
-        </li>
-        <li>
-          <strong>De dependencia diaria del maná a la abundancia de la tierra,</strong>
-          con el riesgo espiritual de olvidar a Adonái יהוה, el Proveedor.
-        </li>
-      </ul>
-      <p>
-        La advertencia de Moshé busca prevenir la autosuficiencia orgullosa, que
-        en las culturas circundantes derivaba en idolatría y sincretismo.
-      </p>
-
-      <h3>3. Trasfondo histórico</h3>
-      <p>
-        En el Próximo Oriente Antiguo, las naciones atribuían su prosperidad a
-        sus dioses locales y a su propio poder militar. Moshé contrasta esto
-        afirmando que la victoria de Israel sobre naciones más poderosas
-        (hititas, cananeos, perizitas, etc.) no sería por su justicia, sino por:
-      </p>
-      <ul>
-        <li>La maldad de esas naciones (Deut. 9:4).</li>
-        <li>La fidelidad al pacto con Abraham, Yitzjak y Yaakov.</li>
-      </ul>
-
-      <h3>4. Elementos culturales relevantes</h3>
-      <ul>
-        <li>
-          <strong>Tierras fértiles de Canaán:</strong> conocidas por sus siete
-          especies (trigo, cebada, vides, higueras, granadas, olivos y miel de
-          dátil), símbolo de bendición, pero también tentación de olvidar el
-          origen divino de esa prosperidad.
-        </li>
-        <li>
-          <strong>Prácticas idolátricas cananeas:</strong> culto a Baal y
-          Astarté, ritos de fertilidad, sacrificios humanos, lo cual hacía
-          urgente la advertencia contra la asimilación cultural.
-        </li>
-        <li>
-          <strong>“Corazón altivo” en la cultura semítica:</strong> se entendía
-          como arrogancia espiritual y social, ruptura del pacto de lealtad
-          hacia el soberano (en este caso, Adonái יהוה).
-        </li>
-        <li>
-          <strong>Conquista “como fuego consumidor” (Deut. 9:3):</strong> metáfora
-          bélica conocida en tratados reales asirios y hititas, aplicada aquí a
-          la acción de Elohím mismo como Guerrero Divino.
-        </li>
-      </ul>
-
-      <h3>5. Perspectiva del Mishkán y del culto</h3>
-      <p>
-        Aunque estaban lejos del Mishkán centralizado en Shiló (que sería
-        establecido años después), Israel ya había practicado un culto móvil con
-        el Tabernáculo. La advertencia incluía preservar la pureza del culto y
-        no introducir imágenes ni prácticas paganas.
-      </p>
-      <p>
-        Este trasfondo ayuda a entender que Devarím 8:11–9:3 no es solo una
-        exhortación moral, sino una advertencia estratégica y teológica para un
-        pueblo a punto de asentarse en una cultura materialmente avanzada pero
-        espiritualmente corrupta.
-      </p>
-    </div>
-
-    <hr class="section-divider" />
-
-    <div class="content-container">
-      <h1>📖 Punto 5 – Estudio, Comentarios y Conexiones Proféticas</h1>
-      <h3>1. Comentarios rabínicos relevantes</h3>
-      <p>
-        <strong>Rashí (s. XI)</strong> señala que la advertencia de no olvidar
-        a Adonái יהוה en 8:11 implica no atribuir el éxito a la fuerza propia,
-        sino reconocer que todo proviene del pacto. La frase “y se enorgullezca
-        tu corazón” (8:14) es vista como la raíz de todos los pecados: la
-        autosuficiencia que desplaza al Creador del centro de la vida.
-      </p>
-      <p>
-        <strong>Ibn Ezra</strong> observa que la enumeración de las bendiciones
-        de la tierra (8:7-10) antes de la advertencia tiene un propósito
-        pedagógico: cuanto más abundancia, más urgente es la memoria activa de
-        Elohím.
-      </p>
-      <p>
-        <strong>Sforno (s. XVI)</strong> enfatiza que el olvido mencionado no es
-        una mera falla mental, sino un acto voluntario de apartar a Elohím de la
-        vida diaria, lo cual se manifiesta en la idolatría o en la indiferencia
-        espiritual.
-      </p>
-
-      <h3>2. Comentario judío mesiánico</h3>
-      <p>
-        Desde la perspectiva mesiánica, este pasaje es un paralelo profético a
-        la vida espiritual del creyente en Yeshúa haMashíaj:
-      </p>
-      <ul>
-        <li>
-          <strong>Del desierto a la tierra prometida</strong> = Del tiempo de
-          prueba y dependencia absoluta al tiempo de herencia y responsabilidad.
-        </li>
-        <li>
-          Así como Israel debía reconocer que su victoria sobre naciones más
-          fuertes no era por su justicia (9:4-6), el creyente reconoce que su
-          salvación no es por mérito propio, sino por la gracia manifestada en
-          el sacrificio de Yeshúa (Efesios 2:8-9).
-        </li>
-        <li>
-          En la Brit Hadasháh, Rav Shaúl (Pablo) advierte contra la misma
-          actitud de orgullo espiritual en Romanos 11:18-21: los gentiles
-          injertados en el olivo de Israel no deben jactarse contra las ramas
-          naturales, porque no son ellos quienes sostienen la raíz.
-        </li>
-      </ul>
-
-      <h3>3. Notas de los primeros siglos</h3>
-      <p>
-        En los escritos nazarenos del s. I-II, este pasaje era usado como
-        advertencia contra el orgullo post-conversión.
-      </p>
-      <ul>
-        <li>
-          <strong>Clemente de Roma</strong> cita Deut. 8:11 para recordar que la
-          prosperidad de la Kehiláh no debe llevar a olvidar la humildad y el
-          temor reverente.
-        </li>
-        <li>
-          Los primeros talmidím veían el
-          <strong>“no es por tu justicia”</strong> como una declaración
-          mesiánica velada: así como la conquista no fue por mérito humano, la
-          redención final no será por mérito humano sino por la obra del
-          Mashíaj, identificado con Adonái יהוה mismo.
-        </li>
-      </ul>
-
-      <h3>4. Aplicación práctica y espiritual</h3>
-      <ul>
-        <li>
-          <strong>Memoria activa:</strong> así como Israel debía “recordar” (<span
-            class="hebrew-term"
-            >זכור</span
+      <div class="content-container">
+        <h1>📌 Punto 7 – Tema más relevante de la Aliyáh</h1>
+        <h3>1. Tema central</h3>
+        <p>
+          <strong
+            >"La herencia y la victoria dependen de la fidelidad y el poder de
+            Adonái יהוה, no de la justicia ni de la fuerza humana."</strong
           >
-          <span class="transliteration">zakhor</span>) las obras de Elohím, el
-          creyente debe mantener vivo el testimonio de lo que Yeshúa ha hecho.
-        </li>
-        <li>
-          <strong>Dependencia continua:</strong> incluso en la abundancia
-          espiritual o material, no asumir que es fruto de nuestras
-          habilidades.
-        </li>
-        <li>
-          <strong>Vigilancia ante el orgullo:</strong> reconocer que la verdadera
-          justicia proviene de Elohím, no de nuestras obras.
-        </li>
-      </ul>
+        </p>
+        <p>En este pasaje, Moshé deja claro que:</p>
+        <ul>
+          <li>
+            La abundancia de la Tierra Prometida debe recibirse con gratitud y
+            memoria activa.
+          </li>
+          <li>
+            El olvido del origen divino de la bendición conduce a la arrogancia
+            y a la idolatría.
+          </li>
+          <li>
+            La conquista de Canaán será posible solo porque Elohím actuará como
+            “fuego consumidor” (9:3), cumpliendo Su pacto con los patriarcas.
+          </li>
+        </ul>
 
-      <h3>5. Anotaciones gramaticales, léxicas</h3>
-      <ul>
-        <li>
-          <span class="hebrew-term">השמר לך</span> (<span class="transliteration"
-            >hishamer lekha</span
-          >) en 8:11 es un imperativo reflexivo que significa “guárdate” o
-          “cuídate cuidadosamente”, usado en contextos de advertencia solemne.
-        </li>
-        <li>
-          <span class="hebrew-term">כחי ועצם ידי</span> (<span
+        <h3>2. Por qué es importante en el contexto de la Toráh</h3>
+        <ul>
+          <li>
+            <strong>Refuerza la teología del pacto:</strong> la base de la
+            bendición no es el mérito humano, sino la fidelidad de Elohím a Sus
+            promesas.
+          </li>
+          <li>
+            <strong>Marca un contraste radical</strong> con la visión de las
+            naciones circundantes, que atribuían sus victorias a sus dioses o a
+            la destreza de sus reyes.
+          </li>
+          <li>
+            <strong>Enseña que la prosperidad sin humildad</strong> conduce a la
+            ruina espiritual.
+          </li>
+        </ul>
+
+        <h3>3. Relación con las enseñanzas y obra de Yeshúa haMashíaj</h3>
+        <ul>
+          <li>
+            En <strong>Juan 15:5</strong>, Yeshúa afirma: “Separados de mí nada
+            podéis hacer”, eco directo de Devarím 8:17-18.
+          </li>
+          <li>
+            <strong>Efesios 2:8-9</strong> presenta la salvación como un don de
+            Elohím, no por obras, exactamente como la entrada a la tierra no fue
+            “por justicia de Israel” (9:4-6).
+          </li>
+          <li>
+            <strong>Yeshúa, como MarYah,</strong> es el que cumple la promesa a
+            Abraham, Yitzjak y Yaakov, garantizando la herencia eterna no por
+            mérito humano, sino por Su obra redentora.
+          </li>
+        </ul>
+
+        <h3>4. Conexión con los Moedím de Elohím</h3>
+        <p>Este pasaje se asocia de manera temática con Shavuot:</p>
+        <ul>
+          <li>
+            <strong>Shavuot</strong> conmemora la entrega de la Toráh,
+            recordando que la vida de pacto se basa en la instrucción divina, no
+            en logros humanos.
+          </li>
+          <li>
+            También prefigura la entrega del <strong>Ruaj HaKodesh</strong> en
+            Hechos 2, donde la “entrada” a la misión del Reino fue por el poder
+            de Elohím y no por mérito propio, paralelismo con la entrada a
+            Canaán por poder divino.
+          </li>
+        </ul>
+      </div>
+
+      <hr class="section-divider" />
+
+      <div class="content-container">
+        <h1>🔍 Punto 8 – Descubriendo a Mashíaj en la Aliyáh</h1>
+        <h3>1. Identificación de profecías mesiánicas</h3>
+        <p>
+          Aunque el texto no menciona explícitamente al Mesías, encierra
+          patrones y declaraciones que apuntan a Yeshúa haMashíaj como el centro
+          de la herencia y la victoria:
+        </p>
+        <ul>
+          <li>
+            <strong>Deut. 8:17-18 –</strong> El reconocimiento de que el poder
+            para prosperar viene de Elohím anticipa la enseñanza de Yeshúa en
+            Juan 15:5 (“Separados de mí nada podéis hacer”).
+          </li>
+          <li>
+            <strong>Deut. 9:3 –</strong> La figura de Adonái יהוה como “fuego
+            consumidor” conecta con la visión del Mesías como Juez y Guerrero en
+            Apocalipsis 19:11-16, donde es MarYah que vence a las naciones.
+          </li>
+        </ul>
+
+        <h3>2. Métodos para descubrir a Mashíaj en el pasaje</h3>
+        <p><strong>a) Tipología</strong></p>
+        <ul>
+          <li>
+            Israel entrando en Canaán ⇔ Creyente entrando en la herencia eterna
+            en Yeshúa.
+          </li>
+          <li>
+            El paso del desierto a la tierra ⇒ paso de la vida de dependencia en
+            lo básico (maná) a la vida de plenitud y responsabilidad en el
+            Reino.
+          </li>
+        </ul>
+
+        <p><strong>b) Sombras (Tzelalim)</strong></p>
+        <ul>
+          <li>
+            La advertencia contra la autosuficiencia es sombra del mensaje del
+            Evangelio: no podemos salvarnos por obras, solo por la gracia en
+            Mashíaj.
+          </li>
+          <li>
+            Canaán como herencia física ⇒ Nueva Jerusalén como herencia final
+            (Hebreos 11:16).
+          </li>
+        </ul>
+
+        <p><strong>c) Figuras</strong></p>
+        <ul>
+          <li>
+            “Fuego consumidor” (9:3) figura de la santidad purificadora y
+            justicia guerrera del Mesías, que limpia la tierra de iniquidad.
+          </li>
+        </ul>
+
+        <p><strong>d) Patrones redentores (Tavnitot)</strong></p>
+        <ul>
+          <li>
+            Promesa a los padres → cumplimiento por Elohím mismo → herencia dada
+            al pueblo.
+          </li>
+          <li>
+            Este patrón se repite en la redención mesiánica: promesa a Abraham →
+            encarnación de MarYah en Yeshúa → herencia espiritual a la Kehiláh.
+          </li>
+        </ul>
+
+        <p><strong>e) Nombres y títulos proféticos</strong></p>
+        <ul>
+          <li>
+            Elohe Abraham, Yitzjak, Yaakov (8:18; 9:5) conecta con la
+            identificación de Yeshúa como “Elohim de Abraham” en Hechos 3:13 en
+            el texto Peshitta, donde se le nombra MarYah.
+          </li>
+        </ul>
+
+        <h3>3. Cumplimiento en el Brit Hadasháh</h3>
+        <ul>
+          <li>
+            <strong>Efesios 2:8-9 –</strong> La herencia no por obras, sino por
+            gracia, eco directo de Deut. 9:4-6.
+          </li>
+          <li>
+            <strong>Hebreos 12:28-29 –</strong> Reino inconmovible y “nuestro
+            Elohím es fuego consumidor”, identificando a Mashíaj como ese mismo
+            Elohím.
+          </li>
+          <li>
+            <strong>Juan 6:27 –</strong> El verdadero “pan que permanece para
+            vida eterna” no es el maná físico, sino Mashíaj mismo.
+          </li>
+        </ul>
+
+        <h3>4. Paralelismos temáticos</h3>
+        <ul>
+          <li>
+            Así como Israel debía recordar (<span class="transliteration"
+              >zakhor</span
+            >) las obras pasadas de Adonái יהוה, el creyente debe recordar el
+            sacrificio de Mashíaj (1 Cor. 11:23-26).
+          </li>
+          <li>
+            La entrada a Canaán se hace “no por tu justicia” → la entrada al
+            Reino de los Cielos se hace “por la justicia de Mashíaj imputada” (2
+            Cor. 5:21).
+          </li>
+        </ul>
+      </div>
+
+      <hr class="section-divider" />
+
+      <div class="content-container">
+        <h1>📜 Punto 9 – Midrashim, Targumim, Textos Fuentes y Apócrifos</h1>
+        <h3>1. Midrashim relevantes</h3>
+        <p><strong>Midrash Tanjumá, Ekev 3</strong></p>
+        <p>
+          Interpreta “y dirás en tu corazón: mi fuerza y el poder de mi mano”
+          (8:17) como una advertencia contra el olvido de los milagros diarios.
+          Compara al israelita que entra en Canaán con un paciente sanado
+          milagrosamente que, con el tiempo, olvida quién lo curó. Este midrash
+          concluye que la ingratitud es la raíz de la idolatría.
+        </p>
+
+        <p><strong>Sifrei Devarím 43</strong></p>
+        <p>
+          Relaciona la orden de “recordar a Adonái tu Elohím” (8:18) con el
+          Shema (Deut. 6:4-9), afirmando que el verdadero recuerdo se expresa en
+          la obediencia a la Toráh. Destaca que el pacto con Abraham, Yitzjak y
+          Yaakov es irrevocable, aunque Israel falle.
+        </p>
+
+        <h3>2. Targumim</h3>
+        <p><strong>Targum Onkelos</strong></p>
+        <p>
+          Traduce “fuego consumidor” (9:3) como
+          <span class="hebrew-term">נור אכלה</span> (<span
             class="transliteration"
-            >koji ve-‘otzem yadi</span
-          >) en 8:17, “mi fuerza y el poder de mi mano”, es una expresión
-          idiomática semítica que enfatiza la autosuficiencia presuntuosa.
-        </li>
-        <li>
-          La palabra <span class="hebrew-term">ברית</span> (<span
-            class="transliteration"
-            >berit</span
-          >, pacto) aparece implícita en 8:18, recordando que la prosperidad
-          está ligada a la promesa hecha a los patriarcas.
-        </li>
-        <li>
-          <strong></strong> la palabra
-          <span class="hebrew-term">לבבך</span> (<span class="transliteration"
-            >levavekha</span
-          >, tu corazón) = 48, que según algunos midrashim alude a las “48
-          formas de adquirir la Toráh” (Pirkei Avot 6:6), implicando que el
-          corazón debe llenarse de la Toráh para no enorgullecerse.
-        </li>
-      </ul>
-    </div>
+            >nura akhla</span
+          >), enfatizando el aspecto de juicio purificador. Esto refleja la
+          comprensión aramea de Elohím como juez que no solo destruye, sino que
+          consume la iniquidad para santificar la tierra.
+        </p>
 
-    <hr class="section-divider" />
+        <p><strong>Targum Yonatán</strong></p>
+        <p>
+          Añade que el “fuego consumidor” es la Palabra de Adonái (Memrá de
+          Adonái), lo que enlaza directamente con la teología mesiánica donde
+          Yeshúa es la Milta / Memrá (Juan 1:1 en Peshitta).
+        </p>
 
-    <div class="content-container">
-      <h1>📚 Punto 6 – Análisis Profundo de la Aliyáh</h1>
-      <h3>1. Estructura y flujo del pasaje</h3>
-      <ul>
-        <li>
-          <strong>8:11-20 →</strong> Advertencia contra olvidar a Adonái יהוה en
-          tiempos de abundancia.
-        </li>
-        <li>
-          <strong>9:1-3 →</strong> Llamado a la confianza para conquistar
-          naciones más poderosas, con énfasis en que la victoria vendrá por el
-          poder de Elohím, no por mérito propio.
-        </li>
-      </ul>
-      <p>
-        Moshé crea un contraste deliberado: prosperidad puede llevar al olvido,
-        y guerra puede llevar al temor; en ambos casos, la respuesta correcta es
-        dependencia de Adonái יהוה.
-      </p>
+        <h3>3. Textos apócrifos y de Qumrán</h3>
+        <p><strong>Sirácida / Eclesiástico 10:12-18</strong></p>
+        <p>
+          Declara que el orgullo es el principio del pecado y que Adonái derriba
+          a las naciones arrogantes. Este eco de Deut. 8:14-17 muestra cómo la
+          advertencia de Moshé fue entendida como un principio universal.
+        </p>
 
-      <h3>2. Comentario judío tradicional</h3>
-      <p>
-        <strong>Rashí</strong> observa que “olvidar” (<span
-          class="transliteration"
-          >lishkoaj</span
-        >) aquí no es simple amnesia, sino dejar de actuar en consecuencia a la
-        memoria del pacto. Incluso un pueblo con memoria histórica puede
-        “olvidar” si sus acciones no reflejan esa memoria.
-      </p>
-      <p>
-        <strong>Ibn Ezra</strong> enfatiza que la frase “y digas en tu corazón:
-        mi fuerza y el poder de mi mano” (8:17) era un proverbio semítico para
-        el autoelogio militar y económico, común en inscripciones reales de
-        Canaán y Mesopotamia. Moshé se opone a esa visión al atribuir todo el
-        mérito a Elohím.
-      </p>
+        <p>
+          <strong
+            >1QS (Regla de la Comunidad) – Manuscritos del Mar Muerto</strong
+          >
+        </p>
+        <p>
+          En 1QS 10:17-18, la comunidad de Qumrán se describe como “pueblo pobre
+          que espera la mano de poder de Elohím para heredar la tierra”,
+          reflejando la misma idea de Deut. 9:1-3: la herencia no es por fuerza
+          humana.
+        </p>
 
-      <h3>3. Comentario mesiánico</h3>
-      <p>En la lectura mesiánica, este pasaje se cumple en dos niveles:</p>
-      <ul>
-        <li>
-          <strong>Histórico-profético:</strong> Israel entra en la tierra por el
-          poder de Elohím, no por justicia propia. Esto es un patrón profético
-          del Nuevo Pacto en el que la redención llega por gracia, no por mérito
-          (Efesios 2:8-9).
-        </li>
-        <li>
-          <strong>Tipológico:</strong> El paso de la generación del desierto a
-          la generación de conquista refleja el paso del creyente de una fe
-          inicial sostenida por “maná” (provisión milagrosa diaria) a una fe
-          madura que enfrenta batallas y administra bendiciones.
-        </li>
-      </ul>
-      <p class="scripture">
-        Rav Shaúl alude a esta misma idea en 1 Corintios 4:7 —“¿Qué tienes que
-        no hayas recibido? Y si lo recibiste, ¿por qué te glorías como si no lo
-        hubieras recibido?”—, un eco directo de Devarím 8:17.
-      </p>
+        <p><strong>Jubileos 20:2-6</strong></p>
+        <p>
+          Repite la promesa a Abraham de heredar la tierra por pacto eterno,
+          resaltando que esto no se basa en justicia humana sino en fidelidad
+          divina.
+        </p>
 
-      <h3>4. Conexión con la Haftaráh</h3>
-      <p>
-        En la estructura de estudio, la Haftaráh asociada (Isaías 49:14–51:3)
-        subraya que la salvación y la restauración de Israel no dependen del
-        mérito humano, sino del pacto eterno con los padres. El mismo principio
-        de Devarím 9:5 (“no por tu justicia”) se repite: el motivo de la acción
-        divina es su amor y fidelidad al pacto.
-      </p>
+        <h3>4. Enriquecimiento mesiánico</h3>
+        <p>
+          Los Targumim que identifican al “fuego consumidor” con la Memrá abren
+          un puente directo con el Brit Hadasháh, donde Yeshúa es presentado
+          como esa Palabra viva que ejecuta juicio y establece la herencia de
+          los justos (Apocalipsis 19:13-15).
+        </p>
+      </div>
 
-      <h3>5. Conexión con el Brit Hadasháh</h3>
-      <p>
-        En el texto arameo Peshitta, Efesios 2:8-9 y Tito 3:5 presentan el mismo
-        patrón:
-      </p>
-      <p class="scripture">
-        “No por obras de justicia que nosotros hubiéramos hecho, sino según Su
-        misericordia nos salvó.”
-      </p>
-      <p>
-        La teología de la gracia en el Brit Hadasháh se apoya en esta verdad de
-        la Toráh: la victoria y la herencia vienen únicamente por el poder y la
-        fidelidad de Elohím, revelados plenamente en Yeshúa haMashíaj como
-        MarYah.
-      </p>
+      <hr class="section-divider" />
 
-      <h3>6. Reflexión y exhortación</h3>
-      <ul>
-        <li>
-          El pasaje enseña que el mayor peligro espiritual no siempre está en la
-          escasez, sino en la abundancia mal administrada.
-        </li>
-        <li>
-          Así como Israel debía prepararse para no olvidar a Adonái יהוה en la
-          tierra de abundancia, el creyente debe prepararse para honrar a Yeshúa
-          haMashíaj en todo tiempo, reconociendo que sin Él nada podemos hacer
-          (Juan 15:5).
-        </li>
-      </ul>
-    </div>
+      <div class="content-container">
+        <h1>📜 Punto 10 – Mitzvot, Principios y Valores</h1>
+        <h3>1. Mitzvot explícitos o implícitos en la Aliyáh</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Verso</th>
+              <th>Mandamiento / Principio</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>8:11</td>
+              <td>Guardarse de olvidar a Adonái יהוה y Sus mandamientos.</td>
+              <td>Negativo (לא תעשה)</td>
+            </tr>
+            <tr>
+              <td>8:14</td>
+              <td>No enorgullecerse en el corazón.</td>
+              <td>Negativo</td>
+            </tr>
+            <tr>
+              <td>8:18</td>
+              <td>
+                Recordar a Adonái יהוה como fuente de poder para prosperar.
+              </td>
+              <td>Positivo (עשה)</td>
+            </tr>
+            <tr>
+              <td>8:19</td>
+              <td>No seguir a otros dioses ni servirlos.</td>
+              <td>Negativo</td>
+            </tr>
+            <tr>
+              <td>9:1-3</td>
+              <td>
+                Confiar en que la victoria viene por el poder de Elohím, no por
+                mérito humano.
+              </td>
+              <td>Principio de fe y dependencia</td>
+            </tr>
+          </tbody>
+        </table>
 
-    <hr class="section-divider" />
+        <h3>2. Principios espirituales</h3>
+        <ul>
+          <li>
+            <strong>Memoria activa del pacto</strong> – La bendición material
+            debe ir acompañada de gratitud y obediencia.
+          </li>
+          <li>
+            <strong>Humildad</strong> – Reconocer que todo proviene de Elohím,
+            evitando la autosuficiencia.
+          </li>
+          <li>
+            <strong>Fidelidad exclusiva</strong> – No permitir la infiltración
+            de otros cultos o ideologías que desplacen la centralidad de Adonái
+            יהוה.
+          </li>
+          <li>
+            <strong>Confianza en la acción divina</strong> – La victoria sobre
+            enemigos espirituales o físicos no depende de nuestras fuerzas.
+          </li>
+          <li>
+            <strong>Perspectiva de pacto</strong> – La herencia está ligada a la
+            promesa dada a los padres y no a logros individuales.
+          </li>
+        </ul>
 
-    <div class="content-container">
-      <h1>📌 Punto 7 – Tema más relevante de la Aliyáh</h1>
-      <h3>1. Tema central</h3>
-      <p>
-        <strong
-          >"La herencia y la victoria dependen de la fidelidad y el poder de
-          Adonái יהוה, no de la justicia ni de la fuerza humana."</strong
-        >
-      </p>
-      <p>En este pasaje, Moshé deja claro que:</p>
-      <ul>
-        <li>
-          La abundancia de la Tierra Prometida debe recibirse con gratitud y
-          memoria activa.
-        </li>
-        <li>
-          El olvido del origen divino de la bendición conduce a la arrogancia y
-          a la idolatría.
-        </li>
-        <li>
-          La conquista de Canaán será posible solo porque Elohím actuará como
-          “fuego consumidor” (9:3), cumpliendo Su pacto con los patriarcas.
-        </li>
-      </ul>
+        <h3>3. Aplicación en el Brit Hadasháh</h3>
+        <ul>
+          <li>
+            <strong>Efesios 2:8-9</strong> – La salvación es un don, no por
+            obras, eco directo de “no por tu justicia” (Deut. 9:4).
+          </li>
+          <li>
+            <strong>1 Corintios 4:7</strong> – “¿Qué tienes que no hayas
+            recibido?” → principio de humildad.
+          </li>
+          <li>
+            <strong>Santiago 4:6-7</strong> – Elohím da gracia a los humildes;
+            resistir al orgullo y someterse a Elohím.
+          </li>
+          <li>
+            <strong>Juan 15:5</strong> – Sin Mashíaj, nada podemos hacer,
+            cumpliendo la advertencia contra confiar en nuestra propia fuerza.
+          </li>
+        </ul>
 
-      <h3>2. Por qué es importante en el contexto de la Toráh</h3>
-      <ul>
-        <li>
-          <strong>Refuerza la teología del pacto:</strong> la base de la
-          bendición no es el mérito humano, sino la fidelidad de Elohím a Sus
-          promesas.
-        </li>
-        <li>
-          <strong>Marca un contraste radical</strong> con la visión de las
-          naciones circundantes, que atribuían sus victorias a sus dioses o a la
-          destreza de sus reyes.
-        </li>
-        <li>
-          <strong>Enseña que la prosperidad sin humildad</strong> conduce a la
-          ruina espiritual.
-        </li>
-      </ul>
+        <h3>4. Valores para la Kehiláh hoy</h3>
+        <ul>
+          <li>
+            <strong>Gratitud constante</strong> – Aun en la prosperidad,
+            reconocer la mano de Adonái יהוה.
+          </li>
+          <li>
+            <strong>Obediencia integral</strong> – Recordar que la verdadera
+            “memoria” es obedecer.
+          </li>
+          <li>
+            <strong>Exclusividad de fe</strong> – Evitar sincretismos
+            doctrinales o espirituales.
+          </li>
+          <li>
+            <strong>Humildad comunitaria</strong> – El crecimiento de la Kehiláh
+            no es mérito humano, sino obra del Ruaj HaKodesh.
+          </li>
+          <li>
+            <strong>Dependencia diaria</strong> – Incluso en victoria, reconocer
+            a Yeshúa como MarYah.
+          </li>
+        </ul>
+      </div>
 
-      <h3>3. Relación con las enseñanzas y obra de Yeshúa haMashíaj</h3>
-      <ul>
-        <li>
-          En <strong>Juan 15:5</strong>, Yeshúa afirma: “Separados de mí nada
-          podéis hacer”, eco directo de Devarím 8:17-18.
-        </li>
-        <li>
-          <strong>Efesios 2:8-9</strong> presenta la salvación como un don de
-          Elohím, no por obras, exactamente como la entrada a la tierra no fue
-          “por justicia de Israel” (9:4-6).
-        </li>
-        <li>
-          <strong>Yeshúa, como MarYah,</strong> es el que cumple la promesa a
-          Abraham, Yitzjak y Yaakov, garantizando la herencia eterna no por
-          mérito humano, sino por Su obra redentora.
-        </li>
-      </ul>
+      <hr class="section-divider" />
 
-      <h3>4. Conexión con los Moedím de Elohím</h3>
-      <p>Este pasaje se asocia de manera temática con Shavuot:</p>
-      <ul>
-        <li>
-          <strong>Shavuot</strong> conmemora la entrega de la Toráh, recordando
-          que la vida de pacto se basa en la instrucción divina, no en logros
-          humanos.
-        </li>
-        <li>
-          También prefigura la entrega del <strong>Ruaj HaKodesh</strong> en
-          Hechos 2, donde la “entrada” a la misión del Reino fue por el poder de
-          Elohím y no por mérito propio, paralelismo con la entrada a Canaán por
-          poder divino.
-        </li>
-      </ul>
-    </div>
+      <div class="content-container">
+        <h2>❓ Punto 11 – Preguntas de reflexión y respuestas en el Mashíaj</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Pregunta</th>
+              <th>Reflexión en la Aliyáh</th>
+              <th>Respuesta centrada en Yeshúa haMashíaj</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                1. ¿Qué significa “olvidar a Adonái יהוה” en tiempos de
+                abundancia?
+              </td>
+              <td>
+                No se trata solo de amnesia, sino de vivir como si Él no fuera
+                la fuente de todo.
+              </td>
+              <td>
+                En Yeshúa recordamos continuamente la fuente de toda bendición,
+                pues Él dijo: “Separados de mí nada podéis hacer” (Juan 15:5).
+                Mantener comunión con Él evita el olvido.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                2. ¿Por qué la autosuficiencia es peligrosa espiritualmente?
+              </td>
+              <td>
+                Porque sustituye la dependencia en Elohím por confianza en
+                logros humanos, abriendo la puerta al orgullo.
+              </td>
+              <td>
+                Yeshúa nos enseña a vivir como Él vivió en dependencia total del
+                Padre, diciendo: “No puedo yo hacer nada por mí mismo” (Juan
+                5:30), modelo para nuestra humildad.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                3. ¿Qué implica que la victoria sobre naciones más poderosas no
+                es por justicia de Israel?
+              </td>
+              <td>
+                Que la herencia es por fidelidad al pacto de Elohím y no por
+                mérito humano.
+              </td>
+              <td>
+                En el Brit Hadasháh, la entrada al Reino no es por nuestras
+                obras, sino por la justicia imputada de Yeshúa (2 Cor. 5:21). Él
+                es nuestra justicia.
+              </td>
+            </tr>
+            <tr>
+              <td>4. ¿Cómo podemos “recordar” a Adonái en la vida diaria?</td>
+              <td>
+                A través de obediencia, gratitud y reconocimiento constante de
+                Su obra.
+              </td>
+              <td>
+                Yeshúa instituyó la cena del pacto diciendo: “Haced esto en
+                memoria de mí” (1 Cor. 11:24-25), un recordatorio práctico y
+                espiritual de Su sacrificio.
+              </td>
+            </tr>
+            <tr>
+              <td>5. ¿Qué representa el “fuego consumidor” en 9:3?</td>
+              <td>
+                El poder y santidad de Elohím que purifica y derrota la
+                iniquidad.
+              </td>
+              <td>
+                En Apocalipsis 19:11-16, Yeshúa aparece como MarYah, el Guerrero
+                justo cuyo juicio es fuego purificador, cumpliendo la promesa de
+                Deut. 9:3.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <hr class="section-divider" />
+      <hr class="section-divider" />
 
-    <div class="content-container">
-      <h1>🔍 Punto 8 – Descubriendo a Mashíaj en la Aliyáh</h1>
-      <h3>1. Identificación de profecías mesiánicas</h3>
-      <p>
-        Aunque el texto no menciona explícitamente al Mesías, encierra patrones
-        y declaraciones que apuntan a Yeshúa haMashíaj como el centro de la
-        herencia y la victoria:
-      </p>
-      <ul>
-        <li>
-          <strong>Deut. 8:17-18 –</strong> El reconocimiento de que el poder para
-          prosperar viene de Elohím anticipa la enseñanza de Yeshúa en Juan
-          15:5 (“Separados de mí nada podéis hacer”).
-        </li>
-        <li>
-          <strong>Deut. 9:3 –</strong> La figura de Adonái יהוה como “fuego
-          consumidor” conecta con la visión del Mesías como Juez y Guerrero en
-          Apocalipsis 19:11-16, donde es MarYah que vence a las naciones.
-        </li>
-      </ul>
-
-      <h3>2. Métodos para descubrir a Mashíaj en el pasaje</h3>
-      <p><strong>a) Tipología</strong></p>
-      <ul>
-        <li>
-          Israel entrando en Canaán ⇔ Creyente entrando en la herencia eterna en
-          Yeshúa.
-        </li>
-        <li>
-          El paso del desierto a la tierra ⇒ paso de la vida de dependencia en
-          lo básico (maná) a la vida de plenitud y responsabilidad en el Reino.
-        </li>
-      </ul>
-
-      <p><strong>b) Sombras (Tzelalim)</strong></p>
-      <ul>
-        <li>
-          La advertencia contra la autosuficiencia es sombra del mensaje del
-          Evangelio: no podemos salvarnos por obras, solo por la gracia en
-          Mashíaj.
-        </li>
-        <li>
-          Canaán como herencia física ⇒ Nueva Jerusalén como herencia final
-          (Hebreos 11:16).
-        </li>
-      </ul>
-
-      <p><strong>c) Figuras</strong></p>
-      <ul>
-        <li>
-          “Fuego consumidor” (9:3) figura de la santidad purificadora y justicia
-          guerrera del Mesías, que limpia la tierra de iniquidad.
-        </li>
-      </ul>
-
-      <p><strong>d) Patrones redentores (Tavnitot)</strong></p>
-      <ul>
-        <li>
-          Promesa a los padres → cumplimiento por Elohím mismo → herencia dada
-          al pueblo.
-        </li>
-        <li>
-          Este patrón se repite en la redención mesiánica: promesa a Abraham →
-          encarnación de MarYah en Yeshúa → herencia espiritual a la Kehiláh.
-        </li>
-      </ul>
-
-      <p><strong>e) Nombres y títulos proféticos</strong></p>
-      <ul>
-        <li>
-          Elohe Abraham, Yitzjak, Yaakov (8:18; 9:5) conecta con la
-          identificación de Yeshúa como “Elohim de Abraham” en Hechos 3:13 en el
-          texto Peshitta, donde se le nombra MarYah.
-        </li>
-      </ul>
-
-      <h3>3. Cumplimiento en el Brit Hadasháh</h3>
-      <ul>
-        <li>
-          <strong>Efesios 2:8-9 –</strong> La herencia no por obras, sino por
-          gracia, eco directo de Deut. 9:4-6.
-        </li>
-        <li>
-          <strong>Hebreos 12:28-29 –</strong> Reino inconmovible y “nuestro
-          Elohím es fuego consumidor”, identificando a Mashíaj como ese mismo
-          Elohím.
-        </li>
-        <li>
-          <strong>Juan 6:27 –</strong> El verdadero “pan que permanece para vida
-          eterna” no es el maná físico, sino Mashíaj mismo.
-        </li>
-      </ul>
-
-      <h3>4. Paralelismos temáticos</h3>
-      <ul>
-        <li>
-          Así como Israel debía recordar (<span class="transliteration"
-            >zakhor</span
-          >) las obras pasadas de Adonái יהוה, el creyente debe recordar el
-          sacrificio de Mashíaj (1 Cor. 11:23-26).
-        </li>
-        <li>
-          La entrada a Canaán se hace “no por tu justicia” → la entrada al Reino
-          de los Cielos se hace “por la justicia de Mashíaj imputada” (2 Cor.
-          5:21).
-        </li>
-      </ul>
-    </div>
-
-    <hr class="section-divider" />
-
-    <div class="content-container">
-      <h1>
-        📜 Punto 9 – Midrashim, Targumim, Textos Fuentes y Apócrifos
-      </h1>
-      <h3>1. Midrashim relevantes</h3>
-      <p><strong>Midrash Tanjumá, Ekev 3</strong></p>
-      <p>
-        Interpreta “y dirás en tu corazón: mi fuerza y el poder de mi mano”
-        (8:17) como una advertencia contra el olvido de los milagros diarios.
-        Compara al israelita que entra en Canaán con un paciente sanado
-        milagrosamente que, con el tiempo, olvida quién lo curó. Este midrash
-        concluye que la ingratitud es la raíz de la idolatría.
-      </p>
-
-      <p><strong>Sifrei Devarím 43</strong></p>
-      <p>
-        Relaciona la orden de “recordar a Adonái tu Elohím” (8:18) con el Shema
-        (Deut. 6:4-9), afirmando que el verdadero recuerdo se expresa en la
-        obediencia a la Toráh. Destaca que el pacto con Abraham, Yitzjak y
-        Yaakov es irrevocable, aunque Israel falle.
-      </p>
-
-      <h3>2. Targumim</h3>
-      <p><strong>Targum Onkelos</strong></p>
-      <p>
-        Traduce “fuego consumidor” (9:3) como
-        <span class="hebrew-term">נור אכלה</span> (<span class="transliteration"
-          >nura akhla</span
-        >), enfatizando el aspecto de juicio purificador. Esto refleja la
-        comprensión aramea de Elohím como juez que no solo destruye, sino que
-        consume la iniquidad para santificar la tierra.
-      </p>
-
-      <p><strong>Targum Yonatán</strong></p>
-      <p>
-        Añade que el “fuego consumidor” es la Palabra de Adonái (Memrá de
-        Adonái), lo que enlaza directamente con la teología mesiánica donde
-        Yeshúa es la Milta / Memrá (Juan 1:1 en Peshitta).
-      </p>
-
-      <h3>3. Textos apócrifos y de Qumrán</h3>
-      <p><strong>Sirácida / Eclesiástico 10:12-18</strong></p>
-      <p>
-        Declara que el orgullo es el principio del pecado y que Adonái derriba a
-        las naciones arrogantes. Este eco de Deut. 8:14-17 muestra cómo la
-        advertencia de Moshé fue entendida como un principio universal.
-      </p>
-
-      <p>
-        <strong>1QS (Regla de la Comunidad) – Manuscritos del Mar Muerto</strong>
-      </p>
-      <p>
-        En 1QS 10:17-18, la comunidad de Qumrán se describe como “pueblo pobre
-        que espera la mano de poder de Elohím para heredar la tierra”,
-        reflejando la misma idea de Deut. 9:1-3: la herencia no es por fuerza
-        humana.
-      </p>
-
-      <p><strong>Jubileos 20:2-6</strong></p>
-      <p>
-        Repite la promesa a Abraham de heredar la tierra por pacto eterno,
-        resaltando que esto no se basa en justicia humana sino en fidelidad
-        divina.
-      </p>
-
-      <h3>4. Enriquecimiento mesiánico</h3>
-      <p>
-        Los Targumim que identifican al “fuego consumidor” con la Memrá abren un
-        puente directo con el Brit Hadasháh, donde Yeshúa es presentado como esa
-        Palabra viva que ejecuta juicio y establece la herencia de los justos
-        (Apocalipsis 19:13-15).
-      </p>
-    </div>
-
-    <hr class="section-divider" />
-
-    <div class="content-container">
-      <h1>📜 Punto 10 – Mitzvot, Principios y Valores</h1>
-      <h3>1. Mitzvot explícitos o implícitos en la Aliyáh</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Verso</th>
-            <th>Mandamiento / Principio</th>
-            <th>Tipo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>8:11</td>
-            <td>Guardarse de olvidar a Adonái יהוה y Sus mandamientos.</td>
-            <td>Negativo (לא תעשה)</td>
-          </tr>
-          <tr>
-            <td>8:14</td>
-            <td>No enorgullecerse en el corazón.</td>
-            <td>Negativo</td>
-          </tr>
-          <tr>
-            <td>8:18</td>
-            <td>Recordar a Adonái יהוה como fuente de poder para prosperar.</td>
-            <td>Positivo (עשה)</td>
-          </tr>
-          <tr>
-            <td>8:19</td>
-            <td>No seguir a otros dioses ni servirlos.</td>
-            <td>Negativo</td>
-          </tr>
-          <tr>
-            <td>9:1-3</td>
-            <td>
-              Confiar en que la victoria viene por el poder de Elohím, no por
-              mérito humano.
-            </td>
-            <td>Principio de fe y dependencia</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>2. Principios espirituales</h3>
-      <ul>
-        <li>
-          <strong>Memoria activa del pacto</strong> – La bendición material debe
-          ir acompañada de gratitud y obediencia.
-        </li>
-        <li>
-          <strong>Humildad</strong> – Reconocer que todo proviene de Elohím,
-          evitando la autosuficiencia.
-        </li>
-        <li>
-          <strong>Fidelidad exclusiva</strong> – No permitir la infiltración de
-          otros cultos o ideologías que desplacen la centralidad de Adonái יהוה.
-        </li>
-        <li>
-          <strong>Confianza en la acción divina</strong> – La victoria sobre
-          enemigos espirituales o físicos no depende de nuestras fuerzas.
-        </li>
-        <li>
-          <strong>Perspectiva de pacto</strong> – La herencia está ligada a la
-          promesa dada a los padres y no a logros individuales.
-        </li>
-      </ul>
-
-      <h3>3. Aplicación en el Brit Hadasháh</h3>
-      <ul>
-        <li>
-          <strong>Efesios 2:8-9</strong> – La salvación es un don, no por obras,
-          eco directo de “no por tu justicia” (Deut. 9:4).
-        </li>
-        <li>
-          <strong>1 Corintios 4:7</strong> – “¿Qué tienes que no hayas
-          recibido?” → principio de humildad.
-        </li>
-        <li>
-          <strong>Santiago 4:6-7</strong> – Elohím da gracia a los humildes;
-          resistir al orgullo y someterse a Elohím.
-        </li>
-        <li>
-          <strong>Juan 15:5</strong> – Sin Mashíaj, nada podemos hacer,
-          cumpliendo la advertencia contra confiar en nuestra propia fuerza.
-        </li>
-      </ul>
-
-      <h3>4. Valores para la Kehiláh hoy</h3>
-      <ul>
-        <li>
-          <strong>Gratitud constante</strong> – Aun en la prosperidad, reconocer
-          la mano de Adonái יהוה.
-        </li>
-        <li>
-          <strong>Obediencia integral</strong> – Recordar que la verdadera
-          “memoria” es obedecer.
-        </li>
-        <li>
-          <strong>Exclusividad de fe</strong> – Evitar sincretismos doctrinales
-          o espirituales.
-        </li>
-        <li>
-          <strong>Humildad comunitaria</strong> – El crecimiento de la Kehiláh no
-          es mérito humano, sino obra del Ruaj HaKodesh.
-        </li>
-        <li>
-          <strong>Dependencia diaria</strong> – Incluso en victoria, reconocer a
-          Yeshúa como MarYah.
-        </li>
-      </ul>
-    </div>
-
-    <hr class="section-divider" />
-
-    <div class="content-container">
-      <h2>❓ Punto 11 – Preguntas de reflexión y respuestas en el Mashíaj</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Pregunta</th>
-            <th>Reflexión en la Aliyáh</th>
-            <th>Respuesta centrada en Yeshúa haMashíaj</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1. ¿Qué significa “olvidar a Adonái יהוה” en tiempos de abundancia?</td>
-            <td>No se trata solo de amnesia, sino de vivir como si Él no fuera la fuente de todo.</td>
-            <td>En Yeshúa recordamos continuamente la fuente de toda bendición, pues Él dijo: “Separados de mí nada podéis hacer” (Juan 15:5). Mantener comunión con Él evita el olvido.</td>
-          </tr>
-          <tr>
-            <td>2. ¿Por qué la autosuficiencia es peligrosa espiritualmente?</td>
-            <td>Porque sustituye la dependencia en Elohím por confianza en logros humanos, abriendo la puerta al orgullo.</td>
-            <td>Yeshúa nos enseña a vivir como Él vivió en dependencia total del Padre, diciendo: “No puedo yo hacer nada por mí mismo” (Juan 5:30), modelo para nuestra humildad.</td>
-          </tr>
-          <tr>
-            <td>3. ¿Qué implica que la victoria sobre naciones más poderosas no es por justicia de Israel?</td>
-            <td>Que la herencia es por fidelidad al pacto de Elohím y no por mérito humano.</td>
-            <td>En el Brit Hadasháh, la entrada al Reino no es por nuestras obras, sino por la justicia imputada de Yeshúa (2 Cor. 5:21). Él es nuestra justicia.</td>
-          </tr>
-          <tr>
-            <td>4. ¿Cómo podemos “recordar” a Adonái en la vida diaria?</td>
-            <td>A través de obediencia, gratitud y reconocimiento constante de Su obra.</td>
-            <td>Yeshúa instituyó la cena del pacto diciendo: “Haced esto en memoria de mí” (1 Cor. 11:24-25), un recordatorio práctico y espiritual de Su sacrificio.</td>
-          </tr>
-          <tr>
-            <td>5. ¿Qué representa el “fuego consumidor” en 9:3?</td>
-            <td>El poder y santidad de Elohím que purifica y derrota la iniquidad.</td>
-            <td>En Apocalipsis 19:11-16, Yeshúa aparece como MarYah, el Guerrero justo cuyo juicio es fuego purificador, cumpliendo la promesa de Deut. 9:3.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <hr class="section-divider" />
-    
-    <div class="content-container">
+      <div class="content-container">
         <h2>📝 Punto 12 – Resumen de la Aliyáh</h2>
         <h3>1. Resumen del contenido</h3>
-        <p>Moshé advierte a Israel que, al entrar en la Tierra Prometida y disfrutar de su abundancia, deben cuidarse de no olvidar a Adonái יהוה ni sus mandamientos.</p>
-        <p>El peligro no vendrá solo de los enemigos externos, sino del orgullo interno, al pensar que la prosperidad es fruto de la fuerza y capacidad propias.</p>
+        <p>
+          Moshé advierte a Israel que, al entrar en la Tierra Prometida y
+          disfrutar de su abundancia, deben cuidarse de no olvidar a Adonái יהוה
+          ni sus mandamientos.
+        </p>
+        <p>
+          El peligro no vendrá solo de los enemigos externos, sino del orgullo
+          interno, al pensar que la prosperidad es fruto de la fuerza y
+          capacidad propias.
+        </p>
         <p>Se les recuerda que:</p>
         <ul>
-            <li>Elohím les da el poder para prosperar como cumplimiento de Su pacto con Abraham, Yitzjak y Yaakov.</li>
-            <li>La conquista de Canaán no será por la justicia de Israel, sino por la maldad de las naciones y por la fidelidad de Elohím al pacto.</li>
-            <li>Adonái יהוה irá delante de ellos como fuego consumidor para destruir a las naciones más poderosas.</li>
+          <li>
+            Elohím les da el poder para prosperar como cumplimiento de Su pacto
+            con Abraham, Yitzjak y Yaakov.
+          </li>
+          <li>
+            La conquista de Canaán no será por la justicia de Israel, sino por
+            la maldad de las naciones y por la fidelidad de Elohím al pacto.
+          </li>
+          <li>
+            Adonái יהוה irá delante de ellos como fuego consumidor para destruir
+            a las naciones más poderosas.
+          </li>
         </ul>
 
         <h3>2. Aplicación en Mashíaj</h3>
-        <p>En Yeshúa haMashíaj como MarYah, entendemos que nuestra herencia eterna no es por obras, sino por gracia (Efesios 2:8-9).</p>
-        <p>Él es quien nos da el “poder para hacer riquezas” espirituales, esto es, frutos para vida eterna (Juan 15:5,8).</p>
-        <p>Así como Elohím iría delante de Israel como fuego consumidor, Yeshúa se presenta en Apocalipsis 19 como el Guerrero justo que derrota a las naciones y purifica la tierra.</p>
-        <p>La advertencia contra el orgullo en Canaán es también para el creyente: toda victoria y bendición provienen de la obra redentora de Mashíaj, no de méritos humanos.</p>
+        <p>
+          En Yeshúa haMashíaj como MarYah, entendemos que nuestra herencia
+          eterna no es por obras, sino por gracia (Efesios 2:8-9).
+        </p>
+        <p>
+          Él es quien nos da el “poder para hacer riquezas” espirituales, esto
+          es, frutos para vida eterna (Juan 15:5,8).
+        </p>
+        <p>
+          Así como Elohím iría delante de Israel como fuego consumidor, Yeshúa
+          se presenta en Apocalipsis 19 como el Guerrero justo que derrota a las
+          naciones y purifica la tierra.
+        </p>
+        <p>
+          La advertencia contra el orgullo en Canaán es también para el
+          creyente: toda victoria y bendición provienen de la obra redentora de
+          Mashíaj, no de méritos humanos.
+        </p>
 
         <h3>3. Claves espirituales</h3>
         <ul>
-            <li><strong>Memoria activa:</strong> recordar en todo momento la fuente de nuestra vida y bendición.</li>
-            <li><strong>Humildad:</strong> reconocer que sin Él nada podemos hacer.</li>
-            <li><strong>Fidelidad:</strong> no desviarnos tras otros “dioses” —sean ideologías, riquezas o placeres— que roben el lugar de Yeshúa.</li>
-            <li><strong>Confianza:</strong> creer que Él pelea nuestras batallas, incluso contra enemigos más fuertes que nosotros.</li>
+          <li>
+            <strong>Memoria activa:</strong> recordar en todo momento la fuente
+            de nuestra vida y bendición.
+          </li>
+          <li>
+            <strong>Humildad:</strong> reconocer que sin Él nada podemos hacer.
+          </li>
+          <li>
+            <strong>Fidelidad:</strong> no desviarnos tras otros “dioses” —sean
+            ideologías, riquezas o placeres— que roben el lugar de Yeshúa.
+          </li>
+          <li>
+            <strong>Confianza:</strong> creer que Él pelea nuestras batallas,
+            incluso contra enemigos más fuertes que nosotros.
+          </li>
         </ul>
-    </div>
+      </div>
 
-    <hr class="section-divider" />
+      <hr class="section-divider" />
 
-    <div class="content-container">
+      <div class="content-container">
         <h2>🙏 Punto 13 – Tefiláh de la Aliyáh</h2>
         <div class="prayer-text">
-            <p>Avinu Malkeinu,</p>
-            <p>Rey nuestro y Padre nuestro, nos presentamos delante de Ti reconociendo que Tú eres la fuente de toda vida, bendición y victoria.</p>
-            <p>Tú nos sacaste de la esclavitud, nos sustentaste en el desierto y nos conduces a la herencia que has prometido. Guárdanos de olvidar Tu Nombre en tiempos de abundancia; que nunca atribuyamos a nuestras manos lo que solo ha sido obra de Tu poder.</p>
-            <p>Enséñanos a vivir en memoria constante del pacto eterno que sellaste en la sangre preciosa de Yeshúa haMashíaj, MarYah, nuestra justicia. Cuando enfrentemos enemigos más grandes que nosotros, recuérdanos que Tú eres fuego consumidor que va delante de Tu pueblo, purificando, defendiendo y estableciendo Tu Reino.</p>
-            <p>Purifica nuestro corazón del orgullo, de la autosuficiencia y de toda inclinación a seguir otros “dioses”. Danos la humildad de reconocer que sin Ti nada podemos hacer, y la confianza de caminar en obediencia, sabiendo que Tu fidelidad nunca falla.</p>
-            <p>Que nuestras vidas sean un testimonio vivo de gratitud y dependencia, para gloria de Tu Nombre eterno.</p>
+          <p>Avinu Malkeinu,</p>
+          <p>
+            Rey nuestro y Padre nuestro, nos presentamos delante de Ti
+            reconociendo que Tú eres la fuente de toda vida, bendición y
+            victoria.
+          </p>
+          <p>
+            Tú nos sacaste de la esclavitud, nos sustentaste en el desierto y
+            nos conduces a la herencia que has prometido. Guárdanos de olvidar
+            Tu Nombre en tiempos de abundancia; que nunca atribuyamos a nuestras
+            manos lo que solo ha sido obra de Tu poder.
+          </p>
+          <p>
+            Enséñanos a vivir en memoria constante del pacto eterno que sellaste
+            en la sangre preciosa de Yeshúa haMashíaj, MarYah, nuestra justicia.
+            Cuando enfrentemos enemigos más grandes que nosotros, recuérdanos
+            que Tú eres fuego consumidor que va delante de Tu pueblo,
+            purificando, defendiendo y estableciendo Tu Reino.
+          </p>
+          <p>
+            Purifica nuestro corazón del orgullo, de la autosuficiencia y de
+            toda inclinación a seguir otros “dioses”. Danos la humildad de
+            reconocer que sin Ti nada podemos hacer, y la confianza de caminar
+            en obediencia, sabiendo que Tu fidelidad nunca falla.
+          </p>
+          <p>
+            Que nuestras vidas sean un testimonio vivo de gratitud y
+            dependencia, para gloria de Tu Nombre eterno.
+          </p>
         </div>
         <p class="prayer-conclusion">
-            B’shem Yeshúa haMashíaj,<br>
-            Amén veAmén.
+          B’shem Yeshúa haMashíaj,<br />
+          Amén veAmén.
         </p>
-    </div>
+      </div>
       <footer>
         <p>
           <a href="https://bibliatorahviviente.github.io/recursos/"
@@ -2040,7 +2070,7 @@
       </footer>
     </main>
 
-    <button class="aliya-button">
+    <button class="aliya">
       <a href="./aliya3.html">Continuar con la Aliyá 3</a>
     </button>
 
