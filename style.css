@@ -1,540 +1,330 @@
-/* ==========================================================================
-   MINISTERIO YESHUA LA TORAH VIVIENTE
-   Estilos Profesionales para el Estudio de Aliyot
-   Arquitectura: Escalable, Mobile First, Reutilizable
-   v2 — Sistema de caja unificado + espaciado compacto
-   ========================================================================== */
+/* ============================================================
+   YESHÚA - LA TORAH VIVIENTE | Ministerio Judío Mesiánico
+   Hoja de estilos base para páginas de Aliyot / Parashot
+   Paleta: Azul marino #0b1a30 · Dorado #bfa15f · Marfil #faf8f5
+   ============================================================ */
 
-/* --------------------------------------------------------------------------
-   1. VARIABLES GLOBALES (:root)
-   -------------------------------------------------------------------------- */
-:root {
-  /* Paleta de Colores Institucionales */
-  --color-primary-deep: #0b1a30;    /* Azul Marino Profundo (Solemne) */
-  --color-primary-light: #162a4a;   /* Azul Intermedio */
-  --color-gold-dark: #8c6d23;       /* Dorado Sombra */
-  --color-gold-base: #bfa15f;       /* Dorado Institucional */
-  --color-gold-light: #d9c596;      /* Dorado Destello/Foco */
-  --color-bg-ivory: #faf8f5;        /* Marfil/Crema de Fondo (Evita fatiga visual) */
-  --color-text-dark: #1c2430;       /* Texto Principal */
-  --color-text-muted: #536278;      /* Texto Secundario/Citas */
-  --color-white: #ffffff;
-
-  /* Fuentes Tipográficas (Legibilidad Avanzada) */
-  --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-serif: 'Georgia', 'Times New Roman', serif;
-  --font-hebrew: 'SBL Hebrew', 'David', 'Times New Roman', serif;
-  --font-aramaic: 'Estrangelo Edessa', 'Serto Jerusalem', 'Segoe UI Historic', serif;
-
-  /* Tamaños de Fuente Base */
-  --font-size-base: 16px;
-  --font-size-h1: 1.6rem;
-  --font-size-h2: 1.35rem;
-  --font-size-h3: 1.15rem;
-  --font-size-body: 1rem;
-  --font-size-scripture: 1.15rem;
-
-  /* Espaciados y Dimensiones — escala más compacta que la v1 */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.75rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2.25rem;
-
-  /* Indentación consistente para contenido anidado */
-  --indent-content: 1rem;
-
-  /* Componentes Visuales Sutiles */
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --shadow-subtle: 0 3px 10px rgba(11, 26, 48, 0.05);
-  --shadow-medium: 0 6px 18px rgba(11, 26, 48, 0.08);
-  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --border-gold-divider: 1px solid rgba(191, 161, 95, 0.3);
+/* ---------- Reset ligero y tipografía base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* --------------------------------------------------------------------------
-   2. REINICIO Y ESTILOS BASE (Reset & Base Styles)
-   -------------------------------------------------------------------------- */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root {
+  --azul-marino: #0b1a30;
+  --azul-marino-suave: #142a4a;
+  --dorado: #bfa15f;
+  --dorado-claro: #d9c48a;
+  --marfil: #faf8f5;
+  --texto-oscuro: #1c2430;
+  --texto-suave: #4a4f57;
+  --sombra: rgba(11, 26, 48, 0.18);
+
+  --fuente-titulos: "Georgia", "Times New Roman", serif;
+  --fuente-texto: "Segoe UI", Tahoma, Verdana, sans-serif;
+  --fuente-hebreo: "Times New Roman", "David", "Frank Ruhl Libre", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: var(--font-main);
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  background-color: var(--color-bg-ivory);
-  color: var(--color-text-dark);
-  padding: var(--spacing-md) var(--spacing-sm);
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--marfil);
+  color: var(--texto-oscuro);
+  font-family: var(--fuente-texto);
+  line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-main {
-  max-width: 800px;
-  margin: 0 auto;
-  border-left: 4px solid var(--color-gold-base);
-  padding-left: var(--spacing-md);
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-/* API de Google Translate Layout */
+/* ---------- Selector de idioma (Google Translate) ---------- */
 #google_translate_element {
-  margin-bottom: var(--spacing-md);
+  background-color: var(--azul-marino);
+  padding: 6px 16px;
   text-align: right;
 }
 
-/* --------------------------------------------------------------------------
-   3. TIPOGRAFÍA Y JERARQUÍA VISUAL
-   -------------------------------------------------------------------------- */
-h1, h2, h3, h4 {
-  color: var(--color-primary-deep);
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: var(--spacing-xs);
+#google_translate_element .goog-te-gadget {
+  font-family: var(--fuente-texto);
+  color: var(--marfil) !important;
 }
 
-h1 {
-  font-size: var(--font-size-h1);
-  border-bottom: 2px solid var(--color-gold-base);
-  padding-bottom: var(--spacing-xs);
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-md);
-}
-
-/* El h2 nunca se comprime en columna: ancho completo, sin flotantes previos */
-h2 {
-  font-size: var(--font-size-h2);
-  color: var(--color-primary-light);
-  margin-top: 0;
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  gap: var(--spacing-xs);
-  width: 100%;
-  clear: both;
-}
-
-h3 {
-  font-size: var(--font-size-h3);
-  color: var(--color-gold-dark);
-  margin-top: var(--spacing-sm);
-}
-
-p {
-  margin-bottom: var(--spacing-sm);
-  text-align: justify;
-  color: var(--color-text-dark);
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
-
-/* Referencia bíblica que suele ir junto al h2 (ej. "Bereshit (Génesis) 1:2")
-   Se fuerza a que quede en su propia línea, nunca flotando junto al título. */
-h2 + p,
-h2 ~ .referencia {
-  clear: both;
-  display: block;
-  margin-bottom: var(--spacing-sm);
-}
-
-/* Énfasis en nombres sagrados o notas importantes */
-b, strong {
-  color: var(--color-primary-deep);
-  font-weight: 600;
-}
-
-/* --------------------------------------------------------------------------
-   4. SISTEMA DE CAJA ÚNICO (Layout)
-   Un solo lenguaje visual para todo bloque de contenido: fondo blanco,
-   padding, radio y sombra iguales. section/article/aside/.seccion-pdf
-   comparten la misma base — solo cambia el acento de color lateral.
-   -------------------------------------------------------------------------- */
-
-section,
-.seccion-pdf {
-  background: var(--color-white);
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-subtle);
-  margin-bottom: var(--spacing-md);
-}
-
-section:last-of-type,
-.seccion-pdf:last-of-type {
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Article ya no es un elemento "suelto": hereda el mismo lenguaje de caja,
-   pero un poco más liviano, para usarse anidado DENTRO de una section
-   (ej. cada Aliyá dentro del estudio completo) sin duplicar sombra. */
-article {
-  background: var(--color-bg-ivory);
-  padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--border-radius-sm);
-  margin-bottom: var(--spacing-sm);
-}
-
-article:last-of-type {
-  margin-bottom: 0;
-}
-
-/* Si un article vive fuera de una section (nivel superior), que también
-   se vea completo, no como recorte suelto */
-main > article {
-  background: var(--color-white);
-  box-shadow: var(--shadow-subtle);
-  margin-bottom: var(--spacing-md);
-}
-
-/* Indentación consistente del contenido anidado dentro de cualquier caja */
-section > *:not(h1):not(h2):not(h3),
-article > *:not(h1):not(h2):not(h3) {
-  padding-left: 0;
-}
-
-/* Listas ordenadas e indentadas */
-ol, ul {
-  padding-left: calc(var(--indent-content) + var(--spacing-sm));
-  margin-bottom: var(--spacing-sm);
-}
-
-li {
-  margin-bottom: var(--spacing-xs);
-}
-
-li:last-child {
-  margin-bottom: 0;
-}
-
-/* --------------------------------------------------------------------------
-   5. TRATAMIENTO LINGÜÍSTICO (Hebreo, Arameo y Transliteraciones)
-   -------------------------------------------------------------------------- */
-/* Regla Estricta: Textos en Hebreo y Arameo alineados SIEMPRE a la izquierda */
-[lang="he"], [lang="syr"], .hebrew {
-  text-align: left !important;
-  direction: rtl; /* Mantiene la lógica interna de escritura de derecha a izquierda */
-  font-size: calc(var(--font-size-scripture) * 1.25);
-  line-height: 1.8;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background-color: rgba(191, 161, 95, 0.05);
-  border-radius: var(--border-radius-sm);
-  margin: var(--spacing-xs) 0 var(--spacing-sm) 0;
-  display: block;
-}
-
-[lang="he"] {
-  font-family: var(--font-hebrew);
-}
-
-[lang="syr"] {
-  font-family: var(--font-aramaic);
-  border-left: 2px solid var(--color-gold-base);
-}
-
-/* Fonética y Transliteraciones */
-[lang="syr-Latn"], .transliteracion {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--color-gold-dark);
-  padding-left: var(--spacing-xs);
-}
-
-/* Numeración de versículos incorporados */
-p b {
-  color: var(--color-gold-dark);
-  margin-right: var(--spacing-xs);
-  font-family: var(--font-main);
-}
-
-/* --------------------------------------------------------------------------
-   6. COMPONENTES ESPECÍFICOS (Bloques de Citas y Destacados)
-   -------------------------------------------------------------------------- */
-
-/* El blockquote nunca flota junto a un título; siempre ocupa
-   su propia línea completa, evitando que comprima al h2 vecino. */
-blockquote {
-  background: linear-gradient(135deg, var(--color-primary-deep), var(--color-primary-light));
-  color: var(--color-white);
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  border-left: 5px solid var(--color-gold-base);
-  margin: var(--spacing-sm) 0;
-  box-shadow: var(--shadow-medium);
-  float: none !important;
-  clear: both;
-  width: 100%;
-}
-
-blockquote p {
-  color: var(--color-bg-ivory);
-  font-family: var(--font-serif);
-  font-size: var(--font-size-scripture);
-  font-style: italic;
-  margin-bottom: 0;
+/* ---------- Header ---------- */
+header {
+  background-color: var(--azul-marino);
+  color: var(--marfil);
+  padding: 2rem 1.5rem 2.5rem;
   text-align: center;
+  border-bottom: 4px solid var(--dorado);
+  position: relative;
+}
+
+header img {
+  display: block;
+  margin: 0 auto 1.25rem;
+  max-width: 140px;
+  height: auto;
+  filter: drop-shadow(0 2px 6px var(--sombra));
+}
+
+header h1 {
+  font-family: var(--fuente-titulos);
+  font-size: 1.9rem;
+  color: var(--dorado-claro);
+  margin: 0.5rem auto 0;
+  max-width: 850px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.boton-descargar {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background-color: var(--dorado);
+  color: var(--azul-marino);
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.1rem;
+  font-family: var(--fuente-texto);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.boton-descargar:hover {
+  background-color: var(--dorado-claro);
+  transform: translateY(-1px);
+}
+
+.boton-descargar:focus-visible {
+  outline: 3px solid var(--marfil);
+  outline-offset: 2px;
+}
+
+/* ---------- Main / Contenedor de contenido ---------- */
+main#contenido {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+main#contenido h2 {
+  font-family: var(--fuente-titulos);
+  color: var(--azul-marino);
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 2.5rem 0 1.25rem;
+  position: relative;
+}
+
+main#contenido h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 3px;
+  background-color: var(--dorado);
+  margin: 0.6rem auto 0;
+}
+
+main#contenido h3 {
+  font-family: var(--fuente-titulos);
+  color: var(--azul-marino-suave);
+  text-align: center;
+  font-size: 1.15rem;
+  margin: 1.5rem 0 1rem;
+}
+
+/* ---------- "Cajitas" de contenido (secciones/artículos) ---------- */
+section,
+article,
+blockquote,
+aside {
+  background-color: #ffffff;
+  border: 1px solid var(--dorado);
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  margin: 0 0 1.75rem;
+  box-shadow: 0 2px 10px var(--sombra);
+}
+
+blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: var(--texto-suave);
+  border-left: 4px solid var(--dorado);
 }
 
 blockquote cite {
   display: block;
-  text-align: right;
-  font-size: 0.85rem;
-  color: var(--color-gold-light);
-  margin-top: var(--spacing-xs);
+  margin-top: 0.75rem;
   font-style: normal;
+  font-size: 0.85rem;
+  text-align: right;
+  color: var(--azul-marino);
 }
 
-/* Comentarios Marginales / Asides (Información Histórica y Profética)
-   Mismo lenguaje de caja que section/article, con acento propio. */
-aside {
-  background-color: var(--color-white);
-  border: 1px solid rgba(11, 26, 48, 0.08);
-  padding: var(--spacing-md);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-subtle);
-  margin: var(--spacing-md) 0;
+/* ---------- Texto hebreo: siempre a la derecha ---------- */
+.texto-hebreo,
+[lang="he"],
+[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--fuente-hebreo);
+  font-size: 1.4rem;
+  color: var(--azul-marino);
+  line-height: 2;
 }
 
-aside h2, aside h3 {
-  margin-top: 0;
-  color: var(--color-primary-deep);
+/* ---------- Texto en español: fonética, traducción, comentario ---------- */
+.texto-fonetica,
+.texto-traduccion,
+.texto-comentario,
+[dir="ltr"] {
+  direction: ltr;
+  text-align: left;
+  color: var(--texto-oscuro);
 }
 
-aside > *:last-child {
-  margin-bottom: 0;
+.texto-fonetica {
+  font-style: italic;
+  color: var(--texto-suave);
 }
 
-.highlight {
-  background-color: rgba(191, 161, 95, 0.15);
-  padding: 2px 6px;
-  border-radius: var(--border-radius-sm);
+.texto-traduccion {
   font-weight: 600;
+  color: var(--azul-marino);
 }
 
-/* --------------------------------------------------------------------------
-   7. BOTONES Y ACCIONES (Navegación y PDF)
-   -------------------------------------------------------------------------- */
-header {
+/* ---------- Bibliografía / créditos de cada Aliyá ---------- */
+.bibliografia {
+  background-color: var(--marfil);
+  border: 1px dashed var(--dorado);
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  text-align: left;
+}
+
+.bibliografia p {
+  margin: 0.4rem 0;
+}
+
+.bibliografia .autor {
+  font-weight: 600;
+  color: var(--azul-marino);
+}
+
+/* ---------- Recursos del ministerio (enlace a Biblioteca Mesiánica) ---------- */
+.recursos-ministerio {
+  text-align: center;
+  background-color: var(--azul-marino);
+  color: var(--marfil);
+  border: none;
+}
+
+.recursos-ministerio a {
+  color: var(--dorado-claro);
+  font-weight: 600;
+  text-decoration: underline;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.recursos-ministerio a:hover,
+.recursos-ministerio a:focus-visible {
+  color: var(--marfil);
+}
+
+/* Botón de navegación entre Aliyot */
+.navegacion-aliya {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: var(--spacing-md);
+  justify-content: center;
+  margin: 2rem 0;
 }
 
-/* Botón Descargar PDF Header */
-.boton-descargar {
-  background-color: transparent;
-  color: var(--color-primary-deep);
-  border: 2px solid var(--color-primary-deep);
-  padding: var(--spacing-xs) var(--spacing-md);
-  font-family: var(--font-main);
+.aliya {
+  background-color: #1a1a2e;
+  color: #f4d35e;
+  border: 2px solid #f4d35e;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
-  font-size: 0.9rem;
-  border-radius: var(--border-radius-sm);
   cursor: pointer;
-  transition: var(--transition-smooth);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-.boton-descargar:hover {
-  background-color: var(--color-primary-deep);
-  color: var(--color-white);
+.aliya:hover {
+  background-color: #f4d35e;
+  color: #1a1a2e;
 }
 
-/* Botón de Navegación del Ministerio al pie de página (Estructura de clase única .aliya) */
-button.aliya {
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  margin: var(--spacing-lg) auto var(--spacing-md) auto;
-  padding: 0; /* Reseteo para contener la etiqueta 'a' de forma completa */
-  background: linear-gradient(135deg, var(--color-primary-deep), var(--color-primary-light));
-  border: 2px solid var(--color-gold-base);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-medium);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-button.aliya a {
-  display: block;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  color: var(--color-white);
+.aliya a {
+  color: inherit;
   text-decoration: none;
-  font-family: var(--font-main);
-  font-size: var(--font-size-h3);
-  font-weight: 600;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background-color: var(--azul-marino);
+  color: var(--dorado-claro);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-family: var(--fuente-titulos);
+  font-size: 0.95rem;
   letter-spacing: 0.5px;
-  text-align: center;
-  transition: var(--transition-smooth);
+  border-top: 4px solid var(--dorado);
 }
 
-/* Estados de Interacción del Botón Institucional */
-button.aliya:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(11, 26, 48, 0.15);
-  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary-deep));
-  border-color: var(--color-gold-light);
-}
-
-button.aliya:hover a {
-  color: var(--color-gold-light);
-}
-
-button.aliya:focus-within {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(191, 161, 95, 0.4);
-}
-
-button.aliya:active {
-  transform: translateY(1px);
-  box-shadow: var(--shadow-subtle);
-}
-
-button.aliya[disabled],
-button.aliya:disabled {
-  background: #e0e4eb;
-  border-color: #cbd2db;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-button.aliya[disabled] a,
-button.aliya:disabled a {
-  color: #9aa5b5;
-}
-
-/* --------------------------------------------------------------------------
-   8. RESPONSIVE DESIGN (Media Queries)
-   -------------------------------------------------------------------------- */
-
-/* Dispositivos Medianos (Tabletas: 600px en adelante) */
-@media screen and (min-width: 600px) {
-  body {
-    padding: var(--spacing-lg) var(--spacing-md);
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  header h1 {
+    font-size: 1.4rem;
   }
 
-  :root {
-    --font-size-h1: 2rem;
-    --font-size-h2: 1.6rem;
-    --font-size-h3: 1.25rem;
-    --font-size-body: 1.05rem;
+  .boton-descargar {
+    position: static;
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
+  main#contenido {
+    padding: 0 1rem;
   }
 
   section,
-  .seccion-pdf {
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-  }
-
-  article {
-    padding: var(--spacing-md) var(--spacing-lg);
-  }
-}
-
-/* Dispositivos Grandes (Escritorio: 992px en adelante) */
-@media screen and (min-width: 992px) {
-  :root {
-    --font-size-h1: 2.25rem;
-    --font-size-h2: 1.75rem;
-    --font-size-h3: 1.35rem;
-  }
-
-  body {
-    background-color: #f3f0e9; /* Matiz sutil extra para pantallas anchas en los bordes */
-  }
-
-  main {
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
-    border-radius: var(--border-radius-md);
-    background-color: var(--color-bg-ivory);
-    padding: var(--spacing-xl);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   9. OPTIMIZACIONES PARA IMPRESIÓN / EXPORTACIÓN PDF
-   ========================================================================== */
-@media print {
-  body {
-    background-color: var(--color-white);
-    color: #000000;
-    padding: 0;
-  }
-
-  section,
-  .seccion-pdf,
   article,
+  blockquote,
   aside {
-    box-shadow: none;
-    padding: 0;
-    margin-bottom: var(--spacing-lg);
-    page-break-inside: avoid;
-    border: none;
-    background: transparent;
+    padding: 1.25rem;
   }
 
-  main {
-    border-left: 2px solid #cbd2db;
-    padding-left: var(--spacing-sm);
-  }
-
-  header, #google_translate_element, button.aliya {
-    display: none !important;
-  }
-
-  [lang="he"], [lang="syr"], .hebrew {
-    background-color: transparent;
-    border: 1px solid #cbd2db;
+  .texto-hebreo {
+    font-size: 1.2rem;
   }
 }
 
-/* ==========================================================================
-   PIE DE PÁGINA / FOOTER (Versión corregida con alto contraste)
-   ========================================================================== */
-.site-footer {
-  background-color: #0f172a; /* Azul pizarra muy oscuro (combina con tu logo) */
-  color: #ffffff; /* Blanco puro para garantizar máxima legibilidad */
-  padding: 32px 20px;
-  text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  border-top: 4px solid #b45309; /* Línea bronce/ámbar bien definida */
-  margin-top: 40px; /* Separa el footer del contenido de arriba */
-  box-sizing: border-box;
-}
-
-.footer-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.footer-text {
-  font-size: 1.15rem;
-  line-height: 1.6;
-  margin: 0 0 20px 0;
-  color: #f1f5f9; /* Blanco grisáceo suave muy brillante */
-}
-
-.footer-link {
-  color: #38bdf8; /* Celeste brillante de alta visibilidad */
-  text-decoration: none;
-  font-weight: 700; /* Más grueso para resaltar */
-  border-bottom: 2px solid #38bdf8;
-  padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.footer-link:hover {
-  color: #bae6fd; /* Celeste casi blanco al pasar el mouse */
-  border-color: #bae6fd;
-}
-
-.footer-bottom,
-.footer-bottom p {
-  margin-top: var(--spacing-md);
-  padding-top: var(--spacing-sm);
-  border-top: 1px solid #334155; /* Línea divisoria */
-  font-size: 0.9rem;
-  color: #cbd5e1 !important; /* Gris claro de alta visibilidad para que se lea perfectamente */
+/* ---------- Accesibilidad: foco visible general ---------- */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--dorado);
+  outline-offset: 2px;
 }
