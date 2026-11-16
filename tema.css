@@ -1,0 +1,607 @@
+/* ==================================================================
+   PARASHOT · Yeshúa — La Torá Viviente
+   tema.css — colores de la bandera de Israel (azul y blanco)
+
+   1. Variables y base
+   2. Barra superior
+   3. Portada: semana, horarios de Yerushaláyim, estudio del día
+   4. Lista de las 54 parashot
+   5. Página de parashá (7 aliyot)
+   6. Páginas de aliyá (estudios)
+   7. Pie de página
+   ================================================================== */
+
+/* ---------- 1. Variables y base ---------- */
+:root {
+  --azul: #0038b8;          /* azul de la bandera */
+  --azul-vivo: #1463ff;
+  --cielo: #45a6ff;
+  --azul-noche: #00174d;
+  --tinta: #0b1b3f;
+  --tinta-suave: #44557d;
+  --blanco: #ffffff;
+  --niebla: #f1f6ff;
+  --linea: #d3e0ff;
+  --oro: #ffc62e;           /* solo para marcar "hoy" */
+  --sombra: 0 10px 30px rgba(0, 56, 184, 0.14);
+  --sombra-suave: 0 2px 10px rgba(0, 56, 184, 0.1);
+  --radio: 18px;
+  --fuente: "Rubik", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --fuente-titulo: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+  --fuente-hebreo: "Frank Ruhl Libre", "SBL Hebrew", "Ezra SIL", "Times New Roman", serif;
+  --ancho: 1120px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--niebla);
+  color: var(--tinta);
+  font-family: var(--fuente);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-wrap: break-word;
+}
+
+img { max-width: 100%; height: auto; }
+a { color: var(--azul); }
+[hidden] { display: none !important; }
+
+:focus-visible { outline: 3px solid var(--oro); outline-offset: 2px; border-radius: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+.pt-solo-lectores {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.pt-contenedor { width: min(100% - 2rem, var(--ancho)); margin-inline: auto; }
+
+/* Botones */
+.pt-boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  min-height: 46px; padding: 0.65rem 1.3rem;
+  border: 2px solid var(--azul); border-radius: 999px;
+  background: var(--azul); color: var(--blanco);
+  font: 600 1rem var(--fuente); text-decoration: none; cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.pt-boton:hover { background: var(--azul-vivo); border-color: var(--azul-vivo); transform: translateY(-2px); box-shadow: var(--sombra-suave); }
+.pt-boton-blanco { background: var(--blanco); color: var(--azul); border-color: var(--blanco); }
+.pt-boton-blanco:hover { background: var(--oro); border-color: var(--oro); color: var(--azul-noche); }
+.pt-boton-claro { background: var(--blanco); color: var(--azul); }
+.pt-boton-claro:hover { color: var(--blanco); }
+
+.pt-insignia {
+  display: inline-block; padding: 0.1rem 0.6rem; border-radius: 999px;
+  background: var(--oro); color: var(--azul-noche);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+}
+
+/* ---------- 2. Barra superior ---------- */
+.pt-barra {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.5rem max(1rem, calc((100% - var(--ancho)) / 2));
+  background: var(--blanco);
+  border-bottom: 4px solid var(--azul);
+  box-shadow: 0 2px 12px rgba(0, 23, 77, 0.08);
+}
+.pt-marca {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--azul); font-weight: 700; font-size: 1.05rem; text-decoration: none; white-space: nowrap;
+}
+.pt-marca svg { width: 30px; height: 30px; fill: none; stroke: var(--azul); stroke-width: 3; stroke-linejoin: round; flex: none; }
+.pt-marca small { display: block; font-size: 0.72rem; font-weight: 500; color: var(--tinta-suave); line-height: 1.1; }
+.pt-menu { display: flex; gap: 0.25rem; margin: 0 0 0 auto; padding: 0; list-style: none; }
+.pt-menu a {
+  display: block; padding: 0.45rem 0.8rem; border-radius: 999px;
+  color: var(--tinta); font-weight: 600; font-size: 0.95rem; text-decoration: none;
+}
+.pt-menu a:hover { background: var(--niebla); color: var(--azul); }
+
+/* ---------- 3. Portada ---------- */
+/* Encabezado como la bandera: blanco con dos franjas azules */
+.pt-bandera {
+  position: relative;
+  background: var(--blanco);
+  padding: 3.4rem 1rem 3.2rem;
+  text-align: center;
+}
+.pt-bandera::before, .pt-bandera::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 16px; background: var(--azul);
+}
+.pt-bandera::before { top: 16px; }
+.pt-bandera::after { bottom: 16px; }
+.pt-bandera svg { width: 62px; height: 62px; fill: none; stroke: var(--azul); stroke-width: 2.6; stroke-linejoin: round; }
+.pt-bandera h1 {
+  margin: 0.35rem 0 0.2rem;
+  font: 900 clamp(2.1rem, 6vw, 3.4rem)/1.05 var(--fuente-titulo);
+  color: var(--azul); letter-spacing: -0.01em;
+}
+.pt-bandera p { margin: 0 auto; max-width: 40rem; color: var(--tinta-suave); font-size: 1.02rem; }
+
+.pt-seccion { padding: 2.2rem 0; }
+.pt-seccion > h2, .pt-titulo-seccion {
+  margin: 0 0 0.3rem;
+  font: 700 clamp(1.5rem, 3.6vw, 2rem)/1.2 var(--fuente-titulo);
+  color: var(--azul-noche);
+}
+.pt-seccion > p.pt-bajada { margin: 0 0 1.2rem; color: var(--tinta-suave); }
+
+/* Tarjeta de la semana */
+.pt-semana {
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 0;
+  margin-top: -1.2rem;
+  border-radius: 26px; overflow: hidden;
+  background: var(--blanco);
+  box-shadow: var(--sombra);
+  position: relative; z-index: 2;
+}
+.pt-semana-parasha {
+  padding: 2rem 2rem 2.2rem;
+  background: linear-gradient(140deg, var(--azul) 0%, var(--azul-vivo) 62%, var(--cielo) 130%);
+  color: var(--blanco);
+  position: relative; overflow: hidden;
+}
+.pt-semana-parasha::after {
+  content: ""; position: absolute; right: -70px; bottom: -80px; width: 300px; height: 300px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='white' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M24 4 41.3 34H6.7Z'/%3E%3Cpath d='M24 44 6.7 14h34.6Z'/%3E%3C/svg%3E") center/contain no-repeat;
+  opacity: 0.16; pointer-events: none;
+}
+.pt-etiqueta {
+  margin: 0; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.92;
+}
+.pt-semana-parasha h2 {
+  margin: 0.35rem 0 0; color: var(--blanco);
+  font: 900 clamp(2.2rem, 6.5vw, 3.6rem)/1.05 var(--fuente-titulo);
+}
+.pt-semana-hebreo {
+  margin: 0.2rem 0 0; direction: rtl; text-align: left;
+  font: 500 clamp(1.7rem, 5vw, 2.6rem)/1.3 var(--fuente-hebreo);
+}
+.pt-semana-ref { margin: 0.6rem 0 1.3rem; font-size: 1.08rem; font-weight: 500; }
+.pt-semana-acciones { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0; position: relative; z-index: 1; }
+
+.pt-jerusalen { padding: 1.6rem 1.8rem 1.8rem; }
+.pt-jerusalen h3 {
+  margin: 0; font: 700 0.8rem var(--fuente); letter-spacing: 0.12em; text-transform: uppercase; color: var(--azul);
+}
+.pt-reloj { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.2rem 0.8rem; margin: 0.15rem 0 1rem; }
+.pt-reloj strong { font: 700 clamp(2rem, 5.5vw, 2.7rem)/1.1 var(--fuente); color: var(--azul-noche); font-variant-numeric: tabular-nums; }
+.pt-reloj span { color: var(--tinta-suave); font-weight: 500; }
+
+.pt-horarios { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.7rem; }
+.pt-horarios li {
+  padding: 0.75rem 0.95rem; border-radius: 14px;
+  background: var(--niebla); border-left: 5px solid var(--cielo);
+}
+.pt-horarios li.es-salida { border-left-color: var(--azul); }
+.pt-horarios span { display: block; font-size: 0.8rem; font-weight: 600; color: var(--tinta-suave); }
+.pt-horarios time { display: block; font-size: 1.1rem; font-weight: 700; color: var(--azul-noche); }
+.pt-horarios small { display: block; font-size: 0.85rem; color: var(--tinta-suave); }
+.pt-horarios em { font-style: normal; font-weight: 700; color: var(--azul); }
+
+.pt-cuenta-titulo { margin: 1.1rem 0 0.45rem; font-weight: 600; color: var(--azul-noche); }
+.pt-cuenta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.pt-cuenta li {
+  padding: 0.55rem 0.2rem 0.5rem; border-radius: 14px; text-align: center;
+  background: var(--azul); color: var(--blanco);
+}
+.pt-cuenta strong { display: block; font: 700 clamp(1.5rem, 5vw, 2rem)/1.1 var(--fuente); font-variant-numeric: tabular-nums; }
+.pt-cuenta span { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.9; }
+.pt-fuente { margin: 0.8rem 0 0; font-size: 0.8rem; color: var(--tinta-suave); }
+.pt-shabat-aviso {
+  margin: 0 0 0.9rem; padding: 0.55rem 0.9rem; border-radius: 12px;
+  background: var(--oro); color: var(--azul-noche); font-weight: 700; text-align: center;
+}
+
+/* Estudio del día */
+.pt-hoy {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 1.2rem; align-items: stretch;
+}
+.pt-hoy-lista { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.8rem; }
+.pt-hoy-enlace {
+  display: grid; gap: 0.1rem; height: 100%;
+  padding: 1.3rem 1.4rem; border-radius: var(--radio);
+  background: var(--blanco); color: var(--tinta); text-decoration: none;
+  border: 2px solid var(--azul); box-shadow: var(--sombra-suave);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.pt-hoy-enlace:hover { transform: translateY(-3px); box-shadow: var(--sombra); }
+.pt-hoy-aliya { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--azul); }
+.pt-hoy-enlace strong { font: 900 1.9rem/1.15 var(--fuente-titulo); color: var(--azul-noche); }
+.pt-hoy-ref { font-size: 1.05rem; color: var(--tinta-suave); }
+.pt-hoy-ir {
+  justify-self: start; margin-top: 0.8rem; padding: 0.6rem 1.2rem; border-radius: 999px;
+  background: var(--azul); color: var(--blanco); font-weight: 600;
+}
+.pt-hoy-enlace:hover .pt-hoy-ir { background: var(--azul-vivo); }
+
+.pt-semana-dias { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0.45rem; }
+.pt-dia {
+  display: flex; flex-direction: column; align-items: center; gap: 0.1rem; height: 100%;
+  padding: 0.7rem 0.2rem; border-radius: 14px;
+  background: var(--blanco); color: var(--tinta); text-decoration: none; text-align: center;
+  border: 2px solid var(--linea);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.pt-dia:hover { transform: translateY(-3px); border-color: var(--azul-vivo); }
+.pt-dia-nombre { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tinta-suave); }
+.pt-dia strong { font: 700 1.5rem/1.1 var(--fuente); color: var(--azul); }
+.pt-dia-ref { font-size: 0.72rem; line-height: 1.25; color: var(--tinta-suave); }
+.pt-dia.es-pasado { background: var(--niebla); }
+.pt-dia.es-pasado strong { color: var(--tinta-suave); }
+.pt-dia.es-hoy { background: var(--azul); border-color: var(--azul); box-shadow: 0 0 0 3px var(--oro); }
+.pt-dia.es-hoy strong, .pt-dia.es-hoy .pt-dia-nombre, .pt-dia.es-hoy .pt-dia-ref { color: var(--blanco); }
+.pt-nota { margin: 0.9rem 0 0; font-size: 0.88rem; color: var(--tinta-suave); }
+
+/* ---------- 4. Lista de las 54 parashot ---------- */
+.pt-buscar { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin: 0 0 1.4rem; }
+.pt-buscar input {
+  flex: 1 1 260px; min-height: 50px; padding: 0.6rem 1.1rem;
+  border: 2px solid var(--linea); border-radius: 999px; background: var(--blanco);
+  font: 500 1rem var(--fuente); color: var(--tinta);
+}
+.pt-buscar input:focus { outline: none; border-color: var(--azul-vivo); box-shadow: 0 0 0 4px rgba(20, 99, 255, 0.18); }
+.pt-filtros { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; list-style: none; }
+.pt-filtro {
+  min-height: 42px; padding: 0.4rem 0.95rem; border-radius: 999px;
+  border: 2px solid var(--linea); background: var(--blanco); color: var(--tinta);
+  font: 600 0.92rem var(--fuente); cursor: pointer;
+}
+.pt-filtro:hover { border-color: var(--azul-vivo); color: var(--azul); }
+.pt-filtro[aria-pressed="true"] { background: var(--azul); border-color: var(--azul); color: var(--blanco); }
+
+.pt-libro { margin: 0 0 1.8rem; }
+.pt-libro h3 {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 0.7rem;
+  margin: 0 0 0.8rem; padding-bottom: 0.45rem; border-bottom: 3px solid var(--azul);
+  font: 700 1.35rem var(--fuente-titulo); color: var(--azul);
+}
+.pt-libro h3 span[lang="he"] { font-family: var(--fuente-hebreo); font-weight: 500; }
+.pt-libro h3 small { font: 500 0.9rem var(--fuente); color: var(--tinta-suave); }
+.pt-rejilla { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 0.7rem; }
+.pt-parasha {
+  position: relative;
+  display: grid; grid-template-columns: auto 1fr; column-gap: 0.8rem; align-items: center; height: 100%;
+  padding: 0.8rem 0.95rem; border-radius: 16px;
+  background: var(--blanco); color: var(--tinta); text-decoration: none;
+  border: 2px solid transparent; box-shadow: var(--sombra-suave);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.pt-parasha:hover { transform: translateY(-3px); border-color: var(--azul-vivo); box-shadow: var(--sombra); }
+.pt-parasha-n {
+  grid-row: span 2; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--niebla); color: var(--azul); font-weight: 700; font-size: 1.05rem;
+}
+.pt-parasha-nombre { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; font-weight: 700; font-size: 1.05rem; line-height: 1.25; }
+.pt-parasha-nombre span[lang="he"] { font: 500 1.1rem var(--fuente-hebreo); color: var(--azul); white-space: nowrap; }
+.pt-parasha-ref { font-size: 0.84rem; color: var(--tinta-suave); }
+.pt-parasha.es-semana { background: var(--azul); color: var(--blanco); border-color: var(--azul); box-shadow: 0 0 0 3px var(--oro); }
+.pt-parasha.es-semana .pt-parasha-n { background: var(--blanco); }
+.pt-parasha.es-semana .pt-parasha-ref, .pt-parasha.es-semana .pt-parasha-nombre span[lang="he"] { color: var(--blanco); }
+.pt-parasha .pt-insignia { position: absolute; top: -0.6rem; right: 0.7rem; }
+.pt-sin-resultados { padding: 1.2rem; border-radius: var(--radio); background: var(--blanco); text-align: center; color: var(--tinta-suave); }
+
+/* Recursos */
+.pt-recursos { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.9rem; }
+.pt-recurso {
+  display: block; height: 100%; padding: 1.2rem 1.3rem; border-radius: var(--radio);
+  background: var(--blanco); color: var(--tinta); text-decoration: none;
+  border-top: 6px solid var(--azul); box-shadow: var(--sombra-suave);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.pt-recurso:hover { transform: translateY(-3px); box-shadow: var(--sombra); }
+.pt-recurso strong { display: block; font: 700 1.15rem/1.3 var(--fuente-titulo); color: var(--azul); }
+.pt-recurso span { display: block; margin-top: 0.3rem; font-size: 0.93rem; color: var(--tinta-suave); }
+.pt-recurso.es-principal { background: var(--azul); border-top-color: var(--cielo); }
+.pt-recurso.es-principal strong, .pt-recurso.es-principal span { color: var(--blanco); }
+
+/* ---------- 5. Página de parashá ---------- */
+.pt-cabecera-parasha {
+  position: relative; padding: 2.6rem 1rem 2.8rem; text-align: center; color: var(--blanco);
+  background: linear-gradient(140deg, var(--azul) 0%, var(--azul-vivo) 70%, var(--cielo) 140%);
+}
+.pt-cabecera-parasha::before, .pt-cabecera-parasha::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 8px; background: var(--blanco); opacity: 0.9;
+}
+.pt-cabecera-parasha::before { top: 10px; }
+.pt-cabecera-parasha::after { bottom: 10px; }
+.pt-cabecera-parasha h1 { margin: 0.3rem 0 0; font: 900 clamp(2.2rem, 7vw, 3.6rem)/1.05 var(--fuente-titulo); }
+.pt-cabecera-parasha .pt-semana-hebreo { text-align: center; }
+.pt-cabecera-parasha .pt-semana-ref { margin-bottom: 0; }
+
+.pt-aviso {
+  margin: 1.4rem 0 0; padding: 0.8rem 1.1rem; border-radius: 14px;
+  background: var(--blanco); border-left: 5px solid var(--cielo); color: var(--tinta);
+}
+.pt-aviso.es-semana { background: var(--oro); border-left-color: var(--azul); color: var(--azul-noche); }
+
+.pt-aliyot { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.65rem; }
+.pt-aliya {
+  position: relative;
+  display: grid; grid-template-columns: 56px 1fr auto; gap: 0.2rem 1rem; align-items: center;
+  padding: 0.9rem 1.2rem; border-radius: var(--radio);
+  background: var(--blanco); color: var(--tinta); text-decoration: none;
+  border: 2px solid transparent; box-shadow: var(--sombra-suave);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.pt-aliya:hover { transform: translateX(4px); border-color: var(--azul-vivo); box-shadow: var(--sombra); }
+.pt-aliya-n {
+  grid-row: span 2; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+  background: var(--azul); color: var(--blanco); font: 700 1.5rem var(--fuente);
+}
+.pt-aliya-dia { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--azul); }
+.pt-aliya-ref { grid-column: 2; font-size: 1.18rem; font-weight: 600; line-height: 1.3; }
+.pt-aliya-ir { grid-column: 3; grid-row: 1 / span 2; font-weight: 600; color: var(--azul); white-space: nowrap; }
+.pt-aliya.es-pasado .pt-aliya-n { background: var(--linea); color: var(--azul); }
+.pt-aliya.es-hoy { border-color: var(--azul); box-shadow: 0 0 0 3px var(--oro); }
+.pt-aliya .pt-insignia { position: absolute; top: -0.6rem; right: 1rem; }
+
+.pt-pasos {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.7rem;
+  width: min(100% - 2rem, 900px); margin: 2rem auto;
+}
+.pt-paso {
+  display: grid; gap: 0.1rem; align-content: center; padding: 0.9rem 1.1rem; border-radius: var(--radio);
+  background: var(--blanco); color: var(--tinta); text-decoration: none;
+  border: 2px solid var(--linea);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.pt-paso:hover { transform: translateY(-3px); border-color: var(--azul-vivo); }
+.pt-paso-flecha { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--azul); }
+.pt-paso strong { font-size: 1.05rem; line-height: 1.25; color: var(--azul-noche); }
+.pt-paso-ref { font-size: 0.84rem; color: var(--tinta-suave); }
+.pt-paso.es-centro { text-align: center; }
+.pt-paso.es-siguiente { text-align: right; background: var(--azul); border-color: var(--azul); }
+.pt-paso.es-siguiente strong, .pt-paso.es-siguiente .pt-paso-flecha, .pt-paso.es-siguiente .pt-paso-ref { color: var(--blanco); }
+
+/* ---------- 6. Páginas de aliyá (estudios) ---------- */
+.pt-barra-parasha { color: var(--tinta); text-decoration: none; font-size: 0.98rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.pt-barra-parasha strong { color: var(--azul); }
+.pt-pastillas { display: flex; gap: 0.3rem; margin: 0 0 0 auto; padding: 0; list-style: none; }
+.pt-pastillas a {
+  display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  border: 2px solid var(--linea); background: var(--blanco);
+  color: var(--azul); font-weight: 700; text-decoration: none;
+}
+.pt-pastillas a:hover { border-color: var(--azul-vivo); }
+.pt-pastillas a.es-hoy { box-shadow: 0 0 0 3px var(--oro); }
+.pt-pastillas a[aria-current="page"] { background: var(--azul); border-color: var(--azul); color: var(--blanco); }
+
+body.pt-estudio { background: var(--niebla); overflow-x: clip; }
+.pt-estudio #google_translate_element { background: var(--azul-noche); padding: 4px 16px; text-align: right; min-height: 0; }
+.pt-estudio #google_translate_element:empty { display: none; }
+
+.pt-estudio > header {
+  position: relative; margin: 0; padding: 2.4rem 1.2rem 2.6rem; text-align: center; color: var(--blanco);
+  background: linear-gradient(140deg, var(--azul) 0%, var(--azul-vivo) 70%, var(--cielo) 140%);
+}
+.pt-estudio > header::before, .pt-estudio > header::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 7px; background: var(--blanco); opacity: 0.9;
+}
+.pt-estudio > header::before { top: 9px; }
+.pt-estudio > header::after { bottom: 9px; }
+.pt-estudio > header img { display: block; width: min(460px, 86%); margin: 0 auto 1rem; border-radius: 10px; }
+.pt-estudio > header h1 {
+  max-width: 880px; margin: 0.4rem auto 0; color: var(--blanco);
+  font: 700 clamp(1.4rem, 4.2vw, 2.1rem)/1.25 var(--fuente-titulo);
+}
+.pt-estudio .boton-descargar {
+  display: inline-flex; align-items: center; justify-content: center; width: auto; min-height: 42px;
+  margin: 0 auto 1rem; padding: 0.5rem 1.2rem;
+  border: 2px solid var(--blanco); border-radius: 999px;
+  background: var(--blanco); color: var(--azul);
+  font: 600 0.92rem var(--fuente); cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.pt-estudio .boton-descargar:hover { background: var(--oro); border-color: var(--oro); color: var(--azul-noche); transform: translateY(-2px); }
+/* Páginas antiguas: el encabezado solo trae el botón */
+.pt-estudio > header:not(:has(h1)) { padding: 1.5rem 1rem 1.3rem; }
+.pt-estudio > header:not(:has(h1)) .boton-descargar { margin-bottom: 0; }
+
+.pt-estudio main, .pt-estudio > .container {
+  width: min(100% - 1.6rem, 900px); max-width: none; margin: 1.8rem auto; padding: 0;
+}
+
+/* Títulos: en muchos estudios cada "Punto" es un h1 */
+.pt-estudio main h1 {
+  margin: 2.2rem 0 1rem; padding: 0.8rem 1.1rem; border-radius: 14px; text-align: center;
+  background: var(--azul); color: var(--blanco);
+  font: 700 clamp(1.2rem, 3.6vw, 1.55rem)/1.3 var(--fuente-titulo);
+}
+.pt-estudio main > h1:first-child { margin-top: 0; padding: 1.3rem 1.2rem; background: var(--blanco); color: var(--azul); border: 2px solid var(--azul); font-size: clamp(1.3rem, 4vw, 1.8rem); }
+.pt-estudio main h1 p { margin: 0.5rem 0 0; font: 500 1rem/1.5 var(--fuente); color: var(--tinta); }
+.pt-estudio main h1 strong, .pt-estudio main h1 .highlight { color: inherit; }
+.pt-estudio main h2 {
+  margin: 2rem 0 1rem; text-align: center; color: var(--azul);
+  font: 700 clamp(1.2rem, 3.4vw, 1.5rem)/1.3 var(--fuente-titulo);
+}
+.pt-estudio main h2::after { content: ""; display: block; width: 64px; height: 4px; margin: 0.5rem auto 0; border-radius: 4px; background: var(--cielo); }
+.pt-estudio main h3 { margin: 1.5rem 0 0.7rem; color: var(--azul-noche); font: 700 1.15rem/1.35 var(--fuente-titulo); }
+.pt-estudio main h4 { margin: 1.2rem 0 0.5rem; color: var(--azul); font: 700 1.02rem/1.35 var(--fuente); }
+.pt-estudio main section > h2:first-child, .pt-estudio main section > h3:first-child, .pt-estudio main article > h2:first-child { margin-top: 0; }
+.pt-estudio main p { margin: 0 0 0.9rem; }
+.pt-estudio main strong, .pt-estudio main b, .pt-estudio .highlight, .pt-estudio .highlight-1, .pt-estudio .destacado, .pt-estudio .emphasis, .pt-estudio .enfasis { color: var(--azul-noche); font-weight: 700; }
+.pt-estudio main ul, .pt-estudio main ol { margin: 0.6rem 0 1rem; padding-left: 1.5rem; }
+.pt-estudio main li { margin-bottom: 0.45rem; }
+.pt-estudio main li::marker { color: var(--azul-vivo); font-weight: 700; }
+.pt-estudio main a { color: var(--azul); font-weight: 600; }
+.pt-estudio main hr, .pt-estudio .section-divider { height: 0; margin: 2rem 0; border: 0; border-top: 3px solid var(--linea); }
+
+/* Tarjetas */
+.pt-estudio main > section, .pt-estudio main > article,
+.pt-estudio .content-container, .pt-estudio .explanation, .pt-estudio .prophetic-content,
+.pt-estudio .seccion-pdf > section, .pt-estudio .text-section, .pt-estudio .box, .pt-estudio .blue-box,
+.pt-estudio .prayer, .pt-estudio .prayer-container, .pt-estudio .tefilah-container, .pt-estudio .seccion-contexto {
+  margin: 0 0 1.3rem; padding: 1.4rem 1.5rem; border-radius: var(--radio);
+  background: var(--blanco); border: 0; border-top: 5px solid var(--azul);
+  box-shadow: var(--sombra-suave);
+}
+.pt-estudio main > section.seccion-pdf { padding: 0; background: none; border: 0; box-shadow: none; }
+.pt-estudio .content-container .content-container, .pt-estudio .content-container .explanation,
+.pt-estudio main > section section, .pt-estudio main > article section, .pt-estudio main > article article {
+  margin: 1rem 0; padding: 0; background: none; border: 0; box-shadow: none; border-radius: 0;
+}
+.pt-estudio .section-container, .pt-estudio .prophetic-section, .pt-estudio .section { margin-bottom: 1.3rem; }
+
+/* Versículos: hebreo, fonética y traducción */
+.pt-estudio .verse-container, .pt-estudio .verse, .pt-estudio .versiculo, .pt-estudio .word-analysis, .pt-estudio .word-breakdown {
+  margin: 0 0 1rem; padding: 1rem 1.2rem; border-radius: 14px;
+  background: var(--blanco); border-left: 5px solid var(--azul-vivo);
+  box-shadow: var(--sombra-suave);
+}
+.pt-estudio .content-container .verse-container, .pt-estudio main > section .verse-container { background: var(--niebla); box-shadow: none; }
+.pt-estudio .verse-number, .pt-estudio .verse-ref, .pt-estudio .reference {
+  display: inline-block; margin-bottom: 0.4rem; padding: 0.1rem 0.7rem; border-radius: 999px;
+  background: var(--azul); color: var(--blanco); font-weight: 700; font-size: 0.86rem;
+}
+.pt-estudio .hebrew, .pt-estudio .texto-hebreo, .pt-estudio .hebreo, .pt-estudio .aramaic, .pt-estudio .word-hebrew,
+.pt-estudio .hebrew-title, .pt-estudio main [lang="he"], .pt-estudio main [dir="rtl"] {
+  direction: rtl; text-align: right;
+  font-family: var(--fuente-hebreo); font-size: 1.5rem; line-height: 1.95; color: var(--azul-noche);
+  margin: 0.3rem 0 0.5rem;
+}
+.pt-estudio .aramaic { font-family: "Noto Sans Syriac", "Estrangelo Edessa", "Serto Jerusalem", var(--fuente-hebreo); }
+.pt-estudio .hebrew-term, .pt-estudio .hebrew-inline { font-family: var(--fuente-hebreo); font-size: 1.15em; color: var(--azul); font-weight: 700; }
+.pt-estudio .transliteration, .pt-estudio .texto-fonetica, .pt-estudio .phonetic, .pt-estudio .word-transliteration {
+  margin: 0.3rem 0; font-style: italic; color: var(--tinta-suave); direction: ltr; text-align: left;
+}
+.pt-estudio .translation, .pt-estudio .texto-traduccion, .pt-estudio .literal-translation, .pt-estudio .literal, .pt-estudio .word-meaning {
+  margin: 0.3rem 0; font-weight: 600; color: var(--tinta); direction: ltr; text-align: left;
+}
+.pt-estudio blockquote, .pt-estudio .scripture, .pt-estudio .scripture-quote, .pt-estudio .citation, .pt-estudio .blockquote {
+  margin: 1rem 0; padding: 0.9rem 1.2rem; border-radius: 0 14px 14px 0;
+  background: var(--niebla); border-left: 5px solid var(--cielo);
+  color: var(--tinta); font-style: italic;
+}
+.pt-estudio blockquote > :last-child { margin-bottom: 0; }
+
+/* Bloques de enseñanza */
+.pt-estudio .prophetic-title, .pt-estudio .section-title, .pt-estudio .fulfillment-title, .pt-estudio .prophecy-title,
+.pt-estudio .messianic-title, .pt-estudio .translation-title, .pt-estudio .phonetic-title, .pt-estudio .mitzvot-title,
+.pt-estudio .principle-title, .pt-estudio .reflection-title, .pt-estudio .mashiaj-title, .pt-estudio .mitzvah-title,
+.pt-estudio .subsection-title, .pt-estudio .emoji-title, .pt-estudio .prayer-subtitle, .pt-estudio .titulo-secundario, .pt-estudio .subtitulo {
+  margin: 1rem 0 0.5rem; font-weight: 700; font-size: 1.08rem; color: var(--azul);
+}
+.pt-estudio .point-letter, .pt-estudio .number-point, .pt-estudio .subsection-letter, .pt-estudio .section-roman {
+  margin-right: 0.4rem; font-weight: 700; color: var(--azul-vivo);
+}
+.pt-estudio .arrow, .pt-estudio .messianic-arrow, .pt-estudio .fulfillment-arrow { color: var(--azul-vivo); font-weight: 700; }
+.pt-estudio .messianic-fulfillment, .pt-estudio .mashiach-fulfillment, .pt-estudio .mashiaj-fulfillment, .pt-estudio .prophecy-fulfillment,
+.pt-estudio .prophetic-fulfillment, .pt-estudio .fulfillment, .pt-estudio .fulfillment-section, .pt-estudio .messianic-section,
+.pt-estudio .messianic-application, .pt-estudio .messianic-element, .pt-estudio .messianic-point, .pt-estudio .aplicacion, .pt-estudio .reflection {
+  margin: 1rem 0; padding: 1rem 1.2rem; border-radius: 14px;
+  background: #e8f1ff; border-left: 5px solid var(--azul);
+}
+.pt-estudio .conclusion, .pt-estudio .special-conclusion {
+  margin: 1.4rem 0; padding: 1.2rem 1.4rem; border-radius: 14px;
+  background: var(--azul-noche); color: var(--blanco); border: 0;
+}
+.pt-estudio main > section.conclusion { border-top: 0; }
+.pt-estudio .conclusion strong, .pt-estudio .conclusion b, .pt-estudio .conclusion .highlight, .pt-estudio .conclusion h2,
+.pt-estudio .conclusion h3, .pt-estudio .conclusion h4, .pt-estudio .conclusion .hebrew-term, .pt-estudio .conclusion a { color: var(--blanco); }
+.pt-estudio .conclusion li::marker { color: var(--cielo); }
+.pt-estudio .question, .pt-estudio .pregunta { margin: 1rem 0 0.3rem; font-weight: 700; color: var(--azul); }
+.pt-estudio .answer { margin: 0 0 1rem; padding-left: 1rem; border-left: 3px solid var(--linea); }
+.pt-estudio .prayer-text, .pt-estudio .prayer-stanza, .pt-estudio .prayer-verse, .pt-estudio .tefilah-content, .pt-estudio .tefilah {
+  margin: 1rem 0; font-size: 1.05rem; line-height: 1.85;
+}
+.pt-estudio .prayer-conclusion, .pt-estudio .amen { margin-top: 1rem; font-weight: 700; text-align: center; color: var(--azul); }
+.pt-estudio .mitzvot-item, .pt-estudio .mitzvah-item, .pt-estudio .mitzvah, .pt-estudio .principle-item, .pt-estudio .point,
+.pt-estudio .prophetic-point, .pt-estudio .main-point, .pt-estudio .question-answer, .pt-estudio .context {
+  margin: 0.8rem 0; padding: 0.8rem 1rem; border-radius: 12px; background: var(--niebla);
+}
+.pt-estudio .emoji-icon, .pt-estudio .emoji { margin-right: 0.3rem; }
+
+/* Tablas */
+.pt-estudio .table-container { overflow-x: auto; margin: 1rem 0; }
+.pt-estudio main table { display: block; width: 100%; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem; }
+.pt-estudio main td { background: var(--blanco); }
+.pt-estudio main th { background: var(--azul) !important; color: var(--blanco) !important; text-align: left; }
+.pt-estudio main th, .pt-estudio main td { padding: 0.6rem 0.75rem !important; border: 1px solid var(--linea) !important; vertical-align: top; }
+.pt-estudio main tbody tr:nth-child(even) td { background: var(--niebla); }
+
+/* Créditos y recursos al final de cada aliyá */
+.pt-estudio main > section.bibliografia { background: var(--niebla); border: 2px dashed var(--linea); box-shadow: none; font-size: 0.93rem; color: var(--tinta-suave); }
+.pt-estudio .bibliografia .autor { color: var(--azul-noche); }
+.pt-estudio main > section.recursos-ministerio { background: var(--azul); border: 0; color: var(--blanco); text-align: center; }
+.pt-estudio .recursos-ministerio a { color: var(--blanco); text-decoration: underline; overflow-wrap: anywhere; }
+
+/* Botones antiguos de "siguiente aliyá" */
+.pt-estudio .navegacion-aliya { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 2rem 0; }
+.pt-estudio .aliya-button, .pt-estudio button.aliya {
+  display: inline-block; margin: 1rem auto; padding: 0; border: 0; border-radius: 999px;
+  background: var(--azul); cursor: pointer; font: 600 1rem var(--fuente);
+}
+.pt-estudio .aliya-button a, .pt-estudio button.aliya a { display: block; padding: 0.7rem 1.4rem; color: var(--blanco); text-decoration: none; }
+.pt-estudio > .aliya-button { display: block; }
+/* Cuando la navegación nueva está lista, los botones antiguos sobran */
+.pt-nav-lista .aliya-button, .pt-nav-lista .navegacion-aliya, .pt-nav-lista button.aliya { display: none; }
+
+.pt-estudio > footer, .pt-estudio > .footer {
+  margin-top: 2rem; padding: 1.6rem 1rem; text-align: center;
+  background: var(--azul-noche); color: var(--blanco);
+  border-top: 6px solid var(--azul-vivo);
+}
+.pt-estudio > footer p { margin: 0.2rem 0; }
+.pt-estudio > footer a { color: var(--cielo); }
+
+/* ---------- 7. Pie de página ---------- */
+.pt-pie { margin-top: 2.5rem; padding: 2.2rem 1rem 2rem; text-align: center; background: var(--azul-noche); color: var(--blanco); border-top: 8px solid var(--azul-vivo); }
+.pt-pie img { display: block; width: min(520px, 92%); margin: 0 auto 1rem; border-radius: 10px; }
+.pt-pie p { margin: 0.35rem auto; max-width: 46rem; color: #d6e2ff; }
+.pt-pie .pt-lema { font: 700 1.25rem var(--fuente-titulo); color: var(--blanco); }
+.pt-pie a { color: var(--cielo); font-weight: 600; }
+
+/* ---------- Pantallas pequeñas ---------- */
+@media (max-width: 860px) {
+  .pt-semana { grid-template-columns: 1fr; }
+  .pt-hoy { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .pt-menu a { padding: 0.4rem 0.55rem; font-size: 0.9rem; }
+  .pt-marca small { display: none; }
+  .pt-bandera { padding: 3rem 1rem 2.8rem; }
+  .pt-bandera::before, .pt-bandera::after { height: 12px; }
+  .pt-bandera::before { top: 12px; }
+  .pt-bandera::after { bottom: 12px; }
+  .pt-semana-parasha, .pt-jerusalen { padding: 1.4rem 1.2rem 1.5rem; }
+  .pt-semana-dias { gap: 0.3rem; }
+  .pt-dia { padding: 0.55rem 0.1rem; border-radius: 12px; }
+  .pt-dia-ref { display: none; }
+  .pt-dia-nombre { font-size: 0.66rem; letter-spacing: 0; }
+  .pt-rejilla { grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+  .pt-parasha { grid-template-columns: 1fr; padding: 0.7rem 0.75rem; }
+  .pt-parasha-n { grid-row: auto; width: 30px; height: 30px; font-size: 0.85rem; margin-bottom: 0.25rem; }
+  .pt-parasha-nombre { flex-direction: column; gap: 0; font-size: 1rem; }
+  .pt-aliya { grid-template-columns: 46px 1fr; padding: 0.8rem 0.9rem; }
+  .pt-aliya-n { width: 46px; height: 46px; font-size: 1.25rem; }
+  .pt-aliya-ir { display: none; }
+  .pt-aliya-ref { font-size: 1.05rem; }
+  .pt-pasos { grid-template-columns: 1fr 1fr; }
+  .pt-paso.es-centro { grid-column: 1 / -1; grid-row: 2; }
+  .pt-barra { gap: 0.5rem; padding-block: 0.4rem; }
+  .pt-aliya-pagina .pt-marca span { display: none; }
+  .pt-pastillas { gap: 0.2rem; }
+  .pt-pastillas a { width: 31px; height: 31px; font-size: 0.9rem; }
+  .pt-estudio main > section, .pt-estudio main > article, .pt-estudio .content-container,
+  .pt-estudio .explanation, .pt-estudio .prophetic-content { padding: 1.1rem 1rem; }
+  .pt-estudio .hebrew, .pt-estudio .texto-hebreo, .pt-estudio .aramaic, .pt-estudio main [lang="he"] { font-size: 1.32rem; }
+}
+@media (max-width: 380px) {
+  .pt-barra-parasha span { display: none; }
+  .pt-pastillas a { width: 28px; height: 28px; }
+}
+
+@media print {
+  .pt-barra, .pt-pasos, .boton-descargar, #google_translate_element { display: none !important; }
+}

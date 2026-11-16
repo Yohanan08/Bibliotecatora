@@ -140,3 +140,33 @@ Estudiante de desarrollo web y tecnologías JavaScript.
 # 📜 Licencia
 
 Este proyecto es de uso educativo y de estudio bíblico.
+
+---
+
+# Estructura actual (noviembre 2026)
+
+Este proyecto ahora contiene **solo las parashot**.
+
+| Archivo | Para qué sirve |
+| --- | --- |
+| `index.html` | Portada: parashá de la semana, horarios de Yerushaláyim, estudio del día y las 54 parashot |
+| `parasha1.html` … `parasha54.html` | Las 7 aliyot de cada parashá (una por día) |
+| `parashaNN/aliyaN.html` | Los estudios. Solo cargan `tema.css`, `parashot-data.js` y `sitio.js` |
+| `tema.css` | Todo el diseño (azul y blanco). Los colores están en `:root`, al inicio |
+| `parashot-data.js` | Nombres, pasajes y calendario de lecturas (Israel) hasta 2050 |
+| `sitio.js` | Hora de Yerushaláyim, Hebcal, cuenta regresiva, estudio del día y navegación entre aliyot |
+| `style.css`, `index.js`, `load-menu.js`, `menu-hamburguesa.html` | Se conservan: los usan las páginas de Profecías y Estudios |
+
+## Agregar o corregir una aliyá
+
+Edita el archivo `parashaNN/aliyaN.html`. No hace falta poner estilos ni botones de navegación:
+la barra de arriba y los botones de anterior/siguiente los agrega `sitio.js`.
+Si cambia el pasaje de una aliyá, actualízalo también en `parashot-data.js`.
+
+## Secciones que se separaron
+
+`vercel.json` reenvía estas carpetas a sus propios proyectos, así los enlaces antiguos siguen funcionando:
+
+- `/Estudios-a-la-Luz-del-Mashiaj/…` → https://estudios-luz-del-mashiaj.vercel.app
+- `/Profesias-de-las-parashot/…` → https://profecias-de-las-parashot.vercel.app
+- `/Fiestas del Eterno/…` → https://fiestas-del-eterno.vercel.app
