@@ -253,6 +253,8 @@
       });
     }
 
+    pintarVerso(e);
+
     // Semana completa
     var tira = el("hoy-semana");
     if (tira) {
@@ -322,6 +324,163 @@
         Array.prototype.forEach.call(filtros, function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
         aplicar();
       });
+    });
+  }
+
+  /* =================================================================
+     VERSO DEL DÍA (tarjeta para compartir)
+     Los versos están en versos.js (window.PT_VERSOS, clave "parashá-aliyá").
+     ================================================================= */
+  var verso = { blob: null, texto: "", url: "", nombre: "" };
+
+  function estrella(c, x, y, r, color, grosor) {
+    c.save(); c.strokeStyle = color; c.lineWidth = grosor; c.lineJoin = "round";
+    [0, Math.PI].forEach(function (giro) {
+      c.beginPath();
+      for (var i = 0; i < 3; i++) {
+        var a = giro - Math.PI / 2 + i * 2 * Math.PI / 3;
+        c[i ? "lineTo" : "moveTo"](x + r * Math.cos(a), y + r * Math.sin(a));
+      }
+      c.closePath(); c.stroke();
+    });
+    c.restore();
+  }
+
+  function partir(c, txt, ancho) {
+    var lineas = [], linea = "";
+    txt.split(/\s+/).forEach(function (pal) {
+      var prueba = linea ? linea + " " + pal : pal;
+      if (linea && c.measureText(prueba).width > ancho) { lineas.push(linea); linea = pal; } else linea = prueba;
+    });
+    if (linea) lineas.push(linea);
+    return lineas;
+  }
+
+  function dibujarTarjeta(lienzo, o) {
+    var c = lienzo.getContext("2d"), W = 1080, H = 1080;
+    var SERIF = '"Frank Ruhl Libre", Georgia, "Times New Roman", serif';
+    var SANS = 'Rubik, "Segoe UI", Arial, sans-serif';
+    lienzo.width = W; lienzo.height = H;
+
+    var g = c.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, "#0038b8"); g.addColorStop(0.55, "#1463ff"); g.addColorStop(1, "#45a6ff");
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+    estrella(c, 850, 650, 400, "rgba(255,255,255,0.10)", 12);
+
+    // Franjas blancas, como la bandera
+    c.fillStyle = "#ffffff"; c.fillRect(0, 44, W, 20); c.fillRect(0, 852, W, 20);
+
+    // Etiqueta
+    estrella(c, W / 2, 132, 38, "#ffffff", 5);
+    c.textAlign = "center"; c.textBaseline = "middle";
+    c.font = "700 28px " + SANS;
+    try { c.letterSpacing = "5px"; } catch (e) { /* no pasa nada */ }
+    var etiqueta = o.verso ? "VERSO DEL DÍA" : "ESTUDIO DE HOY";
+    var anchoEt = c.measureText(etiqueta).width + 64;
+    c.fillStyle = "#ffc62e";
+    c.beginPath();
+    if (c.roundRect) c.roundRect(W / 2 - anchoEt / 2, 196, anchoEt, 54, 27); else c.rect(W / 2 - anchoEt / 2, 196, anchoEt, 54);
+    c.fill();
+    c.fillStyle = "#00174d"; c.fillText(etiqueta, W / 2 + 2, 224);
+    try { c.letterSpacing = "0px"; } catch (e) { /* no pasa nada */ }
+
+    // Verso: se ajusta el tamaño hasta que quepa
+    var txt = o.verso ? "«" + o.verso + "»" : "Hoy estudiamos la Aliyá " + o.aliya + " de la parashá " + o.parasha;
+    var arriba = 280, alto = 400, ancho = 900, tam = 66, lineas;
+    do {
+      c.font = "700 " + tam + "px " + SERIF;
+      lineas = partir(c, txt, ancho);
+      if (lineas.length * tam * 1.3 <= alto) break;
+      tam -= 2;
+    } while (tam > 30);
+    var y = arriba + (alto - lineas.length * tam * 1.3) / 2 + tam * 0.65;
+    c.fillStyle = "#ffffff";
+    c.shadowColor = "rgba(0,23,77,0.35)"; c.shadowBlur = 14; c.shadowOffsetY = 3;
+    lineas.forEach(function (l, i) { c.fillText(l, W / 2, y + i * tam * 1.3); });
+    c.shadowColor = "transparent"; c.shadowBlur = 0; c.shadowOffsetY = 0;
+
+    // Parashá, aliyá y pasaje
+    c.fillStyle = "#ffc62e"; c.fillRect(W / 2 - 45, 706, 90, 6);
+    c.fillStyle = "#ffffff"; c.font = "700 40px " + SANS;
+    c.fillText("Parashá " + o.parasha + " · Aliyá " + o.aliya, W / 2, 760);
+    c.font = "500 32px " + SANS; c.fillStyle = "rgba(255,255,255,0.92)";
+    c.fillText(o.ref, W / 2, 810);
+
+    // Pie blanco con la invitación
+    c.fillStyle = "#ffffff"; c.fillRect(0, 896, W, H - 896);
+    c.fillStyle = "#0b1b3f"; c.font = "600 30px " + SANS;
+    c.fillText("Yeshúa — La Torá Viviente · Estudia la aliyá de hoy", W / 2, 950);
+    c.fillStyle = "#0038b8"; c.font = "700 46px " + SANS;
+    c.fillText(o.sitio, W / 2, 1012);
+  }
+
+  function pintarVerso(e) {
+    var lienzo = el("verso-lienzo");
+    if (!lienzo || !lienzo.getContext || !e.semana.nums.length) return;
+    var n = e.semana.nums[0], p = P(n), a = e.dia;
+    var txt = (window.PT_VERSOS || {})[n + "-" + a] || "";
+    var enlace = new URL(urlAliya(n, a), location.href).href;
+    var sitio = /^(localhost|127\.|\[::1\])/.test(location.host) || !location.host ? "bibliotecatora.vercel.app" : location.host;
+    var datos = { verso: txt, parasha: p.nombre, aliya: a, ref: p.aliyot[a - 1], sitio: sitio };
+
+    verso.url = enlace;
+    verso.nombre = "verso-" + p.nombre.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, "-") + "-aliya" + a + ".png";
+    verso.texto = (txt ? "«" + txt + "»\n" : "") + "Parashá " + p.nombre + " · Aliyá " + a + " (" + p.aliyot[a - 1] + ")\n\n" +
+      "Estudia la aliyá de hoy a la luz del Mashíaj:";
+    texto("verso-texto", txt ? "«" + txt + "»" : "Hoy estudiamos la Aliyá " + a + " de la parashá " + p.nombre + ".");
+    texto("verso-ref", "Parashá " + p.nombre + " · Aliyá " + a + " · " + p.aliyot[a - 1]);
+    lienzo.setAttribute("aria-label", "Tarjeta para compartir: " + (txt || "Aliyá " + a + " de " + p.nombre) + " — " + p.aliyot[a - 1]);
+
+    var completo = encodeURIComponent(verso.texto + " " + enlace);
+    var wa = el("verso-whatsapp"), tg = el("verso-telegram"), fb = el("verso-facebook"), ir = el("verso-ir");
+    if (wa) wa.href = "https://wa.me/?text=" + completo;
+    if (tg) tg.href = "https://t.me/share/url?url=" + encodeURIComponent(enlace) + "&text=" + encodeURIComponent(verso.texto);
+    if (fb) fb.href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(enlace);
+    if (ir) ir.href = enlace;
+
+    function dibujar() {
+      dibujarTarjeta(lienzo, datos);
+      verso.blob = null;
+      if (lienzo.toBlob) lienzo.toBlob(function (b) { verso.blob = b; }, "image/png");
+    }
+    dibujar();
+    // Se vuelve a dibujar cuando cargan las letras del sitio
+    if (document.fonts && document.fonts.load) {
+      Promise.all([document.fonts.load('700 60px "Frank Ruhl Libre"'), document.fonts.load("700 40px Rubik"),
+        document.fonts.load("500 32px Rubik"), document.fonts.load("600 30px Rubik")]).then(dibujar, function () { });
+    }
+  }
+
+  function iniciarVerso() {
+    var estado = el("verso-estado");
+    function avisar(t) { if (estado) { estado.textContent = t; setTimeout(function () { if (estado.textContent === t) estado.textContent = ""; }, 5000); } }
+    function descargar() {
+      if (!verso.blob) return avisar("La imagen todavía se está preparando.");
+      var a = crear("a", { href: URL.createObjectURL(verso.blob), download: verso.nombre });
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+      avisar("Imagen descargada. Súbela a tus redes con el enlace.");
+    }
+    var bCompartir = el("verso-compartir"), bDescargar = el("verso-descargar"), bCopiar = el("verso-copiar");
+    if (bDescargar) bDescargar.addEventListener("click", descargar);
+    if (bCompartir) {
+      if (!navigator.share) bCompartir.hidden = true;
+      bCompartir.addEventListener("click", function () {
+        var datos = { title: "Verso del día", text: verso.texto, url: verso.url };
+        try {
+          if (verso.blob && window.File) {
+            var archivo = new File([verso.blob], verso.nombre, { type: "image/png" });
+            if (navigator.canShare && navigator.canShare({ files: [archivo] })) datos.files = [archivo];
+          }
+        } catch (e) { /* se comparte solo el texto */ }
+        navigator.share(datos).catch(function () { });
+      });
+    }
+    if (bCopiar) bCopiar.addEventListener("click", function () {
+      var t = verso.texto + " " + verso.url;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () { avisar("Texto copiado."); }, function () { avisar("No se pudo copiar."); });
+      } else avisar("Tu navegador no permite copiar desde aquí.");
     });
   }
 
@@ -432,14 +591,14 @@
       if (pagina === "inicio") pintarReloj(e);
     }
 
-    if (pagina === "inicio") iniciarBuscador();
+    if (pagina === "inicio") { iniciarBuscador(); iniciarVerso(); }
     repintar(true);
     document.documentElement.classList.add("pt-listo");
     setInterval(repintar, pagina === "inicio" ? 1000 : 60000);
   }
 
   // Para pruebas y para otras páginas del ministerio que quieran reutilizarlo.
-  window.PT = { estado: estado, semana: semana, horariosCalculados: horariosCalculados, partesJerusalen: partesJerusalen };
+  window.PT = { estado: estado, semana: semana, horariosCalculados: horariosCalculados, partesJerusalen: partesJerusalen, tarjeta: dibujarTarjeta };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", arrancar);
   else arrancar();
